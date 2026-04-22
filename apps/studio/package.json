@@ -1,0 +1,27 @@
+{
+  "name": "studio",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "sanity dev --port 3333",
+    "build": "sanity build",
+    "start": "sanity start",
+    "deploy": "sanity deploy",
+    "lint": "echo \"(studio: lint added in Prompt 4)\"",
+    "typecheck": "tsc --noEmit",
+    "test": "echo \"(studio: no tests)\""
+  },
+  "dependencies": {
+    "@sanity/vision": "^3.60.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sanity": "^3.60.0",
+    "styled-components": "^6.1.13"
+  },
+  "devDependencies": {
+    "@propharmex/config": "workspace:*",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.6.0"
+  }
+}

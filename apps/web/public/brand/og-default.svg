@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Propharmex default Open Graph placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a1d33"/>
+      <stop offset="100%" stop-color="#172e4f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g transform="translate(80,80)" fill="#ffffff">
+    <rect x="0" y="0" width="56" height="56" rx="12" opacity="0.95"/>
+    <text x="76" y="42" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-weight="700" font-size="40" letter-spacing="3">PROPHARMEX</text>
+  </g>
+  <text x="80" y="360" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-weight="600" font-size="72" fill="#ffffff">Canada–India bridge</text>
+  <text x="80" y="440" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-weight="400" font-size="34" fill="#cdd8e6">Pharmaceutical development · Analytical · Regulatory · 3PL</text>
+  <text x="80" y="560" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-weight="400" font-size="18" fill="#8fa6c0" opacity="0.8">Placeholder Open Graph — replaced by dynamic next/og at Prompt 23</text>
+</svg>
