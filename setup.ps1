@@ -115,16 +115,31 @@ Co-Authored-By: Claude <noreply@anthropic.com>"
 # -----------------------------------------------------------------------------
 Write-Section "5/6  Create public GitHub repo + push"
 
-$existing = gh repo view propharmex-site 2>&1
-if ($LASTEXITCODE -eq 0) {
-    Write-Host "  Repo `propharmex-site` already exists on your account — pushing to it." -ForegroundColor Yellow
+# `gh repo view` writes to stderr when the repo is missing, which
+# $ErrorActionPreference = "Stop" treats as a terminating error.
+# Scope ErrorActionPreference locally so we can inspect $LASTEXITCODE instead.
+$repoExists = $false
+$prevEAP = $ErrorActionPreference
+$ErrorActionPreference = "SilentlyContinue"
+try {
+    $null = gh repo view propharmex-site 2>&1
+    if ($LASTEXITCODE -eq 0) { $repoExists = $true }
+} catch {
+    $repoExists = $false
+}
+$ErrorActionPreference = $prevEAP
+
+if ($repoExists) {
+    Write-Host "  Repo 'propharmex-site' already exists on your account — pushing to it." -ForegroundColor Yellow
     $remotes = git remote
     if ($remotes -notcontains "origin") {
         $ghUser = (gh api user --jq .login)
         git remote add origin "https://github.com/$ghUser/propharmex-site.git"
     }
     git push -u origin main
+    if ($LASTEXITCODE -ne 0) { Fail "git push failed." }
 } else {
+    Write-Host "  Creating public repo 'propharmex-site'..." -ForegroundColor Cyan
     gh repo create propharmex-site --public --source=. --remote=origin --push --description "Propharmex website — Canada-India CDMO (Next.js 15 + Sanity + AI tools)"
     if ($LASTEXITCODE -ne 0) { Fail "gh repo create failed." }
 }
