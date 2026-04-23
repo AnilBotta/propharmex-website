@@ -102,3 +102,23 @@ Expand this doc in Prompt 4 (Sanity + RAG flow), Prompt 18 (Concierge detail), a
 - Newsletter form posts to `/api/newsletter`, which validates with Zod, verifies Cloudflare Turnstile when configured, and hands off to Resend Audiences with `unsubscribed: true` to force their double-opt-in flow. Runtime is Node (not Edge).
 - `app/error.tsx`, `app/global-error.tsx`, `app/not-found.tsx`, and `app/loading.tsx` cover the expected failure + loading states at segment level.
 - Copy lives in `apps/web/content/site-nav.ts` — the stand-in for the Sanity `siteSettings` + `navigation` singleton that arrives in Prompt 4.
+
+## Sanity content layer (added in Prompt 4)
+
+- Studio lives in `apps/studio`. Project ID `veo2rnkc`, dataset `production`. Run locally with `pnpm --filter studio dev` (port 3333). Deploy hosting separately via `sanity deploy` — the web app does not embed the Studio.
+- 14 document types: `siteSettings` + `aiPromptConfig` (singletons), `page`, `service`, `industry`, `caseStudy`, `insight`, `whitepaper`, `person`, `facility`, `certification`, `faq`, `testimonial`, `sopCapability`. All content docs share a base-field factory (`title`, `slug`, `seoTitle`, `seoDescription`, `ogImage`, `publishedAt`, `isVisible`, `region[]`, `ragEligible`).
+- 12 section-builder objects (`hero`, `pillars`, `statsStrip`, `processStepper`, `logoWall`, `caseStudyCarousel`, `capabilityMatrix`, `certBand`, `leaderCard`, `faqBlock`, `ctaSection`, `bentoGrid`) are registered as a discriminated-union array on `page.body`, `service.body`, `industry.body`, and `insight.body`.
+- Desk structure (`apps/studio/structure/index.ts`) pins the two singletons at the top and buckets remaining types under **Content**, **People & places**, and **Components**. Singleton creation/deletion is filtered out via `document.actions` and `document.newDocumentOptions`.
+- Presentation plugin is wired with `defineLocations` for every public-facing document type (page, service, industry, insight, caseStudy). Preview mode is enabled via the web app's `/api/draft` route; Studio passes a signed `secret`.
+- GROQ + Zod lib lives at `packages/lib/sanity/`:
+  - `client.ts` — published + preview clients, `getClient(preview)` selector, stub clients that fail-loud at call time when `NEXT_PUBLIC_SANITY_PROJECT_ID` is unset so imports stay side-effect-free.
+  - `queries.ts` — hand-tuned GROQ strings for every document, drafts excluded on public queries (`!(_id in path("drafts.**"))`), `ragExtractQuery` prepared for Prompt 18 RAG ingestion.
+  - `parsers.ts` — Zod schemas mirroring every document + section; exported as a discriminated `zSection` union plus per-doc schemas with `.passthrough()` for forward-compat.
+  - `fetch.ts` — `sanityFetch<T>({ query, params, parser, tags, preview, revalidate })` wrapper. Public fetches default to `revalidate: 300`; preview fetches default to `0`. Cache tags follow `sanity:<docType>` and `sanity:<docType>:<slug>`.
+- Web app routes for preview + revalidation:
+  - `GET /api/draft` — verifies `secret` against `SANITY_PREVIEW_SECRET`, validates the redirect pathname, enables `draftMode()`.
+  - `GET /api/exit-draft` — disables draft mode, redirects home or to a validated `path` query.
+  - `POST /api/revalidate` — Node runtime. HMAC-SHA256 verification against `SANITY_WEBHOOK_SECRET` using `crypto.timingSafeEqual`, Zod-validates `{_id, _type, slug?.current?}`, calls `revalidateTag("sanity:<_type>")` and the slug-scoped tag. Never logs body or signature.
+- `DraftModeIndicator` (client island) renders a fixed banner when draft mode is on; `VisualEditing` lazy-loads `next-sanity`'s overlay only for editors in draft mode.
+- `apps/web/app/studio-info/page.tsx` is a static info page that points editors to the separate Studio URL (localhost:3333 in dev, `studio.propharmex.com` in prod).
+

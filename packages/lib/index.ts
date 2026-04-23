@@ -11,3 +11,5 @@ export {
   type WebSiteInput,
   type PostalAddressInput,
 } from "./schema-org";
+
+export * as sanity from "./sanity";

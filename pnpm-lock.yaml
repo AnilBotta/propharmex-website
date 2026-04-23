@@ -253,6 +253,12 @@ importers:
 
   packages/lib:
     dependencies:
+      '@sanity/client':
+        specifier: ^6.22.0
+        version: 6.29.1
+      '@sanity/image-url':
+        specifier: ^1.0.2
+        version: 1.2.0
       zod:
         specifier: ^3.23.0
         version: 3.25.76

@@ -20,9 +20,7 @@ function emit(entry: LogEntry): void {
   if (process.env.NODE_ENV === "test") return;
   const line = JSON.stringify(entry);
   // Intentional direct console use inside this logger only.
-  // eslint-disable-next-line no-console
   if (entry.level === "error") console.error(line);
-  // eslint-disable-next-line no-console
   else if (entry.level === "warn") console.warn(line);
   // eslint-disable-next-line no-console
   else if (process.env.NODE_ENV !== "production") console.log(line);

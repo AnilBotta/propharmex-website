@@ -96,7 +96,6 @@ if (!parsed.success) {
     throw new Error(message);
   } else {
     // In dev/test, warn but keep going with defaults so Prompt 2+ can iterate.
-    // eslint-disable-next-line no-console
     console.warn(`[env] ${message}`);
   }
 }
