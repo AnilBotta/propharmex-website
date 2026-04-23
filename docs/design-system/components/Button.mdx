@@ -1,0 +1,87 @@
+---
+title: Button
+status: stable
+tier: primitive
+---
+
+# Button
+
+Primary interactive affordance. Use for every click-to-action: form submits, CTAs, modal dismissals, inline table actions.
+
+## Anatomy
+
+```
+┌─────────────────────────────────────┐
+│  [icon]   Label text   [icon]       │   <- Button
+└─────────────────────────────────────┘
+```
+
+Optional leading / trailing icon via any `lucide-react` component as a child. `asChild` renders the Button's classes onto a child element (e.g., a Next.js `<Link>`) via Radix `Slot`.
+
+## Props
+
+| Prop | Type | Default | Notes |
+|---|---|---|---|
+| `variant` | `"primary" \| "secondary" \| "ghost" \| "outline" \| "danger" \| "link"` | `"primary"` | Visual weight |
+| `size` | `"sm" \| "md" \| "lg" \| "icon"` | `"md"` | Footprint; `icon` is square, `sm` is ≥44 px hit target |
+| `asChild` | `boolean` | `false` | Merge classes onto child element via Radix `Slot` |
+| `disabled` | `boolean` | `false` | Visual + `aria-disabled`; blocks clicks |
+| all `<button>` props | — | — | `onClick`, `type`, `aria-*`, `data-*` |
+
+## States
+
+| State | Treatment |
+|---|---|
+| Rest       | Variant base (primary = teal-600 fill) |
+| Hover      | `+5%` darken via CSS filter (or explicit hover class per variant) |
+| Focus      | 2 px teal ring at 2 px offset, `focus-visible` only |
+| Active     | Subtle translate-y-px |
+| Disabled   | `opacity-50 cursor-not-allowed`, no hover change |
+| Loading    | Pass `<Loader2 className="animate-spin" />` as leading icon |
+
+## Tokens used
+
+- Colors: `--color-primary-600`, `--color-primary-700` (hover), `--color-accent-500` (danger alt), `--color-border`, `--color-muted`
+- Radius: `--radius-md` (12 px)
+- Typography: `--font-display` semibold, `text-sm` / `text-base` / `text-lg` per size
+- Motion: 150 ms transition on `background-color`, `color`, `border-color`
+
+## Accessibility
+
+- **Keyboard:** `Tab` focuses, `Enter` / `Space` activates.
+- **ARIA:** Native `<button>` role. When `asChild` wraps a link, the consumer must provide an accessible link label.
+- **Touch:** Every size ≥44×44 px (`min-h-11 min-w-11`).
+- **Disabled:** Emits `aria-disabled="true"` rather than hiding from AT.
+
+## Examples
+
+**Primary CTA**
+
+```tsx
+<Button>Request a scoping call</Button>
+```
+
+**Destructive confirmation**
+
+```tsx
+<Button variant="danger">Revoke API key</Button>
+```
+
+**Icon-only action with tooltip**
+
+```tsx
+<Tooltip>
+  <TooltipTrigger asChild>
+    <Button variant="ghost" size="icon" aria-label="Copy batch record ID">
+      <Copy className="h-4 w-4" />
+    </Button>
+  </TooltipTrigger>
+  <TooltipContent>Copy batch record ID</TooltipContent>
+</Tooltip>
+```
+
+## Related
+
+- [Badge](./Badge.mdx) — non-interactive label
+- [Dialog](./Dialog.mdx) — buttons are the standard dismissal control
+- [Tooltip](./Tooltip.mdx) — required for icon-only buttons

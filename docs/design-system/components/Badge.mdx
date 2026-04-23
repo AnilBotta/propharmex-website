@@ -1,0 +1,56 @@
+---
+title: Badge
+status: stable
+tier: primitive
+---
+
+# Badge
+
+Non-interactive status / category label. Use for regulatory stamps (DEL, WHO-GMP), service taxonomy pills, and meta chips on cards.
+
+## Anatomy
+
+```
+┌──────────────┐
+│  Label text  │   <- Badge (non-interactive)
+└──────────────┘
+```
+
+## Props
+
+| Prop | Type | Default | Notes |
+|---|---|---|---|
+| `variant` | `"default" \| "secondary" \| "outline" \| "success" \| "warn" \| "danger" \| "accent"` | `"default"` | Semantic tone |
+| all `<span>` props | — | — | |
+
+## States
+
+| State | Treatment |
+|---|---|
+| Rest | Tone-specific `color-mix()` background at ~90% lightness |
+| Hover | — (non-interactive) |
+| Focus | — (non-interactive) |
+
+## Tokens
+
+- Colors: `--color-primary-*`, `--color-success`, `--color-warn`, `--color-danger`, `--color-accent-500`
+- Radius: `--radius-full`
+- Typography: `text-xs font-medium` in `--font-display`
+
+## Accessibility
+
+- **Role:** Default span; not in tab order.
+- When a Badge carries critical state (e.g., "Draft" on a published-looking page), the consumer must pair it with visible text — badges alone are not a substitute for a label.
+
+## Examples
+
+```tsx
+<Badge variant="success">Health Canada DEL</Badge>
+<Badge variant="accent">Zone IVb</Badge>
+<Badge variant="outline">ICH Q2(R2)</Badge>
+```
+
+## Related
+
+- [Callout](./Callout.mdx) — when the status needs a full block, not a pill
+- [Stat](./Stat.mdx) — numeric facts

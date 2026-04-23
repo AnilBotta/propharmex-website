@@ -1,0 +1,40 @@
+---
+title: Breadcrumb
+status: stable
+tier: primitive
+---
+
+# Breadcrumb
+
+Hierarchical navigation rail. Required on every page below the root (Home, Contact, Search excepted). Renders matching `BreadcrumbList` JSON-LD at the page level.
+
+## Props
+
+| Prop | Type | Default | Notes |
+|---|---|---|---|
+| `items` | `BreadcrumbItem[]` | — | `{ label, href? }`; last item has no `href` and is the current page |
+| `linkAs` | `ElementType` | `"a"` | Pass `Link` from `next/link` in `apps/web` |
+| `separator` | `ReactNode` | `<ChevronRight />` | |
+
+## Accessibility
+
+- Rendered as `<nav aria-label="Breadcrumb">` → `<ol>`.
+- Current page item sets `aria-current="page"` and is not a link.
+- Separators are `aria-hidden`.
+
+## Examples
+
+```tsx
+<Breadcrumb
+  items={[
+    { label: "Home", href: "/" },
+    { label: "Services", href: "/services" },
+    { label: "Analytical", href: "/services/analytical" },
+    { label: "Method validation" }, // current
+  ]}
+/>
+```
+
+## Related
+
+- [Pagination](./Pagination.mdx) — sibling navigation within a list view

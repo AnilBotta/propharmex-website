@@ -1,0 +1,37 @@
+---
+title: Pagination
+status: stable
+tier: primitive
+---
+
+# Pagination
+
+Page-N-of-M navigation for paginated lists — Insights hub, search results, case study archives. Implements smart ellipsis so the control never grows past ~7 visible pages.
+
+## Props
+
+| Prop | Type | Default | Notes |
+|---|---|---|---|
+| `page` | `number` | — | 1-indexed current page |
+| `pageCount` | `number` | — | Total pages |
+| `onPageChange` | `(page: number) => void` | — | Click / keyboard handler |
+| `siblingCount` | `number` | `1` | Pages shown either side of current |
+
+## Accessibility
+
+- `<nav aria-label="Pagination">` container.
+- Current page sets `aria-current="page"`.
+- Previous / Next buttons have accessible labels; `disabled` when at boundary.
+- `Enter` / `Space` on focused page button fires `onPageChange`.
+
+## Examples
+
+```tsx
+const [page, setPage] = useState(1);
+
+<Pagination page={page} pageCount={12} onPageChange={setPage} />
+```
+
+## Related
+
+- [Breadcrumb](./Breadcrumb.mdx) — hierarchical sibling

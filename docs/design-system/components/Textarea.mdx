@@ -1,0 +1,47 @@
+---
+title: Textarea
+status: stable
+tier: primitive
+---
+
+# Textarea
+
+Multi-line text input. Same contract as [Input](./Input.mdx) but grows vertically.
+
+## Props
+
+| Prop | Type | Default | Notes |
+|---|---|---|---|
+| `invalid` | `boolean` | `false` | |
+| `rows` | `number` | `4` | Starting height |
+| all `<textarea>` props | — | — | |
+
+## States
+
+Mirror [Input](./Input.mdx). Minimum height `min-h-[88px]`.
+
+## Tokens
+
+Same as Input.
+
+## Accessibility
+
+- Always paired with a `<label htmlFor>`.
+- For long responses (≥ 500 chars), include a visible character counter with `aria-live="polite"`.
+
+## Examples
+
+```tsx
+<label htmlFor="scope" className="text-sm font-medium">
+  Briefly describe the scope
+</label>
+<Textarea
+  id="scope"
+  rows={5}
+  placeholder="Molecule, dose form, target markets, timeline constraints…"
+/>
+```
+
+## Related
+
+- [Input](./Input.mdx) — single-line sibling

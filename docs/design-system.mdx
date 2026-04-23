@@ -1,0 +1,229 @@
+---
+title: Propharmex Design System
+description: Tokens, components, motion, and accessibility contract for every surface of the Propharmex site.
+---
+
+# Propharmex Design System
+
+This is the source-of-truth document for every visual and interactive decision on propharmex.com. All tokens live in a single file — `packages/config/design-tokens.css` — and all components live in `packages/ui/components/`. Every page, CMS block, and AI tool consumes this library; nothing is re-implemented.
+
+**Consumer import pattern:**
+
+```tsx
+import { Button, Card, Dialog, MOTION, cn } from "@propharmex/ui";
+import "@propharmex/config/design-tokens.css"; // once, in app/globals.css
+```
+
+---
+
+## 1. Design principles
+
+1. **Anti-hype.** Regulatory precision over marketing gloss. No sentence should be at home on a generic SaaS landing page.
+2. **Evidence visible.** Numbers in JetBrains Mono, certifications in badges, "as-of" dates on every claim.
+3. **Motion serves meaning.** Entries reveal hierarchy; exits dismiss. Never decorative; always honors `prefers-reduced-motion`.
+4. **Accessibility is a gate, not a polish step.** Every interactive component passes WCAG 2.1 AA keyboard + screen-reader tests before merge.
+5. **Density with breathing room.** Pharma buyers read. Give them dense technical detail inside generous whitespace.
+
+---
+
+## 2. Color tokens
+
+All colors are exposed as `--color-*` custom properties on `@theme`, so Tailwind generates utility classes automatically (`bg-primary`, `text-accent-fg`, `border-border`, etc.).
+
+### 2.1 Primary — Deep Teal
+
+The spine of the brand. Use `--color-primary` (600) for primary surfaces, links, and focus rings; 50–200 for tinted backgrounds and 700–950 for text on tinted surfaces.
+
+| Token | Hex / OKLCH | Contrast vs. `--color-bg` (#FAFAF7) | Usage |
+|---|---|---|---|
+| `--color-primary-50`  | oklch(97% 0.012 200) | 1.06:1 | Tinted section background |
+| `--color-primary-100` | oklch(93% 0.020 200) | 1.27:1 | Hover on tinted surface |
+| `--color-primary-500` | oklch(52% 0.082 200) | 4.9:1 | Muted accent text |
+| **`--color-primary-600`** | **#0E4C5A** | **11.2:1 (AAA)** | **Brand base, primary button, links** |
+| `--color-primary-700` | oklch(32% 0.064 200) | 10.8:1 | Hover on primary button |
+| `--color-primary-900` | oklch(20% 0.040 200) | 16.4:1 | Headings on white |
+
+### 2.2 Accent — Warm Amber
+
+**Accent-only.** Never body text on white (contrast fails). Use for pills, stat highlights, callouts, and CTA moments that need to punch out from teal.
+
+| Token | Hex | Usage |
+|---|---|---|
+| `--color-accent-500` | **#C99A4B** | Accent fills (buttons, badges, highlights) |
+| `--color-accent-fg`  | oklch(18% 0.030 75) | Text on accent fill |
+
+### 2.3 Neutrals — Pharma White + Slate
+
+| Token | Value | Usage |
+|---|---|---|
+| `--color-bg`      | #FAFAF7 | Page background (Pharma White) |
+| `--color-surface` | #FFFFFF | Card surface |
+| `--color-fg`      | oklch(18% 0.010 260) | Body text |
+| `--color-muted`   | oklch(54% 0.010 260) | Supporting / meta text |
+| `--color-border`  | oklch(90% 0.006 260) | Dividers, input borders |
+
+### 2.4 Semantic
+
+| Token | Hex | Usage |
+|---|---|---|
+| `--color-success` | #16785A | Positive states, compliance confirmations |
+| `--color-warn`    | #B8860B | Caveats, regulatory notes |
+| `--color-danger`  | #A23B3B | Destructive / invalid states |
+| `--color-info`    | #0E4C5A | Neutral informational callouts |
+
+---
+
+## 3. Typography
+
+Three families, loaded via `next/font/google` and exposed as CSS variables:
+
+| Token | Family | Role |
+|---|---|---|
+| `--font-display` | Manrope | Display, page titles, component titles, UI labels |
+| `--font-body`    | Inter Tight | Body copy, long-form prose |
+| `--font-mono`    | JetBrains Mono | Numeric values, stats, code, datestamps |
+
+> **Substitution note.** The master plan references "JJT Mono" — treated as a typo for JetBrains Mono (documented in `docs/alignment-summary.md`).
+
+### 3.1 Type scale (Tailwind classes)
+
+| Use | Class | Computed |
+|---|---|---|
+| Display hero     | `text-5xl md:text-6xl font-display font-semibold tracking-tight` | 48–60 px |
+| Page title (H1)  | `text-4xl font-display font-semibold tracking-tight` | 36 px |
+| Section title (H2) | `text-3xl font-display font-semibold` | 30 px |
+| Subsection (H3)  | `text-xl font-display font-semibold` | 20 px |
+| Body             | `text-base font-body leading-relaxed` | 16 px / 1.625 |
+| Meta / caption   | `text-sm text-muted` | 14 px |
+| Stat value       | `text-4xl font-mono tabular-nums` | 36 px |
+
+---
+
+## 4. Spacing scale
+
+All spacing tokens resolve to multiples of 4 px. Components default to the plan's canonical set: **4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 96**.
+
+| Token | px | Tailwind |
+|---|---|---|
+| `--spacing-1`  | 4   | `gap-1`, `p-1` |
+| `--spacing-2`  | 8   | `gap-2`, `p-2` |
+| `--spacing-3`  | 12  | `gap-3`, `p-3` |
+| `--spacing-4`  | 16  | `gap-4`, `p-4` |
+| `--spacing-6`  | 24  | `gap-6`, `p-6` |
+| `--spacing-8`  | 32  | `gap-8`, `p-8` |
+| `--spacing-12` | 48  | `gap-12`, `p-12` |
+| `--spacing-16` | 64  | `gap-16`, `p-16` |
+| `--spacing-24` | 96  | `gap-24`, `p-24` |
+
+---
+
+## 5. Radii
+
+Default radius is **12 px** (`--radius-md`). Components choose larger/smaller only when the interaction requires it (e.g., `rounded-full` pills, `rounded-xs` inline chips).
+
+| Token | px |
+|---|---|
+| `--radius-xs` | 4 |
+| `--radius-sm` | 8 |
+| `--radius-md` | **12 (default)** |
+| `--radius-lg` | 16 |
+| `--radius-xl` | 24 |
+
+---
+
+## 6. Shadows — "pharma glass"
+
+Subtle, teal-tinted multi-layer shadows. No pure-black drop shadows; they clash with the Pharma White bg.
+
+| Token | Layers | Usage |
+|---|---|---|
+| `--shadow-xs` | 1 | Hairline lift on hover |
+| `--shadow-sm` | 2 | Card resting state |
+| `--shadow-md` | 2 | Card hover, popover |
+| `--shadow-lg` | 2 | Dialog, Sheet, Select content |
+| `--shadow-xl` | 2 | Marketing cards, hero elements |
+
+---
+
+## 7. Motion
+
+Motion tokens live in both CSS (`--duration-*`, `--ease-*`) and TypeScript (`MOTION` export from `@propharmex/ui`). Framer Motion components must import from TS; CSS transitions use the CSS values.
+
+| Token | Value | Purpose |
+|---|---|---|
+| `--duration-enter`   | 240 ms | Entries (fade-in, slide-up) |
+| `--duration-exit`    | 180 ms | Exits (fade-out, slide-down) |
+| `--duration-stagger` | 40 ms  | Sibling stagger |
+| `--ease-out` | `cubic-bezier(0.16, 1, 0.3, 1)` | Entries |
+| `--ease-in`  | `cubic-bezier(0.7, 0, 0.84, 0)` | Exits |
+
+### 7.1 Reduced motion contract
+
+Every Framer Motion block wraps its variants in `useReducedMotion()` from `@propharmex/ui`. When true, animation distance collapses to 0 and durations collapse to `0.01ms` via the global `@media (prefers-reduced-motion: reduce)` block in `design-tokens.css`.
+
+```tsx
+import { motion } from "framer-motion";
+import { useReducedMotion, MOTION } from "@propharmex/ui";
+
+function Reveal({ children }: { children: React.ReactNode }) {
+  const reduced = useReducedMotion();
+  return (
+    <motion.div
+      initial={reduced ? false : { opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={MOTION.viewport}
+      transition={MOTION.enter}
+    >
+      {children}
+    </motion.div>
+  );
+}
+```
+
+---
+
+## 8. Accessibility contract
+
+Every interactive component in `@propharmex/ui` meets the following — enforced by `design:accessibility-review` before any PR merges.
+
+- **Keyboard.** Full tab order, `Enter`/`Space` to activate, `Escape` to dismiss, arrow-key navigation where a roving tabindex is appropriate (Tabs, Select, Accordion triggers as group).
+- **Focus.** Visible `focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2` on every interactive element. Global fallback in `design-tokens.css`.
+- **ARIA.** Radix primitives supply it by default (Dialog, Tabs, Accordion, Select, Tooltip). Hand-rolled components (Breadcrumb, Pagination, Callout) declare `role`, `aria-label`, `aria-current`, `aria-live` as appropriate.
+- **Touch targets.** All interactive elements ≥44×44 px at `sm` size (`min-h-11 min-w-11`).
+- **Contrast.** AA (4.5:1) minimum on text; AAA (7:1) on primary flow text. Deep Teal #0E4C5A on Pharma White = 11.2:1.
+- **Reduced motion.** Honored at CSS, Tailwind (`motion-reduce:` classes), and Framer levels.
+
+---
+
+## 9. Component index
+
+| Tier | Component | Docs |
+|---|---|---|
+| Primitive | Button      | [Button](./design-system/components/Button.mdx) |
+| Primitive | Badge       | [Badge](./design-system/components/Badge.mdx) |
+| Primitive | Input       | [Input](./design-system/components/Input.mdx) |
+| Primitive | Textarea    | [Textarea](./design-system/components/Textarea.mdx) |
+| Primitive | Skeleton    | [Skeleton](./design-system/components/Skeleton.mdx) |
+| Primitive | Card        | [Card](./design-system/components/Card.mdx) |
+| Primitive | Callout     | [Callout](./design-system/components/Callout.mdx) |
+| Primitive | Stat        | [Stat](./design-system/components/Stat.mdx) |
+| Primitive | Breadcrumb  | [Breadcrumb](./design-system/components/Breadcrumb.mdx) |
+| Primitive | Pagination  | [Pagination](./design-system/components/Pagination.mdx) |
+| Radix     | Select      | [Select](./design-system/components/Select.mdx) |
+| Radix     | Tabs        | [Tabs](./design-system/components/Tabs.mdx) |
+| Radix     | Accordion   | [Accordion](./design-system/components/Accordion.mdx) |
+| Radix     | Dialog      | [Dialog](./design-system/components/Dialog.mdx) |
+| Radix     | Sheet       | [Sheet](./design-system/components/Sheet.mdx) |
+| Radix     | Tooltip     | [Tooltip](./design-system/components/Tooltip.mdx) |
+| Motion    | Marquee     | [Marquee](./design-system/components/Marquee.mdx) |
+| Motion    | Carousel    | [Carousel](./design-system/components/Carousel.mdx) |
+
+---
+
+## 10. Related documents
+
+- `docs/brand-voice.md` — voice rules, regulatory lexicon lock
+- `docs/content-style-guide.md` — writing style, number formatting
+- `docs/regulatory-lexicon.md` — allowed / disallowed regulatory terms
+- `docs/architecture.md` — how this library is consumed by `apps/web`
+- `packages/config/design-tokens.css` — literal source of truth

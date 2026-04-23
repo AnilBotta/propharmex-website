@@ -1,0 +1,75 @@
+---
+title: Input
+status: stable
+tier: primitive
+---
+
+# Input
+
+Single-line text field. Pairs with a `<label>` for every instance — we never rely on placeholder-as-label.
+
+## Anatomy
+
+```
+Label
+┌────────────────────────────────────────┐
+│  Placeholder / value                   │
+└────────────────────────────────────────┘
+Help text / error
+```
+
+## Props
+
+| Prop | Type | Default | Notes |
+|---|---|---|---|
+| `type` | standard HTML input types | `"text"` | |
+| `invalid` | `boolean` | `false` | Sets red ring + `aria-invalid="true"` |
+| all `<input>` props | — | — | `placeholder`, `value`, `onChange`, etc. |
+
+## States
+
+| State | Treatment |
+|---|---|
+| Rest     | 1 px border, bg-surface |
+| Hover    | Border shifts to `--color-primary-300` |
+| Focus    | 2 px teal ring at 2 px offset |
+| Invalid  | Border and ring shift to `--color-danger` |
+| Disabled | `opacity-50 cursor-not-allowed` |
+
+## Tokens
+
+- Colors: `--color-border`, `--color-primary-600`, `--color-danger`, `--color-surface`
+- Radius: `--radius-md`
+- Height: `h-11` (44 px) — matches touch target
+
+## Accessibility
+
+- **Label required.** Always wrap with a `<label>` tied by `htmlFor` + `id`.
+- **Error messaging.** Use `aria-describedby` pointing to the help-text node. Combine with `invalid` prop.
+- **Autofill.** Use correct `autocomplete` tokens (`email`, `given-name`, `organization`).
+
+## Examples
+
+```tsx
+<label htmlFor="work-email" className="text-sm font-medium">
+  Work email
+</label>
+<Input
+  id="work-email"
+  type="email"
+  autoComplete="email"
+  placeholder="name@company.com"
+/>
+```
+
+Invalid:
+
+```tsx
+<Input id="cas" invalid aria-describedby="cas-error" />
+<p id="cas-error" className="text-sm text-danger">CAS number format not recognized.</p>
+```
+
+## Related
+
+- [Textarea](./Textarea.mdx) — multi-line variant
+- [Select](./Select.mdx) — constrained choice

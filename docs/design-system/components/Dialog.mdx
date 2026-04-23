@@ -1,0 +1,66 @@
+---
+title: Dialog
+status: stable
+tier: radix
+---
+
+# Dialog
+
+Modal overlay for focused, interruptive flows — scoping-call request, confirmation, legal acknowledgement. Radix-backed.
+
+## Anatomy
+
+```
+DialogTrigger
+DialogPortal
+  DialogOverlay   <- full-screen backdrop + blur
+  DialogContent   <- centered card
+    DialogHeader
+      DialogTitle
+      DialogDescription
+    {children}
+    DialogFooter
+    DialogClose    <- X button top-right
+```
+
+## Tokens
+
+- Colors: `--color-surface`, `--color-primary-950` at alpha for overlay, `--color-border`
+- Radius: `--radius-lg`
+- Shadow: `--shadow-xl`
+- Motion: 240 ms fade + scale enter (`--ease-out`), 180 ms exit (`--ease-in`); overlay fades at the same timing. Disabled under reduced-motion.
+
+## Accessibility
+
+- Focus trapped inside the dialog; `Escape` closes; focus returns to trigger.
+- `aria-modal="true"` is set by Radix.
+- `DialogTitle` is **required** — Radix warns in dev if missing. Use `DialogDescription` for secondary copy.
+- Overlay click closes unless `modal={false}`.
+
+## Examples
+
+```tsx
+<Dialog>
+  <DialogTrigger asChild>
+    <Button>Request a scoping call</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Request a scoping call</DialogTitle>
+      <DialogDescription>
+        15-minute intro with our regulatory + CMC leads. We respond within one business day.
+      </DialogDescription>
+    </DialogHeader>
+    {/* form fields here */}
+    <DialogFooter>
+      <DialogClose asChild><Button variant="ghost">Cancel</Button></DialogClose>
+      <Button>Continue</Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>
+```
+
+## Related
+
+- [Sheet](./Sheet.mdx) — side-docked variant for navigation / detail
+- [Tooltip](./Tooltip.mdx) — non-modal, non-interruptive

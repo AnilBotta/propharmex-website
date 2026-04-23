@@ -1,0 +1,56 @@
+---
+title: Tooltip
+status: stable
+tier: radix
+---
+
+# Tooltip
+
+Hover / focus hint for icons, abbreviations, and regulatory acronyms (DEL, ICH, CMC). Radix-backed. Never use for critical information — tooltips are progressive disclosure, not required reading.
+
+## Setup
+
+Mount a single `<TooltipProvider>` at the app root (done in `apps/web/app/layout.tsx`). Each `<Tooltip>` can then live anywhere in the tree.
+
+## Tokens
+
+- Colors: `--color-primary-950`, `--color-primary-fg`
+- Radius: `--radius-sm`
+- Shadow: `--shadow-md`
+- Motion: 150 ms fade + zoom enter; respects reduced-motion.
+
+## Accessibility
+
+- Trigger is focusable; tooltip opens on hover AND keyboard focus.
+- Content has `role="tooltip"`.
+- `Escape` dismisses; focus stays on trigger.
+- Never put interactive elements inside a tooltip — the pointer can't reach them safely.
+
+## Examples
+
+```tsx
+<Tooltip>
+  <TooltipTrigger asChild>
+    <Button variant="ghost">DEL</Button>
+  </TooltipTrigger>
+  <TooltipContent>Drug Establishment Licence (Health Canada)</TooltipContent>
+</Tooltip>
+```
+
+Icon-only button paired with tooltip:
+
+```tsx
+<Tooltip>
+  <TooltipTrigger asChild>
+    <Button variant="ghost" size="icon" aria-label="Download CTD module 3 summary">
+      <Download className="h-4 w-4" />
+    </Button>
+  </TooltipTrigger>
+  <TooltipContent>Download CTD module 3 summary (PDF, 2.1 MB)</TooltipContent>
+</Tooltip>
+```
+
+## Related
+
+- [Dialog](./Dialog.mdx) — for persistent explanations
+- [Callout](./Callout.mdx) — for inline, always-visible notes

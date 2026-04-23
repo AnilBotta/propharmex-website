@@ -8,14 +8,16 @@
     "./prettier": "./prettier.config.mjs",
     "./tsconfig/base.json": "./tsconfig.base.json",
     "./tsconfig/next.json": "./tsconfig.next.json",
-    "./tsconfig/node.json": "./tsconfig.node.json"
+    "./tsconfig/node.json": "./tsconfig.node.json",
+    "./design-tokens.css": "./design-tokens.css"
   },
   "files": [
     "eslint.config.mjs",
     "prettier.config.mjs",
     "tsconfig.base.json",
     "tsconfig.next.json",
-    "tsconfig.node.json"
+    "tsconfig.node.json",
+    "design-tokens.css"
   ],
   "scripts": {
     "lint": "echo \"(config package)\"",
