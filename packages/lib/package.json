@@ -8,12 +8,14 @@
   "exports": {
     ".": "./index.ts",
     "./env": "./env.ts",
-    "./log": "./log.ts"
+    "./log": "./log.ts",
+    "./schema-org": "./schema-org.ts"
   },
   "scripts": {
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "echo \"(lib: no tests yet)\""
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "zod": "^3.23.0"
@@ -21,6 +23,7 @@
   "devDependencies": {
     "@propharmex/config": "workspace:*",
     "@types/node": "^20.16.0",
-    "typescript": "^5.6.0"
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
   }
 }

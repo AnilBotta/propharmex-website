@@ -77,7 +77,15 @@ export type Env = z.infer<typeof EnvSchema>;
 /*  Parse                                                                     */
 /* -------------------------------------------------------------------------- */
 
-const parsed = EnvSchema.safeParse(process.env);
+// CI pipelines and `.env` files routinely inject variables as empty strings
+// (e.g. `NEXT_PUBLIC_SANITY_PROJECT_ID:` with nothing after the colon).
+// Treat empty strings as "not set" so `.optional()` vars don't trip `.min(1)`.
+const rawEnv: Record<string, string | undefined> = {};
+for (const [k, v] of Object.entries(process.env)) {
+  rawEnv[k] = typeof v === "string" && v.length === 0 ? undefined : v;
+}
+
+const parsed = EnvSchema.safeParse(rawEnv);
 
 if (!parsed.success) {
   // Collect required-but-missing vars that should hard-fail in prod.
