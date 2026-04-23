@@ -1,23 +1,93 @@
-// Placeholder home page. Replaced wholesale in Prompt 5 by the design-system-driven Home.
+import type { Metadata } from "next";
+
+import { env, jsonLdGraph } from "@propharmex/lib";
+
+import { CanadaIndiaAdvantage } from "../components/home/CanadaIndiaAdvantage";
+import { ContactMini } from "../components/home/ContactMini";
+import { DelBanner } from "../components/home/DelBanner";
+import { Hero } from "../components/home/Hero";
+import { Industries } from "../components/home/Industries";
+import { Insights } from "../components/home/Insights";
+import { JsonLd } from "../components/site/JsonLd";
+import { Leadership } from "../components/home/Leadership";
+import { MatcherTeaser } from "../components/home/MatcherTeaser";
+import { Process } from "../components/home/Process";
+import { Proof } from "../components/home/Proof";
+import { RegulatoryChips } from "../components/home/RegulatoryChips";
+import { TrustStrip } from "../components/home/TrustStrip";
+import { WhatWeDo } from "../components/home/WhatWeDo";
+import { WhyPillars } from "../components/home/WhyPillars";
+import { HOME } from "../content/home";
+
+// ISR per architecture.md caching policy for the Home surface.
+export const revalidate = 300;
+
+export const metadata: Metadata = {
+  title: { absolute: HOME.metaTitle },
+  description: HOME.metaDescription,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    title: HOME.ogTitle,
+    description: HOME.ogDescription,
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: HOME.ogTitle,
+    description: HOME.ogDescription,
+  },
+};
+
 export default function HomePage() {
+  const siteUrl = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
+  const pageJsonLd = buildHomeJsonLd(siteUrl);
+
   return (
-    <main className="min-h-dvh flex flex-col items-center justify-center gap-6 px-6 py-20 text-center">
-      <div
-        aria-hidden="true"
-        className="size-12 rounded-[var(--radius-md)]"
-        style={{ background: "var(--color-primary)" }}
-      />
-      <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-        Propharmex
-      </h1>
-      <p className="max-w-xl text-[var(--color-muted)]">
-        Canada–India bridge for pharmaceutical development, analytical services,
-        Health&nbsp;Canada DEL regulatory, and distribution. Site under
-        construction.
-      </p>
-      <p className="text-xs text-[var(--color-muted)]">
-        Scaffold — Prompt&nbsp;1. Phase 2 design system is next.
-      </p>
-    </main>
+    <>
+      <Hero content={HOME.hero} />
+      <TrustStrip content={HOME.trust} />
+      <WhyPillars content={HOME.why} />
+      <WhatWeDo content={HOME.whatWeDo} />
+      <CanadaIndiaAdvantage content={HOME.canadaIndia} />
+      <MatcherTeaser content={HOME.matcher} />
+      <Proof content={HOME.proof} />
+      <Process content={HOME.process} />
+      <Industries content={HOME.industries} />
+      <Leadership content={HOME.leadership} />
+      <Insights content={HOME.insights} />
+      <DelBanner content={HOME.delBanner} />
+      <ContactMini content={HOME.contact} />
+      <RegulatoryChips content={HOME.regulatory} />
+      <JsonLd id="home-jsonld" data={pageJsonLd} />
+    </>
   );
+}
+
+function buildHomeJsonLd(siteUrl: string) {
+  const webPage = {
+    "@type": "WebPage",
+    "@id": `${siteUrl}/#webpage-home`,
+    url: `${siteUrl}/`,
+    name: HOME.metaTitle,
+    description: HOME.metaDescription,
+    isPartOf: { "@id": `${siteUrl}#website` },
+    about: { "@id": `${siteUrl}#organization` },
+    inLanguage: "en-CA",
+  };
+
+  const breadcrumb = {
+    "@type": "BreadcrumbList",
+    "@id": `${siteUrl}/#breadcrumb-home`,
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: `${siteUrl}/`,
+      },
+    ],
+  };
+
+  return jsonLdGraph([webPage, breadcrumb]);
 }
