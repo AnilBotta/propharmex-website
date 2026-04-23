@@ -2,7 +2,7 @@
 
 Authoritative reference for every regulatory term, body, guideline, and URL used anywhere on the Propharmex site. Consulted by `pharma-regulatory-writer`, `brand-voice-guardian`, and the AI Concierge's system prompt. **Review and resign quarterly** — regulatory drift is real.
 
-*Last reviewed: 2026-04-20*
+*Last reviewed: 2026-04-23*
 
 ---
 
@@ -20,6 +20,22 @@ Authoritative reference for every regulatory term, body, guideline, and URL used
 | India | Central Drugs Standard Control Organisation | CDSCO | `https://cdsco.gov.in/` |
 
 Use the short form in body prose after first full-name use. Always capitalize exactly as shown.
+
+---
+
+## Claim-status convention (three-tier)
+
+Introduced in Prompt 8 (`apps/web/content/quality.ts`) and binding for every cert, licence, audit outcome, or framework reference published anywhere on the site. The UI must visually disambiguate the three tiers. **Writers and reviewers must not promote a claim to a higher tier without the primary-source evidence that tier requires.**
+
+| Status | Meaning | Evidence required | UI treatment |
+|---|---|---|---|
+| `confirmed` | Propharmex holds the licence / certification, and a primary-source record exists on a regulator register | Direct link to the primary-source register entry (e.g., Health Canada Drug Product Database for a DEL) **plus** internal document reference ID | "Held · verifiable" badge, primary-source link rendered inline |
+| `under-confirmation` | Propharmex holds or is pursuing the credential, but the primary-source trail is not yet published on the marketing site — typically because the client-confirmation pass has not completed | Internal document reference ID only; no external claim | "Documentation on request" affordance routing to `/contact?source=<page>-<credential-id>` |
+| `alignment` | Propharmex operates its quality system **in alignment with** the framework but does not claim a certification under it | Public framework URL (ICH, WHO TRS, etc.) for education; no certification asserted | "Operating alignment" label with a link to the framework document |
+
+Only `confirmed` items may use language like "certified", "licensed", "accredited", or "held". `under-confirmation` items use "documentation available on request" or similar. `alignment` items use "operates in alignment with" or "follows [framework] principles" — never "certified".
+
+**Anchor rule:** the Health Canada DEL is the one claim that is always `confirmed` on this site. Every other status must be supported by a document that a reviewer can verify. If that document is missing, the tier must drop — not the reviewer's expectations.
 
 ---
 
@@ -139,3 +155,4 @@ When citing, link to `https://www.ich.org/page/quality-guidelines` and the PDF o
 ## Review log
 
 - 2026-04-20 — Initial seed from Master Build Plan + publicly available guidance. Verify all timelines and guidance version tags before publishing any content that cites them.
+- 2026-04-23 — Added the three-tier claim-status convention (`confirmed` / `under-confirmation` / `alignment`) introduced by Prompt 8's `/quality-compliance` page. Every claim-bearing component across the site must map its badge and copy to one of these tiers.
