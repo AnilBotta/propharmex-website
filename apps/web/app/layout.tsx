@@ -1,14 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import { cookies } from "next/headers";
+import { cookies, draftMode } from "next/headers";
 import { Manrope, Inter_Tight, JetBrains_Mono } from "next/font/google";
 import { env } from "@propharmex/lib";
 
 import "./globals.css";
 import { Analytics } from "../components/site/Analytics";
+import { DraftModeIndicator } from "../components/site/DraftModeIndicator";
 import { Footer } from "../components/site/Footer";
 import { Header } from "../components/site/Header";
 import { JsonLd } from "../components/site/JsonLd";
 import { SkipToContent } from "../components/site/SkipToContent";
+import { VisualEditing } from "../components/site/VisualEditing";
 import { buildSiteJsonLd } from "../components/site/site-jsonld";
 import { REGIONS, type Region } from "../content/site-nav";
 
@@ -74,6 +76,7 @@ export default async function RootLayout({
       : undefined;
 
   const siteJsonLd = buildSiteJsonLd(env.NEXT_PUBLIC_SITE_URL);
+  const { isEnabled: isDraftEnabled } = await draftMode();
 
   return (
     <html
@@ -82,6 +85,7 @@ export default async function RootLayout({
     >
       <body>
         <SkipToContent />
+        <DraftModeIndicator enabled={isDraftEnabled} />
         <Header initialRegion={initialRegion} />
         <main id="main-content" className="min-h-dvh">
           {children}
@@ -93,6 +97,7 @@ export default async function RootLayout({
           posthogKey={env.NEXT_PUBLIC_POSTHOG_KEY}
           posthogHost={env.NEXT_PUBLIC_POSTHOG_HOST}
         />
+        <VisualEditing enabled={isDraftEnabled} />
       </body>
     </html>
   );
