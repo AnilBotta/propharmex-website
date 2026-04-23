@@ -1,18 +1,18 @@
-import type { Metadata } from "next";
+/**
+ * /quality → /quality-compliance (308 permanent redirect).
+ *
+ * The canonical route is `/quality-compliance` (matches the nav + site-nav.ts
+ * entries shipped in Prompt 3). This file existed as a Prompt-0 placeholder
+ * at the old path; kept here as a permanent redirect so any external inbound
+ * link or stale bookmark lands on the current page.
+ *
+ * When we take the site indexable in Prompt 27, this file can move into
+ * `next.config.mjs` under `redirects()` for an edge-level 308 instead of an
+ * RSC-level redirect. For now the RSC-level redirect is sufficient and avoids
+ * touching the shared config.
+ */
+import { permanentRedirect } from "next/navigation";
 
-import { PlaceholderPage } from "../../components/site/PlaceholderPage";
-
-export const metadata: Metadata = {
-  title: "Quality & compliance — coming in Prompt 8",
-  robots: { index: false, follow: false },
-};
-
-export default function Page() {
-  return (
-    <PlaceholderPage
-      title="Quality & compliance"
-      promptRef="Prompt 8"
-      body="This surface catalogues the full certification and inspection posture — Health Canada DEL, WHO-GMP, ISO 9001, USFDA registration, TGA recognition — with primary-source references per certification. Authored in Prompt 8."
-    />
-  );
+export default function QualityRedirect(): never {
+  permanentRedirect("/quality-compliance");
 }
