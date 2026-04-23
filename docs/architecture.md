@@ -93,3 +93,12 @@ Override via header switcher. Respects privacy (no gating, subtle banner on firs
 - **Perf** — weekly Lighthouse CI via scheduled task
 
 Expand this doc in Prompt 4 (Sanity + RAG flow), Prompt 18 (Concierge detail), and Prompt 25 (security + observability).
+
+## Application shell (added in Prompt 3)
+
+- Root layout (`apps/web/app/layout.tsx`) loads Manrope + Inter Tight + JetBrains Mono via `next/font/google`, renders the skip-to-content link, Header, Footer, site-wide JSON-LD graph (Organization + WebSite + 2 LocalBusiness nodes from `packages/lib/schema-org`), and the Analytics client island.
+- Header (`components/site/Header.tsx`) is sticky, transparent over the home hero until scrolled, and flips solid on every other route. Mega-menus are Framer-motion fade+rise; the mobile variant is a Sheet drawer with a Radix Accordion inside. 44px minimum hit targets.
+- Region switcher writes a `propharmex-region` cookie; Prompt 22 replaces the reader with middleware-based geo personalization.
+- Newsletter form posts to `/api/newsletter`, which validates with Zod, verifies Cloudflare Turnstile when configured, and hands off to Resend Audiences with `unsubscribed: true` to force their double-opt-in flow. Runtime is Node (not Edge).
+- `app/error.tsx`, `app/global-error.tsx`, `app/not-found.tsx`, and `app/loading.tsx` cover the expected failure + loading states at segment level.
+- Copy lives in `apps/web/content/site-nav.ts` — the stand-in for the Sanity `siteSettings` + `navigation` singleton that arrives in Prompt 4.
