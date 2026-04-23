@@ -9,6 +9,8 @@ dist/
 build/
 .turbo/
 .vercel/
+storybook-static/
+*.tsbuildinfo
 
 # Sanity
 apps/studio/dist/
@@ -58,3 +60,7 @@ packages/lib/sanity/types/generated/
 
 # Sentry
 .sentryclirc
+
+# Local debug artifacts
+push-*.txt
+bypass-push.txt

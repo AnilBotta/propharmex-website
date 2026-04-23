@@ -1,0 +1,43 @@
+---
+title: Stat
+status: stable
+tier: primitive
+---
+
+# Stat
+
+Single numeric fact — tests per year, batches shipped, assays offered. Value renders in JetBrains Mono `tabular-nums` so columns of stats align cleanly.
+
+## Props
+
+| Prop | Type | Default |
+|---|---|---|
+| `label` | `string` | — |
+| `value` | `string \| number` | — |
+| `suffix` | `string` | — |
+| `footnote` | `string` | — |
+
+## Tokens
+
+- Typography: `--font-display` semibold for label, `--font-mono tabular-nums` for value
+- Colors: `--color-fg` value, `--color-muted` footnote
+
+## Accessibility
+
+- Render inside a `<dl>` when grouped: `<dt>` for label, `<dd>` for value.
+- For dynamically changing stats, the container should set `aria-live="polite"`.
+
+## Examples
+
+```tsx
+<dl className="grid grid-cols-3 gap-8">
+  <Stat label="Assays offered" value={120} suffix="+" footnote="ICH Q2(R2) method library" />
+  <Stat label="Batches released" value={"1,800+"} footnote="Rolling 12 months" />
+  <Stat label="Countries served" value={32} />
+</dl>
+```
+
+## Related
+
+- [Card](./Card.mdx) — typical parent container
+- [Badge](./Badge.mdx) — when the fact is a category, not a number

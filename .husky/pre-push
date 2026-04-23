@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# Intentionally empty ??? reserved for future push-time checks.
+exit 0

@@ -1,0 +1,46 @@
+---
+title: Skeleton
+status: stable
+tier: primitive
+---
+
+# Skeleton
+
+Content placeholder used while async data loads. Pulse animation respects `prefers-reduced-motion`.
+
+## Props
+
+| Prop | Type | Default |
+|---|---|---|
+| `className` | `string` | — |
+| all `<div>` props | — | — |
+
+## Tokens
+
+- Colors: `--color-slate-200`
+- Motion: `animate-pulse` from Tailwind — automatically disabled under reduced-motion via `motion-reduce:animate-none`
+
+## Accessibility
+
+- Render inside a container with `aria-busy="true"` and `aria-live="polite"`.
+- When real content arrives, swap in place — don't announce "loading" after the fact.
+
+## Examples
+
+```tsx
+<div aria-busy={loading} aria-live="polite">
+  {loading ? (
+    <div className="space-y-3">
+      <Skeleton className="h-6 w-2/3" />
+      <Skeleton className="h-4 w-full" />
+      <Skeleton className="h-4 w-5/6" />
+    </div>
+  ) : (
+    <Article body={body} />
+  )}
+</div>
+```
+
+## Related
+
+- [Card](./Card.mdx) — typical container for skeleton layouts

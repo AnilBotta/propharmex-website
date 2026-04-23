@@ -1,0 +1,49 @@
+---
+title: Tabs
+status: stable
+tier: radix
+---
+
+# Tabs
+
+Mutually-exclusive content panels with persistent triggers. Radix-backed.
+
+## Anatomy
+
+```
+TabsList
+  TabsTrigger × N
+TabsContent × N  (one mounted at a time by default)
+```
+
+## Tokens
+
+- Colors: `--color-surface` (active indicator), `--color-border`, `--color-muted` (inactive text)
+- Radius: `--radius-md`
+- Shadow: `--shadow-sm` on active trigger
+
+## Accessibility
+
+- `Tab` focuses the active trigger.
+- `ArrowLeft` / `ArrowRight` cycles triggers (horizontal orientation).
+- `Home` / `End` jump to first / last.
+- `activationMode="automatic"` (default) switches on focus; use `"manual"` when panels are expensive.
+
+## Examples
+
+```tsx
+<Tabs defaultValue="scope">
+  <TabsList>
+    <TabsTrigger value="scope">Scope</TabsTrigger>
+    <TabsTrigger value="timeline">Timeline</TabsTrigger>
+    <TabsTrigger value="deliverables">Deliverables</TabsTrigger>
+  </TabsList>
+  <TabsContent value="scope">Scope covers API sourcing, CMC readiness…</TabsContent>
+  <TabsContent value="timeline">Typical 18–24 months from engagement.</TabsContent>
+  <TabsContent value="deliverables">CTD module 3, stability datasets, DEL transfer plan.</TabsContent>
+</Tabs>
+```
+
+## Related
+
+- [Accordion](./Accordion.mdx) — vertical equivalent when content is long

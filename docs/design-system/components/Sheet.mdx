@@ -1,0 +1,56 @@
+---
+title: Sheet
+status: stable
+tier: radix
+---
+
+# Sheet
+
+Side-docked panel. Use for mobile navigation, filter drawers, and service-detail side panes. Built on Radix Dialog under the hood, with a `side` variant.
+
+## Props
+
+| Prop | Type | Default |
+|---|---|---|
+| `side` | `"top" \| "bottom" \| "left" \| "right"` | `"right"` |
+
+Other props mirror [Dialog](./Dialog.mdx).
+
+## Tokens
+
+Same as Dialog; the side variant controls border-radius (only interior corners rounded).
+
+## Accessibility
+
+Inherits everything from [Dialog](./Dialog.mdx): focus trap, `Escape` to close, `aria-modal`.
+
+## Examples
+
+**Right drawer (default)**
+
+```tsx
+<Sheet>
+  <SheetTrigger asChild><Button variant="secondary">Open drawer</Button></SheetTrigger>
+  <SheetContent side="right">
+    <SheetHeader>
+      <SheetTitle>Service details</SheetTitle>
+      <SheetDescription>Analytical method validation, ICH Q2(R2)-compliant.</SheetDescription>
+    </SheetHeader>
+  </SheetContent>
+</Sheet>
+```
+
+**Left mobile nav**
+
+```tsx
+<Sheet>
+  <SheetTrigger asChild><Button variant="ghost" size="icon"><Menu /></Button></SheetTrigger>
+  <SheetContent side="left">
+    {/* nav links */}
+  </SheetContent>
+</Sheet>
+```
+
+## Related
+
+- [Dialog](./Dialog.mdx) — centered modal variant

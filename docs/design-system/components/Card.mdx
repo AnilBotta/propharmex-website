@@ -1,0 +1,70 @@
+---
+title: Card
+status: stable
+tier: primitive
+---
+
+# Card
+
+Container surface for grouped content — service tiles, case study tiles, metric blocks.
+
+## Anatomy
+
+```
+┌──────────────────────────────────┐
+│  CardHeader                      │
+│    CardTitle                     │
+│    CardDescription               │
+│  CardContent                     │
+│  CardFooter                      │
+└──────────────────────────────────┘
+```
+
+All sub-components are thin wrappers exposing consistent spacing + typography.
+
+## Props
+
+| Prop | Type | Default | Notes |
+|---|---|---|---|
+| `elevation` | `"flat" \| "sm" \| "md" \| "lg"` | `"sm"` | Shadow weight |
+| `tone` | `"surface" \| "muted" \| "primary"` | `"surface"` | Background tint |
+| all `<div>` props | — | — | |
+
+## States
+
+| State | Treatment |
+|---|---|
+| Rest      | `--shadow-sm` |
+| Hover (opt) | Add `hover:-translate-y-px hover:shadow-md` when the whole card is a link |
+| Focus     | When wrapped in `<a>` or `<Link>`, inherit the global focus ring |
+
+## Tokens
+
+- Colors: `--color-surface`, `--color-slate-50`, `--color-primary-50`
+- Radius: `--radius-lg`
+- Shadow: `--shadow-sm` → `--shadow-md` on hover
+- Spacing: `p-6` (24 px) default interior padding
+
+## Accessibility
+
+- When the Card itself is a link, wrap with a single `<a>` / `<Link>` and give it an `aria-label` if the visible label is ambiguous.
+- Do not nest multiple interactive regions inside a link-wrapped Card.
+
+## Examples
+
+```tsx
+<Card elevation="md" className="max-w-sm">
+  <CardHeader>
+    <CardTitle>Analytical method validation</CardTitle>
+    <CardDescription>ICH Q2(R2)-compliant, across 3 sites.</CardDescription>
+  </CardHeader>
+  <CardFooter>
+    <Button variant="ghost">Learn more</Button>
+  </CardFooter>
+</Card>
+```
+
+## Related
+
+- [Callout](./Callout.mdx) — tone-forward notification block
+- [Stat](./Stat.mdx) — numeric facts inside a Card

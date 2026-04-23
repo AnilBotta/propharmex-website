@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@import "../packages/config/design-tokens.css";
+
+/* Load the three brand fonts directly in Storybook (next/font is
+   Next.js-only, so we use Google Fonts CDN here). */
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap");
+
+body {
+  font-family: var(--font-body);
+}

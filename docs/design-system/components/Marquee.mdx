@@ -1,0 +1,44 @@
+---
+title: Marquee
+status: stable
+tier: motion
+---
+
+# Marquee
+
+Infinite horizontal scroll. Used for certification badge rails, partner logos, trust strips.
+
+## Props
+
+| Prop | Type | Default | Notes |
+|---|---|---|---|
+| `durationSec` | `number` | `30` | One full loop duration |
+| `pauseOnHover` | `boolean` | `true` | |
+| `reverse` | `boolean` | `false` | Right-to-left vs. left-to-right |
+| `className` | `string` | — | |
+
+## Motion
+
+Framer Motion `x: ["0%", "-50%"]` keyframes on a duplicated track, giving the illusion of infinite scroll without JS tick overhead. `useReducedMotion()` halts the animation and centers content statically.
+
+## Accessibility
+
+- Content is readable by screen readers in the first (un-duplicated) set; the second set is `aria-hidden`.
+- No focusable children should live inside a Marquee — they'd scroll out of reach. Wrap with a non-animated alternate layout for keyboard users if the Marquee carries actionable content.
+
+## Examples
+
+```tsx
+<Marquee durationSec={30}>
+  <Badge variant="outline">Health Canada DEL</Badge>
+  <Badge variant="outline">ISO 9001</Badge>
+  <Badge variant="outline">WHO-GMP</Badge>
+  <Badge variant="outline">USFDA inspected</Badge>
+  <Badge variant="outline">TGA inspected</Badge>
+</Marquee>
+```
+
+## Related
+
+- [Badge](./Badge.mdx) — typical content
+- [Carousel](./Carousel.mdx) — user-controlled alternative

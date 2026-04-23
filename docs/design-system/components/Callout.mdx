@@ -1,0 +1,46 @@
+---
+title: Callout
+status: stable
+tier: primitive
+---
+
+# Callout
+
+Tone-forward block drawing attention to a claim, caveat, or regulatory note. Distinct from [Card](./Card.mdx): a Callout carries semantic tone.
+
+## Props
+
+| Prop | Type | Default |
+|---|---|---|
+| `tone` | `"info" \| "success" \| "warn" \| "danger" \| "regulatory"` | `"info"` |
+| `title` | `string` | — |
+| all `<div>` props | — | — |
+
+## Tokens
+
+- Colors: semantic tokens per tone (`--color-primary-50/600`, `--color-success`, `--color-warn`, `--color-danger`), plus `--color-accent-50/900` for `regulatory`
+- Radius: `--radius-lg`
+- Icon: `lucide-react` — Info / CheckCircle2 / AlertTriangle / AlertOctagon / ShieldCheck per tone
+
+## Accessibility
+
+- `role="alert"` applied for `warn` and `danger` tones (announced by screen readers).
+- `role="status"` (polite) on `success`.
+- `info` and `regulatory` use plain `<section>` — they are not time-sensitive.
+
+## Examples
+
+```tsx
+<Callout tone="regulatory" title="Regulatory note">
+  Health Canada Drug Establishment Licence (DEL) held under
+  site licence no. XXXXX. As of April 2026.
+</Callout>
+
+<Callout tone="warn" title="Caveat">
+  Timelines shown assume complete CTD module 3. Review may extend if data gaps are identified.
+</Callout>
+```
+
+## Related
+
+- [Badge](./Badge.mdx) — compact variant of the same semantic set

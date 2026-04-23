@@ -1,0 +1,66 @@
+---
+title: Select
+status: stable
+tier: radix
+---
+
+# Select
+
+Constrained single-choice control. Backed by Radix `@radix-ui/react-select` — keyboard + screen-reader behaviour is inherited and audited.
+
+## Anatomy
+
+```
+SelectTrigger ──────────┐
+                        ▼
+            SelectContent (portal)
+              SelectLabel
+              SelectItem × N
+              SelectSeparator
+              SelectGroup
+```
+
+## Props
+
+Each sub-component forwards native Radix props; see the [Radix docs](https://www.radix-ui.com/primitives/docs/components/select) for the full surface. The wrapper applies tokenized classes and focus rings.
+
+## Tokens
+
+- Colors: `--color-border`, `--color-primary-600` (focus + check mark), `--color-surface` (content bg)
+- Radius: `--radius-md`
+- Shadow: `--shadow-md` on content
+- Motion: Radix data-state enter/exit animations respect `prefers-reduced-motion`
+
+## Accessibility
+
+- Trigger announces label + current value.
+- `ArrowDown` / `ArrowUp` move through items; type-ahead works.
+- `Escape` closes; focus returns to trigger.
+- Items use proper `role="option"` + `aria-selected`.
+
+## Examples
+
+```tsx
+<Select>
+  <SelectTrigger className="w-[240px]">
+    <SelectValue placeholder="Select target market" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectGroup>
+      <SelectLabel>Americas</SelectLabel>
+      <SelectItem value="ca">Canada</SelectItem>
+      <SelectItem value="us">United States</SelectItem>
+    </SelectGroup>
+    <SelectSeparator />
+    <SelectGroup>
+      <SelectLabel>APAC</SelectLabel>
+      <SelectItem value="au">Australia (TGA)</SelectItem>
+      <SelectItem value="in">India (CDSCO)</SelectItem>
+    </SelectGroup>
+  </SelectContent>
+</Select>
+```
+
+## Related
+
+- [Input](./Input.mdx) — free-form alternative

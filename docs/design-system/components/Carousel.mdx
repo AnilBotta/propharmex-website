@@ -1,0 +1,64 @@
+---
+title: Carousel
+status: stable
+tier: motion
+---
+
+# Carousel
+
+User-controlled horizontal scroller. Used for case-study decks, facility galleries, capability rails. Embla under the hood with Framer-compatible motion.
+
+## Anatomy
+
+```
+Carousel (provides context + keyboard)
+  CarouselContent
+    CarouselItem × N
+  CarouselPrevious   <- left arrow button
+  CarouselNext       <- right arrow button
+```
+
+## Props
+
+| Prop | Type | Default | Notes |
+|---|---|---|---|
+| `opts` | `EmblaOptionsType` | `{ align: "start" }` | Embla options (loop, align, dragFree, etc.) |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | |
+| `setApi` | `(api: CarouselApi) => void` | — | Expose Embla API for external controls |
+
+## Motion
+
+Native Embla transforms — GPU-accelerated, no Framer layout thrash. `prefers-reduced-motion` is honored via Embla's built-in `reducedMotion` option (wired inside the component).
+
+## Accessibility
+
+- `role="region"` with `aria-roledescription="carousel"`.
+- Each item carries `role="group"` + `aria-label="Slide X of N"`.
+- Arrow buttons have accessible labels + `disabled` at boundaries (unless `loop: true`).
+- Keyboard: `ArrowLeft` / `ArrowRight` on a focused Carousel advances.
+
+## Examples
+
+```tsx
+<Carousel opts={{ loop: true }}>
+  <CarouselContent>
+    {caseStudies.map((c) => (
+      <CarouselItem key={c.id} className="md:basis-1/2">
+        <Card elevation="sm" className="h-48 p-6">
+          <CardHeader className="p-0">
+            <CardTitle>{c.title}</CardTitle>
+            <CardDescription>{c.desc}</CardDescription>
+          </CardHeader>
+        </Card>
+      </CarouselItem>
+    ))}
+  </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+</Carousel>
+```
+
+## Related
+
+- [Marquee](./Marquee.mdx) — passive, auto-scrolling variant
+- [Card](./Card.mdx) — canonical slide content

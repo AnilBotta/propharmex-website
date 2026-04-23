@@ -1,0 +1,54 @@
+---
+title: Accordion
+status: stable
+tier: radix
+---
+
+# Accordion
+
+Progressive disclosure for FAQ, service detail drill-downs, and long-form regulatory notes. Radix-backed.
+
+## Anatomy
+
+```
+Accordion (type="single" | "multiple")
+  AccordionItem
+    AccordionTrigger  <- ChevronDown rotates on open
+    AccordionContent
+```
+
+## Tokens
+
+- Colors: `--color-border` (divider), `--color-fg`, `--color-muted`
+- Radius: none on item (clean horizontal rule)
+- Motion: `data-state` transitions on chevron (180 ms) and height (240 ms enter / 180 ms exit) — collapses to 0.01 ms under reduced-motion
+
+## Accessibility
+
+- Each trigger is a `<button>` with `aria-expanded` + `aria-controls`.
+- `Space` / `Enter` toggle; `ArrowDown` / `ArrowUp` move between triggers.
+- `Home` / `End` jump to first / last.
+- `type="single"` enforces exclusive open state; `"multiple"` allows many.
+
+## Examples
+
+```tsx
+<Accordion type="single" collapsible className="w-full">
+  <AccordionItem value="del">
+    <AccordionTrigger>What is a Health Canada DEL?</AccordionTrigger>
+    <AccordionContent>
+      A Drug Establishment Licence authorizes specific activities (fabricate, package,
+      label, test, import, distribute, wholesale) at a specific site. Propharmex
+      Canada holds a DEL covering…
+    </AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="q2r2">
+    <AccordionTrigger>Does method validation meet ICH Q2(R2)?</AccordionTrigger>
+    <AccordionContent>Yes. Specificity, linearity, accuracy, precision, DL/QL, range, robustness.</AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+
+## Related
+
+- [Tabs](./Tabs.mdx) — when content chunks are short + peer-level
