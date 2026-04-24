@@ -1,15 +1,20 @@
 /**
  * /industries/[slug] — industry leaf route.
  *
- * Prompt 13 deliverable. This PR ships `/generic-manufacturers` from the
- * industries content dictionary. The other four slugs declared in
- * `INDUSTRY_SLUGS` are listed on the hub as "shipping-next" and resolve to
- * `notFound()` until the follow-up PR publishes their content.
+ * Prompt 13 deliverable. All five industry slugs declared in
+ * `INDUSTRY_SLUGS` resolve to leaf content after the Prompt 13 follow-up PR
+ * (PR B). `INDUSTRIES_LEAF_CONTENT` is a full `Record<IndustrySlug,
+ * IndustryLeafContent>` so `generateStaticParams` below prerenders all five
+ * paths as SSG.
  *
  * - RSC page. ISR 300s.
  * - Emits WebPage + Service + FAQPage + BreadcrumbList JSON-LD referencing
  *   the root layout's Organization + WebSite @ids.
- * - Unknown slugs fall through to Next.js' built-in notFound handler.
+ * - Unknown slugs fall through to Next.js' built-in notFound handler — the
+ *   guard stays in place as a defensive net in case the registry and the
+ *   slug union drift.
+ * - The `governments-and-ngos` leaf ships without a `caseRail`; the route
+ *   renders `<CaseStudyRail>` conditionally on its presence.
  */
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -101,7 +106,9 @@ export default async function IndustryLeafPage({
       <PainPoints content={content.painPoints} />
       <TailoredOffering content={content.offering} />
       <RegulatoryContext content={content.regulatory} />
-      <CaseStudyRail content={content.caseRail} />
+      {content.caseRail ? (
+        <CaseStudyRail content={content.caseRail} />
+      ) : null}
       <IndustryFaq content={content.faq} />
       <RelatedServices content={content.related} />
       <LeafClosing content={content.closing} />
