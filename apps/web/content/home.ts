@@ -606,14 +606,14 @@ export const HOME: HomeContent = {
         title: "Innovators",
         description:
           "Early-clinical sponsors needing ICH-aligned analytical and CMC support without diluting equity on a full internal build.",
-        href: "/industries/innovators",
+        href: "/industries/pharmaceutical-innovators",
         size: "lg",
       },
       {
         id: "generics",
         title: "Generics",
         description: "ANDA, ANDS, and DMF work for US and Canadian submissions — with dissolution and BE depth.",
-        href: "/industries/generics",
+        href: "/industries/generic-manufacturers",
         size: "sm",
       },
       {
@@ -629,7 +629,7 @@ export const HOME: HomeContent = {
         title: "NGOs and governments",
         description:
           "Public-health supply programs where WHO-GMP, Zone IVb stability, and audit trails are pre-qualification requirements.",
-        href: "/industries/government-ngo",
+        href: "/industries/governments-and-ngos",
         size: "lg",
       },
     ],
