@@ -175,14 +175,23 @@ export const PRIMARY_NAV: NavSection[] = [
       {
         heading: "Sectors served",
         links: [
-          { href: "/industries/innovators", label: "Innovators" },
-          { href: "/industries/generics", label: "Generics" },
-          { href: "/industries/biotech", label: "Biotech" },
           {
-            href: "/industries/government-ngo",
-            label: "Government & NGO",
+            href: "/industries/pharmaceutical-innovators",
+            label: "Pharmaceutical innovators",
           },
-          { href: "/industries/veterinary", label: "Veterinary" },
+          {
+            href: "/industries/generic-manufacturers",
+            label: "Generic manufacturers",
+          },
+          { href: "/industries/cdmo-partners", label: "CDMO partners" },
+          {
+            href: "/industries/governments-and-ngos",
+            label: "Governments and NGOs",
+          },
+          {
+            href: "/industries/clinical-trial-sponsors",
+            label: "Clinical trial sponsors",
+          },
         ],
       },
     ],
@@ -274,11 +283,23 @@ export const FOOTER_COLUMNS: { heading: string; links: NavLink[] }[] = [
   {
     heading: "Industries",
     links: [
-      { href: "/industries/innovators", label: "Innovators" },
-      { href: "/industries/generics", label: "Generics" },
-      { href: "/industries/biotech", label: "Biotech" },
-      { href: "/industries/government-ngo", label: "Government & NGO" },
-      { href: "/industries/veterinary", label: "Veterinary" },
+      {
+        href: "/industries/pharmaceutical-innovators",
+        label: "Pharmaceutical innovators",
+      },
+      {
+        href: "/industries/generic-manufacturers",
+        label: "Generic manufacturers",
+      },
+      { href: "/industries/cdmo-partners", label: "CDMO partners" },
+      {
+        href: "/industries/governments-and-ngos",
+        label: "Governments and NGOs",
+      },
+      {
+        href: "/industries/clinical-trial-sponsors",
+        label: "Clinical trial sponsors",
+      },
     ],
   },
   {

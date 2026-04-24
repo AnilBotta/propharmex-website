@@ -55,11 +55,11 @@
 | `/services/regulatory-services/cmc-dossier-preparation` | Leaf |
 | `/services/regulatory-services/regulatory-strategy-consulting` | Leaf |
 | `/industries` | Industry hub |
-| `/industries/innovators` | Industry leaf |
-| `/industries/generics` | Industry leaf |
-| `/industries/biotech` | Industry leaf |
-| `/industries/government-ngo` | Industry leaf |
-| `/industries/veterinary` | Industry leaf |
+| `/industries/pharmaceutical-innovators` | Industry leaf |
+| `/industries/generic-manufacturers` | Industry leaf (flagship) |
+| `/industries/cdmo-partners` | Industry leaf |
+| `/industries/governments-and-ngos` | Industry leaf |
+| `/industries/clinical-trial-sponsors` | Industry leaf |
 | `/case-studies` | Case hub |
 | `/case-studies/[slug]` | Case detail (3+ at launch) |
 | `/insights` | Insights hub |
