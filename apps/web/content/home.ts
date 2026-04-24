@@ -552,7 +552,7 @@ export const HOME: HomeContent = {
         problem: "Modified-release oral stalled at dissolution; first ANDA filing returned with deficiency letter.",
         outcome: "Rebuilt dissolution method under ICH Q2(R2), requalified three bioequivalence cohorts, supported resubmission.",
         metric: "Filed in 11 months",
-        href: "/case-studies/placeholder-1",
+        href: "/case-studies/modified-release-requalification",
       },
       {
         // TODO: replace with Sanity caseStudy doc when live.
@@ -561,7 +561,7 @@ export const HOME: HomeContent = {
         problem: "Commercial-stage injectable running 22% over target COGS; second-source program 14 months behind.",
         outcome: "Tech-transferred analytical + process to Hyderabad; qualified second supplier; maintained US release.",
         metric: "18% COGS reduction",
-        href: "/case-studies/placeholder-2",
+        href: "/case-studies/sterile-injectable-second-sourcing",
       },
       {
         // TODO: replace with Sanity caseStudy doc when live.
@@ -570,7 +570,7 @@ export const HOME: HomeContent = {
         problem: "Oral solid portfolio for a public-health program with recurring out-of-spec (OOS) events at release.",
         outcome: "Restructured release testing under Q10, moved stability to Zone IVb, rebuilt supplier qualification.",
         metric: "Zero OOS in 24 months",
-        href: "/case-studies/placeholder-3",
+        href: "/case-studies/ngo-oral-solid-stability-rebuild",
       },
     ],
     ctaHref: "/case-studies",
@@ -699,7 +699,7 @@ export const HOME: HomeContent = {
         category: "Case study",
         title: "Second-sourcing a sterile injectable without losing release cadence",
         blurb: "Anonymized. Timeline, gates, and the two decisions we would redo.",
-        href: "/case-studies/placeholder-2",
+        href: "/case-studies/sterile-injectable-second-sourcing",
       },
     ],
     ctaHref: "/insights",
