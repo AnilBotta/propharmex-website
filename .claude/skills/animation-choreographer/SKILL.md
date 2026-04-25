@@ -45,7 +45,7 @@ For a given section brief, returns:
 | Stats strip | Number count-up with `useMotionValue` + spring; stop when tab is hidden (page visibility API) |
 | Logo wall / marquee | CSS animation only (cheaper, no JS); pause on hover via `animation-play-state` |
 | Case study carousel | `useDragControls` with snap points; keyboard arrows + focus trap; reduced-motion → no drag, cross-fade |
-| Molecule / world-map connector | Lottie preferred over WebGL for the Canada-India connector (smaller, a11y-friendlier, loads faster); WebGL only if the master plan's "animated molecule/lab scene" needs >60fps complexity |
+| Molecule / world-map connector | Lottie preferred over WebGL for the two-hub (Mississauga ↔ Hyderabad) connector (smaller, a11y-friendlier, loads faster); WebGL only if the master plan's "animated molecule/lab scene" needs >60fps complexity |
 | FAQ accordion | Height animation with `layout` + `AnimatePresence` on the answer; chevron rotate ease-out |
 
 ## Reduced-motion fallbacks (mandatory)

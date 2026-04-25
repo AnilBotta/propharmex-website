@@ -1,6 +1,6 @@
 # Propharmex Website
 
-Canada–India bridge for pharmaceutical services — marketing site + AI tools.
+Canada-anchored pharmaceutical services company with operating hubs in Mississauga, Ontario and Hyderabad, Telangana, serving drug developers globally — marketing site + AI tools.
 
 Built on **Next.js 15 + React 19 + TypeScript strict + Tailwind v4 + Sanity v3 + Supabase (pgvector) + Vercel AI SDK**.
 

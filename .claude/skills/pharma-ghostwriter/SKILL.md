@@ -16,7 +16,7 @@ Pulled from `docs/brand-voice.md` — always reread before drafting. Summary:
 - **Credible** — every numeric claim has a source or is framed as "in our experience"; no round-number fabrications
 - **Humble** — write about the customer's problem, not Propharmex's greatness; no superlatives ("best", "leading", "revolutionary")
 - **Zero-hype** — ban list: "cutting-edge", "world-class", "unparalleled", "next-gen", "disruptive", "synergy", "ecosystem" (as buzzword), "seamless"
-- **Canada-India bridge** — this is the differentiator; surface it whenever the topic naturally allows, never forced
+- **Two-hub pragmatic** — Propharmex is Canada-anchored with operating hubs in Mississauga, Ontario and Hyderabad, Telangana, serving drug developers globally. There is no "bridge" service offering. Surface the geography only when it materially matters (DEL authority, timeline compression, cold-chain logistics, analytical depth). Never frame Propharmex as a Canada-India intermediary.
 - **Regulatory precision** — DEL is "Drug Establishment Licence" (Canadian spelling), not "license"; GMP is "cGMP" when talking USFDA; "bioequivalence" not "BE" on first use
 
 ## Inputs you expect

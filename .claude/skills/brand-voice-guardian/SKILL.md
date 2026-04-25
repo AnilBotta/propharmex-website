@@ -10,7 +10,7 @@ The last line of defense before copy ships. Returns a pass, a conditional pass w
 
 ## Voice contract (single source of truth: `docs/brand-voice.md`)
 
-Expert · Credible · Humble · Zero-hype · Regulatory-precise · Canada-India pragmatic
+Expert · Credible · Humble · Zero-hype · Regulatory-precise · Two-hub pragmatic
 
 ## Detection rules
 
@@ -31,7 +31,7 @@ Any "best", "leading", "top", "fastest", "largest", "only" → require:
 - "bioequivalence" spelled out first use, then "BE"
 - "ICH Q1A(R2)" form — never "ICH Q1A" without the revision tag on first use
 - "Health Canada" capitalized, no abbreviation (not "HC")
-- "Canada-India bridge" — with the en-dash if the design system uses it in headings, plain hyphen in body
+- **Bridge framing is banned.** Propharmex does not offer a "Canada-India bridge" service. Reframe to "Canada-anchored two-hub operating model" or "two-hub operating model" depending on context. The two hubs (Mississauga + Hyderabad) are factual operating geography; clients are global.
 
 ### Claim audit
 
