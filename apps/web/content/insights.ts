@@ -567,8 +567,166 @@ export const INSIGHTS: InsightsContent = {
         "Q14",
         "Analytical services",
       ],
-      // TODO(commit 5) — body authored via pharma-ghostwriter + pharma-regulatory-writer + brand-voice-guardian PASS.
-      body: [],
+      body: [
+        {
+          type: "p",
+          text: "ICH Q2(R2) — Validation of Analytical Procedures — was adopted by the ICH Assembly in November 2023 and has been brought into force across the major regulatory regions through 2024. It replaces Q2(R1), which had stood since 2005. The revision is tighter, more lifecycle-aware, and — critically — explicitly linked to the new ICH Q14 guideline on analytical procedure development.",
+        },
+        {
+          type: "p",
+          text: "If you have a validation package already in flight, the question is not whether to read Q2(R2). It is whether you need to amend, addendum, or simply annotate. The honest answer for most packages: less work than the version jump suggests, but not zero. What follows is a practical walkthrough of what changed, what stayed the same, and how to read your in-flight package against the new text.",
+        },
+
+        {
+          type: "h2",
+          text: "What ICH Q2(R2) actually says",
+          id: "what-q2-r2-says",
+        },
+        {
+          type: "p",
+          text: "Q2(R2) keeps the structural framework that made Q2(R1) the reference document for analytical method validation: validation characteristics (specificity, accuracy, precision, detection and quantitation limits, linearity, range, robustness), method types (identification, impurities, assay, dissolution), and the matrix that maps which characteristics apply to which method type. The revision rewrites how those characteristics are described and tightens what the validation package must demonstrate.",
+        },
+        {
+          type: "callout",
+          tone: "regulatory",
+          heading: "Primary source",
+          body: "ICH Q2(R2) — Validation of Analytical Procedures — was adopted at Step 4 of the ICH process on 14 November 2023. The full guideline text is published on the ICH website and is the canonical reference for any current validation package.",
+          source: {
+            kind: "primary",
+            label: "ICH Q2(R2) (as of 2026-04-23)",
+            href: "https://www.ich.org/page/quality-guidelines",
+          },
+        },
+
+        {
+          type: "h2",
+          text: "What changed from Q2(R1) to Q2(R2)",
+          id: "what-changed",
+        },
+        {
+          type: "p",
+          text: "Three changes matter for in-flight validation packages:",
+        },
+
+        {
+          type: "h3",
+          text: "Lifecycle framing instead of point-in-time validation",
+          id: "lifecycle-framing",
+        },
+        {
+          type: "p",
+          text: "Q2(R1) treated validation as an event — the package demonstrating the method was fit for purpose at the moment of submission. Q2(R2) reframes validation as one stage of a method lifecycle that includes development (Q14), validation (Q2(R2)), and ongoing performance verification. The text is more explicit that the validation package supports the method as defined and that the method may evolve through controlled change.",
+        },
+        {
+          type: "p",
+          text: "For a package already at the protocol stage, this is mostly a documentation and language change. The same tests, the same acceptance criteria. The change is in how the package is contextualized — validation evidence at this point in the method's lifecycle, not a one-time stamp.",
+        },
+
+        {
+          type: "h3",
+          text: "Tighter language on robustness and acceptance criteria",
+          id: "robustness-and-acceptance",
+        },
+        {
+          type: "p",
+          text: "Q2(R2) is more direct that acceptance criteria for each validation characteristic must be predefined in the protocol, justified by the method's intended use, and linked to product specifications where applicable. Robustness in particular is described in more concrete terms — what factors should be deliberately varied, how the result should be evaluated, and how robustness study findings feed back into the analytical procedure description.",
+        },
+
+        {
+          type: "h3",
+          text: "Explicit linkage to ICH Q14",
+          id: "linkage-to-q14",
+        },
+        {
+          type: "p",
+          text: "Q14 — Analytical Procedure Development — was adopted alongside Q2(R2) and codifies the development side of the method lifecycle. Q14 is not retroactive: a method developed before 2024 does not need to be redeveloped under Q14. But for new methods, Q14 sets the expectation that development decisions, control strategy, and the analytical procedure description itself are documented in a way that supports the eventual validation package and ongoing performance verification.",
+        },
+        {
+          type: "callout",
+          tone: "info",
+          body: "If your method was developed and validated under Q2(R1) and is in an active filing, you generally do not need to redo the work to comply with Q2(R2). Most regulatory regions have transitional provisions — confirm the specific position of your filing region before assuming.",
+        },
+
+        {
+          type: "h2",
+          text: "How Q14 fits beside Q2(R2)",
+          id: "q14-beside-q2",
+        },
+        {
+          type: "p",
+          text: "Q14 and Q2(R2) are companion documents. Q14 governs how the method is developed, characterized, and described; Q2(R2) governs how the validation evidence is structured. The dividing line: if a question is about choices made during development — selectivity rationale, control strategy, analytical target profile — it lives in Q14. If a question is about evidence — precision data, accuracy spike-recovery, robustness factor effects — it lives in Q2(R2).",
+        },
+        {
+          type: "p",
+          text: "For a sponsor with multiple methods in development, the practical implication is that development records have to be structured well enough to support both deliverables. The analytical procedure description, the control strategy, and the validation protocol should reference each other consistently, with no gap between development decisions and validation evidence.",
+        },
+
+        {
+          type: "h2",
+          text: "Validation packages already in flight: do you need to redo work?",
+          id: "in-flight-packages",
+        },
+        {
+          type: "p",
+          text: "Three categories of in-flight package, with different answers:",
+        },
+        {
+          type: "ul",
+          items: [
+            "Package fully drafted under Q2(R1), already submitted and under review — typically no rework. Regional regulators have transitional provisions; if the dossier was accepted under Q2(R1), it is reviewed under Q2(R1) absent a specific deficiency.",
+            "Package drafted under Q2(R1) but not yet submitted, target submission late 2025 onward — a focused addendum is usually enough. Re-confirm acceptance criteria are documented per Q2(R2) language; tighten the robustness section if the original protocol was thin there; reframe the package within the method lifecycle.",
+            "New method, development starting in 2025 or later — develop under Q14, validate under Q2(R2). The two documents together are the design intent.",
+          ],
+        },
+        {
+          type: "p",
+          text: "The category that most often catches sponsors out is the second one — packages that were structurally complete under Q2(R1) but had a thin robustness section or implicit acceptance-criteria justification. The Q2(R2) text makes those gaps more visible to a reviewer than they were before.",
+        },
+
+        {
+          type: "inline-cta",
+          eyebrow: "Talk to the analytical bench",
+          heading: "Validation package needs a Q2(R2) addendum?",
+          body: "Our Hyderabad analytical bench audits in-flight validation packages against Q2(R2) language and drafts the addendum or robustness rework where needed. A 30-minute call surfaces the scope before any work starts.",
+          cta: {
+            label: "Schedule an analytical review",
+            href: "/contact?source=insights-q2-r2",
+            variant: "primary",
+          },
+        },
+
+        {
+          type: "h2",
+          text: "Practical recommendations for analytical teams",
+          id: "practical-recommendations",
+        },
+        {
+          type: "ol",
+          items: [
+            "Read Q2(R2) once end-to-end before reading any in-flight protocol against it. The reframed structure is easier to absorb in the abstract before applying.",
+            "Audit the robustness section of every protocol drafted before mid-2024. Q2(R2) is more explicit on what robustness must demonstrate; thin sections are the most common deficiency we see.",
+            "Document acceptance-criteria justification — the chain from product specification to validation acceptance criterion — explicitly. Implicit justification was tolerated under Q2(R1); Q2(R2) reads more strictly.",
+            "For new methods, treat Q14 development records and the Q2(R2) validation protocol as one coherent document set. Cross-reference them deliberately.",
+          ],
+        },
+        {
+          type: "p",
+          text: "Q2(R2) is not a disruptive revision. It is a disciplined one. The validation work that was good under Q2(R1) is still good; the gaps that were tolerated are now more visible. Most teams do not need to redo methods. They need to read their existing packages with the new text in hand and decide whether the gaps justify a focused addendum or a quiet annotation.",
+        },
+
+        {
+          type: "blockquote",
+          text: "The hardest part of Q2(R2) is not the science. It is unwinding the habit of reading method validation as an event rather than a stage in a lifecycle.",
+          cite: "Propharmex Analytical Bench",
+        },
+
+        {
+          type: "callout",
+          tone: "caveat",
+          heading: "Disclaimer",
+          body: "This article is informational and does not constitute regulatory advice. Specific filings, regional positions, and acceptance criteria depend on the dossier, the regulator, and the molecule. For advice tailored to your validation package and filing strategy, contact our analytical practice or a qualified regulatory professional.",
+        },
+      ],
       related: ["del-at-a-glance-foreign-sponsor-primer", "inside-a-two-hub-cdmo"],
       primaryServiceLink: {
         label: "Analytical services",
