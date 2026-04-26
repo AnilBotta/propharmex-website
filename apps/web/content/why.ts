@@ -407,11 +407,10 @@ export const WHY: WhyContent = {
       {
         id: "playbook",
         icon: "book-open",
-        // TODO: replace with real whitepaper URL when the Canada-India playbook doc ships in Prompt 15.
-        label: "Download the Canada–India playbook",
+        label: "Download the two-hub operating model",
         supporting:
-          "A 10-page brief on how our Mississauga and Hyderabad operations interlock.",
-        href: "/whitepapers/canada-india-playbook",
+          "A 4-page brief on how our Mississauga and Hyderabad operations interlock under one quality system.",
+        href: "/insights/whitepapers/two-hub-operating-model",
         variant: "ghost",
       },
       {

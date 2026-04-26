@@ -27,6 +27,21 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  // Permanent redirects for legacy URLs that have moved.
+  async redirects() {
+    return [
+      // Legacy whitepaper slug — Prompt 15 retitled the whitepaper from
+      // "Canada-India playbook" to "The two-hub operating model" as part
+      // of the broader positioning correction (PR #19). The old URL was
+      // referenced in why.ts and may have been shared externally; a 301
+      // preserves any inbound link.
+      {
+        source: "/whitepapers/canada-india-playbook",
+        destination: "/insights/whitepapers/two-hub-operating-model",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
