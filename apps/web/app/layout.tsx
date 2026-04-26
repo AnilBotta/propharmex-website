@@ -35,11 +35,12 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL),
   title: {
-    default: "Propharmex — Canada–India pharmaceutical services",
+    default:
+      "Propharmex — pharmaceutical development, analytical, regulatory, distribution",
     template: "%s · Propharmex",
   },
   description:
-    "End-to-end pharmaceutical development, analytical services, Health Canada DEL regulatory, and distribution. Mississauga, Canada + Hyderabad, India.",
+    "Canada-anchored pharmaceutical services company with operating hubs in Mississauga, Ontario and Hyderabad, Telangana. End-to-end pharmaceutical development, analytical services, Health Canada DEL–anchored regulatory affairs, and 3PL distribution — serving drug developers globally.",
   applicationName: "Propharmex",
   // Re-enabled at Prompt 22/27 once content is real.
   robots: { index: false, follow: false },
