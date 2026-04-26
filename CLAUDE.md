@@ -6,7 +6,7 @@ Project-level instructions for every Claude Code session working in this repo. *
 
 ## 1. Identity & mission
 
-**Propharmex** is a pharmaceutical services company positioned as the **Canada–India bridge** for end-to-end drug development, analytical services, regulatory affairs (anchored on the Health Canada Drug Establishment Licence), and 3PL distribution. Mississauga, Ontario (Canada) and Hyderabad, Telangana (India) are our operating hubs.
+**Propharmex** is a **Canada-anchored pharmaceutical services company** serving drug developers globally. We operate from two hubs: Mississauga, Ontario (Canada) — where we hold a Health Canada Drug Establishment Licence and run 3PL distribution — and Hyderabad, Telangana (India), where we run pharmaceutical development and analytical services. Capabilities span end-to-end drug development, analytical services, regulatory affairs, and 3PL distribution. Our clients are drug developers globally — from US generic sponsors to multilateral procurement agencies. There is no "bridge" service offering between the two countries; the two-hub structure is how the company operates, not a productized intermediary role.
 
 This repository builds the public marketing website + four AI-powered tools. The site must outperform Vertex, Mabwell, Lonza, Patheon, Catalent, and Piramal in information density, design sophistication, and demonstrable AI-assisted UX — while staying fully compliant with YMYL and healthcare-marketing norms.
 

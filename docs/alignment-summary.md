@@ -6,7 +6,7 @@
 
 ## 1. Twelve-bullet build summary
 
-1. **Positioning & voice** — Propharmex is the Canada–India bridge CDMO (Mississauga + Hyderabad) for end-to-end pharma development, analytical services, Health Canada DEL–anchored regulatory affairs, and 3PL/distribution. Voice is anti-hype, expert, credible, humble; regulatory-precise.
+1. **Positioning & voice** — Propharmex is a Canada-anchored pharmaceutical services company with operating hubs in Mississauga, Ontario and Hyderabad, Telangana, serving drug developers globally. Mississauga holds the Health Canada Drug Establishment Licence and runs 3PL distribution; Hyderabad runs pharmaceutical development and analytical services. Voice is anti-hype, expert, credible, humble; regulatory-precise.
 2. **Information architecture** — 9 top-level nav areas: Home, Services, Industries, Quality & Compliance, Facilities, Case Studies, Insights, Our Process, Contact. 4 AI tools ride on top as routes under `/ai-tools/*` and as inline embeds on relevant service pages.
 3. **Design system** — Tailwind v4 `@theme` tokens, Inter typeface, restrained color system (clinical neutrals + single regulatory-navy primary + one accent), shadcn/ui primitives, Framer Motion choreography (240ms enter, 180ms exit, 40ms stagger), reduced-motion fallback required everywhere.
 4. **CMS (Sanity v3)** — ~16 document types including `service`, `industry`, `caseStudy`, `insight`, `whitepaper`, `leader`, `facility`, `certification`, `navigation`, `siteSettings`, `aiPromptConfig`, `region`, `testimonial`, `faq`. Live visual editing + draft mode. Content is the source of truth; no hardcoded strings in components.
@@ -26,7 +26,7 @@
 | Route | Purpose |
 |---|---|
 | `/` | Home with CDMO Concierge AI embed + hero + 5 positioning blocks |
-| `/why-propharmex` | Canada–India bridge thesis, differentiation |
+| `/why-propharmex` | Two-hub operating model, Canada-anchored differentiation |
 | `/about` | Company story, values, timeline |
 | `/about/leadership` | Leader cards + bios |
 | `/quality-compliance` | Certifications, quality systems, audit posture |

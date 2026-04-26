@@ -346,19 +346,19 @@ export const DOSAGE_CHIPS: DosageChip[] = [
 /* -------------------------------------------------------------------------- */
 
 export const HOME: HomeContent = {
-  metaTitle: "Propharmex — Canada–India pharmaceutical development, analytical, regulatory, distribution",
+  metaTitle: "Propharmex — pharmaceutical development, analytical, regulatory, distribution",
   metaDescription:
-    "Propharmex operates a Health Canada DEL in Mississauga and R&D plus analytical services in Hyderabad. End-to-end pharmaceutical development, ICH-aligned analytical, regulatory submissions, and 3PL distribution — under one engagement.",
-  ogTitle: "Propharmex — the Canada–India bridge for end-to-end pharma",
+    "Canada-anchored pharmaceutical services company operating a Health Canada DEL site in Mississauga, Ontario and a development plus analytical bench in Hyderabad, Telangana. End-to-end pharmaceutical development, ICH-aligned analytical, regulatory submissions, and 3PL distribution for drug developers globally.",
+  ogTitle: "Propharmex — pharmaceutical development, analytical, regulatory, distribution",
   ogDescription:
-    "Drug Establishment Licence in Canada, analytical and development depth in India. Integrated development-to-distribution for complex generics and beyond.",
+    "Drug Establishment Licence-anchored Canadian operations with analytical and development depth in Hyderabad. Integrated development-to-distribution for drug developers globally.",
 
   // 1. Hero
   hero: {
     kind: "hero",
-    eyebrow: "Mississauga, Ontario · Hyderabad, Telangana",
-    headline: "Your Canada-India Bridge for",
-    headlineAccent: "End-to-End Pharma Development & Distribution.",
+    eyebrow: "Mississauga, Ontario · Hyderabad, Telangana · Serving sponsors globally",
+    headline: "End-to-End Pharma Development,",
+    headlineAccent: "Analytical, Regulatory & Distribution.",
     subhead:
       "Development, analytical, regulatory, and distribution under one operating model — anchored on a Health Canada Drug Establishment Licence.",
     ctas: [
@@ -434,7 +434,7 @@ export const HOME: HomeContent = {
       {
         id: "delivery",
         title: "Delivery across two supply chains",
-        body: "When an API is short in India, we source in Canada. When cold-chain capacity tightens in North America, Hyderabad ships. The bridge is operational, not aspirational.",
+        body: "When an API is short in India, we source in Canada. When cold-chain capacity tightens in North America, Hyderabad ships. The two-hub model is operational, not aspirational.",
       },
     ],
   },
@@ -487,7 +487,7 @@ export const HOME: HomeContent = {
   // 5. Canada + India Advantage
   canadaIndia: {
     kind: "canadaIndia",
-    eyebrow: "The bridge, in detail",
+    eyebrow: "Two operating hubs",
     heading: "Two hubs. Specific roles. No marketing fog.",
     subhead:
       "Canada carries the Drug Establishment Licence and the last-mile compliance. India carries the method depth and the manufacturing bench. Both share the same CTMS, the same quality system, and the same project managers.",

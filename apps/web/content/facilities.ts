@@ -262,7 +262,7 @@ export const FACILITIES_CONTENT: FacilitiesContent = {
     "Two operating hubs, one lineage of practice. Mississauga holds our Health Canada Drug Establishment Licence and 3PL operations; Hyderabad runs pharmaceutical development and analytical services. Visits by appointment.",
   ogTitle: "Mississauga & Hyderabad — Propharmex facilities",
   ogDescription:
-    "The Canada–India bridge, in rooms you can walk. Health Canada DEL site in Mississauga; development and analytical operations in Hyderabad.",
+    "Two operating hubs, in rooms you can walk. Health Canada DEL site in Mississauga; development and analytical operations in Hyderabad.",
   hero: {
     eyebrow: "Facilities",
     headline: "Two hubs. One quality system. One record of work.",
@@ -280,7 +280,7 @@ export const FACILITIES_CONTENT: FacilitiesContent = {
   },
   map: {
     eyebrow: "Where we work",
-    heading: "The Canada–India bridge, drawn to scale",
+    heading: "Two operating hubs, drawn to scale",
     lede: "Both hubs are connected by a unified document stream, harmonised SOPs, and a weekly operations cadence. The arc below is illustrative, not a flight path.",
     hubs: [
       {
@@ -301,7 +301,7 @@ export const FACILITIES_CONTENT: FacilitiesContent = {
       },
     ],
     caveat:
-      "Schematic bridge, not to scale. Exact site coordinates shared during pre-visit briefing under NDA.",
+      "Schematic only, not to scale. Exact site coordinates shared during pre-visit briefing under NDA.",
   },
   comparison: {
     eyebrow: "Compare the hubs",

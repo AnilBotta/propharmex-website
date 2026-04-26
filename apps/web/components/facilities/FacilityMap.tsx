@@ -1,7 +1,7 @@
 /**
  * FacilityMap — /facilities, RSC.
  *
- * An abstract "two-hubs" bridge visual rather than a real map tile. Real
+ * An abstract two-hub schematic rather than a real map tile. Real
  * geography would be misleading at this zoom, and we do not publish street
  * coordinates on the marketing site until client confirmation of visit
  * protocols. The arc between the two city nodes is decorative.
@@ -49,7 +49,7 @@ export const FacilityMap: FC<Props> = ({ content }) => {
             >
               <defs>
                 <linearGradient
-                  id="bridge-arc"
+                  id="hub-arc"
                   x1="0"
                   y1="0"
                   x2="1"
@@ -63,7 +63,7 @@ export const FacilityMap: FC<Props> = ({ content }) => {
               <path
                 d="M 150 150 Q 450 10 750 150"
                 fill="none"
-                stroke="url(#bridge-arc)"
+                stroke="url(#hub-arc)"
                 strokeWidth="2"
                 strokeDasharray="6 6"
                 strokeLinecap="round"

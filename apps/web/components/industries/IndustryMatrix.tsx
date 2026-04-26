@@ -4,7 +4,7 @@
  * Live cards wrap in a Link; shipping-next cards render as a muted disabled
  * affordance so no stale internal links exist. The flagship card carries a
  * "Flagship" pill — generic-manufacturers is the cleanest fit for the
- * Canada–India bridge model.
+ * Canada-anchored two-hub operating model.
  */
 import type { FC } from "react";
 import Link from "next/link";

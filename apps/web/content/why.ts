@@ -118,7 +118,7 @@ export type WhyContent = {
 
 export const WHY: WhyContent = {
   metaTitle:
-    "Why Propharmex — the Canada–India bridge for end-to-end pharmaceutical work",
+    "Why Propharmex — Canada-anchored two-hub pharmaceutical services for global sponsors",
   metaDescription:
     "Drug development is fragmented across too many vendors and jurisdictions. Propharmex closes that gap with an integrated four-leg operating model anchored on a Health Canada Drug Establishment Licence and Hyderabad method depth.",
   ogTitle: "Why Propharmex",
@@ -320,14 +320,14 @@ export const WHY: WhyContent = {
       },
     },
 
-    /* ---------- 5. Canada–India Engine --------------------------------------- */
+    /* ---------- 5. Two-hub Engine -------------------------------------------- */
     {
       id: "engine",
       railLabel: "Engine",
       eyebrow: "Chapter five",
       headline: "How Mississauga and Hyderabad actually interlock.",
       lede:
-        "The bridge is operational, not aspirational. Two hubs, two time zones, one quality system, and a handover cadence built on the 2.5-hour daylight overlap between Ontario and Telangana.",
+        "The two-hub model is operational, not aspirational. Two hubs, two time zones, one quality system, and a handover cadence built on the 2.5-hour daylight overlap between Ontario and Telangana.",
       body: [
         "Mississauga holds the Drug Establishment Licence and runs the 3PL — import, release testing, warehousing, and Canadian distribution, with cold-chain lanes into the US and Caribbean. It is the regulatory face of every engagement.",
         "Hyderabad carries the method-development bench — HPLC, LC-MS/MS, dissolution, Karl Fischer, DSC — plus the formulation and process depth for orals, sterile injectables, and semi-solids. Manufacturing runs under WHO-GMP for pilot and scale-up batches.",

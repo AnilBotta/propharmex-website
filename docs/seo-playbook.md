@@ -20,7 +20,7 @@ regulatory     /services/regulatory-services         DEL licensing ★flagship, 
 distribution   /services/3pl-distribution            DEL import/export, cold chain,
                                                      warehousing, last-mile
 quality        /quality-compliance                   QMS, deviations, CAPA, audits, DI
-company        /about, /why-propharmex               Canada-India bridge, leadership
+company        /about, /why-propharmex               two-hub operating model, leadership
 ```
 
 Every insight article targets a **primary keyword** that nests under exactly one cluster. Every article links up to its cluster hub and laterally to 2 sibling clusters.
@@ -71,7 +71,7 @@ Built in Prompt 23 as an `.xlsx` via the `xlsx` skill. Columns: working title, p
 
 Cadence target for launch + first 3 months:
 - 8 insight articles (4 regulatory, 2 analytical, 1 development, 1 quality)
-- 2 whitepapers (1 Canada-India playbook, 1 DEL readiness deep-dive)
+- 2 whitepapers (1 two-hub operating model deep-dive, 1 DEL readiness deep-dive)
 - 3 case studies
 - Weekly "regulatory update" micro-posts (300–500 words) — low-lift, high citation-value
 

@@ -36,9 +36,9 @@ All titles below are **placeholders** chosen to exercise the schema and layout. 
    Hook: Decision framework for moving from 4+ outsourced partners to a tier-1 + backup model.
    Primary keyword: `cdmo consolidation strategy`
 
-7. **"The Canada–India bridge: a manufacturing model for sponsors who need both regulatory trust and cost scale"**
-   Hook: How split-geography CDMO engagements actually operate day-to-day.
-   Primary keyword: `canada india cdmo partnership`
+7. **"Inside a two-hub CDMO: how a Canadian DEL site and an Indian analytical bench operate under one quality system"**
+   Hook: How a Canada-anchored two-hub operating model actually functions day-to-day for global sponsors.
+   Primary keyword: `two-hub cdmo operating model`
 
 ## Pillar 4 — Formulation & dosage forms
 

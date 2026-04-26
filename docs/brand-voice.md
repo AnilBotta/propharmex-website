@@ -10,7 +10,7 @@
 
 **Humble.** We write about the customer's problem, not Propharmex's greatness. Superlatives are earned with a fact ("the only Canadian DEL holder also operating Hyderabad analytical services" — verifiable). When we don't know, we say so.
 
-**Canada-India pragmatic.** Our differentiator is the operational bridge — not a marketing claim. Surface it when the topic naturally supports it (timeline compression, regulatory arbitrage between Health Canada and CDSCO, cold-chain handoffs). Never force it.
+**Two-hub pragmatic.** Our differentiator is the operational discipline of running a Canadian DEL site (Mississauga) and an Indian analytical/development bench (Hyderabad) under one quality system — not a "bridge" service offering between the two countries. Clients are global. Surface the geography only when it materially matters (timeline compression, regulatory authority, cold-chain logistics). Never force it.
 
 ## Ban list (zero tolerance)
 

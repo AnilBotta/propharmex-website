@@ -1,7 +1,7 @@
 ---
 name: whitepaper-generator
 description: Orchestrates pharma-ghostwriter + pdf skill to produce gated lead-magnet whitepapers — 8-12 page branded PDFs with cover, executive summary, body, figures, and CTA. Publishes the PDF to /downloads/ and creates the matching Sanity whitepaper doc.
-when_to_use: User asks for a whitepaper, lead magnet, long-form PDF, executive guide, playbook, or regulatory explainer deliverable. Also invoked by Prompt 15 (whitepapers pipeline) and Prompt 6 (Canada-India playbook).
+when_to_use: User asks for a whitepaper, lead magnet, long-form PDF, executive guide, playbook, or regulatory explainer deliverable. Also invoked by Prompt 15 (whitepapers pipeline) and Prompt 6 (two-hub operating-model playbook — final title TBD at Prompt 15).
 ---
 
 # Whitepaper Generator

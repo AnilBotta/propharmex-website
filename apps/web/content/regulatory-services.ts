@@ -4,8 +4,9 @@
  *
  * Positioning (from CLAUDE.md §1): the regulatory-services unit is the
  * commercial expression of Mississauga's Health Canada Drug Establishment
- * Licence. It is the bridge that lets Canadian, US, and Indian programmes
- * move across jurisdictions under a single quality system.
+ * Licence. It is what lets Canadian, US, and globally-sourced programmes
+ * move across jurisdictions under a single quality system, with the
+ * Hyderabad analytical and development bench feeding into the same record.
  *
  * Only the Mississauga DEL uses `confirmed` on this page. Every other
  * claim is `under-confirmation` (evidence held, not yet marketed) or
@@ -644,7 +645,7 @@ export const REGULATORY_DEL_LICENSING: RegulatoryLeafContent = {
       "A Drug Establishment Licence we hold — not one we borrow on your behalf.",
     valueProp:
       "The Mississauga DEL is the operational anchor that lets a US or India programme transact in Canada under a single, verifiable quality system.",
-    lede: "A Drug Establishment Licence is issued by Health Canada under Part C, Division 1A of the Food and Drug Regulations and interpreted through GUI-0002. It authorizes specific activities on specific dosage-form and product categories at a specific site. Ours is in Mississauga. We use it as the operating backbone for every Canadian engagement and as the bridge that lets a US or India programme touch the Canadian market without a sponsor having to stand up a Canadian establishment of their own. This page describes what the licence authorizes, how a sponsor plugs into it, and how a new DEL is obtained when that is what a programme needs.",
+    lede: "A Drug Establishment Licence is issued by Health Canada under Part C, Division 1A of the Food and Drug Regulations and interpreted through GUI-0002. It authorizes specific activities on specific dosage-form and product categories at a specific site. Ours is in Mississauga. We use it as the operating backbone for every Canadian engagement and as the regulatory anchor that lets a US, Indian, or otherwise-globally-sourced programme touch the Canadian market without a sponsor having to stand up a Canadian establishment of their own. This page describes what the licence authorizes, how a sponsor plugs into it, and how a new DEL is obtained when that is what a programme needs.",
     stats: [
       { label: "Our posture", value: "DEL on register" },
       { label: "Service standard", value: "250 calendar days" },
@@ -684,7 +685,7 @@ export const REGULATORY_DEL_LICENSING: RegulatoryLeafContent = {
       {
         id: "why-we-hold-it",
         heading: "Why we hold it",
-        body: "The DEL is the reason Propharmex can be a Canada–India bridge rather than a broker in front of one. Without it, we could scope analytical methods, author a dossier, and plan the 3PL — but we could not, under our own authority, receive, test, warehouse, or distribute drugs in Canada. The licence converts a set of capabilities into a single operating posture that a regulator can review, that a sponsor can plug into, and that a customs authority will accept at the border.",
+        body: "The DEL is the reason Propharmex can run a Canada-anchored operating posture rather than act as a broker in front of one. Without it, we could scope analytical methods, author a dossier, and plan the 3PL — but we could not, under our own authority, receive, test, warehouse, or distribute drugs in Canada. The licence converts a set of capabilities into a single operating posture that a regulator can review, that a sponsor can plug into, and that a customs authority will accept at the border.",
         source: HEALTH_CANADA_DEL_REGISTER,
       },
     ],
@@ -1032,7 +1033,7 @@ export const REGULATORY_US_FDA_SUBMISSIONS: RegulatoryLeafContent = {
         "Release-testing methods and validation records referenced inside Module 3 — the same methods used for lot release under the DEL",
         "Stability data generated under ICH Q1A(R2) conditions inside the DEL scope, cross-referenced to the submission rather than re-authored for it",
         "Analytical raw data held under the QMS in alignment with ALCOA+ data-integrity principles, available on inspection or FDA desk-review request",
-        "A single quality system bridge between the authored dossier and the record the methods were actually run under",
+        "A single quality system linking the authored dossier and the record the methods were actually run under",
         "Canadian regulatory agent posture where the sponsor elects one, separate from the US filing itself",
       ],
     },
@@ -1351,7 +1352,7 @@ export const REGULATORY_CTD_ECTD_DOSSIER_PREPARATION: RegulatoryLeafContent = {
       heading: "What Mississauga anchors",
       bullets: [
         "The release-testing and stability record referenced inside Module 3 — the same record used for lot release under the DEL",
-        "A single QMS bridge between the authored dossier and the analytical raw data, so Module 3 claims are evidenced against data a reviewer can inspect",
+        "A single QMS linking the authored dossier and the analytical raw data, so Module 3 claims are evidenced against data a reviewer can inspect",
         "Canadian regulatory agent posture for Health Canada submissions when the sponsor elects one",
         "Document control and change-control linkage between the dossier record and post-issuance activities",
         "Inspection-ready access to Module 3 source records on request from Health Canada or the FDA during review or pre-approval inspection",
