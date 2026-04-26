@@ -22,6 +22,7 @@ import { env, jsonLdGraph } from "@propharmex/lib";
 import { JsonLd } from "../../components/site/JsonLd";
 import { ProcessClosing } from "../../components/process/ProcessClosing";
 import { ProcessHero } from "../../components/process/ProcessHero";
+import { ProcessHorizontalStepper } from "../../components/process/ProcessHorizontalStepper";
 import { ProcessTimeline } from "../../components/process/ProcessTimeline";
 import { PROCESS } from "../../content/process";
 
@@ -53,7 +54,14 @@ export default function OurProcessPage() {
   return (
     <>
       <ProcessHero content={PROCESS.hero} />
-      <ProcessTimeline phases={PROCESS.phases} />
+      {/* Vertical timeline — universal mobile/tablet layout, hidden on lg+. */}
+      <ProcessTimeline phases={PROCESS.phases} className="lg:hidden" />
+      {/* Horizontal scroll-pinned stepper — desktop only (lg+). Falls back to
+          a horizontally-scrollable list under prefers-reduced-motion. */}
+      <ProcessHorizontalStepper
+        phases={PROCESS.phases}
+        className="hidden lg:block"
+      />
       <ProcessClosing content={PROCESS.closing} />
 
       <JsonLd id="proc-page-jsonld" data={pageJsonLd} />
