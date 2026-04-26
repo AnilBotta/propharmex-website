@@ -376,8 +376,157 @@ export const INSIGHTS: InsightsContent = {
         "Foreign sponsors",
         "Regulatory affairs",
       ],
-      // TODO(commit 4) — body authored via pharma-regulatory-writer (strict mode) + brand-voice-guardian PASS.
-      body: [],
+      body: [
+        {
+          type: "p",
+          text: "A Drug Establishment Licence (DEL) is the Canadian authorization required to fabricate, package, label, test, import, distribute, or wholesale a drug. It is issued by Health Canada's Regulatory Operations and Enforcement Branch under the Food and Drug Regulations. For a foreign sponsor planning to enter the Canadian market — by direct importation, by tech transfer to a Canadian site, or by partnering with a Canadian establishment — the DEL is the prerequisite that gates almost every downstream activity.",
+        },
+        {
+          type: "p",
+          text: "If you arrive at a DEL application with a working knowledge of US FDA establishment registration or EU MIA authorizations, the operating model will be familiar. The detail will not. What follows is the version of GUI-0002 we wish we had read earlier — what the licence authorizes, the three errors that most often delay first-time applications, and where the Health Canada service standard sits today.",
+        },
+
+        {
+          type: "h2",
+          text: "What a Drug Establishment Licence authorizes",
+          id: "what-a-del-authorizes",
+        },
+        {
+          type: "p",
+          text: "GUI-0002 is the operating manual for DEL applications. It scopes the activity classes the licence can cover, the categories of drugs in scope (pharmaceuticals, biologics, radiopharmaceuticals, and Schedule C/D drugs), and the evidence required for each activity-site-category triple. The licence is site-specific: each physical building where a regulated activity takes place is licensed separately, and the activities listed on the licence determine what the site is legally permitted to do.",
+        },
+        {
+          type: "callout",
+          tone: "regulatory",
+          heading: "Primary source",
+          body: "GUI-0002 — Guide to drug establishment licences and drug establishment licensing fees — is the canonical Health Canada document for DEL applications. Read it against your draft site master file before you start filling forms.",
+          source: {
+            kind: "primary",
+            label:
+              "Health Canada GUI-0002 (as of 2026-04-23)",
+            href: "https://www.canada.ca/en/health-canada/services/drugs-health-products/compliance-enforcement/establishment-licences/guidance-document.html",
+          },
+        },
+        {
+          type: "p",
+          text: "Activity classes commonly listed on a DEL include fabrication, packaging and labelling, testing, importation, distribution, and wholesaling. Each carries its own evidence expectations. A site licensed for fabrication has a higher GMP evidence bar than one licensed only for distribution. The activity scope is among the most consequential decisions in the application — it determines the inspection footprint, the GMP evidence package, and the renewal cadence.",
+        },
+        {
+          type: "ul",
+          items: [
+            "Fabrication and packaging require a full GMP evidence package and trigger an on-site Health Canada inspection.",
+            "Importation requires evidence that each foreign site supplying drugs into Canada operates under acceptable GMP — typically through a Health Canada inspection of the foreign site, a recognized foreign authority's inspection, or an applicable Mutual Recognition Agreement.",
+            "Distribution and wholesaling have lighter evidence expectations than fabrication but still require a quality system, a recall procedure, and complaints handling per Division 2 of the Food and Drug Regulations.",
+          ],
+        },
+
+        {
+          type: "h2",
+          text: "The three application errors we see most often",
+          id: "common-application-errors",
+        },
+        {
+          type: "p",
+          text: "Across DEL applications we have prepared, audited, or supported as Canadian agent, three categories of issue account for most pre-licence requests for additional information from Health Canada. Each is avoidable with a careful read of GUI-0002 against your draft site master file.",
+        },
+
+        {
+          type: "h3",
+          text: "Activity-class scoping mistakes",
+          id: "scoping-mistakes",
+        },
+        {
+          type: "p",
+          text: "First-time applicants frequently apply for either too narrow or too broad an activity scope. Too narrow — applying only for distribution when the site also conducts incoming raw-material testing — forces an amendment within months and a re-inspection. Too broad — applying for fabrication on a site that lacks the QA infrastructure for it — invites either deficiencies or a request to withdraw and refile. The right scope is the smallest one that covers your actual operating activities for the next 24 months, plus any planned activity that has signed-off project documentation.",
+        },
+
+        {
+          type: "h3",
+          text: "Foreign-site evidence package mismatches",
+          id: "foreign-site-evidence",
+        },
+        {
+          type: "p",
+          text: "Where drugs are imported into Canada, GUI-0002 requires evidence that each foreign manufacturing site operates under acceptable GMP. Mismatches happen when the evidence on file is older than the look-back window, when a renewal certificate is on a different legal entity than the drug-licence holder, or when the foreign site's listed scope no longer matches the activity being imported. Each mismatch is its own request for additional information, and they tend to surface late in the review.",
+        },
+
+        {
+          type: "h3",
+          text: "Site master file gaps",
+          id: "site-master-file-gaps",
+        },
+        {
+          type: "p",
+          text: "The site master file is the most-reviewed document in a DEL application. Common gaps: stale equipment qualification status, an organizational chart that does not match the current QMS, missing or out-of-date HVAC qualification documents, and SOPs referenced in the SMF that the inspector cannot locate on first request. The SMF is read literally — every cross-reference must resolve to a current, controlled document.",
+        },
+        {
+          type: "callout",
+          tone: "info",
+          body: "If you are planning a first DEL application in 2026, build the site master file at least three months before the planned filing date and run a mock inspection against it. The errors above are easier to fix in the dry run than in a live request for additional information.",
+        },
+
+        {
+          type: "inline-cta",
+          eyebrow: "Talk to the regulatory practice",
+          heading: "Planning a first-time DEL application?",
+          body: "We hold a DEL at our Mississauga site and act as Canadian agent for foreign sponsors entering the Canadian market. A 30-minute call clarifies activity-class scoping, evidence-package strategy, and timing before you commit to a filing date.",
+          cta: {
+            label: "Schedule a regulatory call",
+            href: "/contact?source=insights-del-primer",
+            variant: "primary",
+          },
+        },
+
+        {
+          type: "h2",
+          text: "Where the service standard sits as of April 2026",
+          id: "service-standard-2026",
+        },
+        {
+          type: "p",
+          text: "Health Canada publishes service standards for DEL applications and amendments on its public website, broken out by application type (new licence, amendment, annual licence review). For new licences, the published target captures complete-to-decision elapsed time and is updated periodically. Actual elapsed time for any individual application varies with the activity classes requested, the inspection footprint, and the quality of the application.",
+        },
+        {
+          type: "callout",
+          tone: "regulatory",
+          body: "Service standards are targets, not commitments. A request for additional information mid-review pauses the clock; a deficient site master file or unresolved foreign-site evidence package can extend an application well beyond the published target.",
+          source: {
+            kind: "primary",
+            label:
+              "Health Canada Drug Establishment Licence service standards (as of 2026-04-23)",
+            href: "https://www.canada.ca/en/health-canada/services/drugs-health-products/compliance-enforcement/establishment-licences/service-standards.html",
+          },
+        },
+
+        {
+          type: "h2",
+          text: "If you are starting an application this quarter",
+          id: "starting-an-application",
+        },
+        {
+          type: "p",
+          text: "Three practical recommendations for sponsors filing a first DEL application in the next 90 days:",
+        },
+        {
+          type: "ol",
+          items: [
+            "Lock the activity scope before you draft the site master file. Resolving scoping ambiguity after the SMF is drafted is roughly twice the work.",
+            "Confirm every foreign-site evidence reference is current, on the right legal entity, and within the required look-back window. A single mismatch can stall the entire application.",
+            "Plan a mock inspection three to four weeks before submission. Either an internal cross-functional walk-through or an external regulatory consultant — the goal is finding the gaps before the inspector does.",
+          ],
+        },
+        {
+          type: "p",
+          text: "DEL applications are operational-discipline projects, not transformational ones. Every gap a Health Canada reviewer or inspector finds is a gap that existed before the application was filed; the document review is the surface that exposes it. The applications that go through cleanly are the ones where the SMF is the artifact of the actual quality system on the day of filing — not a document written for the regulator.",
+        },
+
+        {
+          type: "callout",
+          tone: "caveat",
+          heading: "Disclaimer",
+          body: "This article is informational and does not constitute regulatory advice. Specific filings, timelines, and outcomes depend on facts not visible from public information. For advice tailored to your facility, your activities, and your filing strategy, contact our regulatory practice or a qualified Canadian regulatory professional.",
+        },
+      ],
       related: ["inside-a-two-hub-cdmo", "ich-q2-r2-method-validation-2024"],
       primaryServiceLink: {
         label: "Regulatory services",
