@@ -15,7 +15,7 @@ export function CanadaIndiaAdvantage({ content }: Props) {
 
   return (
     <section
-      aria-labelledby="home-bridge-heading"
+      aria-labelledby="home-hubs-heading"
       className="bg-[var(--color-bg)] py-20 sm:py-24"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -24,7 +24,7 @@ export function CanadaIndiaAdvantage({ content }: Props) {
             {content.eyebrow}
           </p>
           <h2
-            id="home-bridge-heading"
+            id="home-hubs-heading"
             className="mt-3 font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-[var(--color-fg)] sm:text-4xl"
           >
             {content.heading}

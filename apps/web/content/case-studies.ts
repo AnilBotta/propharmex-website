@@ -3,8 +3,9 @@
  * pages at /case-studies/[slug] — Prompt 14.
  *
  * Positioning (CLAUDE.md §1): case studies are the evidence layer for the
- * Canada–India bridge claim. Three seed studies anchor the three archetypes
- * the rest of the site talks about:
+ * Canada-anchored two-hub operating model — Mississauga DEL site plus
+ * Hyderabad analytical and development bench, serving global sponsors. Three
+ * seed studies anchor the three archetypes the rest of the site talks about:
  *
  *  - modified-release-requalification — a Top-5 US generic manufacturer whose
  *    first ANDA filing came back with a dissolution deficiency letter. We
@@ -777,7 +778,7 @@ const STERILE_INJECTABLE_SECOND_SOURCING: CaseStudyContent = {
   },
   solution: {
     eyebrow: "Solution",
-    heading: "Hyderabad analytical bench as the bridge, Canadian QA authoring the comparability story.",
+    heading: "Hyderabad analytical bench running the data, Canadian QA authoring the comparability story.",
     lede: "The Hyderabad team ran the full analytical re-validation and the side-by-side comparability study. The Mississauga regulatory team authored the supplement, including the comparability protocol and the post-approval commitment wording. The incumbent supplier stayed on primary release throughout the qualification window.",
     bullets: [
       "Analytical re-validation under ICH Q2(R2) closed inside the Hyderabad lab — specificity, linearity, accuracy, precision, range, robustness, all runs documented.",

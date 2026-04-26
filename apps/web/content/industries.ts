@@ -2,7 +2,9 @@
  * Content dictionary for /industries (hub) and all five industry leaves
  * (Prompt 13, complete).
  *
- * Positioning (from CLAUDE.md §1): Propharmex sits at the Canada–India bridge.
+ * Positioning (from CLAUDE.md §1): Propharmex is a Canada-anchored
+ * pharmaceutical services company with operating hubs in Mississauga, Ontario
+ * and Hyderabad, Telangana, serving drug developers globally.
  * Industries are the commercial lens on who we build programmes for — the
  * service trees under /services describe what we do; the industry pages under
  * /industries describe who we do it with and what that engagement looks like
@@ -19,8 +21,8 @@
  *  - governments-and-ngos        — narrowed capability-alignment framing
  *  - clinical-trial-sponsors     — investigational supply + CTA handling
  *
- * The flagship remains `generic-manufacturers`. The Canada–India bridge
- * narrative — analytical and CMC work authored in Hyderabad, filed and
+ * The flagship remains `generic-manufacturers`. The two-hub operating model
+ * — analytical and CMC work authored in Hyderabad, filed and
  * inspection-hosted under the Mississauga DEL — maps most cleanly to a generic
  * manufacturer's ANDA + DMF workflow. The other four leaves inherit the same
  * template, with one deliberate exception: governments-and-ngos ships without
@@ -351,7 +353,7 @@ const GLOBAL_FUND_QA_POLICY: IndustrySource = {
 export const INDUSTRIES_HUB: IndustryHubContent = {
   metaTitle: "Industries We Serve — Propharmex",
   metaDescription:
-    "Pharmaceutical innovators, generic manufacturers, CDMO partners, governments and NGOs, and clinical trial sponsors — five industry lenses on the Canada–India bridge.",
+    "Pharmaceutical innovators, generic manufacturers, CDMO partners, governments and NGOs, and clinical trial sponsors — five industry lenses on Propharmex's Canada-anchored two-hub operating model.",
   ogTitle: "Industries We Serve — Propharmex",
   ogDescription:
     "Five industry lenses on one operating model: Hyderabad CMC and analytical work, filed and inspection-hosted under the Mississauga Drug Establishment Licence.",
@@ -378,7 +380,7 @@ export const INDUSTRIES_HUB: IndustryHubContent = {
   matrix: {
     eyebrow: "Industry matrix",
     heading: "Five industries, one operating model",
-    lede: "Generic manufacturers is the flagship because the Canada–India bridge economics — Hyderabad authoring, Mississauga filing and inspection — map most cleanly to an ANDA plus DMF workflow under a single QMS. The other four lenses apply the same operating model to different programme shapes. Detail pages walk through the engagement; the hub is the index.",
+    lede: "Generic manufacturers is the flagship because the two-hub operating economics — Hyderabad authoring, Mississauga filing and inspection — map most cleanly to an ANDA plus DMF workflow under a single QMS. The other four lenses apply the same operating model to different programme shapes. Detail pages walk through the engagement; the hub is the index.",
     industries: [
       {
         slug: "pharmaceutical-innovators",
@@ -433,7 +435,7 @@ export const INDUSTRIES_HUB: IndustryHubContent = {
     liveCopy: "Detail page available",
     shippingNextCopy: "Detail page shipping next",
     flagshipCopy:
-      "Flagship industry — the cleanest fit for the Canada–India bridge model",
+      "Flagship industry — the cleanest fit for the two-hub operating model",
   },
   posture: {
     eyebrow: "How we shape engagements",
@@ -490,7 +492,7 @@ const GENERIC_MANUFACTURERS: IndustryLeafContent = {
     "ANDA programmes with DMF reference, bioequivalence planning, eCTD Module 2/3 authoring and DEL-anchored Canadian filing surface — one quality system across Hyderabad and Mississauga.",
   ogTitle: "Generic Manufacturers — Propharmex",
   ogDescription:
-    "The Canada–India bridge applied to generics: Hyderabad-authored ANDA CMC and DMF work, filed and inspection-hosted under the Mississauga Drug Establishment Licence.",
+    "The two-hub operating model applied to generics: Hyderabad-authored ANDA CMC and DMF work, filed and inspection-hosted under the Mississauga Drug Establishment Licence.",
   hero: {
     eyebrow: "Industries · Generic manufacturers",
     headline:
@@ -704,7 +706,7 @@ const GENERIC_MANUFACTURERS: IndustryLeafContent = {
         id: "pharmdev",
         label: "Pharmaceutical development",
         description:
-          "Formulation, scale-up and tech transfer work, bridged cleanly into the release analytical record.",
+          "Formulation, scale-up and tech transfer work, fed cleanly into the release analytical record.",
         href: "/services/pharmaceutical-development",
       },
     ],
@@ -712,7 +714,7 @@ const GENERIC_MANUFACTURERS: IndustryLeafContent = {
   closing: {
     eyebrow: "Start a conversation",
     heading: "Scope a generics programme with one quality system behind it",
-    body: "Tell us where the programme is — reference product identified, DMF path chosen, stability running, filing target set — and we will shape a scope around what is real rather than what is hypothetical. The Canada–India bridge is not a tagline; it is how the paperwork ends up on the regulator's desk.",
+    body: "Tell us where the programme is — reference product identified, DMF path chosen, stability running, filing target set — and we will shape a scope around what is real rather than what is hypothetical. The two-hub operating model is not a tagline; it is how the paperwork ends up on the regulator's desk.",
     primaryCta: {
       label: "Scope an ANDA programme",
       href: "/contact?source=industries-generics-closing-scope",
@@ -740,7 +742,7 @@ const PHARMACEUTICAL_INNOVATORS: IndustryLeafContent = {
     "Branded CMC, analytical and regulatory bandwidth for innovators — Module 3 authored in Hyderabad, Canadian filings anchored on the Mississauga Drug Establishment Licence.",
   ogTitle: "Pharmaceutical Innovators — Propharmex",
   ogDescription:
-    "The Canada–India bridge applied to branded innovator programmes: Hyderabad CMC authoring with a Canadian DEL-anchored filing surface.",
+    "The two-hub operating model applied to branded innovator programmes: Hyderabad CMC authoring with a Canadian DEL-anchored filing surface.",
   hero: {
     eyebrow: "Industries · Pharmaceutical innovators",
     headline:
@@ -956,7 +958,7 @@ const PHARMACEUTICAL_INNOVATORS: IndustryLeafContent = {
   closing: {
     eyebrow: "Start a conversation",
     heading: "Scope an innovator programme with one quality system behind it",
-    body: "Tell us where the molecule is — early clinical, pivotal-ready, approaching submission, or already filed in one market and heading for another — and we will shape a CMC and analytical scope around what is real rather than what is hypothetical. The Canada–India bridge is how the submission ends up on the regulator's desk with a single coherent quality narrative behind it.",
+    body: "Tell us where the molecule is — early clinical, pivotal-ready, approaching submission, or already filed in one market and heading for another — and we will shape a CMC and analytical scope around what is real rather than what is hypothetical. The two-hub operating model is how the submission ends up on the regulator's desk with a single coherent quality narrative behind it.",
     primaryCta: {
       label: "Scope an innovator CMC programme",
       href: "/contact?source=industries-innovators-closing-scope",
@@ -984,7 +986,7 @@ const CDMO_PARTNERS: IndustryLeafContent = {
     "Canadian establishment-licence surface, regulatory bandwidth and analytical extension for contract manufacturers serving innovator and generic sponsors — a complement to your core manufacturing, not a competitor.",
   ogTitle: "CDMO Partners — Propharmex",
   ogDescription:
-    "The Canada–India bridge applied to contract manufacturing: DEL-anchored Canadian scope and regulatory bandwidth without standing up your own establishment licence.",
+    "The two-hub operating model applied to contract manufacturing: DEL-anchored Canadian scope and regulatory bandwidth without standing up your own establishment licence.",
   hero: {
     eyebrow: "Industries · CDMO partners",
     headline:
@@ -1442,7 +1444,7 @@ const CLINICAL_TRIAL_SPONSORS: IndustryLeafContent = {
     "Investigational supply, analytical release, and CTA/IND regulatory handling for sponsors running Canadian and multi-jurisdictional trials — DEL-anchored, ICH E6(R3) aligned.",
   ogTitle: "Clinical Trial Sponsors — Propharmex",
   ogDescription:
-    "The Canada–India bridge applied to clinical-trial operations: investigational supply authored in Hyderabad, Canadian CTA handling from the Mississauga DEL.",
+    "The two-hub operating model applied to clinical-trial operations: investigational supply authored in Hyderabad, Canadian CTA handling from the Mississauga DEL.",
   hero: {
     eyebrow: "Industries · Clinical trial sponsors",
     headline:
@@ -1659,7 +1661,7 @@ const CLINICAL_TRIAL_SPONSORS: IndustryLeafContent = {
     eyebrow: "Start a conversation",
     heading:
       "Scope an investigational-supply programme that keeps your enrolment clock honest",
-    body: "Tell us where the trial sits — protocol in final draft, first-patient-in scheduled, enrolment already underway with Canadian sites added late — and we will shape a scope around the enrolment clock rather than a generic release cadence. The Canada–India bridge is how investigational product arrives at Canadian and US sites under one coherent release record.",
+    body: "Tell us where the trial sits — protocol in final draft, first-patient-in scheduled, enrolment already underway with Canadian sites added late — and we will shape a scope around the enrolment clock rather than a generic release cadence. The two-hub operating model is how investigational product arrives at Canadian and US sites under one coherent release record.",
     primaryCta: {
       label: "Scope an investigational supply programme",
       href: "/contact?source=industries-trials-closing-scope",

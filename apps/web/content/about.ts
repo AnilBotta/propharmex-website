@@ -148,7 +148,7 @@ export type AboutLeader = {
   slug: string;
   name: string;
   role: string;
-  location: "Mississauga" | "Hyderabad" | "Canada–India";
+  location: "Mississauga" | "Hyderabad" | "Both hubs";
   /** One-line credential summary shown on the card. */
   credential: string;
   /** 2–3 paragraphs for the modal detail sheet. */
@@ -295,7 +295,7 @@ export const LEADERS: AboutLeader[] = [
       "Cold-chain and 3PL operations across Canadian and US distribution lanes, plus Hyderabad scale-up oversight.",
     bio: [
       "Owns manufacturing coordination between the Mississauga and Hyderabad sites, plus the Propharmex 3PL — import, release, warehousing, and Canadian and US distribution under the Drug Establishment Licence.",
-      "Runs the daylight-overlap operating cadence that bridges ET and IST business days, including the weekly joint steering between regulatory, analytical, and manufacturing leads.",
+      "Runs the daylight-overlap operating cadence that links ET and IST business days, including the weekly joint steering between regulatory, analytical, and manufacturing leads.",
       "Profile in preparation — vetted biography and public credentials will replace this placeholder copy.",
     ],
     credentials: [
@@ -315,9 +315,9 @@ export const LEADERS: AboutLeader[] = [
 
 export const ABOUT: AboutContent = {
   metaTitle:
-    "About Propharmex — the Canada–India pharmaceutical services team",
+    "About Propharmex — Canada-anchored pharmaceutical services team, two hubs",
   metaDescription:
-    "Who we are, how we operate, and why the Canada–India bridge is run under one quality system. Mississauga, Ontario and Hyderabad, Telangana.",
+    "Who we are, how we operate, and why a Canadian DEL site and a Hyderabad analytical and development bench run under one quality system. Mississauga, Ontario and Hyderabad, Telangana — serving drug developers globally.",
   ogTitle: "About Propharmex",
   ogDescription:
     "Mission, values, timeline, and the named principals accountable on every Propharmex engagement.",
@@ -356,7 +356,7 @@ export const ABOUT: AboutContent = {
     },
     vision: {
       label: "Vision",
-      body: "Be the correct CDMO for the product profiles where the Canada–India bridge is the right structural answer — complex generics, modified-release orals, lyophilized sterile injectables, and dissolution-sensitive semi-solids.",
+      body: "Be the correct CDMO for the product profiles where a Canada-anchored two-hub operating model is the right structural answer — complex generics, modified-release orals, lyophilized sterile injectables, and dissolution-sensitive semi-solids.",
     },
     values: [
       {
@@ -476,7 +476,7 @@ export const ABOUT: AboutContent = {
   footprint: {
     eyebrow: "Global footprint",
     heading: "Two operating hubs, one quality manual.",
-    lede: "The bridge is operational, not aspirational. The Mississauga hub holds the Drug Establishment Licence and the 3PL; the Hyderabad hub carries the method and manufacturing bench. Everything else — distribution lanes, audit coverage, client work — runs between them.",
+    lede: "The two-hub model is operational, not aspirational. The Mississauga hub holds the Drug Establishment Licence and the 3PL; the Hyderabad hub carries the method and manufacturing bench. Everything else — distribution lanes, audit coverage, client work — runs between them.",
     nodes: [
       {
         id: "mississauga",
