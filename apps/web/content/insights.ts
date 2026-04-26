@@ -767,8 +767,167 @@ export const INSIGHTS: InsightsContent = {
         "Tech transfer",
         "Operations",
       ],
-      // TODO(commit 6) — body authored via pharma-ghostwriter + brand-voice-guardian PASS.
-      body: [],
+      body: [
+        {
+          type: "p",
+          text: "Propharmex operates from two hubs: Mississauga, Ontario, where we hold a Health Canada Drug Establishment Licence and run 3PL distribution, and Hyderabad, Telangana, where we run pharmaceutical development and analytical services. Our clients are drug developers globally — US generic sponsors, EU innovators, multilateral procurement agencies, and a handful of NGO programs. There is no bridge service offering between the two countries. The two-hub structure is how the company operates, not a productized intermediary role.",
+        },
+        {
+          type: "p",
+          text: "That distinction matters more than it seems. A bridge framing implies the value is in the routing — moving work between Canada and India for some structural advantage. The actual value is the operational discipline of running a Canadian DEL site and an Indian analytical bench under one quality system, for a client base that does not particularly care which side of the world the work happens on. They care that it lands on time, lands clean, and lands in a form their regulator accepts.",
+        },
+        {
+          type: "p",
+          text: "What follows is what that actually looks like, week to week, for a real engagement.",
+        },
+
+        {
+          type: "h2",
+          text: "What lives at each hub",
+          id: "what-lives-at-each-hub",
+        },
+
+        {
+          type: "h3",
+          text: "Mississauga: regulatory authority and release",
+          id: "mississauga-hub",
+        },
+        {
+          type: "p",
+          text: "The Mississauga site is the regulatory anchor. It holds a Health Canada Drug Establishment Licence and operates the Canadian-side quality, regulatory, and release functions: QP release where required, Canadian agent representation for foreign sponsors, primary point of contact with Health Canada, and 3PL distribution into the Canadian market. The site's quality system is the master quality system for the firm — not a regional copy.",
+        },
+        {
+          type: "callout",
+          tone: "regulatory",
+          heading: "Primary source",
+          body: "Propharmex's Drug Establishment Licence at the Mississauga site is verifiable through the Health Canada Drug Product Database. The DEL determines what activities the site is authorized to perform; it does not constitute a regulatory approval of any product the site handles.",
+          source: {
+            kind: "primary",
+            label:
+              "Health Canada Drug Product Database (as of 2026-04-23)",
+            href: "https://health-products.canada.ca/dpd-bdpp/",
+          },
+        },
+
+        {
+          type: "h3",
+          text: "Hyderabad: development bench and analytical depth",
+          id: "hyderabad-hub",
+        },
+        {
+          type: "p",
+          text: "The Hyderabad site is the development and analytical hub. It runs formulation development across oral solids, oral liquids, sterile injectables, and topicals; analytical method development and validation; stability programs across ICH and WHO climatic zones; and tech-transfer execution into manufacturing partners. The site operates under WHO-GMP, with capability for sponsor or regulatory audits at standard cadence.",
+        },
+        {
+          type: "p",
+          text: "The development bench in Hyderabad runs continuously, not episodically. A sponsor engagement does not stand up a project team from scratch — it is allocated to a development pod with formulation, analytical, and regulatory representation already configured. That continuity is the depth.",
+        },
+
+        {
+          type: "h2",
+          text: "How a typical engagement flows across both",
+          id: "engagement-flow",
+        },
+        {
+          type: "p",
+          text: "A representative engagement — say, a US generic sponsor planning a Canadian and US filing on a sterile injectable — moves across both sites in a defined sequence:",
+        },
+        {
+          type: "ol",
+          items: [
+            "Scope and quality plan finalized at Mississauga, with a Canadian Quality Agreement that sets data ownership, audit rights, and release path.",
+            "Formulation and analytical work executed at Hyderabad: formulation studies, method development, validation under ICH Q2(R2), stability initiated under appropriate climatic zone.",
+            "Tech-transfer package authored at Hyderabad, reviewed against the Canadian quality system at Mississauga, frozen for execution.",
+            "Manufacturing executed at the designated commercial site (sometimes Mississauga, more often a contracted manufacturer); Hyderabad runs release testing on a cross-validated method; Mississauga performs Canadian release for any Canadian-bound product.",
+            "Filing authored cross-site — analytical and CMC sections drafted in Hyderabad with US/Canadian regulatory editorial in Mississauga, then submitted by the sponsor or by Propharmex as Canadian agent.",
+          ],
+        },
+        {
+          type: "p",
+          text: "What this sequence is not is a hand-off chain. It is a single project under one PMO, with two execution sites that interact through a shared QMS, daily stand-ups during active phases, and a single project record visible to the sponsor.",
+        },
+
+        {
+          type: "h2",
+          text: "One quality system, two sites",
+          id: "one-quality-system",
+        },
+        {
+          type: "p",
+          text: "The structural commitment behind the two-hub model is a single QMS — the Mississauga master quality system, with Hyderabad operating as a controlled secondary site under that system. SOPs are versioned centrally; deviations and CAPAs are tracked in a single ledger with site-of-occurrence tagging; document control is single-source-of-truth; data integrity controls (ALCOA+) apply equally at both sites.",
+        },
+        {
+          type: "callout",
+          tone: "info",
+          heading: "What this means in practice",
+          body: "When a sponsor's auditor or a regulator requests a document, the answer is the same regardless of which site executed the work — because the document control system is the same. There is no site-A-said, site-B-said reconciliation work.",
+        },
+        {
+          type: "p",
+          text: "The pharmaceutical quality system framework we operate against is consistent with ICH Q10. Q10 does not prescribe how a multi-site CDMO should be structured; it does set the expectation that the quality system covers the product lifecycle across whatever organizational structure the firm chooses. Our choice is a single master system rather than two parallel systems linked by a quality agreement.",
+        },
+
+        {
+          type: "h2",
+          text: "Where the operational seams are",
+          id: "operational-seams",
+        },
+        {
+          type: "p",
+          text: "Honest about the seams: the two-hub model is not friction-free. The places it has to work hardest are the same places any multi-site operation has to work hardest, just with a longer flight time when an in-person resolution is needed.",
+        },
+        {
+          type: "ul",
+          items: [
+            "Time-zone overlap is roughly 90 minutes between Mississauga and Hyderabad on a standard business day. Active-phase projects use that window for stand-ups; everything else runs asynchronously with documented hand-offs.",
+            "Sample shipment for analytical work crosses customs in both directions. Cold-chain integrity, courier qualification, and lead-time buffers are first-class operational concerns, not afterthoughts.",
+            "Regulatory editorial split — analytical and CMC content drafted in Hyderabad, regional editorial finalized in Mississauga — needs disciplined version control. We use a single dossier-staging environment to avoid email-attachment drift.",
+          ],
+        },
+        {
+          type: "p",
+          text: "These seams are not features. They are the cost of running two sites instead of one. The reason to absorb that cost is the depth and authority that comes from each side — and for the right sponsors and the right work, the math works.",
+        },
+
+        {
+          type: "inline-cta",
+          eyebrow: "Talk to the team",
+          heading: "Evaluating a two-hub CDMO partner?",
+          body: "If you are scoping a CDMO engagement that needs Canadian regulatory authority and Indian analytical depth under one quality system, a 30-minute call clarifies fit before either side spends real time on a proposal.",
+          cta: {
+            label: "Schedule a discovery call",
+            href: "/contact?source=insights-two-hub",
+            variant: "primary",
+          },
+        },
+
+        {
+          type: "h2",
+          text: "When this model is the right answer (and when it isn't)",
+          id: "when-its-the-right-answer",
+        },
+        {
+          type: "p",
+          text: "The two-hub model fits a specific sponsor profile. It is the right answer for sponsors who need Canadian regulatory authority (DEL holder, Canadian agent, Health Canada relationship) and analytical or development depth in the same engagement, with global filing reach. It is the right answer for sponsors who would otherwise be running a multi-vendor program — one Canadian regulatory consultant, one Indian analytical lab, a separate Canadian 3PL — and want the consolidation.",
+        },
+        {
+          type: "p",
+          text: "It is not the right answer for sponsors who need single-site, single-region work where neither geography matters. A US-only sterile-injectable manufacturer with no Canadian filing intent does not benefit from a Canadian DEL, and we will say so. The honest answer to the question is what gets the engagement off to a clean start; the alternative is a misfit project that either party regrets six months in.",
+        },
+
+        {
+          type: "blockquote",
+          text: "The two-hub model is operational, not aspirational. The Mississauga DEL site does what a Canadian DEL site does. The Hyderabad analytical bench does what an Indian analytical bench does. The work between them is the boring, disciplined kind that does not show up on a marketing page.",
+          cite: "Propharmex Editorial",
+        },
+
+        {
+          type: "callout",
+          tone: "caveat",
+          heading: "Disclaimer",
+          body: "This article describes our current operating model and is informational only. Specific engagement scope, regulatory pathways, and timelines depend on the sponsor, the molecule, and the filing strategy. For advice tailored to your program, contact our team or a qualified regulatory professional.",
+        },
+      ],
       related: [
         "del-at-a-glance-foreign-sponsor-primer",
         "ich-q2-r2-method-validation-2024",
