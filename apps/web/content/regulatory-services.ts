@@ -750,6 +750,7 @@ export const REGULATORY_DEL_LICENSING: RegulatoryLeafContent = {
         description:
           "Health Canada conducts a site inspection against the activity scope applied for. Propharmex hosts, prepares the inspection-readiness pack, and runs the opening and closing meetings.",
         typicalDuration: "Scheduled within the review window",
+        owner: "both",
       },
       {
         id: "issuance-and-activation",
@@ -1704,6 +1705,7 @@ export const REGULATORY_GMP_AUDIT_PREPARATION: RegulatoryLeafContent = {
         description:
           "Simulated inspection on-site — opening meeting, document-handling drill, floor walkthrough, raw-data access simulation, closing meeting with classified observations. Documented separately from the routine internal-audit programme so the site's audit trail stays clean.",
         typicalDuration: "Typical: 3–5 days on-site",
+        owner: "propharmex",
       },
       {
         id: "mock-findings-remediation",
@@ -1719,6 +1721,7 @@ export const REGULATORY_GMP_AUDIT_PREPARATION: RegulatoryLeafContent = {
         description:
           "SME briefings on response posture, scope-defence discipline, and raw-data access protocols. On Canadian inspections, the DEL site hosts directly; on US inspections, coaching is provided to the site team.",
         typicalDuration: "As scheduled by the agency",
+        owner: "both",
       },
     ],
     source: HEALTH_CANADA_GUI_0001,
