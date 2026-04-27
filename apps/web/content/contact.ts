@@ -174,12 +174,12 @@ export type ContactContent = {
 /* -------------------------------------------------------------------------- */
 
 export const CONTACT: ContactContent = {
-  metaTitle: "Contact Propharmex — Mississauga & Hyderabad",
+  metaTitle: "Contact Propharmex",
   metaDescription:
-    "Reach the Propharmex team for pharmaceutical development, analytical services, regulatory affairs, or 3PL distribution. Two operating hubs — Mississauga, Ontario and Hyderabad, Telangana — one inbox.",
+    "Reach the Propharmex team for pharmaceutical development, analytical services, regulatory affairs, or 3PL distribution. A Canadian pharmaceutical services company anchored at our Mississauga DEL site, with an Indian development centre in Hyderabad.",
   ogTitle: "Contact Propharmex",
   ogDescription:
-    "Two operating hubs, one inbox. Send a programme brief and we'll route it to the right desk.",
+    "Send a programme brief and we'll route it to the right desk. Most replies within one Canadian business day.",
   breadcrumb: [
     { label: "Home", href: "/" },
     { label: "Contact", href: "/contact" },
@@ -191,8 +191,8 @@ export const CONTACT: ContactContent = {
   },
   addresses: {
     eyebrow: "Where we work",
-    heading: "Two hubs, one record of work",
-    lede: "Mississauga carries the Health Canada Drug Establishment Licence and runs Canadian 3PL distribution. Hyderabad runs pharmaceutical development and analytical services. Both sites operate under a single quality system.",
+    heading: "Anchored in Mississauga, supported by our development bench",
+    lede: "Our Mississauga site holds the Health Canada Drug Establishment Licence and runs Canadian 3PL distribution. Our Indian development centre in Hyderabad runs pharmaceutical development and analytical services under the same quality system.",
     addressOnFileNote:
       "Exact site address shared during pre-visit briefing, under NDA.",
     phoneOnFileNote: "Phone number shared after first email exchange.",

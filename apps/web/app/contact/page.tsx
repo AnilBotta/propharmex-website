@@ -22,11 +22,15 @@ import type { Metadata } from "next";
 
 import { env, jsonLdGraph } from "@propharmex/lib";
 
+import { CalBookingPanel } from "../../components/contact/CalBookingPanel";
 import { ContactAddressCards } from "../../components/contact/ContactAddressCards";
 import { ContactHero } from "../../components/contact/ContactHero";
+import { InquiryForm } from "../../components/contact/InquiryForm";
 import { JsonLd } from "../../components/site/JsonLd";
 import { CONTACT } from "../../content/contact";
 import { FACILITIES } from "../../content/site-nav";
+
+const FALLBACK_EMAIL = "hello@propharmex.com";
 
 export const revalidate = 300;
 
@@ -57,6 +61,12 @@ export default function ContactPage() {
     <>
       <ContactHero content={CONTACT.hero} />
       <ContactAddressCards content={CONTACT.addresses} />
+      <InquiryForm content={CONTACT.form} />
+      <CalBookingPanel
+        content={CONTACT.cal}
+        calLink={env.CAL_LINK}
+        fallbackEmail={FALLBACK_EMAIL}
+      />
 
       <JsonLd id="contact-page-jsonld" data={pageJsonLd} />
     </>
