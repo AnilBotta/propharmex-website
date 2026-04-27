@@ -15,8 +15,8 @@
  *
  *  - del-at-a-glance-foreign-sponsor-primer — Pillar 1 (Health Canada DEL)
  *  - ich-q2-r2-method-validation-2024       — Pillar 2 (Analytical services)
- *  - inside-a-two-hub-cdmo                  — Pillar 3 (CDMO strategy) — slug locked pending Commit 8 PR
- *  - two-hub-operating-model (whitepaper)   — Pillar 3 (CDMO strategy, gated) — slug + PDF locked pending Commit 8 regen
+ *  - inside-our-operating-model            — Pillar 3 (CDMO strategy)
+ *  - canadian-cdmo-operating-model (whitepaper) — Pillar 3 (CDMO strategy, gated)
  *
  * The other two pillars (Formulation, Global market entry) seed in the
  * editorial calendar built at Prompt 23. Article #4 onward enters as Sanity
@@ -170,7 +170,7 @@ export const INSIGHT_AUTHORS: Record<string, ArticleAuthor> = {
 export const ARTICLE_SLUGS = [
   "del-at-a-glance-foreign-sponsor-primer",
   "ich-q2-r2-method-validation-2024",
-  "inside-a-two-hub-cdmo",
+  "inside-our-operating-model",
 ] as const;
 export type ArticleSlug = (typeof ARTICLE_SLUGS)[number];
 
@@ -202,7 +202,7 @@ export type ArticleContent = {
 /*  Whitepaper                                                                */
 /* -------------------------------------------------------------------------- */
 
-export const WHITEPAPER_SLUGS = ["two-hub-operating-model"] as const;
+export const WHITEPAPER_SLUGS = ["canadian-cdmo-operating-model"] as const;
 export type WhitepaperSlug = (typeof WHITEPAPER_SLUGS)[number];
 
 export type WhitepaperFormField =
@@ -528,7 +528,7 @@ export const INSIGHTS: InsightsContent = {
           body: "This article is informational and does not constitute regulatory advice. Specific filings, timelines, and outcomes depend on facts not visible from public information. For advice tailored to your facility, your activities, and your filing strategy, contact our regulatory practice or a qualified Canadian regulatory professional.",
         },
       ],
-      related: ["inside-a-two-hub-cdmo", "ich-q2-r2-method-validation-2024"],
+      related: ["inside-our-operating-model", "ich-q2-r2-method-validation-2024"],
       primaryServiceLink: {
         label: "Regulatory services",
         href: "/services/regulatory-services",
@@ -728,7 +728,7 @@ export const INSIGHTS: InsightsContent = {
           body: "This article is informational and does not constitute regulatory advice. Specific filings, regional positions, and acceptance criteria depend on the dossier, the regulator, and the molecule. For advice tailored to your validation package and filing strategy, contact our analytical practice or a qualified regulatory professional.",
         },
       ],
-      related: ["del-at-a-glance-foreign-sponsor-primer", "inside-a-two-hub-cdmo"],
+      related: ["del-at-a-glance-foreign-sponsor-primer", "inside-our-operating-model"],
       primaryServiceLink: {
         label: "Analytical services",
         href: "/services/analytical-services",
@@ -739,7 +739,7 @@ export const INSIGHTS: InsightsContent = {
     /*  3 — Two-hub CDMO operating model                                     */
     /* --------------------------------------------------------------------- */
     {
-      slug: "inside-a-two-hub-cdmo",
+      slug: "inside-our-operating-model",
       pillar: "cdmo-strategy",
       articleType: "article",
       publishedAt: "2026-04-26",
@@ -943,16 +943,13 @@ export const INSIGHTS: InsightsContent = {
   whitepapers: [
     /* --------------------------------------------------------------------- */
     /*  WP 1 — The Canadian CDMO operating model                             */
-    /*  NOTE: slug + pdfPath locked pending Commit 8 PDF regen + 301         */
-    /*  redirect. Marketing surface (titles, descriptions, contents) is      */
-    /*  reframed here; PDF body is regenerated separately.                   */
     /* --------------------------------------------------------------------- */
     {
-      slug: "two-hub-operating-model",
+      slug: "canadian-cdmo-operating-model",
       pillar: "cdmo-strategy",
       articleType: "whitepaper",
-      publishedAt: "2026-04-26",
-      pages: 4,
+      publishedAt: "2026-04-27",
+      pages: 10,
       title: "The Canadian CDMO operating model",
       summary:
         "A field guide for innovator and generic sponsors evaluating CDMO partners that operate a Canadian DEL site with offshore analytical and development depth under one quality system. Canadian-anchored, global clients.",
@@ -965,34 +962,52 @@ export const INSIGHTS: InsightsContent = {
         "Canadian regulatory authority, offshore analytical depth, one quality system. A field guide for sponsors evaluating CDMO partners.",
       hero: {
         eyebrow: "Whitepaper · CDMO strategy",
-        lede: "The full operating model in 4 pages — why this structure exists, what each site does, and how a real engagement flows across the team. Free download for verified business contacts.",
+        lede: "The full operating model in 10 pages — why this structure exists, what each site holds, how a real engagement flows, where the operational seams are, and a decision framework for sponsors evaluating CDMO partners. Free download for verified business contacts.",
       },
       insideBullets: [
+        "Why this guide exists — and the three CDMO archetypes sponsors choose between.",
         "What a Canadian DEL site under Health Canada Drug Establishment Licence actually authorizes — and what it does not.",
-        "How the offshore analytical and development centre operates under WHO-GMP, and the development workflows that live there.",
-        "How a typical engagement flows — data, batch records, release path, audit cadence.",
-        "Decision checklist for choosing a Canadian-anchored CDMO over a single-site or franchised-network alternative.",
+        "How the offshore development centre operates under WHO-GMP, with formulation and analytical depth across seven dosage forms.",
+        "How a real engagement flows from scope to filing in five stages, under one PMO and one quality system.",
+        "Where the operational seams are — timezone, customs, editorial split — and how they are managed.",
+        "Decision framework: when this model is the right answer, and three questions to ask any CDMO partner.",
       ],
       contents: [
         { id: "executive-summary", label: "Executive summary", pages: "1" },
+        { id: "context", label: "Why this guide exists — three CDMO archetypes", pages: "1" },
         {
           id: "del-site",
-          label: "The DEL site: regulatory authority, release, regulator relationships",
+          label: "The DEL site: regulatory authority, release, 3PL",
           pages: "1",
         },
         {
           id: "development-centre",
-          label: "The offshore development centre: analytical depth, development bench",
+          label: "The development centre: analytical depth, seven dosage forms",
+          pages: "1",
+        },
+        {
+          id: "one-quality-system",
+          label: "One quality system, end to end",
+          pages: "1",
+        },
+        {
+          id: "engagement-flow",
+          label: "How an engagement actually flows — five stages, worked example",
+          pages: "1",
+        },
+        {
+          id: "operational-seams",
+          label: "Where the operational seams are — and how they are managed",
           pages: "1",
         },
         {
           id: "decision-framework",
-          label: "Decision framework + checklist",
+          label: "Decision framework + three questions to ask any CDMO partner",
           pages: "1",
         },
       ],
       formFields: ["fullName", "email", "company", "role", "country", "useCase"],
-      pdfPath: "/downloads/two-hub-operating-model.pdf",
+      pdfPath: "/downloads/canadian-cdmo-operating-model.pdf",
       formDisclaimer:
         "We use this contact information to send the download and a single follow-up. We do not sell or share contact lists. Full privacy notice at /legal/privacy.",
       author: INSIGHT_AUTHORS.editorial!,
