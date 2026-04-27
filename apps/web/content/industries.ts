@@ -2,9 +2,10 @@
  * Content dictionary for /industries (hub) and all five industry leaves
  * (Prompt 13, complete).
  *
- * Positioning (from CLAUDE.md §1): Propharmex is a Canada-anchored
- * pharmaceutical services company with operating hubs in Mississauga, Ontario
- * and Hyderabad, Telangana, serving drug developers globally.
+ * Positioning (from CLAUDE.md §1): Propharmex is a Canadian pharmaceutical
+ * services company anchored at our Mississauga DEL site, with an Indian
+ * development centre in Hyderabad providing operational depth, serving drug
+ * developers globally.
  * Industries are the commercial lens on who we build programmes for — the
  * service trees under /services describe what we do; the industry pages under
  * /industries describe who we do it with and what that engagement looks like
@@ -21,10 +22,10 @@
  *  - governments-and-ngos        — narrowed capability-alignment framing
  *  - clinical-trial-sponsors     — investigational supply + CTA handling
  *
- * The flagship remains `generic-manufacturers`. The two-hub operating model
- * — analytical and CMC work authored in Hyderabad, filed and
- * inspection-hosted under the Mississauga DEL — maps most cleanly to a generic
- * manufacturer's ANDA + DMF workflow. The other four leaves inherit the same
+ * The flagship remains `generic-manufacturers`. The Canadian-anchored
+ * operating model — CMC and analytical work executed by Propharmex, filed
+ * and inspection-hosted under the Health Canada DEL — maps most cleanly to
+ * a generic manufacturer's ANDA + DMF workflow. The other four leaves inherit the same
  * template, with one deliberate exception: governments-and-ngos ships without
  * a case-study rail and with `alignment` status across every regulatory topic.
  * Propharmex is developing the institutional-procurement practice area and the
@@ -33,8 +34,8 @@
  * optional for that reason.
  *
  * Claim-status convention (see docs/regulatory-lexicon.md §26–39): this page
- * uses `confirmed` only when referencing the Mississauga Drug Establishment
- * Licence on the Health Canada Drug and Health Product Register. Named client
+ * uses `confirmed` only when referencing the Health Canada Drug Establishment
+ * Licence on the Drug and Health Product Register. Named client
  * work is `under-confirmation` (documentation on request). Everything else is
  * framed as operational alignment or descriptive capability — no certification
  * claim is made that cannot be pointed at a public register.
@@ -353,18 +354,18 @@ const GLOBAL_FUND_QA_POLICY: IndustrySource = {
 export const INDUSTRIES_HUB: IndustryHubContent = {
   metaTitle: "Industries We Serve — Propharmex",
   metaDescription:
-    "Pharmaceutical innovators, generic manufacturers, CDMO partners, governments and NGOs, and clinical trial sponsors — five industry lenses on Propharmex's Canada-anchored two-hub operating model.",
+    "Pharmaceutical innovators, generic manufacturers, CDMO partners, governments and NGOs, and clinical trial sponsors — five industry lenses on Propharmex's Canadian-anchored operating model.",
   ogTitle: "Industries We Serve — Propharmex",
   ogDescription:
-    "Five industry lenses on one operating model: Hyderabad CMC and analytical work, filed and inspection-hosted under the Mississauga Drug Establishment Licence.",
+    "Five industry lenses on one operating model: CMC and analytical work executed by Propharmex, filed and inspection-hosted under the Health Canada Drug Establishment Licence.",
   hero: {
     eyebrow: "Industries",
     headline: "One operating model, five industry lenses.",
-    lede: "Propharmex runs a single quality system across two hubs — Hyderabad for analytical and CMC authoring, Mississauga for the Canadian regulatory function and Drug Establishment Licence. The shape of each engagement changes depending on who we are building with: an innovator with a branded programme, a generic manufacturer chasing an ANDA window, a CDMO partner extending bandwidth, an institutional buyer under a tender, or a trial sponsor needing investigational material. Industry pages describe the engagement from the sponsor's side; service pages describe the work.",
+    lede: "Propharmex runs a single quality system anchored at our Mississauga site under the Health Canada Drug Establishment Licence, with an Indian development centre providing analytical and CMC depth. The shape of each engagement changes depending on who we are building with: an innovator with a branded programme, a generic manufacturer chasing an ANDA window, a CDMO partner extending bandwidth, an institutional buyer under a tender, or a trial sponsor needing investigational material. Industry pages describe the engagement from the sponsor's side; service pages describe the work.",
     stats: [
       { label: "Industries", value: "5" },
-      { label: "Operating hubs", value: "Mississauga · Hyderabad" },
-      { label: "Anchor licence", value: "Health Canada DEL (confirmed)" },
+      { label: "Regulatory anchor", value: "Health Canada DEL (confirmed)" },
+      { label: "Operating model", value: "Canadian-anchored, single QMS" },
     ],
     primaryCta: {
       label: "Start a scoping conversation",
@@ -380,7 +381,7 @@ export const INDUSTRIES_HUB: IndustryHubContent = {
   matrix: {
     eyebrow: "Industry matrix",
     heading: "Five industries, one operating model",
-    lede: "Generic manufacturers is the flagship because the two-hub operating economics — Hyderabad authoring, Mississauga filing and inspection — map most cleanly to an ANDA plus DMF workflow under a single QMS. The other four lenses apply the same operating model to different programme shapes. Detail pages walk through the engagement; the hub is the index.",
+    lede: "Generic manufacturers is the flagship because the Canadian-anchored operating economics — Propharmex-authored CMC, filed and inspection-hosted under the DEL — map most cleanly to an ANDA plus DMF workflow under a single QMS. The other four lenses apply the same operating model to different programme shapes. Detail pages walk through the engagement; the hub is the index.",
     industries: [
       {
         slug: "pharmaceutical-innovators",
@@ -395,7 +396,7 @@ export const INDUSTRIES_HUB: IndustryHubContent = {
         slug: "generic-manufacturers",
         label: "Generic manufacturers",
         blurb:
-          "ANDA programmes with DMF reference, bioequivalence planning and eCTD Module 2/3 authoring under one quality system across both hubs.",
+          "ANDA programmes with DMF reference, bioequivalence planning and eCTD Module 2/3 authoring under one quality system, executed by Propharmex.",
         highlights: ["ANDA support", "DMF support", "BE planning"],
         leafStatus: "live",
         flagship: true,
@@ -435,7 +436,7 @@ export const INDUSTRIES_HUB: IndustryHubContent = {
     liveCopy: "Detail page available",
     shippingNextCopy: "Detail page shipping next",
     flagshipCopy:
-      "Flagship industry — the cleanest fit for the two-hub operating model",
+      "Flagship industry — the cleanest fit for the Canadian-anchored operating model",
   },
   posture: {
     eyebrow: "How we shape engagements",
@@ -444,15 +445,15 @@ export const INDUSTRIES_HUB: IndustryHubContent = {
     cards: [
       {
         id: "one-qms",
-        label: "One quality system across both hubs",
+        label: "One quality system, end to end",
         description:
-          "The document authored in Hyderabad and the document filed from Mississauga live in the same record under one quality system. The regulator sees one operating unit. The sponsor does not pay for a translation layer between two vendors.",
+          "The document authored and the document filed live in the same record under one quality system. The regulator sees one operating unit. The sponsor does not pay for a translation layer between two vendors.",
       },
       {
         id: "del-anchored",
         label: "Anchored on a verifiable Canadian licence",
         description:
-          "The Mississauga Drug Establishment Licence is listed on the Health Canada Drug and Health Product Register. Every industry engagement that touches a Canadian filing, import, or distribution scope is filed from that licence or under a declared amendment path toward it.",
+          "Our Health Canada Drug Establishment Licence is held in Mississauga and listed on the Drug and Health Product Register. Every industry engagement that touches a Canadian filing, import, or distribution scope is filed from that licence or under a declared amendment path toward it.",
       },
       {
         id: "no-overclaim",
@@ -489,17 +490,17 @@ const GENERIC_MANUFACTURERS: IndustryLeafContent = {
   crumbLabel: "Generic manufacturers",
   metaTitle: "Generic Manufacturers — Propharmex Industries",
   metaDescription:
-    "ANDA programmes with DMF reference, bioequivalence planning, eCTD Module 2/3 authoring and DEL-anchored Canadian filing surface — one quality system across Hyderabad and Mississauga.",
+    "ANDA programmes with DMF reference, bioequivalence planning, eCTD Module 2/3 authoring and DEL-anchored Canadian filing surface — one quality system, executed by Propharmex.",
   ogTitle: "Generic Manufacturers — Propharmex",
   ogDescription:
-    "The two-hub operating model applied to generics: Hyderabad-authored ANDA CMC and DMF work, filed and inspection-hosted under the Mississauga Drug Establishment Licence.",
+    "The Canadian-anchored operating model applied to generics: Propharmex-authored ANDA CMC and DMF work, filed and inspection-hosted under the Health Canada Drug Establishment Licence.",
   hero: {
     eyebrow: "Industries · Generic manufacturers",
     headline:
-      "ANDA programmes, authored in Hyderabad, filed under a Canadian DEL.",
+      "ANDA programmes — executed by Propharmex, filed under our Health Canada DEL.",
     valueProp:
-      "One quality system across two hubs — the economics of Indian CMC authoring with a Health Canada–licensed filing surface on the other side.",
-    lede: "Generic manufacturers run against compressed windows: the reference product's exclusivity clock, the agency's review queue, and a DMF-holder's supply schedule rarely agree. Propharmex's operating model is built for that pattern — Hyderabad authors the Module 2 and Module 3 content against current USFDA, ICH, and Health Canada specifications; Mississauga is the Canadian regulatory function and the establishment-licensed site for any Canadian filing, import, or distribution scope. Both hubs work from a single quality record, which keeps audit trails short and handoffs boring.",
+      "One Canadian-anchored quality system — CMC and analytical depth executed by Propharmex, with a Health Canada–licensed filing surface on the other side.",
+    lede: "Generic manufacturers run against compressed windows: the reference product's exclusivity clock, the agency's review queue, and a DMF-holder's supply schedule rarely agree. Propharmex's operating model is built for that pattern — Module 2 and Module 3 content authored against current USFDA, ICH, and Health Canada specifications, and filed under the Health Canada DEL as the establishment-licensed site for any Canadian filing, import, or distribution scope. Everything works from a single quality record, which keeps audit trails short and handoffs boring.",
     stats: [
       { label: "ANDA framework", value: "21 CFR Part 314" },
       { label: "DMF framework", value: "21 CFR 314.420" },
@@ -550,7 +551,7 @@ const GENERIC_MANUFACTURERS: IndustryLeafContent = {
         id: "analytical",
         label: "Analytical method development and release",
         description:
-          "Method development, validation to ICH Q2(R2), and routine release testing of the finished dosage form. The analytical record that lands in Module 3 is the same record the Mississauga team releases product against — no reconciliation step between development and release.",
+          "Method development, validation to ICH Q2(R2), and routine release testing of the finished dosage form. The analytical record that lands in Module 3 is the same record we release product against under the DEL — no reconciliation step between development and release.",
         serviceHref: "/services/analytical-services",
         serviceLabel: "See analytical services",
       },
@@ -558,7 +559,7 @@ const GENERIC_MANUFACTURERS: IndustryLeafContent = {
         id: "regulatory",
         label: "ANDA, DMF and eCTD support",
         description:
-          "Module 2 summaries and Module 3 CMC authoring to the target agency's current eCTD technical specifications. DMF Type II support under 21 CFR 314.420. Canadian NDS / ANDS support filed from the Mississauga DEL when the sponsor elects a Canadian pathway.",
+          "Module 2 summaries and Module 3 CMC authoring to the target agency's current eCTD technical specifications. DMF Type II support under 21 CFR 314.420. Canadian NDS / ANDS support filed under our Health Canada DEL when the sponsor elects a Canadian pathway.",
         serviceHref: "/services/regulatory-services/us-fda-submissions",
         serviceLabel: "See US FDA submission support",
       },
@@ -603,7 +604,7 @@ const GENERIC_MANUFACTURERS: IndustryLeafContent = {
       {
         id: "del-anchor",
         heading: "Canadian establishment licence anchor",
-        body: "Canadian scope on a generics programme — import, release, distribution, Canadian market authorization holding — is exercised under the Mississauga Drug Establishment Licence. The licence is listed on the Health Canada Drug and Health Product Register and can be verified today. Sponsors using our DEL as a surface avoid standing one up themselves inside a compressed filing window.",
+        body: "Canadian scope on a generics programme — import, release, distribution, Canadian market authorization holding — is exercised under our Health Canada Drug Establishment Licence. The licence is listed on the Drug and Health Product Register and can be verified today. Sponsors using our DEL as a surface avoid standing one up themselves inside a compressed filing window.",
         status: "confirmed",
         source: HEALTH_CANADA_DEL_REGISTER,
       },
@@ -618,7 +619,7 @@ const GENERIC_MANUFACTURERS: IndustryLeafContent = {
         id: "bcs-ii-anda",
         service: "ANDA CMC authoring",
         title: "ANDA CMC package for a BCS-II oral solid",
-        body: "Module 3 authored in Hyderabad to current FDA eCTD expectations with a Type II DMF reference and an analytical package anchored to the same validation record used for release. Submission filing handled by the sponsor.",
+        body: "Module 3 authored to current FDA eCTD expectations with a Type II DMF reference and an analytical package anchored to the same validation record used for release. Submission filing handled by the sponsor.",
         status: "under-confirmation",
       },
       {
@@ -632,7 +633,7 @@ const GENERIC_MANUFACTURERS: IndustryLeafContent = {
         id: "canadian-scope-addition",
         service: "Canadian scope addition",
         title: "Adding Canadian market scope to a US-filed generics programme",
-        body: "Existing US ANDA-filed product extended into Canadian scope under the Mississauga DEL — import, release and distribution handled from Mississauga while the sponsor's US operations continued unchanged.",
+        body: "Existing US ANDA-filed product extended into Canadian scope under our Health Canada DEL — import, release and distribution handled by Propharmex while the sponsor's US operations continued unchanged.",
         status: "under-confirmation",
       },
     ],
@@ -652,7 +653,7 @@ const GENERIC_MANUFACTURERS: IndustryLeafContent = {
         question:
           "Do we need our own Canadian Drug Establishment Licence to use your Canadian filing surface?",
         answer:
-          "No. For most engagement shapes, work is filed from the Mississauga Drug Establishment Licence that Propharmex already holds. If a sponsor eventually wants its own DEL, we can run that separately under the regulatory-services tree — the 250 calendar-day Health Canada service standard for a new DEL is a documented agency expectation, not a promise (as of 2026-04-23).",
+          "No. For most engagement shapes, work is filed from the Health Canada Drug Establishment Licence that Propharmex already holds in Mississauga. If a sponsor eventually wants its own DEL, we can run that separately under the regulatory-services tree — the 250 calendar-day Health Canada service standard for a new DEL is a documented agency expectation, not a promise (as of 2026-04-23).",
       },
       {
         id: "q-dmf-type",
@@ -699,7 +700,7 @@ const GENERIC_MANUFACTURERS: IndustryLeafContent = {
         id: "regulatory-fda",
         label: "US FDA submissions",
         description:
-          "ANDA, DMF and eCTD support authored in Hyderabad, reviewed against current FDA guidance.",
+          "ANDA, DMF and eCTD support — authored and reviewed against current FDA guidance under a single quality system.",
         href: "/services/regulatory-services/us-fda-submissions",
       },
       {
@@ -714,7 +715,7 @@ const GENERIC_MANUFACTURERS: IndustryLeafContent = {
   closing: {
     eyebrow: "Start a conversation",
     heading: "Scope a generics programme with one quality system behind it",
-    body: "Tell us where the programme is — reference product identified, DMF path chosen, stability running, filing target set — and we will shape a scope around what is real rather than what is hypothetical. The two-hub operating model is not a tagline; it is how the paperwork ends up on the regulator's desk.",
+    body: "Tell us where the programme is — reference product identified, DMF path chosen, stability running, filing target set — and we will shape a scope around what is real rather than what is hypothetical. The Canadian-anchored operating model is not a tagline; it is how the paperwork ends up on the regulator's desk.",
     primaryCta: {
       label: "Scope an ANDA programme",
       href: "/contact?source=industries-generics-closing-scope",
@@ -739,17 +740,17 @@ const PHARMACEUTICAL_INNOVATORS: IndustryLeafContent = {
   crumbLabel: "Pharmaceutical innovators",
   metaTitle: "Pharmaceutical Innovators — Propharmex Industries",
   metaDescription:
-    "Branded CMC, analytical and regulatory bandwidth for innovators — Module 3 authored in Hyderabad, Canadian filings anchored on the Mississauga Drug Establishment Licence.",
+    "Branded CMC, analytical and regulatory bandwidth for innovators — Module 3 executed by Propharmex, Canadian filings anchored on our Health Canada Drug Establishment Licence.",
   ogTitle: "Pharmaceutical Innovators — Propharmex",
   ogDescription:
-    "The two-hub operating model applied to branded innovator programmes: Hyderabad CMC authoring with a Canadian DEL-anchored filing surface.",
+    "The Canadian-anchored operating model applied to branded innovator programmes: Propharmex CMC authoring with a DEL-anchored filing surface.",
   hero: {
     eyebrow: "Industries · Pharmaceutical innovators",
     headline:
-      "Branded CMC, authored in Hyderabad, filed under a Canadian DEL.",
+      "Branded CMC — executed by Propharmex, filed under our Health Canada DEL.",
     valueProp:
-      "Innovator-scale CMC depth — ICH Q8–Q11 framing, Module 3 authoring, analytical bridging — under the same quality system that carries the Mississauga Drug Establishment Licence.",
-    lede: "Innovator programmes run against a different clock than generics. The CMC package has to satisfy an agency that will see the molecule for the first time, the quality narrative has to hold up to ICH Q8–Q11 scrutiny, and the Canadian market is usually an eventual destination rather than the primary target. Propharmex's operating model fits that shape by authoring Module 2 and Module 3 content in Hyderabad against current USFDA and ICH expectations, and holding the Canadian regulatory function — and the Drug Establishment Licence — in Mississauga for when Canadian scope lands on the roadmap.",
+      "Innovator-scale CMC depth — ICH Q8–Q11 framing, Module 3 authoring, analytical bridging — under the same quality system that carries our Health Canada Drug Establishment Licence.",
+    lede: "Innovator programmes run against a different clock than generics. The CMC package has to satisfy an agency that will see the molecule for the first time, the quality narrative has to hold up to ICH Q8–Q11 scrutiny, and the Canadian market is usually an eventual destination rather than the primary target. Propharmex's operating model fits that shape by authoring Module 2 and Module 3 content against current USFDA and ICH expectations, and holding the Canadian regulatory function — and the Drug Establishment Licence — under our DEL for when Canadian scope lands on the roadmap.",
     stats: [
       { label: "Submission framework", value: "21 CFR Part 314" },
       { label: "CTD structure", value: "ICH M4 eCTD" },
@@ -816,7 +817,7 @@ const PHARMACEUTICAL_INNOVATORS: IndustryLeafContent = {
         id: "regulatory",
         label: "Regulatory services",
         description:
-          "Module 2 summaries and Module 3 CMC authoring to the target agency's current eCTD technical specification. Canadian NDS support filed from the Mississauga DEL when Canadian scope is added. Pre-submission interactions handled in coordination with the sponsor's regulatory lead.",
+          "Module 2 summaries and Module 3 CMC authoring to the target agency's current eCTD technical specification. Canadian NDS support filed under our Health Canada DEL when Canadian scope is added. Pre-submission interactions handled in coordination with the sponsor's regulatory lead.",
         serviceHref: "/services/regulatory-services",
         serviceLabel: "See regulatory services",
       },
@@ -853,7 +854,7 @@ const PHARMACEUTICAL_INNOVATORS: IndustryLeafContent = {
       {
         id: "del-anchor",
         heading: "Canadian establishment licence anchor",
-        body: "Canadian scope on an innovator programme — import, release, distribution, Canadian market authorization holding — is exercised under the Mississauga Drug Establishment Licence. The licence is listed on the Health Canada Drug and Health Product Register and can be verified today. Sponsors using our DEL as a surface avoid standing one up themselves inside an active submission cycle.",
+        body: "Canadian scope on an innovator programme — import, release, distribution, Canadian market authorization holding — is exercised under our Health Canada Drug Establishment Licence. The licence is listed on the Drug and Health Product Register and can be verified today. Sponsors using our DEL as a surface avoid standing one up themselves inside an active submission cycle.",
         status: "confirmed",
         source: HEALTH_CANADA_DEL_REGISTER,
       },
@@ -868,7 +869,7 @@ const PHARMACEUTICAL_INNOVATORS: IndustryLeafContent = {
         id: "nda-module-3",
         service: "NDA Module 3 authoring",
         title: "Module 3 CMC package for a first-in-class small-molecule NDA",
-        body: "Drug substance and drug product sections authored in Hyderabad to current FDA eCTD expectations, integrated with the sponsor's ongoing clinical programme and submitted by the sponsor. Analytical bridging kept development and release data in one record.",
+        body: "Drug substance and drug product sections authored to current FDA eCTD expectations, integrated with the sponsor's ongoing clinical programme and submitted by the sponsor. Analytical bridging kept development and release data in one record.",
         status: "under-confirmation",
       },
       {
@@ -882,7 +883,7 @@ const PHARMACEUTICAL_INNOVATORS: IndustryLeafContent = {
         id: "canadian-scope-add",
         service: "Canadian scope addition",
         title: "Adding Canadian NDS scope to a US-filed innovator programme",
-        body: "An existing US-filed innovator product extended into Canadian scope under the Mississauga DEL — import, release and market authorization holding handled from Mississauga without disturbing the sponsor's US operations.",
+        body: "An existing US-filed innovator product extended into Canadian scope under our Health Canada DEL — import, release and market authorization holding handled by Propharmex without disturbing the sponsor's US operations.",
         status: "under-confirmation",
       },
     ],
@@ -916,7 +917,7 @@ const PHARMACEUTICAL_INNOVATORS: IndustryLeafContent = {
         question:
           "Do you support pre-submission interactions — pre-IND, EOP2, Type C meetings — or only submission authoring?",
         answer:
-          "Both, with a clear handoff. We prepare the CMC portions of briefing documents and support the sponsor's regulatory lead through the meeting preparation. The agency-facing role stays with the sponsor. When Canadian pre-submission interaction is required, that runs through the Mississauga regulatory team under our DEL.",
+          "Both, with a clear handoff. We prepare the CMC portions of briefing documents and support the sponsor's regulatory lead through the meeting preparation. The agency-facing role stays with the sponsor. When Canadian pre-submission interaction is required, that runs through the regulatory team under our DEL.",
       },
       {
         id: "q-canadian-market",
@@ -958,7 +959,7 @@ const PHARMACEUTICAL_INNOVATORS: IndustryLeafContent = {
   closing: {
     eyebrow: "Start a conversation",
     heading: "Scope an innovator programme with one quality system behind it",
-    body: "Tell us where the molecule is — early clinical, pivotal-ready, approaching submission, or already filed in one market and heading for another — and we will shape a CMC and analytical scope around what is real rather than what is hypothetical. The two-hub operating model is how the submission ends up on the regulator's desk with a single coherent quality narrative behind it.",
+    body: "Tell us where the molecule is — early clinical, pivotal-ready, approaching submission, or already filed in one market and heading for another — and we will shape a CMC and analytical scope around what is real rather than what is hypothetical. The Canadian-anchored operating model is how the submission ends up on the regulator's desk with a single coherent quality narrative behind it.",
     primaryCta: {
       label: "Scope an innovator CMC programme",
       href: "/contact?source=industries-innovators-closing-scope",
@@ -986,14 +987,14 @@ const CDMO_PARTNERS: IndustryLeafContent = {
     "Canadian establishment-licence surface, regulatory bandwidth and analytical extension for contract manufacturers serving innovator and generic sponsors — a complement to your core manufacturing, not a competitor.",
   ogTitle: "CDMO Partners — Propharmex",
   ogDescription:
-    "The two-hub operating model applied to contract manufacturing: DEL-anchored Canadian scope and regulatory bandwidth without standing up your own establishment licence.",
+    "The Canadian-anchored operating model applied to contract manufacturing: DEL-anchored Canadian scope and regulatory bandwidth without standing up your own establishment licence.",
   hero: {
     eyebrow: "Industries · CDMO partners",
     headline:
       "Canadian scope and regulatory bandwidth, without standing up your own DEL.",
     valueProp:
       "A complement, not a competitor — Canadian establishment-licence surface, regulatory authoring bandwidth, and analytical extension for CDMOs whose core business is manufacturing.",
-    lede: "Most CDMOs are built around a set of dosage-form platforms and a core regulatory surface that fits their primary markets. Canadian market scope, or sudden analytical or regulatory bandwidth needs from a sponsor, can fall outside that core without being worth building in-house. Propharmex's operating model is to plug into that gap — the Mississauga Drug Establishment Licence as an establishment-licensed surface for Canadian scope, the Hyderabad analytical and CMC bench for authoring bandwidth, and one quality system across both so the CDMO's sponsor sees one coherent record rather than a subcontracted patchwork.",
+    lede: "Most CDMOs are built around a set of dosage-form platforms and a core regulatory surface that fits their primary markets. Canadian market scope, or sudden analytical or regulatory bandwidth needs from a sponsor, can fall outside that core without being worth building in-house. Propharmex's operating model is to plug into that gap — our Health Canada Drug Establishment Licence as an establishment-licensed surface for Canadian scope, our analytical and CMC bench for authoring bandwidth, and one quality system end to end so the CDMO's sponsor sees one coherent record rather than a subcontracted patchwork.",
     stats: [
       { label: "Licensed surface", value: "Mississauga DEL (confirmed)" },
       { label: "cGMP framework", value: "21 CFR Part 211" },
@@ -1044,7 +1045,7 @@ const CDMO_PARTNERS: IndustryLeafContent = {
         id: "regulatory",
         label: "Regulatory services — DEL-anchored",
         description:
-          "Canadian scope addition under the Mississauga Drug Establishment Licence: import-for-further-dose-form, release, distribution, and Canadian market authorization holding. Module 1 assembly to Health Canada's current regional specification. Regulatory-strategy support for cross-market scope decisions.",
+          "Canadian scope addition under our Health Canada Drug Establishment Licence: import-for-further-dose-form, release, distribution, and Canadian market authorization holding. Module 1 assembly to Health Canada's current regional specification. Regulatory-strategy support for cross-market scope decisions.",
         serviceHref: "/services/regulatory-services/health-canada-del",
         serviceLabel: "See Health Canada DEL support",
       },
@@ -1097,7 +1098,7 @@ const CDMO_PARTNERS: IndustryLeafContent = {
       {
         id: "del-anchor",
         heading: "Canadian establishment licence anchor",
-        body: "The Mississauga Drug Establishment Licence is listed on the Health Canada Drug and Health Product Register and is the licensed surface from which Canadian-scope activity — import, release, distribution, market authorization holding — is exercised in a partnership. CDMOs using this surface avoid a 250 calendar-day licence buildout on their own Canadian footprint (Health Canada service standard, as of 2026-04-23).",
+        body: "Our Health Canada Drug Establishment Licence is listed on the Drug and Health Product Register and is the licensed surface from which Canadian-scope activity — import, release, distribution, market authorization holding — is exercised in a partnership. CDMOs using this surface avoid a 250 calendar-day licence buildout on their own Canadian footprint (Health Canada service standard, as of 2026-04-23).",
         status: "confirmed",
         source: HEALTH_CANADA_DEL_REGISTER,
       },
@@ -1112,14 +1113,14 @@ const CDMO_PARTNERS: IndustryLeafContent = {
         id: "canadian-scope-bid",
         service: "Canadian scope surface",
         title: "Adding Canadian DEL surface to a US CDMO's bid",
-        body: "A US-primary contract manufacturer winning a tender that required a Canadian establishment-licence holder somewhere in the chain. Propharmex supplied the Mississauga DEL as the import, release and distribution surface; the CDMO retained all manufacturing and analytical work in the US.",
+        body: "A US-primary contract manufacturer winning a tender that required a Canadian establishment-licence holder somewhere in the chain. Propharmex supplied our Health Canada DEL as the import, release and distribution surface; the CDMO retained all manufacturing and analytical work in the US.",
         status: "under-confirmation",
       },
       {
         id: "analytical-extension",
         service: "Analytical bench extension",
         title: "Analytical bench extension during a stability-campaign peak",
-        body: "A CDMO's in-house analytical bench was at capacity during a multi-product stability campaign. Hyderabad took on a subset of the release and stability panels under a bridging analytical protocol, with results authored into the CDMO's quality record rather than a standalone report.",
+        body: "A CDMO's in-house analytical bench was at capacity during a multi-product stability campaign. Propharmex took on a subset of the release and stability panels under a bridging analytical protocol, with results authored into the CDMO's quality record rather than a standalone report.",
         status: "under-confirmation",
       },
       {
@@ -1153,7 +1154,7 @@ const CDMO_PARTNERS: IndustryLeafContent = {
         question:
           "What scope on our product can be exercised under your Canadian DEL?",
         answer:
-          "The Mississauga Drug Establishment Licence covers import, release, distribution and market authorization holding for scope that is added to it via a standard amendment process. The specific scope a partner product can exercise is dictated by the licence schedule and the product's own market authorization. We scope this case-by-case rather than by a generic answer.",
+          "Our Health Canada Drug Establishment Licence covers import, release, distribution and market authorization holding for scope that is added to it via a standard amendment process. The specific scope a partner product can exercise is dictated by the licence schedule and the product's own market authorization. We scope this case-by-case rather than by a generic answer.",
       },
       {
         id: "q-quality-systems",
@@ -1239,8 +1240,8 @@ const GOVERNMENTS_AND_NGOS: IndustryLeafContent = {
     eyebrow: "Industries · Governments and NGOs",
     headline: "Capability alignment for institutional procurement.",
     valueProp:
-      "A practice area we are actively developing — our Canadian DEL-anchored quality system, authored analytical and CMC record, and Hyderabad manufacturing network are aligned to the documentation expectations of institutional buyers, without a prequalification history we do not yet hold.",
-    lede: "Institutional buyers — WHO, UNICEF Supply Division, The Global Fund, national essential-medicines procurement programmes — evaluate vendors against published quality-assurance frameworks and prequalification procedures. Propharmex is developing this practice area deliberately. Our Mississauga DEL-anchored quality system and the Hyderabad analytical and manufacturing footprint are aligned to the documentation and auditability expectations these frameworks ask for. We do not currently hold WHO Prequalification on a product; we are not on the UNICEF Supply Division medicines roster. This page describes the alignment rather than a history of awards.",
+      "A practice area we are actively developing — our Canadian DEL-anchored quality system and authored analytical and CMC record are aligned to the documentation expectations of institutional buyers, without a prequalification history we do not yet hold.",
+    lede: "Institutional buyers — WHO, UNICEF Supply Division, The Global Fund, national essential-medicines procurement programmes — evaluate vendors against published quality-assurance frameworks and prequalification procedures. Propharmex is developing this practice area deliberately. Our DEL-anchored quality system and our analytical and CMC record are aligned to the documentation and auditability expectations these frameworks ask for. We do not currently hold WHO Prequalification on a product; we are not on the UNICEF Supply Division medicines roster. This page describes the alignment rather than a history of awards.",
     stats: [
       { label: "Practice status", value: "In development" },
       { label: "QMS anchor", value: "Mississauga DEL (confirmed)" },
@@ -1272,7 +1273,7 @@ const GOVERNMENTS_AND_NGOS: IndustryLeafContent = {
         id: "qms-visibility",
         label: "QMS visibility across two geographies",
         description:
-          "A vendor operating from two manufacturing or service geographies has to demonstrate that the quality system and the regulatory authority are consistent across both. Two separate quality manuals and two separate audit trails — even if they individually pass — are a flag for institutional evaluators. One QMS under one authority reduces the review surface.",
+          "A vendor operating from multiple sites has to demonstrate that the quality system and the regulatory authority are consistent across them. Separate quality manuals and separate audit trails — even if they individually pass — are a flag for institutional evaluators. One QMS under one authority reduces the review surface.",
       },
       {
         id: "traceability",
@@ -1344,7 +1345,7 @@ const GOVERNMENTS_AND_NGOS: IndustryLeafContent = {
       {
         id: "del-context",
         heading: "Health Canada establishment licence — context",
-        body: "Propharmex operates from a Mississauga Drug Establishment Licence on the Health Canada register. Licensed-establishment status under a stringent regulatory authority is context that some institutional frameworks weigh in their evidence chain (for example as one route within the Global Fund QA Policy). It is context for the engagement, not a claim of prequalification under any institutional programme.",
+        body: "Propharmex operates under a Health Canada Drug Establishment Licence held in Mississauga and listed on the Drug and Health Product Register. Licensed-establishment status under a stringent regulatory authority is context that some institutional frameworks weigh in their evidence chain (for example as one route within the Global Fund QA Policy). It is context for the engagement, not a claim of prequalification under any institutional programme.",
         status: "alignment",
         source: HEALTH_CANADA_DEL_REGISTER,
       },
@@ -1444,14 +1445,14 @@ const CLINICAL_TRIAL_SPONSORS: IndustryLeafContent = {
     "Investigational supply, analytical release, and CTA/IND regulatory handling for sponsors running Canadian and multi-jurisdictional trials — DEL-anchored, ICH E6(R3) aligned.",
   ogTitle: "Clinical Trial Sponsors — Propharmex",
   ogDescription:
-    "The two-hub operating model applied to clinical-trial operations: investigational supply authored in Hyderabad, Canadian CTA handling from the Mississauga DEL.",
+    "The Canadian-anchored operating model applied to clinical-trial operations: investigational supply executed by Propharmex, Canadian CTA handling under our Health Canada DEL.",
   hero: {
     eyebrow: "Industries · Clinical trial sponsors",
     headline:
       "Investigational supply and CTA handling, under one quality system.",
     valueProp:
-      "Investigational product manufacturing coordination, analytical release, and Canadian Clinical Trial Application support — authored in Hyderabad, filed and inspection-hosted under the Mississauga Drug Establishment Licence.",
-    lede: "Clinical-trial sponsors live on two clocks: the protocol's enrolment schedule and the regulator's review queue. Propharmex's operating model shortens the distance between them — Hyderabad authors the investigational-product CMC content and runs analytical release; the Mississauga regulatory team handles the Canadian Clinical Trial Application and the establishment-licence side of investigational supply. Both run under one QMS, so the record that supports release is the same record that supports the CTA.",
+      "Investigational product manufacturing coordination, analytical release, and Canadian Clinical Trial Application support — executed by Propharmex, filed and inspection-hosted under our Health Canada Drug Establishment Licence.",
+    lede: "Clinical-trial sponsors live on two clocks: the protocol's enrolment schedule and the regulator's review queue. Propharmex's operating model shortens the distance between them — investigational-product CMC content authored and analytical release run by Propharmex; the regulatory team handles the Canadian Clinical Trial Application and the establishment-licence side of investigational supply. Everything runs under one QMS, so the record that supports release is the same record that supports the CTA.",
     stats: [
       { label: "GCP framework", value: "ICH E6(R3)" },
       { label: "CTD structure", value: "ICH M4 eCTD" },
@@ -1518,7 +1519,7 @@ const CLINICAL_TRIAL_SPONSORS: IndustryLeafContent = {
         id: "regulatory",
         label: "Regulatory services — Canadian CTA",
         description:
-          "Canadian Clinical Trial Application authoring and submission, coordination with the sponsor's US IND or global regulatory lead, and establishment-licence-backed import and release from Mississauga for investigational product entering Canadian sites.",
+          "Canadian Clinical Trial Application authoring and submission, coordination with the sponsor's US IND or global regulatory lead, and establishment-licence-backed import and release under our Health Canada DEL for investigational product entering Canadian sites.",
         serviceHref: "/services/regulatory-services/health-canada-del",
         serviceLabel: "See Health Canada DEL support",
       },
@@ -1555,7 +1556,7 @@ const CLINICAL_TRIAL_SPONSORS: IndustryLeafContent = {
       {
         id: "del-anchor",
         heading: "Canadian establishment licence anchor",
-        body: "Investigational product entering Canadian trial sites requires import and release by a Drug Establishment Licence holder. The Mississauga DEL is that holder in a Propharmex-supported Canadian CTA. The licence is listed on the Health Canada Drug and Health Product Register and can be verified today. Sponsors using our DEL avoid standing up a separate Canadian import-and-release footprint for a single trial.",
+        body: "Investigational product entering Canadian trial sites requires import and release by a Drug Establishment Licence holder. Our Health Canada DEL is that holder in a Propharmex-supported Canadian CTA. The licence is listed on the Drug and Health Product Register and can be verified today. Sponsors using our DEL avoid standing up a separate Canadian import-and-release footprint for a single trial.",
         status: "confirmed",
         source: HEALTH_CANADA_DEL_REGISTER,
       },
@@ -1618,7 +1619,7 @@ const CLINICAL_TRIAL_SPONSORS: IndustryLeafContent = {
         question:
           "Do you perform QP-equivalent release review for investigational product shipped to Canadian sites?",
         answer:
-          "Yes, under the authority of the Mississauga Drug Establishment Licence. The release review is documented against the protocol's release specifications, the lot's analytical record, and the CTA's authorised specifications. The sponsor retains ultimate release responsibility under the investigator's and sponsor's agreements.",
+          "Yes, under the authority of our Health Canada Drug Establishment Licence. The release review is documented against the protocol's release specifications, the lot's analytical record, and the CTA's authorised specifications. The sponsor retains ultimate release responsibility under the investigator's and sponsor's agreements.",
       },
       {
         id: "q-global-coordination",
@@ -1661,7 +1662,7 @@ const CLINICAL_TRIAL_SPONSORS: IndustryLeafContent = {
     eyebrow: "Start a conversation",
     heading:
       "Scope an investigational-supply programme that keeps your enrolment clock honest",
-    body: "Tell us where the trial sits — protocol in final draft, first-patient-in scheduled, enrolment already underway with Canadian sites added late — and we will shape a scope around the enrolment clock rather than a generic release cadence. The two-hub operating model is how investigational product arrives at Canadian and US sites under one coherent release record.",
+    body: "Tell us where the trial sits — protocol in final draft, first-patient-in scheduled, enrolment already underway with Canadian sites added late — and we will shape a scope around the enrolment clock rather than a generic release cadence. The Canadian-anchored operating model is how investigational product arrives at Canadian and US sites under one coherent release record.",
     primaryCta: {
       label: "Scope an investigational supply programme",
       href: "/contact?source=industries-trials-closing-scope",

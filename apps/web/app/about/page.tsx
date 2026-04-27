@@ -18,7 +18,6 @@ import { env, jsonLdGraph } from "@propharmex/lib";
 
 import { CareersCta } from "../../components/about/CareersCta";
 import { Culture } from "../../components/about/Culture";
-import { Footprint } from "../../components/about/Footprint";
 import { FoundingStory } from "../../components/about/FoundingStory";
 import { LeadershipPreview } from "../../components/about/LeadershipPreview";
 import { MissionVisionValues } from "../../components/about/MissionVisionValues";
@@ -58,7 +57,6 @@ export default function AboutPage() {
       <FoundingStory content={ABOUT.founding} />
       <MissionVisionValues content={ABOUT.mvv} />
       <Timeline content={ABOUT.timeline} />
-      <Footprint content={ABOUT.footprint} />
       <LeadershipPreview
         content={ABOUT.leadershipPreview}
         leaders={previewLeaders}

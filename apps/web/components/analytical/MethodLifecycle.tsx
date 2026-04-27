@@ -1,41 +1,17 @@
 /**
  * MethodLifecycle — analytical-services hub 4-stage method lifecycle, RSC.
  *
- * develop → qualify/validate → transfer → maintain, with ownership shorthand
- * that mirrors the pharmdev hub lifecycle visually.
+ * develop → qualify/validate → transfer → maintain. Stages are executed by
+ * Propharmex; site-of-execution is not surfaced on service pages
+ * (see docs/positioning-canadian-anchor.md §5).
  */
 import type { FC } from "react";
-import { Building2, Factory, Users } from "lucide-react";
 
-import type {
-  AnalyticalLifecycle as LifecycleContent,
-  LifecycleStage,
-} from "../../content/analytical-services";
+import type { AnalyticalLifecycle as LifecycleContent } from "../../content/analytical-services";
 
 import { SectionReveal } from "./SectionReveal";
 
 type Props = { content: LifecycleContent };
-
-const OWNER_META: Record<
-  LifecycleStage["owner"],
-  { label: string; tone: string; icon: typeof Building2 }
-> = {
-  hyderabad: {
-    label: "Hyderabad",
-    tone: "border-[var(--color-primary-600)] bg-[var(--color-primary-50)] text-[var(--color-primary-700)]",
-    icon: Building2,
-  },
-  mississauga: {
-    label: "Mississauga",
-    tone: "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-fg)]",
-    icon: Factory,
-  },
-  both: {
-    label: "Both hubs",
-    tone: "border-[var(--color-border)] bg-[var(--color-slate-50)] text-[var(--color-slate-800)]",
-    icon: Users,
-  },
-};
 
 export const MethodLifecycle: FC<Props> = ({ content }) => {
   return (
@@ -65,52 +41,30 @@ export const MethodLifecycle: FC<Props> = ({ content }) => {
             className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
             aria-label="Method lifecycle stages"
           >
-            {content.stages.map((stage, idx) => {
-              const meta = OWNER_META[stage.owner];
-              const Icon = meta.icon;
-              return (
-                <li key={stage.id} className="list-none">
-                  <article className="flex h-full flex-col gap-3 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] p-5">
-                    <div className="flex items-center gap-2">
-                      <span
-                        aria-hidden="true"
-                        className="grid size-8 shrink-0 place-items-center rounded-[var(--radius-full)] border border-[var(--color-primary-600)] bg-[var(--color-primary-50)] font-[family-name:var(--font-display)] text-xs font-semibold text-[var(--color-primary-700)]"
-                      >
-                        {idx + 1}
-                      </span>
-                      <span
-                        className={`inline-flex items-center gap-1 rounded-[var(--radius-full)] border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.1em] ${meta.tone}`}
-                      >
-                        <Icon aria-hidden="true" size={11} />
-                        {meta.label}
-                      </span>
-                    </div>
-                    <h3 className="font-[family-name:var(--font-display)] text-base font-semibold tracking-tight text-[var(--color-fg)]">
-                      {stage.label}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-[var(--color-slate-800)]">
-                      {stage.description}
-                    </p>
-                  </article>
-                </li>
-              );
-            })}
+            {content.stages.map((stage, idx) => (
+              <li key={stage.id} className="list-none">
+                <article className="flex h-full flex-col gap-3 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] p-5">
+                  <div className="flex items-center gap-2">
+                    <span
+                      aria-hidden="true"
+                      className="grid size-8 shrink-0 place-items-center rounded-[var(--radius-full)] border border-[var(--color-primary-600)] bg-[var(--color-primary-50)] font-[family-name:var(--font-display)] text-xs font-semibold text-[var(--color-primary-700)]"
+                    >
+                      {idx + 1}
+                    </span>
+                    <span className="font-[family-name:var(--font-display)] text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--color-muted)]">
+                      Stage {idx + 1}
+                    </span>
+                  </div>
+                  <h3 className="font-[family-name:var(--font-display)] text-base font-semibold tracking-tight text-[var(--color-fg)]">
+                    {stage.label}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-[var(--color-slate-800)]">
+                    {stage.description}
+                  </p>
+                </article>
+              </li>
+            ))}
           </ol>
-
-          <dl className="mt-8 grid grid-cols-1 gap-3 text-xs text-[var(--color-muted)] sm:grid-cols-3">
-            <div className="flex items-start gap-2">
-              <Building2 size={14} className="mt-0.5 text-[var(--color-primary-700)]" aria-hidden="true" />
-              <span>{content.ownerLegend.hyderabad}</span>
-            </div>
-            <div className="flex items-start gap-2">
-              <Factory size={14} className="mt-0.5 text-[var(--color-fg)]" aria-hidden="true" />
-              <span>{content.ownerLegend.mississauga}</span>
-            </div>
-            <div className="flex items-start gap-2">
-              <Users size={14} className="mt-0.5" aria-hidden="true" />
-              <span>{content.ownerLegend.both}</span>
-            </div>
-          </dl>
 
           <p className="mt-6 max-w-3xl text-xs leading-relaxed text-[var(--color-muted)]">
             {content.handoffNote}

@@ -10,7 +10,7 @@ The last line of defense before copy ships. Returns a pass, a conditional pass w
 
 ## Voice contract (single source of truth: `docs/brand-voice.md`)
 
-Expert · Credible · Humble · Zero-hype · Regulatory-precise · Two-hub pragmatic
+Expert · Credible · Humble · Zero-hype · Regulatory-precise · Canadian-anchored
 
 ## Detection rules
 
@@ -21,7 +21,7 @@ Expert · Credible · Humble · Zero-hype · Regulatory-precise · Two-hub pragm
 ### Superlative audit
 
 Any "best", "leading", "top", "fastest", "largest", "only" → require:
-(a) quantified comparison ("the only Canadian DEL holder also running Hyderabad analytical services" — specific), OR
+(a) quantified comparison ("a Canadian DEL holder with an in-house Indian development centre" — specific), OR
 (b) replace with humble framing ("one of a small number of…", "among our strengths is…")
 
 ### Regulatory terminology lock
@@ -31,7 +31,7 @@ Any "best", "leading", "top", "fastest", "largest", "only" → require:
 - "bioequivalence" spelled out first use, then "BE"
 - "ICH Q1A(R2)" form — never "ICH Q1A" without the revision tag on first use
 - "Health Canada" capitalized, no abbreviation (not "HC")
-- **Bridge framing is banned.** Propharmex does not offer a "Canada-India bridge" service. Reframe to "Canada-anchored two-hub operating model" or "two-hub operating model" depending on context. The two hubs (Mississauga + Hyderabad) are factual operating geography; clients are global.
+- **Bridge framing is banned. Two-hub framing is also banned on public surfaces.** Propharmex is a Canadian pharmaceutical services company. Acceptable framings: "Canadian pharmaceutical services company", "anchored at our Mississauga DEL site", "supported by our Indian development centre in Hyderabad". Hyderabad is named only on `/facilities`, `/facilities/hyderabad-india`, and `/quality` (the QMS-scope-honesty exemption surfaces). Auto-flag any public-surface copy that names Hyderabad as a co-equal hub or that uses the phrases "two hubs", "two-hub", "operating hubs" (plural, referring to Propharmex), "Canada-India", "Canada–India", or "Indian hub".
 
 ### Claim audit
 

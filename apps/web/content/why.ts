@@ -118,12 +118,12 @@ export type WhyContent = {
 
 export const WHY: WhyContent = {
   metaTitle:
-    "Why Propharmex — Canada-anchored two-hub pharmaceutical services for global sponsors",
+    "Why Propharmex — Canadian pharmaceutical services anchored under Health Canada DEL",
   metaDescription:
-    "Drug development is fragmented across too many vendors and jurisdictions. Propharmex closes that gap with an integrated four-leg operating model anchored on a Health Canada Drug Establishment Licence and Hyderabad method depth.",
+    "Drug development is fragmented across too many vendors and jurisdictions. Propharmex closes that gap with an integrated four-leg operating model anchored on a Health Canada Drug Establishment Licence, with development depth running under one quality system.",
   ogTitle: "Why Propharmex",
   ogDescription:
-    "The specific gap we exist to close — Canada regulatory anchor, India execution depth, under one quality system.",
+    "The specific gap we exist to close — a Canadian regulatory anchor with the development depth to file under it, all run under one quality system.",
 
   railLabel: "Chapter progress",
 
@@ -177,11 +177,11 @@ export const WHY: WhyContent = {
       eyebrow: "Chapter two",
       headline: "The gap we exist to close.",
       lede:
-        "There are Canadian CDMOs with Drug Establishment Licences. There are Indian CDMOs with deep analytical and manufacturing benches. There are not many organizations operating in both, under one quality system, on one dossier.",
+        "There are Canadian CDMOs with Drug Establishment Licences. There are CDMOs elsewhere with deep analytical and manufacturing benches. There are not many organizations operating both under one Canadian quality system, on one dossier.",
       body: [
-        "A Canadian DEL is the anchor for Canadian market authorization. It is also the pre-requisite for importing finished product into Canada for release. No Indian site-only arrangement can replace it.",
-        "Indian analytical depth is the practical anchor for method development at a cost and cadence that keeps complex-generic programs viable. No Canadian lab-only arrangement replicates it for most dosage forms below a certain commercial scale.",
-        "Most CDMO networks pick one side of that trade. We are organized around the intersection — Mississauga DEL plus Hyderabad method and manufacturing depth, under one CTMS, one change-control process, and one named principal per engagement.",
+        "A Canadian DEL is the anchor for Canadian market authorization. It is also the pre-requisite for importing finished product into Canada for release. No offshore-only arrangement can replace it.",
+        "Offshore analytical depth is the practical anchor for method development at a cost and cadence that keeps complex-generic programs viable. No Canadian lab-only arrangement replicates it for most dosage forms below a certain commercial scale.",
+        "Most CDMO networks pick one side of that trade. We are organized around the intersection — a Canadian DEL anchor plus an offshore development bench under one Canadian QMS, one CTMS, one change-control process, and one named principal per engagement.",
       ],
       stats: [
         {
@@ -195,7 +195,7 @@ export const WHY: WhyContent = {
         },
         {
           value: "WHO-GMP",
-          label: "Inspection status of the Hyderabad manufacturing network",
+          label: "Manufacturing operations aligned to WHO-GMP principles",
           source: {
             kind: "primary",
             label: "WHO — Good Manufacturing Practices guidance",
@@ -224,7 +224,7 @@ export const WHY: WhyContent = {
       lede:
         "Development, analytical, regulatory, and 3PL distribution run inside one operating model. One CTMS. One change-control process. One principal accountable on the client side of the engagement, end to end.",
       body: [
-        "The four legs are not bolted together for a landing page — they are run from the same quality manual. When a stability deviation fires in Hyderabad, the Mississauga quality lead sees it on the same dashboard and closes the CAPA under the same SOP the site inspectors read in both cities.",
+        "The four legs are not bolted together for a landing page — they are run from the same quality manual. When a stability deviation fires on the development bench, the Mississauga quality lead sees it on the same dashboard and closes the CAPA under the same SOP the site inspectors read on every audit.",
         "Handoffs that were interface risks between vendors become sign-offs inside one team. A tech transfer from analytical to release testing is a stage-gate with a named owner on both sides — not a new contract negotiation.",
         "Our goal is not to be every CDMO. It is to be the correct CDMO for complex generics, modified-release orals, lyophilized sterile injectables, and semi-solids where the dissolution method matters more than the bulk chemistry.",
       ],
@@ -278,7 +278,7 @@ export const WHY: WhyContent = {
         "Case studies are anonymized per the client-naming policy in docs/content-style.md. Named references are available under NDA. The numbers below are drawn from completed engagements in the last 24 months.",
       body: [
         "Across seven complex-generic programs in 2024, integrated engagements with a single CTMS closed first-filing timelines 40–60% faster than the equivalent multi-vendor baseline we had observed in the two years prior. The gain was not in the lab. It was in the handoffs.",
-        "On a commercial-stage injectable running 22% over its target COGS, a tech transfer of analytical plus process to Hyderabad — while maintaining US release in Mississauga — recovered 18 points of margin inside 10 months. The second-source qualification ran in parallel.",
+        "On a commercial-stage injectable running 22% over its target COGS, a tech transfer of analytical plus process under our QMS — while maintaining US release through our Canadian site — recovered 18 points of margin inside 10 months. The second-source qualification ran in parallel.",
         "For a public-health program with recurring out-of-spec events at release, restructuring release testing under ICH Q10, moving stability to Zone IVb, and rebuilding supplier qualification produced 24 consecutive months with zero OOS. The underlying product did not change.",
       ],
       stats: [
@@ -320,24 +320,24 @@ export const WHY: WhyContent = {
       },
     },
 
-    /* ---------- 5. Two-hub Engine -------------------------------------------- */
+    /* ---------- 5. Operating Engine ------------------------------------------ */
     {
       id: "engine",
       railLabel: "Engine",
       eyebrow: "Chapter five",
-      headline: "How Mississauga and Hyderabad actually interlock.",
+      headline: "How the operating model runs.",
       lede:
-        "The two-hub model is operational, not aspirational. Two hubs, two time zones, one quality system, and a handover cadence built on the 2.5-hour daylight overlap between Ontario and Telangana.",
+        "The model is operational, not aspirational. One Canadian quality manual across development, distribution, and regulatory work, with a daily handover cadence built on a few hours of daylight overlap between our Mississauga office and an offshore development bench.",
       body: [
         "Mississauga holds the Drug Establishment Licence and runs the 3PL — import, release testing, warehousing, and Canadian distribution, with cold-chain lanes into the US and Caribbean. It is the regulatory face of every engagement.",
-        "Hyderabad carries the method-development bench — HPLC, LC-MS/MS, dissolution, Karl Fischer, DSC — plus the formulation and process depth for orals, sterile injectables, and semi-solids. Manufacturing runs under WHO-GMP for pilot and scale-up batches.",
-        "The handover cadence is boring on purpose. Data-room uploads close at 17:00 IST; Mississauga picks them up at 07:30 ET. Weekly steering meets at 09:00 ET / 18:30 IST. Deviations are logged in the same system and reviewed by the same quality lead. The cert stack — Health Canada DEL, WHO-GMP, ISO 9001, USFDA registration, TGA recognition — is maintained on a single schedule.",
+        "The development bench carries the method work — HPLC, LC-MS/MS, dissolution, Karl Fischer, DSC — plus formulation and process depth for orals, sterile injectables, and semi-solids. Manufacturing runs under WHO-GMP-aligned principles for pilot and scale-up batches.",
+        "The handover cadence is boring on purpose. Data-room uploads close at end-of-day on the development bench; Mississauga picks them up first thing the next morning, ET. Weekly steering runs at 09:00 ET. Deviations are logged in the same system and reviewed by the same quality lead. The cert stack — Health Canada DEL, WHO-GMP-aligned operations, ISO 9001, USFDA registration, TGA recognition — is maintained on a single schedule.",
       ],
       stats: [
         {
           value: "2.5 hrs",
           label:
-            "Daylight overlap between Mississauga (ET) and Hyderabad (IST) business days",
+            "Daily daylight overlap between our Mississauga office and the offshore development bench",
           source: {
             kind: "internal",
             label: "Propharmex operating cadence",
@@ -346,7 +346,7 @@ export const WHY: WhyContent = {
         {
           value: "5",
           label:
-            "Active certifications stacked across both sites: DEL · WHO-GMP · ISO 9001 · USFDA · TGA",
+            "Active certifications under one quality system: DEL · WHO-GMP · ISO 9001 · USFDA · TGA",
           source: {
             kind: "internal",
             label: "Propharmex certifications register, 2025-Q4",
@@ -356,7 +356,7 @@ export const WHY: WhyContent = {
       support: {
         kind: "dataPoint",
         headline:
-          "WHO Good Manufacturing Practices provide the baseline framework for pharmaceutical manufacturing quality — the same framework Indian regulators and most emerging-market authorities cite when accepting inspected sites.",
+          "WHO Good Manufacturing Practices provide the baseline framework for pharmaceutical manufacturing quality — the same framework regulators across multiple jurisdictions cite when accepting inspected sites.",
         source: {
           label: "WHO — Good Manufacturing Practices for pharmaceutical products",
           href: "https://www.who.int/teams/health-product-policy-and-standards/standards-and-specifications/norms-and-standards-for-pharmaceuticals/guidelines/production",
@@ -407,9 +407,9 @@ export const WHY: WhyContent = {
       {
         id: "playbook",
         icon: "book-open",
-        label: "Download the two-hub operating model",
+        label: "Download the operating-model playbook",
         supporting:
-          "A 4-page brief on how our Mississauga and Hyderabad operations interlock under one quality system.",
+          "A 4-page brief on how our Canadian regulatory anchor and offshore development depth run under one quality system.",
         href: "/insights/whitepapers/two-hub-operating-model",
         variant: "ghost",
       },

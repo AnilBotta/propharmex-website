@@ -319,14 +319,14 @@ export const QUALITY: QualityContent = {
     "The Propharmex quality system — Health Canada Drug Establishment Licence, ICH Q10 pharmaceutical quality management, cGMP framework alignment, and regulator-by-regulator capability. Documentation available on request.",
   ogTitle: "Quality & compliance — Propharmex",
   ogDescription:
-    "DEL, cGMP, ICH Q10 — one quality manual across Mississauga and Hyderabad. Certificates and audit summaries available under NDA.",
+    "DEL, cGMP, ICH Q10 — one quality manual anchored at our Mississauga DEL site, with the Indian development centre operating under the same QMS. Certificates and audit summaries available under NDA.",
 
   /* ---------- 1. Hero ---------------------------------------------------- */
   hero: {
     eyebrow: "Quality & compliance",
     headline:
       "Quality isn't a department. It's our operating system.",
-    lede: "One quality manual, one CTMS, one change-control process across Mississauga and Hyderabad. The Health Canada Drug Establishment Licence is the anchor — every other activity on this page is framed around how we stay inspection-ready for it.",
+    lede: "Our quality management system is anchored at our Mississauga site under the Health Canada Drug Establishment Licence and the Canadian Food and Drug Regulations Part C, Division 1A. Our Indian development centre in Hyderabad operates under the same QMS — one quality manual, one CTMS, one change-control process. The DEL is the anchor; every activity on this page is framed around how we stay inspection-ready for it.",
     anchor: {
       value: "DEL",
       label:
@@ -374,12 +374,12 @@ export const QUALITY: QualityContent = {
       {
         id: "who-gmp",
         slug: "who-gmp",
-        title: "WHO-GMP — Hyderabad manufacturing network",
+        title: "WHO-GMP — Indian development centre alignment",
         issuer: "WHO-GMP framework",
         scope:
-          "Good Manufacturing Practice coverage of the Hyderabad manufacturing network.",
+          "Good Manufacturing Practice alignment for the Indian development centre's GxP operations.",
         detail:
-          "Our Hyderabad operations are structured to WHO-GMP principles — material qualification, process validation, cleaning validation, and ongoing process verification are governed under the same SOP set that binds our Mississauga quality manual. Documentation is available to qualified partners under NDA.",
+          "Our Indian development centre in Hyderabad operates under WHO-GMP principles — material qualification, method qualification, cleaning controls, and ongoing process verification are governed under the same SOP set that binds the DEL-anchored quality manual. Documentation is available to qualified partners under NDA.",
         reference: WHO_GMP,
         status: "under-confirmation",
         validity: null,
@@ -429,9 +429,9 @@ export const QUALITY: QualityContent = {
         title: "ICH Q2(R2) analytical method validation",
         issuer: "ICH Q2(R2) framework",
         scope:
-          "Analytical method development and validation alignment — Hyderabad bench.",
+          "Analytical method development and validation alignment — Indian development centre bench.",
         detail:
-          "All analytical methods developed or transferred by Propharmex are validated to ICH Q2(R2) parameters — specificity, linearity, accuracy, precision, range, detection and quantitation limits, and robustness — with Mississauga acting as a second-site release laboratory where client dossiers require it.",
+          "All analytical methods developed or transferred by Propharmex are validated to ICH Q2(R2) parameters — specificity, linearity, accuracy, precision, range, detection and quantitation limits, and robustness — and released against the DEL-anchored release-testing record where client dossiers require it.",
         reference: ICH_Q2R2,
         status: "alignment",
         validity: null,
@@ -444,7 +444,7 @@ export const QUALITY: QualityContent = {
         scope:
           "Stability programs structured for Zones I through IVb climatic conditions.",
         detail:
-          "Stability chambers cover long-term, intermediate, and accelerated conditions across the Zones defined in Q1A(R2). Photostability is handled under ICH Q1B. Out-of-trend and out-of-specification handling follows a single SOP shared across both sites.",
+          "Stability chambers cover long-term, intermediate, and accelerated conditions across the Zones defined in Q1A(R2). Photostability is handled under ICH Q1B. Out-of-trend and out-of-specification handling follows a single SOP under the shared QMS.",
         reference: ICH_Q1A,
         status: "alignment",
         validity: null,
@@ -468,14 +468,14 @@ export const QUALITY: QualityContent = {
   /* ---------- 3. QMS architecture -------------------------------------- */
   qms: {
     eyebrow: "QMS architecture",
-    heading: "Seven stages. One SOP stack. Both sites.",
+    heading: "Seven stages. One SOP stack. One QMS.",
     lede: "The diagram below is the operating loop behind every engagement — from the SOP that governs a task through to lot release. The loop closes back into annual management review, in line with ICH Q10.",
     stages: [
       {
         id: "sops",
         order: 1,
         title: "SOPs & controlled documents",
-        body: "Every recurring task has a controlled SOP with a document owner, effective date, and training plan. Both sites share the master SOP library.",
+        body: "Every recurring task has a controlled SOP with a document owner, effective date, and training plan. The DEL site and the Indian development centre share the master SOP library.",
         reference: ICH_Q10,
       },
       {
@@ -510,7 +510,7 @@ export const QUALITY: QualityContent = {
         id: "audits",
         order: 6,
         title: "Internal & external audits",
-        body: "Annual internal audit schedule across both sites plus external-readiness reviews before every regulator-facing inspection window.",
+        body: "Annual internal audit schedule covering the DEL site and the Indian development centre, plus external-readiness reviews before every regulator-facing inspection window.",
         reference: HEALTH_CANADA_GUI_0002,
       },
       {
@@ -550,7 +550,7 @@ export const QUALITY: QualityContent = {
         label: "CDSCO",
         jurisdiction: "India",
         scope: "inspection-scope",
-        body: "Hyderabad operations run under CDSCO licensing and state-regulator oversight. State drug control authority records are available to qualified partners.",
+        body: "Our Indian development centre in Hyderabad operates under CDSCO licensing and state-regulator oversight. State drug control authority records are available to qualified partners.",
         reference: CDSCO_OVERVIEW,
       },
       {

@@ -1,7 +1,7 @@
 /**
  * FacilityMap — /facilities, RSC.
  *
- * An abstract two-hub schematic rather than a real map tile. Real
+ * An abstract two-site schematic rather than a real map tile. Real
  * geography would be misleading at this zoom, and we do not publish street
  * coordinates on the marketing site until client confirmation of visit
  * protocols. The arc between the two city nodes is decorative.

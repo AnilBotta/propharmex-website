@@ -2,7 +2,7 @@
   "name": "propharmex-site",
   "version": "0.1.0",
   "private": true,
-  "description": "Propharmex website monorepo — Next.js 15 + Sanity v3 + AI tools (Canada–India CDMO)",
+  "description": "Propharmex website monorepo — Next.js 15 + Sanity v3 + AI tools (Canadian CDMO)",
   "packageManager": "pnpm@9.12.0",
   "engines": {
     "node": ">=20.0.0",

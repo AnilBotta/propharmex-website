@@ -257,16 +257,16 @@ export type FacilitiesContent = {
 /* -------------------------------------------------------------------------- */
 
 export const FACILITIES_CONTENT: FacilitiesContent = {
-  metaTitle: "Facilities — Mississauga & Hyderabad | Propharmex",
+  metaTitle: "Facilities — Mississauga and Hyderabad | Propharmex",
   metaDescription:
-    "Two operating hubs, one lineage of practice. Mississauga holds our Health Canada Drug Establishment Licence and 3PL operations; Hyderabad runs pharmaceutical development and analytical services. Visits by appointment.",
-  ogTitle: "Mississauga & Hyderabad — Propharmex facilities",
+    "A Canadian DEL site and an Indian development centre, one lineage of practice. Mississauga holds our Health Canada Drug Establishment Licence and 3PL operations; our Hyderabad development centre runs formulation and analytical services. Visits by appointment.",
+  ogTitle: "Mississauga and Hyderabad — Propharmex facilities",
   ogDescription:
-    "Two operating hubs, in rooms you can walk. Health Canada DEL site in Mississauga; development and analytical operations in Hyderabad.",
+    "Health Canada DEL site in Mississauga; Indian development centre in Hyderabad. One quality system, in rooms you can walk.",
   hero: {
     eyebrow: "Facilities",
-    headline: "Two hubs. One quality system. One record of work.",
-    lede: "Our Mississauga site carries the Health Canada Drug Establishment Licence and operates our third-party logistics footprint. Our Hyderabad site runs pharmaceutical development and analytical services. Work moves between the two under a single quality system, with documented tech-transfer and chain-of-custody at every handoff.",
+    headline: "Anchored in Mississauga. Supported by our development bench.",
+    lede: "Our Mississauga site carries the Health Canada Drug Establishment Licence and operates our third-party logistics footprint. Our Indian development centre in Hyderabad runs formulation and analytical services under the same QMS. Work moves between them under a single quality system, with documented tech-transfer and chain-of-custody at every handoff.",
     primaryCta: {
       label: "Arrange a site visit",
       href: "/contact?source=facilities-index-visit",
@@ -280,8 +280,8 @@ export const FACILITIES_CONTENT: FacilitiesContent = {
   },
   map: {
     eyebrow: "Where we work",
-    heading: "Two operating hubs, drawn to scale",
-    lede: "Both hubs are connected by a unified document stream, harmonised SOPs, and a weekly operations cadence. The arc below is illustrative, not a flight path.",
+    heading: "DEL site and development centre, drawn to scale",
+    lede: "Both sites are connected by a unified document stream, harmonised SOPs, and a weekly operations cadence. The arc below is illustrative, not a flight path.",
     hubs: [
       {
         code: "mississauga",
@@ -423,9 +423,9 @@ export const FACILITY_MISSISSAUGA: FacilityDetail = {
   ogDescription:
     "Health Canada DEL site and 3PL hub in Mississauga, Ontario.",
   hero: {
-    eyebrow: "Propharmex Canada · Mississauga, Ontario",
+    eyebrow: "Propharmex · Mississauga, Ontario · Head office and DEL site",
     headline: "The Canadian regulatory anchor, and the warehouse behind it.",
-    lede: "Propharmex Mississauga holds the Health Canada Drug Establishment Licence. The same site operates our third-party logistics footprint, the controlled-substance vault, and the release-and-stability bench that supports Canadian and US submissions. Regulatory and distribution share a roof by design — the record of a product's journey never leaves a single quality system.",
+    lede: "Our Mississauga site holds the Health Canada Drug Establishment Licence. The same site operates our third-party logistics footprint, the controlled-substance vault, and the release-and-stability bench that supports Canadian and US submissions. Regulatory and distribution share a roof by design — the record of a product's journey never leaves a single quality system.",
     stats: [
       { label: "Regulatory anchor", value: "Health Canada DEL" },
       { label: "Primary role", value: "Regulatory, 3PL, release testing" },
@@ -490,7 +490,7 @@ export const FACILITY_MISSISSAUGA: FacilityDetail = {
         id: "method-dev",
         label: "Method development",
         description:
-          "Executed at Hyderabad with documented transfer into Mississauga for release use; unified protocols across both hubs.",
+          "Executed at the development centre with documented transfer into Mississauga for release use; unified protocols under one QMS.",
         tier: "secondary",
       },
       {
@@ -720,9 +720,9 @@ export const FACILITY_HYDERABAD: FacilityDetail = {
   ogDescription:
     "Development and analytical operations at our Hyderabad, Telangana hub.",
   hero: {
-    eyebrow: "Propharmex India · Hyderabad, Telangana",
+    eyebrow: "Propharmex · Hyderabad, Telangana · Indian development centre",
     headline: "Where molecules become methods, and methods become dossiers.",
-    lede: "Propharmex Hyderabad runs the development and analytical bench: formulation screening, method development and validation, stability study conduct, and impurity profiling. Work is authored to travel — every protocol, every report, and every data file is designed to be read in Mississauga, in Ottawa, and in the regulators' review rooms downstream.",
+    lede: "Our Indian development centre runs the development and analytical bench: formulation screening, method development and validation, stability study conduct, and impurity profiling. Work is authored to travel — every protocol, every report, and every data file is designed to be read at the DEL site, in Ottawa, and in the regulators' review rooms downstream.",
     stats: [
       { label: "Primary role", value: "Development + analytical services" },
       { label: "Quality alignment", value: "ICH Q10 · WHO-GMP principles" },
@@ -842,7 +842,7 @@ export const FACILITY_HYDERABAD: FacilityDetail = {
         id: "qms",
         category: "Systems",
         label: "Electronic document and data system",
-        detail: "Unified with Mississauga; audit-trailed records across both hubs.",
+        detail: "Unified with Mississauga; audit-trailed records under one QMS.",
       },
     ],
     cta: {
