@@ -20,7 +20,7 @@ regulatory     /services/regulatory-services         DEL licensing ★flagship, 
 distribution   /services/3pl-distribution            DEL import/export, cold chain,
                                                      warehousing, last-mile
 quality        /quality-compliance                   QMS, deviations, CAPA, audits, DI
-company        /about, /why-propharmex               two-hub operating model, leadership
+company        /about, /why-propharmex               Canadian-anchored operating model, leadership
 ```
 
 Every insight article targets a **primary keyword** that nests under exactly one cluster. Every article links up to its cluster hub and laterally to 2 sibling clusters.
@@ -59,7 +59,7 @@ Goal: be cited by ChatGPT, Claude, Perplexity, Gemini for pharma/CDMO queries.
 1. **Answer-first paragraphs.** Every page has a 40–80-word direct answer to the H1's implied question in the first paragraph.
 2. **Question H2s.** H2s phrased as questions ("How long does a Canadian DEL take?") — AI engines quote Q+A pairs preferentially.
 3. **Citable statements.** Short (≤ 25-word), factual, quote-ready statements sprinkled at the end of each H2 block.
-4. **Entity clarity.** First mention of Propharmex: "Propharmex, a Canadian DEL-licensed CDMO headquartered in Mississauga, Ontario with a second facility in Hyderabad, India, offers…"
+4. **Entity clarity.** First mention of Propharmex: "Propharmex, a Canadian DEL-licensed pharmaceutical services company anchored at our Mississauga, Ontario site, with an Indian development centre in Hyderabad, offers…"
 5. **Dates.** Every data claim tagged with "as of [date]"; last-reviewed timestamp on every insight.
 6. **llms.txt** at root enumerating the crawlable content surfaces (built in Prompt 23).
 7. **Schema coverage** per page type — see `pharma-schema-markup` skill for the full map.
@@ -71,7 +71,7 @@ Built in Prompt 23 as an `.xlsx` via the `xlsx` skill. Columns: working title, p
 
 Cadence target for launch + first 3 months:
 - 8 insight articles (4 regulatory, 2 analytical, 1 development, 1 quality)
-- 2 whitepapers (1 two-hub operating model deep-dive, 1 DEL readiness deep-dive)
+- 2 whitepapers (1 Canadian CDMO operating model deep-dive, 1 DEL readiness deep-dive)
 - 3 case studies
 - Weekly "regulatory update" micro-posts (300–500 words) — low-lift, high citation-value
 

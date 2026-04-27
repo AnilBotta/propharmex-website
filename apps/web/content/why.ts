@@ -409,8 +409,8 @@ export const WHY: WhyContent = {
         icon: "book-open",
         label: "Download the operating-model playbook",
         supporting:
-          "A 4-page brief on how our Canadian regulatory anchor and offshore development depth run under one quality system.",
-        href: "/insights/whitepapers/two-hub-operating-model",
+          "A 10-page field guide on how our Canadian regulatory anchor and offshore development depth run under one quality system.",
+        href: "/insights/whitepapers/canadian-cdmo-operating-model",
         variant: "ghost",
       },
       {

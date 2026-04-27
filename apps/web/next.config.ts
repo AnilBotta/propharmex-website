@@ -31,13 +31,37 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       // Legacy whitepaper slug — Prompt 15 retitled the whitepaper from
-      // "Canada-India playbook" to "The two-hub operating model" as part
-      // of the broader positioning correction (PR #19). The old URL was
-      // referenced in why.ts and may have been shared externally; a 301
-      // preserves any inbound link.
+      // "Canada-India playbook" to "The two-hub operating model" (PR #19).
+      // The Canadian-anchored rebrand (PR #23 + the Commit-8 follow-up PR)
+      // retitled it again to "The Canadian CDMO operating model" with a new
+      // slug. This redirect terminates at the current slug to avoid a chain.
       {
         source: "/whitepapers/canada-india-playbook",
-        destination: "/insights/whitepapers/two-hub-operating-model",
+        destination: "/insights/whitepapers/canadian-cdmo-operating-model",
+        permanent: true,
+      },
+      // Two-hub-operating-model whitepaper slug retired in the
+      // Canadian-anchored rebrand follow-up. Preserves any inbound links to
+      // the gated landing page.
+      {
+        source: "/insights/whitepapers/two-hub-operating-model",
+        destination: "/insights/whitepapers/canadian-cdmo-operating-model",
+        permanent: true,
+      },
+      // Inside-a-two-hub-cdmo article slug retired in the same follow-up.
+      // The article body was already rewritten in PR #23; this redirect
+      // covers the URL surface only.
+      {
+        source: "/insights/inside-a-two-hub-cdmo",
+        destination: "/insights/inside-our-operating-model",
+        permanent: true,
+      },
+      // Old whitepaper PDF asset path. The new generator writes the PDF
+      // under a Canadian-anchored filename; this redirect catches any
+      // inbound direct-PDF links that still point at the old path.
+      {
+        source: "/downloads/two-hub-operating-model.pdf",
+        destination: "/downloads/canadian-cdmo-operating-model.pdf",
         permanent: true,
       },
     ];
