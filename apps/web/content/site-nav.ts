@@ -44,7 +44,7 @@ export const REGIONS: {
     code: "IN",
     label: "India",
     shortLabel: "IN",
-    description: "CDSCO, Hyderabad analytical and development operations.",
+    description: "CDSCO; Indian regulatory references and localized content.",
   },
   {
     code: "GLOBAL",
@@ -352,7 +352,7 @@ export type FacilityAddress = {
 export const FACILITIES: FacilityAddress[] = [
   {
     code: "MISSISSAUGA",
-    name: "Propharmex Canada",
+    name: "Propharmex Mississauga",
     role: "Head office — Health Canada DEL, 3PL distribution",
     streetLines: ["— address on file —"],
     city: "Mississauga",
@@ -364,8 +364,8 @@ export const FACILITIES: FacilityAddress[] = [
   },
   {
     code: "HYDERABAD",
-    name: "Propharmex India",
-    role: "Analytical services and development operations",
+    name: "Propharmex Hyderabad",
+    role: "Indian development centre",
     streetLines: ["— address on file —"],
     city: "Hyderabad",
     region: "Telangana",

@@ -32,10 +32,11 @@ export function Footer() {
           <div className="flex flex-col gap-6">
             <BrandLogo />
             <p className="text-sm leading-relaxed text-[var(--color-slate-700)]">
-              Propharmex operates in Mississauga (Canada) and Hyderabad (India).
-              We cover pharmaceutical development, analytical services, Health
-              Canada Drug Establishment Licence regulatory work, and
-              distribution under one engagement.
+              Canadian pharmaceutical services company anchored at our
+              Mississauga, Ontario site under Health Canada Drug Establishment
+              Licence. Pharmaceutical development, analytical services,
+              regulatory affairs, and 3PL distribution for drug developers
+              globally.
             </p>
             <DelBadge />
           </div>

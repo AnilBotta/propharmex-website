@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     template: "%s · Propharmex",
   },
   description:
-    "Canada-anchored pharmaceutical services company with operating hubs in Mississauga, Ontario and Hyderabad, Telangana. End-to-end pharmaceutical development, analytical services, Health Canada DEL–anchored regulatory affairs, and 3PL distribution — serving drug developers globally.",
+    "Canadian pharmaceutical services company anchored at our Mississauga, Ontario site under Health Canada Drug Establishment Licence. Pharmaceutical development, analytical services, regulatory affairs, and 3PL distribution for drug developers globally.",
   applicationName: "Propharmex",
   // Re-enabled at Prompt 22/27 once content is real.
   robots: { index: false, follow: false },
