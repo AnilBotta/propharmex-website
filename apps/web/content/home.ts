@@ -101,25 +101,30 @@ export type WhatWeDoSection = {
 };
 
 /* -------------------------------------------------------------------------- */
-/*  5. Canada + India Advantage                                               */
+/*  5. Operational depth                                                      */
 /* -------------------------------------------------------------------------- */
 
-export type HubColumn = {
-  id: "canada" | "india";
-  city: string;
-  country: string;
-  coord: { lat: number; lng: number };
+/**
+ * Asymmetric two-column section: an anchor card (Mississauga DEL site,
+ * regulatory + 3PL) and a depth card (development depth, no site named).
+ * Replaces the prior CanadaIndiaSection / two-hub framing per the
+ * Canadian-anchored positioning lexicon (docs/positioning-canadian-anchor.md).
+ */
+export type OperatingColumn = {
+  id: "anchor" | "depth";
+  label: string;
+  sublabel: string;
   role: string;
   capabilities: string[];
   certificationNote: string;
 };
 
-export type CanadaIndiaSection = {
-  kind: "canadaIndia";
+export type OperationalDepthSection = {
+  kind: "operationalDepth";
   eyebrow: string;
   heading: string;
   subhead: string;
-  columns: [HubColumn, HubColumn];
+  columns: [OperatingColumn, OperatingColumn];
 };
 
 /* -------------------------------------------------------------------------- */
@@ -299,7 +304,7 @@ export type HomeSection =
   | TrustStripSection
   | WhyPillarsSection
   | WhatWeDoSection
-  | CanadaIndiaSection
+  | OperationalDepthSection
   | MatcherSection
   | ProofSection
   | ProcessSection
@@ -319,7 +324,7 @@ export type HomeContent = {
   trust: TrustStripSection;
   why: WhyPillarsSection;
   whatWeDo: WhatWeDoSection;
-  canadaIndia: CanadaIndiaSection;
+  operationalDepth: OperationalDepthSection;
   matcher: MatcherSection;
   proof: ProofSection;
   process: ProcessSection;
@@ -348,15 +353,15 @@ export const DOSAGE_CHIPS: DosageChip[] = [
 export const HOME: HomeContent = {
   metaTitle: "Propharmex — pharmaceutical development, analytical, regulatory, distribution",
   metaDescription:
-    "Canada-anchored pharmaceutical services company operating a Health Canada DEL site in Mississauga, Ontario and a development plus analytical bench in Hyderabad, Telangana. End-to-end pharmaceutical development, ICH-aligned analytical, regulatory submissions, and 3PL distribution for drug developers globally.",
+    "Canadian pharmaceutical services company anchored at our Mississauga, Ontario site under Health Canada Drug Establishment Licence. Pharmaceutical development, analytical services, regulatory affairs, and 3PL distribution for drug developers globally.",
   ogTitle: "Propharmex — pharmaceutical development, analytical, regulatory, distribution",
   ogDescription:
-    "Drug Establishment Licence-anchored Canadian operations with analytical and development depth in Hyderabad. Integrated development-to-distribution for drug developers globally.",
+    "Canadian pharmaceutical services company. Anchored at our Mississauga DEL site, with the development depth to file under it. Drug developers globally.",
 
   // 1. Hero
   hero: {
     kind: "hero",
-    eyebrow: "Mississauga, Ontario · Hyderabad, Telangana · Serving sponsors globally",
+    eyebrow: "Mississauga, Ontario · Health Canada DEL · Serving sponsors globally",
     headline: "End-to-End Pharma Development,",
     headlineAccent: "Analytical, Regulatory & Distribution.",
     subhead:
@@ -390,7 +395,7 @@ export const HOME: HomeContent = {
       {
         id: "who-gmp",
         label: "WHO-GMP",
-        caption: "Hyderabad manufacturing inspected to WHO-GMP",
+        caption: "Manufacturing operations aligned to WHO-GMP principles",
         href: "/quality#who-gmp",
       },
       {
@@ -424,7 +429,7 @@ export const HOME: HomeContent = {
       {
         id: "regulated",
         title: "Regulated work, not regulated-adjacent",
-        body: "The Mississauga site holds a Health Canada Drug Establishment Licence; Hyderabad operates under WHO-GMP. ICH Q1A(R2), Q2(R2), and Q7 are the default, not the upgrade path.",
+        body: "Our Mississauga site holds a Health Canada Drug Establishment Licence; our development operations run under WHO-GMP-aligned principles within the same QMS. ICH Q1A(R2), Q2(R2), and Q7 are the default, not the upgrade path.",
       },
       {
         id: "specialized",
@@ -433,8 +438,8 @@ export const HOME: HomeContent = {
       },
       {
         id: "delivery",
-        title: "Delivery across two supply chains",
-        body: "When an API is short in India, we source in Canada. When cold-chain capacity tightens in North America, Hyderabad ships. The two-hub model is operational, not aspirational.",
+        title: "Delivery you can plan around",
+        body: "Our 3PL footprint runs from Mississauga into the US and Caribbean, with cold-chain lanes that hold their service standards under volume. Sourcing flexibility comes from a development bench that can re-author specs and methods when supply tightens.",
       },
     ],
   },
@@ -484,20 +489,19 @@ export const HOME: HomeContent = {
     ],
   },
 
-  // 5. Canada + India Advantage
-  canadaIndia: {
-    kind: "canadaIndia",
-    eyebrow: "Two operating hubs",
-    heading: "Two hubs. Specific roles. No marketing fog.",
+  // 5. Operational depth
+  operationalDepth: {
+    kind: "operationalDepth",
+    eyebrow: "How we work",
+    heading: "A Canadian regulatory anchor with the development depth to file under it.",
     subhead:
-      "Canada carries the Drug Establishment Licence and the last-mile compliance. India carries the method depth and the manufacturing bench. Both share the same CTMS, the same quality system, and the same project managers.",
+      "Our Mississauga site holds the Drug Establishment Licence and runs Canadian 3PL distribution. Behind the Canadian-facing operations, an offshore development centre under our quality system gives us depth in formulation, method development, analytical services, and stability — all under one CTMS, one change-control process, and one set of project managers.",
     columns: [
       {
-        id: "canada",
-        city: "Mississauga",
-        country: "Canada",
-        coord: { lat: 43.589, lng: -79.644 },
-        role: "DEL holder · 3PL · import and release",
+        id: "anchor",
+        label: "Anchored at Mississauga",
+        sublabel: "Mississauga, Ontario · Canada",
+        role: "Head office · DEL holder · 3PL · regulatory submissions",
         capabilities: [
           "Health Canada DEL covering fabrication, packaging, labelling, testing, import, and wholesale",
           "Canadian 3PL warehousing with cold-chain lanes into the US and Caribbean",
@@ -507,18 +511,17 @@ export const HOME: HomeContent = {
           "DEL referenced against the Health Canada Drug and Health Product Register. Site inspections current.",
       },
       {
-        id: "india",
-        city: "Hyderabad",
-        country: "India",
-        coord: { lat: 17.385, lng: 78.4867 },
-        role: "R&D · analytical services · manufacturing depth",
+        id: "depth",
+        label: "Development depth",
+        sublabel: "Operating under our quality system",
+        role: "Formulation · method development · analytical services · stability",
         capabilities: [
           "HPLC, LC-MS/MS, dissolution, Karl Fischer, DSC — method development and ICH Q2(R2) validation",
           "Formulation and process development for orals, sterile injectables, and semi-solids",
-          "WHO-GMP manufacturing partners for pilot and scale-up batches",
+          "Manufacturing operations aligned to WHO-GMP principles for pilot and scale-up batches",
         ],
         certificationNote:
-          "WHO-GMP inspected. Analytical lab participates in the CDSCO Good Laboratory Practices framework.",
+          "Operations governed under the Propharmex unified QMS, harmonised SOPs, and audit-trailed change control.",
       },
     ],
   },
@@ -559,7 +562,7 @@ export const HOME: HomeContent = {
         id: "cs-cogs",
         industry: "Innovator biotech",
         problem: "Commercial-stage injectable running 22% over target COGS; second-source program 14 months behind.",
-        outcome: "Tech-transferred analytical + process to Hyderabad; qualified second supplier; maintained US release.",
+        outcome: "Tech-transferred analytical and process under our QMS; qualified second supplier; maintained US release.",
         metric: "18% COGS reduction",
         href: "/case-studies/sterile-injectable-second-sourcing",
       },
@@ -654,14 +657,14 @@ export const HOME: HomeContent = {
         // TODO: replace with Sanity person doc when live.
         id: "leader-2",
         name: "Head of Analytical",
-        role: "Hyderabad",
+        role: "Method development and validation",
         credential: "ICH Q2(R2) method development across HPLC, LC-MS/MS, dissolution.",
       },
       {
         // TODO: replace with Sanity person doc when live.
         id: "leader-3",
         name: "Director, Operations",
-        role: "Mississauga",
+        role: "Canadian distribution and 3PL",
         credential: "Cold-chain and 3PL lead across Canadian and US distribution lanes.",
       },
     ],

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { env, jsonLdGraph } from "@propharmex/lib";
 
-import { CanadaIndiaAdvantage } from "../components/home/CanadaIndiaAdvantage";
+import { OperationalDepth } from "../components/home/OperationalDepth";
 import { ContactMini } from "../components/home/ContactMini";
 import { DelBanner } from "../components/home/DelBanner";
 import { Hero } from "../components/home/Hero";
@@ -49,7 +49,7 @@ export default function HomePage() {
       <TrustStrip content={HOME.trust} />
       <WhyPillars content={HOME.why} />
       <WhatWeDo content={HOME.whatWeDo} />
-      <CanadaIndiaAdvantage content={HOME.canadaIndia} />
+      <OperationalDepth content={HOME.operationalDepth} />
       <MatcherTeaser content={HOME.matcher} />
       <Proof content={HOME.proof} />
       <Process content={HOME.process} />
