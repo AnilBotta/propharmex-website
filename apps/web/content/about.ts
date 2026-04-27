@@ -104,34 +104,7 @@ export type AboutTimeline = {
 };
 
 /* -------------------------------------------------------------------------- */
-/*  4. Global footprint                                                       */
-/* -------------------------------------------------------------------------- */
-
-export type AboutFootprintNode = {
-  id: "mississauga" | "hyderabad";
-  city: string;
-  country: string;
-  countryCode: "CA" | "IN";
-  role: string;
-  /** Approximate lat/long for the schematic map (not a navigable map). */
-  coordinates: { lat: number; lng: number };
-  highlights: string[];
-};
-
-export type AboutFootprint = {
-  eyebrow: string;
-  heading: string;
-  lede: string;
-  /** Exactly two nodes — the two operating hubs. */
-  nodes: [AboutFootprintNode, AboutFootprintNode];
-  distribution: {
-    label: string;
-    body: string;
-  };
-};
-
-/* -------------------------------------------------------------------------- */
-/*  5. Leadership (shared by preview section + /about/leadership page)        */
+/*  4. Leadership (shared by preview section + /about/leadership page)        */
 /* -------------------------------------------------------------------------- */
 
 export type LeaderPublication = {
@@ -148,7 +121,7 @@ export type AboutLeader = {
   slug: string;
   name: string;
   role: string;
-  location: "Mississauga" | "Hyderabad" | "Both hubs";
+  location: "Mississauga" | "Development bench" | "Both";
   /** One-line credential summary shown on the card. */
   credential: string;
   /** 2–3 paragraphs for the modal detail sheet. */
@@ -227,7 +200,6 @@ export type AboutContent = {
   founding: AboutFounding;
   mvv: AboutMVV;
   timeline: AboutTimeline;
-  footprint: AboutFootprint;
   leadershipPreview: AboutLeadershipPreview;
   culture: AboutCulture;
   careers: AboutCareersCta;
@@ -268,18 +240,18 @@ export const LEADERS: AboutLeader[] = [
     slug: "head-of-analytical",
     name: "Head of Analytical",
     role: "Method development and release testing",
-    location: "Hyderabad",
+    location: "Development bench",
     credential:
       "ICH Q2(R2) method development and validation across HPLC, LC-MS/MS, and dissolution.",
     bio: [
-      "Directs the Hyderabad analytical bench — method development and validation, release and stability testing, impurity and nitrosamine work, and elemental analysis under ICH Q3D.",
-      "Deep bench strength in complex-generic methods where the dissolution profile matters more than the bulk chemistry. Accountable for method transfer cycles into Mississauga release testing.",
+      "Directs the analytical bench — method development and validation, release and stability testing, impurity and nitrosamine work, and elemental analysis under ICH Q3D.",
+      "Deep bench strength in complex-generic methods where the dissolution profile matters more than the bulk chemistry. Accountable for method transfer cycles into Canadian release testing.",
       "Profile in preparation — vetted biography and public credentials will replace this placeholder copy.",
     ],
     credentials: [
       "ICH Q2(R2) method validation — HPLC, LC-MS/MS, dissolution",
       "ICH Q3D elemental impurity analysis",
-      "Lead on Propharmex analytical QMS alignment across both sites",
+      "Lead on Propharmex analytical QMS alignment under one quality system",
     ],
     linkedin: null,
     publications: [],
@@ -292,16 +264,16 @@ export const LEADERS: AboutLeader[] = [
     role: "Manufacturing, 3PL distribution, and cold chain",
     location: "Mississauga",
     credential:
-      "Cold-chain and 3PL operations across Canadian and US distribution lanes, plus Hyderabad scale-up oversight.",
+      "Cold-chain and 3PL operations across Canadian and US distribution lanes, plus tech-transfer oversight from the development bench.",
     bio: [
-      "Owns manufacturing coordination between the Mississauga and Hyderabad sites, plus the Propharmex 3PL — import, release, warehousing, and Canadian and US distribution under the Drug Establishment Licence.",
-      "Runs the daylight-overlap operating cadence that links ET and IST business days, including the weekly joint steering between regulatory, analytical, and manufacturing leads.",
+      "Owns manufacturing coordination between Mississauga and the development bench, plus the Propharmex 3PL — import, release, warehousing, and Canadian and US distribution under the Drug Establishment Licence.",
+      "Runs the daylight-overlap operating cadence that links the Mississauga office and the offshore development bench, including the weekly joint steering between regulatory, analytical, and manufacturing leads.",
       "Profile in preparation — vetted biography and public credentials will replace this placeholder copy.",
     ],
     credentials: [
       "Cold-chain logistics (2–8 °C and controlled ambient) across CA + US lanes",
       "3PL operations under Health Canada DEL",
-      "Tech-transfer oversight between Mississauga and Hyderabad",
+      "Tech-transfer oversight under one Propharmex quality system",
     ],
     linkedin: null,
     publications: [],
@@ -315,9 +287,9 @@ export const LEADERS: AboutLeader[] = [
 
 export const ABOUT: AboutContent = {
   metaTitle:
-    "About Propharmex — Canada-anchored pharmaceutical services team, two hubs",
+    "About Propharmex — Canadian pharmaceutical services team",
   metaDescription:
-    "Who we are, how we operate, and why a Canadian DEL site and a Hyderabad analytical and development bench run under one quality system. Mississauga, Ontario and Hyderabad, Telangana — serving drug developers globally.",
+    "Who we are, how we operate, and why we run development, analytical, regulatory, and 3PL distribution under one Canadian quality system. Anchored at our Mississauga, Ontario site under Health Canada Drug Establishment Licence — serving drug developers globally.",
   ogTitle: "About Propharmex",
   ogDescription:
     "Mission, values, timeline, and the named principals accountable on every Propharmex engagement.",
@@ -325,12 +297,12 @@ export const ABOUT: AboutContent = {
   /* ---------- 1. Founding story ---------------------------------------- */
   founding: {
     eyebrow: "Founding story",
-    headline: "Two cities. One quality system. No handoffs between us.",
-    lede: "Propharmex was founded to close one specific gap — a Canadian-anchored regulatory posture with Indian analytical and manufacturing depth, run as a single team under a single quality manual.",
+    headline: "One quality system. No handoffs between us.",
+    lede: "Propharmex was founded as a Canadian pharmaceutical services company anchored under Health Canada Drug Establishment Licence — built to close one specific gap, with the development depth to file under our own DEL.",
     body: [
       "The trigger was a pattern we saw repeatedly across complex-generic and specialty-dosage programs — six or more independent vendors stitched together by overnight emails, and timelines that doubled every time a deviation crossed a contract boundary.",
-      "Mississauga gave us the regulatory anchor — a Health Canada Drug Establishment Licence and the 3PL to import, release, and distribute finished product into Canada, the US, and the Caribbean. Hyderabad gave us the analytical bench and the dosage-form depth at a cost and cadence that keep complex-generic programs viable.",
-      "What makes it work is not geography. It is one CTMS, one change-control process, one named principal per engagement — and a deliberately boring handover cadence tuned to the 2.5-hour daylight overlap between Ontario and Telangana.",
+      "Our Mississauga site is the regulatory anchor — a Health Canada Drug Establishment Licence and the 3PL to import, release, and distribute finished product into Canada, the US, and the Caribbean. An offshore development bench under the same quality system gives us the dosage-form depth at a cost and cadence that keep complex-generic programs viable.",
+      "What makes it work is not geography. It is one CTMS, one change-control process, one named principal per engagement — and a deliberately boring handover cadence tuned to the daylight overlap between our Mississauga office and the offshore bench.",
     ],
     anchor: {
       value: "1",
@@ -356,7 +328,7 @@ export const ABOUT: AboutContent = {
     },
     vision: {
       label: "Vision",
-      body: "Be the correct CDMO for the product profiles where a Canada-anchored two-hub operating model is the right structural answer — complex generics, modified-release orals, lyophilized sterile injectables, and dissolution-sensitive semi-solids.",
+      body: "Be the correct CDMO for the product profiles where a Canadian regulatory anchor with the development depth to file under it is the right structural answer — complex generics, modified-release orals, lyophilized sterile injectables, and dissolution-sensitive semi-solids.",
     },
     values: [
       {
@@ -381,7 +353,7 @@ export const ABOUT: AboutContent = {
         id: "cadence",
         icon: "gauge",
         title: "Operating cadence",
-        body: "Data-room closes at 17:00 IST. Mississauga picks up at 07:30 ET. Deviations are logged the same day, reviewed by the same quality lead.",
+        body: "Data-room closes end-of-day on the development bench; Mississauga picks up first thing the next morning ET. Deviations are logged the same day, reviewed by the same quality lead.",
       },
     ],
   },
@@ -398,8 +370,8 @@ export const ABOUT: AboutContent = {
       {
         year: "2010",
         kind: "founding",
-        title: "Propharmex Hyderabad founded.",
-        body: "Analytical services and formulation development benches stood up in Hyderabad, Telangana — initial focus on oral solids for Indian and emerging-market generics.",
+        title: "Propharmex development operations founded.",
+        body: "Analytical services and formulation development benches stood up at our offshore site — initial focus on oral solids for emerging-market generics.",
         source: {
           kind: "internal",
           label: "Propharmex founding record",
@@ -451,7 +423,7 @@ export const ABOUT: AboutContent = {
         year: "2023",
         kind: "regulatory",
         title: "USFDA registration and TGA recognition.",
-        body: "Establishment registration with the USFDA and recognition under the TGA framework added to the cert stack alongside WHO-GMP inspection coverage of the Hyderabad manufacturing network.",
+        body: "Establishment registration with the USFDA and recognition under the TGA framework added to the cert stack alongside WHO-GMP-aligned operations on the development bench.",
         source: {
           kind: "primary",
           label:
@@ -472,48 +444,7 @@ export const ABOUT: AboutContent = {
     ],
   },
 
-  /* ---------- 4. Global footprint -------------------------------------- */
-  footprint: {
-    eyebrow: "Global footprint",
-    heading: "Two operating hubs, one quality manual.",
-    lede: "The two-hub model is operational, not aspirational. The Mississauga hub holds the Drug Establishment Licence and the 3PL; the Hyderabad hub carries the method and manufacturing bench. Everything else — distribution lanes, audit coverage, client work — runs between them.",
-    nodes: [
-      {
-        id: "mississauga",
-        city: "Mississauga",
-        country: "Canada",
-        countryCode: "CA",
-        role: "Head office — Health Canada DEL, 3PL, release testing",
-        coordinates: { lat: 43.589, lng: -79.6441 },
-        highlights: [
-          "Health Canada Drug Establishment Licence (DEL) — fabrication, packaging, labelling, testing, import, wholesale",
-          "3PL warehousing with 2–8 °C cold chain and controlled-ambient storage",
-          "Distribution lanes into Canada, the US, and the Caribbean",
-          "USFDA establishment registration and TGA recognition",
-        ],
-      },
-      {
-        id: "hyderabad",
-        city: "Hyderabad",
-        country: "India",
-        countryCode: "IN",
-        role: "Analytical services, formulation, and development operations",
-        coordinates: { lat: 17.385, lng: 78.4867 },
-        highlights: [
-          "Method development and validation — HPLC, LC-MS/MS, dissolution, Karl Fischer, DSC",
-          "Formulation bench for oral solids, semi-solids, and sterile injectables",
-          "WHO-GMP inspection coverage across the manufacturing network",
-          "ICH Q1A(R2) stability chambers across Zones I–IVb",
-        ],
-      },
-    ],
-    distribution: {
-      label: "Operating overlap",
-      body: "The 2.5-hour daylight overlap between Mississauga (ET) and Hyderabad (IST) is our joint-decision window. Data-room uploads close at 17:00 IST; Mississauga picks them up at 07:30 ET. Weekly steering meets at 09:00 ET / 18:30 IST.",
-    },
-  },
-
-  /* ---------- 5. Leadership preview ------------------------------------ */
+  /* ---------- 4. Leadership preview ------------------------------------ */
   leadershipPreview: {
     eyebrow: "Leadership",
     heading: "A small team, named on the record.",
@@ -548,7 +479,7 @@ export const ABOUT: AboutContent = {
       {
         id: "cross-site-default",
         title: "Cross-site by default.",
-        body: "Major reviews are attended by both Mississauga and Hyderabad leads. The daylight overlap is treated as protected time, not optional overtime.",
+        body: "Major reviews are attended by leads from Mississauga and the development bench together. The daylight overlap is treated as protected time, not optional overtime.",
       },
     ],
   },
@@ -580,7 +511,7 @@ export const ABOUT: AboutContent = {
 export const LEADERSHIP_PAGE: AboutLeadershipPage = {
   metaTitle: "Leadership — Propharmex",
   metaDescription:
-    "The Propharmex leadership team. Named principals accountable for regulatory affairs, analytical operations, and distribution across the Mississauga and Hyderabad hubs.",
+    "The Propharmex leadership team. Named principals accountable for regulatory affairs, analytical operations, and distribution under one Canadian quality system.",
   heading: "The team accountable on every Propharmex engagement.",
   lede: "Every engagement is signed off by one named principal on our side. No account-team handoffs after signature. Detailed profiles are in preparation and will replace the placeholder copy below once each principal has reviewed their public credentials.",
   stubNotice:
