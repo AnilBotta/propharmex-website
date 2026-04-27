@@ -3,12 +3,12 @@
  * Health Canada DEL licensing leaf (Prompt 12, first half).
  *
  * Positioning (from CLAUDE.md §1): the regulatory-services unit is the
- * commercial expression of Mississauga's Health Canada Drug Establishment
- * Licence. It is what lets Canadian, US, and globally-sourced programmes
- * move across jurisdictions under a single quality system, with the
- * Hyderabad analytical and development bench feeding into the same record.
+ * commercial expression of our Health Canada Drug Establishment Licence.
+ * It is what lets Canadian, US, and globally-sourced programmes move across
+ * jurisdictions under a single quality system, with our offshore development
+ * bench feeding into the same record.
  *
- * Only the Mississauga DEL uses `confirmed` on this page. Every other
+ * Only the DEL uses `confirmed` on this page. Every other
  * claim is `under-confirmation` (evidence held, not yet marketed) or
  * `alignment` (operating alignment with a framework without a certification
  * under it). See `docs/regulatory-lexicon.md` §26–39.
@@ -103,7 +103,6 @@ export type SubmissionLifecycleStage = {
   id: string;
   label: string;
   description: string;
-  owner: "hyderabad" | "mississauga" | "both";
 };
 
 export type SubmissionLifecycle = {
@@ -111,11 +110,6 @@ export type SubmissionLifecycle = {
   heading: string;
   lede: string;
   stages: SubmissionLifecycleStage[];
-  ownerLegend: {
-    hyderabad: string;
-    mississauga: string;
-    both: string;
-  };
   handoffNote: string;
 };
 
@@ -422,7 +416,7 @@ export const REGULATORY_HUB: RegulatoryHubContent = {
     eyebrow: "Services · Regulatory Services",
     headline:
       "The Mississauga Drug Establishment Licence, applied to your programme.",
-    lede: "Propharmex's regulatory services unit is built around one operating fact — a Health Canada DEL held in Mississauga and verifiable on the Drug and Health Product Register. Every sub-service below is either the act of obtaining a licence like it, or the act of moving a US or Indian programme across the Canadian regulatory surface while using ours. The posture is deliberate: a regulator cannot review something that does not exist, and a sponsor cannot sell in Canada under someone else's hope.",
+    lede: "Propharmex's regulatory services unit is built around one operating fact — a Health Canada DEL held in Mississauga and verifiable on the Drug and Health Product Register. Every sub-service below is either the act of obtaining a licence like it, or the act of moving a US or globally-sourced programme across the Canadian regulatory surface while using ours. The posture is deliberate: a regulator cannot review something that does not exist, and a sponsor cannot sell in Canada under someone else's hope.",
     stats: [
       { label: "Mississauga DEL", value: "Confirmed · on register" },
       { label: "Service standard (new DEL)", value: "250 calendar days" },
@@ -457,7 +451,7 @@ export const REGULATORY_HUB: RegulatoryHubContent = {
         slug: "us-fda-submissions",
         label: "US FDA submissions",
         blurb:
-          "Support for ANDA, DMF and 505(b)(2) submission work in eCTD format — authored in Hyderabad, reviewed against current FDA guidance.",
+          "Support for ANDA, DMF and 505(b)(2) submission work in eCTD format — authored and reviewed against current FDA guidance under a single quality system.",
         highlights: ["ANDA support", "DMF support", "eCTD"],
         leafStatus: "live",
         flagship: false,
@@ -529,51 +523,41 @@ export const REGULATORY_HUB: RegulatoryHubContent = {
   lifecycle: {
     eyebrow: "Submission lifecycle",
     heading: "Strategy → dossier → submission → inspection → lifecycle",
-    lede: "Most regulatory engagements travel the same five stages. Ownership is written into the plan — Hyderabad authors, Mississauga is the Canadian regulatory point-of-contact and inspection host, and strategy and lifecycle work are co-owned across both hubs.",
+    lede: "Most regulatory engagements travel the same five stages. Ownership is written into the plan — authored and reviewed under a single quality system, filed under the Health Canada DEL, and inspection-ready for Canadian inspection windows. Strategy and lifecycle work are co-owned across Propharmex.",
     stages: [
       {
         id: "strategy",
         label: "Strategy",
         description:
           "Target jurisdictions, pathway selection (DEL, ANDA, NDS, 505(b)(2), DMF reference), and the submission plan shaped against the programme's commercial horizon.",
-        owner: "both",
       },
       {
         id: "dossier",
         label: "Dossier authoring",
         description:
           "Module 2 summaries and Module 3 CMC authoring against ICH M4 and the target agency's regional specification. Cross-referenced to the analytical and pharmaceutical-development records generated under the same QMS.",
-        owner: "hyderabad",
       },
       {
         id: "submission",
         label: "Submission / filing",
         description:
-          "Canadian filings submitted under the Mississauga regulatory function with Health Canada as the agency of record. US filings supported from Hyderabad with a Canadian regulatory agent when the sponsor elects one.",
-        owner: "mississauga",
+          "Canadian filings submitted under the regulatory function with Health Canada as the agency of record. US filings supported with a Canadian regulatory agent when the sponsor elects one.",
       },
       {
         id: "inspection",
         label: "Inspection readiness",
         description:
-          "Pre-inspection walkthroughs, mock-audit coverage and responses to information requests run out of Mississauga. The DEL site hosts Health Canada inspection windows directly.",
-        owner: "mississauga",
+          "Pre-inspection walkthroughs, mock-audit coverage and responses to information requests are led by the Propharmex team. The DEL site hosts Health Canada inspection windows directly.",
       },
       {
         id: "lifecycle",
         label: "Lifecycle management",
         description:
           "Post-issuance amendments, annual reporting, post-NOC changes, and change-control notifications across both the DEL and product market authorizations.",
-        owner: "both",
       },
     ],
-    ownerLegend: {
-      hyderabad: "Hyderabad — authoring and CMC",
-      mississauga: "Mississauga — Canadian regulatory function, inspection host",
-      both: "Both hubs — jointly planned",
-    },
     handoffNote:
-      "Ownership shifts hub — not quality system. Documents authored in Hyderabad land in the same record the Mississauga team files from. The regulator sees one operating unit, not two.",
+      "Ownership shifts across the team — not across quality systems. Documents authored land in the same record filed under the DEL. The regulator sees one operating unit.",
   },
   caseRail: {
     eyebrow: "Worked patterns",
@@ -584,7 +568,7 @@ export const REGULATORY_HUB: RegulatoryHubContent = {
         id: "del-issuance",
         service: "Health Canada DEL licensing",
         title: "Standing up a new DEL for a contract manufacturing scope",
-        body: "QMS and technical agreements rebuilt to match the scope applied for; pre-submission gap assessment and mock inspection conducted in Mississauga ahead of the Health Canada review window.",
+        body: "QMS and technical agreements rebuilt to match the scope applied for; pre-submission gap assessment and mock inspection conducted at the DEL site ahead of the Health Canada review window.",
         status: "under-confirmation",
       },
       {
@@ -638,14 +622,14 @@ export const REGULATORY_DEL_LICENSING: RegulatoryLeafContent = {
     "End-to-end Health Canada Drug Establishment Licence preparation, submission and inspection readiness under Part C, Division 1A of the Food and Drug Regulations.",
   ogTitle: "Health Canada DEL Licensing — Propharmex",
   ogDescription:
-    "A Drug Establishment Licence held in Mississauga and verifiable on the public register. The operating anchor for Canadian, US and Indian programmes.",
+    "A Drug Establishment Licence held in Mississauga and verifiable on the public register. The operating anchor for Canadian, US and global programmes.",
   hero: {
     eyebrow: "Regulatory Services · Health Canada DEL licensing",
     headline:
       "A Drug Establishment Licence we hold — not one we borrow on your behalf.",
     valueProp:
-      "The Mississauga DEL is the operational anchor that lets a US or India programme transact in Canada under a single, verifiable quality system.",
-    lede: "A Drug Establishment Licence is issued by Health Canada under Part C, Division 1A of the Food and Drug Regulations and interpreted through GUI-0002. It authorizes specific activities on specific dosage-form and product categories at a specific site. Ours is in Mississauga. We use it as the operating backbone for every Canadian engagement and as the regulatory anchor that lets a US, Indian, or otherwise-globally-sourced programme touch the Canadian market without a sponsor having to stand up a Canadian establishment of their own. This page describes what the licence authorizes, how a sponsor plugs into it, and how a new DEL is obtained when that is what a programme needs.",
+      "The Mississauga DEL is the operational anchor that lets a US or global programme transact in Canada under a single, verifiable quality system.",
+    lede: "A Drug Establishment Licence is issued by Health Canada under Part C, Division 1A of the Food and Drug Regulations and interpreted through GUI-0002. It authorizes specific activities on specific dosage-form and product categories at a specific site. Ours is in Mississauga. We use it as the operating backbone for every Canadian engagement and as the regulatory anchor that lets a US or globally-sourced programme touch the Canadian market without a sponsor having to stand up a Canadian establishment of their own. This page describes what the licence authorizes, how a sponsor plugs into it, and how a new DEL is obtained when that is what a programme needs.",
     stats: [
       { label: "Our posture", value: "DEL on register" },
       { label: "Service standard", value: "250 calendar days" },
@@ -692,11 +676,11 @@ export const REGULATORY_DEL_LICENSING: RegulatoryLeafContent = {
   },
   threePlDelCombo: {
     eyebrow: "DEL + 3PL — one posture",
-    heading: "What Mississauga holds, and what a sponsor plugs into",
-    lede: "The DEL and the third-party logistics operation in Mississauga are not two services that have been stitched together for the website. They are the same physical site, under the same quality system, held on the same licence. The two columns below describe the two sides of that posture.",
+    heading: "What the DEL anchor holds, and what a sponsor plugs into",
+    lede: "The DEL and the third-party logistics operation are not two services that have been stitched together for the website. They are the same physical site, under the same quality system, held on the same licence. The two columns below describe the two sides of that posture.",
     leftColumn: {
       id: "mississauga",
-      heading: "What Mississauga holds",
+      heading: "What the DEL anchor holds",
       bullets: [
         "A Health Canada DEL covering fabrication, packaging/labelling, testing, importation, distribution and wholesale activities on the dosage-form categories in the Drug and Health Product Register entry",
         "A 3PL warehouse operating inside the DEL scope — storage, pick-and-pack, and outbound distribution are DEL activities, not an outsourced adjacent service",
@@ -766,7 +750,6 @@ export const REGULATORY_DEL_LICENSING: RegulatoryLeafContent = {
         description:
           "Health Canada conducts a site inspection against the activity scope applied for. Propharmex hosts, prepares the inspection-readiness pack, and runs the opening and closing meetings.",
         typicalDuration: "Scheduled within the review window",
-        owner: "both",
       },
       {
         id: "issuance-and-activation",
@@ -959,7 +942,7 @@ export const REGULATORY_US_FDA_SUBMISSIONS: RegulatoryLeafContent = {
   crumbLabel: "US FDA submissions",
   metaTitle: "US FDA Submissions — Propharmex",
   metaDescription:
-    "ANDA, 505(b)(2) and Drug Master File authoring and eCTD submission support against 21 CFR Part 314 and current USFDA guidance — authored in Hyderabad, reviewed against the Mississauga analytical record.",
+    "ANDA, 505(b)(2) and Drug Master File authoring and eCTD submission support against 21 CFR Part 314 and current USFDA guidance — authored and reviewed against the analytical record under a single quality system.",
   ogTitle: "US FDA Submissions — Propharmex",
   ogDescription:
     "FDA-facing CMC authoring and eCTD submission work done under one quality system — the same record we release product against.",
@@ -968,12 +951,12 @@ export const REGULATORY_US_FDA_SUBMISSIONS: RegulatoryLeafContent = {
     headline:
       "FDA-facing CMC, authored once — reviewed against the record we release from.",
     valueProp:
-      "FDA-facing CMC authoring and eCTD submission work done in Hyderabad, reviewed against current FDA guidance, and cross-referenced to the same analytical record we release product against.",
-    lede: "Most US submissions we support are ANDA or 505(b)(2) in shape, with a Type II Drug Master File running in parallel for the drug substance. The authoring happens in Hyderabad against 21 CFR Part 314 and the FDA's current eCTD technical specifications; the analytical and stability record referenced inside Module 3 is the same one used for release testing under the Mississauga DEL. That continuity is the work — it is not a convenience. When a reviewer opens the specification in Module 3 and opens a release certificate six months later, they should be looking at the same number produced by the same method.",
+      "FDA-facing CMC authoring and eCTD submission work, reviewed against current FDA guidance, and cross-referenced to the same analytical record we release product against — under a single quality system.",
+    lede: "Most US submissions we support are ANDA or 505(b)(2) in shape, with a Type II Drug Master File running in parallel for the drug substance. The authoring happens against 21 CFR Part 314 and the FDA's current eCTD technical specifications; the analytical and stability record referenced inside Module 3 is the same one used for release testing under the Health Canada DEL. That continuity is the work — it is not a convenience. When a reviewer opens the specification in Module 3 and opens a release certificate six months later, they should be looking at the same number produced by the same method.",
     stats: [
       { label: "Submission formats", value: "ANDA · 505(b)(2) · DMF · eCTD" },
-      { label: "Authoring hub", value: "Hyderabad" },
-      { label: "Record anchor", value: "Mississauga analytical QMS" },
+      { label: "Authoring", value: "Single quality system" },
+      { label: "Record anchor", value: "DEL-anchored QMS" },
     ],
     primaryCta: {
       label: "Scope an FDA submission engagement",
@@ -1012,12 +995,12 @@ export const REGULATORY_US_FDA_SUBMISSIONS: RegulatoryLeafContent = {
     ],
   },
   threePlDelCombo: {
-    eyebrow: "Hyderabad authoring + Mississauga regulatory function",
+    eyebrow: "Authored and filed under the DEL",
     heading: "Where the work happens, and what a sponsor plugs into",
-    lede: "FDA submissions are authored in Hyderabad and reviewed against the Mississauga analytical and QMS record. The two columns below describe the operating split on this work — one physical site does not replace the other; they carry different parts of the same record.",
+    lede: "FDA submissions are authored and reviewed against the analytical and QMS record under a single quality system. The columns below describe the operational flow — authoring and assembly on one side, the regulatory anchor on the other — both carrying parts of the same record.",
     leftColumn: {
       id: "hyderabad",
-      heading: "What Hyderabad authors",
+      heading: "Authoring and assembly",
       bullets: [
         "Module 2 summaries (QOS for Quality, non-clinical and clinical overviews where applicable) against ICH M4",
         "Module 3 drug substance (3.2.S) and drug product (3.2.P) sections authored against 21 CFR Part 314 and current FDA CMC guidance",
@@ -1028,7 +1011,7 @@ export const REGULATORY_US_FDA_SUBMISSIONS: RegulatoryLeafContent = {
     },
     rightColumn: {
       id: "mississauga",
-      heading: "What Mississauga anchors",
+      heading: "Regulatory anchor",
       bullets: [
         "Release-testing methods and validation records referenced inside Module 3 — the same methods used for lot release under the DEL",
         "Stability data generated under ICH Q1A(R2) conditions inside the DEL scope, cross-referenced to the submission rather than re-authored for it",
@@ -1038,7 +1021,7 @@ export const REGULATORY_US_FDA_SUBMISSIONS: RegulatoryLeafContent = {
       ],
     },
     closingNote:
-      "Authored in Hyderabad, transferred into Mississauga under the Health Canada DEL — the dossier and the release record are continuous.",
+      "Authored and transferred under the Health Canada DEL — the dossier and the release record are continuous.",
   },
   timeline: {
     eyebrow: "ANDA CMC authoring window",
@@ -1110,7 +1093,7 @@ export const REGULATORY_US_FDA_SUBMISSIONS: RegulatoryLeafContent = {
         id: "method-divergence",
         label: "Methods in the dossier not matching the release record",
         description:
-          "A validation report referenced in Module 3 that does not match the method actually used for release. Keeping the dossier methods and the release methods on a single record is one of the reasons the Mississauga anchor is non-negotiable on our engagements.",
+          "A validation report referenced in Module 3 that does not match the method actually used for release. Keeping the dossier methods and the release methods on a single record is one of the reasons the DEL anchor is non-negotiable on our engagements.",
       },
       {
         id: "dmf-loa-mismatch",
@@ -1153,7 +1136,7 @@ export const REGULATORY_US_FDA_SUBMISSIONS: RegulatoryLeafContent = {
   caseStudyFeature: {
     eyebrow: "Pattern of work",
     heading: "ANDA CMC for a BCS-II oral solid with parallel Type II DMF",
-    body: "A pattern we see often: a sponsor pursuing an ANDA for a BCS-II oral solid with an Indian API manufacturer that wants to file its own Type II DMF rather than disclose CMC detail to the finished-product sponsor. Hyderabad authors the finished-product Module 3 and the DMF concurrently; the analytical and stability record referenced in both is anchored in the Mississauga QMS. The finished-product filing is handled by the sponsor; the DMF is filed by the API manufacturer under their own LoA control.",
+    body: "A pattern we see often: a sponsor pursuing an ANDA for a BCS-II oral solid with an offshore API manufacturer that wants to file its own Type II DMF rather than disclose CMC detail to the finished-product sponsor. Propharmex authors the finished-product Module 3 and the DMF concurrently; the analytical and stability record referenced in both is anchored in the DEL-anchored QMS. The finished-product filing is handled by the sponsor; the DMF is filed by the API manufacturer under their own LoA control.",
     status: "under-confirmation",
     cta: {
       label: "Ask for the NDA-gated case file",
@@ -1220,7 +1203,7 @@ export const REGULATORY_US_FDA_SUBMISSIONS: RegulatoryLeafContent = {
         id: "raw-data-access",
         question: "How is raw data handled if FDA desk-reviews the methods?",
         answer:
-          "Analytical raw data underlying the submission is held under the Mississauga QMS in alignment with ALCOA+ data-integrity principles. FDA reviewers may request specific raw-data excerpts during CMC review or conduct a pre-approval inspection at the testing site. Our posture is to keep the record inspection-ready continuously rather than assemble an inspection package after the fact — it is also why the analytical record feeds directly into Module 3 rather than being re-authored for it.",
+          "Analytical raw data underlying the submission is held under the DEL-anchored QMS in alignment with ALCOA+ data-integrity principles. FDA reviewers may request specific raw-data excerpts during CMC review or conduct a pre-approval inspection at the testing site. Our posture is to keep the record inspection-ready continuously rather than assemble an inspection package after the fact — it is also why the analytical record feeds directly into Module 3 rather than being re-authored for it.",
       },
     ],
   },
@@ -1240,7 +1223,7 @@ export const REGULATORY_US_FDA_SUBMISSIONS: RegulatoryLeafContent = {
         id: "analytical-services",
         label: "Analytical Services",
         description:
-          "The method-validation and release-testing record referenced inside Module 3 — authored in Hyderabad, released from Mississauga under the DEL.",
+          "The method-validation and release-testing record referenced inside Module 3 — authored and released under the DEL.",
         href: "/services/analytical-services",
       },
       {
@@ -1333,12 +1316,12 @@ export const REGULATORY_CTD_ECTD_DOSSIER_PREPARATION: RegulatoryLeafContent = {
     ],
   },
   threePlDelCombo: {
-    eyebrow: "Hyderabad authoring + Mississauga regulatory function",
+    eyebrow: "Authored and filed under the DEL",
     heading: "Where the work happens, and what a sponsor plugs into",
-    lede: "CTD authoring happens in Hyderabad against ICH M4; Regional Module 1 packaging and the relationship to the underlying release record is anchored in Mississauga. The two columns below describe the operating split on this work.",
+    lede: "CTD authoring happens against ICH M4; Regional Module 1 packaging and the relationship to the underlying release record is anchored under the DEL. The columns below describe the operational flow.",
     leftColumn: {
       id: "hyderabad",
-      heading: "What Hyderabad authors",
+      heading: "Authoring and assembly",
       bullets: [
         "Module 2 — Quality Overall Summary, and non-clinical and clinical overviews where the pathway includes them — authored against ICH M4",
         "Module 3 — drug substance (3.2.S) and drug product (3.2.P) CMC content authored against ICH M4 and the target agency's current CMC guidance",
@@ -1349,7 +1332,7 @@ export const REGULATORY_CTD_ECTD_DOSSIER_PREPARATION: RegulatoryLeafContent = {
     },
     rightColumn: {
       id: "mississauga",
-      heading: "What Mississauga anchors",
+      heading: "Regulatory anchor",
       bullets: [
         "The release-testing and stability record referenced inside Module 3 — the same record used for lot release under the DEL",
         "A single QMS linking the authored dossier and the analytical raw data, so Module 3 claims are evidenced against data a reviewer can inspect",
@@ -1359,7 +1342,7 @@ export const REGULATORY_CTD_ECTD_DOSSIER_PREPARATION: RegulatoryLeafContent = {
       ],
     },
     closingNote:
-      "Authored in Hyderabad, anchored in the Mississauga record — one dossier core, packaged per agency.",
+      "Authored and anchored in the DEL record — one dossier core, packaged per agency.",
   },
   timeline: {
     eyebrow: "Greenfield Module 2 + Module 3 authoring",
@@ -1474,7 +1457,7 @@ export const REGULATORY_CTD_ECTD_DOSSIER_PREPARATION: RegulatoryLeafContent = {
   caseStudyFeature: {
     eyebrow: "Pattern of work",
     heading: "Shared Module 2/3 core, three regional packagings",
-    body: "A pattern we see often: a sponsor pursuing the same finished product across FDA, Health Canada and EMA on a staggered timeline. Hyderabad authors Module 2 and Module 3 against ICH M4 once; Regional Module 1 is packaged for FDA at sequence 0000, repackaged for Health Canada six months later, and repackaged for EMA after that. The analytical and stability record in Module 3 is anchored in Mississauga under the DEL; the same record is referenced by all three regional submissions.",
+    body: "A pattern we see often: a sponsor pursuing the same finished product across FDA, Health Canada and EMA on a staggered timeline. Propharmex authors Module 2 and Module 3 against ICH M4 once; Regional Module 1 is packaged for FDA at sequence 0000, repackaged for Health Canada six months later, and repackaged for EMA after that. The analytical and stability record in Module 3 is anchored under the DEL; the same record is referenced by all three regional submissions.",
     status: "under-confirmation",
     cta: {
       label: "Ask for the NDA-gated case file",
@@ -1561,7 +1544,7 @@ export const REGULATORY_CTD_ECTD_DOSSIER_PREPARATION: RegulatoryLeafContent = {
         id: "analytical-services",
         label: "Analytical Services",
         description:
-          "The method-validation and release-testing record Module 3 references — authored in Hyderabad, released from Mississauga under the DEL.",
+          "The method-validation and release-testing record Module 3 references — authored and released under the DEL.",
         href: "/services/analytical-services",
       },
       {
@@ -1654,12 +1637,12 @@ export const REGULATORY_GMP_AUDIT_PREPARATION: RegulatoryLeafContent = {
     ],
   },
   threePlDelCombo: {
-    eyebrow: "Hyderabad documentation + Mississauga inspection hosting",
+    eyebrow: "Documentation and inspection readiness",
     heading: "Where the work happens, and what a site plugs into",
-    lede: "GMP audit preparation runs across both hubs. Hyderabad supports documentation shaping, CAPA authoring and training materials; Mississauga hosts Canadian inspections directly under the DEL and runs on-site mock inspection coverage. The two columns below describe the operating split.",
+    lede: "GMP audit preparation spans documentation shaping, CAPA authoring and training materials, with Canadian inspection hosting and on-site mock inspection coverage under the DEL. Strategy is co-owned across Propharmex.",
     leftColumn: {
       id: "hyderabad",
-      heading: "What Hyderabad supports",
+      heading: "Documentation and CAPA",
       bullets: [
         "Documentation gap assessment against GUI-0001, 21 CFR 210/211 and ICH Q10 — SOP inventory, deviation records, change control, and CAPA record architecture",
         "CAPA authoring and closure-evidence shaping — root-cause analysis methodology, effectiveness-check design, and documentation trails",
@@ -1670,7 +1653,7 @@ export const REGULATORY_GMP_AUDIT_PREPARATION: RegulatoryLeafContent = {
     },
     rightColumn: {
       id: "mississauga",
-      heading: "What Mississauga runs",
+      heading: "Inspection hosting under the DEL",
       bullets: [
         "On-site mock inspection coverage — opening meetings, document-handling simulation, floor walkthroughs, raw-data access drills",
         "Hosting Health Canada inspections under the DEL — opening and closing meetings, escort discipline, and inspector access coordination",
@@ -1680,7 +1663,7 @@ export const REGULATORY_GMP_AUDIT_PREPARATION: RegulatoryLeafContent = {
       ],
     },
     closingNote:
-      "Documentation shaped in Hyderabad, inspections hosted in Mississauga — one QMS record across both.",
+      "Documentation shaped and inspections hosted under one QMS record.",
   },
   timeline: {
     eyebrow: "90-day pre-inspection readiness engagement",
@@ -1721,7 +1704,6 @@ export const REGULATORY_GMP_AUDIT_PREPARATION: RegulatoryLeafContent = {
         description:
           "Simulated inspection on-site — opening meeting, document-handling drill, floor walkthrough, raw-data access simulation, closing meeting with classified observations. Documented separately from the routine internal-audit programme so the site's audit trail stays clean.",
         typicalDuration: "Typical: 3–5 days on-site",
-        owner: "both",
       },
       {
         id: "mock-findings-remediation",
@@ -1735,9 +1717,8 @@ export const REGULATORY_GMP_AUDIT_PREPARATION: RegulatoryLeafContent = {
         id: "inspection-day-coaching",
         label: "Inspection-day coaching and hosting",
         description:
-          "SME briefings on response posture, scope-defence discipline, and raw-data access protocols. On Canadian inspections, Mississauga hosts directly under the DEL; on US inspections, coaching is provided to the site team.",
+          "SME briefings on response posture, scope-defence discipline, and raw-data access protocols. On Canadian inspections, the DEL site hosts directly; on US inspections, coaching is provided to the site team.",
         typicalDuration: "As scheduled by the agency",
-        owner: "both",
       },
     ],
     source: HEALTH_CANADA_GUI_0001,
@@ -1794,7 +1775,7 @@ export const REGULATORY_GMP_AUDIT_PREPARATION: RegulatoryLeafContent = {
   caseStudyFeature: {
     eyebrow: "Pattern of work",
     heading: "Pre-inspection readiness for an FDA pre-approval inspection",
-    body: "A pattern we see often: a sponsor-owned manufacturing site expecting an FDA pre-approval inspection against a pending ANDA, with 90 to 120 days of runway. Hyderabad supports documentation gap assessment and CAPA shaping against 21 CFR 210/211 and ICH Q10; Mississauga runs on-site mock inspection coverage and SME response coaching. Observations from the mock inspection close before the FDA window opens. The inspection itself is hosted by the sponsor's site team; we stand down for the duration and re-engage only for post-inspection response support.",
+    body: "A pattern we see often: a sponsor-owned manufacturing site expecting an FDA pre-approval inspection against a pending ANDA, with 90 to 120 days of runway. Propharmex supports documentation gap assessment and CAPA shaping against 21 CFR 210/211 and ICH Q10, plus on-site mock inspection coverage and SME response coaching. Observations from the mock inspection close before the FDA window opens. The inspection itself is hosted by the sponsor's site team; we stand down for the duration and re-engage only for post-inspection response support.",
     status: "under-confirmation",
     cta: {
       label: "Ask for the NDA-gated case file",
@@ -1868,13 +1849,13 @@ export const REGULATORY_GMP_AUDIT_PREPARATION: RegulatoryLeafContent = {
   related: {
     eyebrow: "Related services",
     heading: "Where inspection readiness connects to the rest of the site",
-    lede: "Three adjacent pages are worth reading alongside this one — the DEL the Mississauga inspections run against, the quality system the readiness work is anchored in, and the lifecycle work that follows an inspection.",
+    lede: "Three adjacent pages are worth reading alongside this one — the DEL that inspection readiness runs against, the quality system the readiness work is anchored in, and the lifecycle work that follows an inspection.",
     links: [
       {
         id: "del-licensing",
         label: "Health Canada DEL licensing",
         description:
-          "The DEL that Mississauga inspections are conducted under — pre-issuance inspection readiness and post-issuance inspection continuity.",
+          "The DEL that inspection readiness is conducted under — pre-issuance inspection readiness and post-issuance inspection continuity.",
         href: "/services/regulatory-services/health-canada-del-licensing",
       },
       {
@@ -1974,12 +1955,12 @@ export const REGULATORY_LIFECYCLE_MANAGEMENT: RegulatoryLeafContent = {
     ],
   },
   threePlDelCombo: {
-    eyebrow: "Hyderabad authoring + Mississauga regulatory function",
+    eyebrow: "Authored and filed under the DEL",
     heading: "Where the work happens, and what a sponsor plugs into",
-    lede: "Lifecycle work runs across both hubs. Hyderabad authors the supporting CMC and amendment text; Mississauga files DEL amendments as the Canadian regulatory function and coordinates Post-NOC change submissions. The two columns below describe the operating split.",
+    lede: "Lifecycle work spans CMC and amendment authoring, with DEL amendments filed and Post-NOC change submissions coordinated under the regulatory function. The columns below describe the operational flow.",
     leftColumn: {
       id: "hyderabad",
-      heading: "What Hyderabad authors",
+      heading: "Authoring and assembly",
       bullets: [
         "Change-categorization assessments against the Post-NOC Changes framework for Canada and 21 CFR 314.70 for the US",
         "Supporting CMC packages drawn from the development record — not re-authored for the amendment, but extended from what was already filed",
@@ -1990,7 +1971,7 @@ export const REGULATORY_LIFECYCLE_MANAGEMENT: RegulatoryLeafContent = {
     },
     rightColumn: {
       id: "mississauga",
-      heading: "What Mississauga anchors",
+      heading: "Regulatory anchor",
       bullets: [
         "DEL amendment filings under GUI-0002 — activity-scope additions, dosage-form category additions, foreign-building additions, key personnel changes",
         "Annual DEL review handling, fee reassessment and scope reconciliation with Health Canada on the licence anniversary",
@@ -2000,7 +1981,7 @@ export const REGULATORY_LIFECYCLE_MANAGEMENT: RegulatoryLeafContent = {
       ],
     },
     closingNote:
-      "Authored in Hyderabad, filed from Mississauga — one record, extended across the product's life.",
+      "Authored and filed under the DEL — one record, extended across the product's life.",
   },
   timeline: {
     eyebrow: "Lifecycle cadences",
@@ -2115,7 +2096,7 @@ export const REGULATORY_LIFECYCLE_MANAGEMENT: RegulatoryLeafContent = {
   caseStudyFeature: {
     eyebrow: "Pattern of work",
     heading: "Post-NOC Level I plus parallel DEL amendment for a manufacturing-site addition",
-    body: "A pattern we see often: a sponsor adding a new finished-product manufacturing site to an existing Canadian authorization. The change is categorized as Post-NOC Level I (prior-approval supplement) and requires a parallel DEL amendment to cover the new site's activity scope under the DEL. Hyderabad authors both the supplement CMC and the DEL amendment documentation; Mississauga files the DEL amendment as the Canadian regulatory function and serves as the Canadian point-of-contact for Health Canada follow-up on both instruments. The underlying QMS change-control record ties the two filings together.",
+    body: "A pattern we see often: a sponsor adding a new finished-product manufacturing site to an existing Canadian authorization. The change is categorized as Post-NOC Level I (prior-approval supplement) and requires a parallel DEL amendment to cover the new site's activity scope under the DEL. Propharmex authors both the supplement CMC and the DEL amendment documentation; the DEL amendment is filed under the regulatory function as the Canadian point-of-contact for Health Canada follow-up on both instruments. The underlying QMS change-control record ties the two filings together.",
     status: "under-confirmation",
     cta: {
       label: "Ask for the NDA-gated case file",

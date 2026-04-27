@@ -83,7 +83,6 @@ export type LifecycleStage = {
   id: string;
   label: string;
   description: string;
-  owner: "hyderabad" | "mississauga" | "both";
 };
 
 export type PharmDevLifecycle = {
@@ -91,11 +90,6 @@ export type PharmDevLifecycle = {
   heading: string;
   lede: string;
   stages: LifecycleStage[];
-  ownerLegend: {
-    hyderabad: string;
-    mississauga: string;
-    both: string;
-  };
   handoffNote: string;
 };
 
@@ -169,8 +163,6 @@ export type ProcessStep = {
   id: string;
   label: string;
   description: string;
-  /** Which hub owns the step — mirrors lifecycle ownership shorthand. */
-  owner: "hyderabad" | "mississauga" | "both";
   /** Short technical notes surfaced under the step description. */
   notes: string[];
 };
@@ -180,11 +172,6 @@ export type DosageFormProcess = {
   heading: string;
   lede: string;
   steps: ProcessStep[];
-  ownerLegend: {
-    hyderabad: string;
-    mississauga: string;
-    both: string;
-  };
 };
 
 export type EquipmentChipGroup = {
@@ -299,14 +286,14 @@ export type DosageFormContent = {
 export const PHARM_DEV_HUB: PharmDevHubContent = {
   metaTitle: "Pharmaceutical Development — Propharmex",
   metaDescription:
-    "End-to-end pharmaceutical development across seven dosage forms. Formulation, scale-up and tech-transfer authored in Hyderabad and closed out under the Health Canada DEL in Mississauga.",
+    "End-to-end pharmaceutical development across seven dosage forms — formulation, scale-up and tech-transfer executed by Propharmex and filed under our Health Canada Drug Establishment Licence.",
   ogTitle: "Pharmaceutical Development — Propharmex",
   ogDescription:
     "Seven dosage forms, one quality system. Development work authored to travel — from bench to dossier to batch record.",
   hero: {
     eyebrow: "Services · Pharmaceutical Development",
     headline: "Development work, authored to travel.",
-    lede: "Formulation and process work begin in Hyderabad, are transferred into Mississauga under a single quality system, and arrive at the regulator as a readable dossier. Seven dosage forms are supported — from solid oral tablets to sterile injectables — each with a process tailored to what the molecule actually requires.",
+    lede: "Formulation and process work are executed by Propharmex under a single quality system and arrive at the regulator as a readable dossier. Seven dosage forms are supported — from solid oral tablets to sterile injectables — each with a process tailored to what the molecule actually requires.",
     stats: [
       { label: "Dosage forms supported", value: "7" },
       { label: "Regulatory anchor", value: "Health Canada DEL" },
@@ -391,42 +378,33 @@ export const PHARM_DEV_HUB: PharmDevHubContent = {
   lifecycle: {
     eyebrow: "Programme lifecycle",
     heading: "Preformulation → formulation → scale-up → tech-transfer",
-    lede: "Every programme runs through the same four stages, with ownership written into the plan from day one. Hyderabad authors and Mississauga closes out — the record never leaves a single quality system, and the handoff is documented, not improvised.",
+    lede: "Every programme runs through the same four stages, with ownership written into the plan from day one. Executed by Propharmex — the record never leaves a single quality system, and the handoff is documented, not improvised.",
     stages: [
       {
         id: "preformulation",
         label: "Preformulation",
         description:
           "Characterization of the drug substance, compatibility screening, and early dosage-form feasibility against the target product profile.",
-        owner: "hyderabad",
       },
       {
         id: "formulation",
         label: "Formulation development",
         description:
           "Iterative formulation work against critical quality attributes. Method-development and stability-indicating assays are authored alongside the formulation.",
-        owner: "hyderabad",
       },
       {
         id: "scale-up",
         label: "Scale-up",
         description:
           "Process parameter ranges are defined, risk-assessed under ICH Q9(R1), and qualified for pilot- or registration-scale batches.",
-        owner: "both",
       },
       {
         id: "tech-transfer",
         label: "Tech-transfer",
         description:
-          "Methods, specifications, and batch records move to Mississauga for release testing and, where applicable, DEL-scope operations.",
-        owner: "mississauga",
+          "Methods, specifications, and batch records move into release testing and, where applicable, DEL-scope operations.",
       },
     ],
-    ownerLegend: {
-      hyderabad: "Hyderabad — development authoring",
-      mississauga: "Mississauga — tech-transfer, release, DEL scope",
-      both: "Both hubs — jointly planned",
-    },
     handoffNote:
       "Every handoff between stages is captured in a written protocol, not a call. The protocol travels with the programme into the dossier.",
   },
@@ -439,7 +417,7 @@ export const PHARM_DEV_HUB: PharmDevHubContent = {
         id: "solid-oral-stability",
         dosageForm: "Solid oral dosage",
         title: "Stability-indicating method redevelopment for a BCS-II generic",
-        body: "Assay and related-substances methods rebuilt to be stability-indicating under ICH Q1A(R2) zone IVb conditions, with transfer into Mississauga for release use.",
+        body: "Assay and related-substances methods rebuilt to be stability-indicating under ICH Q1A(R2) zone IVb conditions, with transfer into release use under our Health Canada DEL.",
         status: "under-confirmation",
       },
       {
@@ -493,7 +471,7 @@ export const DOSAGE_FORM_SOLID_ORAL: DosageFormContent = {
     "Tablet, capsule and ODT development at Propharmex — granulation, direct compression, dissolution method development under USP ⟨711⟩, and ICH Q1A(R2) stability authored to travel.",
   ogTitle: "Solid oral dosage development — Propharmex",
   ogDescription:
-    "From BCS classification to dossier. Solid oral development authored in Hyderabad, closed out in Mississauga under the Health Canada DEL.",
+    "From BCS classification to dossier. Solid oral development executed by Propharmex, filed under our Health Canada Drug Establishment Licence.",
   hero: {
     eyebrow: "Pharmaceutical Development · Solid oral dosage",
     headline: "Tablets, capsules, and orally disintegrating forms — developed to dissolve on cue, not by accident.",
@@ -549,7 +527,7 @@ export const DOSAGE_FORM_SOLID_ORAL: DosageFormContent = {
         id: "tech-transfer",
         label: "Tech-transfer that does not re-open the formulation",
         description:
-          "Process parameters, method transfer, and specifications moved to Mississauga with documentation a reviewer — or a later site — can reproduce without calling the development team.",
+          "Process parameters, method transfer, and specifications moved into the release site with documentation a reviewer — or a later site — can reproduce without calling the development team.",
       },
     ],
   },
@@ -563,7 +541,6 @@ export const DOSAGE_FORM_SOLID_ORAL: DosageFormContent = {
         label: "Drug substance characterization",
         description:
           "Solid-state profile, particle-size distribution, hygroscopicity and compatibility with candidate excipients. Establishes the baseline every later decision references.",
-        owner: "hyderabad",
         notes: [
           "Polymorph and hydrate screen",
           "Excipient compatibility matrix",
@@ -575,7 +552,6 @@ export const DOSAGE_FORM_SOLID_ORAL: DosageFormContent = {
         label: "Formulation development",
         description:
           "Dosage-form selection (tablet, capsule, ODT), granulation strategy, and in-process controls defined against critical quality attributes.",
-        owner: "hyderabad",
         notes: [
           "Wet granulation, DC or roller compaction",
           "Blend uniformity via USP ⟨905⟩",
@@ -587,7 +563,6 @@ export const DOSAGE_FORM_SOLID_ORAL: DosageFormContent = {
         label: "Analytical method development",
         description:
           "Assay, related substances and dissolution methods developed in parallel with the formulation, then validated under ICH Q2(R2) once the formulation is locked.",
-        owner: "hyderabad",
         notes: [
           "Stability-indicating assay",
           "Dissolution per USP ⟨711⟩",
@@ -599,7 +574,6 @@ export const DOSAGE_FORM_SOLID_ORAL: DosageFormContent = {
         label: "Stability study conduct",
         description:
           "Long-term and accelerated stability under ICH Q1A(R2) zone II and zone IVb conditions, with pull cadence aligned to registration milestones.",
-        owner: "both",
         notes: [
           "ICH zone II and IVb conditions",
           "Photostability per ICH Q1B where applicable",
@@ -611,7 +585,6 @@ export const DOSAGE_FORM_SOLID_ORAL: DosageFormContent = {
         label: "Scale-up and process characterization",
         description:
           "Process parameter ranges defined and risk-assessed under ICH Q9(R1); pilot- or registration-scale batches manufactured and characterized.",
-        owner: "both",
         notes: [
           "Design space articulated per Q8(R2)",
           "Risk assessment under Q9(R1)",
@@ -622,8 +595,7 @@ export const DOSAGE_FORM_SOLID_ORAL: DosageFormContent = {
         id: "tech-transfer",
         label: "Tech-transfer and release",
         description:
-          "Methods, specifications, and batch records transfer into Mississauga for release testing and, where applicable, DEL-scope operations.",
-        owner: "mississauga",
+          "Methods, specifications, and batch records transfer into release testing and, where applicable, DEL-scope operations.",
         notes: [
           "Method transfer protocol and report",
           "Release testing under the Canadian DEL",
@@ -631,11 +603,6 @@ export const DOSAGE_FORM_SOLID_ORAL: DosageFormContent = {
         ],
       },
     ],
-    ownerLegend: {
-      hyderabad: "Hyderabad — development authoring",
-      mississauga: "Mississauga — transfer, release, DEL scope",
-      both: "Both hubs — jointly planned",
-    },
   },
   equipment: {
     eyebrow: "Equipment and techniques",
@@ -759,25 +726,25 @@ export const DOSAGE_FORM_SOLID_ORAL: DosageFormContent = {
         id: "which-hub",
         question: "Which site actually does the formulation work?",
         answer:
-          "Formulation, analytical method development and the initial stability work are authored in Hyderabad. Tech-transfer, release testing and — where applicable — DEL-scope operations are executed in Mississauga. Both sites run on a single quality system, so the record is continuous rather than stitched together at the handoff.",
+          "Formulation, analytical method development and the initial stability work are authored by Propharmex. Tech-transfer, release testing and — where applicable — DEL-scope operations are executed under the Health Canada Drug Establishment Licence. The record is continuous under a single quality system rather than stitched together at the handoff.",
       },
       {
         id: "stability-zones",
         question: "Which ICH stability zones can you run?",
         answer:
-          "Zone II (25°C / 60% RH) and zone IVb (30°C / 75% RH) chambers are operated at the Hyderabad site with continuous monitoring. Photostability testing is scoped under ICH Q1B where applicable. The study design is agreed against your submission plan before the first sample is pulled.",
+          "Zone II (25°C / 60% RH) and zone IVb (30°C / 75% RH) chambers run under ICH Q1A(R2) conditions with continuous monitoring. Photostability testing is scoped under ICH Q1B where applicable. The study design is agreed against your submission plan before the first sample is pulled.",
       },
       {
         id: "dissolution",
         question: "How do you approach dissolution method development?",
         answer:
-          "We develop dissolution methods to be both stability-indicating and discriminatory. Media selection is driven by the dosage form and the question the method needs to answer — not by a single default. The method travels with the formulation into validation under ICH Q2(R2) and into release use in Mississauga.",
+          "We develop dissolution methods to be both stability-indicating and discriminatory. Media selection is driven by the dosage form and the question the method needs to answer — not by a single default. The method travels with the formulation into validation under ICH Q2(R2) and into release use under our DEL.",
       },
       {
         id: "regulatory",
         question: "Do you handle the regulatory submission as well?",
         answer:
-          "The regulatory team in Mississauga authors Health Canada submissions and coordinates ANDA or DMF work with the USFDA when the programme spans both markets. The development record is written with those submissions in mind from the start — it is not re-authored at the end.",
+          "The regulatory team authors Health Canada submissions and coordinates ANDA or DMF work with the USFDA when the programme spans both markets. The development record is written with those submissions in mind from the start — it is not re-authored at the end.",
       },
       {
         id: "timeline",
@@ -850,7 +817,7 @@ export const DOSAGE_FORM_LIQUID_ORAL: DosageFormContent = {
     "Syrup, suspension and oral solution development at Propharmex — preservative efficacy, rheology, taste-masking, and stability authored under ICH Q1A(R2) to travel into submission.",
   ogTitle: "Liquid oral dosage development — Propharmex",
   ogDescription:
-    "From preservative strategy to dossier. Liquid oral development authored in Hyderabad, closed out in Mississauga under the Health Canada DEL.",
+    "From preservative strategy to dossier. Liquid oral development executed by Propharmex, filed under our Health Canada Drug Establishment Licence.",
   hero: {
     eyebrow: "Pharmaceutical Development · Liquid oral dosage",
     headline: "Syrups, suspensions and oral solutions — formulated to hold shape from first shake to last dose.",
@@ -920,7 +887,6 @@ export const DOSAGE_FORM_LIQUID_ORAL: DosageFormContent = {
         label: "Drug substance and excipient characterization",
         description:
           "Solubility in aqueous and co-solvent systems, pH-solubility profile, hydrolytic stability and excipient compatibility characterized against the target product profile.",
-        owner: "hyderabad",
         notes: [
           "pH-solubility and pKa profile",
           "Excipient compatibility matrix",
@@ -932,7 +898,6 @@ export const DOSAGE_FORM_LIQUID_ORAL: DosageFormContent = {
         label: "Formulation and preservative development",
         description:
           "Vehicle, preservative system and taste-masking strategy developed against critical quality attributes. Rheology and redispersibility built into the brief, not retro-fitted.",
-        owner: "hyderabad",
         notes: [
           "Preservative efficacy per USP ⟨51⟩",
           "Rheology and sedimentation characterization",
@@ -944,7 +909,6 @@ export const DOSAGE_FORM_LIQUID_ORAL: DosageFormContent = {
         label: "Analytical method development",
         description:
           "Assay, related substances, preservative content and, where applicable, dissolution methods authored alongside the formulation and validated under ICH Q2(R2).",
-        owner: "hyderabad",
         notes: [
           "Stability-indicating assay and preservative quantitation",
           "Microbial limits per USP ⟨61⟩ / ⟨62⟩",
@@ -956,7 +920,6 @@ export const DOSAGE_FORM_LIQUID_ORAL: DosageFormContent = {
         label: "Stability study conduct",
         description:
           "Long-term, accelerated and in-use stability studies under ICH Q1A(R2) with pull cadence aligned to registration milestones.",
-        owner: "both",
         notes: [
           "ICH zone II and IVb conditions",
           "Photostability per ICH Q1B where applicable",
@@ -968,7 +931,6 @@ export const DOSAGE_FORM_LIQUID_ORAL: DosageFormContent = {
         label: "Scale-up and process characterization",
         description:
           "Mixing, homogenization and filling parameters defined and risk-assessed under ICH Q9(R1); pilot- or registration-scale batches manufactured and sampled.",
-        owner: "both",
         notes: [
           "Homogenization and deaeration parameters",
           "Risk assessment under Q9(R1)",
@@ -979,8 +941,7 @@ export const DOSAGE_FORM_LIQUID_ORAL: DosageFormContent = {
         id: "tech-transfer",
         label: "Tech-transfer and release",
         description:
-          "Methods, specifications and batch records transfer into Mississauga for release testing and, where applicable, DEL-scope operations.",
-        owner: "mississauga",
+          "Methods, specifications and batch records transfer into release testing and, where applicable, DEL-scope operations.",
         notes: [
           "Method transfer protocol and report",
           "Release testing under the Canadian DEL",
@@ -988,11 +949,6 @@ export const DOSAGE_FORM_LIQUID_ORAL: DosageFormContent = {
         ],
       },
     ],
-    ownerLegend: {
-      hyderabad: "Hyderabad — development authoring",
-      mississauga: "Mississauga — transfer, release, DEL scope",
-      both: "Both hubs — jointly planned",
-    },
   },
   equipment: {
     eyebrow: "Equipment and techniques",
@@ -1132,7 +1088,7 @@ export const DOSAGE_FORM_LIQUID_ORAL: DosageFormContent = {
         id: "stability",
         question: "Which stability zones can you run for aqueous products?",
         answer:
-          "Zone II (25°C / 60% RH) and zone IVb (30°C / 75% RH) chambers are operated at the Hyderabad site. Photostability testing is scoped under ICH Q1B where the formulation is light-sensitive. In-use stability after first opening is run against the intended pack.",
+          "Zone II (25°C / 60% RH) and zone IVb (30°C / 75% RH) chambers run under ICH Q1A(R2) conditions. Photostability testing is scoped under ICH Q1B where the formulation is light-sensitive. In-use stability after first opening is run against the intended pack.",
       },
     ],
   },
@@ -1199,7 +1155,7 @@ export const DOSAGE_FORM_TOPICAL_SEMISOLID: DosageFormContent = {
     "Cream, gel, ointment and lotion development at Propharmex — phase behaviour, IVRT under USP ⟨1724⟩, preservative efficacy, and microstructure characterization authored to travel.",
   ogTitle: "Topical and semisolid development — Propharmex",
   ogDescription:
-    "From phase diagram to dossier. Topical development authored in Hyderabad, closed out in Mississauga under the Health Canada DEL.",
+    "From phase diagram to dossier. Topical development executed by Propharmex, filed under our Health Canada Drug Establishment Licence.",
   hero: {
     eyebrow: "Pharmaceutical Development · Topical & semisolid",
     headline: "Creams, gels, ointments and lotions — developed around the microstructure, not the label claim.",
@@ -1269,7 +1225,6 @@ export const DOSAGE_FORM_TOPICAL_SEMISOLID: DosageFormContent = {
         label: "Drug substance and excipient characterization",
         description:
           "Solubility in aqueous and oil phases, partition coefficient, thermal behaviour and excipient compatibility characterized against the target product profile.",
-        owner: "hyderabad",
         notes: [
           "Log P and phase-distribution profile",
           "Excipient compatibility matrix",
@@ -1281,7 +1236,6 @@ export const DOSAGE_FORM_TOPICAL_SEMISOLID: DosageFormContent = {
         label: "Formulation and microstructure development",
         description:
           "Emulsifier selection, phase-ratio optimisation and processing-temperature profile developed against the intended microstructure and critical quality attributes.",
-        owner: "hyderabad",
         notes: [
           "Phase diagram and HLB screening",
           "Rheology and droplet-size characterization",
@@ -1293,7 +1247,6 @@ export const DOSAGE_FORM_TOPICAL_SEMISOLID: DosageFormContent = {
         label: "Analytical and IVRT method development",
         description:
           "Assay, related substances, preservative content and IVRT methods authored alongside the formulation and validated under ICH Q2(R2).",
-        owner: "hyderabad",
         notes: [
           "IVRT per USP ⟨1724⟩",
           "Stability-indicating assay",
@@ -1305,7 +1258,6 @@ export const DOSAGE_FORM_TOPICAL_SEMISOLID: DosageFormContent = {
         label: "Stability study conduct",
         description:
           "Long-term, accelerated and photostability studies under ICH Q1A(R2) and Q1B, with pull cadence aligned to registration milestones.",
-        owner: "both",
         notes: [
           "ICH zone II and IVb conditions",
           "Photostability per ICH Q1B where applicable",
@@ -1317,7 +1269,6 @@ export const DOSAGE_FORM_TOPICAL_SEMISOLID: DosageFormContent = {
         label: "Scale-up and process characterization",
         description:
           "Homogenization, cooling-rate and addition-sequence parameters defined and risk-assessed under ICH Q9(R1); pilot- or registration-scale batches manufactured and sampled.",
-        owner: "both",
         notes: [
           "Design space articulated per Q8(R2)",
           "Risk assessment under Q9(R1)",
@@ -1328,8 +1279,7 @@ export const DOSAGE_FORM_TOPICAL_SEMISOLID: DosageFormContent = {
         id: "tech-transfer",
         label: "Tech-transfer and release",
         description:
-          "Methods, specifications and batch records transfer into Mississauga for release testing and, where applicable, DEL-scope operations.",
-        owner: "mississauga",
+          "Methods, specifications and batch records transfer into release testing and, where applicable, DEL-scope operations.",
         notes: [
           "Method transfer protocol and report",
           "Release testing under the Canadian DEL",
@@ -1337,11 +1287,6 @@ export const DOSAGE_FORM_TOPICAL_SEMISOLID: DosageFormContent = {
         ],
       },
     ],
-    ownerLegend: {
-      hyderabad: "Hyderabad — development authoring",
-      mississauga: "Mississauga — transfer, release, DEL scope",
-      both: "Both hubs — jointly planned",
-    },
   },
   equipment: {
     eyebrow: "Equipment and techniques",
@@ -1463,7 +1408,7 @@ export const DOSAGE_FORM_TOPICAL_SEMISOLID: DosageFormContent = {
         id: "ivrt",
         question: "How do you approach IVRT method development?",
         answer:
-          "We develop IVRT to be discriminatory, not just reportable. Membrane, media and receptor-fluid selection are chosen against the discriminatory-power objective under USP ⟨1724⟩, and the method is validated under ICH Q2(R2) once the formulation is locked. The method travels with the formulation into release use in Mississauga.",
+          "We develop IVRT to be discriminatory, not just reportable. Membrane, media and receptor-fluid selection are chosen against the discriminatory-power objective under USP ⟨1724⟩, and the method is validated under ICH Q2(R2) once the formulation is locked. The method travels with the formulation into release use under our DEL.",
       },
       {
         id: "q1q2",
@@ -1548,7 +1493,7 @@ export const DOSAGE_FORM_STERILE_INJECTABLES: DosageFormContent = {
     "Parenteral, lyophilized, SVP and LVP development at Propharmex — lyo cycle design, container-closure integrity, sterility assurance and USP ⟨788⟩ particulate work authored to travel.",
   ogTitle: "Sterile injectables development — Propharmex",
   ogDescription:
-    "From formulation to dossier. Sterile injectable development authored in Hyderabad, closed out in Mississauga under the Health Canada DEL.",
+    "From formulation to dossier. Sterile injectable development executed by Propharmex, filed under our Health Canada Drug Establishment Licence.",
   hero: {
     eyebrow: "Pharmaceutical Development · Sterile injectables",
     headline: "Parenterals, lyophilized products and SVP / LVP forms — developed around sterility assurance and container-closure integrity.",
@@ -1618,7 +1563,6 @@ export const DOSAGE_FORM_STERILE_INJECTABLES: DosageFormContent = {
         label: "Drug substance and formulation characterization",
         description:
           "Solubility, pH–stability profile, thermal behaviour (including Tg' and Tc for lyo candidates) and excipient compatibility characterized against the target product profile.",
-        owner: "hyderabad",
         notes: [
           "Thermal characterization (DSC, FDM)",
           "pH–stability and isotonicity profile",
@@ -1630,7 +1574,6 @@ export const DOSAGE_FORM_STERILE_INJECTABLES: DosageFormContent = {
         label: "Formulation and cycle development",
         description:
           "Vehicle, buffer and tonicity-adjuster selection; for lyo programmes, primary and secondary drying profiles developed against a documented design space.",
-        owner: "hyderabad",
         notes: [
           "Lyophilization cycle design (bench-scale)",
           "Isotonicity and pH control",
@@ -1642,7 +1585,6 @@ export const DOSAGE_FORM_STERILE_INJECTABLES: DosageFormContent = {
         label: "Analytical and particulate method development",
         description:
           "Assay, related substances, sub-visible particulate (USP ⟨788⟩) and, where applicable, reconstitution-time methods authored alongside the formulation and validated under ICH Q2(R2).",
-        owner: "hyderabad",
         notes: [
           "Particulate matter per USP ⟨788⟩",
           "Stability-indicating assay",
@@ -1654,7 +1596,6 @@ export const DOSAGE_FORM_STERILE_INJECTABLES: DosageFormContent = {
         label: "Stability and CCI study conduct",
         description:
           "Long-term and accelerated stability under ICH Q1A(R2), container-closure integrity across pulls, and photostability per Q1B where applicable.",
-        owner: "both",
         notes: [
           "ICH zone II and IVb conditions",
           "CCI method per selected technology",
@@ -1666,7 +1607,6 @@ export const DOSAGE_FORM_STERILE_INJECTABLES: DosageFormContent = {
         label: "Scale-up and contamination-control strategy",
         description:
           "Filtration, filling and, where applicable, lyo cycle parameters scaled and risk-assessed under ICH Q9(R1); contamination-control strategy documented end-to-end.",
-        owner: "both",
         notes: [
           "Filter compatibility and validation scoping",
           "Risk assessment under Q9(R1)",
@@ -1677,8 +1617,7 @@ export const DOSAGE_FORM_STERILE_INJECTABLES: DosageFormContent = {
         id: "tech-transfer",
         label: "Tech-transfer and release",
         description:
-          "Methods, specifications and batch records transfer into Mississauga for release testing and, where applicable, DEL-scope operations.",
-        owner: "mississauga",
+          "Methods, specifications and batch records transfer into release testing and, where applicable, DEL-scope operations.",
         notes: [
           "Method transfer protocol and report",
           "Release testing under the Canadian DEL",
@@ -1686,11 +1625,6 @@ export const DOSAGE_FORM_STERILE_INJECTABLES: DosageFormContent = {
         ],
       },
     ],
-    ownerLegend: {
-      hyderabad: "Hyderabad — development authoring",
-      mississauga: "Mississauga — transfer, release, DEL scope",
-      both: "Both hubs — jointly planned",
-    },
   },
   equipment: {
     eyebrow: "Equipment and techniques",
@@ -1897,7 +1831,7 @@ export const DOSAGE_FORM_INHALATION: DosageFormContent = {
     "MDI, DPI, nebulizer solution and nasal spray development at Propharmex — aerosol characterization, device pairing, and cascade-impaction work authored to travel into the dossier.",
   ogTitle: "Inhalation product development — Propharmex",
   ogDescription:
-    "From formulation to device pairing. Inhalation development authored in Hyderabad, closed out in Mississauga under the Health Canada DEL.",
+    "From formulation to device pairing. Inhalation development executed by Propharmex, filed under our Health Canada Drug Establishment Licence.",
   hero: {
     eyebrow: "Pharmaceutical Development · Inhalation",
     headline: "MDIs, DPIs, nebulizer solutions and nasal sprays — developed around the device and the dose that leaves it.",
@@ -1967,7 +1901,6 @@ export const DOSAGE_FORM_INHALATION: DosageFormContent = {
         label: "Drug substance and device-target characterization",
         description:
           "Particle size, morphology, hygroscopicity and surface-energy profile characterized against the intended device class and the target APSD.",
-        owner: "hyderabad",
         notes: [
           "Particle size and morphology",
           "Hygroscopicity and surface energy",
@@ -1979,7 +1912,6 @@ export const DOSAGE_FORM_INHALATION: DosageFormContent = {
         label: "Formulation and device pairing",
         description:
           "For MDIs: propellant and co-solvent selection; for DPIs: carrier selection, blend morphology and fluidisation behaviour; for nebulizer solutions and nasal sprays: vehicle and spray-pattern work.",
-        owner: "hyderabad",
         notes: [
           "Device pairing and formulation–device interaction study",
           "Carrier or propellant selection",
@@ -1991,7 +1923,6 @@ export const DOSAGE_FORM_INHALATION: DosageFormContent = {
         label: "Analytical and aerosol method development",
         description:
           "Assay, related substances, delivered-dose uniformity and cascade-impaction methods authored alongside the formulation and validated under ICH Q2(R2).",
-        owner: "hyderabad",
         notes: [
           "APSD by cascade impaction per USP ⟨601⟩",
           "Delivered-dose uniformity through-life",
@@ -2003,7 +1934,6 @@ export const DOSAGE_FORM_INHALATION: DosageFormContent = {
         label: "Stability study conduct",
         description:
           "Long-term, accelerated, orientation-specific and, for DPIs, moisture-exposure stability under ICH Q1A(R2) with pull cadence aligned to registration milestones.",
-        owner: "both",
         notes: [
           "ICH zone II and IVb conditions",
           "Orientation-specific studies for MDIs",
@@ -2015,7 +1945,6 @@ export const DOSAGE_FORM_INHALATION: DosageFormContent = {
         label: "Scale-up and process characterization",
         description:
           "Blending, filling and crimping parameters defined and risk-assessed under ICH Q9(R1); pilot- or registration-scale batches manufactured and sampled on the intended device.",
-        owner: "both",
         notes: [
           "Design space articulated per Q8(R2)",
           "Risk assessment under Q9(R1)",
@@ -2026,8 +1955,7 @@ export const DOSAGE_FORM_INHALATION: DosageFormContent = {
         id: "tech-transfer",
         label: "Tech-transfer and release",
         description:
-          "Methods, specifications and batch records transfer into Mississauga for release testing and, where applicable, DEL-scope operations.",
-        owner: "mississauga",
+          "Methods, specifications and batch records transfer into release testing and, where applicable, DEL-scope operations.",
         notes: [
           "Method transfer protocol and report",
           "Release testing under the Canadian DEL",
@@ -2035,11 +1963,6 @@ export const DOSAGE_FORM_INHALATION: DosageFormContent = {
         ],
       },
     ],
-    ownerLegend: {
-      hyderabad: "Hyderabad — development authoring",
-      mississauga: "Mississauga — transfer, release, DEL scope",
-      both: "Both hubs — jointly planned",
-    },
   },
   equipment: {
     eyebrow: "Equipment and techniques",
@@ -2245,7 +2168,7 @@ export const DOSAGE_FORM_OPHTHALMIC: DosageFormContent = {
     "Eye-drop, ophthalmic suspension and ointment development at Propharmex — tonicity, sterility assurance, USP ⟨789⟩ particulate, and preservative efficacy authored to travel into the dossier.",
   ogTitle: "Ophthalmic product development — Propharmex",
   ogDescription:
-    "From tonicity to dossier. Ophthalmic development authored in Hyderabad, closed out in Mississauga under the Health Canada DEL.",
+    "From tonicity to dossier. Ophthalmic development executed by Propharmex, filed under our Health Canada Drug Establishment Licence.",
   hero: {
     eyebrow: "Pharmaceutical Development · Ophthalmic",
     headline: "Eye drops, ophthalmic suspensions and ointments — developed for the eye, not a general-purpose sterile.",
@@ -2315,7 +2238,6 @@ export const DOSAGE_FORM_OPHTHALMIC: DosageFormContent = {
         label: "Drug substance and ocular-target characterization",
         description:
           "Solubility, pH–stability profile, ocular-tolerance considerations and excipient compatibility characterized against the target product profile.",
-        owner: "hyderabad",
         notes: [
           "pH–solubility and buffer-capacity profile",
           "Osmolality targeting",
@@ -2327,7 +2249,6 @@ export const DOSAGE_FORM_OPHTHALMIC: DosageFormContent = {
         label: "Formulation and preservative development",
         description:
           "Vehicle, buffer, tonicity-adjuster and preservative system developed against critical quality attributes and ocular tolerability.",
-        owner: "hyderabad",
         notes: [
           "Preservative efficacy per USP ⟨51⟩",
           "Tonicity and pH control",
@@ -2339,7 +2260,6 @@ export const DOSAGE_FORM_OPHTHALMIC: DosageFormContent = {
         label: "Analytical and particulate method development",
         description:
           "Assay, related substances, sub-visible particulate (USP ⟨789⟩) and preservative content methods authored alongside the formulation and validated under ICH Q2(R2).",
-        owner: "hyderabad",
         notes: [
           "Particulate matter per USP ⟨789⟩",
           "Stability-indicating assay",
@@ -2351,7 +2271,6 @@ export const DOSAGE_FORM_OPHTHALMIC: DosageFormContent = {
         label: "Stability and in-use study conduct",
         description:
           "Long-term, accelerated and in-use stability under ICH Q1A(R2), with photostability per Q1B where applicable.",
-        owner: "both",
         notes: [
           "ICH zone II and IVb conditions",
           "In-use stability across labelled use period",
@@ -2363,7 +2282,6 @@ export const DOSAGE_FORM_OPHTHALMIC: DosageFormContent = {
         label: "Scale-up and contamination-control strategy",
         description:
           "Filtration, filling and, for ointments, processing-temperature parameters defined and risk-assessed under ICH Q9(R1); contamination-control strategy documented end-to-end.",
-        owner: "both",
         notes: [
           "Filter compatibility and validation scoping",
           "Risk assessment under Q9(R1)",
@@ -2374,8 +2292,7 @@ export const DOSAGE_FORM_OPHTHALMIC: DosageFormContent = {
         id: "tech-transfer",
         label: "Tech-transfer and release",
         description:
-          "Methods, specifications and batch records transfer into Mississauga for release testing and, where applicable, DEL-scope operations.",
-        owner: "mississauga",
+          "Methods, specifications and batch records transfer into release testing and, where applicable, DEL-scope operations.",
         notes: [
           "Method transfer protocol and report",
           "Release testing under the Canadian DEL",
@@ -2383,11 +2300,6 @@ export const DOSAGE_FORM_OPHTHALMIC: DosageFormContent = {
         ],
       },
     ],
-    ownerLegend: {
-      hyderabad: "Hyderabad — development authoring",
-      mississauga: "Mississauga — transfer, release, DEL scope",
-      both: "Both hubs — jointly planned",
-    },
   },
   equipment: {
     eyebrow: "Equipment and techniques",
@@ -2594,7 +2506,7 @@ export const DOSAGE_FORM_TRANSDERMAL_MR: DosageFormContent = {
     "Patch, extended-release and controlled-release development at Propharmex — diffusion, IVRT, food-effect strategy and release-mechanism characterization authored to travel.",
   ogTitle: "Transdermal and modified-release development — Propharmex",
   ogDescription:
-    "From release mechanism to dossier. Transdermal and MR development authored in Hyderabad, closed out in Mississauga under the Health Canada DEL.",
+    "From release mechanism to dossier. Transdermal and MR development executed by Propharmex, filed under our Health Canada Drug Establishment Licence.",
   hero: {
     eyebrow: "Pharmaceutical Development · Transdermal & modified release",
     headline: "Patches and extended- or controlled-release oral products — developed around the release mechanism, not just the release curve.",
@@ -2664,7 +2576,6 @@ export const DOSAGE_FORM_TRANSDERMAL_MR: DosageFormContent = {
         label: "Drug substance and release-target characterization",
         description:
           "Permeability, pH–solubility, dose–release target and, for transdermals, skin-permeation profile characterized against the target product profile.",
-        owner: "hyderabad",
         notes: [
           "Permeability and pH–solubility profile",
           "Dose–release target agreed with sponsor",
@@ -2676,7 +2587,6 @@ export const DOSAGE_FORM_TRANSDERMAL_MR: DosageFormContent = {
         label: "Formulation and mechanism selection",
         description:
           "For oral MR: matrix, osmotic or reservoir system selection with polymer-grade sourcing documented. For transdermals: adhesive chemistry and backing selection against wear-time target.",
-        owner: "hyderabad",
         notes: [
           "Mechanism selection with justification",
           "Polymer or adhesive grade sourcing",
@@ -2688,7 +2598,6 @@ export const DOSAGE_FORM_TRANSDERMAL_MR: DosageFormContent = {
         label: "Analytical and in-vitro release development",
         description:
           "Assay, related substances and release-testing methods authored alongside the formulation, with discriminatory power the primary design objective. Validation under ICH Q2(R2) once locked.",
-        owner: "hyderabad",
         notes: [
           "USP ⟨711⟩ dissolution or ⟨724⟩ drug release",
           "In-vitro permeation testing (Franz cells) for transdermals",
@@ -2700,7 +2609,6 @@ export const DOSAGE_FORM_TRANSDERMAL_MR: DosageFormContent = {
         label: "Stability study conduct",
         description:
           "Long-term and accelerated stability under ICH Q1A(R2), with release-profile stability and, where applicable, mechanism-drift tracking across pulls.",
-        owner: "both",
         notes: [
           "ICH zone II and IVb conditions",
           "Release-profile stability across pulls",
@@ -2712,7 +2620,6 @@ export const DOSAGE_FORM_TRANSDERMAL_MR: DosageFormContent = {
         label: "Scale-up and process characterization",
         description:
           "Coating, lamination or compression parameters defined and risk-assessed under ICH Q9(R1); pilot- or registration-scale batches manufactured and characterized.",
-        owner: "both",
         notes: [
           "Design space articulated per Q8(R2)",
           "Risk assessment under Q9(R1)",
@@ -2723,8 +2630,7 @@ export const DOSAGE_FORM_TRANSDERMAL_MR: DosageFormContent = {
         id: "tech-transfer",
         label: "Tech-transfer and release",
         description:
-          "Methods, specifications and batch records transfer into Mississauga for release testing and, where applicable, DEL-scope operations.",
-        owner: "mississauga",
+          "Methods, specifications and batch records transfer into release testing and, where applicable, DEL-scope operations.",
         notes: [
           "Method transfer protocol and report",
           "Release testing under the Canadian DEL",
@@ -2732,11 +2638,6 @@ export const DOSAGE_FORM_TRANSDERMAL_MR: DosageFormContent = {
         ],
       },
     ],
-    ownerLegend: {
-      hyderabad: "Hyderabad — development authoring",
-      mississauga: "Mississauga — transfer, release, DEL scope",
-      both: "Both hubs — jointly planned",
-    },
   },
   equipment: {
     eyebrow: "Equipment and techniques",

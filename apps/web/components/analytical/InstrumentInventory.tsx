@@ -82,7 +82,7 @@ export const InstrumentInventory: FC<Props> = ({ content }) => {
         <SectionReveal className="mt-12">
           <div className="overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] shadow-[var(--shadow-xs)]">
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[720px] text-left text-sm">
+              <table className="w-full min-w-[640px] text-left text-sm">
                 <caption className="sr-only">
                   Representative instrument inventory, sortable by technique.
                 </caption>
@@ -107,9 +107,6 @@ export const InstrumentInventory: FC<Props> = ({ content }) => {
                     </th>
                     <th scope="col" className="px-4 py-3">
                       Qualification
-                    </th>
-                    <th scope="col" className="px-4 py-3">
-                      Location
                     </th>
                   </tr>
                 </thead>
@@ -153,7 +150,6 @@ function TableRow({ row }: { row: InstrumentRow }) {
       </td>
       <td className="px-4 py-3">{row.application}</td>
       <td className="px-4 py-3">{row.qualification}</td>
-      <td className="px-4 py-3 whitespace-nowrap">{row.location}</td>
     </tr>
   );
 }

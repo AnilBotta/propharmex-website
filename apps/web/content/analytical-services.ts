@@ -87,7 +87,6 @@ export type LifecycleStage = {
   id: string;
   label: string;
   description: string;
-  owner: "hyderabad" | "mississauga" | "both";
 };
 
 export type AnalyticalLifecycle = {
@@ -95,11 +94,6 @@ export type AnalyticalLifecycle = {
   heading: string;
   lede: string;
   stages: LifecycleStage[];
-  ownerLegend: {
-    hyderabad: string;
-    mississauga: string;
-    both: string;
-  };
   handoffNote: string;
 };
 
@@ -174,8 +168,6 @@ export type ProcessStep = {
   id: string;
   label: string;
   description: string;
-  /** Which hub owns the step — mirrors lifecycle ownership shorthand. */
-  owner: "hyderabad" | "mississauga" | "both";
   /** Short technical notes surfaced under the step description. */
   notes: string[];
 };
@@ -185,11 +177,6 @@ export type AnalyticalProcess = {
   heading: string;
   lede: string;
   steps: ProcessStep[];
-  ownerLegend: {
-    hyderabad: string;
-    mississauga: string;
-    both: string;
-  };
 };
 
 export type InstrumentRow = {
@@ -202,7 +189,6 @@ export type InstrumentRow = {
   application: string;
   /** Qualification status. Uses the `qualified` verb, not `certified`. */
   qualification: string;
-  location: "Hyderabad" | "Mississauga" | "Both";
 };
 
 export type AnalyticalInstrumentInventory = {
@@ -312,14 +298,14 @@ export type AnalyticalLeafContent = {
 export const ANALYTICAL_HUB: AnalyticalHubContent = {
   metaTitle: "Analytical Services — Propharmex",
   metaDescription:
-    "Analytical method development, validation, stability, impurity profiling, bioanalytical, E&L and reference standard characterization. Authored in Hyderabad, transferred into Mississauga under the Health Canada DEL.",
+    "Analytical method development, validation, stability, impurity profiling, bioanalytical, E&L and reference standard characterization. Executed by Propharmex, filed under our Health Canada Drug Establishment Licence.",
   ogTitle: "Analytical Services — Propharmex",
   ogDescription:
     "Seven analytical services, one quality system. Methods authored to travel — from the bench into validation, transfer, and the dossier.",
   hero: {
     eyebrow: "Services · Analytical Services",
     headline: "Methods authored to survive validation, transfer, and the dossier.",
-    lede: "Analytical work begins in Hyderabad, is qualified against ICH Q2(R2) and the relevant USP general chapters, and is transferred into Mississauga for release testing under a single quality system. Seven sub-services cover the lifecycle — from early development through reference standard characterization — each documented in a shape the regulator can read.",
+    lede: "Analytical work is qualified against ICH Q2(R2) and the relevant USP general chapters, then transferred into release testing under a single quality system. Seven sub-services cover the lifecycle — from early development through reference standard characterization — each documented in a shape the regulator can read.",
     stats: [
       { label: "Sub-services supported", value: "7" },
       { label: "Development anchor", value: "ICH Q14 + Q2(R2)" },
@@ -404,44 +390,35 @@ export const ANALYTICAL_HUB: AnalyticalHubContent = {
   lifecycle: {
     eyebrow: "Method lifecycle",
     heading: "Develop → qualify / validate → transfer → maintain",
-    lede: "Every analytical method runs through the same four stages, with ownership written into the plan from day one. Hyderabad authors and qualifies; Mississauga receives, validates against release use, and maintains the method across its operational life.",
+    lede: "Every analytical method runs through the same four stages, with ownership written into the plan from day one. Executed by Propharmex — authored, qualified, transferred, and maintained against release use under a single quality system.",
     stages: [
       {
         id: "develop",
         label: "Develop",
         description:
           "Method scope, critical method attributes and analytical target profile defined against the specification and ICH Q14. Early method fitness evaluated with risk-ranked parameters.",
-        owner: "hyderabad",
       },
       {
         id: "qualify-validate",
         label: "Qualify / validate",
         description:
           "Formal validation under ICH Q2(R2) with pre-defined acceptance criteria — specificity, linearity, accuracy, precision, range, robustness. USP ⟨1225⟩ is referenced where compendial.",
-        owner: "hyderabad",
       },
       {
         id: "transfer",
         label: "Transfer",
         description:
-          "Protocol-driven method transfer into Mississauga with comparative testing, pre-agreed equivalence criteria, and a closeout report that travels with the method.",
-        owner: "both",
+          "Protocol-driven method transfer into the release-testing site with comparative testing, pre-agreed equivalence criteria, and a closeout report that travels with the method.",
       },
       {
         id: "maintain",
         label: "Maintain",
         description:
-          "System suitability, change-control, periodic review and revalidation triggers owned in Mississauga under the release-testing QMS. Method history is continuous, not re-started at transfer.",
-        owner: "mississauga",
+          "System suitability, change-control, periodic review and revalidation triggers owned under the release-testing QMS. Method history is continuous, not re-started at transfer.",
       },
     ],
-    ownerLegend: {
-      hyderabad: "Hyderabad — development and qualification",
-      mississauga: "Mississauga — transfer close-out, release, method maintenance",
-      both: "Both hubs — jointly planned",
-    },
     handoffNote:
-      "The transfer between Hyderabad and Mississauga is a written protocol with equivalence criteria agreed up front. Nothing in the method is re-authored on arrival; the record is continuous.",
+      "Method transfer is a written protocol with equivalence criteria agreed up front. Nothing in the method is re-authored on arrival; the record is continuous under a single quality system.",
   },
   caseRail: {
     eyebrow: "Worked examples",
@@ -452,7 +429,7 @@ export const ANALYTICAL_HUB: AnalyticalHubContent = {
         id: "stability-indicating",
         service: "Method development",
         title: "Stability-indicating assay redevelopment for a BCS-II generic",
-        body: "Assay and related-substances methods rebuilt to resolve known and forced-degradation impurities, qualified against ICH Q14 attribute targets, and transferred into Mississauga for release use.",
+        body: "Assay and related-substances methods rebuilt to resolve known and forced-degradation impurities, qualified against ICH Q14 attribute targets, and transferred into release use under our Health Canada DEL.",
         status: "under-confirmation",
       },
       {
@@ -506,7 +483,7 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
     "Analytical method development at Propharmex — stability-indicating assay, related-substances and dissolution methods authored in alignment with ICH Q14 and the relevant USP general chapters.",
   ogTitle: "Analytical Method Development — Propharmex",
   ogDescription:
-    "From analytical target profile to a method that travels. Developed in Hyderabad, qualified under an active IOQ/PQ programme, transferred into Mississauga for release use.",
+    "From analytical target profile to a method that travels. Executed by Propharmex — developed, qualified under an active IOQ/PQ programme, and transferred into release use under our Health Canada DEL.",
   hero: {
     eyebrow: "Analytical Services · Method development",
     headline: "Methods built against the analytical target profile — not against the first chromatogram that runs.",
@@ -576,7 +553,6 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
         label: "Analytical target profile",
         description:
           "Intended use, critical method attributes and performance targets defined against the specification and the stage of the programme, per ICH Q14.",
-        owner: "hyderabad",
         notes: [
           "Intended use and decision criteria agreed",
           "Critical method attributes ranked by risk",
@@ -588,7 +564,6 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
         label: "Screening and selectivity",
         description:
           "Column and mobile-phase screening against the API and its known degradation pathway. Selectivity evaluated against forced-degradation samples under acid, base, oxidative, thermal and photolytic stress.",
-        owner: "hyderabad",
         notes: [
           "Forced degradation per ICH Q1A(R2) and Q1B",
           "Mass-balance and peak-purity checks",
@@ -600,7 +575,6 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
         label: "Optimization and range",
         description:
           "Gradient, temperature, injection volume and detection wavelength optimized against resolution, peak shape and quantitation range. LOD and LOQ scoped to ICH Q3A/Q3B reporting thresholds.",
-        owner: "hyderabad",
         notes: [
           "Resolution and peak-purity criteria set",
           "LOD / LOQ against Q3A/B thresholds",
@@ -612,7 +586,6 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
         label: "Robustness (DoE)",
         description:
           "Design-of-experiments on the parameters most likely to vary between instruments, columns and analysts. System-suitability limits set from the robustness data, not from a single successful run.",
-        owner: "hyderabad",
         notes: [
           "DoE on pH, organic modifier, temperature, gradient",
           "System-suitability limits derived from robustness",
@@ -624,7 +597,6 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
         label: "Method qualification and pre-validation",
         description:
           "Method qualified for its intended use ahead of formal validation — specificity, accuracy, precision and linearity demonstrated at pre-validation level so the ICH Q2(R2) study confirms rather than discovers.",
-        owner: "hyderabad",
         notes: [
           "Pre-validation package under ICH Q2(R2) principles",
           "Raw-data and instrument logs under QMS control",
@@ -633,10 +605,9 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
       },
       {
         id: "transfer",
-        label: "Transfer into Mississauga",
+        label: "Transfer into release",
         description:
-          "Method, system-suitability, and a transfer protocol move to Mississauga for comparative testing, equivalence evaluation, and incorporation into the release-testing QMS.",
-        owner: "mississauga",
+          "Method, system-suitability, and a transfer protocol move into release-testing for comparative testing, equivalence evaluation, and incorporation into the release-testing QMS.",
         notes: [
           "Transfer protocol with equivalence criteria",
           "Comparative testing across analysts and instruments",
@@ -644,11 +615,6 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
         ],
       },
     ],
-    ownerLegend: {
-      hyderabad: "Hyderabad — development and qualification",
-      mississauga: "Mississauga — transfer close-out, release, method maintenance",
-      both: "Both hubs — jointly planned",
-    },
   },
   inventory: {
     eyebrow: "Instrument inventory",
@@ -661,7 +627,6 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
         technique: "HPLC",
         application: "Assay, related substances, dissolution sample analysis",
         qualification: "Qualified under IOQ/PQ programme aligned to USP ⟨1058⟩",
-        location: "Both",
       },
       {
         id: "uhplc-waters-acquity",
@@ -669,7 +634,6 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
         technique: "UHPLC",
         application: "Stability-indicating assay, rapid method screening",
         qualification: "IOQ/PQ current under USP ⟨1058⟩",
-        location: "Hyderabad",
       },
       {
         id: "lcmsms-xevo-tqs",
@@ -677,7 +641,6 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
         technique: "LC-MS/MS",
         application: "Trace impurities, degradation product identification, genotoxic screening",
         qualification: "IOQ/PQ current; performance verification per in-house protocol",
-        location: "Hyderabad",
       },
       {
         id: "gcms-agilent-8890",
@@ -685,7 +648,6 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
         technique: "GC-MS",
         application: "Residual solvents per ICH Q3C(R8), volatile impurities",
         qualification: "IOQ/PQ current under USP ⟨1058⟩",
-        location: "Hyderabad",
       },
       {
         id: "gc-fid",
@@ -693,7 +655,6 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
         technique: "GC",
         application: "Residual solvents (compendial), ethanol content",
         qualification: "IOQ/PQ current under USP ⟨1058⟩",
-        location: "Hyderabad",
       },
       {
         id: "kf-metrohm",
@@ -701,7 +662,6 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
         technique: "Karl Fischer",
         application: "Water content (moisture) across drug substance and product",
         qualification: "IOQ/PQ current; calibration on certified water standards",
-        location: "Hyderabad",
       },
       {
         id: "dissolution-distek",
@@ -709,7 +669,6 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
         technique: "Dissolution",
         application: "USP ⟨711⟩ Apparatus 1 and 2 method development and execution",
         qualification: "Mechanical qualification per USP ⟨711⟩ toolkit; IOQ/PQ current",
-        location: "Hyderabad",
       },
       {
         id: "dsc-mettler",
@@ -717,7 +676,6 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
         technique: "DSC",
         application: "Thermal characterization, polymorph screen, excipient compatibility",
         qualification: "IOQ/PQ current; indium / zinc reference calibration",
-        location: "Hyderabad",
       },
       {
         id: "tga-mettler",
@@ -725,7 +683,6 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
         technique: "TGA",
         application: "Thermal decomposition, residual solvent loss, hydrate characterization",
         qualification: "IOQ/PQ current",
-        location: "Hyderabad",
       },
       {
         id: "uvvis-cary60",
@@ -733,7 +690,6 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
         technique: "UV-Vis",
         application: "Assay (compendial), content uniformity, dissolution at lower sensitivity",
         qualification: "IOQ/PQ current; holmium-oxide wavelength check",
-        location: "Hyderabad",
       },
       {
         id: "ph-seven",
@@ -741,7 +697,6 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
         technique: "pH",
         application: "Mobile-phase and sample pH; routine analytical support",
         qualification: "IOQ/PQ current; daily three-point buffer calibration",
-        location: "Both",
       },
       {
         id: "balance-xpr",
@@ -749,7 +704,6 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
         technique: "Balance",
         application: "Weighing for standards and sample preparation",
         qualification: "IOQ/PQ current; calibration against Class I / E2 weights",
-        location: "Both",
       },
       {
         id: "nmr-bruker",
@@ -757,7 +711,6 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
         technique: "NMR",
         application: "Structural elucidation, impurity identification, polymorph confirmation",
         qualification: "Partner-scope — qualification held by partner laboratory under their QMS",
-        location: "Hyderabad",
       },
     ],
     representativeNote:
@@ -789,7 +742,7 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
         id: "transfer",
         label: "Transfer outcome",
         value: "Equivalence, not re-development",
-        context: "System-suitability limits and column-equivalence guidance written into the method, so the receiving lab in Mississauga runs comparative testing rather than re-optimizing.",
+        context: "System-suitability limits and column-equivalence guidance written into the method, so the receiving release lab runs comparative testing rather than re-optimizing.",
       },
     ],
     status: "under-confirmation",
@@ -837,7 +790,7 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
         id: "which-hub",
         question: "Which site actually does the method-development work?",
         answer:
-          "Method development, qualification and the pre-validation package are authored in Hyderabad. Transfer close-out, release testing and ongoing method maintenance sit in Mississauga under the Health Canada DEL. Both sites operate under a single quality system, so the method record is continuous rather than stitched together at the handoff.",
+          "Method development, qualification and the pre-validation package are authored by Propharmex. Transfer close-out, release testing and ongoing method maintenance sit under the Health Canada Drug Establishment Licence. The record is continuous under a single quality system rather than stitched together at the handoff.",
       },
       {
         id: "q14-vs-q2",
@@ -855,7 +808,7 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
         id: "dissolution",
         question: "How do you approach dissolution method development?",
         answer:
-          "Media and apparatus are selected against the BCS class, the dosage form and the question the method needs to answer. Sink conditions and discriminatory power are demonstrated before the method is locked. The method carries into validation under ICH Q2(R2) and into release use in Mississauga without re-authoring.",
+          "Media and apparatus are selected against the BCS class, the dosage form and the question the method needs to answer. Sink conditions and discriminatory power are demonstrated before the method is locked. The method carries into validation under ICH Q2(R2) and into release use under the DEL without re-authoring.",
       },
       {
         id: "data-integrity",
@@ -881,7 +834,7 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
         id: "regulatory",
         label: "Regulatory services",
         description:
-          "Methods and their validation packages land in Module 3 of the CTD. The regulatory team in Mississauga authors the submission against the analytical evidence.",
+          "Methods and their validation packages land in Module 3 of the CTD. The regulatory team authors the submission against the analytical evidence.",
         href: "/services/regulatory-services",
       },
       {
@@ -991,14 +944,13 @@ export const ANALYTICAL_METHOD_VALIDATION: AnalyticalLeafContent = {
   process: {
     eyebrow: "Our process",
     heading: "From protocol to a reviewer-ready report",
-    lede: "The stepper reflects the order of work on most validation packages. Hyderabad authors the protocol and executes the validation; Mississauga receives, reviews and closes out the package into the release QMS.",
+    lede: "The stepper reflects the order of work on most validation packages. Executed by Propharmex — protocol authoring, validation execution, and close-out into the release QMS — under a single quality system.",
     steps: [
       {
         id: "protocol",
         label: "Protocol authoring",
         description:
           "Validation protocol drafted against ICH Q2(R2) with each characteristic, experimental design, sample plan and acceptance criterion defined before execution. USP ⟨1225⟩ is referenced where the method is compendial.",
-        owner: "hyderabad",
         notes: [
           "Each Q2(R2) characteristic written with acceptance criteria",
           "Sample and reference standard plan agreed",
@@ -1010,7 +962,6 @@ export const ANALYTICAL_METHOD_VALIDATION: AnalyticalLeafContent = {
         label: "Readiness-for-validation review",
         description:
           "Pre-validation evidence from development reviewed against the protocol so any residual risk — sensitivity, selectivity, peak-purity gaps — is addressed before formal execution begins.",
-        owner: "hyderabad",
         notes: [
           "Pre-validation gaps documented and closed",
           "System-suitability limits confirmed against robustness data",
@@ -1022,7 +973,6 @@ export const ANALYTICAL_METHOD_VALIDATION: AnalyticalLeafContent = {
         label: "Execution of the validation characteristics",
         description:
           "Specificity, linearity, accuracy, precision (repeatability and intermediate), range, LOD/LOQ and robustness executed per protocol. Raw data captured under audit-trail-enabled software with reviewer sign-off per run.",
-        owner: "hyderabad",
         notes: [
           "Specificity against forced-degradation samples",
           "Linearity across the working range",
@@ -1034,7 +984,6 @@ export const ANALYTICAL_METHOD_VALIDATION: AnalyticalLeafContent = {
         label: "Validation report",
         description:
           "Report drafted against the protocol with each characteristic's results tied to its acceptance criterion. Deviations — where any — are assessed, closed and cross-referenced. The report is the document that travels into the dossier.",
-        owner: "hyderabad",
         notes: [
           "Results tied characteristic-by-characteristic to acceptance criteria",
           "Deviations assessed and closed",
@@ -1045,8 +994,7 @@ export const ANALYTICAL_METHOD_VALIDATION: AnalyticalLeafContent = {
         id: "transfer-closeout",
         label: "Transfer close-out and change-control tie-in",
         description:
-          "Validation report, method SOP and system-suitability package move into Mississauga. The method is registered under the release-testing QMS with change-control references so post-validation changes have a known revalidation path.",
-        owner: "mississauga",
+          "Validation report, method SOP and system-suitability package move into release. The method is registered under the release-testing QMS with change-control references so post-validation changes have a known revalidation path.",
         notes: [
           "Method registered under the release QMS",
           "Change-control cross-reference activated",
@@ -1054,11 +1002,6 @@ export const ANALYTICAL_METHOD_VALIDATION: AnalyticalLeafContent = {
         ],
       },
     ],
-    ownerLegend: {
-      hyderabad: "Hyderabad — development and qualification",
-      mississauga: "Mississauga — transfer close-out, release, method maintenance",
-      both: "Both hubs — jointly planned",
-    },
   },
   inventory: {
     eyebrow: "Instrument inventory",
@@ -1071,7 +1014,6 @@ export const ANALYTICAL_METHOD_VALIDATION: AnalyticalLeafContent = {
         technique: "HPLC",
         application: "Primary validation platform for assay, related substances and dissolution methods",
         qualification: "Qualified under IOQ/PQ programme aligned to USP ⟨1058⟩",
-        location: "Both",
       },
       {
         id: "uhplc-waters-acquity",
@@ -1079,7 +1021,6 @@ export const ANALYTICAL_METHOD_VALIDATION: AnalyticalLeafContent = {
         technique: "UHPLC",
         application: "Validation of stability-indicating and short-run methods",
         qualification: "IOQ/PQ current under USP ⟨1058⟩",
-        location: "Hyderabad",
       },
       {
         id: "second-hplc-family",
@@ -1087,7 +1028,6 @@ export const ANALYTICAL_METHOD_VALIDATION: AnalyticalLeafContent = {
         technique: "HPLC",
         application: "Intermediate-precision runs across a second instrument family for robustness evidence",
         qualification: "IOQ/PQ current under USP ⟨1058⟩",
-        location: "Mississauga",
       },
       {
         id: "column-bank-qualified",
@@ -1095,7 +1035,6 @@ export const ANALYTICAL_METHOD_VALIDATION: AnalyticalLeafContent = {
         technique: "Columns",
         application: "Column-equivalence and robustness runs; lot-to-lot comparison",
         qualification: "Column lots tracked under QMS; qualification data retained per method",
-        location: "Both",
       },
       {
         id: "lcmsms-xevo-tqs",
@@ -1103,7 +1042,6 @@ export const ANALYTICAL_METHOD_VALIDATION: AnalyticalLeafContent = {
         technique: "LC-MS/MS",
         application: "Specificity support for trace-level impurity methods; confirmatory identification",
         qualification: "IOQ/PQ current; performance verification per in-house protocol",
-        location: "Hyderabad",
       },
       {
         id: "dissolution-distek",
@@ -1111,7 +1049,6 @@ export const ANALYTICAL_METHOD_VALIDATION: AnalyticalLeafContent = {
         technique: "Dissolution",
         application: "Dissolution validation per USP ⟨711⟩ with mechanical qualification",
         qualification: "Mechanical qualification per USP ⟨711⟩ toolkit; IOQ/PQ current",
-        location: "Hyderabad",
       },
       {
         id: "kf-metrohm",
@@ -1119,7 +1056,6 @@ export const ANALYTICAL_METHOD_VALIDATION: AnalyticalLeafContent = {
         technique: "Karl Fischer",
         application: "Water-content validation against certified water standards",
         qualification: "IOQ/PQ current; calibration on certified water standards",
-        location: "Hyderabad",
       },
       {
         id: "balance-xpr",
@@ -1127,7 +1063,6 @@ export const ANALYTICAL_METHOD_VALIDATION: AnalyticalLeafContent = {
         technique: "Balance",
         application: "Weighing for standards, samples and linearity serial dilutions",
         qualification: "IOQ/PQ current; calibration against Class I / E2 weights",
-        location: "Both",
       },
       {
         id: "cds-validated",
@@ -1135,7 +1070,6 @@ export const ANALYTICAL_METHOD_VALIDATION: AnalyticalLeafContent = {
         technique: "Data system",
         application: "Audit-trail-enabled data acquisition, review and long-term archive",
         qualification: "Computerized-system validation under GAMP 5 principles; IQ/OQ current",
-        location: "Both",
       },
       {
         id: "reference-standards",
@@ -1143,7 +1077,6 @@ export const ANALYTICAL_METHOD_VALIDATION: AnalyticalLeafContent = {
         technique: "Reference standards",
         application: "Identity, assay and impurity reference across validation runs",
         qualification: "Primary standards sourced from USP / Ph. Eur.; working standards qualified under the QMS",
-        location: "Both",
       },
     ],
     representativeNote:
@@ -1383,14 +1316,13 @@ export const ANALYTICAL_STABILITY_STUDIES: AnalyticalLeafContent = {
   process: {
     eyebrow: "Our process",
     heading: "From protocol to a shelf-life that holds up in review",
-    lede: "The stepper reflects the order of work on most stability programmes. Hyderabad authors and executes the study; Mississauga picks up post-submission stability and commitment-stability pulls under the release QMS.",
+    lede: "The stepper reflects the order of work on most stability programmes. Executed by Propharmex — study authoring and execution, then post-submission stability and commitment-stability pulls under the release QMS.",
     steps: [
       {
         id: "protocol",
         label: "Stability protocol",
         description:
           "Protocol authored against ICH Q1A(R2) with storage zone, pull cadence, container-closure, test panel and acceptance criteria defined. Bracketing / matrixing rationale documented where applied.",
-        owner: "hyderabad",
         notes: [
           "Storage zone matched to markets",
           "Pull cadence aligned to submission date",
@@ -1402,7 +1334,6 @@ export const ANALYTICAL_STABILITY_STUDIES: AnalyticalLeafContent = {
         label: "Stress testing and photostability setup",
         description:
           "Forced-degradation samples generated to confirm stability-indicating power of the method. Photostability exposure designed under ICH Q1B with actinometry evidence.",
-        owner: "hyderabad",
         notes: [
           "Acid, base, oxidative, thermal, photolytic stress",
           "ICH Q1B Option 1 or Option 2 source selection",
@@ -1414,7 +1345,6 @@ export const ANALYTICAL_STABILITY_STUDIES: AnalyticalLeafContent = {
         label: "Chamber loading and T0",
         description:
           "Samples loaded under mapped chamber conditions with temperature and humidity recorded continuously. T0 testing executed against the protocol acceptance criteria.",
-        owner: "hyderabad",
         notes: [
           "Mapped chambers under ICH Q1A(R2) conditions",
           "Continuous temp/RH logging under QMS",
@@ -1426,7 +1356,6 @@ export const ANALYTICAL_STABILITY_STUDIES: AnalyticalLeafContent = {
         label: "Scheduled pull-point testing",
         description:
           "Samples pulled at each protocol timepoint and tested against the specification. Out-of-specification and out-of-trend results handled under the QMS deviation workflow.",
-        owner: "hyderabad",
         notes: [
           "Pull-point execution against the protocol",
           "OOS / OOT investigation under QMS",
@@ -1438,7 +1367,6 @@ export const ANALYTICAL_STABILITY_STUDIES: AnalyticalLeafContent = {
         label: "Statistical shelf-life evaluation (Q1E)",
         description:
           "Shelf-life and retest period proposed via the statistical approach in ICH Q1E — linear regression with 95% confidence intervals where data supports it, or the most conservative observed value where it does not.",
-        owner: "hyderabad",
         notes: [
           "Q1E statistical treatment with model justification",
           "Proposed shelf-life with confidence intervals",
@@ -1449,8 +1377,7 @@ export const ANALYTICAL_STABILITY_STUDIES: AnalyticalLeafContent = {
         id: "commitment-release",
         label: "Commitment stability and release hand-off",
         description:
-          "Post-approval commitment stability moves into Mississauga under the release-testing QMS, with pull-points, method maintenance and any protocol amendments owned at the release site.",
-        owner: "mississauga",
+          "Post-approval commitment stability moves under the release-testing QMS, with pull-points, method maintenance and any protocol amendments owned at the release site.",
         notes: [
           "Commitment stability under release QMS",
           "Amendment control tied to change-control",
@@ -1458,11 +1385,6 @@ export const ANALYTICAL_STABILITY_STUDIES: AnalyticalLeafContent = {
         ],
       },
     ],
-    ownerLegend: {
-      hyderabad: "Hyderabad — development and qualification",
-      mississauga: "Mississauga — transfer close-out, release, method maintenance",
-      both: "Both hubs — jointly planned",
-    },
   },
   inventory: {
     eyebrow: "Instrument inventory",
@@ -1475,7 +1397,6 @@ export const ANALYTICAL_STABILITY_STUDIES: AnalyticalLeafContent = {
         technique: "Stability chamber",
         application: "ICH Q1A(R2) long-term storage for Zone II markets",
         qualification: "Temperature/humidity mapping current; ICH Q1A(R2) conditions maintained",
-        location: "Hyderabad",
       },
       {
         id: "chamber-30-75",
@@ -1483,7 +1404,6 @@ export const ANALYTICAL_STABILITY_STUDIES: AnalyticalLeafContent = {
         technique: "Stability chamber",
         application: "ICH Q1A(R2) long-term storage for Zone IVb markets",
         qualification: "Temperature/humidity mapping current; ICH Q1A(R2) conditions maintained",
-        location: "Hyderabad",
       },
       {
         id: "chamber-40-75",
@@ -1491,7 +1411,6 @@ export const ANALYTICAL_STABILITY_STUDIES: AnalyticalLeafContent = {
         technique: "Stability chamber",
         application: "Accelerated storage per ICH Q1A(R2)",
         qualification: "Temperature/humidity mapping current; ICH Q1A(R2) conditions maintained",
-        location: "Both",
       },
       {
         id: "chamber-30-65",
@@ -1499,7 +1418,6 @@ export const ANALYTICAL_STABILITY_STUDIES: AnalyticalLeafContent = {
         technique: "Stability chamber",
         application: "Intermediate storage where regional annexes require it",
         qualification: "Temperature/humidity mapping current",
-        location: "Hyderabad",
       },
       {
         id: "chamber-2-8",
@@ -1507,7 +1425,6 @@ export const ANALYTICAL_STABILITY_STUDIES: AnalyticalLeafContent = {
         technique: "Stability chamber",
         application: "Refrigerated storage for refrigerated products and photostability controls",
         qualification: "Temperature mapping current; continuous logging under QMS",
-        location: "Both",
       },
       {
         id: "photostab-chamber",
@@ -1515,7 +1432,6 @@ export const ANALYTICAL_STABILITY_STUDIES: AnalyticalLeafContent = {
         technique: "Photostability",
         application: "ICH Q1B Option 1 exposure with radiometric / photometric dosimetry",
         qualification: "Actinometry-verified exposure; source qualification current",
-        location: "Hyderabad",
       },
       {
         id: "data-loggers",
@@ -1523,7 +1439,6 @@ export const ANALYTICAL_STABILITY_STUDIES: AnalyticalLeafContent = {
         technique: "Monitoring",
         application: "Continuous T/RH recording across chambers, with excursion alerting",
         qualification: "Loggers calibrated against NIST-traceable references; QMS-controlled",
-        location: "Both",
       },
       {
         id: "hplc-agilent-1260",
@@ -1531,7 +1446,6 @@ export const ANALYTICAL_STABILITY_STUDIES: AnalyticalLeafContent = {
         technique: "HPLC",
         application: "Pull-point assay and related-substances analysis",
         qualification: "Qualified under IOQ/PQ programme aligned to USP ⟨1058⟩",
-        location: "Both",
       },
       {
         id: "uhplc-waters-acquity",
@@ -1539,7 +1453,6 @@ export const ANALYTICAL_STABILITY_STUDIES: AnalyticalLeafContent = {
         technique: "UHPLC",
         application: "Stability-indicating assay on shorter run-time methods",
         qualification: "IOQ/PQ current under USP ⟨1058⟩",
-        location: "Hyderabad",
       },
       {
         id: "kf-metrohm",
@@ -1547,7 +1460,6 @@ export const ANALYTICAL_STABILITY_STUDIES: AnalyticalLeafContent = {
         technique: "Karl Fischer",
         application: "Water-content tracking at stability timepoints",
         qualification: "IOQ/PQ current; calibration on certified water standards",
-        location: "Hyderabad",
       },
       {
         id: "dissolution-distek",
@@ -1555,7 +1467,6 @@ export const ANALYTICAL_STABILITY_STUDIES: AnalyticalLeafContent = {
         technique: "Dissolution",
         application: "Dissolution at each pull point per the protocol",
         qualification: "Mechanical qualification per USP ⟨711⟩ toolkit; IOQ/PQ current",
-        location: "Hyderabad",
       },
     ],
     representativeNote:
@@ -1665,7 +1576,7 @@ export const ANALYTICAL_STABILITY_STUDIES: AnalyticalLeafContent = {
         id: "commitment-stability",
         question: "How is post-approval commitment stability handled?",
         answer:
-          "Commitment stability is written into the original protocol where possible and pulled through into the Mississauga release QMS at commercial handover. Annual pull-point testing and stability trending are reported to the customer, and any amendment — pack change, strength addition — is routed through change-control with the revalidation and additional-stability path documented.",
+          "Commitment stability is written into the original protocol where possible and pulled through into the release QMS at commercial handover. Annual pull-point testing and stability trending are reported to the customer, and any amendment — pack change, strength addition — is routed through change-control with the revalidation and additional-stability path documented.",
       },
     ],
   },
@@ -1692,7 +1603,7 @@ export const ANALYTICAL_STABILITY_STUDIES: AnalyticalLeafContent = {
         id: "regulatory",
         label: "Regulatory services",
         description:
-          "Stability data lands in CTD Module 3; the regulatory team in Mississauga authors the submission around it.",
+          "Stability data lands in CTD Module 3; the regulatory team authors the submission around it.",
         href: "/services/regulatory-services",
       },
     ],
@@ -1795,14 +1706,13 @@ export const ANALYTICAL_IMPURITY_PROFILING: AnalyticalLeafContent = {
   process: {
     eyebrow: "Our process",
     heading: "From risk assessment to a control strategy the dossier can hold",
-    lede: "The stepper reflects the order of work on most impurity profiling briefs. Hyderabad authors the assessment and executes confirmatory work; Mississauga hosts the release-testing methods tied to the final specification.",
+    lede: "The stepper reflects the order of work on most impurity profiling briefs. Executed by Propharmex — assessment authoring, confirmatory work, and release-testing methods tied to the final specification — under a single quality system.",
     steps: [
       {
         id: "risk-assessment",
         label: "Risk assessment across Q3 family",
         description:
           "Structured risk review across organic (Q3A/B), residual-solvent (Q3C), elemental (Q3D) and mutagenic (M7) impurity pathways, with nitrosamine covered as a named workstream.",
-        owner: "hyderabad",
         notes: [
           "Synthesis route mapped for impurity sources",
           "Excipient, water and container contributions listed",
@@ -1814,7 +1724,6 @@ export const ANALYTICAL_IMPURITY_PROFILING: AnalyticalLeafContent = {
         label: "Analytical method scoping",
         description:
           "Methods scoped per impurity class — LC / LC-MS/MS for organic and mutagenic, GC-MS / HS-GC for residual solvents, ICP-MS for elemental — and qualified for fitness before confirmatory work begins.",
-        owner: "hyderabad",
         notes: [
           "Technique mapped to impurity class",
           "Sensitivity against regulator-expected limits",
@@ -1826,7 +1735,6 @@ export const ANALYTICAL_IMPURITY_PROFILING: AnalyticalLeafContent = {
         label: "Confirmatory analysis",
         description:
           "Confirmatory runs at control-threshold levels with identity, quantitation and — where needed — structural elucidation support from a partner HRMS laboratory.",
-        owner: "hyderabad",
         notes: [
           "Quantitation at regulator-expected thresholds",
           "Identity confirmation against reference standards",
@@ -1838,7 +1746,6 @@ export const ANALYTICAL_IMPURITY_PROFILING: AnalyticalLeafContent = {
         label: "Control strategy authoring",
         description:
           "Control strategy drafted against the risk assessment and the confirmatory data — specification limits, in-process controls, supplier qualification, and purge arguments where synthesis removes the impurity.",
-        owner: "hyderabad",
         notes: [
           "Specification limits tied to daily dose",
           "In-process controls and supplier qualification",
@@ -1850,7 +1757,6 @@ export const ANALYTICAL_IMPURITY_PROFILING: AnalyticalLeafContent = {
         label: "Module 3 authoring support",
         description:
           "Impurity profile authored in CTD Module 3 shape — S.3.2 drug substance, P.5.5 drug product, with cross-reference to method-validation packages and stability data.",
-        owner: "both",
         notes: [
           "S.3.2 and P.5.5 authored to shape",
           "Cross-reference to validation and stability",
@@ -1861,8 +1767,7 @@ export const ANALYTICAL_IMPURITY_PROFILING: AnalyticalLeafContent = {
         id: "release",
         label: "Release-testing transfer",
         description:
-          "Impurity methods transferred into the Mississauga release QMS under the standard transfer protocol. Ongoing trending and change-control owned at the release site.",
-        owner: "mississauga",
+          "Impurity methods transferred into the release QMS under the standard transfer protocol. Ongoing trending and change-control owned at the release site.",
         notes: [
           "Transfer under equivalence criteria",
           "Release-QMS registration",
@@ -1870,11 +1775,6 @@ export const ANALYTICAL_IMPURITY_PROFILING: AnalyticalLeafContent = {
         ],
       },
     ],
-    ownerLegend: {
-      hyderabad: "Hyderabad — development and qualification",
-      mississauga: "Mississauga — transfer close-out, release, method maintenance",
-      both: "Both hubs — jointly planned",
-    },
   },
   inventory: {
     eyebrow: "Instrument inventory",
@@ -1887,7 +1787,6 @@ export const ANALYTICAL_IMPURITY_PROFILING: AnalyticalLeafContent = {
         technique: "LC-MS/MS",
         application: "Trace-level organic impurities, mutagenic impurity quantitation, nitrosamine confirmation",
         qualification: "IOQ/PQ current; performance verification per in-house protocol",
-        location: "Hyderabad",
       },
       {
         id: "hplc-agilent-1260",
@@ -1895,7 +1794,6 @@ export const ANALYTICAL_IMPURITY_PROFILING: AnalyticalLeafContent = {
         technique: "HPLC",
         application: "Q3A / Q3B organic impurity quantitation, related-substances profiling",
         qualification: "Qualified under IOQ/PQ programme aligned to USP ⟨1058⟩",
-        location: "Both",
       },
       {
         id: "uhplc-waters-acquity",
@@ -1903,7 +1801,6 @@ export const ANALYTICAL_IMPURITY_PROFILING: AnalyticalLeafContent = {
         technique: "UHPLC",
         application: "High-resolution chromatographic separation of close-eluting impurities",
         qualification: "IOQ/PQ current under USP ⟨1058⟩",
-        location: "Hyderabad",
       },
       {
         id: "gcms-agilent-8890",
@@ -1911,7 +1808,6 @@ export const ANALYTICAL_IMPURITY_PROFILING: AnalyticalLeafContent = {
         technique: "GC-MS",
         application: "Q3C(R8) residual solvents, volatile nitrosamine confirmation",
         qualification: "IOQ/PQ current under USP ⟨1058⟩",
-        location: "Hyderabad",
       },
       {
         id: "hs-gc",
@@ -1919,7 +1815,6 @@ export const ANALYTICAL_IMPURITY_PROFILING: AnalyticalLeafContent = {
         technique: "HS-GC",
         application: "Residual solvents per USP ⟨467⟩ / Q3C(R8) — Class 1, 2 and 3",
         qualification: "IOQ/PQ current under USP ⟨1058⟩",
-        location: "Hyderabad",
       },
       {
         id: "icp-ms",
@@ -1927,7 +1822,6 @@ export const ANALYTICAL_IMPURITY_PROFILING: AnalyticalLeafContent = {
         technique: "ICP-MS",
         application: "ICH Q3D(R2) elemental impurities per USP ⟨232⟩ / ⟨233⟩",
         qualification: "IOQ/PQ current; isotopic performance verification per protocol",
-        location: "Hyderabad",
       },
       {
         id: "icp-oes",
@@ -1935,7 +1829,6 @@ export const ANALYTICAL_IMPURITY_PROFILING: AnalyticalLeafContent = {
         technique: "ICP-OES",
         application: "Elemental impurity screening where ICP-MS sensitivity is not required",
         qualification: "IOQ/PQ current",
-        location: "Hyderabad",
       },
       {
         id: "hrms-partner",
@@ -1943,7 +1836,6 @@ export const ANALYTICAL_IMPURITY_PROFILING: AnalyticalLeafContent = {
         technique: "LC-HRMS",
         application: "Structural elucidation of unknown impurities under ICH M7(R2) assessments",
         qualification: "Partner-scope — qualification held by partner laboratory under their QMS",
-        location: "Hyderabad",
       },
       {
         id: "nmr-bruker",
@@ -1951,7 +1843,6 @@ export const ANALYTICAL_IMPURITY_PROFILING: AnalyticalLeafContent = {
         technique: "NMR",
         application: "Structural elucidation and impurity identification",
         qualification: "Partner-scope — qualification held by partner laboratory under their QMS",
-        location: "Hyderabad",
       },
       {
         id: "balance-xpr",
@@ -1959,7 +1850,6 @@ export const ANALYTICAL_IMPURITY_PROFILING: AnalyticalLeafContent = {
         technique: "Balance",
         application: "Weighing for reference standards and spike-recovery preparation",
         qualification: "IOQ/PQ current; calibration against Class I / E2 weights",
-        location: "Both",
       },
     ],
     representativeNote:
@@ -2206,7 +2096,6 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
         label: "Method scoping",
         description:
           "Analyte, matrix, expected concentration range and study purpose agreed. Instrument platform, extraction strategy and internal-standard selection drafted against ICH M10 expectations.",
-        owner: "hyderabad",
         notes: [
           "Analyte and matrix defined",
           "Calibration range anchored to expected PK",
@@ -2218,7 +2107,6 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
         label: "Method development",
         description:
           "Chromatographic and mass-spectrometric conditions optimized; extraction chemistry developed with SPE or liquid-liquid depending on analyte behaviour. Matrix effect, recovery and selectivity characterized at development stage.",
-        owner: "hyderabad",
         notes: [
           "Chromatographic and MS/MS optimization",
           "Extraction chemistry with recovery data",
@@ -2230,7 +2118,6 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
         label: "Validation under ICH M10",
         description:
           "Full validation characteristics executed — selectivity, calibration, accuracy, precision, matrix effect, recovery, stability (short-term, freeze-thaw, long-term), dilution integrity and carryover — against pre-defined acceptance criteria.",
-        owner: "both",
         notes: [
           "Pre-defined acceptance criteria per M10",
           "Stability suites including freeze-thaw cycles",
@@ -2242,7 +2129,6 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
         label: "Clinical-study sample analysis",
         description:
           "Study samples run by a collaborating accredited CRO under the validated method, with Propharmex providing method ownership, QC review and investigator-facing documentation. ISR run at the protocol-agreed level.",
-        owner: "both",
         notes: [
           "CRO collaboration under signed QA agreement",
           "Real-time QC review per run",
@@ -2254,7 +2140,6 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
         label: "Bioanalytical reporting",
         description:
           "Bioanalytical report authored in the shape expected by regulated-PK reviewers — analyte, validation summary, sample accountability, calibration and QC performance, ISR outcome, and deviations closed under the QMS.",
-        owner: "hyderabad",
         notes: [
           "ICH M10-shaped report structure",
           "Run-by-run calibration and QC accountability",
@@ -2262,11 +2147,6 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
         ],
       },
     ],
-    ownerLegend: {
-      hyderabad: "Hyderabad — development and qualification",
-      mississauga: "Mississauga — transfer close-out, release, method maintenance",
-      both: "Both hubs — jointly planned",
-    },
   },
   inventory: {
     eyebrow: "Instrument inventory",
@@ -2279,7 +2159,6 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
         technique: "LC-MS/MS",
         application: "Primary bioanalytical workhorse — small-molecule PK quantitation and biomarker work",
         qualification: "IOQ/PQ current; performance verification per in-house protocol",
-        location: "Hyderabad",
       },
       {
         id: "lcmsms-second",
@@ -2287,7 +2166,6 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
         technique: "LC-MS/MS",
         application: "Second instrument family for intermediate precision and orthogonal confirmation",
         qualification: "IOQ/PQ current; performance verification per in-house protocol",
-        location: "Hyderabad",
       },
       {
         id: "uhplc-waters-acquity",
@@ -2295,7 +2173,6 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
         technique: "UHPLC",
         application: "High-efficiency separation for bioanalytical gradients",
         qualification: "IOQ/PQ current under USP ⟨1058⟩",
-        location: "Hyderabad",
       },
       {
         id: "spe-automation",
@@ -2303,7 +2180,6 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
         technique: "SPE",
         application: "Automated solid-phase extraction for plasma and serum sample preparation",
         qualification: "IOQ/PQ current; protocol verification per extraction method",
-        location: "Hyderabad",
       },
       {
         id: "autosampler-cooled",
@@ -2311,7 +2187,6 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
         technique: "Autosampler",
         application: "Cooled sample storage through batch runs to protect analyte stability",
         qualification: "IOQ/PQ current; temperature mapping per protocol",
-        location: "Hyderabad",
       },
       {
         id: "freezer-80",
@@ -2319,7 +2194,6 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
         technique: "Sample storage",
         application: "Long-term storage of plasma / serum study samples with continuous monitoring",
         qualification: "Temperature mapped; continuous logging under QMS with excursion alerting",
-        location: "Hyderabad",
       },
       {
         id: "freezer-20",
@@ -2327,7 +2201,6 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
         technique: "Sample storage",
         application: "Short-term storage of extracts and working standards",
         qualification: "Temperature mapped; continuous logging under QMS",
-        location: "Hyderabad",
       },
       {
         id: "centrifuge-refrig",
@@ -2335,7 +2208,6 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
         technique: "Sample prep",
         application: "Refrigerated centrifugation for plasma / serum processing",
         qualification: "IOQ/PQ current; rpm / temperature verified per calibration",
-        location: "Hyderabad",
       },
       {
         id: "balance-xpr",
@@ -2343,7 +2215,6 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
         technique: "Balance",
         application: "Weighing for reference standards and working solutions",
         qualification: "IOQ/PQ current; calibration against Class I / E2 weights",
-        location: "Both",
       },
       {
         id: "cds-bioanalytical",
@@ -2351,7 +2222,6 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
         technique: "Data system",
         application: "Audit-trail-enabled acquisition, batch review and archive",
         qualification: "Computerized-system validation under GAMP 5 principles; IQ/OQ current",
-        location: "Hyderabad",
       },
     ],
     representativeNote:
@@ -2591,14 +2461,13 @@ export const ANALYTICAL_EXTRACTABLES_AND_LEACHABLES: AnalyticalLeafContent = {
   process: {
     eyebrow: "Our process",
     heading: "From AET to a TRA-ready data package",
-    lede: "The stepper reflects the order of work on most E&L programmes. Hyderabad authors and executes the studies; Mississauga runs release-testing-tied leachables and supports post-approval commitments.",
+    lede: "The stepper reflects the order of work on most E&L programmes. Executed by Propharmex — study authoring and execution, plus release-testing-tied leachables and post-approval commitments — under a single quality system.",
     steps: [
       {
         id: "scoping-aet",
         label: "Study scoping and AET calculation",
         description:
           "Drug-product scope, container-closure or single-use component inventory, patient dose and exposure mapped. AET calculated from dose, exposure and safety concern threshold.",
-        owner: "hyderabad",
         notes: [
           "Component inventory against dosage form",
           "AET from dose and exposure, not default",
@@ -2610,7 +2479,6 @@ export const ANALYTICAL_EXTRACTABLES_AND_LEACHABLES: AnalyticalLeafContent = {
         label: "Controlled extraction studies (USP ⟨1663⟩)",
         description:
           "Controlled extractions run under time-and-temperature conditions that bracket product storage and use. Solvent set selected against drug-product polarity and pH range.",
-        owner: "hyderabad",
         notes: [
           "Solvent set bracketed to product chemistry",
           "Exaggerated time-and-temperature conditions",
@@ -2622,7 +2490,6 @@ export const ANALYTICAL_EXTRACTABLES_AND_LEACHABLES: AnalyticalLeafContent = {
         label: "Identification and semi-quantitation",
         description:
           "Extractable compounds identified at the AET or above, with confidence levels documented (confirmed by reference standard, tentatively identified, or unknown class). Semi-quantitation against surrogate response factors.",
-        owner: "hyderabad",
         notes: [
           "Identification confidence levels documented",
           "Semi-quantitation against surrogate standards",
@@ -2634,7 +2501,6 @@ export const ANALYTICAL_EXTRACTABLES_AND_LEACHABLES: AnalyticalLeafContent = {
         label: "Simulation and in-use leachables (USP ⟨1664⟩)",
         description:
           "Simulation leachables run on drug product or matrix surrogate. In-use leachables run on aged drug product at end-of-shelf-life, with results reconciled against the extractables profile.",
-        owner: "hyderabad",
         notes: [
           "Simulation study to time-plus-margin",
           "In-use leachables at end-of-shelf-life",
@@ -2646,7 +2512,6 @@ export const ANALYTICAL_EXTRACTABLES_AND_LEACHABLES: AnalyticalLeafContent = {
         label: "Toxicological risk assessment hand-off",
         description:
           "Extractables and leachables package delivered to the toxicologist in a shape that supports TRA authoring — compound, ID confidence, measured concentration, daily exposure, applicable threshold.",
-        owner: "both",
         notes: [
           "Data shaped for toxicologist review",
           "Per-compound daily exposure calculated",
@@ -2657,8 +2522,7 @@ export const ANALYTICAL_EXTRACTABLES_AND_LEACHABLES: AnalyticalLeafContent = {
         id: "release",
         label: "Release and post-approval leachables",
         description:
-          "Periodic release and post-approval leachables monitoring run through Mississauga under the release QMS, with any trending or specification change routed through change-control.",
-        owner: "mississauga",
+          "Periodic release and post-approval leachables monitoring run under the release QMS, with any trending or specification change routed through change-control.",
         notes: [
           "Release leachables under release QMS",
           "Post-approval commitment tracking",
@@ -2666,11 +2530,6 @@ export const ANALYTICAL_EXTRACTABLES_AND_LEACHABLES: AnalyticalLeafContent = {
         ],
       },
     ],
-    ownerLegend: {
-      hyderabad: "Hyderabad — development and qualification",
-      mississauga: "Mississauga — transfer close-out, release, method maintenance",
-      both: "Both hubs — jointly planned",
-    },
   },
   inventory: {
     eyebrow: "Instrument inventory",
@@ -2683,7 +2542,6 @@ export const ANALYTICAL_EXTRACTABLES_AND_LEACHABLES: AnalyticalLeafContent = {
         technique: "GC-MS",
         application: "Volatile and semi-volatile extractables identification and quantitation",
         qualification: "IOQ/PQ current under USP ⟨1058⟩",
-        location: "Hyderabad",
       },
       {
         id: "hs-gcms",
@@ -2691,7 +2549,6 @@ export const ANALYTICAL_EXTRACTABLES_AND_LEACHABLES: AnalyticalLeafContent = {
         technique: "HS-GC-MS",
         application: "Volatile extractables by headspace sampling",
         qualification: "IOQ/PQ current",
-        location: "Hyderabad",
       },
       {
         id: "lcms-xevo",
@@ -2699,7 +2556,6 @@ export const ANALYTICAL_EXTRACTABLES_AND_LEACHABLES: AnalyticalLeafContent = {
         technique: "LC-MS/MS",
         application: "Semi-volatile and non-volatile extractables / leachables quantitation",
         qualification: "IOQ/PQ current; performance verification per protocol",
-        location: "Hyderabad",
       },
       {
         id: "icp-ms",
@@ -2707,7 +2563,6 @@ export const ANALYTICAL_EXTRACTABLES_AND_LEACHABLES: AnalyticalLeafContent = {
         technique: "ICP-MS",
         application: "Elemental extractables per ICH Q3D crossover from container-closure",
         qualification: "IOQ/PQ current under USP ⟨1058⟩",
-        location: "Hyderabad",
       },
       {
         id: "hplc-dad",
@@ -2715,7 +2570,6 @@ export const ANALYTICAL_EXTRACTABLES_AND_LEACHABLES: AnalyticalLeafContent = {
         technique: "HPLC-DAD",
         application: "Non-volatile extractables screening and quantitation",
         qualification: "Qualified under IOQ/PQ programme aligned to USP ⟨1058⟩",
-        location: "Both",
       },
       {
         id: "uvvis-cary60",
@@ -2723,7 +2577,6 @@ export const ANALYTICAL_EXTRACTABLES_AND_LEACHABLES: AnalyticalLeafContent = {
         technique: "UV-Vis",
         application: "Non-specific extractable screening and TOC support",
         qualification: "IOQ/PQ current",
-        location: "Hyderabad",
       },
       {
         id: "toc",
@@ -2731,7 +2584,6 @@ export const ANALYTICAL_EXTRACTABLES_AND_LEACHABLES: AnalyticalLeafContent = {
         technique: "TOC",
         application: "Total organic carbon as a non-specific extractables indicator",
         qualification: "IOQ/PQ current; calibration per USP ⟨643⟩",
-        location: "Hyderabad",
       },
       {
         id: "ph-seven",
@@ -2739,7 +2591,6 @@ export const ANALYTICAL_EXTRACTABLES_AND_LEACHABLES: AnalyticalLeafContent = {
         technique: "pH",
         application: "Extraction solvent and leachable matrix pH / conductivity",
         qualification: "IOQ/PQ current; daily three-point buffer calibration",
-        location: "Both",
       },
       {
         id: "spe-extract",
@@ -2747,7 +2598,6 @@ export const ANALYTICAL_EXTRACTABLES_AND_LEACHABLES: AnalyticalLeafContent = {
         technique: "SPE",
         application: "Sample concentration and clean-up for trace leachable analysis",
         qualification: "IOQ/PQ current",
-        location: "Hyderabad",
       },
       {
         id: "hrms-partner",
@@ -2755,7 +2605,6 @@ export const ANALYTICAL_EXTRACTABLES_AND_LEACHABLES: AnalyticalLeafContent = {
         technique: "LC-HRMS",
         application: "Structural elucidation of unknown extractables",
         qualification: "Partner-scope — qualification held by partner laboratory under their QMS",
-        location: "Hyderabad",
       },
     ],
     representativeNote:
@@ -2995,14 +2844,13 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
   process: {
     eyebrow: "Our process",
     heading: "From source material to a QMS-controlled CoA",
-    lede: "The stepper reflects the order of work on most reference-standard qualifications. Hyderabad authors the characterization package; Mississauga holds the working standards in the release-testing QMS and runs requalification cycles.",
+    lede: "The stepper reflects the order of work on most reference-standard qualifications. Executed by Propharmex — characterization package authoring, plus working-standard custody in the release-testing QMS and requalification cycles — under a single quality system.",
     steps: [
       {
         id: "scoping",
         label: "Scoping — primary or working?",
         description:
           "Intended use scoped — release testing, method validation, impurity quantitation, stability reference. Primary source identified where available (USP, Ph. Eur., in-house primary) and qualification path selected.",
-        owner: "hyderabad",
         notes: [
           "Intended use and downstream assay mapped",
           "Compendial primary source checked",
@@ -3014,7 +2862,6 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
         label: "Orthogonal identity",
         description:
           "Identity confirmed by at least two orthogonal techniques — NMR and IR / MS typical, with elemental analysis where structure or purity warrants. Partner NMR laboratory engaged where structural confirmation is needed.",
-        owner: "hyderabad",
         notes: [
           "NMR (partner), IR, MS identity evidence",
           "Stereochemistry and polymorph flags",
@@ -3026,7 +2873,6 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
         label: "Purity panel",
         description:
           "Water by Karl Fischer, residual solvents by GC/HS-GC, inorganic residues by sulphated-ash and ICP-MS (where elemental risk exists), and organic impurity profile by HPLC / LC-MS/MS.",
-        owner: "hyderabad",
         notes: [
           "Water by KF; residual solvents per Q3C / USP ⟨467⟩",
           "Inorganic residues + elemental by ICP-MS",
@@ -3038,7 +2884,6 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
         label: "Assay by mass balance",
         description:
           "Assay value calculated by mass balance — 100% minus water, residual solvents, inorganic residues and organic impurities — with chromatographic assay run as a cross-check and variance documented.",
-        owner: "hyderabad",
         notes: [
           "Mass-balance assay calculation",
           "Chromatographic assay as confirmatory",
@@ -3050,7 +2895,6 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
         label: "Certificate of analysis authoring",
         description:
           "CoA authored with identity evidence, purity panel, assay, impurity profile, storage conditions and expiry. CoA held under QMS with versioning; superseded versions retained.",
-        owner: "hyderabad",
         notes: [
           "CoA structure per USP General Notices",
           "Storage conditions and expiry rationale",
@@ -3062,7 +2906,6 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
         label: "Stability monitoring and requalification",
         description:
           "Working standards placed on a stability monitoring schedule with requalification triggers — periodic analytical check, visual inspection, exposure events. Requalification runs under the release QMS.",
-        owner: "mississauga",
         notes: [
           "Stability monitoring schedule written",
           "Requalification triggers defined",
@@ -3070,11 +2913,6 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
         ],
       },
     ],
-    ownerLegend: {
-      hyderabad: "Hyderabad — development and qualification",
-      mississauga: "Mississauga — transfer close-out, release, method maintenance",
-      both: "Both hubs — jointly planned",
-    },
   },
   inventory: {
     eyebrow: "Instrument inventory",
@@ -3087,7 +2925,6 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
         technique: "HPLC",
         application: "Organic impurity profile and chromatographic assay cross-check",
         qualification: "Qualified under IOQ/PQ programme aligned to USP ⟨1058⟩",
-        location: "Both",
       },
       {
         id: "uhplc-waters-acquity",
@@ -3095,7 +2932,6 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
         technique: "UHPLC",
         application: "High-resolution impurity profiling and purity check",
         qualification: "IOQ/PQ current under USP ⟨1058⟩",
-        location: "Hyderabad",
       },
       {
         id: "lcmsms-xevo-tqs",
@@ -3103,7 +2939,6 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
         technique: "LC-MS/MS",
         application: "Trace impurity confirmation and low-level quantitation",
         qualification: "IOQ/PQ current; performance verification per protocol",
-        location: "Hyderabad",
       },
       {
         id: "nmr-bruker",
@@ -3111,7 +2946,6 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
         technique: "NMR",
         application: "Orthogonal identity; structural confirmation; quantitative NMR where applied",
         qualification: "Partner-scope — qualification held by partner laboratory under their QMS",
-        location: "Hyderabad",
       },
       {
         id: "ftir",
@@ -3119,7 +2953,6 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
         technique: "FT-IR",
         application: "Orthogonal identity by IR fingerprint",
         qualification: "IOQ/PQ current; polystyrene reference check",
-        location: "Hyderabad",
       },
       {
         id: "dsc-mettler",
@@ -3127,7 +2960,6 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
         technique: "DSC",
         application: "Melting-point, polymorph confirmation and purity by DSC",
         qualification: "IOQ/PQ current; indium / zinc reference calibration",
-        location: "Hyderabad",
       },
       {
         id: "tga-mettler",
@@ -3135,7 +2967,6 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
         technique: "TGA",
         application: "Residual solvent loss, hydrate / solvate characterization",
         qualification: "IOQ/PQ current",
-        location: "Hyderabad",
       },
       {
         id: "kf-metrohm",
@@ -3143,7 +2974,6 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
         technique: "Karl Fischer",
         application: "Water content for mass-balance assay",
         qualification: "IOQ/PQ current; calibration on certified water standards",
-        location: "Hyderabad",
       },
       {
         id: "gcms-agilent-8890",
@@ -3151,7 +2981,6 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
         technique: "GC-MS",
         application: "Residual solvents per Q3C(R8) / USP ⟨467⟩",
         qualification: "IOQ/PQ current under USP ⟨1058⟩",
-        location: "Hyderabad",
       },
       {
         id: "uvvis-cary60",
@@ -3159,7 +2988,6 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
         technique: "UV-Vis",
         application: "Absorptivity and spectral identity",
         qualification: "IOQ/PQ current; holmium-oxide wavelength check",
-        location: "Hyderabad",
       },
       {
         id: "icp-ms",
@@ -3167,7 +2995,6 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
         technique: "ICP-MS",
         application: "Elemental content for mass-balance and Q3D crossover",
         qualification: "IOQ/PQ current under USP ⟨1058⟩",
-        location: "Hyderabad",
       },
       {
         id: "balance-xpr",
@@ -3175,7 +3002,6 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
         technique: "Balance",
         application: "Weighing for mass-balance assay and CoA preparation",
         qualification: "IOQ/PQ current; calibration against Class I / E2 weights",
-        location: "Both",
       },
     ],
     representativeNote:
@@ -3273,7 +3099,7 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
         id: "stability",
         question: "How often are working standards requalified?",
         answer:
-          "Requalification schedules are material- and use-specific. Typical frequency is 12 to 24 months for a stable small-molecule working standard under controlled storage, with more frequent requalification for hygroscopic or photolabile materials. Requalification triggers include time, analytical drift during use, visual change, and exposure events. The schedule is written into the CoA and held under the release QMS in Mississauga.",
+          "Requalification schedules are material- and use-specific. Typical frequency is 12 to 24 months for a stable small-molecule working standard under controlled storage, with more frequent requalification for hygroscopic or photolabile materials. Requalification triggers include time, analytical drift during use, visual change, and exposure events. The schedule is written into the CoA and held under the release QMS.",
       },
       {
         id: "impurity-standards",
@@ -3285,7 +3111,7 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
         id: "coa-release",
         question: "How is the CoA controlled?",
         answer:
-          "The CoA is authored in Hyderabad against the characterization data and held under QMS document control, with a unique document ID, version history, and superseded-version retention. Working standards are transferred into the Mississauga release QMS with the CoA travelling with them. Any requalification results in a new CoA version; the old version is retained rather than overwritten.",
+          "The CoA is authored against the characterization data and held under QMS document control, with a unique document ID, version history, and superseded-version retention. Working standards are transferred into the release QMS with the CoA travelling with them. Any requalification results in a new CoA version; the old version is retained rather than overwritten.",
       },
     ],
   },
