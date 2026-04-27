@@ -63,7 +63,7 @@ If `caseStudy.client.logoPermitted === false` in Sanity:
 ## Images, alt text, captions
 
 - Every image has alt text that describes the information, not the decoration ("HPLC system in Mississauga QC lab" not "laboratory equipment")
-- Captions are sentences, not labels ("Our Hyderabad formulation lab runs 24/7 to support Canadian development timelines" ✓; "Hyderabad lab" ✗)
+- Captions are sentences, not labels ("Our Mississauga release lab runs continuously to support Canadian filings" ✓; "Mississauga lab" ✗)
 - Portraits of leaders: first + last name + role, and `Person` schema must match
 - No stock photos on trust pages (Quality, Facilities, Leadership) — use real Propharmex photography; if unavailable, flag and ask
 

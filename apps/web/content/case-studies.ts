@@ -3,8 +3,8 @@
  * pages at /case-studies/[slug] — Prompt 14.
  *
  * Positioning (CLAUDE.md §1): case studies are the evidence layer for the
- * Canada-anchored two-hub operating model — Mississauga DEL site plus
- * Hyderabad analytical and development bench, serving global sponsors. Three
+ * Canadian-anchored operating model — Health Canada DEL site with offshore
+ * analytical and development depth, serving global sponsors. Three
  * seed studies anchor the three archetypes the rest of the site talks about:
  *
  *  - modified-release-requalification — a Top-5 US generic manufacturer whose
@@ -13,8 +13,8 @@
  *    bioequivalence cohorts.
  *  - sterile-injectable-second-sourcing — a mid-size innovator sponsor with
  *    a commercial-stage sterile injectable running over target COGS. We
- *    tech-transferred analytical + process to Hyderabad, qualified a second
- *    supplier, maintained US release cadence.
+ *    tech-transferred analytical + process to a second supplier, qualified
+ *    that supplier, maintained US release cadence.
  *  - ngo-oral-solid-stability-rebuild — a global NGO procurement agency with
  *    recurring out-of-spec events at release on an oral-solid portfolio. We
  *    restructured release testing under ICH Q10, moved stability to Zone IVb,
@@ -32,7 +32,7 @@
  * state filings and service-standard context using `alignment` framing —
  * "consistent with", "authored against", "reviewed under the X service
  * standard" — never "approved by". The only `confirmed` anchor on this page
- * set is the Mississauga DEL reference on the detail-page closing block,
+ * set is the Health Canada DEL reference on the detail-page closing block,
  * matching the pattern used across /industries and /services/regulatory-services.
  *
  * All primary-source URLs stamped with "as of 2026-04-23" mirror the
@@ -297,7 +297,7 @@ export type CaseStudyDetailClosing = {
   body: string;
   primaryCta: CaseStudyCta;
   secondaryCta: CaseStudyCta;
-  /** Closing source reference — always the Mississauga DEL. */
+  /** Closing source reference — always the Health Canada DEL. */
   regulatoryNote: CaseStudySource;
 };
 
@@ -489,7 +489,7 @@ const MODIFIED_RELEASE_REQUALIFICATION: CaseStudyContent = {
     label: "From deficiency letter to resubmission filing",
   },
   heroLede:
-    "First ANDA filing came back with a dissolution deficiency letter. The sponsor needed a rebuilt method, three requalified bioequivalence cohorts, and a credible resubmission package. We ran the analytical rebuild out of Hyderabad under ICH Q2(R2) and authored the amendment from Mississauga.",
+    "First ANDA filing came back with a dissolution deficiency letter. The sponsor needed a rebuilt method, three requalified bioequivalence cohorts, and a credible resubmission package. We rebuilt the dissolution method, revalidated per ICH Q2(R2), and authored the amendment under our Health Canada Drug Establishment Licence.",
   snapshot: [
     {
       id: "client-pattern",
@@ -531,7 +531,7 @@ const MODIFIED_RELEASE_REQUALIFICATION: CaseStudyContent = {
   approach: {
     eyebrow: "Approach",
     heading: "Rebuild the method first. Requalify the BE cohorts against it. Then re-author the module.",
-    lede: "We split the problem into an analytical rebuild and a regulatory-authoring workstream, running them in parallel with a weekly joint steering call. The analytical lead was seated in Hyderabad; the ANDA authoring lead in Mississauga. Both reported to a single programme manager on the sponsor's side.",
+    lede: "We split the problem into an analytical rebuild and a regulatory-authoring workstream, running them in parallel with a weekly joint steering call. Both reported to a single programme manager on the sponsor's side, and both ran under one Propharmex quality system.",
     bullets: [
       "Method gap analysis against ICH Q2(R2) validation characteristics — specificity, linearity, accuracy, precision, range, robustness — with agency deficiency points mapped back to each characteristic.",
       "Two-tier dissolution with pH-shift step, designed to discriminate between the strengths under a physiologically plausible GI transit model.",
@@ -547,12 +547,12 @@ const MODIFIED_RELEASE_REQUALIFICATION: CaseStudyContent = {
   solution: {
     eyebrow: "Solution",
     heading: "One method, three cohorts, one amendment — shipped as a single coherent package.",
-    lede: "The rebuilt method went through full ICH Q2(R2) validation in Hyderabad. Requalification runs on the retained BE samples closed in parallel. The amendment package was authored as a single coherent story — method rationale, validation evidence, BE reconciliation — rather than three separate responses stapled together.",
+    lede: "The rebuilt method went through full ICH Q2(R2) validation. Requalification runs on the retained BE samples closed in parallel. The amendment package was authored as a single coherent story — method rationale, validation evidence, BE reconciliation — rather than three separate responses stapled together.",
     bullets: [
       "Full ICH Q2(R2) validation package — specificity, linearity across 50–150% of target, accuracy within ±2%, intermediate precision with analyst-day-instrument variance, robustness across pH and column-lot variation.",
       "BE cohort requalification runs executed under the revised method; PK endpoints re-derived and cross-walked to the original data in a single reconciliation table.",
       "Module 2.7.1 (BE summary) and Module 3.2.P.5 (analytical procedures) rebuilt in parallel — the same narrative thread ran through both.",
-      "Pre-submission QA review by the Mississauga team before the amendment went in.",
+      "Pre-submission QA review by the Propharmex team before the amendment went in.",
     ],
   },
   result: {
@@ -585,7 +585,7 @@ const MODIFIED_RELEASE_REQUALIFICATION: CaseStudyContent = {
         id: "ph-2",
         period: "Month 1–4",
         title: "Method rebuild and validation",
-        body: "Two-tier dissolution designed, tested, and validated in the Hyderabad analytical lab. All six ICH Q2(R2) characteristics closed with documented runs.",
+        body: "Two-tier dissolution designed, tested, and validated in the Propharmex analytical lab. All six ICH Q2(R2) characteristics closed with documented runs.",
       },
       {
         id: "ph-3",
@@ -597,7 +597,7 @@ const MODIFIED_RELEASE_REQUALIFICATION: CaseStudyContent = {
         id: "ph-4",
         period: "Month 7–10",
         title: "Amendment authoring and QA",
-        body: "Module 2.7.1 and Module 3.2.P.5 rebuilt as a single coherent narrative. Mississauga QA review closed before submission.",
+        body: "Module 2.7.1 and Module 3.2.P.5 rebuilt as a single coherent narrative. QA review closed before submission under the DEL.",
       },
       {
         id: "ph-5",
@@ -694,7 +694,7 @@ const STERILE_INJECTABLE_SECOND_SOURCING: CaseStudyContent = {
   metaTitle:
     "Second-sourcing a sterile injectable without losing release cadence — Propharmex case study",
   metaDescription:
-    "Mid-size innovator sponsor. Commercial-stage sterile injectable running over target COGS. Analytical + process tech-transferred to Hyderabad, second supplier qualified, US release cadence maintained.",
+    "Mid-size innovator sponsor. Commercial-stage sterile injectable running over target COGS. Analytical + process tech-transferred to a qualified second supplier, US release cadence maintained.",
   ogTitle: "Second-sourcing a sterile injectable without losing release cadence",
   ogDescription:
     "Anonymized worked pattern. Tech transfer and second-supplier qualification for a commercial-stage sterile injectable.",
@@ -702,7 +702,7 @@ const STERILE_INJECTABLE_SECOND_SOURCING: CaseStudyContent = {
     slug: "sterile-injectable-second-sourcing",
     title: "Second-sourcing a sterile injectable without losing release cadence",
     teaser:
-      "Commercial-stage sterile injectable running over target COGS. Analytical + process tech-transferred to Hyderabad, second supplier qualified, US release cadence maintained through the transition.",
+      "Commercial-stage sterile injectable running over target COGS. Analytical + process tech-transferred to a qualified second supplier, US release cadence maintained through the transition.",
     client: "Mid-size innovator sponsor",
     metricValue: "~18% COGS",
     metricLabel: "Reduction on a commercial sterile injectable",
@@ -721,7 +721,7 @@ const STERILE_INJECTABLE_SECOND_SOURCING: CaseStudyContent = {
     label: "COGS reduction on a commercial sterile injectable",
   },
   heroLede:
-    "Commercial-stage sterile injectable running roughly 22% over target COGS. The sponsor wanted a qualified second source without interrupting US release cadence. We tech-transferred the analytical + process packages to Hyderabad, ran the second-supplier qualification against the same release specification, and kept the incumbent on primary release through the transition.",
+    "Commercial-stage sterile injectable running roughly 22% over target COGS. The sponsor wanted a qualified second source without interrupting US release cadence. We tech-transferred the analytical + process packages, ran the second-supplier qualification against the same release specification, and kept the incumbent on primary release through the transition.",
   snapshot: [
     {
       id: "client-pattern",
@@ -763,25 +763,25 @@ const STERILE_INJECTABLE_SECOND_SOURCING: CaseStudyContent = {
   approach: {
     eyebrow: "Approach",
     heading: "Split the transfer into analytical-first and process-second. Qualify the second supplier against the same release spec the incumbent runs to.",
-    lede: "Tech transfers fail when the analytical and the process workstreams collide on the same critical path. We ran them sequentially: the analytical package transferred to Hyderabad first, validated end-to-end under ICH Q2(R2), and only then did the process transfer begin. The second supplier was qualified against the release specification the incumbent was already running to — the aim was interchangeability, not a redesign.",
+    lede: "Tech transfers fail when the analytical and the process workstreams collide on the same critical path. We ran them sequentially: the analytical package transferred first, validated end-to-end under ICH Q2(R2), and only then did the process transfer begin. The second supplier was qualified against the release specification the incumbent was already running to — the aim was interchangeability, not a redesign.",
     bullets: [
-      "Analytical tech transfer into the Hyderabad lab — full method-validation re-run under ICH Q2(R2), with side-by-side comparability against the incumbent's release data.",
+      "Analytical tech transfer into the Propharmex lab — full method-validation re-run under ICH Q2(R2), with side-by-side comparability against the incumbent's release data.",
       "Process tech transfer into the second-supplier site — equipment-train mapping, in-process control rationalisation, release-spec alignment.",
       "Comparability protocol authored against 21 CFR Part 211; bridging batches run at both sites against a shared acceptance criterion.",
       "Regulatory strategy: supplement-level change under 21 CFR Part 314, scoped to keep primary release with the incumbent until the second supplier closed qualification.",
     ],
     callout: {
       value: "21 CFR Part 211",
-      label: "Comparability anchor across both manufacturing sites",
+      label: "Comparability anchor across the qualified suppliers",
       source: CFR_PART_211,
     },
   },
   solution: {
     eyebrow: "Solution",
-    heading: "Hyderabad analytical bench running the data, Canadian QA authoring the comparability story.",
-    lede: "The Hyderabad team ran the full analytical re-validation and the side-by-side comparability study. The Mississauga regulatory team authored the supplement, including the comparability protocol and the post-approval commitment wording. The incumbent supplier stayed on primary release throughout the qualification window.",
+    heading: "Propharmex analytical bench running the data, Canadian QA authoring the comparability story.",
+    lede: "Propharmex ran the full analytical re-validation and the side-by-side comparability study, then authored the supplement, including the comparability protocol and the post-approval commitment wording, under our Health Canada DEL. The incumbent supplier stayed on primary release throughout the qualification window.",
     bullets: [
-      "Analytical re-validation under ICH Q2(R2) closed inside the Hyderabad lab — specificity, linearity, accuracy, precision, range, robustness, all runs documented.",
+      "Analytical re-validation under ICH Q2(R2) closed inside the Propharmex lab — specificity, linearity, accuracy, precision, range, robustness, all runs documented.",
       "Comparability protocol authored against 21 CFR Part 211 and run as paired release batches: three incumbent, three second-supplier, same release specification, same analytical method.",
       "Supplement-level change package authored against 21 CFR Part 314, including post-approval commitment language for ongoing periodic comparability.",
       "Release cadence maintained on the incumbent throughout the second-supplier qualification — no commercial supply gap.",
@@ -811,13 +811,13 @@ const STERILE_INJECTABLE_SECOND_SOURCING: CaseStudyContent = {
         id: "ph-1",
         period: "Month 0–2",
         title: "Intake and dual-site gap analysis",
-        body: "Full read of the prior tech-transfer package, gap matrix against what closure actually required, and target-operating-model alignment across both sites.",
+        body: "Full read of the prior tech-transfer package, gap matrix against what closure actually required, and target-operating-model alignment across the qualified supplier chain.",
       },
       {
         id: "ph-2",
         period: "Month 2–6",
         title: "Analytical transfer and re-validation",
-        body: "Method package moved into the Hyderabad lab, re-validated end-to-end under ICH Q2(R2), with side-by-side comparability runs against incumbent-release data.",
+        body: "Method package moved into the Propharmex lab, re-validated end-to-end under ICH Q2(R2), with side-by-side comparability runs against incumbent-release data.",
       },
       {
         id: "ph-3",
@@ -857,7 +857,7 @@ const STERILE_INJECTABLE_SECOND_SOURCING: CaseStudyContent = {
         id: "f-3",
         label: "Analytical re-validation",
         detail:
-          "Full re-validation of the release method at the Hyderabad lab against ICH Q2(R2) validation characteristics.",
+          "Full re-validation of the release method at the Propharmex lab against ICH Q2(R2) validation characteristics.",
         source: ICH_Q2_R2,
       },
     ],
@@ -880,7 +880,7 @@ const STERILE_INJECTABLE_SECOND_SOURCING: CaseStudyContent = {
         id: "rel-2",
         label: "Method development and validation",
         description:
-          "Release-method re-validation in Hyderabad under ICH Q2(R2).",
+          "Release-method re-validation under ICH Q2(R2).",
         href: "/services/analytical-services/method-development-validation",
       },
       {
@@ -1009,10 +1009,10 @@ const NGO_ORAL_SOLID_STABILITY_REBUILD: CaseStudyContent = {
   solution: {
     eyebrow: "Solution",
     heading: "One PQS rebuild across three symptom areas, delivered in a single 12-month programme.",
-    lede: "The rebuild ran as a single programme with three workstreams: quality system, stability, supplier qualification. The Hyderabad analytical lab ran the stability-transition work; the Mississauga QA team authored the PQS documentation and the supplier-qualification checklist. Weekly steering with the NGO's procurement lead.",
+    lede: "The rebuild ran as a single programme with three workstreams: quality system, stability, supplier qualification. Propharmex ran the stability-transition work and authored the PQS documentation and the supplier-qualification checklist under one quality system. Weekly steering with the NGO's procurement lead.",
     bullets: [
       "PQS documentation rewritten against ICH Q10 — governance, change control, CAPA, management review, continuous-improvement loop.",
-      "Stability transition: Zone IVb long-term conditions stood up in the Hyderabad lab, in-flight batches bridged via a defined protocol, release-shelf-life determinations re-run against the new data.",
+      "Stability transition: Zone IVb long-term conditions stood up in the Propharmex lab, in-flight batches bridged via a defined protocol, release-shelf-life determinations re-run against the new data.",
       "Supplier-qualification checklist aligned with WHO Prequalification expectations (as of 2026-04-23), with a time-boxed remediation plan for suppliers not meeting the checklist on first assessment.",
       "Release-testing workflow: tighter in-process control panel, named second-review on marginal pass results, decision-tree walk-through for every QA person on the release team.",
     ],
@@ -1047,7 +1047,7 @@ const NGO_ORAL_SOLID_STABILITY_REBUILD: CaseStudyContent = {
         id: "ph-2",
         period: "Month 2–7",
         title: "Stability transition to Zone IVb",
-        body: "Zone IVb long-term conditions stood up in the Hyderabad lab; bridging protocol for in-flight batches; release-shelf-life re-determinations.",
+        body: "Zone IVb long-term conditions stood up in the Propharmex lab; bridging protocol for in-flight batches; release-shelf-life re-determinations.",
       },
       {
         id: "ph-3",
@@ -1117,7 +1117,7 @@ const NGO_ORAL_SOLID_STABILITY_REBUILD: CaseStudyContent = {
         id: "rel-2",
         label: "Stability studies",
         description:
-          "Zone IVb long-term stability transition in the Hyderabad lab.",
+          "Zone IVb long-term stability transition in the Propharmex lab.",
         href: "/services/pharma-development/stability-studies",
       },
       {

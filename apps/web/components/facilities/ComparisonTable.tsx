@@ -48,10 +48,10 @@ export const ComparisonTable: FC<Props> = ({ content }) => {
                     Dimension
                   </th>
                   <th scope="col" className="px-5 py-3 font-semibold">
-                    Mississauga, Canada
+                    Mississauga · DEL site
                   </th>
                   <th scope="col" className="px-5 py-3 font-semibold">
-                    Hyderabad, India
+                    Hyderabad · Development centre
                   </th>
                 </tr>
               </thead>

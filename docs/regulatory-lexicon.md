@@ -114,7 +114,7 @@ When citing, link to `https://www.ich.org/page/quality-guidelines` and the PDF o
 
 ---
 
-## Canada–India operational terms
+## India-side operational terms (export and CDSCO)
 
 - **CDSCO registration** for exports from India requires a valid manufacturing license in India + a drug registration certificate for the importing country
 - **WHO-GMP certificate (India)** and **CoPP (Certificate of Pharmaceutical Product)** are the usual export credentials

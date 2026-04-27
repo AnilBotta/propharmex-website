@@ -117,7 +117,7 @@ export const PROCESS: ProcessContent = {
     "How a Propharmex engagement runs from first inquiry to final technology transfer: six phases, defined inputs and outputs at each stage, and typical elapsed time.",
   ogTitle: "Our process — six phases, no surprises",
   ogDescription:
-    "Inquiry, NDA and scope, proposal, contract, execute, deliver. The engagement model behind a Canada-anchored two-hub CDMO.",
+    "Inquiry, NDA and scope, proposal, contract, execute, deliver. The engagement model behind a Canadian pharmaceutical services company.",
 
   hero: {
     eyebrow: "Engagement model",
@@ -182,7 +182,7 @@ export const PROCESS: ProcessContent = {
       ],
       whatYouReceive: [
         "A written scope document covering objectives, deliverables, assumptions, and risks",
-        "Identified workstreams across our two hubs",
+        "Identified workstreams across Propharmex",
         "An honest opinion on what we would do differently if we were running this on the inside",
       ],
       typicalTimeline: "1–2 weeks from NDA execution to signed scope",
@@ -234,9 +234,9 @@ export const PROCESS: ProcessContent = {
       label: "Execute",
       title: "Execute",
       summary:
-        "Active engagement across both hubs, under one quality system, with weekly visibility.",
+        "Active engagement under one quality system, with weekly visibility.",
       whatHappens:
-        "The project runs across the two hubs as designed in the proposal. Weekly project meetings between your team and our project manager; bi-weekly milestone reviews with the workstream owners; monthly executive steering committees for projects long enough to need them. All deviations and CAPAs visible in real time through the shared project workspace; data integrity controls (ALCOA+) apply equally at both sites. Regulatory pre-meetings with Health Canada or your target regulator are scheduled into the timeline rather than treated as external dependencies.",
+        "The project runs as designed in the proposal. Weekly project meetings between your team and our project manager; bi-weekly milestone reviews with the workstream owners; monthly executive steering committees for projects long enough to need them. All deviations and CAPAs visible in real time through the shared project workspace; data integrity controls (ALCOA+) apply across the QMS. Regulatory pre-meetings with Health Canada or your target regulator are scheduled into the timeline rather than treated as external dependencies.",
       whatWeNeed: [
         "Decision availability on the agreed cadence",
         "Timely review and approval of regulatory editorial drafts",
