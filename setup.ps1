@@ -140,7 +140,7 @@ if ($repoExists) {
     if ($LASTEXITCODE -ne 0) { Fail "git push failed." }
 } else {
     Write-Host "  Creating public repo 'propharmex-site'..." -ForegroundColor Cyan
-    gh repo create propharmex-site --public --source=. --remote=origin --push --description "Propharmex website — Canada-India CDMO (Next.js 15 + Sanity + AI tools)"
+    gh repo create propharmex-site --public --source=. --remote=origin --push --description "Propharmex website — Canadian CDMO (Next.js 15 + Sanity + AI tools)"
     if ($LASTEXITCODE -ne 0) { Fail "gh repo create failed." }
 }
 

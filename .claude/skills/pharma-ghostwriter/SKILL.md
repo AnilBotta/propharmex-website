@@ -16,7 +16,7 @@ Pulled from `docs/brand-voice.md` — always reread before drafting. Summary:
 - **Credible** — every numeric claim has a source or is framed as "in our experience"; no round-number fabrications
 - **Humble** — write about the customer's problem, not Propharmex's greatness; no superlatives ("best", "leading", "revolutionary")
 - **Zero-hype** — ban list: "cutting-edge", "world-class", "unparalleled", "next-gen", "disruptive", "synergy", "ecosystem" (as buzzword), "seamless"
-- **Two-hub pragmatic** — Propharmex is Canada-anchored with operating hubs in Mississauga, Ontario and Hyderabad, Telangana, serving drug developers globally. There is no "bridge" service offering. Surface the geography only when it materially matters (DEL authority, timeline compression, cold-chain logistics, analytical depth). Never frame Propharmex as a Canada-India intermediary.
+- **Canadian-anchored** — Propharmex is a Canadian pharmaceutical services company anchored at Mississauga, Ontario under Health Canada DEL, with 3PL distribution at the same site. Our Indian development centre in Hyderabad provides operational depth in formulation, method development, analytical services, and stability — supporting Canadian programmes, not co-equal to them. Hyderabad is named only on `/facilities`, `/facilities/hyderabad-india`, and `/quality`. Everywhere else the lead identity is Canadian. Never frame Propharmex as "two-hub", as having "two operating hubs", or as a Canada–India intermediary. Never frame Hyderabad as a co-equal hub.
 - **Regulatory precision** — DEL is "Drug Establishment Licence" (Canadian spelling), not "license"; GMP is "cGMP" when talking USFDA; "bioequivalence" not "BE" on first use
 
 ## Inputs you expect

@@ -8,9 +8,9 @@
 
 **Credible.** Every number has a source or the phrase "in our experience". No round-number fabrications ("100% success"). Outcomes are framed as ranges across named cohorts ("40–60% faster across 7 projects in 2024").
 
-**Humble.** We write about the customer's problem, not Propharmex's greatness. Superlatives are earned with a fact ("the only Canadian DEL holder also operating Hyderabad analytical services" — verifiable). When we don't know, we say so.
+**Humble.** We write about the customer's problem, not Propharmex's greatness. Superlatives are earned with a fact ("a Canadian DEL holder with an in-house Indian development centre" — verifiable). When we don't know, we say so.
 
-**Two-hub pragmatic.** Our differentiator is the operational discipline of running a Canadian DEL site (Mississauga) and an Indian analytical/development bench (Hyderabad) under one quality system — not a "bridge" service offering between the two countries. Clients are global. Surface the geography only when it materially matters (timeline compression, regulatory authority, cold-chain logistics). Never force it.
+**Canadian-anchored.** Propharmex is a Canadian pharmaceutical services company anchored at Mississauga under Health Canada DEL. Our Indian development centre in Hyderabad provides operational depth — formulation, method development, analytical services, stability — supporting Canadian programmes, not co-equal to them. The regulatory anchor and client relationship are Canadian. Hyderabad is named only on `/facilities`, `/facilities/hyderabad-india`, and `/quality`. Surface the geography only when it materially matters (DEL authority, QMS scope, cold-chain logistics for Canadian distribution). Never frame Propharmex as a "two-hub" company. Never frame Hyderabad as a co-equal hub. Never frame Propharmex as a Canada–India intermediary.
 
 ## Ban list (zero tolerance)
 

@@ -1,6 +1,6 @@
 # Propharmex Website
 
-Canada-anchored pharmaceutical services company with operating hubs in Mississauga, Ontario and Hyderabad, Telangana, serving drug developers globally — marketing site + AI tools.
+Canadian pharmaceutical services company anchored at our Mississauga, Ontario site under Health Canada Drug Establishment Licence, with an Indian development centre in Hyderabad supporting our Canadian programmes — marketing site + AI tools, serving drug developers globally.
 
 Built on **Next.js 15 + React 19 + TypeScript strict + Tailwind v4 + Sanity v3 + Supabase (pgvector) + Vercel AI SDK**.
 
