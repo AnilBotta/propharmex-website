@@ -14,7 +14,8 @@
     "./redact": "./redact.ts",
     "./sanity": "./sanity/index.ts",
     "./rag": "./rag/index.ts",
-    "./supabase": "./supabase/index.ts"
+    "./supabase": "./supabase/index.ts",
+    "./scoping": "./scoping/index.ts"
   },
   "scripts": {
     "lint": "eslint .",
