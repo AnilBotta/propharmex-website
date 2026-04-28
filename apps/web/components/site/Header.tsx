@@ -36,15 +36,11 @@ import {
   useReducedMotion,
 } from "@propharmex/ui";
 
-import { CTAS, PRIMARY_NAV, type Region } from "../../content/site-nav";
+import { CTAS, PRIMARY_NAV } from "../../content/site-nav";
 import { BrandLogo } from "./BrandLogo";
 import { RegionSwitcher } from "./RegionSwitcher";
 
-type Props = {
-  initialRegion?: Region;
-};
-
-export function Header({ initialRegion }: Props) {
+export function Header() {
   const pathname = usePathname();
   const reduced = useReducedMotion();
   const [scrolled, setScrolled] = useState(false);
@@ -243,7 +239,7 @@ export function Header({ initialRegion }: Props) {
 
         <div className="ml-auto flex items-center gap-2 lg:gap-3">
           <div className="hidden md:block">
-            <RegionSwitcher initial={initialRegion} variant="header" />
+            <RegionSwitcher variant="header" />
           </div>
 
           <Button asChild variant="primary" size="sm" className="hidden md:inline-flex">
@@ -267,7 +263,7 @@ export function Header({ initialRegion }: Props) {
               </button>
             </SheetTrigger>
             <SheetContent side="right" className="w-full max-w-sm overflow-y-auto p-0">
-              <MobileNav initialRegion={initialRegion} />
+              <MobileNav />
             </SheetContent>
           </Sheet>
         </div>
@@ -276,7 +272,7 @@ export function Header({ initialRegion }: Props) {
   );
 }
 
-function MobileNav({ initialRegion }: { initialRegion?: Region }) {
+function MobileNav() {
   const pathname = usePathname();
   return (
     <div className="flex h-full flex-col">
@@ -334,7 +330,7 @@ function MobileNav({ initialRegion }: { initialRegion?: Region }) {
         </Accordion>
       </nav>
       <div className="flex flex-col gap-3 border-t border-[var(--color-border)] p-5">
-        <RegionSwitcher initial={initialRegion} variant="footer" />
+        <RegionSwitcher variant="footer" />
         <Button asChild variant="primary" size="md" className="w-full">
           <Link href="/contact?intent=quote">{CTAS.quote}</Link>
         </Button>

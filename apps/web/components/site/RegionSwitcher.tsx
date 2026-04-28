@@ -1,14 +1,26 @@
 "use client";
 
 /**
- * Region switcher.
+ * Region switcher (Prompt 22 PR-A).
  *
- * Phase-3 behavior: client-side preference stored in a `propharmex-region`
- * cookie so server components can read it on the next request. Prompt 22
- * replaces the storage layer with middleware-based geo-personalization and
- * per-region content variants from Sanity.
+ * Refactored from the Phase-3 cookie-writer to consume `RegionContext`.
+ * The provider owns:
+ *   - the source of truth (`region`)
+ *   - the POST to /api/region
+ *   - the telemetry firing
+ *   - the page reload that re-renders server components
+ *
+ * This component is now just a controlled select. Two visual variants
+ * carried forward from the prior implementation: `"header"` (compact,
+ * for the desktop nav) and `"footer"` (slightly wider, used in the
+ * mobile sheet).
+ *
+ * The `initial` prop from the prior signature is gone — initial value
+ * is owned by `<RegionProvider initialRegion={...}>` in the layout.
+ * Header.tsx still passes `initialRegion` for now during the
+ * transition; that prop is plumbed into the provider, not into this
+ * component.
  */
-import { useCallback, useEffect, useState } from "react";
 import { Globe2 } from "lucide-react";
 import {
   Select,
@@ -18,52 +30,31 @@ import {
   SelectValue,
 } from "@propharmex/ui";
 
-import { REGIONS, type Region } from "../../content/site-nav";
+import { REGION_DESCRIPTORS, type Region } from "@propharmex/lib/region";
 
-const COOKIE_NAME = "propharmex-region";
-const COOKIE_MAX_AGE = 60 * 60 * 24 * 180; // ~6 months
+import { REGION_COPY } from "../../content/region";
 
-function readCookie(name: string): string | undefined {
-  if (typeof document === "undefined") return undefined;
-  const match = document.cookie
-    .split("; ")
-    .find((row) => row.startsWith(`${name}=`));
-  return match ? decodeURIComponent(match.split("=")[1] ?? "") : undefined;
-}
+import { useRegion } from "./RegionContext";
 
-function writeCookie(name: string, value: string) {
-  document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${COOKIE_MAX_AGE}; SameSite=Lax`;
-}
-
-type Props = {
-  /** Initial region hydrated from cookies on the server. */
-  initial?: Region;
+interface Props {
   className?: string;
   variant?: "header" | "footer";
-};
+}
 
-export function RegionSwitcher({ initial, className, variant = "header" }: Props) {
-  const [region, setRegion] = useState<Region>(initial ?? "GLOBAL");
-
-  useEffect(() => {
-    const stored = readCookie(COOKIE_NAME);
-    if (stored && REGIONS.some((r) => r.code === stored)) {
-      setRegion(stored as Region);
-    }
-  }, []);
-
-  const onChange = useCallback((next: string) => {
-    setRegion(next as Region);
-    writeCookie(COOKIE_NAME, next);
-    // Soft refresh so server components can re-read the cookie.
-    if (typeof window !== "undefined") window.location.reload();
-  }, []);
+export function RegionSwitcher({ className, variant = "header" }: Props) {
+  const { region, setRegion, pending } = useRegion();
 
   return (
     <div className={className}>
-      <Select value={region} onValueChange={onChange}>
+      <Select
+        value={region}
+        onValueChange={(next) => {
+          void setRegion(next as Region, { source: "switcher" });
+        }}
+        disabled={pending}
+      >
         <SelectTrigger
-          aria-label="Select your region"
+          aria-label={REGION_COPY.switcher.triggerAriaLabel}
           className={
             variant === "header"
               ? "h-9 min-w-[120px] gap-2 text-sm"
@@ -74,9 +65,14 @@ export function RegionSwitcher({ initial, className, variant = "header" }: Props
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
-          {REGIONS.map((r) => (
-            <SelectItem key={r.code} value={r.code} textValue={r.label}>
-              {r.label}
+          {REGION_DESCRIPTORS.map((d) => (
+            <SelectItem
+              key={d.code}
+              value={d.code}
+              textValue={d.label}
+              aria-label={REGION_COPY.switcher.optionAriaLabel(d.label)}
+            >
+              {d.label}
             </SelectItem>
           ))}
         </SelectContent>
