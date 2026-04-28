@@ -1,5 +1,16 @@
 import type { NextConfig } from "next";
 
+/**
+ * Env loading note: secrets live at the workspace root (`.env.local`) so the
+ * same file feeds the Next.js dev server, the ingest CLI, the whitepaper
+ * generator, and any future scripts. To make Next.js see them in dev/build,
+ * keep a `apps/web/.env.local` symlink (or a copy) of the workspace root
+ * file. We previously tried to load the workspace-root file via
+ * `@next/env`'s `loadEnvConfig`, but importing `@next/env` directly from
+ * this config requires it as a top-level dep — kept out for now to avoid
+ * adding a transitive dep just for a dev-only convenience.
+ */
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,

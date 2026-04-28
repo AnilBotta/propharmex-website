@@ -41,7 +41,7 @@ function promptField(name: PromptKey, title: string) {
         name: "model",
         title: "Model",
         type: "string",
-        initialValue: "claude-opus-4-7",
+        initialValue: "claude-sonnet-4-5-20250929",
         validation: (rule) => rule.required(),
       }),
       defineField({

@@ -25,6 +25,14 @@ export { toPlainText, type PortableTextBlock } from "./portable-text";
 /* Fetch wrapper */
 export { sanityFetch, sanityTag, type SanityFetchOptions } from "./fetch";
 
+/* AI prompt config (Concierge — Prompt 18 PR-B) */
+export {
+  fetchConciergePromptConfig,
+  conciergePromptParser,
+  FALLBACK_CONCIERGE_CONFIG,
+  type ConciergePromptConfig,
+} from "./ai-prompt-config";
+
 /* Queries */
 export {
   siteSettingsQuery,
