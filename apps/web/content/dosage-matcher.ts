@@ -71,6 +71,10 @@ export const DOSAGE_MATCHER = {
         label: "Talk to a scientist",
         href: "/contact?source=dosage-matcher-results",
       },
+      downloadPdf: {
+        label: "Download as PDF",
+        renderingLabel: "Rendering…",
+      },
       restart: {
         label: "Run another match",
       },

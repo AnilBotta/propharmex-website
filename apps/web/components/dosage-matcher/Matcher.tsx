@@ -18,7 +18,7 @@
  * Hand-rolled AI-SDK data-stream parser (frame `8:` only — no `useChat`)
  * because this isn't a chat surface.
  */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowUpRight, Sparkles } from "lucide-react";
 
 import {
@@ -32,6 +32,15 @@ import { DOSAGE_MATCHER } from "../../content/dosage-matcher";
 
 import { InputForm } from "./InputForm";
 import { MatchResults } from "./MatchResults";
+import {
+  trackDosageMatcherConsultationClicked,
+  trackDosageMatcherMatched,
+  trackDosageMatcherOpened,
+  trackDosageMatcherPdfDownloaded,
+  trackDosageMatcherRestart,
+  trackDosageMatcherSampleLoaded,
+  trackDosageMatcherSubmitted,
+} from "./telemetry";
 
 type Phase = "input" | "submitting" | "results";
 
@@ -57,6 +66,12 @@ export function DosageFormMatcher() {
   );
   const [validationError, setValidationError] = useState<string | null>(null);
   const [serverError, setServerError] = useState<string | null>(null);
+  const [downloading, setDownloading] = useState(false);
+
+  // Page-mount telemetry (fire once).
+  useEffect(() => {
+    trackDosageMatcherOpened();
+  }, []);
 
   function loadSample() {
     setInput(SAMPLE_MATCHER_INPUT);
@@ -64,14 +79,65 @@ export function DosageFormMatcher() {
     setValidationError(null);
     setServerError(null);
     setPhase("results");
+    trackDosageMatcherSampleLoaded();
   }
 
   function restart() {
+    trackDosageMatcherRestart();
     setInput({});
     setRecommendation(null);
     setValidationError(null);
     setServerError(null);
     setPhase("input");
+  }
+
+  function consultationClicked() {
+    trackDosageMatcherConsultationClicked();
+  }
+
+  async function downloadPdf() {
+    if (!recommendation || downloading) return;
+    setDownloading(true);
+    try {
+      const res = await fetch("/api/ai/dosage-matcher/pdf", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          recommendation,
+          input,
+          referrer:
+            typeof document !== "undefined"
+              ? document.referrer || undefined
+              : undefined,
+        }),
+      });
+      if (!res.ok) {
+        // eslint-disable-next-line no-console
+        console.error("[dosage-matcher] pdf download failed:", res.status);
+        return;
+      }
+      const blob = await res.blob();
+      const today = new Date().toISOString().slice(0, 10);
+      const filename = `propharmex-dosage-matcher-${today}.pdf`;
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+
+      trackDosageMatcherPdfDownloaded({
+        bytes: blob.size,
+        matchCount: recommendation.matches.length,
+      });
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error("[dosage-matcher] pdf download error:", err);
+    } finally {
+      setDownloading(false);
+    }
   }
 
   async function submit() {
@@ -90,6 +156,17 @@ export function DosageFormMatcher() {
 
     setPhase("submitting");
     setServerError(null);
+    const filterCount = input.filters
+      ? Object.values(input.filters).filter(
+          (v) => v != null && v !== "" && v !== undefined,
+        ).length
+      : 0;
+    trackDosageMatcherSubmitted({
+      hasDescription:
+        typeof input.description === "string" &&
+        input.description.trim().length > 0,
+      filterCount,
+    });
     try {
       const res = await fetch("/api/ai/dosage-matcher", {
         method: "POST",
@@ -118,8 +195,16 @@ export function DosageFormMatcher() {
       // built.recommendation is null when the model declined to match.
       // Both render the empty-results screen — the user sees the
       // explanation + the contact CTA in either case.
-      setRecommendation(built?.recommendation ?? null);
+      const finalRec = built?.recommendation ?? null;
+      setRecommendation(finalRec);
       setPhase("results");
+
+      const topMatch = finalRec?.matches[0];
+      trackDosageMatcherMatched({
+        matchCount: finalRec?.matches.length ?? 0,
+        topFitTier: topMatch?.fitTier ?? "none",
+        topCoveragePct: topMatch?.capabilityCoveragePct ?? 0,
+      });
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error("[dosage-matcher] submit error:", err);
@@ -129,7 +214,17 @@ export function DosageFormMatcher() {
   }
 
   if (phase === "results") {
-    return <MatchResults recommendation={recommendation} onRestart={restart} />;
+    return (
+      <MatchResults
+        recommendation={recommendation}
+        onRestart={restart}
+        onConsultationClick={consultationClicked}
+        onDownloadPdf={() => {
+          void downloadPdf();
+        }}
+        downloading={downloading}
+      />
+    );
   }
 
   return (

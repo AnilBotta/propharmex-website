@@ -14,7 +14,7 @@
  * Empty state renders when the model didn't return any matches — points
  * the user straight at the contact form per the escape-hatch guardrail.
  */
-import { ArrowUpRight, RefreshCw } from "lucide-react";
+import { ArrowUpRight, Download, RefreshCw } from "lucide-react";
 
 import type { Recommendation } from "@propharmex/lib/dosage-matcher";
 
@@ -25,9 +25,18 @@ import { MatchCard } from "./MatchCard";
 interface Props {
   recommendation: Recommendation | null;
   onRestart: () => void;
+  onConsultationClick: () => void;
+  onDownloadPdf: () => void;
+  downloading: boolean;
 }
 
-export function MatchResults({ recommendation, onRestart }: Props) {
+export function MatchResults({
+  recommendation,
+  onRestart,
+  onConsultationClick,
+  onDownloadPdf,
+  downloading,
+}: Props) {
   // Empty / failure state.
   if (!recommendation || recommendation.matches.length === 0) {
     return (
@@ -41,7 +50,7 @@ export function MatchResults({ recommendation, onRestart }: Props) {
             {DOSAGE_MATCHER.results.emptyBody}
           </p>
           <div className="mt-6 flex items-center justify-center gap-3">
-            <ConsultationCta />
+            <ConsultationCta onClick={onConsultationClick} />
             <RestartButton onClick={onRestart} />
           </div>
         </div>
@@ -122,7 +131,11 @@ export function MatchResults({ recommendation, onRestart }: Props) {
 
       {/* Action footer */}
       <footer className="flex flex-wrap items-center gap-3 border-t border-[var(--color-border)] pt-6">
-        <ConsultationCta />
+        <ConsultationCta onClick={onConsultationClick} />
+        <DownloadPdfButton
+          onClick={onDownloadPdf}
+          downloading={downloading}
+        />
         <RestartButton onClick={onRestart} />
       </footer>
     </div>
@@ -144,15 +157,39 @@ function DisclaimerBanner() {
   );
 }
 
-function ConsultationCta() {
+function ConsultationCta({ onClick }: { onClick: () => void }) {
   return (
     <a
       href={DOSAGE_MATCHER.results.actions.bookConsultation.href}
+      onClick={onClick}
       className="inline-flex items-center gap-1.5 rounded-[var(--radius-md)] bg-[var(--color-primary-700)] px-4 py-2 text-sm font-medium text-white hover:bg-[var(--color-primary-800)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] focus-visible:ring-offset-1"
     >
       {DOSAGE_MATCHER.results.actions.bookConsultation.label}
       <ArrowUpRight aria-hidden="true" size={14} />
     </a>
+  );
+}
+
+function DownloadPdfButton({
+  onClick,
+  downloading,
+}: {
+  onClick: () => void;
+  downloading: boolean;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={downloading}
+      aria-label={DOSAGE_MATCHER.results.actions.downloadPdf.label}
+      className="inline-flex items-center gap-1.5 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2 text-sm font-medium text-[var(--color-fg)] hover:border-[var(--color-primary-700)] hover:text-[var(--color-primary-700)] disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)]"
+    >
+      <Download aria-hidden="true" size={14} />
+      {downloading
+        ? DOSAGE_MATCHER.results.actions.downloadPdf.renderingLabel
+        : DOSAGE_MATCHER.results.actions.downloadPdf.label}
+    </button>
   );
 }
 
