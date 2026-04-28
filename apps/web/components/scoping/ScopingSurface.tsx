@@ -37,7 +37,19 @@ import { SCOPING } from "../../content/scoping";
 
 import { ScopePreviewCard } from "./ScopePreviewCard";
 import { ScopingMessage } from "./ScopingMessage";
+import { SubmitDialog } from "./SubmitDialog";
 import { SuggestionChips } from "./SuggestionChips";
+import {
+  bucketMessageLength,
+  trackScopingEscapeClicked,
+  trackScopingMessageSent,
+  trackScopingOpened,
+  trackScopingPdfDownloaded,
+  trackScopingSampleLoaded,
+  trackScopingScopeEdited,
+  trackScopingScopeGenerated,
+  trackScopingSubmitted,
+} from "./telemetry";
 
 /**
  * Walk a message's `toolInvocations` looking for our `proposeScope` call. The
@@ -66,8 +78,14 @@ function messageHasProposeScope(message: Message): boolean {
 export function ScopingSurface() {
   const [unconfigured, setUnconfigured] = useState<string | null>(null);
   const [previewScope, setPreviewScope] = useState<ScopeSummary | null>(null);
+  const [submitDialogOpen, setSubmitDialogOpen] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitted, setSubmitted] = useState(false);
+  const [downloading, setDownloading] = useState(false);
   const messageListRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const lastTrackedScopeId = useRef<string | null>(null);
 
   const {
     messages,
@@ -101,6 +119,11 @@ export function ScopingSurface() {
     },
   });
 
+  // Page-mount telemetry (fire once).
+  useEffect(() => {
+    trackScopingOpened();
+  }, []);
+
   // Sync the preview card from the latest assistant message that contains a
   // `proposeScope` tool call. We always take the most recent one — if the
   // user nudges the assistant to redraft, the latest call wins.
@@ -111,6 +134,17 @@ export function ScopingSurface() {
         const scope = extractProposeScope(m);
         if (scope) {
           setPreviewScope(scope);
+          // Fire scope_generated once per source message id — avoids
+          // duplicate events when the user edits a section locally and
+          // useEffect re-runs with the same toolInvocation.
+          if (lastTrackedScopeId.current !== m.id) {
+            lastTrackedScopeId.current = m.id;
+            trackScopingScopeGenerated({
+              serviceCount: scope.recommendedServices.length,
+              phaseCount: scope.phases.length,
+              riskCount: scope.risks.length,
+            });
+          }
           return;
         }
       }
@@ -134,14 +168,147 @@ export function ScopingSurface() {
     setMessages([]);
     setUnconfigured(null);
     setPreviewScope(null);
+    setSubmitted(false);
+    setSubmitError(null);
+    lastTrackedScopeId.current = null;
   }
 
   function loadSample() {
     setPreviewScope(SAMPLE_SCOPE);
+    trackScopingSampleLoaded();
   }
 
   function submitWith(e: React.FormEvent<HTMLFormElement>) {
+    if (input.trim().length > 0) {
+      trackScopingMessageSent({
+        source: "composer",
+        lengthBucket: bucketMessageLength(input.length),
+      });
+    }
     handleSubmit(e);
+  }
+
+  /**
+   * Build a redacted transcript snapshot to pass to the submit / pdf routes.
+   * The /api/ai/scoping route already redacts inbound user messages before
+   * the model sees them, but the local `messages` array still holds the
+   * pre-redaction text the user typed. We don't redact again on the client
+   * (CPU on the wrong side); the server's redact pass is the load-bearing
+   * one. For PR-B we pass the messages through verbatim — the route's PII
+   * posture (counts-only logging, domain-only persistence) handles privacy.
+   *
+   * Imperative push avoids a `.filter(...).map(...)` chain whose type
+   * predicate fights the AI SDK's narrowed Message type (Message["role"]
+   * includes "data"; the predicate intersection trips UIMessage's required
+   * `parts` field).
+   */
+  function snapshotTranscript(): {
+    role: "user" | "assistant" | "system";
+    content: string;
+  }[] {
+    const out: { role: "user" | "assistant" | "system"; content: string }[] = [];
+    for (const m of messages) {
+      if (
+        m.role === "user" ||
+        m.role === "assistant" ||
+        m.role === "system"
+      ) {
+        out.push({ role: m.role, content: m.content });
+      }
+    }
+    return out;
+  }
+
+  async function handleDownloadPdf() {
+    if (!previewScope || downloading) return;
+    setDownloading(true);
+    try {
+      const res = await fetch("/api/ai/scoping/pdf", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          scope: previewScope,
+          transcript: snapshotTranscript(),
+          referrer:
+            typeof document !== "undefined"
+              ? document.referrer || undefined
+              : undefined,
+        }),
+      });
+      if (!res.ok) {
+        // eslint-disable-next-line no-console
+        console.error("[scoping] pdf download failed:", res.status);
+        return;
+      }
+      const blob = await res.blob();
+      const today = new Date().toISOString().slice(0, 10);
+      const filename = `propharmex-scope-${today}.pdf`;
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      trackScopingPdfDownloaded({
+        bytes: blob.size,
+        serviceCount: previewScope.recommendedServices.length,
+        phaseCount: previewScope.phases.length,
+      });
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error("[scoping] pdf download error:", err);
+    } finally {
+      setDownloading(false);
+    }
+  }
+
+  async function handleSubmitToBd(contact: {
+    email: string;
+    company: string;
+    name?: string;
+    message?: string;
+  }) {
+    if (!previewScope || submitting) return;
+    setSubmitting(true);
+    setSubmitError(null);
+    try {
+      const res = await fetch("/api/ai/scoping/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          scope: previewScope,
+          contact,
+          transcript: snapshotTranscript(),
+          referrer:
+            typeof document !== "undefined"
+              ? document.referrer || undefined
+              : undefined,
+        }),
+      });
+      if (!res.ok) {
+        const body = (await res.json().catch(() => null)) as
+          | { error?: string }
+          | null;
+        setSubmitError(body?.error ?? SCOPING.errors.generic);
+        return;
+      }
+      const body = (await res.json().catch(() => ({}))) as { queued?: boolean };
+      setSubmitDialogOpen(false);
+      setSubmitted(true);
+      trackScopingSubmitted({
+        queued: Boolean(body.queued),
+        serviceCount: previewScope.recommendedServices.length,
+        phaseCount: previewScope.phases.length,
+      });
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error("[scoping] submit error:", err);
+      setSubmitError(SCOPING.errors.generic);
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -177,6 +344,10 @@ export function ScopingSurface() {
           {messages.length === 0 && !unconfigured ? (
             <EmptyState
               onPick={(prompt) => {
+                trackScopingMessageSent({
+                  source: "suggestion-chip",
+                  lengthBucket: bucketMessageLength(prompt.length),
+                });
                 void append({ role: "user", content: prompt });
               }}
               onLoadSample={loadSample}
@@ -257,6 +428,7 @@ export function ScopingSurface() {
             </p>
             <a
               href={SCOPING.escapeHatch.href}
+              onClick={() => trackScopingEscapeClicked()}
               className="inline-flex items-center gap-0.5 whitespace-nowrap font-medium text-[var(--color-primary-700)] hover:underline"
             >
               {SCOPING.escapeHatch.label}
@@ -267,9 +439,42 @@ export function ScopingSurface() {
       </div>
 
       {/* Preview column */}
-      <div className="lg:sticky lg:top-24 lg:h-[calc(100dvh-8rem)] lg:max-h-[640px]">
-        <ScopePreviewCard scope={previewScope} onChange={setPreviewScope} />
+      <div className="flex flex-col gap-3 lg:sticky lg:top-24 lg:h-[calc(100dvh-8rem)] lg:max-h-[640px]">
+        {submitted ? (
+          <div
+            role="status"
+            className="rounded-[var(--radius-md)] border border-[var(--color-success)] bg-[color-mix(in_oklab,var(--color-success)_10%,transparent)] px-3 py-2 text-sm text-[var(--color-success)]"
+          >
+            <p className="font-semibold">{SCOPING.preview.submittedHeading}</p>
+            <p className="mt-0.5 text-[13px] leading-snug text-[var(--color-fg)]">
+              {SCOPING.preview.submittedBody}
+            </p>
+          </div>
+        ) : null}
+        <ScopePreviewCard
+          scope={previewScope}
+          onChange={setPreviewScope}
+          onEdit={(section) => trackScopingScopeEdited({ section })}
+          onRequestSubmit={() => {
+            setSubmitError(null);
+            setSubmitDialogOpen(true);
+          }}
+          onDownloadPdf={() => {
+            void handleDownloadPdf();
+          }}
+          downloading={downloading}
+        />
       </div>
+
+      <SubmitDialog
+        open={submitDialogOpen}
+        submitting={submitting}
+        errorMessage={submitError}
+        onClose={() => setSubmitDialogOpen(false)}
+        onSubmit={(contact) => {
+          void handleSubmitToBd(contact);
+        }}
+      />
     </div>
   );
 }

@@ -21,3 +21,5 @@ export {
 } from "./types";
 
 export { SAMPLE_SCOPE } from "./sample";
+
+export { renderScopePdf } from "./pdf";

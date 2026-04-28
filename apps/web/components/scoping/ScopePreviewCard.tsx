@@ -34,6 +34,22 @@ import { SCOPING } from "../../content/scoping";
 interface Props {
   scope: ScopeSummary | null;
   onChange: (next: ScopeSummary) => void;
+  /** Notified when the user commits an edit on a section (telemetry hook). */
+  onEdit?: (
+    section:
+      | "objectives"
+      | "dosageForms"
+      | "developmentStage"
+      | "deliverables"
+      | "assumptions"
+      | "recommendedServices",
+  ) => void;
+  /** Send-to-Propharmex action click. Parent opens the SubmitDialog. */
+  onRequestSubmit?: () => void;
+  /** Download-PDF action click. Parent posts to /api/ai/scoping/pdf. */
+  onDownloadPdf?: () => void;
+  /** True while the PDF route is in flight — disables the button. */
+  downloading?: boolean;
 }
 
 type EditingSection =
@@ -48,12 +64,21 @@ type EditingSection =
   | "ballparkTimelineWeeks"
   | "recommendedServices";
 
-export function ScopePreviewCard({ scope, onChange }: Props) {
+export function ScopePreviewCard({
+  scope,
+  onChange,
+  onEdit,
+  onRequestSubmit,
+  onDownloadPdf,
+  downloading,
+}: Props) {
   const [editing, setEditing] = useState<EditingSection>(null);
 
   if (!scope) {
     return <EmptyState />;
   }
+
+  const canAct = onRequestSubmit !== undefined && onDownloadPdf !== undefined;
 
   return (
     <div className="flex h-full flex-col rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] shadow-[0_4px_12px_-4px_rgba(15,32,80,0.08)]">
@@ -80,6 +105,7 @@ export function ScopePreviewCard({ scope, onChange }: Props) {
               initial={scope.objectives}
               onSave={(next) => {
                 onChange({ ...scope, objectives: next });
+                onEdit?.("objectives");
                 setEditing(null);
               }}
               onCancel={() => setEditing(null)}
@@ -103,6 +129,7 @@ export function ScopePreviewCard({ scope, onChange }: Props) {
               initial={scope.dosageForms}
               onSave={(next) => {
                 onChange({ ...scope, dosageForms: next });
+                onEdit?.("dosageForms");
                 setEditing(null);
               }}
               onCancel={() => setEditing(null)}
@@ -127,6 +154,7 @@ export function ScopePreviewCard({ scope, onChange }: Props) {
                   developmentStage:
                     e.target.value as ScopeSummary["developmentStage"],
                 });
+                onEdit?.("developmentStage");
                 setEditing(null);
               }}
               className="w-full rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2 text-sm text-[var(--color-fg)] focus-visible:border-[var(--color-primary-700)] focus-visible:outline-none"
@@ -155,6 +183,7 @@ export function ScopePreviewCard({ scope, onChange }: Props) {
               initial={scope.deliverables}
               onSave={(next) => {
                 onChange({ ...scope, deliverables: next });
+                onEdit?.("deliverables");
                 setEditing(null);
               }}
               onCancel={() => setEditing(null)}
@@ -176,6 +205,7 @@ export function ScopePreviewCard({ scope, onChange }: Props) {
                 initial={scope.assumptions}
                 onSave={(next) => {
                   onChange({ ...scope, assumptions: next });
+                  onEdit?.("assumptions");
                   setEditing(null);
                 }}
                 onCancel={() => setEditing(null)}
@@ -270,6 +300,7 @@ export function ScopePreviewCard({ scope, onChange }: Props) {
               initial={scope.recommendedServices}
               onSave={(next) => {
                 onChange({ ...scope, recommendedServices: next });
+                onEdit?.("recommendedServices");
                 setEditing(null);
               }}
               onCancel={() => setEditing(null)}
@@ -280,24 +311,26 @@ export function ScopePreviewCard({ scope, onChange }: Props) {
         </Section>
       </div>
 
-      {/* Actions — disabled in PR-A */}
+      {/* Actions */}
       <footer className="flex items-center justify-end gap-2 border-t border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-3">
         <button
           type="button"
-          disabled
-          title={SCOPING.preview.actions.pdfTooltipPending}
-          aria-label={SCOPING.preview.actions.pdfTooltipPending}
-          className="inline-flex items-center gap-1.5 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2 text-sm font-medium text-[var(--color-muted)] disabled:cursor-not-allowed disabled:opacity-60"
+          disabled={!canAct || downloading}
+          onClick={onDownloadPdf}
+          aria-label={SCOPING.preview.actions.pdfLabel}
+          className="inline-flex items-center gap-1.5 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2 text-sm font-medium text-[var(--color-fg)] hover:border-[var(--color-primary-700)] hover:text-[var(--color-primary-700)] disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)]"
         >
           <Download aria-hidden="true" size={14} />
-          {SCOPING.preview.actions.pdfLabel}
+          {downloading
+            ? SCOPING.preview.actions.pdfPendingLabel
+            : SCOPING.preview.actions.pdfLabel}
         </button>
         <button
           type="button"
-          disabled
-          title={SCOPING.preview.actions.submitTooltipPending}
-          aria-label={SCOPING.preview.actions.submitTooltipPending}
-          className="inline-flex items-center gap-1.5 rounded-[var(--radius-md)] bg-[var(--color-primary-700)] px-3 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-60"
+          disabled={!canAct}
+          onClick={onRequestSubmit}
+          aria-label={SCOPING.preview.actions.submitLabel}
+          className="inline-flex items-center gap-1.5 rounded-[var(--radius-md)] bg-[var(--color-primary-700)] px-3 py-2 text-sm font-medium text-white hover:bg-[var(--color-primary-800)] disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] focus-visible:ring-offset-1"
         >
           <Send aria-hidden="true" size={14} />
           {SCOPING.preview.actions.submitLabel}
