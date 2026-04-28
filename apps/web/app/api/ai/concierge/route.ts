@@ -21,14 +21,26 @@
  *   - Anthropic 5xx → automatic retry once via the AI SDK; otherwise client
  *     sees a stream-error and the bubble shows the generic "try again" copy
  *
- * Rate limiting + redaction + telemetry → PR-C.
+ * Hardening (PR-C):
+ *   - Per-IP sliding-window rate limit (10 req / minute) via Upstash; no-op
+ *     fallback when Upstash isn't configured so dev / CI without keys still
+ *     work
+ *   - Inbound PII redaction (emails, phones, "my name is X") before the
+ *     message reaches the model or any logger
  */
 import { createAnthropic } from "@ai-sdk/anthropic";
 import { createDataStreamResponse, streamText, type CoreMessage } from "ai";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
-import { env, log, rag, sanity } from "@propharmex/lib";
+import {
+  env,
+  getRateLimiter,
+  log,
+  rag,
+  redact,
+  sanity,
+} from "@propharmex/lib";
 
 export const runtime = "edge";
 
@@ -55,6 +67,16 @@ const BodySchema = z.object({
 const TOP_K = 8;
 const MIN_RETRIEVAL_SCORE = 0.2;
 const MAX_TOKENS = 800;
+const RATE_LIMIT_TOKENS = 10;
+const RATE_LIMIT_WINDOW = "1 m" as const;
+
+// Module-scope singleton — `getRateLimiter` caches by `(scope, opts)` so this
+// is just a one-time lookup. Edge workers may instantiate this per cold start
+// but the underlying Redis client is HTTP-stateless.
+const conciergeRateLimiter = getRateLimiter("concierge:ip", {
+  tokens: RATE_LIMIT_TOKENS,
+  window: RATE_LIMIT_WINDOW,
+});
 
 /* -------------------------------------------------------------------------- */
 /*  Handler                                                                    */
@@ -75,7 +97,35 @@ export async function POST(req: Request) {
     );
   }
 
-  // 2) Parse + validate the inbound body.
+  // 2) Per-IP rate limit. `x-forwarded-for` may carry a comma-separated list
+  // (`client, proxy1, proxy2`); the leftmost entry is the originating client.
+  // Falls through to "anon" when the header is absent (local dev, curl).
+  const ip =
+    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "anon";
+  const rl = await conciergeRateLimiter.limit(ip);
+  if (!rl.success) {
+    const retryAfterSeconds = Math.max(
+      1,
+      Math.ceil((rl.reset - Date.now()) / 1000),
+    );
+    log.warn("concierge.rate_limited", {
+      ip,
+      limit: rl.limit,
+      retryAfterSeconds,
+    });
+    return NextResponse.json(
+      {
+        error: "Too many requests. Please wait a moment and try again.",
+        contactUrl: "/contact?source=concierge-rate-limited",
+      },
+      {
+        status: 429,
+        headers: { "Retry-After": String(retryAfterSeconds) },
+      },
+    );
+  }
+
+  // 3) Parse + validate the inbound body.
   let raw: unknown;
   try {
     raw = await req.json();
@@ -92,9 +142,25 @@ export async function POST(req: Request) {
       { status: 400 },
     );
   }
-  const { messages } = parsed.data;
+  const { messages: rawMessages } = parsed.data;
 
-  // 3) Pull the most recent user message for retrieval.
+  // 4) Redact PII from EVERY user message in the history before any of it
+  // reaches the model, the logger, or downstream retrieval. Assistant /
+  // system messages are passed through unchanged.
+  let totalRedactionCount = 0;
+  const messages = rawMessages.map((m) => {
+    if (m.role !== "user") return m;
+    const { redactedText, redactionCount } = redact(m.content);
+    totalRedactionCount += redactionCount;
+    return redactionCount > 0 ? { ...m, content: redactedText } : m;
+  });
+  if (totalRedactionCount > 0) {
+    // Count only — never the content. The redaction itself prevents the PII
+    // from showing up in any subsequent log line.
+    log.info("concierge.redacted", { count: totalRedactionCount });
+  }
+
+  // 5) Pull the most recent user message for retrieval (already redacted).
   const lastUser = [...messages].reverse().find((m) => m.role === "user");
   if (!lastUser) {
     return NextResponse.json(
@@ -103,10 +169,10 @@ export async function POST(req: Request) {
     );
   }
 
-  // 4) Fetch the Concierge config (Sanity → fallback).
+  // 6) Fetch the Concierge config (Sanity → fallback).
   const config = await sanity.fetchConciergePromptConfig();
 
-  // 5) Retrieve top-k chunks. Falls through to [] on missing OpenAI/Supabase
+  // 7) Retrieve top-k chunks. Falls through to [] on missing OpenAI/Supabase
   // keys or RPC errors — the model still answers, just without citations.
   let chunks: rag.RetrievedChunk[] = [];
   try {
@@ -120,7 +186,7 @@ export async function POST(req: Request) {
     });
   }
 
-  // 6) Build the context block. Numbering here matches the [N] markers the
+  // 8) Build the context block. Numbering here matches the [N] markers the
   // model will produce in its reply.
   const contextBlock = buildContextBlock(chunks);
   const sourcesPayload = chunks.map((c, i) => ({
@@ -140,7 +206,7 @@ export async function POST(req: Request) {
     model: config.model,
   });
 
-  // 7) Stream the response via the AI SDK's data-stream protocol. We use
+  // 9) Stream the response via the AI SDK's data-stream protocol. We use
   // `createDataStreamResponse` (rather than the simpler
   // `result.toDataStreamResponse()`) so we can also attach the sources list
   // + disclaimer to the assistant message as a structured annotation (frame

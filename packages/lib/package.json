@@ -10,6 +10,8 @@
     "./env": "./env.ts",
     "./log": "./log.ts",
     "./schema-org": "./schema-org.ts",
+    "./upstash": "./upstash.ts",
+    "./redact": "./redact.ts",
     "./sanity": "./sanity/index.ts",
     "./rag": "./rag/index.ts",
     "./supabase": "./supabase/index.ts"
@@ -24,6 +26,8 @@
     "@sanity/client": "^6.22.0",
     "@sanity/image-url": "^1.0.2",
     "@supabase/supabase-js": "^2.45.0",
+    "@upstash/ratelimit": "^2.0.0",
+    "@upstash/redis": "^1.34.0",
     "zod": "^3.23.0"
   },
   "devDependencies": {

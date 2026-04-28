@@ -15,27 +15,48 @@
  * No data fetching here — the panel renders the actual chat surface, which
  * uses `useChat` from the Vercel AI SDK and posts to /api/ai/concierge.
  */
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { MessageSquare, X } from "lucide-react";
 
 import { CONCIERGE } from "../../content/concierge";
 
 import { ConciergePanel } from "./ConciergePanel";
+import {
+  trackConciergeClosed,
+  trackConciergeOpened,
+} from "./telemetry";
 
 export function ConciergeBubble() {
   const [open, setOpen] = useState(false);
   const reduce = useReducedMotion();
 
+  const handleToggle = useCallback(() => {
+    setOpen((prev) => {
+      const next = !prev;
+      if (next) trackConciergeOpened({ source: "bubble" });
+      else trackConciergeClosed({ reason: "toggle" });
+      return next;
+    });
+  }, []);
+
+  const handleClose = useCallback(
+    (reason: "x-button" | "escape" = "x-button") => {
+      setOpen(false);
+      trackConciergeClosed({ reason });
+    },
+    [],
+  );
+
   // Close on ESC.
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") handleClose("escape");
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [open]);
+  }, [open, handleClose]);
 
   return (
     <div
@@ -52,14 +73,14 @@ export function ConciergeBubble() {
             transition={{ duration: reduce ? 0 : 0.2, ease: "easeOut" }}
             className="pointer-events-auto"
           >
-            <ConciergePanel onClose={() => setOpen(false)} />
+            <ConciergePanel onClose={() => handleClose("x-button")} />
           </motion.div>
         ) : null}
       </AnimatePresence>
 
       <button
         type="button"
-        onClick={() => setOpen((prev) => !prev)}
+        onClick={handleToggle}
         aria-label={open ? CONCIERGE.bubble.closeLabel : CONCIERGE.bubble.openLabel}
         aria-expanded={open}
         aria-controls="concierge-panel"
