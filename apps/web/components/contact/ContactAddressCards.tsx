@@ -1,10 +1,11 @@
 /**
  * ContactAddressCards — dual-hub address cards for /contact, RSC.
  *
- * Reads from the canonical FACILITIES array in apps/web/content/site-nav.ts
- * so there is one place to update when client confirms street addresses
- * and phone numbers. Until then, cards show the city + region + country
- * with the existing "address on file" posture used elsewhere on the site.
+ * Renders the FACILITIES list passed in by the page. Order is
+ * region-aware (Prompt 22 PR-B) — the page sorts FACILITIES so the
+ * facility most relevant to the visitor's region is rendered first.
+ * Default value is the canonical unsorted list for back-compat with
+ * any caller that doesn't yet pass `facilities`.
  *
  * Each card includes a lazy-loaded Google Maps iframe (city-level zoom)
  * and an "Open in Google Maps" link. No client JS in this component.
@@ -12,13 +13,20 @@
 import type { FC } from "react";
 
 import type { ContactContent } from "../../content/contact";
-import { FACILITIES } from "../../content/site-nav";
+import { FACILITIES, type FacilityAddress } from "../../content/site-nav";
 
 import { SectionReveal } from "./SectionReveal";
 
-type Props = { content: ContactContent["addresses"] };
+type Props = {
+  content: ContactContent["addresses"];
+  /** Override facility ordering. Defaults to the canonical list. */
+  facilities?: FacilityAddress[];
+};
 
-export const ContactAddressCards: FC<Props> = ({ content }) => {
+export const ContactAddressCards: FC<Props> = ({
+  content,
+  facilities = FACILITIES,
+}) => {
   return (
     <section
       aria-labelledby="contact-addresses-heading"
@@ -41,7 +49,7 @@ export const ContactAddressCards: FC<Props> = ({ content }) => {
         </SectionReveal>
 
         <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
-          {FACILITIES.map((facility) => {
+          {facilities.map((facility) => {
             const hasStreet =
               facility.streetLines.length > 0 &&
               !facility.streetLines[0]?.startsWith("—");

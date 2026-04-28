@@ -21,6 +21,7 @@
 import type { Metadata } from "next";
 
 import { env, jsonLdGraph } from "@propharmex/lib";
+import { prioritizeByRegion, type Region } from "@propharmex/lib/region";
 
 import { CalBookingPanel } from "../../components/contact/CalBookingPanel";
 import { ContactAddressCards } from "../../components/contact/ContactAddressCards";
@@ -28,7 +29,21 @@ import { ContactHero } from "../../components/contact/ContactHero";
 import { InquiryForm } from "../../components/contact/InquiryForm";
 import { JsonLd } from "../../components/site/JsonLd";
 import { CONTACT } from "../../content/contact";
-import { FACILITIES } from "../../content/site-nav";
+import { FACILITIES, type FacilityAddress } from "../../content/site-nav";
+import { getServerRegion } from "../../lib/region-server";
+
+/**
+ * Per-region facility priority. Mississauga first for CA / US / GLOBAL
+ * (DEL anchor + sponsor-of-record); Hyderabad first for IN visitors
+ * (the development centre is in Hyderabad). Both facilities are always
+ * shown; only the order changes.
+ */
+const FACILITY_PRIORITY: Record<Region, readonly FacilityAddress["code"][]> = {
+  CA: ["MISSISSAUGA", "HYDERABAD"],
+  US: ["MISSISSAUGA", "HYDERABAD"],
+  IN: ["HYDERABAD", "MISSISSAUGA"],
+  GLOBAL: ["MISSISSAUGA", "HYDERABAD"],
+};
 
 const FALLBACK_EMAIL = "hello@propharmex.com";
 
@@ -53,14 +68,21 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ContactPage() {
+export default async function ContactPage() {
   const siteUrl = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
   const pageJsonLd = buildContactPageJsonLd(siteUrl);
+  const region = await getServerRegion();
+  const facilities = prioritizeByRegion(
+    FACILITIES,
+    (f) => f.code,
+    FACILITY_PRIORITY,
+    region,
+  );
 
   return (
     <>
       <ContactHero content={CONTACT.hero} />
-      <ContactAddressCards content={CONTACT.addresses} />
+      <ContactAddressCards content={CONTACT.addresses} facilities={facilities} />
       <InquiryForm content={CONTACT.form} />
       <CalBookingPanel
         content={CONTACT.cal}
