@@ -19,13 +19,13 @@ const CHARS_PER_TOKEN = 4;
 const TARGET_CHARS = TARGET_TOKENS * CHARS_PER_TOKEN; // 2000
 const OVERLAP_CHARS = OVERLAP_TOKENS * CHARS_PER_TOKEN; // 200
 
-export type ChunkInput = {
+export interface ChunkInput {
   text: string;
   sourceUrl: string;
   sourceTitle: string;
   section: string;
   contentType: ContentType;
-};
+}
 
 /**
  * Build a deterministic chunk id from source + section + index. Same inputs

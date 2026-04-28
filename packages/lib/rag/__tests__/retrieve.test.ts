@@ -17,7 +17,10 @@ import { embedQuery } from "../embedder";
 import { retrieve } from "../retrieve";
 import { getServerSupabase } from "../../supabase/server";
 
-type RpcResponse = { data: unknown; error: unknown };
+interface RpcResponse {
+  data: unknown;
+  error: unknown;
+}
 
 function makeSupabaseStub(rpcResponse: RpcResponse) {
   return {

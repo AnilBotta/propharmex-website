@@ -34,7 +34,7 @@ export const EMBEDDING_MODEL = "text-embedding-3-large";
  * `id` is stable + deterministic — re-running ingestion against unchanged
  * content yields the same `id`, so upserts are idempotent.
  */
-export type Chunk = {
+export interface Chunk {
   /** Stable id: `${contentType}:${sourceUrl}:${section-slug}:${chunkIndex}`. */
   id: string;
   /** The chunk text (~500 tokens target). */
@@ -47,32 +47,32 @@ export type Chunk = {
   section: string;
   /** Coarse category for filtering. */
   contentType: ContentType;
-};
+}
 
 /**
  * A chunk returned from the retrieve() helper, augmented with similarity score.
  */
-export type RetrievedChunk = Chunk & {
+export interface RetrievedChunk extends Chunk {
   /** Cosine similarity, 0..1 (1 = identical). */
   score: number;
-};
+}
 
 /**
  * What every source extractor returns. The pipeline calls `extract()` once per
  * source module to collect all chunks before batching for embedding.
  */
-export type IngestSource = {
+export interface IngestSource {
   /** Human-readable label for logs ("home", "insights", etc.). */
   label: string;
   /** Returns the chunks this source contributes. Pure function, no I/O. */
   extract: () => Chunk[];
-};
+}
 
 /**
  * Database row shape — used by the Supabase client when reading/writing
  * rag_chunks. Mirrors the SQL column order.
  */
-export type RagChunkRow = {
+export interface RagChunkRow {
   id: string;
   content: string;
   embedding: number[];
@@ -81,12 +81,12 @@ export type RagChunkRow = {
   section: string;
   content_type: ContentType;
   created_at?: string;
-};
+}
 
 /**
  * Shape returned by the match_chunks() Postgres RPC.
  */
-export type MatchChunkRow = {
+export interface MatchChunkRow {
   id: string;
   content: string;
   source_url: string;
@@ -94,4 +94,4 @@ export type MatchChunkRow = {
   section: string;
   content_type: ContentType;
   score: number;
-};
+}

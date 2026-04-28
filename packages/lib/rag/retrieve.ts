@@ -16,12 +16,12 @@ import { log } from "../log";
 import { embedQuery } from "./embedder";
 import type { MatchChunkRow, RetrievedChunk } from "./types";
 
-export type RetrieveOptions = {
+export interface RetrieveOptions {
   /** How many top chunks to return. Default 8 per Prompt 18 spec. */
   topK?: number;
   /** Minimum cosine score (0..1). Default 0.0 — let the model decide. */
   minScore?: number;
-};
+}
 
 const DEFAULT_TOP_K = 8;
 const DEFAULT_MIN_SCORE = 0.0;

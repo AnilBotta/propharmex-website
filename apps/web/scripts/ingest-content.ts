@@ -27,7 +27,7 @@ type Chunk = rag.Chunk;
 const { embedTexts } = rag;
 const { requireServerSupabase } = supabaseLib;
 
-type ChunkRow = {
+interface ChunkRow {
   id: string;
   content: string;
   embedding: number[];
@@ -35,7 +35,7 @@ type ChunkRow = {
   source_title: string;
   section: string;
   content_type: string;
-};
+}
 
 async function main() {
   // eslint-disable-next-line no-console
