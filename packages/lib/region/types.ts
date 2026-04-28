@@ -82,6 +82,15 @@ export const REGION_DESCRIPTORS: RegionDescriptor[] = [
   },
 ];
 
+/** Single source of truth for the GLOBAL fallback descriptor. */
+const GLOBAL_DESCRIPTOR: RegionDescriptor = {
+  code: "GLOBAL",
+  label: "Global",
+  shortLabel: "GL",
+  description: "WHO-GMP, EMA, TGA, and PMDA submissions.",
+  primaryCertAnchor: "WHO-GMP",
+};
+
 /**
  * Look up the descriptor for a region code. Falls back to GLOBAL if the
  * code is malformed — defensive for cases where a stale cookie or stale
@@ -89,7 +98,7 @@ export const REGION_DESCRIPTORS: RegionDescriptor[] = [
  */
 export function getRegionDescriptor(code: string | undefined): RegionDescriptor {
   const found = REGION_DESCRIPTORS.find((r) => r.code === code);
-  return found ?? REGION_DESCRIPTORS[3]!;
+  return found ?? GLOBAL_DESCRIPTOR;
 }
 
 /**
