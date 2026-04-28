@@ -43,13 +43,14 @@ export function prioritizeByRegion<T, K extends string>(
   order.forEach((k, i) => indexOf.set(k, i));
 
   return [...items]
-    .map((item, originalIndex) => ({
-      item,
-      originalIndex,
-      rank: indexOf.has(getKey(item))
-        ? indexOf.get(getKey(item))!
-        : Number.POSITIVE_INFINITY,
-    }))
+    .map((item, originalIndex) => {
+      // `Map.get` is `K | undefined`. Use `??` to fall back to the
+      // sentinel for missing keys — equivalent to the prior
+      // `has`+`get!` pattern but without a non-null assertion (which
+      // CI's @typescript-eslint/no-non-null-assertion rejects).
+      const rank = indexOf.get(getKey(item)) ?? Number.POSITIVE_INFINITY;
+      return { item, originalIndex, rank };
+    })
     .sort((a, b) => {
       if (a.rank !== b.rank) return a.rank - b.rank;
       return a.originalIndex - b.originalIndex;
