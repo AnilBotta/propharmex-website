@@ -11,6 +11,8 @@
     "test": "vitest run --passWithNoTests",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
+    "e2e": "playwright test",
+    "e2e:install": "playwright install --with-deps chromium",
     "generate:whitepaper": "node scripts/generate-whitepaper.mjs",
     "ingest:content": "tsx --env-file=../../.env.local scripts/ingest-content.ts",
     "clean": "rm -rf .next .turbo node_modules"
@@ -24,6 +26,8 @@
     "@sanity/client": "^6.22.0",
     "@sanity/image-url": "^1.0.2",
     "@supabase/supabase-js": "^2.45.0",
+    "@upstash/ratelimit": "^2.0.0",
+    "@upstash/redis": "^1.34.0",
     "ai": "^4.0.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",

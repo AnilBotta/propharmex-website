@@ -11,6 +11,13 @@ export {
   type WebSiteInput,
   type PostalAddressInput,
 } from "./schema-org";
+export {
+  getRateLimiter,
+  type RateLimiter,
+  type RateLimiterOptions,
+  type RateLimitResult,
+} from "./upstash";
+export { redact, type RedactResult } from "./redact";
 
 export * as sanity from "./sanity";
 export * as rag from "./rag";

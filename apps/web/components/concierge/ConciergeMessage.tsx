@@ -23,6 +23,8 @@ import { ThumbsDown, ThumbsUp } from "lucide-react";
 
 import { CONCIERGE } from "../../content/concierge";
 
+import { trackConciergeFeedback } from "./telemetry";
+
 export interface SourceRef {
   n: number;
   title: string;
@@ -130,6 +132,7 @@ function SourcesFooter({ sources }: { sources: SourceRef[] }) {
 }
 
 function FeedbackRow({ messageId }: { messageId: string }) {
+  void messageId;
   const [vote, setVote] = useState<"up" | "down" | null>(null);
 
   if (vote) {
@@ -146,8 +149,7 @@ function FeedbackRow({ messageId }: { messageId: string }) {
         type="button"
         onClick={() => {
           setVote("up");
-          // PR-C wires PostHog telemetry here.
-          notifyFeedbackPlaceholder({ messageId, vote: "up" });
+          trackConciergeFeedback({ vote: "up" });
         }}
         aria-label={CONCIERGE.message.thumbsUpLabel}
         className="rounded-[var(--radius-xs)] p-1 hover:bg-[var(--color-slate-100)] hover:text-[var(--color-primary-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)]"
@@ -158,7 +160,7 @@ function FeedbackRow({ messageId }: { messageId: string }) {
         type="button"
         onClick={() => {
           setVote("down");
-          notifyFeedbackPlaceholder({ messageId, vote: "down" });
+          trackConciergeFeedback({ vote: "down" });
         }}
         aria-label={CONCIERGE.message.thumbsDownLabel}
         className="rounded-[var(--radius-xs)] p-1 hover:bg-[var(--color-slate-100)] hover:text-[var(--color-primary-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)]"
@@ -167,16 +169,4 @@ function FeedbackRow({ messageId }: { messageId: string }) {
       </button>
     </div>
   );
-}
-
-/**
- * Placeholder telemetry sink. PR-C replaces this with a PostHog event call.
- * Kept as a separate function so the swap-in is a one-line diff. The `void`
- * expression marks the param as intentionally received but unused.
- */
-function notifyFeedbackPlaceholder(payload: {
-  messageId: string;
-  vote: "up" | "down";
-}): void {
-  void payload;
 }

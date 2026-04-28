@@ -23,6 +23,12 @@ import { CONCIERGE } from "../../content/concierge";
 
 import { ConciergeMessage, type SourceRef } from "./ConciergeMessage";
 import { SuggestionChips } from "./SuggestionChips";
+import {
+  bucketMessageLength,
+  trackConciergeEscapeClicked,
+  trackConciergeMessageReceived,
+  trackConciergeMessageSent,
+} from "./telemetry";
 
 interface Props {
   onClose: () => void;
@@ -84,6 +90,15 @@ export function ConciergePanel({ onClose }: Props) {
           });
       }
     },
+    onFinish: (msg) => {
+      // The assistant message has finished streaming. Read its annotation to
+      // count citations — the route attaches a `concierge.meta` payload via
+      // `writer.writeMessageAnnotation`.
+      const meta = extractMeta(msg.annotations);
+      trackConciergeMessageReceived({
+        citationCount: meta?.sources.length ?? 0,
+      });
+    },
     onError: (e) => {
       // eslint-disable-next-line no-console
       console.error("[concierge] stream error:", e);
@@ -118,6 +133,19 @@ export function ConciergePanel({ onClose }: Props) {
     setMessages([]);
     setUnconfigured(null);
     setDisclaimerOverride(null);
+  }
+
+  // Wraps the AI SDK's `handleSubmit` with a telemetry call. Used both by
+  // the form's onSubmit and by the textarea's Enter-to-submit shortcut so
+  // both paths emit `concierge.message_sent`.
+  function submitWithTelemetry(e: React.FormEvent<HTMLFormElement>) {
+    if (input.trim().length > 0) {
+      trackConciergeMessageSent({
+        source: "composer",
+        lengthBucket: bucketMessageLength(input.length),
+      });
+    }
+    handleSubmit(e);
   }
 
   return (
@@ -172,6 +200,10 @@ export function ConciergePanel({ onClose }: Props) {
         {messages.length === 0 && !unconfigured ? (
           <EmptyState
             onPick={(prompt) => {
+              trackConciergeMessageSent({
+                source: "suggestion-chip",
+                lengthBucket: bucketMessageLength(prompt.length),
+              });
               void append({ role: "user", content: prompt });
             }}
           />
@@ -215,7 +247,9 @@ export function ConciergePanel({ onClose }: Props) {
 
       {/* Composer */}
       <form
-        onSubmit={handleSubmit}
+        onSubmit={(e) => {
+          submitWithTelemetry(e);
+        }}
         className="flex flex-col gap-2 border-t border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-3"
       >
         <div className="flex items-end gap-2">
@@ -227,7 +261,7 @@ export function ConciergePanel({ onClose }: Props) {
               if (e.key === "Enter" && !e.shiftKey) {
                 e.preventDefault();
                 if (input.trim() && !isLoading) {
-                  handleSubmit(
+                  submitWithTelemetry(
                     new Event("submit") as unknown as React.FormEvent<HTMLFormElement>,
                   );
                 }
@@ -253,6 +287,7 @@ export function ConciergePanel({ onClose }: Props) {
           </p>
           <a
             href={CONCIERGE.escapeHatch.href}
+            onClick={() => trackConciergeEscapeClicked()}
             className="inline-flex items-center gap-0.5 whitespace-nowrap font-medium text-[var(--color-primary-700)] hover:underline"
           >
             {CONCIERGE.escapeHatch.label}
