@@ -22,3 +22,4 @@ export { redact, type RedactResult } from "./redact";
 export * as sanity from "./sanity";
 export * as rag from "./rag";
 export * as supabase from "./supabase";
+export * as scoping from "./scoping";
