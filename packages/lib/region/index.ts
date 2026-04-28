@@ -22,3 +22,5 @@ export {
 } from "./types";
 
 export { countryToRegion } from "./country-map";
+
+export { prioritizeByRegion, pickRegionVariant } from "./region-aware";
