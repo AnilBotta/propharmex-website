@@ -24,7 +24,7 @@
  * single one-shot synthesis. Parsing the stream by hand keeps the surface
  * minimal and avoids dragging in the chat wrapper for nothing.
  */
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 
 import {
@@ -42,6 +42,15 @@ import { DEL_READINESS } from "../../content/del-readiness";
 
 import { QuestionStep } from "./QuestionStep";
 import { ResultsScreen } from "./ResultsScreen";
+import {
+  trackDelReadinessConsultationClicked,
+  trackDelReadinessOpened,
+  trackDelReadinessPdfDownloaded,
+  trackDelReadinessQuestionAnswered,
+  trackDelReadinessRetake,
+  trackDelReadinessScored,
+  trackDelReadinessSubmitted,
+} from "./telemetry";
 
 type Phase = "intake" | "submitting" | "results";
 
@@ -74,7 +83,12 @@ function isScoreAnnotation(v: unknown): v is ScoreAnnotation {
   );
 }
 
-export function DelReadinessAssessment() {
+interface AssessmentProps {
+  /** Cal.com slug, propagated from env via the page. */
+  calLink?: string;
+}
+
+export function DelReadinessAssessment({ calLink }: AssessmentProps = {}) {
   const rubric = DEFAULT_RUBRIC;
 
   const [answers, setAnswers] = useState<AnswerMap>({});
@@ -83,6 +97,12 @@ export function DelReadinessAssessment() {
   const [validationError, setValidationError] = useState<string | null>(null);
   const [serverError, setServerError] = useState<string | null>(null);
   const [assessment, setAssessment] = useState<Assessment | null>(null);
+  const [downloading, setDownloading] = useState(false);
+
+  // Page-mount telemetry (fire once).
+  useEffect(() => {
+    trackDelReadinessOpened();
+  }, []);
 
   const visible = useMemo(() => visibleQuestions(rubric, answers), [
     rubric,
@@ -96,6 +116,10 @@ export function DelReadinessAssessment() {
     if (!currentQuestion) return;
     setValidationError(null);
     setAnswers((prev) => ({ ...prev, [currentQuestion.id]: optionId }));
+    trackDelReadinessQuestionAnswered({
+      category: currentQuestion.category,
+      stepIndex: stepIndex + 1,
+    });
   }
 
   function goBack() {
@@ -135,6 +159,9 @@ export function DelReadinessAssessment() {
 
     setPhase("submitting");
     setServerError(null);
+    trackDelReadinessSubmitted({
+      answeredCount: Object.keys(cleaned).length,
+    });
     try {
       const res = await fetch("/api/ai/del-readiness", {
         method: "POST",
@@ -166,6 +193,12 @@ export function DelReadinessAssessment() {
       }
       setAssessment(built);
       setPhase("results");
+      trackDelReadinessScored({
+        score: built.score,
+        trafficLight: built.trafficLight,
+        gapCount: built.gaps.length,
+        remediationCount: built.remediation.length,
+      });
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error("[del-readiness] submit error:", err);
@@ -175,6 +208,7 @@ export function DelReadinessAssessment() {
   }
 
   function retake() {
+    trackDelReadinessRetake();
     setAnswers({});
     setStepIndex(0);
     setAssessment(null);
@@ -183,10 +217,85 @@ export function DelReadinessAssessment() {
     setPhase("intake");
   }
 
+  function consultationClicked() {
+    trackDelReadinessConsultationClicked({ hasCalLink: Boolean(calLink) });
+  }
+
+  async function downloadPdf() {
+    if (!assessment || downloading) return;
+    setDownloading(true);
+    try {
+      // The route requires the original answer map alongside the
+      // assessment for retroactive analysis. We snapshot the visible-only
+      // answer set the user finalized — same shape submitted to the
+      // synthesis route.
+      const visible = visibleQuestions(rubric, answers);
+      const visibleIds = new Set(visible.map((q) => q.id));
+      const cleaned: AnswerMap = {};
+      for (const [k, v] of Object.entries(answers)) {
+        if (visibleIds.has(k)) cleaned[k] = v;
+      }
+
+      const res = await fetch("/api/ai/del-readiness/pdf", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          assessment,
+          answers: cleaned,
+          referrer:
+            typeof document !== "undefined"
+              ? document.referrer || undefined
+              : undefined,
+        }),
+      });
+
+      if (!res.ok) {
+        // eslint-disable-next-line no-console
+        console.error("[del-readiness] pdf download failed:", res.status);
+        return;
+      }
+
+      const blob = await res.blob();
+      const today = new Date().toISOString().slice(0, 10);
+      const filename = `propharmex-del-readiness-${today}.pdf`;
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+
+      trackDelReadinessPdfDownloaded({
+        bytes: blob.size,
+        score: assessment.score,
+        trafficLight: assessment.trafficLight,
+      });
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error("[del-readiness] pdf download error:", err);
+    } finally {
+      setDownloading(false);
+    }
+  }
+
   /* -- Render branches ------------------------------------------------ */
 
   if (phase === "results" && assessment) {
-    return <ResultsScreen assessment={assessment} rubric={rubric} onRetake={retake} />;
+    return (
+      <ResultsScreen
+        assessment={assessment}
+        rubric={rubric}
+        calLink={calLink}
+        downloading={downloading}
+        onRetake={retake}
+        onDownloadPdf={() => {
+          void downloadPdf();
+        }}
+        onConsultationClick={consultationClicked}
+      />
+    );
   }
 
   return (

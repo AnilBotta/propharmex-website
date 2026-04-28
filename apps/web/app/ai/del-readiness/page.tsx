@@ -72,7 +72,7 @@ export default function DelReadinessPage() {
 
       <section className="bg-[var(--color-bg)] px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl">
-          <DelReadinessAssessment />
+          <DelReadinessAssessment calLink={env.CAL_LINK} />
         </div>
       </section>
 

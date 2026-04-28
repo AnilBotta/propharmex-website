@@ -64,6 +64,8 @@ export const DEL_READINESS = {
       },
       downloadReport: {
         label: "Download a personalized report (PDF)",
+        renderingLabel: "Rendering…",
+        /** Retained for tooltips on legacy callers; PR-B enables the button. */
         pendingLabel: "Coming soon — branded PDF report",
       },
       retake: {

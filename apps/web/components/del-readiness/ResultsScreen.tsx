@@ -12,7 +12,7 @@
  * PR-B swaps in a Cal.com embed) + "Download report" (disabled in PR-A,
  * wired in PR-B) + "Re-take" (resets the form).
  */
-import { Calendar, Download, RefreshCw } from "lucide-react";
+import { Download, RefreshCw } from "lucide-react";
 
 import type {
   Assessment,
@@ -21,15 +21,30 @@ import type {
 
 import { DEL_READINESS } from "../../content/del-readiness";
 
+import { CalEmbed } from "./CalEmbed";
 import { TrafficLightPill } from "./TrafficLight";
 
 interface Props {
   assessment: Assessment;
   rubric: Rubric;
+  /** Cal.com slug, propagated from env via the page. */
+  calLink: string | undefined;
+  /** True while /api/ai/del-readiness/pdf is in flight. */
+  downloading: boolean;
   onRetake: () => void;
+  onDownloadPdf: () => void;
+  onConsultationClick: () => void;
 }
 
-export function ResultsScreen({ assessment, rubric, onRetake }: Props) {
+export function ResultsScreen({
+  assessment,
+  rubric,
+  calLink,
+  downloading,
+  onRetake,
+  onDownloadPdf,
+  onConsultationClick,
+}: Props) {
   const categoryLabel = (id: string) =>
     rubric.categories.find((c) => c.id === id)?.label ?? id;
 
@@ -177,22 +192,18 @@ export function ResultsScreen({ assessment, rubric, onRetake }: Props) {
 
       {/* Actions */}
       <footer className="flex flex-wrap items-center gap-3 border-t border-[var(--color-border)] pt-6">
-        <a
-          href={DEL_READINESS.results.actions.bookConsultation.href}
-          className="inline-flex items-center gap-1.5 rounded-[var(--radius-md)] bg-[var(--color-primary-700)] px-4 py-2 text-sm font-medium text-white hover:bg-[var(--color-primary-800)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] focus-visible:ring-offset-1"
-        >
-          <Calendar aria-hidden="true" size={14} />
-          {DEL_READINESS.results.actions.bookConsultation.label}
-        </a>
+        <CalEmbed calLink={calLink} onClick={onConsultationClick} />
         <button
           type="button"
-          disabled
-          title={DEL_READINESS.results.actions.downloadReport.pendingLabel}
-          aria-label={DEL_READINESS.results.actions.downloadReport.pendingLabel}
-          className="inline-flex items-center gap-1.5 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2 text-sm font-medium text-[var(--color-muted)] disabled:cursor-not-allowed disabled:opacity-60"
+          onClick={onDownloadPdf}
+          disabled={downloading}
+          aria-label={DEL_READINESS.results.actions.downloadReport.label}
+          className="inline-flex items-center gap-1.5 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2 text-sm font-medium text-[var(--color-fg)] hover:border-[var(--color-primary-700)] hover:text-[var(--color-primary-700)] disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)]"
         >
           <Download aria-hidden="true" size={14} />
-          {DEL_READINESS.results.actions.downloadReport.label}
+          {downloading
+            ? DEL_READINESS.results.actions.downloadReport.renderingLabel
+            : DEL_READINESS.results.actions.downloadReport.label}
         </button>
         <button
           type="button"
