@@ -13,3 +13,5 @@ export {
 } from "./schema-org";
 
 export * as sanity from "./sanity";
+export * as rag from "./rag";
+export * as supabase from "./supabase";
