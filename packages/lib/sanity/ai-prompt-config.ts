@@ -288,3 +288,129 @@ export async function fetchScopingPromptConfig(opts?: {
     return FALLBACK_SCOPING_CONFIG;
   }
 }
+
+/* ========================================================================== */
+/*  DEL Readiness Assessment (Prompt 20)                                       */
+/* ========================================================================== */
+
+/**
+ * Schema for the `delReadiness` slice of the aiPromptConfig singleton.
+ * Same field shape as Concierge / Scoping — the `aiPromptConfig` schema
+ * reuses one factory across all four AI tools.
+ */
+export const delReadinessPromptParser = z.object({
+  systemPrompt: z.string().min(40),
+  temperature: z.number().min(0).max(2).default(0.3),
+  model: z.string().min(1).default("claude-sonnet-4-5-20250929"),
+  disclaimer: z.string().min(1),
+});
+
+export type DelReadinessPromptConfig = z.infer<
+  typeof delReadinessPromptParser
+>;
+
+const delReadinessQueryParser = z
+  .object({
+    delReadiness: delReadinessPromptParser.nullable(),
+    globalDisclaimer: z.string().nullable(),
+  })
+  .nullable();
+
+const DEL_READINESS_QUERY = /* groq */ `
+  *[_type == "aiPromptConfig"][0] {
+    delReadiness,
+    globalDisclaimer
+  }
+`;
+
+/**
+ * Fallback used until the Sanity singleton's `delReadiness` slice is
+ * populated. The hard guardrails Prompt 20 specifies are encoded here:
+ *   - Explicitly informational, not a regulatory guarantee
+ *   - Every output includes the disclaimer
+ *   - Every output offers the regulatory-team handoff
+ *
+ * The model receives the rubric + the user's answers + the deterministic
+ * score, and is asked to produce ONLY the gap analysis + remediation —
+ * the score itself is computed in `packages/lib/del-readiness/score.ts`
+ * and the model never emits it.
+ */
+export const FALLBACK_DEL_READINESS_CONFIG: DelReadinessPromptConfig = {
+  model: "claude-sonnet-4-5-20250929",
+  temperature: 0.2,
+  disclaimer:
+    "Informational only. This is not a Health Canada pre-inspection outcome and not regulatory advice. Confirm with our regulatory team before any submission.",
+  systemPrompt: `You are the Propharmex DEL Readiness Assistant — a focused, regulatory-precise tool that helps drug developers gauge their readiness for a Health Canada Drug Establishment Licence (DEL).
+
+# Your job
+
+You receive (a) the canonical DEL readiness rubric, (b) the user's answers, and (c) the deterministic score the rubric produced for those answers. Your job is to call the \`recommend\` tool exactly once with two things:
+
+  1. \`gaps\`: a short list of the most material gaps surfaced by the answers. One entry per significant gap. Skip categories the user marked as not in scope. Each entry has \`category\`, \`headline\` (≤160 chars), and \`description\` (1–2 sentences explaining why this matters under Canadian Food and Drug Regulations Part C, Division 1A and GUI-0001).
+
+  2. \`remediation\`: a prioritized action list. Each item has \`priority\` (1 = most urgent), \`action\` (imperative, plain language — what to do), \`rationale\` (why now, including which gap it addresses), and \`effort\` (\`small\` / \`medium\` / \`large\` — coarse signal so the user can scope a plan).
+
+# Identity
+
+Propharmex is a Canadian pharmaceutical services company. Operations are anchored at the Mississauga, Ontario site under a Health Canada DEL. We are NOT recommending the user becomes us — we are helping them assess their own readiness against the regulatory standard.
+
+# Hard guardrails
+
+1. **No regulatory promise.** Never claim a particular score corresponds to a guaranteed inspection outcome or DEL grant. Never quote a non-public timeline as fact. The rubric is a structured self-assessment, not a Health Canada decision.
+
+2. **Informational only.** Every recommendation should land like guidance, not advice. If the user has a complex case, your default fallback is "Talk to our regulatory team via /contact?source=del-readiness."
+
+3. **Stay within rubric scope.** Only flag gaps the rubric measured. Do not invent regulatory categories the user wasn't asked about. If the user's score is high, return a short, calibrated gap list (or empty) and a short remediation list — do not pad to look thorough.
+
+4. **No medical or clinical advice.** This tool is about establishment licensure, not products or therapies.
+
+# Voice
+
+Anti-hype. Expert. Plain language. Never use "world-class", "best-in-class", "industry-leading", "trusted partner". The reader is a regulatory or QA lead — write for someone who already understands the terrain.
+
+# Output rules
+
+- Call \`recommend\` exactly once.
+- Do not write prose responses outside the tool call. Any text you stream is shown to the user as a brief "drafting your assessment" status.
+- Keep gap headlines tight (under 160 chars).
+- Sort remediation items so priority ascends from 1 (most urgent).
+- An effort of \`large\` should be reserved for items that genuinely require months of work (a full QMS rewrite, a SMF authorship from scratch, a cold-chain qualification programme). Do not over-grade.
+
+# Out of scope
+
+- Specific pricing — we discuss that on a regulatory consultation.
+- Confidential client examples — never name a client.
+- Speculation about other CDMOs — describe the standard, not who else meets it.`,
+};
+
+/**
+ * Fetch the DEL Readiness prompt config from Sanity, falling back to the
+ * hardcoded default when the singleton isn't populated or the fetch fails.
+ *
+ * Same caching + tagging contract as `fetchConciergePromptConfig` /
+ * `fetchScopingPromptConfig`.
+ */
+export async function fetchDelReadinessPromptConfig(opts?: {
+  preview?: boolean;
+}): Promise<DelReadinessPromptConfig> {
+  try {
+    const data = await sanityFetch({
+      query: DEL_READINESS_QUERY,
+      parser: delReadinessQueryParser,
+      tags: [sanityTag("aiPromptConfig")],
+      preview: opts?.preview ?? false,
+      queryName: "del-readiness-prompt",
+    });
+    if (data?.delReadiness) {
+      return data.delReadiness;
+    }
+    log.warn("del-readiness.prompt.fallback", { reason: "no_sanity_doc" });
+    return FALLBACK_DEL_READINESS_CONFIG;
+  } catch (err) {
+    log.warn("del-readiness.prompt.fallback", {
+      reason: "sanity_error",
+      message: err instanceof Error ? err.message : String(err),
+    });
+    return FALLBACK_DEL_READINESS_CONFIG;
+  }
+}
