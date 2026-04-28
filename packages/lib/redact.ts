@@ -22,7 +22,9 @@ export interface RedactResult {
 
 // RFC-5321-lite. Catches the realistic shapes (`local@domain.tld`,
 // `local+tag@sub.domain.co`) without trying to be a full RFC parser.
-const EMAIL_RE = /[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}/g;
+// `-` is placed last in each character class so it's a literal hyphen,
+// not a range — no backslash needed (ESLint `no-useless-escape`).
+const EMAIL_RE = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g;
 
 // Phone numbers, 10–15 digits, with optional `+`, separators, and parens.
 // Anchored on a digit run + at least one separator/grouping cue so we don't
@@ -34,7 +36,7 @@ const EMAIL_RE = /[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}/g;
 //   +44 20 7946 0958
 //   1.416.555.1234
 const PHONE_RE =
-  /(?:\+?\d{1,3}[ .\-]?)?(?:\(\d{2,4}\)[ .\-]?|\d{2,4}[ .\-])\d{2,4}[ .\-]?\d{3,4}\b/g;
+  /(?:\+?\d{1,3}[ .-]?)?(?:\(\d{2,4}\)[ .-]?|\d{2,4}[ .-])\d{2,4}[ .-]?\d{3,4}\b/g;
 
 // Self-identification. Capturing group is the name (1–2 capitalized tokens).
 //
