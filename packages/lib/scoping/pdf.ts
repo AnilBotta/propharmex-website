@@ -20,11 +20,11 @@
  */
 import {
   PDFDocument,
-  PDFPage,
-  PDFFont,
   StandardFonts,
   rgb,
   type Color,
+  type PDFFont,
+  type PDFPage,
 } from "pdf-lib";
 
 import type { ScopeSummary } from "./types";
