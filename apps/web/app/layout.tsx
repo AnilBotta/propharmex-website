@@ -5,6 +5,7 @@ import { env } from "@propharmex/lib";
 
 import "./globals.css";
 import { Analytics } from "../components/site/Analytics";
+import { ConciergeBubble } from "../components/concierge/ConciergeBubble";
 import { DraftModeIndicator } from "../components/site/DraftModeIndicator";
 import { Footer } from "../components/site/Footer";
 import { Header } from "../components/site/Header";
@@ -92,6 +93,7 @@ export default async function RootLayout({
           {children}
         </main>
         <Footer />
+        <ConciergeBubble />
         <JsonLd id="site-jsonld" data={siteJsonLd} />
         <Analytics
           plausibleDomain={env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN}
