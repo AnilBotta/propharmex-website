@@ -93,10 +93,14 @@ export const SCOPING = {
       min === max ? `${min} weeks` : `${min}–${max} weeks`,
     actions: {
       submitLabel: "Send to Propharmex",
-      submitTooltipPending: "Coming in the next release — submit to BD",
+      submitPendingLabel: "Sending…",
       pdfLabel: "Download as PDF",
-      pdfTooltipPending: "Coming in the next release — branded PDF download",
+      pdfPendingLabel: "Rendering…",
     },
+    /** Persistent acknowledgement banner after a successful submit. */
+    submittedHeading: "Sent to Propharmex",
+    submittedBody:
+      "Our business-development team will reply within one Canadian business day.",
   },
   /** Persistent "talk to a human" link, mirrored from the Concierge. */
   escapeHatch: {
