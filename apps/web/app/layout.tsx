@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { cookies, draftMode } from "next/headers";
+import { draftMode } from "next/headers";
 import { Manrope, Inter_Tight, JetBrains_Mono } from "next/font/google";
 import { env } from "@propharmex/lib";
 
@@ -10,10 +10,12 @@ import { DraftModeIndicator } from "../components/site/DraftModeIndicator";
 import { Footer } from "../components/site/Footer";
 import { Header } from "../components/site/Header";
 import { JsonLd } from "../components/site/JsonLd";
+import { RegionDetectionBanner } from "../components/site/RegionDetectionBanner";
+import { RegionProvider } from "../components/site/RegionContext";
 import { SkipToContent } from "../components/site/SkipToContent";
 import { VisualEditing } from "../components/site/VisualEditing";
 import { buildSiteJsonLd } from "../components/site/site-jsonld";
-import { REGIONS, type Region } from "../content/site-nav";
+import { getServerRegion, shouldShowRegionBanner } from "../lib/region-server";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -70,12 +72,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = await cookies();
-  const regionCookie = cookieStore.get("propharmex-region")?.value;
-  const initialRegion: Region | undefined =
-    regionCookie && REGIONS.some((r) => r.code === regionCookie)
-      ? (regionCookie as Region)
-      : undefined;
+  const initialRegion = await getServerRegion();
+  const showBanner = await shouldShowRegionBanner();
 
   const siteJsonLd = buildSiteJsonLd(env.NEXT_PUBLIC_SITE_URL);
   const { isEnabled: isDraftEnabled } = await draftMode();
@@ -88,12 +86,15 @@ export default async function RootLayout({
       <body>
         <SkipToContent />
         <DraftModeIndicator enabled={isDraftEnabled} />
-        <Header initialRegion={initialRegion} />
-        <main id="main-content" className="min-h-dvh">
-          {children}
-        </main>
-        <Footer />
-        <ConciergeBubble />
+        <RegionProvider initialRegion={initialRegion}>
+          {showBanner ? <RegionDetectionBanner /> : null}
+          <Header />
+          <main id="main-content" className="min-h-dvh">
+            {children}
+          </main>
+          <Footer />
+          <ConciergeBubble />
+        </RegionProvider>
         <JsonLd id="site-jsonld" data={siteJsonLd} />
         <Analytics
           plausibleDomain={env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN}
