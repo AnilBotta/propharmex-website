@@ -58,3 +58,5 @@ export {
   SAMPLE_MATCHER_INPUT,
   SAMPLE_MATCHER_RECOMMENDATION,
 } from "./sample";
+
+export { renderDosageMatcherPdf } from "./pdf";
