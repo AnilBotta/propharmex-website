@@ -15,7 +15,8 @@
     "./sanity": "./sanity/index.ts",
     "./rag": "./rag/index.ts",
     "./supabase": "./supabase/index.ts",
-    "./scoping": "./scoping/index.ts"
+    "./scoping": "./scoping/index.ts",
+    "./del-readiness": "./del-readiness/index.ts"
   },
   "scripts": {
     "lint": "eslint .",
