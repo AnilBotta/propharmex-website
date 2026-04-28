@@ -25,7 +25,7 @@ export { toPlainText, type PortableTextBlock } from "./portable-text";
 /* Fetch wrapper */
 export { sanityFetch, sanityTag, type SanityFetchOptions } from "./fetch";
 
-/* AI prompt config (Concierge / Scoping / DEL Readiness — Prompts 18–20) */
+/* AI prompt config (Concierge / Scoping / DEL Readiness / Dosage Matcher — Prompts 18–21) */
 export {
   fetchConciergePromptConfig,
   conciergePromptParser,
@@ -39,6 +39,10 @@ export {
   delReadinessPromptParser,
   FALLBACK_DEL_READINESS_CONFIG,
   type DelReadinessPromptConfig,
+  fetchDosageMatcherPromptConfig,
+  dosageMatcherPromptParser,
+  FALLBACK_DOSAGE_MATCHER_CONFIG,
+  type DosageMatcherPromptConfig,
 } from "./ai-prompt-config";
 
 /* Queries */

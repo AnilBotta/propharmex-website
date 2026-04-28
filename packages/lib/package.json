@@ -16,7 +16,8 @@
     "./rag": "./rag/index.ts",
     "./supabase": "./supabase/index.ts",
     "./scoping": "./scoping/index.ts",
-    "./del-readiness": "./del-readiness/index.ts"
+    "./del-readiness": "./del-readiness/index.ts",
+    "./dosage-matcher": "./dosage-matcher/index.ts"
   },
   "scripts": {
     "lint": "eslint .",

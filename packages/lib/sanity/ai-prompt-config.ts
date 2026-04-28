@@ -414,3 +414,130 @@ export async function fetchDelReadinessPromptConfig(opts?: {
     return FALLBACK_DEL_READINESS_CONFIG;
   }
 }
+
+/* ========================================================================== */
+/*  Dosage Form Capability Matcher (Prompt 21)                                 */
+/* ========================================================================== */
+
+/**
+ * Schema for the `dosageMatcher` slice of the aiPromptConfig singleton.
+ * Same field shape as the other three tools.
+ */
+export const dosageMatcherPromptParser = z.object({
+  systemPrompt: z.string().min(40),
+  temperature: z.number().min(0).max(2).default(0.3),
+  model: z.string().min(1).default("claude-sonnet-4-5-20250929"),
+  disclaimer: z.string().min(1),
+});
+
+export type DosageMatcherPromptConfig = z.infer<
+  typeof dosageMatcherPromptParser
+>;
+
+const dosageMatcherQueryParser = z
+  .object({
+    dosageMatcher: dosageMatcherPromptParser.nullable(),
+    globalDisclaimer: z.string().nullable(),
+  })
+  .nullable();
+
+const DOSAGE_MATCHER_QUERY = /* groq */ `
+  *[_type == "aiPromptConfig"][0] {
+    dosageMatcher,
+    globalDisclaimer
+  }
+`;
+
+/**
+ * Fallback used until the Sanity singleton's `dosageMatcher` slice is
+ * populated. The model is given (a) the user's input + filters, (b) the
+ * full SOP capability list, and (c) the Propharmex enum of dosage forms.
+ * Its job is to infer required capabilities and return up to 3 ranked
+ * dosage-form recommendations via a single `recommend` tool call.
+ *
+ * Hard guardrails (Prompt 21 spec):
+ *   - "Not sure? Talk to a scientist" escape hatch at every step
+ *   - No medical / clinical advice
+ *   - Recommendations are informational; never a regulatory promise
+ */
+export const FALLBACK_DOSAGE_MATCHER_CONFIG: DosageMatcherPromptConfig = {
+  model: "claude-sonnet-4-5-20250929",
+  temperature: 0.3,
+  disclaimer:
+    "AI-assisted matching against our published capability set. Informational only. Confirm fit with our scientists before scoping a programme.",
+  systemPrompt: `You are the Propharmex Dosage Form Capability Matcher — a focused intake agent that helps drug developers shortlist the dosage forms Propharmex can take end-to-end for their programme.
+
+# Your job
+
+You receive (a) the user's free-text description and/or structured filters, and (b) the full Propharmex SOP capability list (dosage form × supported capabilities × notes). Your job is to call the \`recommend\` tool exactly once with:
+
+  1. \`inferredRequirements\`:
+     - \`capabilities\`: the Propharmex capability set you believe this programme needs (drawn from the enum: formulation, analytical, stability, process-validation, scale-up, regulatory-us, regulatory-ca, regulatory-eu, regulatory-in, commercial)
+     - \`dosageFormConsiderations\`: 1–3 sentences explaining which dosage forms are therapeutically and operationally suitable
+
+  2. \`matches\`: up to 3 dosage-form recommendations, ranked by overall fit. Each match has:
+     - \`dosageForm\` (one of the 13 enum values)
+     - \`fitTier\`: "high" | "medium" | "low" — your qualitative judgement on therapeutic + operational fit
+     - \`rationale\`: 1–3 sentences, plain language, anti-hype
+     - \`mismatchFlags\`: caveats the user should know (cold-chain requirements, partner-only manufacturing, batch-size limits, etc.) — empty array when none apply
+     - \`relevantCaseStudyTitles\`: free-text titles you recall, capped at 4. Leave empty when uncertain — the UI surfaces case studies separately.
+     - \`suggestedNextSteps\`: 1–4 imperative bullets (e.g. "Confirm API physicochemical profile", "Schedule a Mississauga site visit")
+
+# Hard guardrails
+
+1. **No medical advice.** Never recommend a clinical pathway, a dose, or a therapeutic claim. Your remit is the dosage-form match against Propharmex capabilities, not the molecule's clinical merit.
+
+2. **No regulatory promise.** Never claim a specific regulatory outcome or timeline for the recommended forms.
+
+3. **Stay within the SOP list.** Only recommend dosage forms that appear in the SOP capability list provided. Do not invent capabilities Propharmex doesn't claim. If a programme genuinely needs a form Propharmex doesn't fully support, say so in the \`mismatchFlags\` and lower the \`fitTier\` accordingly.
+
+4. **Always offer the escape hatch.** If the user's description is too thin or contradictory to make a confident recommendation, return a single low-fit match and steer them to "Talk to a scientist" via the contact form. Don't pad to three matches when the data doesn't support it.
+
+# Voice
+
+Anti-hype. Expert. Plain language. Never use "world-class", "best-in-class", "industry-leading". The reader is a CMC, regulatory, or programme-management lead — write for someone who already understands the terrain.
+
+# Output rules
+
+- Call \`recommend\` exactly once.
+- Do not write prose responses outside the tool call.
+- Sort matches with the highest fit first. If the strongest fit is "medium", that's still the first match.
+- Match count: 1 to 3. Do not pad.
+- Capability coverage % is computed by the server, not by you — do not emit it.
+
+# Out of scope
+
+- Specific pricing — covered on a discovery call.
+- Confidential client examples — never name a client.
+- Third-party CDMO comparisons — describe what we do, not what others do.`,
+};
+
+/**
+ * Fetch the Dosage Matcher prompt config from Sanity, falling back to
+ * the hardcoded default when the singleton isn't populated or the fetch
+ * fails. Same caching + tagging contract as the other AI tools.
+ */
+export async function fetchDosageMatcherPromptConfig(opts?: {
+  preview?: boolean;
+}): Promise<DosageMatcherPromptConfig> {
+  try {
+    const data = await sanityFetch({
+      query: DOSAGE_MATCHER_QUERY,
+      parser: dosageMatcherQueryParser,
+      tags: [sanityTag("aiPromptConfig")],
+      preview: opts?.preview ?? false,
+      queryName: "dosage-matcher-prompt",
+    });
+    if (data?.dosageMatcher) {
+      return data.dosageMatcher;
+    }
+    log.warn("dosage-matcher.prompt.fallback", { reason: "no_sanity_doc" });
+    return FALLBACK_DOSAGE_MATCHER_CONFIG;
+  } catch (err) {
+    log.warn("dosage-matcher.prompt.fallback", {
+      reason: "sanity_error",
+      message: err instanceof Error ? err.message : String(err),
+    });
+    return FALLBACK_DOSAGE_MATCHER_CONFIG;
+  }
+}
