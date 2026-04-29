@@ -1,3 +1,4 @@
+import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 
 /**
@@ -9,6 +10,13 @@ import type { NextConfig } from "next";
  * `@next/env`'s `loadEnvConfig`, but importing `@next/env` directly from
  * this config requires it as a top-level dep — kept out for now to avoid
  * adding a transitive dep just for a dev-only convenience.
+ *
+ * Sentry note: `withSentryConfig` wraps the export. When
+ * `SENTRY_AUTH_TOKEN` is unset at build time the wrapper skips
+ * source-map upload with a single warning and the build continues.
+ * When `NEXT_PUBLIC_SENTRY_DSN` is unset at runtime the SDK's `init()`
+ * is short-circuited in `sentry.{client,server,edge}.config.ts`, so
+ * dev / preview / CI without Sentry env are zero-impact.
  */
 
 const nextConfig: NextConfig = {
@@ -79,4 +87,20 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withSentryConfig(nextConfig, {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  // Auth token is only required when uploading source maps. When unset
+  // the wrapper warns once and skips the upload — perfect for local
+  // and preview builds.
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  silent: !process.env.CI,
+  // Hide source maps from end-users — they're uploaded to Sentry only.
+  hideSourceMaps: true,
+  // Tree-shake Sentry's optional debug logger out of the production bundle.
+  disableLogger: true,
+  // Tunnel events through `/monitoring` so ad-blockers don't drop them.
+  // The Next plugin auto-creates the route handler.
+  tunnelRoute: "/monitoring",
+  widenClientFileUpload: true,
+});

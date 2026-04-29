@@ -3,8 +3,14 @@
 /**
  * Global error boundary — renders only when the root layout itself throws.
  * Next.js requires its own <html>/<body> here because the shell is absent.
+ *
+ * Sentry capture (Prompt 25 PR-A): unhandled errors at the root level
+ * are forwarded to Sentry via `captureException`. The SDK no-ops when
+ * `NEXT_PUBLIC_SENTRY_DSN` is unset, so dev / preview without Sentry
+ * env still log to the structured logger only.
  */
 import { useEffect } from "react";
+import * as Sentry from "@sentry/nextjs";
 import { log } from "@propharmex/lib";
 
 export default function GlobalError({
@@ -15,6 +21,7 @@ export default function GlobalError({
   reset: () => void;
 }) {
   useEffect(() => {
+    Sentry.captureException(error);
     log.error("app.root_error", {
       digest: error.digest,
       name: error.name,

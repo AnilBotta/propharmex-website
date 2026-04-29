@@ -21,7 +21,10 @@ import { HubHero } from "../../components/insights/HubHero";
 import { JsonLd } from "../../components/site/JsonLd";
 import { INSIGHTS } from "../../content/insights";
 
-export const revalidate = 300;
+// Insights hub revalidates more aggressively than other content pages — the
+// editorial team publishes here most frequently and we want fresh listings
+// on the hub within ~1 minute of a Sanity update (Prompt 25 spec).
+export const revalidate = 60;
 
 const HUB_PATH = "/insights";
 

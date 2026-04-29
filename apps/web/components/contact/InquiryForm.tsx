@@ -17,14 +17,14 @@
  * Success state hides the form and renders a confirmation panel with a
  * link that scrolls to the Cal.com booking section below.
  *
- * Deferred (per Prompt 17 plan):
- *   - Turnstile widget (Prompt 25 hardening; server-side verify is in place)
- *   - Per-region alias routing + AI classifier (Prompt 18+)
+ * Prompt 24 added PostHog instrumentation (`form_submit` + `contact_submit`)
+ * in the submit handler. Prompt 25 PR-A added the Cloudflare Turnstile
+ * client widget — server-side verification was already wired in Prompt 17.
  *
- * PostHog instrumentation (`form_submit` + `contact_submit`) is wired in
- * the submit handler — added under Prompt 24.
+ * Deferred (per Prompt 17 plan):
+ *   - Per-region alias routing + AI classifier (Prompt 18+)
  */
-import { useId, useState, type FormEvent } from "react";
+import { useCallback, useId, useState, type FormEvent } from "react";
 
 import {
   Button,
@@ -38,6 +38,7 @@ import {
 } from "@propharmex/ui";
 
 import { trackContactSubmit, trackFormSubmit } from "../../lib/analytics";
+import { TurnstileWidget } from "../site/TurnstileWidget";
 import {
   DOSAGE_FORMS,
   REGIONS,
@@ -48,6 +49,8 @@ import {
 } from "../../content/contact";
 
 import { SectionReveal } from "./SectionReveal";
+
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 type Props = { content: ContactContent["form"] };
 
@@ -70,8 +73,18 @@ export function InquiryForm({ content }: Props) {
   const [dosageForm, setDosageForm] = useState<string>("");
   const [stage, setStage] = useState<string>("");
   const [message, setMessage] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   const showDosageForm = service === "pharmaceutical-development";
+
+  // useCallback so the Turnstile widget's effect doesn't re-render the
+  // widget on every keystroke (the callbacks are part of its dep array).
+  const handleTurnstileVerify = useCallback((token: string) => {
+    setTurnstileToken(token);
+  }, []);
+  const handleTurnstileExpire = useCallback(() => {
+    setTurnstileToken(null);
+  }, []);
 
   function reset() {
     setName("");
@@ -106,6 +119,7 @@ export function InquiryForm({ content }: Props) {
           dosageForm: showDosageForm && dosageForm ? dosageForm : undefined,
           stage: stage || undefined,
           message: message || undefined,
+          turnstileToken: turnstileToken || undefined,
         }),
       });
 
@@ -393,6 +407,13 @@ export function InquiryForm({ content }: Props) {
                     {errorMessage}
                   </p>
                 ) : null}
+
+                <TurnstileWidget
+                  siteKey={TURNSTILE_SITE_KEY}
+                  action="contact-inquiry"
+                  onVerify={handleTurnstileVerify}
+                  onExpire={handleTurnstileExpire}
+                />
 
                 <Button
                   type="submit"
