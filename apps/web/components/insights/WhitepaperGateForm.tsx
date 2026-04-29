@@ -15,15 +15,21 @@
  *    to Prompt 17 (contact router) where the classifier and nurture
  *    infrastructure live together
  *
- * No Turnstile yet — the spec wires Turnstile in Prompt 25 hardening.
+ * Cloudflare Turnstile widget added under Prompt 25 PR-A. Server-side
+ * verification on `/api/whitepaper-download` mirrors the `/api/contact`
+ * pattern from Prompt 17 — both short-circuit when
+ * `TURNSTILE_SECRET_KEY` is unset, so dev / preview stay unblocked.
  */
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import type { FormEvent } from "react";
 
 import { Button, Callout, Input, Textarea, cn } from "@propharmex/ui";
 
 import { trackFormSubmit, trackWhitepaperDownload } from "../../lib/analytics";
+import { TurnstileWidget } from "../site/TurnstileWidget";
 import type { WhitepaperContent } from "../../content/insights";
+
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 type State =
   | { status: "idle" }
@@ -75,12 +81,20 @@ export function WhitepaperGateForm({ content, className }: Props) {
     country: "",
     useCase: "",
   });
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   const submitting = state.status === "submitting";
 
   function update<K extends keyof FormValues>(key: K, value: FormValues[K]) {
     setValues((prev) => ({ ...prev, [key]: value }));
   }
+
+  const handleTurnstileVerify = useCallback((token: string) => {
+    setTurnstileToken(token);
+  }, []);
+  const handleTurnstileExpire = useCallback(() => {
+    setTurnstileToken(null);
+  }, []);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -92,6 +106,7 @@ export function WhitepaperGateForm({ content, className }: Props) {
         body: JSON.stringify({
           slug: content.slug,
           ...values,
+          turnstileToken: turnstileToken || undefined,
         }),
       });
       if (!res.ok) {
@@ -256,6 +271,14 @@ export function WhitepaperGateForm({ content, className }: Props) {
           {state.message}
         </p>
       ) : null}
+
+      <TurnstileWidget
+        siteKey={TURNSTILE_SITE_KEY}
+        action="whitepaper-gate"
+        onVerify={handleTurnstileVerify}
+        onExpire={handleTurnstileExpire}
+        className="mt-4"
+      />
 
       <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <Button type="submit" variant="primary" size="md" disabled={submitting}>

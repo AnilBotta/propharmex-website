@@ -5,11 +5,15 @@
  *
  * Renders for runtime failures in any page under the root segment. We show
  * a neutral apology, a retry button, and keep the header and footer so the
- * user can navigate away. The real error is forwarded to Sentry (wired in
- * Prompt 25); for now we only log a stable digest to Axiom.
+ * user can navigate away.
+ *
+ * Sentry capture (Prompt 25 PR-A) is wired alongside the structured-log
+ * emit so Axiom + Sentry both see the same digest. Sentry no-ops when
+ * `NEXT_PUBLIC_SENTRY_DSN` is unset.
  */
 import { useEffect } from "react";
 import Link from "next/link";
+import * as Sentry from "@sentry/nextjs";
 import { Button, Callout } from "@propharmex/ui";
 import { log } from "@propharmex/lib";
 
@@ -21,6 +25,7 @@ export default function RootError({
   reset: () => void;
 }) {
   useEffect(() => {
+    Sentry.captureException(error);
     log.error("app.segment_error", {
       digest: error.digest,
       name: error.name,

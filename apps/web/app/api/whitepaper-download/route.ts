@@ -37,7 +37,35 @@ const BodySchema = z.object({
   role: z.string().trim().min(2).max(80),
   country: z.string().trim().min(2).max(80),
   useCase: z.string().trim().max(600).optional().default(""),
+  turnstileToken: z.string().max(4096).optional(),
 });
+
+/**
+ * Mirror of the verifier in /api/contact/route.ts. Short-circuits to
+ * `true` (allow) when `TURNSTILE_SECRET_KEY` is unset so dev / preview
+ * environments without the secret stay unblocked. The widget on the
+ * client also no-ops when the public site key is unset, which keeps
+ * the two sides in sync.
+ */
+async function verifyTurnstile(
+  token: string | undefined,
+  ip: string | null,
+): Promise<boolean> {
+  if (!env.TURNSTILE_SECRET_KEY) return true;
+  if (!token) return false;
+  const form = new URLSearchParams({
+    secret: env.TURNSTILE_SECRET_KEY,
+    response: token,
+  });
+  if (ip) form.set("remoteip", ip);
+  const res = await fetch(
+    "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+    { method: "POST", body: form },
+  );
+  if (!res.ok) return false;
+  const data = (await res.json()) as { success?: boolean };
+  return !!data.success;
+}
 
 export async function POST(req: Request) {
   let json: unknown;
@@ -61,6 +89,19 @@ export async function POST(req: Request) {
     );
   }
   const data = parsed.data;
+
+  // Bot protection — only enforced when the secret is configured.
+  if (env.TURNSTILE_SECRET_KEY) {
+    const ip =
+      req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? null;
+    const ok = await verifyTurnstile(data.turnstileToken, ip);
+    if (!ok) {
+      return NextResponse.json(
+        { error: "Bot verification failed. Please retry." },
+        { status: 403 },
+      );
+    }
+  }
 
   const whitepaper = INSIGHTS.whitepapers.find((wp) => wp.slug === data.slug);
   if (!whitepaper) {
