@@ -1,0 +1,117 @@
+name: A11y budget
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  axe-core:
+    name: axe-core (no serious or critical violations)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm --filter web build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://propharmex.com
+          NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+          NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
+
+      # Boot `next start`, wait for it to be ready, then run axe against
+      # the same 10 URLs Lighthouse audits. We use --exit so the CLI
+      # exits non-zero on any violation; the gate then asks the runner
+      # to filter for serious + critical impact only (we don't fail on
+      # `minor` or `moderate` findings — they're tracked but not gate-
+      # blocking, matching the documented Sev 3 deferral posture).
+      - name: Start app + run axe-core
+        run: |
+          set -euo pipefail
+          pnpm --filter web start &
+          SERVER_PID=$!
+          # Wait for the dev server to bind port 3000
+          for i in $(seq 1 30); do
+            if curl -fsS http://localhost:3000/api/health >/dev/null 2>&1; then
+              echo "Server ready after ${i}s"
+              break
+            fi
+            sleep 1
+          done
+          if ! curl -fsS http://localhost:3000/api/health >/dev/null 2>&1; then
+            echo "::error::Server did not respond within 30 seconds"
+            kill $SERVER_PID || true
+            exit 1
+          fi
+
+          URLS=(
+            "http://localhost:3000/"
+            "http://localhost:3000/why-propharmex"
+            "http://localhost:3000/quality-compliance"
+            "http://localhost:3000/services/pharmaceutical-development"
+            "http://localhost:3000/services/pharmaceutical-development/solid-oral-dosage"
+            "http://localhost:3000/insights"
+            "http://localhost:3000/insights/del-at-a-glance-foreign-sponsor-primer"
+            "http://localhost:3000/case-studies"
+            "http://localhost:3000/contact"
+            "http://localhost:3000/ai/del-readiness"
+            "http://localhost:3000/accessibility"
+          )
+
+          # Run axe per URL. --tags wcag2a,wcag2aa,wcag21a,wcag21aa scopes
+          # the rule set; --stdout writes a JSON report we feed into the
+          # gate script so we can filter on impact level deterministically.
+          mkdir -p .axe-reports
+          fail=0
+          for url in "${URLS[@]}"; do
+            name=$(echo "$url" | sed 's|http://localhost:3000||; s|/|_|g; s|^_||')
+            [ -z "$name" ] && name=root
+            report=".axe-reports/${name}.json"
+            echo "::group::axe-core ${url}"
+            pnpm dlx @axe-core/cli@4.10.x \
+              --tags wcag2a,wcag2aa,wcag21a,wcag21aa \
+              --exit \
+              --save "$report" \
+              "$url" || true
+            echo "::endgroup::"
+          done
+
+          # Filter all reports for serious + critical violations.
+          node scripts/check-axe-violations.mjs .axe-reports
+          status=$?
+
+          kill $SERVER_PID || true
+          wait $SERVER_PID 2>/dev/null || true
+          exit $status
+        env:
+          NEXT_PUBLIC_SITE_URL: https://propharmex.com
+
+      - name: Upload axe reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: axe-reports
+          path: .axe-reports/
+          retention-days: 14
