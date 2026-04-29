@@ -1,5 +1,17 @@
+import bundleAnalyzer from "@next/bundle-analyzer";
 import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
+
+/**
+ * Bundle analyzer wrapper — opts in when `ANALYZE=true` is set at build
+ * time. Outputs an interactive treemap to `.next/analyze/` for both
+ * client and server bundles. Used locally (`ANALYZE=true pnpm build`)
+ * and by the bundle-budget CI workflow (Prompt 25 PR-B), which compares
+ * the printed route-size table against a 150 KB First-Load-JS budget.
+ */
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+});
 
 /**
  * Env loading note: secrets live at the workspace root (`.env.local`) so the
@@ -87,7 +99,7 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withSentryConfig(nextConfig, {
+export default withSentryConfig(withBundleAnalyzer(nextConfig), {
   org: process.env.SENTRY_ORG,
   project: process.env.SENTRY_PROJECT,
   // Auth token is only required when uploading source maps. When unset
