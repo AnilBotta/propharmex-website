@@ -42,17 +42,20 @@ import process from "node:process";
 const BUDGET_KB = Number.parseFloat(process.env.BUNDLE_BUDGET_KB ?? "475");
 const BUDGET_BYTES = BUDGET_KB * 1024;
 
-/**
- * Routes excluded from the budget check. These don't ship client JS:
- *   - /api/*               server-only route handlers
- *   - /sitemap.xml         server-rendered XML
- *   - /robots.txt          server-rendered text
- *   - */opengraph-image    PNG image generation route
- *
- * Next 15's build table prints the "First Load JS" column with the shared
- * baseline (~173 kB) even for these routes, which is meaningless data
- * for our purposes — there is never a client bootstrap.
- */
+// Routes excluded from the budget check. These don't ship client JS:
+//
+//   /api/...                server-only route handlers
+//   /sitemap.xml            server-rendered XML
+//   /robots.txt             server-rendered text
+//   .../opengraph-image     PNG image generation route
+//   .../twitter-image       PNG image generation route
+//
+// Next 15's build table prints the "First Load JS" column with the shared
+// baseline (~173 kB) even for these routes, which is meaningless data
+// for our purposes — there is never a client bootstrap.
+//
+// (Line comments rather than a /** ... */ block to avoid a `*/` token
+// inside the comment closing it prematurely.)
 const EXCLUDED_ROUTE_PATTERNS = [
   /^\/api\//,
   /^\/sitemap\.xml$/,
