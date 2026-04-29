@@ -20,7 +20,9 @@
  * Deferred (per Prompt 17 plan):
  *   - Turnstile widget (Prompt 25 hardening; server-side verify is in place)
  *   - Per-region alias routing + AI classifier (Prompt 18+)
- *   - PostHog + Plausible custom submit events (Prompt 24)
+ *
+ * PostHog instrumentation (`form_submit` + `contact_submit`) is wired in
+ * the submit handler — added under Prompt 24.
  */
 import { useId, useState, type FormEvent } from "react";
 
@@ -35,6 +37,7 @@ import {
   Textarea,
 } from "@propharmex/ui";
 
+import { trackContactSubmit, trackFormSubmit } from "../../lib/analytics";
 import {
   DOSAGE_FORMS,
   REGIONS,
@@ -111,6 +114,20 @@ export function InquiryForm({ content }: Props) {
         setErrorMessage(content.errorFallback);
         return;
       }
+
+      // Best-effort parse — the server returns 202 with { ok, queued }.
+      let queued: boolean | undefined;
+      try {
+        const body = (await res.clone().json()) as { queued?: unknown };
+        if (typeof body?.queued === "boolean") queued = body.queued;
+      } catch {
+        // ignore — telemetry is fire-and-forget
+      }
+
+      const serviceTag = service || "unspecified";
+      const regionTag = region || "unspecified";
+      trackFormSubmit({ form: "contact", category: serviceTag, queued });
+      trackContactSubmit({ service: serviceTag, region: regionTag, queued });
 
       setStatus("success");
       reset();

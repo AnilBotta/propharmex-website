@@ -7,6 +7,7 @@ import type { ComponentType } from "react";
 
 import { fadeRise, staggerContainer, useReducedMotion } from "@propharmex/ui";
 
+import { trackServiceCardClick } from "../../lib/analytics";
 import type { CapabilityCard, WhatWeDoSection } from "../../content/home";
 
 type Props = { content: WhatWeDoSection };
@@ -52,6 +53,13 @@ export function WhatWeDo({ content }: Props) {
               <motion.li key={card.id} variants={fadeRise} className="h-full">
                 <Link
                   href={card.href}
+                  onClick={() =>
+                    trackServiceCardClick({
+                      surface: "home-what-we-do",
+                      serviceId: card.id,
+                      href: card.href,
+                    })
+                  }
                   className="group flex h-full min-h-[220px] flex-col gap-4 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-[border-color,box-shadow] duration-150 ease-out hover:border-[var(--color-primary-600)] hover:shadow-[var(--shadow-sm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] focus-visible:ring-offset-2"
                 >
                   <span
