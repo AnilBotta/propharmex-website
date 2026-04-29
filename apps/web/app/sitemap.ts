@@ -44,6 +44,7 @@ const STATIC_ENTRIES: Entry[] = [
   entry("/case-studies", 0.7, "weekly"),
   entry("/insights", 0.7, "weekly"),
   entry("/contact", 0.6, "yearly"),
+  entry("/accessibility", 0.4, "yearly"),
   entry("/ai/project-scoping-assistant", 0.5, "monthly"),
   entry("/ai/del-readiness", 0.5, "monthly"),
   entry("/ai/dosage-matcher", 0.5, "monthly"),

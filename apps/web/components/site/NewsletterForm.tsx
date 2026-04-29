@@ -9,8 +9,13 @@
  * Double-opt-in is non-negotiable per PIPEDA (Canada), GDPR (EU/UK), and
  * DLD/DPDP (India). The UI never claims subscription — it says "check your
  * inbox" and lets the confirmation link flip the state.
+ *
+ * Prompt 26 a11y audit fixes:
+ *  - error message associated with the email input via aria-describedby
+ *  - success state announced via role=status / aria-live=polite
+ *  - sr-only "(required)" suffix on the email label
  */
-import { useState } from "react";
+import { useId, useState } from "react";
 import type { FormEvent } from "react";
 import {
   Button,
@@ -28,11 +33,16 @@ type State =
   | { status: "error"; message: string };
 
 export function NewsletterForm({ className }: { className?: string }) {
+  const formId = useId();
+  const emailId = `${formId}-email`;
+  const errorId = `${formId}-err`;
+
   const [state, setState] = useState<State>({ status: "idle" });
   const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
 
   const submitting = state.status === "submitting";
+  const isError = state.status === "error";
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -69,9 +79,11 @@ export function NewsletterForm({ className }: { className?: string }) {
 
   if (state.status === "success") {
     return (
-      <Callout tone="success" title="Subscription pending confirmation">
-        {NEWSLETTER.successLabel}
-      </Callout>
+      <div role="status" aria-live="polite">
+        <Callout tone="success" title="Subscription pending confirmation">
+          {NEWSLETTER.successLabel}
+        </Callout>
+      </div>
     );
   }
 
@@ -81,11 +93,16 @@ export function NewsletterForm({ className }: { className?: string }) {
       onSubmit={onSubmit}
       className={cn("flex flex-col gap-3", className)}
     >
-      <label className="flex flex-col gap-1.5">
-        <span className="text-sm font-medium text-[var(--color-fg)]">
+      <div className="flex flex-col gap-1.5">
+        <label
+          htmlFor={emailId}
+          className="text-sm font-medium text-[var(--color-fg)]"
+        >
           {NEWSLETTER.emailLabel}
-        </span>
+          <span className="sr-only"> (required)</span>
+        </label>
         <Input
+          id={emailId}
           type="email"
           required
           autoComplete="email"
@@ -93,9 +110,10 @@ export function NewsletterForm({ className }: { className?: string }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder={NEWSLETTER.emailPlaceholder}
-          aria-invalid={state.status === "error" ? true : undefined}
+          aria-invalid={isError ? true : undefined}
+          aria-describedby={isError ? errorId : undefined}
         />
-      </label>
+      </div>
 
       <label className="flex items-start gap-2 text-xs leading-relaxed text-[var(--color-muted)]">
         <input
@@ -109,7 +127,11 @@ export function NewsletterForm({ className }: { className?: string }) {
       </label>
 
       {state.status === "error" && (
-        <p className="text-xs text-[var(--color-danger)]" role="alert">
+        <p
+          id={errorId}
+          className="text-xs text-[var(--color-danger)]"
+          role="alert"
+        >
           {state.message}
         </p>
       )}

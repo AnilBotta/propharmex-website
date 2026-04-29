@@ -212,9 +212,9 @@ export function Header() {
                                 <li key={l.href}>
                                   <Link
                                     href={l.href}
-                                    className="group flex flex-col gap-0.5 rounded-[var(--radius-sm)] px-2 py-1.5 transition-colors hover:bg-[var(--color-primary-50)]"
+                                    className="group flex flex-col gap-0.5 rounded-[var(--radius-sm)] px-2 py-1.5 transition-colors hover:bg-[var(--color-primary-50)] focus-visible:bg-[var(--color-primary-50)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] focus-visible:ring-offset-2"
                                   >
-                                    <span className="text-sm font-medium text-[var(--color-fg)] group-hover:text-[var(--color-primary-700)]">
+                                    <span className="text-sm font-medium text-[var(--color-fg)] group-hover:text-[var(--color-primary-700)] group-focus-visible:text-[var(--color-primary-700)]">
                                       {l.label}
                                     </span>
                                     {l.description && (

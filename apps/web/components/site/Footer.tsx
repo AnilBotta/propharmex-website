@@ -56,7 +56,7 @@ export function Footer() {
                     <li key={l.href}>
                       <Link
                         href={l.href}
-                        className="text-sm text-[var(--color-slate-800)] hover:text-[var(--color-primary-700)]"
+                        className="rounded-[var(--radius-xs)] text-sm text-[var(--color-slate-800)] hover:text-[var(--color-primary-700)] focus-visible:text-[var(--color-primary-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] focus-visible:ring-offset-2"
                       >
                         {l.label}
                       </Link>
@@ -127,10 +127,13 @@ export function Footer() {
             © {currentYear} Propharmex Inc. All rights reserved. Propharmex is
             not a licensed pharmacy; no medical advice is provided on this site.
           </p>
-          <ul className="flex flex-wrap gap-x-4 gap-y-1">
+          <ul aria-label="Legal" className="flex flex-wrap gap-x-4 gap-y-1">
             {LEGAL_LINKS.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="hover:text-[var(--color-fg)]">
+                <Link
+                  href={l.href}
+                  className="rounded-[var(--radius-xs)] hover:text-[var(--color-fg)] focus-visible:text-[var(--color-fg)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] focus-visible:ring-offset-2"
+                >
                   {l.label}
                 </Link>
               </li>

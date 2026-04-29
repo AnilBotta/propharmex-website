@@ -55,7 +55,12 @@
   --color-bg:      #FAFAF7;                    /* Pharma White */
   --color-surface: #FFFFFF;
   --color-fg:      oklch(18% 0.010 260);       /* near slate-900 */
-  --color-muted:   oklch(54% 0.010 260);
+  /*
+   * --color-muted lightness lowered from 54% → 50% per Prompt 26 a11y
+   * audit (color-contrast safety margin). 54% → ~4.4:1 on Pharma White
+   * was on the edge of the 4.5:1 AA threshold; 50% lands at ~4.9:1.
+   */
+  --color-muted:   oklch(50% 0.010 260);
   --color-border:  oklch(90% 0.006 260);
   --color-ring:    var(--color-primary-600);
 
@@ -75,7 +80,13 @@
   /* -------------------------------------------------------------------- */
   --color-success:    #16785A;
   --color-success-fg: #FAFAF7;
-  --color-warn:       #B8860B;
+  /*
+   * --color-warn was #B8860B (~3.4:1 on Pharma White) which fails WCAG AA
+   * for normal text. Darkened to #8B6508 (~5.2:1) per Prompt 26 a11y
+   * audit S1-1. Use --color-warn for fills + this darker --color-warn
+   * for text; --color-warn-fg stays for high-contrast text on warn fills.
+   */
+  --color-warn:       #8B6508;
   --color-warn-fg:    oklch(15% 0.040 75);
   --color-danger:     #A23B3B;
   --color-danger-fg:  #FAFAF7;
