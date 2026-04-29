@@ -2,6 +2,11 @@
 /**
  * axe-core scan runner (Prompt 26 PR-B fixup).
  *
+ * Lives under `apps/web/scripts/` (not the repo-root `scripts/`) so
+ * Node's ESM module resolver finds `@playwright/test` and
+ * `@axe-core/playwright` in `apps/web/node_modules/` — they're devDeps
+ * of the web package, not workspace-root.
+ *
  * Replaces the @axe-core/cli approach which silently failed on the
  * GitHub-hosted runner because chromedriver wasn't on PATH. We use
  * @axe-core/playwright instead since Playwright bundles its own
@@ -10,12 +15,15 @@
  *
  * Walks the URL list, runs axe against each page, writes a JSON
  * report to .axe-reports/. The companion gate script
- * `scripts/check-axe-violations.mjs` filters those reports for
- * serious + critical violations.
+ * `scripts/check-axe-violations.mjs` (at repo root, stdlib-only)
+ * filters those reports for serious + critical violations.
  *
  * Configurable via env:
  *   AXE_BASE_URL   default http://localhost:3000
- *   AXE_REPORTS    default .axe-reports
+ *   AXE_REPORTS    default .axe-reports (recommended: pass an absolute
+ *                  path like ${{ github.workspace }}/.axe-reports so
+ *                  the gate script can find the output regardless of
+ *                  where this runner was invoked from)
  *
  * Exit codes:
  *   0  — every URL scanned cleanly (axe ran; reports written)

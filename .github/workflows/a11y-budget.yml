@@ -69,11 +69,14 @@ jobs:
             exit 1
           fi
 
-          # The scanner walks every URL in scripts/run-axe-scan.mjs and
-          # writes one JSON report per URL into .axe-reports/. We run it
-          # from apps/web so @axe-core/playwright resolves correctly.
+          # The scanner walks every URL in apps/web/scripts/run-axe-scan.mjs
+          # and writes one JSON report per URL into the dir given by
+          # AXE_REPORTS (absolute path so the gate script — run from
+          # repo root — can find the same files). The script lives under
+          # apps/web/ so Node's ESM resolver finds @axe-core/playwright
+          # and @playwright/test in apps/web/node_modules/.
           set +e
-          (cd apps/web && node ../../scripts/run-axe-scan.mjs)
+          (cd apps/web && node scripts/run-axe-scan.mjs)
           scan_status=$?
           set -e
 
