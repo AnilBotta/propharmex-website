@@ -261,8 +261,64 @@ redaction layer, then verify the change in production.
 
 ---
 
-## 12. Changelog
+## 12. Bundle-size budget
+
+The `Bundle budget` GitHub workflow (`.github/workflows/bundle-budget.yml`) runs on every PR and every push to `main`. It builds the web app with `pnpm --filter web build`, captures stdout into `build.log`, and runs [`scripts/check-bundle-budget.mjs`](../scripts/check-bundle-budget.mjs) against the route-size table.
+
+### 12.1 Current threshold
+
+**475 kB First-Load JS per route on mobile.** This is **not** the original Prompt 25 spec value (150 kB). The 150 kB target was unachievable with the stack we ship — Sentry adds ~100 kB, PostHog ~50 kB, Framer Motion ~30 kB, the AI SDK on `/ai/*` tools ~120 kB. Even a barebones React 19 + Next 15 page lands around 173 kB before any app code.
+
+The 475 kB ceiling matches the worst current route (`/ai/project-scoping-assistant` at 452 kB) plus ~5% headroom. **The gate is here to catch regressions, not to enforce an aspirational value** — a Framer Motion duplicate-import or an incidental import of the entire `lucide-react` icon set would push routes well over 475 kB and fail CI.
+
+Override with `BUNDLE_BUDGET_KB` env var if you need to ratchet.
+
+### 12.2 Excluded routes
+
+These don't ship client JS but Next 15's build table prints the shared-baseline number for them anyway (around 173 kB) — meaningless data, so the script filters them out:
+
+- `/api/*` — server-only route handlers
+- `/sitemap.xml`, `/robots.txt` — server-rendered XML/text
+- `*/opengraph-image`, `*/twitter-image` — PNG generation routes
+
+### 12.3 Local analysis
+
+`ANALYZE=true pnpm --filter web build` writes interactive treemaps to `apps/web/.next/analyze/`. Open `client.html` to see what's heavy on the client bundle.
+
+### 12.4 Remediation tiers (easiest first)
+
+1. Add the offending import to a `dynamic()` boundary so it loads on interaction rather than first paint.
+2. Move state-only logic out of client components into server components.
+3. Replace heavy deps with lighter ones (e.g. `date-fns` → `Intl.DateTimeFormat`).
+4. Code-split with `next/dynamic({ ssr: false })` for components that never need to render on the server.
+5. As a last resort: ratchet the budget. Document the new ceiling in §12.5.
+
+If the budget gate fails on a PR you genuinely can't fix in-PR, ratchet `BUNDLE_BUDGET_KB` in the workflow with a TODO comment + follow-up issue. **Do not** delete the workflow — it's the only thing that catches a 600 kB Framer Motion regression.
+
+### 12.5 Ratchet-down follow-ups
+
+Tickets to bring the ceiling down toward a healthier ~300 kB:
+
+- [ ] **Lazy-load Cal.com on `/contact`** — pulls `/contact` from 347 kB → ~250 kB. Already a recorded Lighthouse follow-up from Prompt 23.
+- [ ] **Dynamic-import the AI SDK on `/ai/*` tool pages** — `import('ai/react')` only when the user opens the chat surface. Should pull `/ai/project-scoping-assistant` from 452 kB → ~330 kB.
+- [ ] **Audit `lucide-react` imports** — confirm we're using per-icon imports (`import { Foo } from 'lucide-react'`) not the barrel.
+- [ ] **Audit `framer-motion`** — split feature imports (`m`, `LazyMotion`) where appropriate to enable tree-shaking.
+- [ ] After each follow-up lands, ratchet `BUNDLE_BUDGET_KB` down so the gate continues to catch regressions at the new floor.
+
+---
+
+## 13. Uptime monitoring
+
+Vercel Cron (`vercel.json` → `crons[]`) hits `/api/health` every minute. The endpoint is edge-runtime, returns `{status:"ok"}`, and is cheap (~5 ms). Cron requires Vercel **Pro plan** — on Hobby tier the entry is a no-op and uptime is best-effort via external pingers.
+
+- **External uptime check (recommended)**: configure a 60-second ping at https://propharmex.com/api/health from a third-party uptime service (BetterStack / Uptime Kuma / Cronitor). Vercel Cron is good enough for "is the deployment healthy" but doesn't tell you if Vercel itself is up.
+- **Alerts**: page on `/api/health` returning non-200 for >2 consecutive checks. Don't alert on a single failure — Vercel cold-start and brief 5xx during deploy promotion are normal and not actionable.
+
+---
+
+## 14. Changelog
 
 | Date | Change | PR |
 |---|---|---|
-| 2026-04-29 | Runbook initial — Prompt 25 PR-A | TBD |
+| 2026-04-29 | Runbook initial — Prompt 25 PR-A | [#40](https://github.com/AnilBotta/propharmex-website/pull/40) |
+| 2026-04-29 | Bundle budget + uptime cron — Prompt 25 PR-B | TBD |
