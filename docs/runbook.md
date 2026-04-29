@@ -261,8 +261,36 @@ redaction layer, then verify the change in production.
 
 ---
 
-## 12. Changelog
+## 12. Bundle-size budget
+
+The `Bundle budget` GitHub workflow (`.github/workflows/bundle-budget.yml`) runs on every PR and every push to `main`. It builds the web app with `pnpm --filter web build`, captures stdout into `build.log`, and runs [`scripts/check-bundle-budget.mjs`](../scripts/check-bundle-budget.mjs) against the route-size table.
+
+- **Threshold**: 150 kB First-Load JS per route on mobile. Override with `BUNDLE_BUDGET_KB` env var if you need to ratchet.
+- **Failure mode**: workflow fails with a list of routes over budget + how many kB each is over.
+- **Local analysis**: `ANALYZE=true pnpm --filter web build` writes interactive treemaps to `apps/web/.next/analyze/`. Open `client.html` to see what's heavy on the client bundle.
+- **Remediation tiers** (apply in this order — easiest first):
+  1. Add the offending import to a `dynamic()` boundary so it loads on interaction rather than first paint.
+  2. Move state-only logic out of client components into server components.
+  3. Replace heavy deps with lighter ones (e.g. `date-fns` → `Intl.DateTimeFormat`).
+  4. Code-split with `next/dynamic({ ssr: false })` for components that never need to render on the server.
+  5. As a last resort: ratchet the budget. Document the new ceiling in this section.
+
+If the budget gate fails on a PR you genuinely can't fix in-PR, ratchet `BUNDLE_BUDGET_KB` in the workflow with a TODO comment + follow-up issue. **Do not** delete the workflow — it's the only thing that catches a 600 kB Framer Motion regression.
+
+---
+
+## 13. Uptime monitoring
+
+Vercel Cron (`vercel.json` → `crons[]`) hits `/api/health` every minute. The endpoint is edge-runtime, returns `{status:"ok"}`, and is cheap (~5 ms). Cron requires Vercel **Pro plan** — on Hobby tier the entry is a no-op and uptime is best-effort via external pingers.
+
+- **External uptime check (recommended)**: configure a 60-second ping at https://propharmex.com/api/health from a third-party uptime service (BetterStack / Uptime Kuma / Cronitor). Vercel Cron is good enough for "is the deployment healthy" but doesn't tell you if Vercel itself is up.
+- **Alerts**: page on `/api/health` returning non-200 for >2 consecutive checks. Don't alert on a single failure — Vercel cold-start and brief 5xx during deploy promotion are normal and not actionable.
+
+---
+
+## 14. Changelog
 
 | Date | Change | PR |
 |---|---|---|
-| 2026-04-29 | Runbook initial — Prompt 25 PR-A | TBD |
+| 2026-04-29 | Runbook initial — Prompt 25 PR-A | [#40](https://github.com/AnilBotta/propharmex-website/pull/40) |
+| 2026-04-29 | Bundle budget + uptime cron — Prompt 25 PR-B | TBD |
