@@ -6,6 +6,7 @@ import { ArrowRight } from "lucide-react";
 
 import { Button, MOTION, fadeRise, staggerContainer, useReducedMotion } from "@propharmex/ui";
 
+import { trackHeroCtaClick } from "../../lib/analytics";
 import type { HeroSection } from "../../content/home";
 
 type Props = { content: HeroSection };
@@ -68,7 +69,17 @@ export function Hero({ content }: Props) {
                   size="lg"
                   className="min-h-11"
                 >
-                  <Link href={cta.href}>
+                  <Link
+                    href={cta.href}
+                    onClick={() =>
+                      trackHeroCtaClick({
+                        page: "home",
+                        variant,
+                        href: cta.href,
+                        label: cta.label,
+                      })
+                    }
+                  >
                     {cta.label}
                     {cta.variant === "primary" ? (
                       <ArrowRight aria-hidden="true" size={18} />

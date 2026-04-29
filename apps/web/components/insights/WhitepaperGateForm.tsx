@@ -22,6 +22,7 @@ import type { FormEvent } from "react";
 
 import { Button, Callout, Input, Textarea, cn } from "@propharmex/ui";
 
+import { trackFormSubmit, trackWhitepaperDownload } from "../../lib/analytics";
 import type { WhitepaperContent } from "../../content/insights";
 
 type State =
@@ -103,6 +104,17 @@ export function WhitepaperGateForm({ content, className }: Props) {
             : "We could not process that request. Please try again.",
         );
       }
+
+      let queued = false;
+      try {
+        const body = (await res.clone().json()) as { queued?: unknown };
+        queued = body?.queued === true;
+      } catch {
+        // ignore — telemetry is fire-and-forget
+      }
+      trackFormSubmit({ form: "whitepaper", category: content.slug, queued });
+      trackWhitepaperDownload({ slug: content.slug, queued });
+
       setState({ status: "success" });
     } catch (err) {
       setState({
