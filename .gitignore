@@ -56,8 +56,6 @@ Desktop.ini
 .claude/scheduled_tasks.lock
 
 # Generated
-apps/web/public/sitemap*.xml
-apps/web/public/robots.txt
 packages/lib/sanity/types/generated/
 
 # Sentry

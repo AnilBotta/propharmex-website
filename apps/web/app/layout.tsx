@@ -45,12 +45,31 @@ export const metadata: Metadata = {
   description:
     "Canadian pharmaceutical services company anchored at our Mississauga, Ontario site under Health Canada Drug Establishment Licence. Pharmaceutical development, analytical services, regulatory affairs, and 3PL distribution for drug developers globally.",
   applicationName: "Propharmex",
-  // Re-enabled at Prompt 22/27 once content is real.
-  robots: { index: false, follow: false },
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
     type: "website",
     siteName: "Propharmex",
     locale: "en_CA",
+    url: env.NEXT_PUBLIC_SITE_URL,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Propharmex",
+    description:
+      "Canadian pharmaceutical services company under Health Canada Drug Establishment Licence — pharmaceutical development, analytical services, regulatory affairs, 3PL distribution.",
   },
   icons: {
     icon: "/favicon.ico",
