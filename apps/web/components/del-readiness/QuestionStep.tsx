@@ -38,11 +38,19 @@ export function QuestionStep({
 }: Props) {
   return (
     <fieldset className="flex flex-col gap-4">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--color-muted)]">
-        {DEL_READINESS.form.progressLabel(stepIndex, totalSteps)}
-      </p>
-      <legend className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-tight text-[var(--color-fg)]">
-        {question.prompt}
+      {/*
+       * Progress label moved INSIDE <legend> so screen readers announce
+       * "Step 3 of 8" alongside the question prompt as the group label
+       * (Prompt 26 a11y audit S3-8). The visual treatment is preserved
+       * via inner <span>s with display tokens.
+       */}
+      <legend className="contents">
+        <span className="block text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--color-muted)]">
+          {DEL_READINESS.form.progressLabel(stepIndex, totalSteps)}
+        </span>
+        <span className="block font-[family-name:var(--font-display)] text-xl font-semibold tracking-tight text-[var(--color-fg)]">
+          {question.prompt}
+        </span>
       </legend>
       {question.helpText ? (
         <p className="-mt-2 text-sm leading-relaxed text-[var(--color-slate-800)]">

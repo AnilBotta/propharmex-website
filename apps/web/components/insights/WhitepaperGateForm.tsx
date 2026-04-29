@@ -144,7 +144,11 @@ export function WhitepaperGateForm({ content, className }: Props) {
 
   if (state.status === "success") {
     return (
-      <div className={cn("space-y-4", className)}>
+      <div
+        role="status"
+        aria-live="polite"
+        className={cn("space-y-4", className)}
+      >
         <Callout tone="success" title="Download is ready">
           We have emailed you a copy. The direct link below is also valid for
           this session.
@@ -256,13 +260,16 @@ export function WhitepaperGateForm({ content, className }: Props) {
           helper="One sentence — helps us tailor any follow-up."
           className="sm:col-span-2"
         >
-          <Textarea
-            id="wp-usecase"
-            rows={3}
-            value={values.useCase}
-            onChange={(e) => update("useCase", e.target.value)}
-            placeholder="e.g. Evaluating a CDMO for a Canadian + US filing on a sterile injectable."
-          />
+          {({ describedBy }) => (
+            <Textarea
+              id="wp-usecase"
+              rows={3}
+              aria-describedby={describedBy}
+              value={values.useCase}
+              onChange={(e) => update("useCase", e.target.value)}
+              placeholder="e.g. Evaluating a CDMO for a Canadian + US filing on a sterile injectable."
+            />
+          )}
         </Field>
       </div>
 
@@ -296,6 +303,22 @@ export function WhitepaperGateForm({ content, className }: Props) {
 /*  Field shell                                                               */
 /* -------------------------------------------------------------------------- */
 
+/**
+ * Field shell with WCAG 2.1 AA-compliant hint association
+ * (Prompt 26 a11y audit S1-2 + S1-3).
+ *
+ * Render-prop child receives `describedBy` — the caller passes it to the
+ * interactive element via `aria-describedby` so screen readers announce
+ * the hint when focus lands on the input. The `<label htmlFor>` wrapper
+ * still names the input; aria-describedby names the description.
+ *
+ * `required` adds an sr-only "(required)" suffix beside the visible
+ * `*` so AT users hear which fields are mandatory.
+ */
+type WhitepaperFieldRenderProps = {
+  describedBy: string | undefined;
+};
+
 function Field({
   label,
   htmlFor,
@@ -309,25 +332,41 @@ function Field({
   required?: boolean;
   helper?: string;
   className?: string;
-  children: React.ReactNode;
+  children:
+    | React.ReactNode
+    | ((rp: WhitepaperFieldRenderProps) => React.ReactNode);
 }) {
+  const hintId = helper ? `${htmlFor}-hint` : undefined;
+  const describedBy = hintId;
+  const rendered =
+    typeof children === "function" ? children({ describedBy }) : children;
+
   return (
-    <label htmlFor={htmlFor} className={cn("flex flex-col gap-1.5", className)}>
-      <span className="text-sm font-medium text-[var(--color-fg)]">
+    <div className={cn("flex flex-col gap-1.5", className)}>
+      <label
+        htmlFor={htmlFor}
+        className="text-sm font-medium text-[var(--color-fg)]"
+      >
         {label}
         {required ? (
-          <span aria-hidden="true" className="ml-0.5 text-[var(--color-danger)]">
-            *
-          </span>
+          <>
+            <span aria-hidden="true" className="ml-0.5 text-[var(--color-danger)]">
+              *
+            </span>
+            <span className="sr-only"> (required)</span>
+          </>
         ) : null}
-      </span>
-      {children}
+      </label>
+      {rendered}
       {helper ? (
-        <span className="text-[11px] leading-relaxed text-[var(--color-muted)]">
+        <span
+          id={hintId}
+          className="text-[11px] leading-relaxed text-[var(--color-muted)]"
+        >
           {helper}
         </span>
       ) : null}
-    </label>
+    </div>
   );
 }
 

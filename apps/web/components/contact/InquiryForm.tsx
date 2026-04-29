@@ -210,32 +210,40 @@ export function InquiryForm({ content }: Props) {
                     id={`${formId}-name`}
                     label={content.fields.name.label}
                     helper={content.fields.name.helper}
+                    required
                   >
-                    <Input
-                      id={`${formId}-name`}
-                      type="text"
-                      required
-                      autoComplete="name"
-                      placeholder={content.fields.name.placeholder}
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                    />
+                    {({ describedBy }) => (
+                      <Input
+                        id={`${formId}-name`}
+                        type="text"
+                        required
+                        autoComplete="name"
+                        aria-describedby={describedBy}
+                        placeholder={content.fields.name.placeholder}
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                      />
+                    )}
                   </Field>
 
                   <Field
                     id={`${formId}-company`}
                     label={content.fields.company.label}
                     helper={content.fields.company.helper}
+                    required
                   >
-                    <Input
-                      id={`${formId}-company`}
-                      type="text"
-                      required
-                      autoComplete="organization"
-                      placeholder={content.fields.company.placeholder}
-                      value={company}
-                      onChange={(e) => setCompany(e.target.value)}
-                    />
+                    {({ describedBy }) => (
+                      <Input
+                        id={`${formId}-company`}
+                        type="text"
+                        required
+                        autoComplete="organization"
+                        aria-describedby={describedBy}
+                        placeholder={content.fields.company.placeholder}
+                        value={company}
+                        onChange={(e) => setCompany(e.target.value)}
+                      />
+                    )}
                   </Field>
 
                   <Field
@@ -243,39 +251,46 @@ export function InquiryForm({ content }: Props) {
                     label={content.fields.role.label}
                     helper={content.fields.role.helper}
                   >
-                    <Select value={role} onValueChange={setRole}>
-                      <SelectTrigger
-                        id={`${formId}-role`}
-                        aria-label={content.fields.role.label}
-                      >
-                        <SelectValue
-                          placeholder={content.fields.role.selectPlaceholder}
-                        />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {ROLES.map((r) => (
-                          <SelectItem key={r} value={r}>
-                            {r}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                    {({ describedBy }) => (
+                      <Select value={role} onValueChange={setRole}>
+                        <SelectTrigger
+                          id={`${formId}-role`}
+                          aria-label={content.fields.role.label}
+                          aria-describedby={describedBy}
+                        >
+                          <SelectValue
+                            placeholder={content.fields.role.selectPlaceholder}
+                          />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {ROLES.map((r) => (
+                            <SelectItem key={r} value={r}>
+                              {r}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    )}
                   </Field>
 
                   <Field
                     id={`${formId}-email`}
                     label={content.fields.email.label}
                     helper={content.fields.email.helper}
+                    required
                   >
-                    <Input
-                      id={`${formId}-email`}
-                      type="email"
-                      required
-                      autoComplete="email"
-                      placeholder={content.fields.email.placeholder}
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
+                    {({ describedBy }) => (
+                      <Input
+                        id={`${formId}-email`}
+                        type="email"
+                        required
+                        autoComplete="email"
+                        aria-describedby={describedBy}
+                        placeholder={content.fields.email.placeholder}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    )}
                   </Field>
 
                   <Field
@@ -283,23 +298,26 @@ export function InquiryForm({ content }: Props) {
                     label={content.fields.region.label}
                     helper={content.fields.region.helper}
                   >
-                    <Select value={region} onValueChange={setRegion}>
-                      <SelectTrigger
-                        id={`${formId}-region`}
-                        aria-label={content.fields.region.label}
-                      >
-                        <SelectValue
-                          placeholder={content.fields.region.selectPlaceholder}
-                        />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {REGIONS.map((r) => (
-                          <SelectItem key={r.id} value={r.id}>
-                            {r.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                    {({ describedBy }) => (
+                      <Select value={region} onValueChange={setRegion}>
+                        <SelectTrigger
+                          id={`${formId}-region`}
+                          aria-label={content.fields.region.label}
+                          aria-describedby={describedBy}
+                        >
+                          <SelectValue
+                            placeholder={content.fields.region.selectPlaceholder}
+                          />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {REGIONS.map((r) => (
+                            <SelectItem key={r.id} value={r.id}>
+                              {r.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    )}
                   </Field>
 
                   <Field
@@ -307,31 +325,34 @@ export function InquiryForm({ content }: Props) {
                     label={content.fields.service.label}
                     helper={content.fields.service.helper}
                   >
-                    <Select
-                      value={service}
-                      onValueChange={(v) => {
-                        setService(v);
-                        if (v !== "pharmaceutical-development") {
-                          setDosageForm("");
-                        }
-                      }}
-                    >
-                      <SelectTrigger
-                        id={`${formId}-service`}
-                        aria-label={content.fields.service.label}
+                    {({ describedBy }) => (
+                      <Select
+                        value={service}
+                        onValueChange={(v) => {
+                          setService(v);
+                          if (v !== "pharmaceutical-development") {
+                            setDosageForm("");
+                          }
+                        }}
                       >
-                        <SelectValue
-                          placeholder={content.fields.service.selectPlaceholder}
-                        />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {SERVICES.map((s) => (
-                          <SelectItem key={s.id} value={s.id}>
-                            {s.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                        <SelectTrigger
+                          id={`${formId}-service`}
+                          aria-label={content.fields.service.label}
+                          aria-describedby={describedBy}
+                        >
+                          <SelectValue
+                            placeholder={content.fields.service.selectPlaceholder}
+                          />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {SERVICES.map((s) => (
+                            <SelectItem key={s.id} value={s.id}>
+                              {s.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    )}
                   </Field>
 
                   {showDosageForm ? (
@@ -340,23 +361,26 @@ export function InquiryForm({ content }: Props) {
                       label={content.fields.dosageForm.label}
                       helper={content.fields.dosageForm.helper}
                     >
-                      <Select value={dosageForm} onValueChange={setDosageForm}>
-                        <SelectTrigger
-                          id={`${formId}-dosage`}
-                          aria-label={content.fields.dosageForm.label}
-                        >
-                          <SelectValue
-                            placeholder={content.fields.dosageForm.selectPlaceholder}
-                          />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {DOSAGE_FORMS.map((d) => (
-                            <SelectItem key={d.id} value={d.id}>
-                              {d.label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                      {({ describedBy }) => (
+                        <Select value={dosageForm} onValueChange={setDosageForm}>
+                          <SelectTrigger
+                            id={`${formId}-dosage`}
+                            aria-label={content.fields.dosageForm.label}
+                            aria-describedby={describedBy}
+                          >
+                            <SelectValue
+                              placeholder={content.fields.dosageForm.selectPlaceholder}
+                            />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {DOSAGE_FORMS.map((d) => (
+                              <SelectItem key={d.id} value={d.id}>
+                                {d.label}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      )}
                     </Field>
                   ) : null}
 
@@ -365,23 +389,26 @@ export function InquiryForm({ content }: Props) {
                     label={content.fields.stage.label}
                     helper={content.fields.stage.helper}
                   >
-                    <Select value={stage} onValueChange={setStage}>
-                      <SelectTrigger
-                        id={`${formId}-stage`}
-                        aria-label={content.fields.stage.label}
-                      >
-                        <SelectValue
-                          placeholder={content.fields.stage.selectPlaceholder}
-                        />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {STAGES.map((s) => (
-                          <SelectItem key={s.id} value={s.id}>
-                            {s.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                    {({ describedBy }) => (
+                      <Select value={stage} onValueChange={setStage}>
+                        <SelectTrigger
+                          id={`${formId}-stage`}
+                          aria-label={content.fields.stage.label}
+                          aria-describedby={describedBy}
+                        >
+                          <SelectValue
+                            placeholder={content.fields.stage.selectPlaceholder}
+                          />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {STAGES.map((s) => (
+                            <SelectItem key={s.id} value={s.id}>
+                              {s.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    )}
                   </Field>
                 </div>
 
@@ -390,13 +417,16 @@ export function InquiryForm({ content }: Props) {
                   label={content.fields.message.label}
                   helper={content.fields.message.helper}
                 >
-                  <Textarea
-                    id={`${formId}-message`}
-                    rows={5}
-                    placeholder={content.fields.message.placeholder}
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                  />
+                  {({ describedBy }) => (
+                    <Textarea
+                      id={`${formId}-message`}
+                      rows={5}
+                      aria-describedby={describedBy}
+                      placeholder={content.fields.message.placeholder}
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                    />
+                  )}
                 </Field>
 
                 {status === "error" && errorMessage ? (
@@ -435,25 +465,54 @@ export function InquiryForm({ content }: Props) {
   );
 }
 
+/**
+ * Field shell with WCAG 2.1 AA-compliant label/hint/error association
+ * (Prompt 26 a11y audit S1-2 + S1-3).
+ *
+ * The render-prop child receives a `describedBy` string (or `undefined`)
+ * that the caller MUST pass to the interactive element via
+ * `aria-describedby`. This wires the hint and any error message into
+ * the field's accessible description so screen readers announce them
+ * when focus lands on the input.
+ *
+ * `required` adds a screen-reader-only "(required)" suffix to the
+ * label. Visible `*` markers should be wrapped in `aria-hidden="true"`
+ * by the caller — they are decoration, not data.
+ */
+type FieldRenderProps = {
+  describedBy: string | undefined;
+};
+
 function Field({
   id,
   label,
   helper,
+  required,
   children,
 }: {
   id: string;
   label: string;
   helper?: string;
-  children: React.ReactNode;
+  required?: boolean;
+  children: React.ReactNode | ((rp: FieldRenderProps) => React.ReactNode);
 }) {
+  const hintId = helper ? `${id}-hint` : undefined;
+  const describedBy = hintId;
+
+  const rendered =
+    typeof children === "function" ? children({ describedBy }) : children;
+
   return (
     <div className="flex flex-col gap-1.5">
       <label htmlFor={id} className="text-sm font-medium text-[var(--color-fg)]">
         {label}
+        {required ? <span className="sr-only"> (required)</span> : null}
       </label>
-      {children}
+      {rendered}
       {helper ? (
-        <p className="text-xs text-[var(--color-muted)]">{helper}</p>
+        <p id={hintId} className="text-xs text-[var(--color-muted)]">
+          {helper}
+        </p>
       ) : null}
     </div>
   );

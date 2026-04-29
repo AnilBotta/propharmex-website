@@ -329,6 +329,7 @@ export const LEGAL_LINKS: NavLink[] = [
   { href: "/legal/terms", label: "Terms" },
   { href: "/legal/cookie-policy", label: "Cookies" },
   { href: "/legal/ai-disclaimer", label: "AI disclaimer" },
+  { href: "/accessibility", label: "Accessibility" },
 ];
 
 /* -------------------------------------------------------------------------- */

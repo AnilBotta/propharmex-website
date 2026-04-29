@@ -149,10 +149,11 @@ export function ConciergePanel({ onClose }: Props) {
   }
 
   return (
-    <div
+    // Non-modal panel — does not trap focus, does not dim background.
+    // Using `role="region"` (not "dialog") so screen readers don't expect
+    // modal-style focus management. Resolves Prompt 26 a11y S2-1.
+    <section
       id="concierge-panel"
-      role="dialog"
-      aria-modal="false"
       aria-labelledby="concierge-panel-heading"
       className="flex h-[600px] max-h-[calc(100dvh-7rem)] w-[400px] max-w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] shadow-[0_24px_48px_-12px_rgba(15,32,80,0.3)]"
     >
@@ -295,7 +296,7 @@ export function ConciergePanel({ onClose }: Props) {
           </a>
         </div>
       </form>
-    </div>
+    </section>
   );
 }
 

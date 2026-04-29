@@ -297,9 +297,9 @@ If the budget gate fails on a PR you genuinely can't fix in-PR, ratchet `BUNDLE_
 
 ### 12.5 Ratchet-down follow-ups
 
-Tickets to bring the ceiling down toward a healthier ~300 kB:
+Tickets to bring the ceiling down toward a healthier ~300 kB and to promote demoted Lighthouse assertions back to `error`:
 
-- [ ] **Lazy-load Cal.com on `/contact`** — pulls `/contact` from 347 kB → ~250 kB. Already a recorded Lighthouse follow-up from Prompt 23.
+- [ ] **Lazy-load Cal.com on `/contact`** — pulls `/contact` from 347 kB → ~250 kB. Recorded Lighthouse follow-up from Prompt 23. **Promotes**: `categories:performance` 0.90 → 0.95 (perf), `largest-contentful-paint` warn → error. The /contact LCP has flaked the gate three times (Prompt 25 PR-B at 2169 ms, Prompt 26 PR-A at 2564 ms — both with thresholds of 2000 then 2500). Cal.com + Turnstile + Sentry stack the page right against any reasonable threshold; lazy-loading the embed is the only durable fix.
 - [ ] **Dynamic-import the AI SDK on `/ai/*` tool pages** — `import('ai/react')` only when the user opens the chat surface. Should pull `/ai/project-scoping-assistant` from 452 kB → ~330 kB.
 - [ ] **Audit `lucide-react` imports** — confirm we're using per-icon imports (`import { Foo } from 'lucide-react'`) not the barrel.
 - [ ] **Audit `framer-motion`** — split feature imports (`m`, `LazyMotion`) where appropriate to enable tree-shaking.

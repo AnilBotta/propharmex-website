@@ -59,9 +59,12 @@ export function ConciergeBubble() {
   }, [open, handleClose]);
 
   return (
+    // The launcher container intentionally has no aria-live: that lives on
+    // the message list inside ConciergePanel where new content actually
+    // appears. Wrapping the launcher in a live region caused the X / chat
+    // icon swap to be announced on every open/close (Prompt 26 a11y S2-4).
     <div
       className="pointer-events-none fixed bottom-4 right-4 z-[60] flex flex-col items-end gap-3 sm:bottom-6 sm:right-6"
-      aria-live="polite"
     >
       <AnimatePresence>
         {open ? (
