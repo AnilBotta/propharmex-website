@@ -76,7 +76,7 @@ export default function AccessibilityPage() {
             Propharmex is committed to making{" "}
             <Link
               href="/"
-              className="text-[var(--color-primary-700)] underline-offset-2 hover:underline"
+              className="text-[var(--color-primary-700)] underline underline-offset-2 hover:no-underline"
             >
               propharmex.com
             </Link>{" "}
@@ -203,7 +203,7 @@ export default function AccessibilityPage() {
             us. Email{" "}
             <a
               href="mailto:hello@propharmex.com?subject=Accessibility%20feedback"
-              className="text-[var(--color-primary-700)] underline-offset-2 hover:underline"
+              className="text-[var(--color-primary-700)] underline underline-offset-2 hover:no-underline"
             >
               hello@propharmex.com
             </a>{" "}
