@@ -82,6 +82,11 @@ export function WhitepaperGateForm({ content, className }: Props) {
     useCase: "",
   });
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  // Deferred Turnstile mount: stays false until the user first focuses the
+  // form, then flips to true so the Cloudflare script load and iframe creation
+  // happen past LCP rather than during the initial page render. Server-side
+  // verification is unchanged.
+  const [turnstileEnabled, setTurnstileEnabled] = useState(false);
 
   const submitting = state.status === "submitting";
 
@@ -171,6 +176,9 @@ export function WhitepaperGateForm({ content, className }: Props) {
     <form
       noValidate
       onSubmit={onSubmit}
+      onFocusCapture={() => {
+        if (!turnstileEnabled) setTurnstileEnabled(true);
+      }}
       className={cn(
         "rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] p-5 sm:p-6",
         className,
@@ -282,6 +290,7 @@ export function WhitepaperGateForm({ content, className }: Props) {
       <TurnstileWidget
         siteKey={TURNSTILE_SITE_KEY}
         action="whitepaper-gate"
+        enabled={turnstileEnabled}
         onVerify={handleTurnstileVerify}
         onExpire={handleTurnstileExpire}
         className="mt-4"

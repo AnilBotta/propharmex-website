@@ -103,6 +103,14 @@ type Props = {
   onExpire?: () => void;
   /** Optional className applied to the container element. */
   className?: string;
+  /**
+   * When false, the script is NOT loaded and the widget is NOT mounted.
+   * Flip to true to lazy-mount on demand (e.g., on first form focus) so
+   * the Turnstile script load + iframe creation happen past LCP rather
+   * than during the initial page render. Defaults to true for backwards
+   * compatibility with existing call sites.
+   */
+  enabled?: boolean;
 };
 
 export function TurnstileWidget({
@@ -111,12 +119,14 @@ export function TurnstileWidget({
   onVerify,
   onExpire,
   className,
+  enabled = true,
 }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const widgetIdRef = useRef<string | null>(null);
 
   useEffect(() => {
     if (!siteKey) return;
+    if (!enabled) return;
     if (!containerRef.current) return;
 
     let cancelled = false;
@@ -158,7 +168,7 @@ export function TurnstileWidget({
       }
       widgetIdRef.current = null;
     };
-  }, [siteKey, action, onVerify, onExpire]);
+  }, [siteKey, action, onVerify, onExpire, enabled]);
 
   // No site key configured (dev / preview / CI) → render nothing.
   if (!siteKey) return null;
