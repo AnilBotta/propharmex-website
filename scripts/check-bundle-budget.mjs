@@ -32,14 +32,14 @@
 import fs from "node:fs/promises";
 import process from "node:process";
 
-// Default ratchet: matches the worst current route (/ai/project-scoping-assistant
-// at 452 kB) plus ~5% headroom. The 150 kB number from the original Prompt 25
-// spec is unachievable with this stack (Sentry +100 kB, PostHog +50 kB, Framer
-// Motion +30 kB, AI SDK on /ai/* +120 kB). The gate is here to catch
-// REGRESSIONS — a Framer Motion duplicate-import would push routes well over
-// 475 kB and trip the gate. Follow-up tickets in docs/runbook.md §12 chip the
-// ceiling down toward 350 kB by lazy-loading heavy deps.
-const BUDGET_KB = Number.parseFloat(process.env.BUNDLE_BUDGET_KB ?? "475");
+// Default ratchet: matches the worst current route (/ai/dosage-matcher at
+// 431 kB) plus ~4.4% headroom. Was 475 kB until /ai/project-scoping-assistant
+// was lazy-split (-182 kB on that route, ai/react out of the site-wide chunk
+// via the Concierge dynamic-import). Dosage Matcher and DEL Readiness still
+// sit in the 430-kB band because they roll their own stream parsers and ship
+// pdf-lib + a multi-step form. Follow-up tickets in docs/runbook.md §12 chip
+// the ceiling down toward 350 kB by lazy-loading the remaining heavy deps.
+const BUDGET_KB = Number.parseFloat(process.env.BUNDLE_BUDGET_KB ?? "450");
 const BUDGET_BYTES = BUDGET_KB * 1024;
 
 // Routes excluded from the budget check. These don't ship client JS:
