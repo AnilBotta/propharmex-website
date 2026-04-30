@@ -32,11 +32,12 @@ test.describe("Contact page", () => {
 
     // Form fields — at minimum the four required text inputs are present.
     // Field ids are formId-suffix; useId() makes the prefix non-stable, so
-    // match by suffix rather than full id.
-    const nameInput = page.locator('input[id$="-name"]');
-    const emailInput = page.locator('input[id$="-email"]');
-    const companyInput = page.locator('input[id$="-company"]');
-    const messageTextarea = page.locator('textarea[id$="-message"]');
+    // match by suffix rather than full id. Scope to the inquiry section so
+    // the footer NewsletterForm's email input doesn't double-match.
+    const nameInput = inquirySection.locator('input[id$="-name"]');
+    const emailInput = inquirySection.locator('input[id$="-email"]');
+    const companyInput = inquirySection.locator('input[id$="-company"]');
+    const messageTextarea = inquirySection.locator('textarea[id$="-message"]');
     await expect(nameInput).toBeVisible();
     await expect(emailInput).toBeVisible();
     await expect(companyInput).toBeVisible();
