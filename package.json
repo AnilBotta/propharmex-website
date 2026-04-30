@@ -1,6 +1,6 @@
 {
   "name": "propharmex-site",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "description": "Propharmex website monorepo — Next.js 15 + Sanity v3 + AI tools (Canadian CDMO)",
   "packageManager": "pnpm@9.12.0",
