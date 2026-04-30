@@ -299,7 +299,7 @@ If the budget gate fails on a PR you genuinely can't fix in-PR, ratchet `BUNDLE_
 
 Tickets to bring the ceiling down toward a healthier ~300 kB and to promote demoted Lighthouse assertions back to `error`:
 
-- [ ] **Lazy-load Cal.com on `/contact`** — pulls `/contact` from 347 kB → ~250 kB. Recorded Lighthouse follow-up from Prompt 23. **Promotes**: `categories:performance` 0.90 → 0.95 (perf), `largest-contentful-paint` warn → error. The /contact LCP has flaked the gate three times (Prompt 25 PR-B at 2169 ms, Prompt 26 PR-A at 2564 ms — both with thresholds of 2000 then 2500). Cal.com + Turnstile + Sentry stack the page right against any reasonable threshold; lazy-loading the embed is the only durable fix.
+- [ ] **Lazy-load Cal.com on `/contact`** — pulls `/contact` from 347 kB → ~250 kB. Recorded Lighthouse follow-up from Prompt 23. **Promotes**: `categories:performance` warn → error 0.95 (currently warn — was demoted from error 0.90 → warn in Prompt 26 PR-B after `/contact` perf landed at 0.82–0.83 across three CI runs); `largest-contentful-paint` warn → error 2000 ms (currently warn at 2500 ms — was demoted from error 2000 ms in Prompt 25 PR-B then again from error 2500 ms in Prompt 26 PR-A). The `/contact` page has now flaked or consistently failed Lighthouse gates **four times** across three prompts: Cal.com + Turnstile + Sentry stack the page right against any reasonable threshold a hosted-runner can hit. Lazy-loading the embed is the only durable fix; until then both assertions stay at warn.
 - [ ] **Dynamic-import the AI SDK on `/ai/*` tool pages** — `import('ai/react')` only when the user opens the chat surface. Should pull `/ai/project-scoping-assistant` from 452 kB → ~330 kB.
 - [ ] **Audit `lucide-react` imports** — confirm we're using per-icon imports (`import { Foo } from 'lucide-react'`) not the barrel.
 - [ ] **Audit `framer-motion`** — split feature imports (`m`, `LazyMotion`) where appropriate to enable tree-shaking.
@@ -316,9 +316,58 @@ Vercel Cron (`vercel.json` → `crons[]`) hits `/api/health` every minute. The e
 
 ---
 
-## 14. Changelog
+## 14. Accessibility testing
+
+Three layers; treat all three as required for an AA conformance claim.
+
+### 14.1 Lighthouse CI (automated, every PR)
+
+`.github/workflows/lighthouse.yml` runs Lighthouse against the same 10 URLs the a11y workflow covers. The `categories:accessibility` assertion is currently `warn` at 0.95 — we promote it to `error` at 1.0 once the manual AT pass confirms (§14.3) and axe-core CI shows clean across the same URLs.
+
+### 14.2 axe-core CI (automated, every PR)
+
+`.github/workflows/a11y-budget.yml` boots `next start`, runs `@axe-core/cli` against 11 URLs (the Lighthouse 10 + `/accessibility`), and gates on **serious + critical** violations only. Minor and moderate findings are surfaced via the uploaded `axe-reports` artifact but don't fail the build — they're tracked in [`docs/accessibility-conformance.md`](accessibility-conformance.md) §4 (Known limitations).
+
+The gate is implemented in [`scripts/check-axe-violations.mjs`](../scripts/check-axe-violations.mjs) — Node 20 stdlib only, no npm deps.
+
+To debug a failing run locally:
+
+```bash
+pnpm --filter web build
+pnpm --filter web start &
+pnpm dlx @axe-core/cli@4.10.x --tags wcag2a,wcag2aa,wcag21a,wcag21aa http://localhost:3000/contact
+```
+
+### 14.3 Manual AT pass (human, before launch + quarterly)
+
+Automated tools catch ~30–40% of WCAG 2.1 AA failures. The remainder needs a real screen-reader session. Test plan + recording template: [`docs/accessibility-at-test-plan.md`](accessibility-at-test-plan.md).
+
+- **Pre-launch** (before tagging v1.0.0): mandatory.
+- **Quarterly** thereafter: scheduled.
+- **After material change** to interactive surfaces: triggered.
+- **After customer-reported barrier**: triggered.
+
+Findings are written to `docs/accessibility-at-results-YYYY-MM-DD.md` and merged back into [`docs/accessibility-conformance.md`](accessibility-conformance.md) §3 + §7 (revision history).
+
+### 14.4 Public conformance posture
+
+The customer-facing accessibility statement lives at `/accessibility` ([`apps/web/app/accessibility/page.tsx`](../apps/web/app/accessibility/page.tsx)). The internal Accessibility Conformance Report (VPAT 2.5 format) lives at [`docs/accessibility-conformance.md`](accessibility-conformance.md), with a generated `.docx` companion at `docs/accessibility-conformance.docx` for compliance archives.
+
+Regenerate the docx after editorial changes to the markdown:
+
+```bash
+py -m pip install python-docx==1.1.2
+py scripts/generate-acr-docx.py
+```
+
+The script asserts on document structure (expected H1, expected H2 set, ≥6 tables) so silent content-drift breaks the build rather than producing a broken docx.
+
+---
+
+## 15. Changelog
 
 | Date | Change | PR |
 |---|---|---|
 | 2026-04-29 | Runbook initial — Prompt 25 PR-A | [#40](https://github.com/AnilBotta/propharmex-website/pull/40) |
-| 2026-04-29 | Bundle budget + uptime cron — Prompt 25 PR-B | TBD |
+| 2026-04-29 | Bundle budget + uptime cron — Prompt 25 PR-B | [#41](https://github.com/AnilBotta/propharmex-website/pull/41) |
+| 2026-04-29 | A11y testing layers (§14) + ACR docx — Prompt 26 PR-B | TBD |

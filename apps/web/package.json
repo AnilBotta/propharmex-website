@@ -47,6 +47,7 @@
     "zod": "^3.23.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.10.0",
     "@next/bundle-analyzer": "^15.0.0",
     "@playwright/test": "^1.47.0",
     "@propharmex/config": "workspace:*",

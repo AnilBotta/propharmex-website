@@ -1,0 +1,109 @@
+name: A11y budget
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  axe-core:
+    name: axe-core (no serious or critical violations)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Playwright bundles its own Chromium — installing it once here
+      # avoids the chromedriver-on-PATH dependency that bit the prior
+      # @axe-core/cli approach on hosted runners.
+      - name: Install Playwright Chromium
+        run: pnpm --filter web exec playwright install --with-deps chromium
+
+      - name: Build
+        run: pnpm --filter web build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://propharmex.com
+          NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+          NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
+
+      - name: Start app + run axe-core scan + gate
+        run: |
+          set -euo pipefail
+
+          pnpm --filter web start &
+          SERVER_PID=$!
+
+          # Wait up to 30s for the dev server to bind port 3000.
+          for i in $(seq 1 30); do
+            if curl -fsS http://localhost:3000/api/health >/dev/null 2>&1; then
+              echo "Server ready after ${i}s"
+              break
+            fi
+            sleep 1
+          done
+
+          if ! curl -fsS http://localhost:3000/api/health >/dev/null 2>&1; then
+            echo "::error::Server did not respond within 30 seconds"
+            kill $SERVER_PID || true
+            exit 1
+          fi
+
+          # The scanner walks every URL in apps/web/scripts/run-axe-scan.mjs
+          # and writes one JSON report per URL into the dir given by
+          # AXE_REPORTS (absolute path so the gate script — run from
+          # repo root — can find the same files). The script lives under
+          # apps/web/ so Node's ESM resolver finds @axe-core/playwright
+          # and @playwright/test in apps/web/node_modules/.
+          set +e
+          (cd apps/web && node scripts/run-axe-scan.mjs)
+          scan_status=$?
+          set -e
+
+          ls -la .axe-reports/ || true
+
+          # Gate runs even if the scanner exited non-zero (some URLs may
+          # have failed; the gate reports against the JSONs that DID land).
+          set +e
+          node scripts/check-axe-violations.mjs .axe-reports
+          gate_status=$?
+          set -e
+
+          kill $SERVER_PID || true
+          wait $SERVER_PID 2>/dev/null || true
+
+          if [ $scan_status -ne 0 ] || [ $gate_status -ne 0 ]; then
+            echo "::error::scan_status=${scan_status} gate_status=${gate_status}"
+            exit 1
+          fi
+        env:
+          AXE_BASE_URL: http://localhost:3000
+          AXE_REPORTS: ${{ github.workspace }}/.axe-reports
+
+      - name: Upload axe reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: axe-reports
+          path: .axe-reports/
+          retention-days: 14

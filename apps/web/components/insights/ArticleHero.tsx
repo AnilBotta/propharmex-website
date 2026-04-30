@@ -58,12 +58,20 @@ export const ArticleHero: FC<Props> = ({ content }) => {
           {content.hero.lede}
         </p>
 
-        <dl className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
+        {/*
+         * The article meta line was previously a <dl> with <div>-wrapped
+         * dt/dd pairs that interleaved decorative <span> separators. axe
+         * (definition-list rule) flags that mixing as a serious
+         * violation. Plain <div> + sr-only labels carry the same
+         * accessible-name information without the dt/dd structural
+         * constraint (Prompt 26 PR-B fixup).
+         */}
+        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
           <div className="flex items-center gap-2">
-            <dt className="sr-only">Author</dt>
-            <dd className="font-semibold text-[var(--color-fg)]">
+            <span className="sr-only">Author: </span>
+            <span className="font-semibold text-[var(--color-fg)]">
               {content.author.name}
-            </dd>
+            </span>
             <span aria-hidden="true" className="text-[var(--color-border)]">
               ·
             </span>
@@ -72,17 +80,15 @@ export const ArticleHero: FC<Props> = ({ content }) => {
             </span>
           </div>
           <div className="flex items-center gap-2 text-[var(--color-muted)]">
-            <dt className="sr-only">Published</dt>
-            <dd>
-              <time dateTime={content.publishedAt}>{publishedLabel}</time>
-            </dd>
+            <span className="sr-only">Published: </span>
+            <time dateTime={content.publishedAt}>{publishedLabel}</time>
           </div>
           <div className="inline-flex items-center gap-1 text-[var(--color-muted)]">
             <Clock aria-hidden="true" size={13} />
-            <dt className="sr-only">Reading time</dt>
-            <dd>{content.readingMinutes} min read</dd>
+            <span className="sr-only">Reading time: </span>
+            <span>{content.readingMinutes} min read</span>
           </div>
-        </dl>
+        </div>
       </div>
     </section>
   );
