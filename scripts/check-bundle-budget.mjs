@@ -4,7 +4,7 @@
  *
  * Parses the route-size table that `next build` prints to stdout,
  * extracts the "First Load JS" column for every route, and exits 1 if
- * any route's First Load JS exceeds the 150 KB budget on mobile.
+ * any route's First Load JS exceeds the BUDGET_KB ceiling.
  *
  * Usage:
  *   pnpm --filter web build 2>&1 | tee build.log
@@ -13,9 +13,10 @@
  * The script can also read from stdin if no file is given:
  *   pnpm --filter web build 2>&1 | node scripts/check-bundle-budget.mjs
  *
- * Threshold can be overridden via `BUNDLE_BUDGET_KB` env var. Default:
- * 150 (matching the Prompt 25 spec). Lighthouse budget-guard skill
- * surfaces the same number — they should stay in sync.
+ * Threshold can be overridden via `BUNDLE_BUDGET_KB` env var. Default
+ * tracks the worst-route ceiling — see the BUDGET_KB constant below for
+ * the ratchet history. Lighthouse budget-guard skill surfaces the same
+ * number — they should stay in sync.
  *
  * Output (failure):
  *   ✗ /ai/del-readiness          161.2 kB   (over by 11.2 kB)
@@ -32,14 +33,19 @@
 import fs from "node:fs/promises";
 import process from "node:process";
 
-// Default ratchet: matches the worst current route (/ai/dosage-matcher at
-// 431 kB) plus ~4.4% headroom. Was 475 kB until /ai/project-scoping-assistant
-// was lazy-split (-182 kB on that route, ai/react out of the site-wide chunk
-// via the Concierge dynamic-import). Dosage Matcher and DEL Readiness still
-// sit in the 430-kB band because they roll their own stream parsers and ship
-// pdf-lib + a multi-step form. Follow-up tickets in docs/runbook.md §12 chip
-// the ceiling down toward 350 kB by lazy-loading the remaining heavy deps.
-const BUDGET_KB = Number.parseFloat(process.env.BUNDLE_BUDGET_KB ?? "450");
+// Default ratchet: matches the homepage (356 kB) — the new worst route —
+// plus ~6.7% headroom. History:
+//   475 kB  initial ceiling (Prompt 25 PR-B)
+//   450 kB  PR #44: /ai/project-scoping-assistant lazy-split (-182 kB);
+//           ai/react out of the site-wide chunk via Concierge dynamic-import
+//   380 kB  this PR: barrel-export leak fixed in @propharmex/lib —
+//           renderDosageMatcherPdf and renderDelReadinessPdf moved to
+//           subpath imports + "sideEffects": false; pdf-lib no longer
+//           pulled into client route chunks. /ai/dosage-matcher dropped
+//           431 -> 255 kB; /ai/del-readiness dropped 429 -> 241 kB.
+// Next ratchet candidate: homepage shared chunk audit (Sanity visual-editing
+// + Concierge bubble are the suspects on /, /contact, /insights/whitepapers).
+const BUDGET_KB = Number.parseFloat(process.env.BUNDLE_BUDGET_KB ?? "380");
 const BUDGET_BYTES = BUDGET_KB * 1024;
 
 // Routes excluded from the budget check. These don't ship client JS:

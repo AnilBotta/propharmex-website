@@ -25,6 +25,7 @@ import {
   log,
   supabase,
 } from "@propharmex/lib";
+import { renderDosageMatcherPdf } from "@propharmex/lib/dosage-matcher/pdf";
 
 export const runtime = "nodejs";
 
@@ -95,7 +96,7 @@ export async function POST(req: Request) {
   // 3) Render the PDF.
   let bytes: Uint8Array;
   try {
-    bytes = await dosageMatcher.renderDosageMatcherPdf(recommendation);
+    bytes = await renderDosageMatcherPdf(recommendation);
   } catch (err) {
     log.error("dosage-matcher.pdf.render_error", {
       message: err instanceof Error ? err.message : String(err),

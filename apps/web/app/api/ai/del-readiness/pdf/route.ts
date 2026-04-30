@@ -29,6 +29,7 @@ import {
   log,
   supabase,
 } from "@propharmex/lib";
+import { renderDelReadinessPdf } from "@propharmex/lib/del-readiness/pdf";
 
 export const runtime = "nodejs";
 
@@ -101,7 +102,7 @@ export async function POST(req: Request) {
   const rubric = delReadiness.DEFAULT_RUBRIC;
   let bytes: Uint8Array;
   try {
-    bytes = await delReadiness.renderDelReadinessPdf(assessment, rubric);
+    bytes = await renderDelReadinessPdf(assessment, rubric);
   } catch (err) {
     log.error("del-readiness.pdf.render_error", {
       message: err instanceof Error ? err.message : String(err),

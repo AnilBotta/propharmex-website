@@ -42,4 +42,5 @@ export { DEFAULT_RUBRIC } from "./rubric";
 
 export { computeScore, applicableCategories, buildAssessment } from "./score";
 
-export { renderDelReadinessPdf } from "./pdf";
+// PDF renderer is server-only. Import from "@propharmex/lib/del-readiness/pdf"
+// to avoid pulling pdf-lib into client route chunks via the barrel.

@@ -59,4 +59,5 @@ export {
   SAMPLE_MATCHER_RECOMMENDATION,
 } from "./sample";
 
-export { renderDosageMatcherPdf } from "./pdf";
+// PDF renderer is server-only. Import from "@propharmex/lib/dosage-matcher/pdf"
+// to avoid pulling pdf-lib into client route chunks via the barrel.
