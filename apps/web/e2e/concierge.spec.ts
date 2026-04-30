@@ -28,8 +28,10 @@ test.describe("CDMO Concierge", () => {
     await expect(launcher).toBeVisible();
     await launcher.click();
 
-    // Panel mounts with the heading visible.
-    const panel = page.getByRole("dialog", { name: /Propharmex Concierge/i });
+    // Panel mounts with the heading visible. The panel is a non-modal
+    // `<section aria-labelledby>` (Prompt 26 a11y S2-1), which exposes
+    // implicit role="region" — NOT "dialog".
+    const panel = page.getByRole("region", { name: /Propharmex Concierge/i });
     await expect(panel).toBeVisible();
 
     // Click the first suggestion chip — sends a real prompt.

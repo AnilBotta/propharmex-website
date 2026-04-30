@@ -23,11 +23,13 @@ test.describe("Insights", () => {
     // The hub has a heading; we just need ANY h1 visible.
     await expect(page.locator("h1").first()).toBeVisible();
 
-    // Find the first article card — link to /insights/<slug> (NOT
-    // /insights/whitepapers/<slug>). Negative-lookahead in CSS is
-    // expressed by combining selectors: all hub links to /insights/X
-    // minus those whose href starts with /insights/whitepapers/.
-    const articleLinks = page.locator(
+    // Find the first article card. Scope to the FilterableGrid results list
+    // (`<ul aria-label="Insights results">`) so we never pick up a header /
+    // footer / breadcrumb link that happens to point at /insights/X. The
+    // negative-lookahead-style filter (`:not([href^="/insights/whitepapers/"])`)
+    // keeps us off the whitepaper cards.
+    const resultsList = page.getByRole("list", { name: /Insights results/i });
+    const articleLinks = resultsList.locator(
       'a[href^="/insights/"]:not([href^="/insights/whitepapers/"])',
     );
     const firstArticle = articleLinks.first();
@@ -35,8 +37,13 @@ test.describe("Insights", () => {
     const articleHref = await firstArticle.getAttribute("href");
     expect(articleHref).toMatch(/^\/insights\/[a-z0-9-]+$/);
 
-    await firstArticle.click();
-    await page.waitForLoadState("networkidle");
+    // Click + wait for the URL to actually change. `waitForLoadState`
+    // can race past Next.js soft navigation if the network is briefly
+    // idle between click dispatch and the new chunk request.
+    await Promise.all([
+      page.waitForURL((url) => url.pathname === articleHref),
+      firstArticle.click(),
+    ]);
 
     // Article detail page — h1 visible, URL matches the clicked href.
     expect(page.url()).toContain(articleHref ?? "");
@@ -47,8 +54,12 @@ test.describe("Insights", () => {
     const response = await page.goto("/insights");
     expect(response?.status()).toBe(200);
 
-    // Find the first whitepaper card link.
-    const whitepaperLinks = page.locator('a[href^="/insights/whitepapers/"]');
+    // Find the first whitepaper card link. Scope to the FilterableGrid
+    // results list so we never pick up a chrome-level link.
+    const resultsList = page.getByRole("list", { name: /Insights results/i });
+    const whitepaperLinks = resultsList.locator(
+      'a[href^="/insights/whitepapers/"]',
+    );
     const firstWhitepaper = whitepaperLinks.first();
 
     // Whitepapers in the seed: the canonical CDMO operating model PDF.
@@ -63,8 +74,12 @@ test.describe("Insights", () => {
     const whitepaperHref = await firstWhitepaper.getAttribute("href");
     expect(whitepaperHref).toMatch(/^\/insights\/whitepapers\/[a-z0-9-]+$/);
 
-    await firstWhitepaper.click();
-    await page.waitForLoadState("networkidle");
+    // Click + wait for URL change (same Next.js soft-navigation race as the
+    // article test above).
+    await Promise.all([
+      page.waitForURL((url) => url.pathname === whitepaperHref),
+      firstWhitepaper.click(),
+    ]);
 
     // Gate page renders an h1 + a download/access form. We don't fill
     // or submit it (Turnstile blocks bot submissions in production
