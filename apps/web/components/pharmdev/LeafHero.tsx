@@ -38,27 +38,21 @@ export const LeafHero: FC<Props> = ({ content }) => {
           </p>
         </div>
 
-        {/*
-         * Stat cards. axe (definition-list rule) flags <dl> wrapping
-         * <div>-grouped dt/dd in this layout — switched to plain
-         * semantic markup (<p>+<p>) so the cards render identically
-         * without the dl/dt/dd structural constraint (Prompt 26 PR-B fixup).
-         */}
-        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:max-w-3xl">
+        <dl className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:max-w-3xl">
           {content.stats.map((stat) => (
             <div
               key={stat.label}
               className="rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-3"
             >
-              <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--color-muted)]">
+              <dt className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--color-muted)]">
                 {stat.label}
-              </p>
-              <p className="mt-1 font-[family-name:var(--font-display)] text-sm font-semibold text-[var(--color-fg)]">
+              </dt>
+              <dd className="mt-1 font-[family-name:var(--font-display)] text-sm font-semibold text-[var(--color-fg)]">
                 {stat.value}
-              </p>
+              </dd>
             </div>
           ))}
-        </div>
+        </dl>
 
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <Button asChild variant={content.primaryCta.variant} size="lg">

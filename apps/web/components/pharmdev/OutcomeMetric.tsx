@@ -38,6 +38,14 @@ export const OutcomeMetric: FC<Props> = ({ content }) => {
         </header>
 
         <SectionReveal className="mt-12">
+          {/*
+           * axe (definition-list rule) requires <div> children of <dl>
+           * to contain ONLY a dt/dd pair — no sibling <p> or <span>.
+           * The card has three pieces (label / value / context); to
+           * preserve the dl semantics we nest both the value AND the
+           * context paragraph inside <dd>, with the dd acting as a
+           * block container rather than a single inline value.
+           */}
           <dl
             className="grid grid-cols-1 gap-4 md:grid-cols-3"
             aria-label="Outcome pattern metrics"
@@ -50,12 +58,14 @@ export const OutcomeMetric: FC<Props> = ({ content }) => {
                 <dt className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--color-muted)]">
                   {metric.label}
                 </dt>
-                <dd className="mt-2 font-[family-name:var(--font-display)] text-2xl font-semibold text-[var(--color-fg)]">
-                  {metric.value}
+                <dd className="mt-2">
+                  <span className="block font-[family-name:var(--font-display)] text-2xl font-semibold text-[var(--color-fg)]">
+                    {metric.value}
+                  </span>
+                  <span className="mt-2 block text-sm leading-relaxed text-[var(--color-slate-800)]">
+                    {metric.context}
+                  </span>
                 </dd>
-                <p className="mt-2 text-sm leading-relaxed text-[var(--color-slate-800)]">
-                  {metric.context}
-                </p>
               </div>
             ))}
           </dl>
