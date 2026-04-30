@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "sideEffects": false,
   "main": "./index.ts",
   "types": "./index.ts",
   "exports": {
@@ -17,7 +18,9 @@
     "./supabase": "./supabase/index.ts",
     "./scoping": "./scoping/index.ts",
     "./del-readiness": "./del-readiness/index.ts",
+    "./del-readiness/pdf": "./del-readiness/pdf.ts",
     "./dosage-matcher": "./dosage-matcher/index.ts",
+    "./dosage-matcher/pdf": "./dosage-matcher/pdf.ts",
     "./region": "./region/index.ts"
   },
   "scripts": {
