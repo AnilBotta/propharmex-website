@@ -6,8 +6,10 @@
  * card are intentionally disabled here and wired in PR-B.
  *
  * RSC shell: hero copy + JSON-LD live in the server component; the chat
- * surface itself is a client component (`ScopingSurface`) because it owns
- * the AI SDK `useChat` hook + edit state.
+ * surface is loaded via `ScopingSurfaceLoader`, a client wrapper that
+ * dynamic-imports the heavy `ScopingSurface` chunk (with `ai/react` + tool
+ * plumbing) after hydration. Keeps First-Load JS off the route's primary
+ * bundle.
  *
  * JSON-LD posture: the root layout already emits Organization + WebSite +
  * LocalBusiness × 2 via `buildSiteJsonLd`. This page only emits WebPage +
@@ -18,7 +20,7 @@ import type { Metadata } from "next";
 import { env, jsonLdGraph } from "@propharmex/lib";
 
 import { JsonLd } from "../../../components/site/JsonLd";
-import { ScopingSurface } from "../../../components/scoping/ScopingSurface";
+import { ScopingSurfaceLoader } from "../../../components/scoping/ScopingSurfaceLoader";
 import { SCOPING } from "../../../content/scoping";
 
 export const revalidate = 300;
@@ -66,7 +68,7 @@ export default function ProjectScopingAssistantPage() {
 
       <section className="bg-[var(--color-bg)] px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <ScopingSurface />
+          <ScopingSurfaceLoader />
         </div>
       </section>
 

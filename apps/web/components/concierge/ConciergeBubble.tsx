@@ -13,19 +13,26 @@
  *   - Open animation: slide-up + fade-in (200ms, respects prefers-reduced-motion)
  *
  * No data fetching here — the panel renders the actual chat surface, which
- * uses `useChat` from the Vercel AI SDK and posts to /api/ai/concierge.
+ * uses `useChat` from the Vercel AI SDK and posts to /api/ai/concierge. The
+ * panel is dynamic-imported so `ai/react` and the panel's transitive deps
+ * stay out of the site-wide chunk until the user actually opens the bubble.
  */
 import { useCallback, useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { MessageSquare, X } from "lucide-react";
 
 import { CONCIERGE } from "../../content/concierge";
 
-import { ConciergePanel } from "./ConciergePanel";
 import {
   trackConciergeClosed,
   trackConciergeOpened,
 } from "./telemetry";
+
+const ConciergePanel = dynamic(
+  () => import("./ConciergePanel").then((m) => ({ default: m.ConciergePanel })),
+  { ssr: false, loading: () => null },
+);
 
 export function ConciergeBubble() {
   const [open, setOpen] = useState(false);
