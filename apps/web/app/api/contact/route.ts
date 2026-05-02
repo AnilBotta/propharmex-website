@@ -61,8 +61,21 @@ const BodySchema = z.object({
   stage: z.enum(STAGE_IDS).optional(),
 });
 
-async function verifyTurnstile(token: string, ip: string | null) {
+/**
+ * Mirror of the verifier in /api/whitepaper-download/route.ts. Short-circuits
+ * to `true` (allow) when `TURNSTILE_SECRET_KEY` is unset so dev / preview
+ * environments without the secret stay unblocked. Returns `false` (block)
+ * when the secret IS configured but no token reached the server — that's
+ * the fail-closed posture: bot protection is enforced for the whole request
+ * pipeline once the env is set, not just for requests that happen to carry
+ * a token.
+ */
+async function verifyTurnstile(
+  token: string | undefined,
+  ip: string | null,
+): Promise<boolean> {
   if (!env.TURNSTILE_SECRET_KEY) return true;
+  if (!token) return false;
   const form = new URLSearchParams({
     secret: env.TURNSTILE_SECRET_KEY,
     response: token,
@@ -105,7 +118,13 @@ export async function POST(req: Request) {
     stage,
   } = parsed.data;
 
-  if (env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && turnstileToken) {
+  // Bot protection — fail-closed when the secret is configured. The earlier
+  // gate `if (env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && turnstileToken)` was
+  // fail-open: production with both env vars set, but a request missing the
+  // token, would skip verification entirely. Now any production environment
+  // with `TURNSTILE_SECRET_KEY` set requires a verified token. Dev / preview
+  // without the secret short-circuits inside the verifier.
+  if (env.TURNSTILE_SECRET_KEY) {
     const ip =
       req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? null;
     const ok = await verifyTurnstile(turnstileToken, ip);
