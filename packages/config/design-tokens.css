@@ -88,11 +88,15 @@
   --color-surface: #FFFFFF;
   --color-fg:      #161B3D;                    /* Ink-900 */
   /*
-   * --color-muted (#6B7090, Ink-500) lands at ~5.0:1 against #FBFBFD per
-   * WCAG; preserves the 4.5:1 AA margin baked in by Prompt 26 PR-A.
-   * Re-audit any usages against #FFFFFF surfaces.
+   * --color-muted darkened from Ink-500 #6B7090 (4.47:1 on slate-50
+   * footer bg, 4.16:1 on slate-100; both fail AA normal text) to
+   * #5E6388. Recomputed: ~5.4:1 on slate-50, ~5.0:1 on slate-100,
+   * ~5.7:1 on Paper. The Ink-500 value remains available as
+   * `--color-slate-500` for non-text uses (icon fills, decoration).
+   * axe-core CI gate flagged 13–17 muted-on-slate nodes per page on
+   * PR #55 with the prior #6B7090 alias.
    */
-  --color-muted:   #6B7090;
+  --color-muted:   #5E6388;
   --color-border:  rgba(11, 17, 64, 0.08);     /* Hairline */
   --color-ring:    var(--color-primary-600);
 
