@@ -57,7 +57,7 @@ export function RegionSwitcher({ className, variant = "header" }: Props) {
           aria-label={REGION_COPY.switcher.triggerAriaLabel}
           className={
             variant === "header"
-              ? "h-9 min-w-[120px] gap-2 text-sm"
+              ? "min-w-[120px] gap-2 text-sm"
               : "min-w-[132px] gap-2"
           }
         >

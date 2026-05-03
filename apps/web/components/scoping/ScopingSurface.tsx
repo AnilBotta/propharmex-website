@@ -417,7 +417,7 @@ export function ScopingSurface() {
               aria-label={
                 isLoading ? SCOPING.input.sendingLabel : SCOPING.input.sendLabel
               }
-              className="inline-flex size-9 shrink-0 items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-primary-700)] text-white transition hover:bg-[var(--color-primary-800)] disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] focus-visible:ring-offset-1"
+              className="inline-flex size-11 shrink-0 items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-primary-700)] text-white transition hover:bg-[var(--color-primary-800)] disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] focus-visible:ring-offset-1"
             >
               <ArrowRight aria-hidden="true" size={16} />
             </button>
