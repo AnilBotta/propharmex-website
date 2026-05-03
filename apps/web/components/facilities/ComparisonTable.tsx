@@ -48,7 +48,7 @@ export const ComparisonTable: FC<Props> = ({ content }) => {
                     Dimension
                   </th>
                   <th scope="col" className="px-5 py-3 font-semibold">
-                    Mississauga · DEL site
+                    Mississauga · Canadian HQ
                   </th>
                   <th scope="col" className="px-5 py-3 font-semibold">
                     Hyderabad · Development centre

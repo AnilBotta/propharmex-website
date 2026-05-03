@@ -1,20 +1,33 @@
 /**
  * Content dictionary for /facilities + /facilities/mississauga-canada +
- * /facilities/hyderabad-india (Prompt 9).
+ * /facilities/hyderabad-india.
  *
  * This is the interim shape; Prompt 4 will migrate it to Sanity `facility`
  * documents. The type surface is intentionally close to a Sanity schema so the
  * migration is a near-1:1 port.
  *
- * Safe-defaults posture (per CLAUDE.md §10 quickest-path agreement on Prompt 8):
- *  - No street addresses until client confirms (city-level only).
- *  - No real photography yet — `PhotoStub` reserves the frame shape with a
- *    labelled gradient and caption. When photos arrive, swap the component
- *    internals to `next/image` with a real blurDataURL.
- *  - Equipment list is indicative only; the full inventory lands in Prompt 11.
- *  - Warehouse map is a schematic zone diagram, labelled as such. No floor plan.
- *  - All claim-bearing UI respects the three-tier claim-status convention
- *    documented in `docs/regulatory-lexicon.md` and introduced by Prompt 8.
+ * Positioning policy (PR-D2c1' — specialty-CDMO repositioning, follows
+ * docs/regulatory-lexicon.md §"Positioning update — 2026-05-03"):
+ *  - This page no longer asserts a Health Canada Drug Establishment Licence,
+ *    a 3PL distribution footprint, WHO-GMP, ISO 9001, USFDA-registered, or
+ *    TGA-recognized status. The previous "Mississauga is the DEL anchor"
+ *    framing has been retired.
+ *  - Mississauga is described as our Canadian headquarters — the
+ *    client-facing site for project management, regulatory strategy, dossier
+ *    authoring, and partner visits. It is not described as a manufacturing
+ *    or distribution site.
+ *  - Hyderabad is described as the development centre — formulation, method
+ *    development and validation, stability, and impurity profiling. The
+ *    scientific bench of the operation.
+ *  - The optional `warehouseMap` field on the Mississauga detail is intentionally
+ *    omitted because there is no longer a 3PL footprint to schematise.
+ *  - Cold-chain content scoped to stability and reference-material storage
+ *    (a real lab requirement) rather than 3PL distribution lanes.
+ *  - Photography frames are still reserved (no real assets); equipment lists
+ *    are representative; visit logistics are by appointment under NDA.
+ *  - All claim-bearing UI follows the alignment-only pattern set in PR-D2b'
+ *    (`apps/web/content/quality.ts`): operating-framework references only,
+ *    no credential claims.
  */
 
 /* -------------------------------------------------------------------------- */
@@ -28,10 +41,9 @@ export type FacilityCta = {
 };
 
 /**
- * Primary-source link for any externally verifiable claim (e.g. Health Canada
- * register). When `kind` is "internal", the label is rendered as muted copy
- * with no outbound link — the document is held internally and available on
- * request.
+ * Primary-source link for any externally verifiable framework reference.
+ * When `kind` is "internal", the label is rendered as muted copy with no
+ * outbound link — the document is held internally and available on request.
  */
 export type FacilitySource =
   | { kind: "primary"; label: string; href: string }
@@ -115,7 +127,7 @@ export type FacilityHero = {
   headline: string;
   lede: string;
   stats: { label: string; value: string }[];
-  /** 360-viewer slot is a reserved placeholder per Prompt 9 spec. */
+  /** 360-viewer slot is a reserved placeholder. */
   viewerPlaceholder: {
     caption: string;
     note: string;
@@ -257,16 +269,16 @@ export type FacilitiesContent = {
 /* -------------------------------------------------------------------------- */
 
 export const FACILITIES_CONTENT: FacilitiesContent = {
-  metaTitle: "Facilities — Mississauga and Hyderabad | Propharmex",
+  metaTitle: "Facilities — Mississauga, Canada and Hyderabad, India | Propharmex",
   metaDescription:
-    "A Canadian DEL site and an Indian development centre, one lineage of practice. Mississauga holds our Health Canada Drug Establishment Licence and 3PL operations; our Hyderabad development centre runs formulation and analytical services. Visits by appointment.",
-  ogTitle: "Mississauga and Hyderabad — Propharmex facilities",
+    "Two sites, one quality system. Our Canadian headquarters in Mississauga, Ontario hosts client engagement, regulatory strategy, and project management; our development centre in Hyderabad, Telangana runs formulation, analytical services, and stability work. Visits by appointment.",
+  ogTitle: "Mississauga, Canada and Hyderabad, India — Propharmex facilities",
   ogDescription:
-    "Health Canada DEL site in Mississauga; Indian development centre in Hyderabad. One quality system, in rooms you can walk.",
+    "Canadian headquarters in Mississauga, development centre in Hyderabad. One quality system across both sites.",
   hero: {
     eyebrow: "Facilities",
-    headline: "Anchored in Mississauga. Supported by our development bench.",
-    lede: "Our Mississauga site carries the Health Canada Drug Establishment Licence and operates our third-party logistics footprint. Our Indian development centre in Hyderabad runs formulation and analytical services under the same QMS. Work moves between them under a single quality system, with documented tech-transfer and chain-of-custody at every handoff.",
+    headline: "Two sites, one quality system.",
+    lede: "Our Canadian headquarters in Mississauga, Ontario is the client-facing site for project management, regulatory strategy, and dossier authoring. Our development centre in Hyderabad, Telangana runs the scientific bench — formulation, method development and validation, stability, and impurity profiling. Work moves between them under one quality manual, with documented chain-of-custody at every handoff.",
     primaryCta: {
       label: "Arrange a site visit",
       href: "/contact?source=facilities-index-visit",
@@ -280,7 +292,7 @@ export const FACILITIES_CONTENT: FacilitiesContent = {
   },
   map: {
     eyebrow: "Where we work",
-    heading: "DEL site and development centre, drawn to scale",
+    heading: "Headquarters and development centre, drawn to scale",
     lede: "Both sites are connected by a unified document stream, harmonised SOPs, and a weekly operations cadence. The arc below is illustrative, not a flight path.",
     hubs: [
       {
@@ -288,8 +300,8 @@ export const FACILITIES_CONTENT: FacilitiesContent = {
         label: "Mississauga",
         flag: "CA",
         country: "Canada",
-        coordinates: { lat: 43.5890, lng: -79.6441 },
-        role: "Health Canada DEL · 3PL · regulatory affairs",
+        coordinates: { lat: 43.589, lng: -79.6441 },
+        role: "Head office · regulatory strategy · client engagement",
       },
       {
         code: "hyderabad",
@@ -304,43 +316,38 @@ export const FACILITIES_CONTENT: FacilitiesContent = {
       "Schematic only, not to scale. Exact site coordinates shared during pre-visit briefing under NDA.",
   },
   comparison: {
-    eyebrow: "Compare the hubs",
+    eyebrow: "Compare the sites",
     heading: "What each site carries",
-    lede: "A side-by-side view for procurement and quality reviewers. Where a claim is externally verifiable, a primary-source link is shown; where documentation is held internally, it is available on request.",
+    lede: "A side-by-side view for procurement and quality reviewers. Quality-system documentation is held internally and available on request under NDA.",
     rows: [
       {
         label: "Primary role",
-        mississauga: "Regulatory affairs, Drug Establishment Licence operations, 3PL distribution.",
-        hyderabad: "Pharmaceutical development, analytical services, CMC support.",
+        mississauga: "Head office · regulatory strategy · client engagement · project management.",
+        hyderabad: "Pharmaceutical development, analytical services, stability, CMC support.",
       },
       {
-        label: "Regulatory anchor",
-        mississauga: "Health Canada Drug Establishment Licence (held).",
-        hyderabad: "Operates under WHO-GMP alignment; client-specific audits on request.",
+        label: "Operating framework",
+        mississauga: "Unified QMS aligned to ICH Q10.",
+        hyderabad: "Unified QMS aligned to ICH Q10.",
         note: {
           kind: "primary",
-          label: "Health Canada — Drug Product Database",
-          href: "https://health-products.canada.ca/dpd-bdpp/",
+          label: "ICH Q10 — Pharmaceutical Quality System",
+          href: "https://www.ich.org/page/quality-guidelines",
         },
       },
       {
-        label: "Quality system",
-        mississauga: "Unified QMS with Hyderabad; ICH Q10 aligned.",
-        hyderabad: "Unified QMS with Mississauga; ICH Q10 aligned.",
-      },
-      {
-        label: "Cold-chain storage",
-        mississauga: "Ambient, 2–8°C, −20°C, controlled-substance vault.",
-        hyderabad: "Ambient, 2–8°C (development scale); not a primary distribution site.",
-      },
-      {
-        label: "Instrument reach",
-        mississauga: "Method transfer, release and stability testing.",
+        label: "Scientific bench",
+        mississauga: "Project management, regulatory authoring, client coordination.",
         hyderabad: "Method development, validation, stability, impurity profiling — full panel.",
       },
       {
-        label: "Typical visit length",
-        mississauga: "Half-day; longer for 3PL qualification audits.",
+        label: "Stability and reference storage",
+        mississauga: "Reference materials and pre-visit sample handling, scoped for client engagement.",
+        hyderabad: "ICH Zone II and Zone IVb stability chambers; reference and sample storage.",
+      },
+      {
+        label: "Typical visit format",
+        mississauga: "Half-day; longer when an authoring or submission review is in scope.",
         hyderabad: "Full day; two days for analytical method qualification.",
       },
     ],
@@ -352,19 +359,19 @@ export const FACILITIES_CONTENT: FacilitiesContent = {
     photos: [
       {
         id: "miss-exterior",
-        caption: "Mississauga site exterior and loading-bay elevation.",
+        caption: "Mississauga site exterior and main entrance.",
         aspect: "4/3",
         tone: "brand",
       },
       {
-        id: "miss-3pl-floor",
-        caption: "3PL ambient-storage floor, aisle view.",
+        id: "miss-reception",
+        caption: "Reception and visitor briefing area.",
         aspect: "4/3",
         tone: "neutral",
       },
       {
-        id: "miss-coldchain",
-        caption: "2–8°C cold room with monitoring panel.",
+        id: "miss-review",
+        caption: "Client and regulatory review room.",
         aspect: "4/3",
         tone: "brand",
       },
@@ -391,7 +398,7 @@ export const FACILITIES_CONTENT: FacilitiesContent = {
   closing: {
     eyebrow: "Next step",
     heading: "Bring your project to the rooms it will live in.",
-    body: "Site visits are standard before a qualification decision. We scope the agenda to the dossier sections that matter to you — quality, analytical, or 3PL — and share the pre-visit briefing pack under NDA.",
+    body: "Site visits are standard before a qualification decision. We scope the agenda to the dossier sections that matter to you — quality, analytical, regulatory authoring — and share the pre-visit briefing pack under NDA.",
     primaryCta: {
       label: "Arrange a site visit",
       href: "/contact?source=facilities-index-closing-visit",
@@ -416,24 +423,24 @@ export const FACILITY_MISSISSAUGA: FacilityDetail = {
   region: "Ontario",
   country: "Canada",
   countryCode: "CA",
-  metaTitle: "Mississauga, Canada — Propharmex facility",
+  metaTitle: "Mississauga, Canada — Propharmex headquarters",
   metaDescription:
-    "Propharmex Mississauga carries the Health Canada Drug Establishment Licence and runs our 3PL footprint for Canadian distribution. Visit logistics, capability matrix, and cold-chain specification for procurement reviewers.",
+    "Propharmex Mississauga is our Canadian headquarters and client-facing site — regulatory strategy, dossier authoring, project management, and partner visits. Visit logistics, operating-framework alignment, and capability matrix for procurement reviewers.",
   ogTitle: "Mississauga, Canada — Propharmex",
   ogDescription:
-    "Health Canada DEL site and 3PL hub in Mississauga, Ontario.",
+    "Canadian headquarters and client-facing site in Mississauga, Ontario.",
   hero: {
-    eyebrow: "Propharmex · Mississauga, Ontario · Head office and DEL site",
-    headline: "The Canadian regulatory anchor, and the warehouse behind it.",
-    lede: "Our Mississauga site holds the Health Canada Drug Establishment Licence. The same site operates our third-party logistics footprint, the controlled-substance vault, and the release-and-stability bench that supports Canadian and US submissions. Regulatory and distribution share a roof by design — the record of a product's journey never leaves a single quality system.",
+    eyebrow: "Propharmex · Mississauga, Ontario · Canadian headquarters",
+    headline: "Where the client engagement is run, and the dossier is authored.",
+    lede: "Our Mississauga site is our Canadian headquarters. It is where project management, regulatory strategy, dossier authoring, and partner visits happen — the room in which the work plan is built and the regulatory narrative is shaped. The scientific bench that fills out the dossier sits at our development centre in Hyderabad and is governed by the same quality manual.",
     stats: [
-      { label: "Regulatory anchor", value: "Health Canada DEL" },
-      { label: "Primary role", value: "Regulatory, 3PL, release testing" },
-      { label: "Visit format", value: "Half-day, longer for qualification" },
+      { label: "Primary role", value: "Headquarters and client engagement" },
+      { label: "Operating framework", value: "ICH Q10-aligned QMS" },
+      { label: "Visit format", value: "Half-day; longer with authoring review" },
     ],
     viewerPlaceholder: {
-      caption: "Planned 360° walkthrough — reception, QA review room, 3PL floor.",
-      note: "Viewer is reserved in the Prompt 9 UI and will stream from a Matterport-style capture when recorded.",
+      caption: "Planned 360° walkthrough — reception, client review room, regulatory authoring suite.",
+      note: "Viewer is reserved in the UI and will stream from a Matterport-style capture when recorded.",
     },
     primaryCta: {
       label: "Arrange a Mississauga visit",
@@ -449,55 +456,55 @@ export const FACILITY_MISSISSAUGA: FacilityDetail = {
   capabilities: {
     eyebrow: "Capability matrix",
     heading: "What runs here, and what runs with Hyderabad",
-    lede: "Capabilities marked primary are executed and closed out at Mississauga. Secondary capabilities are supported from this hub in partnership with Hyderabad under a single QMS — typically for tech-transfer or method-transfer projects.",
+    lede: "Capabilities marked primary are executed and closed out at Mississauga. Secondary capabilities are supported from this site in partnership with Hyderabad under a single QMS.",
     capabilities: [
       {
-        id: "del",
-        label: "Drug Establishment Licence operations",
+        id: "regulatory-strategy",
+        label: "Regulatory strategy and authoring",
         description:
-          "Fabrication, packaging/labelling, testing, importation, distribution and wholesaling authorizations per the DEL, as applicable to each project.",
+          "Submission strategy, CMC dossier authoring (eCTD Module 3), pathway scoping, and post-approval lifecycle planning for client programs targeting Health Canada, USFDA, EMA, TGA, and other regulators.",
         tier: "primary",
       },
       {
-        id: "threepl",
-        label: "3PL distribution",
+        id: "client-engagement",
+        label: "Client engagement and program management",
         description:
-          "Canadian-market storage and distribution, lot-level traceability, customer-level pick/pack, returns and recall support.",
+          "Single-point program ownership, milestone tracking, scope governance, and the cross-site cadence that keeps Hyderabad's bench work and Mississauga's authoring on the same drumbeat.",
         tier: "primary",
       },
       {
-        id: "release",
-        label: "Release and stability testing",
+        id: "qms",
+        label: "Quality management system stewardship",
         description:
-          "Batch release testing for Canadian distribution and supporting stability pulls under ICH Q1A(R2) protocols.",
+          "The unified QMS — quality manual, SOP library, change control, deviation handling, CAPA — is owned and stewarded from Mississauga and applied identically across both sites.",
         tier: "primary",
       },
       {
-        id: "regulatory",
-        label: "Regulatory affairs",
+        id: "visits",
+        label: "Client and partner visits",
         description:
-          "Health Canada submissions, post-NOC lifecycle management, and DMF/ANDA coordination with USFDA when the programme spans both markets.",
-        tier: "primary",
-      },
-      {
-        id: "cold-chain",
-        label: "Cold-chain handling",
-        description:
-          "Validated 2–8°C and −20°C zones, plus a controlled-substance vault for Schedule II–V handling.",
+          "Pre-qualification visits, mid-program reviews, and dossier walk-throughs are hosted from Mississauga. The pre-visit briefing pack is released under NDA on a per-engagement basis.",
         tier: "primary",
       },
       {
         id: "method-dev",
         label: "Method development",
         description:
-          "Executed at the development centre with documented transfer into Mississauga for release use; unified protocols under one QMS.",
+          "Executed at the Hyderabad development centre with documented authoring and review pathways through Mississauga; unified protocols under one QMS.",
         tier: "secondary",
       },
       {
         id: "formulation",
         label: "Formulation development",
         description:
-          "Hyderabad leads; Mississauga participates in tech-transfer and scale-up reviews for Canada-bound programmes.",
+          "Hyderabad leads; Mississauga participates in tech-transfer reviews and dossier authoring of the formulation rationale.",
+        tier: "secondary",
+      },
+      {
+        id: "stability",
+        label: "Stability programs",
+        description:
+          "Chamber bank and analytical pulls run at Hyderabad; Mississauga authors the stability narrative into the dossier.",
         tier: "secondary",
       },
     ],
@@ -506,152 +513,75 @@ export const FACILITY_MISSISSAUGA: FacilityDetail = {
   },
   equipment: {
     eyebrow: "Equipment and systems",
-    heading: "Representative equipment on site",
-    lede: "The items below are representative of the Mississauga site's instrument and systems footprint. A full, validated inventory — with calibration and qualification dates — is shared under NDA during the pre-visit briefing.",
+    heading: "Representative systems on site",
+    lede: "Mississauga is the client-facing and authoring site rather than a primary scientific bench; the systems below are the document, data, and review infrastructure that supports regulatory authoring and program management. Validated-instrument detail for the Hyderabad bench is shared under NDA during the pre-visit briefing.",
     representativeNote:
-      "Representative list. The current validated inventory is available on request.",
+      "Representative list. Cross-site validated-system documentation is available on request.",
     items: [
       {
-        id: "hplc",
-        category: "Analytical",
-        label: "HPLC systems",
-        detail: "Reversed-phase and normal-phase configurations; UV + DAD detectors.",
+        id: "edms",
+        category: "Document systems",
+        label: "Electronic document management",
+        detail: "Audit-trailed document control unified with Hyderabad; one master SOP library across both sites.",
       },
       {
-        id: "dissolution",
-        category: "Analytical",
-        label: "Dissolution apparatus",
-        detail: "USP Apparatus 1 and 2; multi-vessel bath with auto-sampling.",
+        id: "qms-systems",
+        category: "Quality systems",
+        label: "QMS workflow tools",
+        detail: "Change control, deviation handling, and CAPA tracked in a single workflow tool with cross-site visibility.",
       },
       {
-        id: "stability",
-        category: "Stability",
-        label: "Stability chambers",
-        detail: "ICH zone II and IV conditions with continuous monitoring.",
+        id: "regulatory-tooling",
+        category: "Regulatory authoring",
+        label: "eCTD authoring environment",
+        detail: "Module 3 authoring and lifecycle-management tooling for ANDS, ANDA, NDA, DMF, and ASMF submissions.",
       },
       {
-        id: "wms",
-        category: "3PL systems",
-        label: "Warehouse management system",
-        detail: "Lot-level tracking, FEFO picking, controlled-substance workflows.",
+        id: "review-rooms",
+        category: "Facility",
+        label: "Client and regulatory review rooms",
+        detail: "Configured for dossier walk-throughs, pre-submission reviews, and partner-visit working sessions.",
       },
       {
         id: "monitoring",
         category: "Facility",
         label: "Environmental monitoring",
-        detail: "Continuous temperature and humidity mapping on validated probes.",
-      },
-      {
-        id: "cs-vault",
-        category: "Security",
-        label: "Controlled-substance vault",
-        detail: "Constructed and operated to Health Canada Office of Controlled Substances expectations.",
+        detail: "Validated probes for the on-site reference- and sample-storage areas with continuous logging.",
       },
     ],
     cta: {
-      label: "Request the validated inventory",
+      label: "Request the site systems pack",
       href: "/contact?source=facilities-miss-inventory",
       variant: "outline",
     },
   },
   coldChain: {
-    eyebrow: "Cold-chain specification",
-    heading: "Four temperature zones, one continuous record",
-    lede: "Every zone is continuously monitored, alarmed, and mapped on a routine requalification cadence. Storage scope for a specific programme is confirmed during qualification and recorded in the service agreement.",
+    eyebrow: "On-site storage",
+    heading: "Reference and sample storage, tightly monitored",
+    lede: "Mississauga is not a manufacturing or distribution site. On-site temperature-controlled storage is scoped to reference materials and pre-visit / mid-engagement sample handling. Every zone is continuously monitored on validated probes.",
     zones: [
       {
         id: "ambient",
         label: "Ambient",
         range: "15°C – 25°C",
-        uses: "General pharmaceutical storage for Canadian distribution.",
-        monitoring: "Continuous; excursion alarms routed to on-call operations.",
+        uses: "Reference materials and document-control samples for client review.",
+        monitoring: "Continuous; excursion alarms routed to on-call quality.",
       },
       {
         id: "cool",
         label: "Refrigerated",
         range: "2°C – 8°C",
-        uses: "Biologics, vaccines where programme applicable, stability samples.",
+        uses: "Pre-visit and mid-engagement temperature-sensitive samples brought on site for client review.",
         monitoring: "Continuous; redundant probes; routine mapping.",
-      },
-      {
-        id: "frozen",
-        label: "Frozen",
-        range: "−20°C nominal",
-        uses: "Long-term stability samples and temperature-sensitive APIs.",
-        monitoring: "Continuous; back-up power and escalation path in place.",
-      },
-      {
-        id: "vault",
-        label: "Controlled-substance vault",
-        range: "Ambient, secured",
-        uses: "Schedule II–V handling under the Controlled Drugs and Substances Act.",
-        monitoring: "Access logged; inventory reconciled per regulatory cadence.",
       },
     ],
     reference: {
       kind: "primary",
-      label: "Health Canada — GUI-0001 Good Manufacturing Practices",
-      href: "https://www.canada.ca/en/health-canada/services/drugs-health-products/compliance-enforcement/good-manufacturing-practices/guidance-documents/gmp-guidelines-0001.html",
+      label: "ICH Q1A(R2) — Stability Testing of New Drug Substances and Products",
+      href: "https://www.ich.org/page/quality-guidelines",
     },
   },
-  warehouseMap: {
-    eyebrow: "3PL layout",
-    heading: "Six zones, one lot history",
-    lede: "A schematic of the Mississauga warehouse. Zones are laid out so that inbound, storage, and outbound never cross paths — lot identity is preserved from receiving to dispatch.",
-    schematicNote:
-      "Schematic — for illustration. The actual floor plan is shared in the pre-visit briefing pack under NDA.",
-    zones: [
-      {
-        id: "receiving",
-        label: "Receiving",
-        subLabel: "Inbound dock · quarantine",
-        tone: "neutral",
-        grid: { col: 1, row: 1 },
-      },
-      {
-        id: "ambient",
-        label: "Ambient storage",
-        subLabel: "15°C – 25°C",
-        tone: "warm",
-        grid: { col: 2, row: 1 },
-      },
-      {
-        id: "cool",
-        label: "2–8°C",
-        subLabel: "Refrigerated",
-        tone: "cool",
-        grid: { col: 3, row: 1 },
-      },
-      {
-        id: "frozen",
-        label: "−20°C",
-        subLabel: "Frozen stability and APIs",
-        tone: "cold",
-        grid: { col: 1, row: 2 },
-      },
-      {
-        id: "cs-vault",
-        label: "Controlled substances",
-        subLabel: "Schedule II–V vault",
-        tone: "secure",
-        grid: { col: 2, row: 2 },
-      },
-      {
-        id: "dispatch",
-        label: "Dispatch",
-        subLabel: "Outbound dock · staging",
-        tone: "neutral",
-        grid: { col: 3, row: 2 },
-      },
-    ],
-    legend: [
-      { tone: "neutral", label: "Flow — inbound/outbound and staging" },
-      { tone: "warm", label: "Ambient — 15–25°C" },
-      { tone: "cool", label: "Cool — 2–8°C" },
-      { tone: "cold", label: "Frozen — −20°C" },
-      { tone: "secure", label: "Secure — controlled substances" },
-    ],
-  },
+  // warehouseMap intentionally omitted — Mississauga is not a distribution site.
   gallery: {
     eyebrow: "Gallery",
     heading: "Mississauga, in frames",
@@ -664,20 +594,20 @@ export const FACILITY_MISSISSAUGA: FacilityDetail = {
         tone: "brand",
       },
       {
-        id: "miss-qa",
-        caption: "QA review area with document wall.",
+        id: "miss-review",
+        caption: "Client and regulatory review room.",
         aspect: "4/3",
         tone: "neutral",
       },
       {
-        id: "miss-3pl",
-        caption: "3PL ambient floor, aisle view.",
+        id: "miss-authoring",
+        caption: "Regulatory authoring suite.",
         aspect: "4/3",
         tone: "warm",
       },
       {
-        id: "miss-cold",
-        caption: "2–8°C cold-room monitoring panel.",
+        id: "miss-meeting",
+        caption: "Cross-site meeting room with Hyderabad bridge.",
         aspect: "4/3",
         tone: "brand",
       },
@@ -686,7 +616,7 @@ export const FACILITY_MISSISSAUGA: FacilityDetail = {
   visit: {
     eyebrow: "How to visit",
     heading: "A Mississauga visit, end to end",
-    body: "Send your programme scope ahead of the visit so we can align the agenda: regulatory-only reviews centre on the QA review area and DEL documentation; 3PL qualification adds a warehouse walk; release-testing audits add the analytical bench. Most visits fit a half day; plan a full day if a qualification audit is in scope.",
+    body: "Send your program scope ahead of the visit so we can align the agenda. Regulatory-only reviews centre on the client review room and the authoring suite; cross-site reviews add a working session with Hyderabad over the bridge. Most visits fit a half day; plan a full day if a dossier or scope review is in depth.",
     primaryCta: {
       label: "Arrange a Mississauga visit",
       href: "/contact?source=facilities-miss-visit-cta",
@@ -698,7 +628,7 @@ export const FACILITY_MISSISSAUGA: FacilityDetail = {
       variant: "outline",
     },
     notice:
-      "All visits are under NDA. Photography on the operating floor is not permitted. Personal protective equipment is provided at reception.",
+      "All visits are under NDA. Photography in client-review areas is not permitted. Reception logs all visits and pairs visitors with the engagement lead on arrival.",
   },
 };
 
@@ -713,24 +643,24 @@ export const FACILITY_HYDERABAD: FacilityDetail = {
   region: "Telangana",
   country: "India",
   countryCode: "IN",
-  metaTitle: "Hyderabad, India — Propharmex facility",
+  metaTitle: "Hyderabad, India — Propharmex development centre",
   metaDescription:
     "Propharmex Hyderabad runs pharmaceutical development and analytical services — formulation, method development and validation, stability, impurity profiling. Capability matrix, equipment footprint, and visit logistics.",
   ogTitle: "Hyderabad, India — Propharmex",
   ogDescription:
-    "Development and analytical operations at our Hyderabad, Telangana hub.",
+    "Development and analytical operations at our Hyderabad, Telangana site.",
   hero: {
-    eyebrow: "Propharmex · Hyderabad, Telangana · Indian development centre",
-    headline: "Where molecules become methods, and methods become dossiers.",
-    lede: "Our Indian development centre runs the development and analytical bench: formulation screening, method development and validation, stability study conduct, and impurity profiling. Work is authored to travel — every protocol, every report, and every data file is designed to be read at the DEL site, in Ottawa, and in the regulators' review rooms downstream.",
+    eyebrow: "Propharmex · Hyderabad, Telangana · Development centre",
+    headline: "Where molecules become methods, and methods become dossier sections.",
+    lede: "Our Hyderabad site runs the development and analytical bench: formulation screening, method development and validation, stability study conduct, and impurity profiling. Work is authored to travel — every protocol, every report, and every data file is designed to be read at the Mississauga authoring suite and in the regulators' review rooms downstream.",
     stats: [
       { label: "Primary role", value: "Development + analytical services" },
-      { label: "Quality alignment", value: "ICH Q10 · WHO-GMP principles" },
+      { label: "Operating framework", value: "ICH Q10-aligned QMS" },
       { label: "Visit format", value: "Full day; longer for method qualification" },
     ],
     viewerPlaceholder: {
       caption: "Planned 360° walkthrough — analytical suite, formulation bench, stability bank.",
-      note: "Viewer is reserved in the Prompt 9 UI and will stream from a Matterport-style capture when recorded.",
+      note: "Viewer is reserved in the UI and will stream from a Matterport-style capture when recorded.",
     },
     primaryCta: {
       label: "Arrange a Hyderabad visit",
@@ -746,55 +676,55 @@ export const FACILITY_HYDERABAD: FacilityDetail = {
   capabilities: {
     eyebrow: "Capability matrix",
     heading: "What runs here, and what runs with Mississauga",
-    lede: "Capabilities marked primary are executed and closed out at Hyderabad. Secondary capabilities are supported from this hub in partnership with Mississauga under a single QMS — typically for regulatory handoff or Canadian-market release.",
+    lede: "Capabilities marked primary are executed and closed out at Hyderabad. Secondary capabilities are supported from this site in partnership with Mississauga under a single QMS — typically for regulatory authoring and client engagement.",
     capabilities: [
       {
         id: "formulation",
         label: "Formulation development",
         description:
-          "Preformulation, dosage-form screening, and formulation refinement across solid oral, liquid oral, topical and early-stage sterile programmes.",
+          "Preformulation, dosage-form screening, and formulation refinement across solid oral, liquid oral, topical, and early-stage sterile programs.",
         tier: "primary",
       },
       {
         id: "method-dev",
         label: "Analytical method development",
         description:
-          "HPLC, LC-MS/MS, dissolution, and impurity method development for assay, related substances and stability-indicating applications.",
+          "HPLC, LC-MS/MS, dissolution, and impurity method development for assay, related substances, and stability-indicating applications.",
         tier: "primary",
       },
       {
         id: "method-val",
         label: "Method validation",
         description:
-          "ICH Q2(R2)-compliant validation protocols, executions, and reports authored for regulatory submission.",
+          "ICH Q2(R2)-aligned validation protocols, executions, and reports authored for downstream regulatory submission.",
         tier: "primary",
       },
       {
         id: "stability",
         label: "Stability studies",
         description:
-          "ICH Q1A(R2) zone II and IVb protocols, with pull and report cycles aligned to programme milestones.",
+          "ICH Q1A(R2) Zone II and Zone IVb protocols, with pull and report cycles aligned to program milestones.",
         tier: "primary",
       },
       {
         id: "impurities",
         label: "Impurity profiling",
         description:
-          "Identification, quantitation and qualification support for related substances, elemental impurities (ICH Q3D), and nitrosamine risk assessments.",
+          "Identification, quantitation, and qualification support for related substances, elemental impurities (ICH Q3D), and nitrosamine risk assessments.",
         tier: "primary",
       },
       {
-        id: "release",
-        label: "Release testing (Canadian market)",
+        id: "regulatory-authoring",
+        label: "Regulatory authoring",
         description:
-          "Executed at Mississauga under the DEL; Hyderabad authors and transfers the methods used.",
+          "Mississauga leads dossier authoring and submission; Hyderabad authors the development and analytical narrative that feeds Module 3 sections.",
         tier: "secondary",
       },
       {
-        id: "threepl",
-        label: "3PL distribution",
+        id: "client-engagement",
+        label: "Client engagement",
         description:
-          "Mississauga leads Canadian distribution; Hyderabad is not a primary distribution site.",
+          "Mississauga leads program management and client-facing engagement; Hyderabad participates in scientific working sessions over the cross-site bridge.",
         tier: "secondary",
       },
     ],
@@ -804,7 +734,7 @@ export const FACILITY_HYDERABAD: FacilityDetail = {
   equipment: {
     eyebrow: "Equipment and systems",
     heading: "Representative equipment on site",
-    lede: "The items below are representative of the Hyderabad site's analytical and development footprint. A full, validated inventory — with qualification status for each instrument — is shared under NDA during the pre-visit briefing.",
+    lede: "The items below are representative of the Hyderabad site's analytical and development footprint. A full validated inventory — with qualification status for each instrument — is shared under NDA during the pre-visit briefing.",
     representativeNote:
       "Representative list. The current validated inventory is available on request.",
     items: [
@@ -812,7 +742,7 @@ export const FACILITY_HYDERABAD: FacilityDetail = {
         id: "hplc",
         category: "Analytical",
         label: "HPLC systems",
-        detail: "Multiple benches; UV, DAD and RI detectors for assay and impurity work.",
+        detail: "Multiple benches; UV, DAD, and RI detectors for assay and impurity work.",
       },
       {
         id: "lcms",
@@ -824,19 +754,19 @@ export const FACILITY_HYDERABAD: FacilityDetail = {
         id: "dissolution",
         category: "Analytical",
         label: "Dissolution apparatus",
-        detail: "USP Apparatus 1 and 2 with multi-vessel baths and media prep station.",
+        detail: "USP Apparatus 1 and 2 with multi-vessel baths and media-prep station.",
       },
       {
         id: "stability",
         category: "Stability",
         label: "Stability chambers",
-        detail: "ICH zone II and zone IVb conditions with continuous monitoring.",
+        detail: "ICH Zone II and Zone IVb conditions with continuous monitoring.",
       },
       {
         id: "formulation",
         category: "Formulation",
         label: "Formulation bench",
-        detail: "Granulation, compression, coating and blending equipment at development scale.",
+        detail: "Granulation, compression, coating, and blending equipment at development scale.",
       },
       {
         id: "qms",
@@ -854,7 +784,7 @@ export const FACILITY_HYDERABAD: FacilityDetail = {
   coldChain: {
     eyebrow: "Cold-chain specification",
     heading: "Development-scale cold-chain, tightly monitored",
-    lede: "Hyderabad is not a primary distribution site; cold-chain storage is sized for development and stability programmes. Every zone is continuously monitored and mapped on a routine requalification cadence.",
+    lede: "Hyderabad is the scientific bench, not a distribution site; cold-chain storage is sized for development and stability programs. Every zone is continuously monitored and mapped on a routine requalification cadence.",
     zones: [
       {
         id: "ambient",
@@ -867,19 +797,19 @@ export const FACILITY_HYDERABAD: FacilityDetail = {
         id: "cool",
         label: "Refrigerated",
         range: "2°C – 8°C",
-        uses: "Stability samples, biological reference standards where in scope.",
+        uses: "Stability samples and biological reference standards where in scope.",
         monitoring: "Continuous; redundant probes; routine mapping.",
       },
       {
         id: "stab-zone-ii",
-        label: "ICH zone II stability",
+        label: "ICH Zone II stability",
         range: "25°C / 60% RH",
-        uses: "Long-term stability under ICH Q1A(R2) zone II conditions.",
+        uses: "Long-term stability under ICH Q1A(R2) Zone II conditions.",
         monitoring: "Continuous environmental monitoring with validated probes.",
       },
       {
         id: "stab-zone-ivb",
-        label: "ICH zone IVb stability",
+        label: "ICH Zone IVb stability",
         range: "30°C / 75% RH",
         uses: "Long-term stability for hot and humid climates (India, South Asia, South-East Asia).",
         monitoring: "Continuous environmental monitoring with validated probes.",
@@ -925,7 +855,7 @@ export const FACILITY_HYDERABAD: FacilityDetail = {
   visit: {
     eyebrow: "How to visit",
     heading: "A Hyderabad visit, end to end",
-    body: "Send your programme scope ahead of the visit so we can align the agenda: method development reviews centre on the analytical suite and method-validation files; formulation reviews add the development bench; stability reviews add the chamber bank and monitoring records. Most visits run a full day; plan two days if a method-qualification audit is in scope.",
+    body: "Send your program scope ahead of the visit so we can align the agenda: method development reviews centre on the analytical suite and method-validation files; formulation reviews add the development bench; stability reviews add the chamber bank and monitoring records. Most visits run a full day; plan two days if a method-qualification audit is in scope.",
     primaryCta: {
       label: "Arrange a Hyderabad visit",
       href: "/contact?source=facilities-hyd-visit-cta",

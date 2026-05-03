@@ -2,9 +2,16 @@
  * Site footer.
  *
  * Five content columns (Services, Industries, Company, Resources, Contact),
- * address blocks for Mississauga and Hyderabad, Health Canada DEL badge,
- * newsletter signup, legal row, and current-year line. Footer is mostly
- * server-rendered; the newsletter form is a client island.
+ * address blocks for Mississauga and Hyderabad, newsletter signup, legal
+ * row, and current-year line. Footer is mostly server-rendered; the
+ * newsletter form is a client island.
+ *
+ * Per the PR-D2c1' specialty-CDMO repositioning (and the broader claim
+ * sweep that started in PR-D1'), the brand description and the previously
+ * rendered Health Canada DEL badge have both been retired from the footer.
+ * The brand description now leads with the specialty-CDMO framing; no
+ * specific certification, licence, or 3PL distribution claim appears on
+ * the marketing site.
  */
 import Link from "next/link";
 import { Mail, MapPin } from "lucide-react";
@@ -32,13 +39,12 @@ export function Footer() {
           <div className="flex flex-col gap-6">
             <BrandLogo />
             <p className="text-sm leading-relaxed text-[var(--color-slate-700)]">
-              Canadian pharmaceutical services company anchored at our
-              Mississauga, Ontario site under Health Canada Drug Establishment
-              Licence. Pharmaceutical development, analytical services,
-              regulatory affairs, and 3PL distribution for drug developers
-              globally.
+              Specialty CDMO for complex and niche pharmaceutical products.
+              Pharmaceutical development, analytical services, regulatory
+              strategy, and clinical and BE insight for drug developers
+              worldwide. Headquartered in Canada with a development centre
+              in India.
             </p>
-            <DelBadge />
           </div>
 
           {/* Link columns */}
@@ -142,35 +148,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  );
-}
-
-/**
- * Health Canada DEL badge.
- *
- * The licence number is a placeholder until the real DEL reference is
- * wired via Sanity siteSettings in Prompt 4. Any DEL number we display
- * must match the public Health Canada register at
- * https://health-products.canada.ca/dpd-bdpp/.
- */
-function DelBadge() {
-  return (
-    <div
-      aria-label="Health Canada Drug Establishment Licence holder"
-      className="inline-flex max-w-fit items-center gap-3 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2"
-    >
-      <div
-        aria-hidden="true"
-        className="grid size-8 place-items-center rounded-[var(--radius-sm)] bg-[var(--color-primary-50)] font-[family-name:var(--font-display)] text-xs font-semibold text-[var(--color-primary-700)]"
-      >
-        DEL
-      </div>
-      <div className="flex flex-col leading-tight">
-        <span className="text-xs text-[var(--color-muted)]">Health Canada</span>
-        <span className="text-sm font-semibold text-[var(--color-fg)]">
-          Drug Establishment Licence holder
-        </span>
-      </div>
-    </div>
   );
 }
