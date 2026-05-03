@@ -38,11 +38,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL),
   title: {
     default:
-      "Propharmex — pharmaceutical development, analytical, regulatory, distribution",
+      "Propharmex — specialty CDMO for complex and niche pharmaceutical products",
     template: "%s · Propharmex",
   },
   description:
-    "Canadian pharmaceutical services company anchored at our Mississauga, Ontario site under Health Canada Drug Establishment Licence. Pharmaceutical development, analytical services, regulatory affairs, and 3PL distribution for drug developers globally.",
+    "Propharmex is a Canada-headquartered specialty CDMO advancing complex and niche pharmaceutical products from concept to commercialization. Pharmaceutical development, advanced analytical services, regulatory strategy, and clinical study insight under one development pathway.",
   applicationName: "Propharmex",
   alternates: {
     canonical: "/",
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Propharmex",
     description:
-      "Canadian pharmaceutical services company under Health Canada Drug Establishment Licence — pharmaceutical development, analytical services, regulatory affairs, 3PL distribution.",
+      "Canada-headquartered specialty CDMO for complex and niche pharmaceutical products — pharmaceutical development, advanced analytical services, regulatory strategy, and clinical study insight.",
   },
   icons: {
     icon: "/favicon.ico",

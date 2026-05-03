@@ -52,11 +52,11 @@ export function TrustStrip({ content }: Props) {
 }
 
 const GLYPH_LABEL: Record<string, string> = {
-  "hc-del": "DEL",
-  "iso-9001": "ISO",
-  "who-gmp": "WHO",
-  usfda: "FDA",
-  tga: "TGA",
+  "complex-dosage": "RX",
+  "regulatory-aware": "REG",
+  analytical: "ANA",
+  clinical: "CLI",
+  "canada-platform": "CAN",
 };
 
 function CertGlyph({ id }: { id: string }) {

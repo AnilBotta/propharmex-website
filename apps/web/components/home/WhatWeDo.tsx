@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FlaskConical, Microscope, FileCheck2, Truck, ArrowUpRight } from "lucide-react";
+import { FlaskConical, Microscope, FileCheck2, Stethoscope, ArrowUpRight } from "lucide-react";
 import type { ComponentType } from "react";
 
 import { fadeRise, staggerContainer, useReducedMotion } from "@propharmex/ui";
@@ -16,7 +16,7 @@ const ICON: Record<CapabilityCard["icon"], ComponentType<{ size?: number; classN
   flask: FlaskConical,
   microscope: Microscope,
   "file-check": FileCheck2,
-  truck: Truck,
+  stethoscope: Stethoscope,
 };
 
 export function WhatWeDo({ content }: Props) {
