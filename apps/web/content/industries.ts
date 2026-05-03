@@ -1043,11 +1043,11 @@ const CDMO_PARTNERS: IndustryLeafContent = {
     columns: [
       {
         id: "regulatory",
-        label: "Regulatory services — DEL-anchored",
+        label: "Regulatory services",
         description:
-          "Canadian scope addition under our Health Canada Drug Establishment Licence: import-for-further-dose-form, release, distribution, and Canadian market authorization holding. Module 1 assembly to Health Canada's current regional specification. Regulatory-strategy support for cross-market scope decisions.",
-        serviceHref: "/services/regulatory-services/health-canada-del",
-        serviceLabel: "See Health Canada DEL support",
+          "Submission strategy, CMC dossier authoring (Module 2 + 3), and lifecycle regulatory management for sponsor programs targeting Health Canada, the USFDA, the EMA, the TGA, and other regulators. Module 1 assembly to each agency's current regional specification.",
+        serviceHref: "/services/regulatory-services",
+        serviceLabel: "See regulatory services",
       },
       {
         id: "analytical",
@@ -1178,11 +1178,11 @@ const CDMO_PARTNERS: IndustryLeafContent = {
     lede: "The industry page describes the partnership posture; the service pages describe the work itself. Start where your next scope decision sits.",
     links: [
       {
-        id: "regulatory-del",
-        label: "Health Canada DEL support",
+        id: "regulatory-services",
+        label: "Regulatory services",
         description:
-          "DEL-anchored Canadian scope for import, release, distribution and market authorization holding.",
-        href: "/services/regulatory-services/health-canada-del",
+          "CMC dossier authoring, submission support, and lifecycle regulatory management across Health Canada, USFDA, EMA, and TGA.",
+        href: "/services/regulatory-services",
       },
       {
         id: "analytical",
@@ -1519,9 +1519,9 @@ const CLINICAL_TRIAL_SPONSORS: IndustryLeafContent = {
         id: "regulatory",
         label: "Regulatory services — Canadian CTA",
         description:
-          "Canadian Clinical Trial Application authoring and submission, coordination with the sponsor's US IND or global regulatory lead, and establishment-licence-backed import and release under our Health Canada DEL for investigational product entering Canadian sites.",
-        serviceHref: "/services/regulatory-services/health-canada-del",
-        serviceLabel: "See Health Canada DEL support",
+          "Canadian Clinical Trial Application authoring and submission on behalf of the sponsor, coordination with the sponsor's US IND or global regulatory lead, and submission-strategy support for investigational product entering Canadian sites.",
+        serviceHref: "/services/regulatory-services",
+        serviceLabel: "See regulatory services",
       },
     ],
     closingNote:
@@ -1650,11 +1650,11 @@ const CLINICAL_TRIAL_SPONSORS: IndustryLeafContent = {
         href: "/services/analytical-services",
       },
       {
-        id: "regulatory-del",
-        label: "Health Canada DEL support",
+        id: "regulatory-services",
+        label: "Regulatory services",
         description:
-          "Canadian Clinical Trial Application handling and DEL-anchored import and release for Canadian sites.",
-        href: "/services/regulatory-services/health-canada-del",
+          "Canadian Clinical Trial Application authoring and submission support for investigational programs entering Canadian sites.",
+        href: "/services/regulatory-services",
       },
     ],
   },
