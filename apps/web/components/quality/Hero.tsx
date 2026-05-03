@@ -1,7 +1,7 @@
 /**
  * Hero — /quality-compliance, RSC.
  *
- * LCP-safe: headline / lede / DEL anchor render server-side. CTAs link to
+ * LCP-safe: headline / lede / framework anchor render server-side. CTAs link to
  * /contact with a source tag so inbound attribution is preserved.
  */
 import type { FC } from "react";
@@ -52,7 +52,7 @@ export const Hero: FC<Props> = ({ content }) => {
           </header>
 
           <aside
-            aria-label="Primary regulatory anchor"
+            aria-label="Quality framework anchor"
             className="lg:col-span-5"
           >
             <div className="flex h-full flex-col justify-between rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] p-6 shadow-[var(--shadow-xs)] sm:p-7">

@@ -64,7 +64,7 @@ export const DelStoryTeaser: FC<Props> = ({ content }) => {
             <div className="lg:col-span-6">
               <ul
                 className="flex flex-col gap-3 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-7"
-                aria-label="DEL scope highlights"
+                aria-label="Quality philosophy highlights"
               >
                 {content.bullets.map((bullet) => (
                   <li
