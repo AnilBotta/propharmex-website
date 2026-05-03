@@ -42,4 +42,3 @@ export * as supabase from "./supabase";
 export * as scoping from "./scoping";
 export * as delReadiness from "./del-readiness";
 export * as dosageMatcher from "./dosage-matcher";
-export * as region from "./region";
