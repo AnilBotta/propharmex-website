@@ -18,8 +18,6 @@ import { TrustStrip } from "../components/home/TrustStrip";
 import { WhatWeDo } from "../components/home/WhatWeDo";
 import { WhyPillars } from "../components/home/WhyPillars";
 import { HOME } from "../content/home";
-import { regionalizeHome } from "../content/home-region";
-import { getServerRegion } from "../lib/region-server";
 
 // ISR per architecture.md caching policy for the Home surface.
 export const revalidate = 300;
@@ -44,25 +42,23 @@ export const metadata: Metadata = {
 export default async function HomePage() {
   const siteUrl = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
   const pageJsonLd = buildHomeJsonLd(siteUrl);
-  const region = await getServerRegion();
-  const home = regionalizeHome(region);
 
   return (
     <>
-      <Hero content={home.hero} />
-      <TrustStrip content={home.trust} />
-      <WhyPillars content={home.why} />
-      <WhatWeDo content={home.whatWeDo} />
-      <OperationalDepth content={home.operationalDepth} />
-      <MatcherTeaser content={home.matcher} />
-      <Proof content={home.proof} />
-      <Process content={home.process} />
-      <Industries content={home.industries} />
-      <Leadership content={home.leadership} />
-      <Insights content={home.insights} />
-      <DelBanner content={home.delBanner} />
-      <ContactMini content={home.contact} />
-      <RegulatoryChips content={home.regulatory} />
+      <Hero content={HOME.hero} />
+      <TrustStrip content={HOME.trust} />
+      <WhyPillars content={HOME.why} />
+      <WhatWeDo content={HOME.whatWeDo} />
+      <OperationalDepth content={HOME.operationalDepth} />
+      <MatcherTeaser content={HOME.matcher} />
+      <Proof content={HOME.proof} />
+      <Process content={HOME.process} />
+      <Industries content={HOME.industries} />
+      <Leadership content={HOME.leadership} />
+      <Insights content={HOME.insights} />
+      <DelBanner content={HOME.delBanner} />
+      <ContactMini content={HOME.contact} />
+      <RegulatoryChips content={HOME.regulatory} />
       <JsonLd id="home-jsonld" data={pageJsonLd} />
     </>
   );

@@ -26,34 +26,6 @@ export type NavSection = {
   flatLinks?: NavLink[];
 };
 
-/**
- * Region constants moved to `@propharmex/lib/region` in Prompt 22 PR-A so
- * the Edge middleware can consume them without pulling in app/web. The
- * re-exports below preserve the existing import shape across the site
- * (consumers in Header, RegionSwitcher, layout, etc. don't need to change).
- *
- * The descriptor list adds `US` as a 4th first-class region — see the
- * Region module header for the full rationale.
- */
-import {
-  REGION_DESCRIPTORS,
-  type Region as LibRegion,
-} from "@propharmex/lib/region";
-
-export type Region = LibRegion;
-
-export const REGIONS: {
-  code: Region;
-  label: string;
-  shortLabel: string;
-  description: string;
-}[] = REGION_DESCRIPTORS.map((d) => ({
-  code: d.code,
-  label: d.label,
-  shortLabel: d.shortLabel,
-  description: d.description,
-}));
-
 /* -------------------------------------------------------------------------- */
 /*  Primary navigation                                                         */
 /* -------------------------------------------------------------------------- */
