@@ -1,48 +1,41 @@
 /**
  * Propharmex brand lockup.
  *
- * Text-only mark while `/brand/propharmex-logo.svg` is finalized in the
- * brand system (Prompt 2 deliverable awaiting designer assets). The actual
- * SVG gets dropped in apps/web/public/brand/ when handed off.
+ * Renders the official Propharmex logo (mark + wordmark + tagline + pulse line)
+ * served from `apps/web/public/brand/propharmex-logo.jpeg`.
+ *
+ * `tone="dark"` is the canonical full-color rendering — readable on light
+ * surfaces (Paper, white, slate-50). `tone="light"` applies an interim
+ * brightness/invert CSS filter to render the lockup as a white silhouette
+ * for legibility on the navy hero background; a true brand-color light
+ * variant is queued for PR-D when the footer adopts the navy treatment.
  */
 import type { FC } from "react";
+import Image from "next/image";
 
 type Props = {
-  /** Dark for solid headers + footers. Light for over-hero transparent state. */
+  /** Dark for solid headers + light footers. Light for over-hero transparent state. */
   tone?: "dark" | "light";
   className?: string;
+  /** Add the LCP-prioritization hint when this lockup is the header logo. */
+  priority?: boolean;
 };
 
-export const BrandLogo: FC<Props> = ({ tone = "dark", className }) => {
-  const color = tone === "light" ? "#FAFAF7" : "var(--color-primary-700)";
+export const BrandLogo: FC<Props> = ({ tone = "dark", className, priority }) => {
   return (
-    <span
-      aria-label="Propharmex"
-      className={className}
-      style={{
-        fontFamily: "var(--font-display)",
-        fontWeight: 600,
-        fontSize: "1.125rem",
-        letterSpacing: "-0.01em",
-        color,
-        display: "inline-flex",
-        alignItems: "center",
-        gap: "0.5rem",
-      }}
-    >
-      <span
-        aria-hidden="true"
-        style={{
-          width: 22,
-          height: 22,
-          borderRadius: 6,
-          background:
-            "linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-primary-800) 100%)",
-          boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.12)",
-          display: "inline-block",
-        }}
-      />
-      Propharmex
-    </span>
+    <Image
+      src="/Propharmexlogo.png"
+      alt="Propharmex — for a healthier tomorrow"
+      width={728}
+      height={205}
+      priority={priority}
+      className={[
+        "h-10 w-auto md:h-12",
+        tone === "light" ? "brightness-0 invert" : "",
+        className ?? "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    />
   );
 };

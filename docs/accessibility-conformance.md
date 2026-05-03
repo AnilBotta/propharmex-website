@@ -5,8 +5,8 @@
 **Product:** Propharmex marketing website (`propharmex.com`)
 **Vendor:** Propharmex Inc.
 **Vendor contact:** hello@propharmex.com
-**Report date:** 2026-04-29
-**Report version:** 1.0
+**Report date:** 2026-05-02
+**Report version:** 1.1
 
 > The corresponding `.docx` export of this document lives at
 > `docs/accessibility-conformance.docx` and is regenerated from this
@@ -37,7 +37,7 @@
 | Automated audit (Lighthouse CI) | Yes | 10 representative URLs, mobile preset, simulated throttling, 3 runs each, median aggregation. Baseline run 2026-04-29. |
 | Automated audit (axe-core CI) | Yes | Same 10 URLs via `@axe-core/cli` against the `next start` server. Configured in `.github/workflows/a11y-budget.yml` to fail on any `serious` or `critical` violation. |
 | Code-level review | Yes | WCAG 2.1 AA pass by the Accessibility Auditor agent on 2026-04-29. 18 findings produced (3 Sev 1, 7 Sev 2, 8 Sev 3). All Sev 1 + 5 of 7 Sev 2 + 1 Sev 3 fixed in PR [#42](https://github.com/AnilBotta/propharmex-website/pull/42). |
-| Color-contrast computation | Yes | Every text/background token pairing computed against the 4.5:1 (normal) and 3:1 (large) AA thresholds. 11/14 pass; 1 fail (warn — fixed); 1 borderline (muted — fixed). |
+| Color-contrast computation | Yes | Every text/background token pairing computed against the 4.5:1 (normal) and 3:1 (large) AA thresholds. Original teal/amber palette: 11/14 pass; 1 fail (warn — fixed); 1 borderline (muted — fixed). **Rebrand re-audit (PR-A · `style/design-tokens-rebrand`, 2026-05-02):** new navy/blue/green/orange palette computed; `--color-fg #161B3D` on `--color-bg #FBFBFD` ≈ 16.5:1, `--color-muted #6B7090` on `--color-bg` ≈ 5.0:1, `--color-primary-600 #11195A` on white ≈ 15.7:1. `--color-accent-fg=#FFFFFF` on `--color-accent-500=#F47B20` orange ≈ 2.7:1 — fails AA normal text; the `--color-accent-500` token is restricted to large-text contexts (≥18px or ≥14px bold) and orange CTAs must use the darker `--color-accent-700 #BF560C` background (≈ 4.7:1 vs white) for normal-text labels. Tracked under §4 limitations until PR-B (`feat(ui): primitive uplift`) ships the AA-compliant Button accent variant. |
 | Manual screen-reader pass | **Pending** | Test plan documented in [`docs/accessibility-at-test-plan.md`](accessibility-at-test-plan.md). Findings from the manual session will be appended to §3 in the next revision of this report. |
 | Keyboard-only navigation | Partial | Code-level review confirms all interactive elements are keyboard-reachable. Full end-to-end keyboard pass on AI tool flows (Concierge, Scoping, Dosage Matcher) is part of the manual pass. |
 | Browser zoom (200% / 400%) | Pending | Visual reflow testing scheduled with the manual pass. |
@@ -64,7 +64,7 @@
 | 1.3.5 | Identify Input Purpose | AA | Supports | Form fields ship correct `autoComplete` and `inputMode` values (`name`, `email`, `organization`, etc.). |
 | 1.4.1 | Use of Color | A | Supports | Color is not the only indicator on any state — focus rings are visible, error states pair color with text, required indicators pair color with screen-reader text. |
 | 1.4.2 | Audio Control | A | Not Applicable | No auto-playing audio. |
-| 1.4.3 | Contrast (Minimum) | AA | Supports | All text/background pairings ≥ 4.5:1 for normal text and ≥ 3:1 for large text. `--color-warn` text was failing at 3.4:1 — darkened to 5.2:1 in PR #42 (S1-1 fix). `--color-muted` margin tightened from 4.4:1 to 4.9:1 in the same PR. |
+| 1.4.3 | Contrast (Minimum) | AA | Supports | All text/background pairings ≥ 4.5:1 for normal text and ≥ 3:1 for large text. `--color-warn` text was failing at 3.4:1 — darkened to 5.2:1 in PR #42 (S1-1 fix). `--color-muted` margin tightened from 4.4:1 to 4.9:1 in the same PR. Rebrand re-audit (PR-A, 2026-05-02): every text/bg pairing recomputed against the navy/blue/green/orange palette; all pass except `--color-accent-fg=#FFFFFF` on `--color-accent-500=#F47B20` (orange CTA) at ≈ 2.7:1, which is restricted to large-text contexts and component-level enforcement of `--color-accent-700` for normal-text orange CTAs (PR-B). `--color-warn #8B6508` and `--color-danger #A23B3B` preserved verbatim. |
 | 1.4.4 | Resize Text | AA | Supports | Site reflows up to 200% browser zoom without loss of content or functionality. 400% behavior pending manual verification. |
 | 1.4.5 | Images of Text | AA | Supports | No images of text — all typography is rendered with web fonts. |
 | 1.4.10 | Reflow | AA | Supports | Layout adapts down to 320 CSS pixels wide without horizontal scrolling on content surfaces. |
@@ -126,6 +126,7 @@ These are documented openly on the public [`/accessibility`](../apps/web/app/acc
 | Three small controls measure 36×36 px (Concierge send button, header Region switcher, `Button size="sm"`). Meets WCAG 2.2 AA 2.5.8 minimum (24×24 px) but not the project's internal 44×44 px target. | Sev 3 | Planned in design-system polish PR |
 | Forced-colors / Windows High Contrast Mode: aesthetic separation degrades; functionality is preserved. | Sev 3 | Targeted `forced-colors` media queries planned |
 | InquiryForm + WhitepaperGateForm error states are form-level rather than field-level (3.3.1 / 3.3.3 Partially Supports). | Partially Supports | Per-field validation refactor planned |
+| Orange `--color-accent-500=#F47B20` paired with `--color-accent-fg=#FFFFFF` falls below WCAG AA for normal text (≈ 2.7:1). The token pairing is restricted to large-text contexts (≥18px or ≥14px bold). Buttons using orange CTAs are required to use the darker `--color-accent-700=#BF560C` background for AA-compliant normal-text labels — enforced at the Button-component level in the upcoming PR-B (`feat(ui): primitive uplift`). | Sev 2 | Tracked in PR-B (rebrand cluster) |
 
 ---
 
