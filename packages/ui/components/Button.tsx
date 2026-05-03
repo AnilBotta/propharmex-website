@@ -31,7 +31,12 @@ const buttonVariants = cva(
           "bg-transparent text-[var(--color-primary-600)] underline-offset-4 hover:underline p-0 h-auto",
       },
       size: {
-        sm: "h-9 px-3 text-sm min-h-11:md:min-h-9",
+        // Touch-target AAA on mobile (h-11 = 44px), denser on md+ where pointer
+        // is primary. Replaces an earlier malformed responsive string
+        // ("min-h-11:md:min-h-9") that Tailwind treated as an unknown utility,
+        // so size="sm" was effectively h-9 (36px) everywhere — failing WCAG
+        // 2.1 AAA SC 2.5.5 on touch devices.
+        sm: "h-11 px-3 text-sm md:h-9",
         md: "h-11 px-5 text-base",
         lg: "h-12 px-6 text-base",
         icon: "h-11 w-11",
