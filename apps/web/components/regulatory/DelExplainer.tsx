@@ -40,7 +40,7 @@ export const DelExplainer: FC<Props> = ({ content }) => {
         <SectionReveal className="mt-12">
           <ul
             className="grid grid-cols-1 gap-4 md:grid-cols-3"
-            aria-label="DEL explainer topics"
+            aria-label="Service explainer topics"
           >
             {content.topics.map((topic) => (
               <li key={topic.id} className="list-none">
