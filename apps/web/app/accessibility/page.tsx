@@ -136,8 +136,8 @@ export default function AccessibilityPage() {
           <ul className="list-disc space-y-1 pl-6">
             <li>
               Keyboard navigation across every interactive element on the
-              site, including the four AI tools (Concierge, Project
-              Scoping Assistant, DEL Readiness, Dosage Form Matcher).
+              site, including the customer-facing AI tools (Concierge,
+              Project Scoping Assistant, Dosage Form Matcher).
             </li>
             <li>
               Screen-reader semantics — landmarks, heading hierarchy,

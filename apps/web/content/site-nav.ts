@@ -114,18 +114,9 @@ export const PRIMARY_NAV: NavSection[] = [
         links: [
           { href: "/services/regulatory-services", label: "Overview" },
           {
-            href: "/services/regulatory-services/health-canada-del",
-            label: "Health Canada DEL",
-            description: "Drug Establishment Licence — our flagship.",
-          },
-          {
             href: "/services/regulatory-services/us-fda-submissions",
             label: "USFDA submissions",
             description: "ANDA, NDA, DMF Type II.",
-          },
-          {
-            href: "/services/regulatory-services/who-gmp-eu-tga",
-            label: "WHO-GMP, EMA, TGA",
           },
           {
             href: "/services/regulatory-services/cmc-dossier-preparation",
@@ -200,10 +191,6 @@ export const PRIMARY_NAV: NavSection[] = [
             label: "Project Scoping Assistant",
           },
           {
-            href: "/ai-tools/del-readiness",
-            label: "DEL Readiness Assessment",
-          },
-          {
             href: "/ai-tools/dosage-form-matcher",
             label: "Dosage Form Matcher",
           },
@@ -246,10 +233,6 @@ export const FOOTER_COLUMNS: { heading: string; links: NavLink[] }[] = [
       { href: "/services/pharma-development", label: "Pharmaceutical development" },
       { href: "/services/analytical-services", label: "Analytical services" },
       { href: "/services/regulatory-services", label: "Regulatory services" },
-      {
-        href: "/services/regulatory-services/health-canada-del",
-        label: "Health Canada DEL",
-      },
     ],
   },
   {
@@ -325,8 +308,8 @@ export type FacilityAddress = {
 export const FACILITIES: FacilityAddress[] = [
   {
     code: "MISSISSAUGA",
-    name: "Propharmex Mississauga",
-    role: "Head office — Health Canada DEL, 3PL distribution",
+    name: "Propharmex Canada",
+    role: "Head office",
     streetLines: ["— address on file —"],
     city: "Mississauga",
     region: "ON",
@@ -337,8 +320,8 @@ export const FACILITIES: FacilityAddress[] = [
   },
   {
     code: "HYDERABAD",
-    name: "Propharmex Hyderabad",
-    role: "Indian development centre",
+    name: "Propharmex India",
+    role: "Development centre",
     streetLines: ["— address on file —"],
     city: "Hyderabad",
     region: "Telangana",

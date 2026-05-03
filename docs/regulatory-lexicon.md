@@ -6,6 +6,21 @@ Authoritative reference for every regulatory term, body, guideline, and URL used
 
 ---
 
+## ⚠ Positioning update — 2026-05-03 (PR-D1′)
+
+Following a client-led repositioning (homepage shipped in PR #57; marketing-surface claim sweep landed in PR-D1′), **Propharmex no longer asserts a Health Canada Drug Establishment Licence on the public marketing site.** The same applies to 3PL distribution, WHO-GMP, ISO 9001, USFDA-registered, and TGA-recognized claims. The "DEL anchor" framing throughout the body of this document — including the §"Anchor rule" line below — is **historical**, retained for editorial reference only.
+
+Until this lexicon is rewritten as part of PR-D2′:
+
+- Writers must not reintroduce "we hold a DEL", "DEL holder", "Mississauga DEL site", "3PL distribution", or any specific certification claim on marketing pages.
+- The `confirmed` tier of the claim-status convention must not be applied to any cert/licence on a public page until the client supplies an updated, signed-off claim list.
+- Use `alignment` framing ("operates in alignment with cGMP / ICH / etc.") for any QMS reference.
+- Regulatory pathway content (e.g., USFDA submissions, CMC dossier preparation) describes services Propharmex provides to clients — not credentials Propharmex holds.
+
+`brand-voice-guardian` should fail any PR that reintroduces the retired claims above.
+
+---
+
 ## Regulatory bodies
 
 | Body | Canonical name | Short form | Primary-source root |

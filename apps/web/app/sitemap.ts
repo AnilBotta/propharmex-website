@@ -46,8 +46,10 @@ const STATIC_ENTRIES: Entry[] = [
   entry("/contact", 0.6, "yearly"),
   entry("/accessibility", 0.4, "yearly"),
   entry("/ai/project-scoping-assistant", 0.5, "monthly"),
-  entry("/ai/del-readiness", 0.5, "monthly"),
   entry("/ai/dosage-matcher", 0.5, "monthly"),
+  // /ai/del-readiness is intentionally excluded from the sitemap as part
+  // of the PR-D1′ specialty-CDMO repositioning. The route still works at
+  // its direct URL but is not surfaced to crawlers or in primary nav.
 ];
 
 // Routes deliberately excluded from the sitemap (and left noindex via their
