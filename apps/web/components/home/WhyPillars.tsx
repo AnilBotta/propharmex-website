@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Link2, ShieldCheck, Beaker, Truck } from "lucide-react";
+import { Beaker, Link2, Compass, Globe2 } from "lucide-react";
 import type { ComponentType } from "react";
 
 import { Card, CardContent, fadeRise, staggerContainer, useReducedMotion } from "@propharmex/ui";
@@ -11,10 +11,10 @@ import type { WhyPillarsSection, WhyPillar } from "../../content/home";
 type Props = { content: WhyPillarsSection };
 
 const ICON_BY_ID: Record<WhyPillar["id"], ComponentType<{ size?: number; className?: string }>> = {
-  integrated: Link2,
-  regulated: ShieldCheck,
-  specialized: Beaker,
-  delivery: Truck,
+  "complex-focus": Beaker,
+  "integrated-thinking": Link2,
+  "tailored-programs": Compass,
+  "canada-platform": Globe2,
 };
 
 export function WhyPillars({ content }: Props) {

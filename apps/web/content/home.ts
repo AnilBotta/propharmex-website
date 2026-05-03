@@ -9,11 +9,20 @@
  * the discriminated `zSection` union in `packages/lib/sanity/parsers.ts`; the
  * shape here is deliberately close to that future schema.
  *
+ * PR-C′ (2026-05-03) — repositioned per client brief: Propharmex is a
+ * specialty CDMO for complex and niche pharmaceutical products, not a
+ * distribution / 3PL / DEL-anchored services company. All claims about
+ * Health Canada DEL ownership, 3PL distribution, certification badges,
+ * warehousing, cold chain, and named manufacturing facilities have been
+ * removed unless verified. Two-hub Canada–India framing replaced with
+ * Canada-headquartered + globally connected. The lighter "scientific and
+ * development collaborations in India" remains as factual context only.
+ *
  * Anti-hype voice rules (CLAUDE.md §1): no "world-class", "cutting-edge",
- * "seamless", "industry-leading", "trusted partner". Superlatives must be
- * earned with a verifiable fact. Regulatory terms follow the lexicon in
- * docs/regulatory-lexicon.md (DEL = Drug Establishment Licence, Canadian
- * spelling; ICH guidelines with version tags; Health Canada never "HC").
+ * "seamless", "industry-leading", "guaranteed approval". Superlatives must
+ * be earned with a verifiable fact. Regulatory terms follow the lexicon in
+ * docs/regulatory-lexicon.md (ICH guidelines with version tags; never
+ * "approval" or "approved" — say "filed", "submitted", "qualified").
  */
 
 /* -------------------------------------------------------------------------- */
@@ -46,11 +55,12 @@ export type HeroSection = {
 };
 
 /* -------------------------------------------------------------------------- */
-/*  2. Trust strip                                                            */
+/*  2. Trust strip — repurposed in PR-C′ from cert badges to capability       */
+/*     pillars per the new positioning. Cert claims removed.                  */
 /* -------------------------------------------------------------------------- */
 
-export type CertBadgeItem = {
-  id: "hc-del" | "iso-9001" | "who-gmp" | "usfda" | "tga";
+export type CapabilityBadgeItem = {
+  id: "complex-dosage" | "regulatory-aware" | "analytical" | "clinical" | "canada-platform";
   label: string;
   caption: string;
   href: string;
@@ -59,7 +69,7 @@ export type CertBadgeItem = {
 export type TrustStripSection = {
   kind: "trustStrip";
   heading: string;
-  items: CertBadgeItem[];
+  items: CapabilityBadgeItem[];
 };
 
 /* -------------------------------------------------------------------------- */
@@ -67,7 +77,7 @@ export type TrustStripSection = {
 /* -------------------------------------------------------------------------- */
 
 export type WhyPillar = {
-  id: "integrated" | "regulated" | "specialized" | "delivery";
+  id: "complex-focus" | "integrated-thinking" | "tailored-programs" | "canada-platform";
   title: string;
   body: string;
 };
@@ -81,12 +91,13 @@ export type WhyPillarsSection = {
 };
 
 /* -------------------------------------------------------------------------- */
-/*  4. What We Do                                                             */
+/*  4. What We Do — four service lines (PR-C′: 3PL/distribution removed,      */
+/*     Clinical & BE insight added)                                           */
 /* -------------------------------------------------------------------------- */
 
 export type CapabilityCard = {
-  id: "development" | "analytical" | "regulatory" | "distribution";
-  icon: "flask" | "microscope" | "file-check" | "truck";
+  id: "development" | "analytical" | "regulatory" | "clinical";
+  icon: "flask" | "microscope" | "file-check" | "stethoscope";
   title: string;
   description: string;
   href: string;
@@ -101,15 +112,10 @@ export type WhatWeDoSection = {
 };
 
 /* -------------------------------------------------------------------------- */
-/*  5. Operational depth                                                      */
+/*  5. Operational depth — repositioned in PR-C′ from "Mississauga DEL +      */
+/*     offshore depth" to "Canada-headquartered + globally connected"         */
 /* -------------------------------------------------------------------------- */
 
-/**
- * Asymmetric two-column section: an anchor card (Mississauga DEL site,
- * regulatory + 3PL) and a depth card (development depth, no site named).
- * Replaces the prior CanadaIndiaSection / two-hub framing per the
- * Canadian-anchored positioning lexicon (docs/positioning-canadian-anchor.md).
- */
 export type OperatingColumn = {
   id: "anchor" | "depth";
   label: string;
@@ -248,7 +254,10 @@ export type InsightsSection = {
 };
 
 /* -------------------------------------------------------------------------- */
-/*  12. DEL readiness banner                                                  */
+/*  12. Tool callout (was DelBanner) — PR-C′ broadened from a DEL-specific    */
+/*     pitch to a generic regulatory readiness tool callout. The route is     */
+/*     unchanged; the homepage messaging no longer presumes DEL is the        */
+/*     visitor's regulatory pathway.                                          */
 /* -------------------------------------------------------------------------- */
 
 export type DelBannerSection = {
@@ -285,7 +294,9 @@ export type ContactFormCopy = {
 };
 
 /* -------------------------------------------------------------------------- */
-/*  14. Above-footer regulatory chips                                         */
+/*  14. Above-footer chips — PR-C′ trimmed to registered office + a generic   */
+/*     informational disclaimer. The DEL identifier line was removed; that    */
+/*     claim is not in scope for the homepage under the new positioning.      */
 /* -------------------------------------------------------------------------- */
 
 export type RegulatoryChipsSection = {
@@ -341,9 +352,12 @@ export type HomeContent = {
 /* -------------------------------------------------------------------------- */
 
 export const DOSAGE_CHIPS: DosageChip[] = [
-  { id: "er-tablets", label: "Extended-release tablets" },
-  { id: "lyo-injectables", label: "Lyophilized injectables" },
-  { id: "semi-solids", label: "Semi-solids" },
+  { id: "solids", label: "Solid oral dosage forms" },
+  { id: "liquids", label: "Liquid dosage forms" },
+  { id: "topicals", label: "Topicals & semisolids" },
+  { id: "injectables", label: "Injectables" },
+  { id: "ophthalmics", label: "Ophthalmics" },
+  { id: "transdermal", label: "Transdermal systems" },
 ];
 
 /* -------------------------------------------------------------------------- */
@@ -351,64 +365,70 @@ export const DOSAGE_CHIPS: DosageChip[] = [
 /* -------------------------------------------------------------------------- */
 
 export const HOME: HomeContent = {
-  metaTitle: "Propharmex — pharmaceutical development, analytical, regulatory, distribution",
+  metaTitle:
+    "Propharmex — specialty CDMO for complex and niche pharmaceutical products",
   metaDescription:
-    "Canadian pharmaceutical services company anchored at our Mississauga, Ontario site under Health Canada Drug Establishment Licence. Pharmaceutical development, analytical services, regulatory affairs, and 3PL distribution for drug developers globally.",
-  ogTitle: "Propharmex — pharmaceutical development, analytical, regulatory, distribution",
+    "Propharmex is a Canada-headquartered specialty CDMO advancing complex and niche pharmaceutical products from concept to commercialization. Pharmaceutical development, advanced analytical services, regulatory strategy, and clinical study insight under one development pathway.",
+  ogTitle:
+    "Propharmex — specialty CDMO for complex and niche pharmaceutical products",
   ogDescription:
-    "Canadian pharmaceutical services company. Anchored at our Mississauga DEL site, with the development depth to file under it. Drug developers globally.",
+    "Headquartered in Canada. A strategic development partner for complex dosage forms — solids, liquids, topicals, injectables, ophthalmics, and transdermal systems.",
 
   // 1. Hero
   hero: {
     kind: "hero",
-    eyebrow: "Mississauga, Ontario · Health Canada DEL · Serving sponsors globally",
-    headline: "End-to-End Pharma Development,",
-    headlineAccent: "Analytical, Regulatory & Distribution.",
+    eyebrow: "Specialty CDMO · Headquartered in Canada",
+    headline: "Specialty CDMO for",
+    headlineAccent: "Complex and Niche Pharmaceutical Products.",
     subhead:
-      "Development, analytical, regulatory, and distribution under one operating model — anchored on a Health Canada Drug Establishment Licence.",
+      "Propharmex advances complex dosage forms from concept to commercialization through pharmaceutical development, advanced analytical services, regulatory strategy, and clinical study insight.",
     ctas: [
-      { href: "/contact", label: "Start a project", variant: "primary" },
-      { href: "/services", label: "Explore capabilities", variant: "secondary" },
-      { href: "/ai/del-readiness", label: "Check DEL readiness", variant: "tertiary" },
+      { href: "/contact", label: "Start a Development Discussion", variant: "primary" },
+      { href: "/services", label: "Explore Capabilities", variant: "secondary" },
     ],
     microTrust:
-      "Health Canada DEL · WHO-GMP · ISO 9001 · USFDA-registered · TGA-recognized",
+      "Headquartered in Canada · Scientific depth · Transparent execution · Globally accessible development platform",
   },
 
-  // 2. Trust strip
+  // 2. Trust strip — repurposed to capability pillars (no cert claims)
   trust: {
     kind: "trustStrip",
-    heading: "Certifications and registrations in force",
+    heading: "What we bring to a development partnership",
     items: [
       {
-        id: "hc-del",
-        label: "Health Canada DEL",
-        caption: "Drug Establishment Licence holder — Mississauga site",
-        href: "/quality#del",
+        id: "complex-dosage",
+        label: "Complex Dosage Forms",
+        caption:
+          "Solids, liquids, topicals, injectables, ophthalmics, and transdermal systems",
+        href: "/services",
       },
       {
-        id: "iso-9001",
-        label: "ISO 9001",
-        caption: "Quality management system certified",
-        href: "/quality#iso",
+        id: "regulatory-aware",
+        label: "Regulatory-Aware Development",
+        caption:
+          "Pathway alignment built into formulation, analytical, and clinical planning",
+        href: "/services",
       },
       {
-        id: "who-gmp",
-        label: "WHO-GMP",
-        caption: "Manufacturing operations aligned to WHO-GMP principles",
-        href: "/quality#who-gmp",
+        id: "analytical",
+        label: "Advanced Analytical Sciences",
+        caption:
+          "Method development, validation, and stability under ICH expectations",
+        href: "/services",
       },
       {
-        id: "usfda",
-        label: "USFDA-registered",
-        caption: "Facility registration current on FDA 7520",
-        href: "/quality#usfda",
+        id: "clinical",
+        label: "Clinical Study Insight",
+        caption:
+          "Bioequivalence and clinical strategy linked to product and pathway",
+        href: "/services",
       },
       {
-        id: "tga",
-        label: "TGA-recognized",
-        caption: "Site assessments accepted by Australian TGA",
-        href: "/quality#tga",
+        id: "canada-platform",
+        label: "Canada-Headquartered Platform",
+        caption:
+          "Transparent collaboration, high business standards, global accessibility",
+        href: "/about",
       },
     ],
   },
@@ -417,122 +437,126 @@ export const HOME: HomeContent = {
   why: {
     kind: "whyPillars",
     eyebrow: "Why Propharmex",
-    heading: "Four reasons teams move projects to us.",
+    heading: "Why partners choose Propharmex.",
     subhead:
-      "We did not assemble these capabilities to look comprehensive. Each exists because, at some point in the last eight years, a client needed it and no one else in their supply chain could deliver it.",
+      "We position ourselves as a strategic development partner — not a transactional vendor. Each pillar below reflects how we approach complex and niche pharmaceutical products.",
     pillars: [
       {
-        id: "integrated",
-        title: "Integrated across the lifecycle",
-        body: "Development, analytical, regulatory, and 3PL distribution run under one operating model. Handoffs happen in the same CTMS rather than across vendor contracts, which typically removes 6–10 weeks from a first-filing timeline.",
+        id: "complex-focus",
+        title: "Complex Product Focus",
+        body:
+          "Focused on niche and technically challenging pharmaceutical products where formulation, analytics, regulatory strategy, and clinical planning must work together.",
       },
       {
-        id: "regulated",
-        title: "Regulated work, not regulated-adjacent",
-        body: "Our Mississauga site holds a Health Canada Drug Establishment Licence; our development operations run under WHO-GMP-aligned principles within the same QMS. ICH Q1A(R2), Q2(R2), and Q7 are the default, not the upgrade path.",
+        id: "integrated-thinking",
+        title: "Integrated Development Thinking",
+        body:
+          "We connect molecule understanding, dosage form design, analytical evidence, and regulatory expectations into one clear development pathway.",
       },
       {
-        id: "specialized",
-        title: "Complex generics other CDMOs pass on",
-        body: "Modified-release orals, lyophilized sterile injectables, semi-solids with tight dissolution windows. Dosage forms where the dissolution method matters more than the bulk chemistry.",
+        id: "tailored-programs",
+        title: "Tailored Scientific Programs",
+        body:
+          "Every project is structured around the product, pathway, risk profile, and intended market — not a generic template.",
       },
       {
-        id: "delivery",
-        title: "Delivery you can plan around",
-        body: "Our 3PL footprint runs from Mississauga into the US and Caribbean, with cold-chain lanes that hold their service standards under volume. Sourcing flexibility comes from a development bench that can re-author specs and methods when supply tightens.",
+        id: "canada-platform",
+        title: "Canada-Based Strategic Platform",
+        body:
+          "Headquartered in Canada, Propharmex offers transparent collaboration, high business standards, and global accessibility.",
       },
     ],
   },
 
-  // 4. What we do
+  // 4. What we do — core capabilities (4 service lines, no 3PL/distribution)
   whatWeDo: {
     kind: "whatWeDo",
-    eyebrow: "Capabilities",
-    heading: "Four service lines. One engagement model.",
+    eyebrow: "Core capabilities",
+    heading: "Four capability areas. One development pathway.",
     cards: [
       {
         id: "development",
         icon: "flask",
-        title: "Pharmaceutical development",
+        title: "Pharmaceutical Development",
         description:
-          "Formulation, process, and tech transfer for orals, sterile injectables, semi-solids, and specialty dosage forms.",
-        href: "/services/pharma-development",
-        linkLabel: "Development services",
+          "Formulation, process, and tech transfer for complex dosage forms — solids, liquids, topicals, injectables, ophthalmics, and transdermal systems.",
+        href: "/services/pharmaceutical-development",
+        linkLabel: "Pharmaceutical development",
       },
       {
         id: "analytical",
         icon: "microscope",
-        title: "Analytical services",
+        title: "Advanced Analytical Services",
         description:
-          "Method development and validation under ICH Q2(R2), release and stability testing, dissolution, E&L, nitrosamine.",
+          "Method development and validation under ICH Q2(R2). Release and stability testing, dissolution, extractables and leachables, nitrosamine assessment.",
         href: "/services/analytical-services",
         linkLabel: "Analytical services",
       },
       {
         id: "regulatory",
         icon: "file-check",
-        title: "Regulatory services",
+        title: "Regulatory Strategy",
         description:
-          "Health Canada DEL, NOC, ANDS; USFDA ANDA and DMF Type II; WHO-GMP, EMA, TGA dossier preparation.",
+          "Pathway design and dossier preparation aligned to product profile, target market, and risk. Strategy is part of development, not an afterthought.",
         href: "/services/regulatory-services",
-        linkLabel: "Regulatory services",
+        linkLabel: "Regulatory strategy",
       },
       {
-        id: "distribution",
-        icon: "truck",
-        title: "3PL and distribution",
+        id: "clinical",
+        icon: "stethoscope",
+        title: "Clinical Study & Bioequivalence Insight",
         description:
-          "Import, release, warehousing, and Canadian distribution under our DEL — with cold-chain lanes into the US and Caribbean.",
-        href: "/services/distribution",
-        linkLabel: "Distribution services",
+          "Clinical and bioequivalence planning informed by molecule understanding, formulation choices, and regulatory pathway. Designed alongside the development program, not bolted on.",
+        href: "/services",
+        linkLabel: "Clinical & bioequivalence",
       },
     ],
   },
 
-  // 5. Operational depth
+  // 5. Operational depth — Canada-headquartered + globally connected
   operationalDepth: {
     kind: "operationalDepth",
-    eyebrow: "How we work",
-    heading: "A Canadian regulatory anchor with the development depth to file under it.",
+    eyebrow: "How we operate",
+    heading: "Canada-headquartered. Globally connected.",
     subhead:
-      "Our Mississauga site holds the Drug Establishment Licence and runs Canadian 3PL distribution. Behind the Canadian-facing operations, an offshore development centre under our quality system gives us depth in formulation, method development, analytical services, and stability — all under one CTMS, one change-control process, and one set of project managers.",
+      "Propharmex operates from Canada with a globally integrated development approach, giving partners access to scientific depth, transparent communication, and internationally aligned execution.",
     columns: [
       {
         id: "anchor",
-        label: "Anchored at Mississauga",
-        sublabel: "Mississauga, Ontario · Canada",
-        role: "Head office · DEL holder · 3PL · regulatory submissions",
+        label: "Canada — strategic platform",
+        sublabel: "Headquartered in Canada",
+        role: "Strategic partnership · Program governance · Client of record",
         capabilities: [
-          "Health Canada DEL covering fabrication, packaging, labelling, testing, import, and wholesale",
-          "Canadian 3PL warehousing with cold-chain lanes into the US and Caribbean",
-          "Regulatory strategy and submissions: DEL, NOC, ANDS, USFDA ANDA, DMF Type II",
+          "Strategic development partnership for complex and niche pharmaceutical products",
+          "Single point of accountability across formulation, analytical, regulatory, and clinical planning",
+          "Transparent collaboration model with documented gate reviews and program governance",
         ],
         certificationNote:
-          "DEL referenced against the Health Canada Drug and Health Product Register. Site inspections current.",
+          "Canada-headquartered operations, transparent business standards, and globally accessible engagement.",
       },
       {
         id: "depth",
-        label: "Development depth",
-        sublabel: "Operating under our quality system",
-        role: "Formulation · method development · analytical services · stability",
+        label: "Globally connected development",
+        sublabel: "Internationally aligned execution",
+        role: "Scientific depth · Method development · Stability · Manufacturing collaborations",
         capabilities: [
-          "HPLC, LC-MS/MS, dissolution, Karl Fischer, DSC — method development and ICH Q2(R2) validation",
-          "Formulation and process development for orals, sterile injectables, and semi-solids",
-          "Manufacturing operations aligned to WHO-GMP principles for pilot and scale-up batches",
+          "Formulation and analytical development across complex dosage forms",
+          "Stability program design under ICH Q1A(R2) and zone-appropriate conditions",
+          "Supported by scientific and development collaborations in India for selected programs",
         ],
         certificationNote:
-          "Operations governed under the Propharmex unified QMS, harmonised SOPs, and audit-trailed change control.",
+          "Operations governed under the Propharmex unified quality system, harmonised SOPs, and audit-trailed change control.",
       },
     ],
   },
 
-  // 6. AI Matcher teaser
+  // 6. AI Matcher teaser — repositioned around complex dosage forms
   matcher: {
     kind: "matcherTeaser",
     eyebrow: "AI tool",
-    heading: "Dosage Form Capability Matcher",
+    heading: "Complex dosage forms we support",
     body:
-      "Describe a target product in a sentence. The matcher returns the dosage forms we can support end-to-end, the ones we can support with a named partner, and the ones we will not pitch you on. The reasoning is visible.",
+      "Capabilities span solids, liquids, topicals and semisolids, injectables, ophthalmics, and transdermal systems. Describe a target product in a sentence and the matcher returns the dosage forms we can develop end-to-end, with explicit reasoning.",
     chips: DOSAGE_CHIPS,
     ctaHref: "/ai/dosage-matcher",
     ctaLabel: "Open the matcher",
@@ -540,60 +564,99 @@ export const HOME: HomeContent = {
       "Output is generated by an AI assistant trained on Propharmex's public documentation. It is informational, not a contractual scope.",
   },
 
-  // 7. Proof — TODO: replace with live Sanity `caseStudy` docs when Prompt 14 lands.
+  // 7. Proof — anonymized titles per client brief; placeholder until verified case studies land
   proof: {
     kind: "proof",
-    eyebrow: "Evidence",
-    heading: "Outcomes, anonymized and specific.",
+    eyebrow: "Selected outcomes",
+    heading: "Selected development outcomes.",
     subhead:
-      "Case studies are anonymized per the client-naming policy in docs/content-style.md. Named client references are available under NDA.",
+      "Anonymized examples of the kinds of programs we support. Named client references and detailed case studies are available under NDA once a discussion is opened.",
     cards: [
       {
-        // TODO: replace with Sanity caseStudy doc when live.
-        id: "cs-mr-oral",
-        industry: "US generics",
-        problem: "Modified-release oral stalled at dissolution; first ANDA filing returned with deficiency letter.",
-        outcome: "Rebuilt dissolution method under ICH Q2(R2), requalified three bioequivalence cohorts, supported resubmission.",
-        metric: "Filed in 11 months",
-        href: "/case-studies/modified-release-requalification",
+        id: "cs-complex-topical",
+        industry: "Complex topicals",
+        problem:
+          "Complex topical product requiring coordinated formulation design, analytical method development, and regulatory pathway alignment.",
+        outcome:
+          "Example case study content pending client approval — illustrative only.",
+        metric: "Development pathway",
+        href: "/contact",
       },
       {
-        // TODO: replace with Sanity caseStudy doc when live.
-        id: "cs-cogs",
-        industry: "Innovator biotech",
-        problem: "Commercial-stage injectable running 22% over target COGS; second-source program 14 months behind.",
-        outcome: "Tech-transferred analytical and process under our QMS; qualified second supplier; maintained US release.",
-        metric: "18% COGS reduction",
-        href: "/case-studies/sterile-injectable-second-sourcing",
+        id: "cs-niche-generic-regulatory",
+        industry: "Niche generics",
+        problem:
+          "Niche generic product where regulatory strategy needed to be defined alongside formulation and analytical work, not after.",
+        outcome:
+          "Example case study content pending client approval — illustrative only.",
+        metric: "Regulatory strategy",
+        href: "/contact",
       },
       {
-        // TODO: replace with Sanity caseStudy doc when live.
-        id: "cs-oos",
-        industry: "NGO / humanitarian supply",
-        problem: "Oral solid portfolio for a public-health program with recurring out-of-spec (OOS) events at release.",
-        outcome: "Restructured release testing under Q10, moved stability to Zone IVb, rebuilt supplier qualification.",
-        metric: "Zero OOS in 24 months",
-        href: "/case-studies/ngo-oral-solid-stability-rebuild",
+        id: "cs-analytical-method",
+        industry: "Analytical method development",
+        problem:
+          "Challenging product requiring analytical method development capable of supporting both release testing and stability.",
+        outcome:
+          "Example case study content pending client approval — illustrative only.",
+        metric: "Analytical evidence",
+        href: "/contact",
       },
     ],
-    ctaHref: "/case-studies",
-    ctaLabel: "All case studies",
+    ctaHref: "/contact",
+    ctaLabel: "Talk about your program",
   },
 
-  // 8. Process
+  // 8. Process — 7-step development journey per client brief
   process: {
     kind: "process",
-    eyebrow: "How we engage",
-    heading: "Six steps, visible at every stage.",
+    eyebrow: "Development journey",
+    heading: "Seven steps from discovery to commercialization.",
     subhead:
-      "Each step has a defined deliverable, a named owner on both sides, and a written gate. Nothing moves to the next step without sign-off.",
+      "A development pathway designed around the product, pathway, risk profile, and intended market. Each step has a defined deliverable, a named owner on both sides, and a written gate.",
     steps: [
-      { step: 1, title: "Inquiry", description: "Scoping call within 3 business days. No templated discovery deck." },
-      { step: 2, title: "NDA and scope", description: "Mutual NDA signed, target product profile drafted, assumptions recorded." },
-      { step: 3, title: "Proposal", description: "Technical approach, timeline in weeks, cost, risks named — not a range in disguise." },
-      { step: 4, title: "Contract", description: "MSA plus work order. Change-control process agreed in writing." },
-      { step: 5, title: "Execute", description: "Weekly steering, shared CTMS access, stage-gate sign-offs on every milestone." },
-      { step: 6, title: "Deliver and transfer", description: "Final report, tech-transfer package, regulatory dossier handoff." },
+      {
+        step: 1,
+        title: "Discovery",
+        description:
+          "Initial conversation. Target product profile, intended market, and the questions worth answering before we agree on scope.",
+      },
+      {
+        step: 2,
+        title: "Molecule & product understanding",
+        description:
+          "Deep review of the molecule, prior art, dosage form constraints, and what an approval-ready product needs to demonstrate.",
+      },
+      {
+        step: 3,
+        title: "Development strategy",
+        description:
+          "Translate the product understanding into a development strategy that addresses scientific complexity and regulatory expectations together.",
+      },
+      {
+        step: 4,
+        title: "Analytical and formulation program",
+        description:
+          "Method development under ICH Q2(R2) and formulation work executed in parallel, so analytical evidence keeps pace with formulation decisions.",
+      },
+      {
+        step: 5,
+        title: "Regulatory pathway alignment",
+        description:
+          "Pathway design tied to product, target market, and risk profile. Strategy is documented, not implicit.",
+      },
+      {
+        step: 6,
+        title: "Clinical / bioequivalence planning",
+        description:
+          "Clinical and bioequivalence study design informed by molecule understanding, formulation, and regulatory pathway.",
+      },
+      {
+        step: 7,
+        title: "Scale-up & commercialization support",
+        description:
+          "Scale-up planning and commercialization handover with the development pathway documented end to end.",
+      },
     ],
   },
 
@@ -601,21 +664,23 @@ export const HOME: HomeContent = {
   industries: {
     kind: "industries",
     eyebrow: "Who we work with",
-    heading: "Four sectors. Different problems. Same operating model.",
-    subhead: "Named references available under NDA for each sector below.",
+    heading: "Sectors we partner with.",
+    subhead:
+      "Innovators, generic manufacturers, CDMO partners, and public-health programs — wherever scientific complexity and regulatory expectations need to be addressed together.",
     tiles: [
       {
         id: "innovators",
-        title: "Innovators",
+        title: "Pharmaceutical innovators",
         description:
-          "Early-clinical sponsors needing ICH-aligned analytical and CMC support without diluting equity on a full internal build.",
+          "Sponsors developing complex products who need integrated formulation, analytical, regulatory, and clinical planning without building the full capability internally.",
         href: "/industries/pharmaceutical-innovators",
         size: "lg",
       },
       {
         id: "generics",
-        title: "Generics",
-        description: "ANDA, ANDS, and DMF work for US and Canadian submissions — with dissolution and BE depth.",
+        title: "Generic manufacturers",
+        description:
+          "Niche and complex generic products where development pathway and analytical evidence determine filing readiness.",
         href: "/industries/generic-manufacturers",
         size: "sm",
       },
@@ -623,15 +688,15 @@ export const HOME: HomeContent = {
         id: "cdmo",
         title: "CDMO partners",
         description:
-          "Larger CDMOs subcontract to us on dosage forms outside their own capability map, typically complex orals or lyophilized injectables.",
+          "CDMO partners who subcontract dosage forms outside their internal capability map — typically complex topicals, injectables, or transdermal systems.",
         href: "/industries/cdmo-partners",
         size: "sm",
       },
       {
         id: "ngo",
-        title: "NGOs and governments",
+        title: "Public-health programs",
         description:
-          "Public-health supply programs where WHO-GMP, Zone IVb stability, and audit trails are pre-qualification requirements.",
+          "Public-health and global-access programs where pathway-aligned development and analytical evidence are pre-qualification requirements.",
         href: "/industries/governments-and-ngos",
         size: "lg",
       },
@@ -647,25 +712,25 @@ export const HOME: HomeContent = {
       "Every engagement is signed off by a named principal. The names below are stubbed until the Prompt 9 Sanity seeding lands.",
     leaders: [
       {
-        // TODO: replace with Sanity person doc when live.
         id: "leader-1",
-        name: "Principal, Regulatory Affairs",
-        role: "Health Canada DEL and USFDA submissions",
-        credential: "20+ years in ANDS, ANDA, and DMF Type II filings.",
+        name: "Principal, Pharmaceutical Development",
+        role: "Formulation strategy and complex dosage forms",
+        credential:
+          "Two decades of experience in complex pharmaceutical development across solids, semisolids, and parenteral systems.",
       },
       {
-        // TODO: replace with Sanity person doc when live.
         id: "leader-2",
-        name: "Head of Analytical",
-        role: "Method development and validation",
-        credential: "ICH Q2(R2) method development across HPLC, LC-MS/MS, dissolution.",
+        name: "Head of Analytical Sciences",
+        role: "Method development, validation, and stability",
+        credential:
+          "ICH Q2(R2) method development across HPLC, LC-MS/MS, dissolution, and stability program design.",
       },
       {
-        // TODO: replace with Sanity person doc when live.
         id: "leader-3",
-        name: "Director, Operations",
-        role: "Canadian distribution and 3PL",
-        credential: "Cold-chain and 3PL lead across Canadian and US distribution lanes.",
+        name: "Director, Regulatory & Clinical Strategy",
+        role: "Pathway design and clinical/BE planning",
+        credential:
+          "Regulatory pathway and clinical strategy across complex generics, niche products, and public-health programs.",
       },
     ],
     ctaHref: "/about#leadership",
@@ -681,45 +746,45 @@ export const HOME: HomeContent = {
       "Short, technical, source-cited. One email a month if you subscribe in the footer. Placeholders below pending Prompt 15 content.",
     cards: [
       {
-        // TODO: replace with Sanity insight doc when live.
         id: "insight-1",
         category: "Whitepaper",
-        title: "Nitrosamine risk assessment under EMA and USFDA 2024 guidance",
-        blurb: "A practitioner checklist with the primary-source references current as of January 2026.",
+        title: "Designing a development pathway for complex dosage forms",
+        blurb:
+          "How formulation, analytical evidence, regulatory strategy, and clinical planning should be designed together — not sequentially.",
         href: "/whitepapers/placeholder-1",
       },
       {
-        // TODO: replace with Sanity insight doc when live.
         id: "insight-2",
         category: "Article",
-        title: "When to requalify a dissolution method — and when to rebuild it",
-        blurb: "Three inflection points we have seen trigger rebuilds in the last 18 months.",
+        title: "When analytical method development drives the program",
+        blurb:
+          "Three complex-dosage-form patterns where the analytical method has to be solved before the formulation can move.",
         href: "/insights/placeholder-2",
       },
       {
-        // TODO: replace with Sanity insight doc when live.
         id: "insight-3",
-        category: "Case study",
-        title: "Second-sourcing a sterile injectable without losing release cadence",
-        blurb: "Anonymized. Timeline, gates, and the two decisions we would redo.",
-        href: "/case-studies/sterile-injectable-second-sourcing",
+        category: "Article",
+        title: "Niche generics and the case for integrated development",
+        blurb:
+          "Why niche generic programs benefit from a single development partner that owns formulation, analytical, regulatory, and clinical thinking together.",
+        href: "/insights/placeholder-3",
       },
     ],
     ctaHref: "/insights",
     ctaLabel: "All briefings",
   },
 
-  // 12. DEL readiness banner
+  // 12. Tool callout — broadened from DEL-specific to a generic regulatory readiness pitch
   delBanner: {
     kind: "delBanner",
     eyebrow: "Regulatory tool",
-    heading: "Are you ready for a Health Canada DEL?",
+    heading: "How regulator-ready is your program?",
     body:
-      "Answer a 14-question rubric on quality, facilities, and personnel. The tool returns a stage-of-readiness score with gap notes you can take to your internal quality lead.",
+      "A short questionnaire covering quality, facilities, and personnel. Returns a stage-of-readiness view with gap notes you can take to your internal team. Informational only.",
     ctaHref: "/ai/del-readiness",
-    ctaLabel: "Start the assessment",
+    ctaLabel: "Open the assessment",
     disclaimer:
-      "This is an informational assessment tool. It is not legal advice, not a pre-inspection outcome, and not a substitute for a Health Canada submission.",
+      "This is an informational assessment tool. It is not legal advice, not a pre-inspection outcome, and not a substitute for a regulatory submission.",
   },
 
   // 13. Contact mini-form
@@ -739,11 +804,12 @@ export const HOME: HomeContent = {
       },
       message: {
         label: "Brief",
-        placeholder: "One or two lines on the target product, the stage, and what you need from us.",
+        placeholder:
+          "One or two lines on the target product, the stage, and what you need from us.",
         hint: "Optional. Skip if you prefer to talk first.",
       },
     },
-    submitLabel: "Send",
+    submitLabel: "Start a Development Discussion",
     submittingLabel: "Sending…",
     successHeading: "Thanks — we received it.",
     successBody:
@@ -754,13 +820,12 @@ export const HOME: HomeContent = {
       "We use your email only to reply. See our privacy notice for details.",
   },
 
-  // 14. Above-footer regulatory chips
+  // 14. Above-footer chips — DEL identifier removed in PR-C′
   regulatory: {
     kind: "regulatoryChips",
     registeredOffice:
-      "Propharmex Inc. — registered office: Mississauga, Ontario, Canada.",
-    delIdentifier:
-      "Health Canada DEL — reference number on file; verifiable on the Drug and Health Product Register.",
+      "Propharmex Inc. — registered office: Canada. A specialty CDMO for complex and niche pharmaceutical products.",
+    delIdentifier: "",
     disclaimer:
       "This site is informational. Nothing on it constitutes medical advice, a regulatory commitment, or a binding scope. AI-generated outputs carry an explicit disclaimer at the point of generation.",
   },
