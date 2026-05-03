@@ -7,9 +7,10 @@
  * `strategy="afterInteractive"` to avoid blocking LCP.
  * PostHog: lazy client init through `posthog-js`. Autocapture is DISABLED —
  * we track a bounded event taxonomy (see docs/analytics-taxonomy.md).
- * Immediately after init we register four super-properties (region,
- * referrer_group, device_class, first_touch_utm) so every subsequent
- * capture carries them without per-call boilerplate.
+ * Immediately after init we register three super-properties
+ * (referrer_group, device_class, first_touch_utm) so every subsequent
+ * capture carries them without per-call boilerplate. The region
+ * super-property was retired when the personalization layer was removed.
  *
  * Both are no-ops when their env vars are unset so dev and preview builds
  * don't spam fake telemetry.
@@ -31,7 +32,7 @@ export function Analytics({ plausibleDomain, posthogKey, posthogHost }: Props) {
     if (!posthogKey) return;
     if ((posthog as unknown as { __loaded?: boolean }).__loaded) {
       // Re-register super-props on subsequent mounts so values stay fresh
-      // when the user changes region or returns with new UTM params.
+      // when the user returns with new UTM params.
       registerSuperProperties();
       return;
     }

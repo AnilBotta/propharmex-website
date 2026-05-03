@@ -5,11 +5,9 @@
  * load of the page (after `posthog.init`). Super-properties are merged
  * into every subsequent `posthog.capture(...)` call automatically.
  *
- * Four super-properties (Prompt 24 spec):
+ * Three super-properties (Prompt 24 spec, region property removed
+ * with the personalization layer):
  *
- *   region            current cookie value (`px-region`); falls back to
- *                     `unknown` when the cookie isn't set yet (e.g. very
- *                     first request before middleware runs).
  *   referrer_group    coarse traffic-source bucket from `document.referrer`.
  *   device_class      mobile / tablet / desktop, derived from UA + touch.
  *   first_touch_utm   the user's first-touch UTM record (object) — pinned
@@ -26,7 +24,6 @@ import posthog from "posthog-js";
 
 import { classifyDevice } from "./device";
 import { classifyReferrer } from "./referrer";
-import { readRegionFromCookie } from "./region-cookie";
 import { resolveFirstTouchUtm } from "./utm";
 
 type LoadedPostHog = typeof posthog & { __loaded?: boolean };
@@ -39,9 +36,6 @@ function isLoaded(): boolean {
 export function registerSuperProperties(): void {
   if (typeof window === "undefined") return;
   if (!isLoaded()) return;
-
-  const cookieHeader = typeof document !== "undefined" ? document.cookie : "";
-  const region = readRegionFromCookie(cookieHeader) ?? "unknown";
 
   const referrer =
     typeof document !== "undefined" ? document.referrer : undefined;
@@ -71,7 +65,6 @@ export function registerSuperProperties(): void {
       : {};
 
   posthog.register({
-    region,
     referrer_group: referrerGroup,
     device_class: deviceClass,
     first_touch_utm: firstTouchUtm,

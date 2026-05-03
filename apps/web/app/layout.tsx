@@ -10,12 +10,9 @@ import { DraftModeIndicator } from "../components/site/DraftModeIndicator";
 import { Footer } from "../components/site/Footer";
 import { Header } from "../components/site/Header";
 import { JsonLd } from "../components/site/JsonLd";
-import { RegionDetectionBanner } from "../components/site/RegionDetectionBanner";
-import { RegionProvider } from "../components/site/RegionContext";
 import { SkipToContent } from "../components/site/SkipToContent";
 import { VisualEditing } from "../components/site/VisualEditing";
 import { buildSiteJsonLd } from "../components/site/site-jsonld";
-import { getServerRegion, shouldShowRegionBanner } from "../lib/region-server";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -93,9 +90,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const initialRegion = await getServerRegion();
-  const showBanner = await shouldShowRegionBanner();
-
   const siteJsonLd = buildSiteJsonLd(env.NEXT_PUBLIC_SITE_URL);
   const { isEnabled: isDraftEnabled } = await draftMode();
 
@@ -107,15 +101,12 @@ export default async function RootLayout({
       <body>
         <SkipToContent />
         <DraftModeIndicator enabled={isDraftEnabled} />
-        <RegionProvider initialRegion={initialRegion}>
-          {showBanner ? <RegionDetectionBanner /> : null}
-          <Header />
-          <main id="main-content" className="min-h-dvh">
-            {children}
-          </main>
-          <Footer />
-          <ConciergeBubble />
-        </RegionProvider>
+        <Header />
+        <main id="main-content" className="min-h-dvh">
+          {children}
+        </main>
+        <Footer />
+        <ConciergeBubble />
         <JsonLd id="site-jsonld" data={siteJsonLd} />
         <Analytics
           plausibleDomain={env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN}

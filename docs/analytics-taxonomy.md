@@ -19,7 +19,7 @@ PostHog — every event below is fired explicitly from the app code.
 | Product analytics | PostHog | Lazy `posthog.init(...)` inside the same component. `capture_pageview: true`, `autocapture: false`, `session_recording: disabled`, `person_profiles: identified_only`. |
 | Super-properties | PostHog `register()` | Set on `loaded()` callback inside `posthog.init` — every subsequent `capture` carries them automatically. See §3. |
 | Helper module | `apps/web/lib/analytics/` | Generic `track()` + typed wrappers for the surfaces added in Prompt 24. |
-| Per-surface telemetry | `apps/web/components/{concierge,scoping,del-readiness,dosage-matcher,site}/telemetry.ts` | The four AI tools and the region middleware retain their existing namespaced helpers from Prompts 18–22. |
+| Per-surface telemetry | `apps/web/components/{concierge,scoping,del-readiness,dosage-matcher}/telemetry.ts` | The four AI tools retain their existing namespaced helpers from Prompts 18–21. The region middleware was retired in PR-B′ (`feat/remove-region-personalization`) when the single-website pivot dropped the Canada/India/Global personalization layer. |
 
 Both vendors are **no-ops** when their env vars are unset (`NEXT_PUBLIC_PLAUSIBLE_DOMAIN`, `NEXT_PUBLIC_POSTHOG_KEY`) so dev / preview / CI builds never fire fake telemetry.
 
@@ -59,13 +59,12 @@ PR.
 ## 3. Super-properties
 
 Registered once on `posthog.init().loaded()` (and re-registered on
-subsequent mounts so values stay fresh after a region change or new UTM
-visit). Implementation:
+subsequent mounts so values stay fresh after a new UTM visit).
+Implementation:
 [`super-properties.ts`](../apps/web/lib/analytics/super-properties.ts).
 
 | Property | Type | Source | Purpose |
 |---|---|---|---|
-| `region` | `"CA" \| "US" \| "IN" \| "GLOBAL" \| "unknown"` | `px-region` cookie set by Prompt 22 middleware | Region-breakdown dashboard; segmentation across every event |
 | `referrer_group` | `"direct" \| "search" \| "ai" \| "social" \| "internal" \| "external"` | [`classifyReferrer`](../apps/web/lib/analytics/referrer.ts) on `document.referrer` | Channel attribution; AI-citation tracking |
 | `device_class` | `"mobile" \| "tablet" \| "desktop"` | [`classifyDevice`](../apps/web/lib/analytics/device.ts) on `navigator.userAgent` (+ touch points fallback for iPad) | Mobile/desktop segmentation in funnels |
 | `first_touch_utm` | `{ utm_source?, utm_medium?, utm_campaign?, utm_term?, utm_content?, captured_at? }` | [`resolveFirstTouchUtm`](../apps/web/lib/analytics/utm.ts) — pinned in `localStorage` on first visit | Marketing attribution; campaign ROI |
@@ -106,17 +105,7 @@ event so the funnel can pivot either way.
 actually queued an email. `false` means the env wasn't configured —
 expected in dev / preview, a regression in prod.
 
-### 4.4 Region middleware (Prompt 22 PR-A — already shipped)
-
-Implementation: [`apps/web/components/site/region-telemetry.ts`](../apps/web/components/site/region-telemetry.ts).
-
-| Event | Payload |
-|---|---|
-| `region.detected` | `{ region: Region }` |
-| `region.changed` | `{ region: Region, source: "switcher" \| "banner" }` |
-| `region.banner_dismissed` | `{ region: Region }` |
-
-### 4.5 CDMO Concierge (Prompt 18 — already shipped)
+### 4.4 CDMO Concierge (Prompt 18 — already shipped)
 
 Implementation: [`apps/web/components/concierge/telemetry.ts`](../apps/web/components/concierge/telemetry.ts).
 
@@ -190,7 +179,6 @@ between them so a reader of the original spec can find the real event.
 | `ai_tool_complete` | `concierge.message_received`, `scoping.scope_generated`, `del_readiness.scored`, `dosage_matcher.matched` | Per-tool completion event. |
 | `whitepaper_download` | `whitepaper_download` | New in Prompt 24. |
 | `form_submit` (form name) | `form_submit` (with `form: string`) | New in Prompt 24. |
-| `region_switch` | `region.changed` | Already shipped Prompt 22. |
 | `chat_open` | `concierge.opened` | Already shipped Prompt 18. |
 | `chat_message` | `concierge.message_sent` | Already shipped Prompt 18. |
 | `contact_submit` | `contact_submit` + `form_submit` | New in Prompt 24. |
@@ -216,7 +204,7 @@ Tracks the high-intent path: visit → primary CTA → form submit.
 | 3 | `form_submit` | `form ∈ {contact, whitepaper}` |
 | 4 | `form_submit` | `queued = true` |
 
-Breakdowns: `region`, `referrer_group`, `device_class`, `first_touch_utm.utm_source`.
+Breakdowns: `referrer_group`, `device_class`, `first_touch_utm.utm_source`.
 
 ### 6.2 AI tool conversion
 
@@ -230,7 +218,7 @@ Tracks engagement across the four AI tools.
 | 4 | `concierge.message_received` OR `scoping.scope_generated` OR `del_readiness.scored` OR `dosage_matcher.matched` | tool completion |
 | 5 | `*.consultation_clicked` OR `*.pdf_downloaded` OR `*.escape_clicked` | conversion to BD |
 
-Breakdowns: tool (event namespace), `region`, `device_class`.
+Breakdowns: tool (event namespace), `device_class`.
 
 ### 6.3 Content performance
 
@@ -240,20 +228,6 @@ Tracks insight + case-study + service navigation.
 - **Side-by-side:** `service_card_click` by `serviceId` and `surface`.
 - **Trend:** `whitepaper_download` by `slug` over 30 days.
 - **Retention:** weekly returning visitors (PostHog Retention insight on `$pageview`).
-
-### 6.4 Region breakdown
-
-Single tile per metric, broken down by the `region` super-property:
-
-- `region.detected` count by `region` (initial detection accuracy proxy).
-- `region.changed` count by `region` (override rate).
-- `form_submit` count by `region` (lead distribution).
-- `$pageview` count by `region` (traffic distribution).
-- `*.opened` (AI tools) count by `region` (tool engagement by region).
-
-A high `region.changed`-to-`region.detected` ratio indicates the
-detection layer is misclassifying users — a signal to revisit the
-country-to-region map in [`packages/lib/region/country-map.ts`](../packages/lib/region/country-map.ts).
 
 ---
 
@@ -284,7 +258,7 @@ country-to-region map in [`packages/lib/region/country-map.ts`](../packages/lib/
 - [`apps/web/components/site/Analytics.tsx`](../apps/web/components/site/Analytics.tsx) — SDK init.
 - [`apps/web/lib/analytics/`](../apps/web/lib/analytics/) — shared helpers.
 - [`apps/web/components/{surface}/telemetry.ts`](../apps/web/components/) — per-surface helpers.
-- Prompt 22 PR-A: region middleware — [`project_prompt22_region.md`](../%7E/.claude/projects/.../memory/project_prompt22_region.md) memory note.
-- Prompt 18–21: AI-tool telemetry — same memory namespace.
+- Prompt 18–21: AI-tool telemetry — see `project_prompt18_concierge.md` etc. memory notes.
+- PR-B′: region middleware retired — see `project_prB_remove_region_personalization.md` memory note.
 - PostHog docs: <https://posthog.com/docs/product-analytics/capture-events>
 - Plausible docs: <https://plausible.io/docs>
