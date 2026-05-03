@@ -58,41 +58,58 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  // Permanent redirects for legacy URLs that have moved.
+  // Permanent redirects for legacy URLs that have moved or been retired.
   async redirects() {
     return [
-      // Legacy whitepaper slug — Prompt 15 retitled the whitepaper from
-      // "Canada-India playbook" to "The two-hub operating model" (PR #19).
-      // The Canadian-anchored rebrand (PR #23 + the Commit-8 follow-up PR)
-      // retitled it again to "The Canadian CDMO operating model" with a new
-      // slug. This redirect terminates at the current slug to avoid a chain.
+      // The "Canadian CDMO operating model" whitepaper and the
+      // "DEL at a glance" foreign-sponsor primer were both retired with the
+      // specialty-CDMO repositioning (PR-D1′). All inbound URLs that
+      // previously resolved to either piece — and the upstream redirect
+      // chains that fed them — now terminate at /insights or
+      // /insights/whitepapers.
+      {
+        source: "/insights/whitepapers/canadian-cdmo-operating-model",
+        destination: "/insights/whitepapers",
+        permanent: true,
+      },
+      {
+        source: "/insights/del-at-a-glance-foreign-sponsor-primer",
+        destination: "/insights",
+        permanent: true,
+      },
+      // Re-thread the legacy whitepaper-slug chain so each old URL terminates
+      // directly at /insights/whitepapers without bouncing through the
+      // retired destination. The original chain was:
+      //   /whitepapers/canada-india-playbook
+      //     → /insights/whitepapers/two-hub-operating-model
+      //     → /insights/whitepapers/canadian-cdmo-operating-model
+      // Both intermediate hops are now retired; collapse all three to the
+      // hub.
       {
         source: "/whitepapers/canada-india-playbook",
-        destination: "/insights/whitepapers/canadian-cdmo-operating-model",
+        destination: "/insights/whitepapers",
         permanent: true,
       },
-      // Two-hub-operating-model whitepaper slug retired in the
-      // Canadian-anchored rebrand follow-up. Preserves any inbound links to
-      // the gated landing page.
       {
         source: "/insights/whitepapers/two-hub-operating-model",
-        destination: "/insights/whitepapers/canadian-cdmo-operating-model",
+        destination: "/insights/whitepapers",
         permanent: true,
       },
-      // Inside-a-two-hub-cdmo article slug retired in the same follow-up.
-      // The article body was already rewritten in PR #23; this redirect
-      // covers the URL surface only.
       {
         source: "/insights/inside-a-two-hub-cdmo",
         destination: "/insights/inside-our-operating-model",
         permanent: true,
       },
-      // Old whitepaper PDF asset path. The new generator writes the PDF
-      // under a Canadian-anchored filename; this redirect catches any
-      // inbound direct-PDF links that still point at the old path.
+      // Direct-PDF asset links — both the old and the most-recent generator
+      // outputs — land at the whitepapers hub.
       {
         source: "/downloads/two-hub-operating-model.pdf",
-        destination: "/downloads/canadian-cdmo-operating-model.pdf",
+        destination: "/insights/whitepapers",
+        permanent: true,
+      },
+      {
+        source: "/downloads/canadian-cdmo-operating-model.pdf",
+        destination: "/insights/whitepapers",
         permanent: true,
       },
     ];

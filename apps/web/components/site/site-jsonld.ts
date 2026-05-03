@@ -27,7 +27,7 @@ export function buildSiteJsonLd(siteUrl: string) {
     url: cleanUrl,
     logoUrl: `${cleanUrl}/brand/propharmex-logo.svg`,
     description:
-      "Canadian pharmaceutical services company anchored at our Mississauga, Ontario site under Health Canada Drug Establishment Licence. Pharmaceutical development, analytical services, regulatory affairs, and 3PL distribution for drug developers globally.",
+      "Specialty CDMO for complex and niche pharmaceutical products. Pharmaceutical development, analytical services, regulatory strategy, and clinical and BE insight for drug developers worldwide. Headquartered in Canada with a development centre in India.",
   });
 
   const website = webSiteJsonLd({
