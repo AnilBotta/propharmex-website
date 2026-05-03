@@ -85,6 +85,24 @@ const nextConfig: NextConfig = {
         destination: "/insights",
         permanent: true,
       },
+      // The Health Canada DEL licensing service-detail page was retired in
+      // PR-D2d-1'. Its body explicitly claimed Propharmex holds and
+      // operates a DEL at the Mississauga site, contradicting the new
+      // specialty-CDMO positioning. Inbound links land on the regulatory-
+      // services hub.
+      {
+        source: "/services/regulatory-services/health-canada-del-licensing",
+        destination: "/services/regulatory-services",
+        permanent: true,
+      },
+      // The legacy "/services/regulatory-services/health-canada-del" path
+      // (used by industries.ts cross-references prior to PR-D2d-1') also
+      // lands on the hub.
+      {
+        source: "/services/regulatory-services/health-canada-del",
+        destination: "/services/regulatory-services",
+        permanent: true,
+      },
       // Re-thread the legacy whitepaper-slug chain so each old URL terminates
       // directly at /insights/whitepapers without bouncing through the
       // retired destination. The original chain was:
