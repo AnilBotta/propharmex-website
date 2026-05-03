@@ -77,6 +77,14 @@ const nextConfig: NextConfig = {
         destination: "/insights",
         permanent: true,
       },
+      // The "Inside our operating model" article was retired in PR-D2c2'.
+      // Its body was anchored to DEL + 3PL framing incompatible with the
+      // specialty-CDMO repositioning.
+      {
+        source: "/insights/inside-our-operating-model",
+        destination: "/insights",
+        permanent: true,
+      },
       // Re-thread the legacy whitepaper-slug chain so each old URL terminates
       // directly at /insights/whitepapers without bouncing through the
       // retired destination. The original chain was:
@@ -97,7 +105,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/insights/inside-a-two-hub-cdmo",
-        destination: "/insights/inside-our-operating-model",
+        destination: "/insights",
         permanent: true,
       },
       // Direct-PDF asset links — both the old and the most-recent generator

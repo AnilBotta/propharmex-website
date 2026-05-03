@@ -48,13 +48,22 @@ export default function CaseStudiesHubPage() {
   const siteUrl = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
   const pageJsonLd = buildHubJsonLd(siteUrl);
 
+  // Per PR-D2c2', the seeded case studies are in placeholder mode (see
+  // CASE_STUDY_PLACEHOLDER_SLUGS in content/case-studies.ts). When that
+  // filter empties the cards array, we hide the FilterableGrid entirely
+  // — its filter pills + empty state read as "broken filter combination"
+  // rather than "content under review", which is the actual state.
+  const showGrid = CASE_STUDY_CARDS.length > 0;
+
   return (
     <>
       <HubHero content={CASE_STUDIES_HUB.hero} />
-      <FilterableGrid
-        cards={CASE_STUDY_CARDS}
-        copy={CASE_STUDIES_HUB.filterCopy}
-      />
+      {showGrid ? (
+        <FilterableGrid
+          cards={CASE_STUDY_CARDS}
+          copy={CASE_STUDIES_HUB.filterCopy}
+        />
+      ) : null}
       <HubClosing content={CASE_STUDIES_HUB.closing} />
 
       <JsonLd id="cs-hub-jsonld" data={pageJsonLd} />

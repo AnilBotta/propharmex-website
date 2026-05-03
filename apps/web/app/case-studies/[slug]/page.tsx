@@ -19,6 +19,7 @@
  * upstream in `content/case-studies.ts`. This file is a composition
  * shell only — no user-facing copy lives here.
  */
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
@@ -35,6 +36,7 @@ import { TimelineViz } from "../../../components/case-studies/TimelineViz";
 import { JsonLd } from "../../../components/site/JsonLd";
 import {
   CASE_STUDIES,
+  CASE_STUDY_PLACEHOLDER_SLUGS,
   CASE_STUDY_SLUGS,
   type CaseStudyContent,
   type CaseStudySlug,
@@ -103,9 +105,22 @@ export default async function CaseStudyDetailPage({
   const siteUrl = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
   const pageJsonLd = buildDetailJsonLd(siteUrl, content);
 
-  const relatedCards = CASE_STUDY_SLUGS.filter((s) => s !== content.slug).map(
-    (s) => CASE_STUDIES[s].summary,
-  );
+  // Per PR-D2c2', placeholder slugs short-circuit to a "verified content
+  // pending review" section. The underlying registry block is not
+  // rendered while the slug is in CASE_STUDY_PLACEHOLDER_SLUGS. JSON-LD
+  // is still emitted so crawlers see the article shell.
+  if (CASE_STUDY_PLACEHOLDER_SLUGS.has(content.slug)) {
+    return (
+      <>
+        <PlaceholderSection content={content} />
+        <JsonLd id={`cs-detail-${content.slug}-jsonld`} data={pageJsonLd} />
+      </>
+    );
+  }
+
+  const relatedCards = CASE_STUDY_SLUGS.filter(
+    (s) => s !== content.slug && !CASE_STUDY_PLACEHOLDER_SLUGS.has(s),
+  ).map((s) => CASE_STUDIES[s].summary);
 
   return (
     <>
@@ -154,6 +169,58 @@ export default async function CaseStudyDetailPage({
 
       <JsonLd id={`cs-detail-${content.slug}-jsonld`} data={pageJsonLd} />
     </>
+  );
+}
+
+/**
+ * Placeholder section for case-study slugs that are in placeholder mode.
+ * Renders a single "verified content pending review" card. The slug stays
+ * routable (so any inbound links from elsewhere on the site or external
+ * sources do not 404), but no metric or narrative content is surfaced.
+ */
+function PlaceholderSection({ content }: { content: CaseStudyContent }) {
+  return (
+    <section
+      aria-labelledby="cs-placeholder-heading"
+      className="border-b border-[var(--color-border)] bg-[var(--color-surface)] py-20 sm:py-24"
+    >
+      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <p className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-[0.12em] text-[var(--color-primary-700)]">
+          Case study · {content.crumbLabel}
+        </p>
+        <h1
+          id="cs-placeholder-heading"
+          className="mt-3 font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-[var(--color-fg)] sm:text-4xl"
+        >
+          Verified content pending review.
+        </h1>
+        <p className="mt-5 text-base leading-relaxed text-[var(--color-slate-800)]">
+          Our anonymized worked-pattern case studies are being prepared with
+          the engagement clients before publication. We do not publish
+          metric-bearing outcomes on the marketing site until the engagement
+          client has signed off on the version released here.
+        </p>
+        <p className="mt-3 text-base leading-relaxed text-[var(--color-slate-800)]">
+          Named references and engagement summaries are available to
+          qualified partners under NDA today. If a similar program is on your
+          roadmap, we are usually a working day from a written reply.
+        </p>
+        <div className="mt-8 flex flex-wrap items-center gap-3 text-sm">
+          <Link
+            href="/contact?source=case-studies-placeholder"
+            className="inline-flex items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-primary-600)] px-5 py-2.5 font-semibold text-[var(--color-on-primary)] transition-colors hover:bg-[var(--color-primary-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] focus-visible:ring-offset-2"
+          >
+            Talk to us about a similar program
+          </Link>
+          <Link
+            href={HUB_PATH}
+            className="inline-flex items-center justify-center rounded-[var(--radius-md)] px-3 py-2.5 font-semibold text-[var(--color-fg)] underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)]"
+          >
+            Back to case studies
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 }
 
