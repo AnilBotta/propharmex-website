@@ -3,8 +3,11 @@
  *
  * Grid of regulator cards with scope, jurisdiction, and a primary-source link.
  * The `scope` discriminator drives the chip colour so readers can scan the
- * grid for what Propharmex is actually accountable to (primary-regulator)
- * vs. where we operate on an engagement basis.
+ * grid by engagement type — filing-scope (where we prepare and submit
+ * dossiers on behalf of clients) versus engagement-scope (where work is
+ * pursued on a per-program basis). The legacy `primary-regulator` and
+ * `inspection-scope` discriminators are unused by /quality-compliance
+ * content as of PR-D2b' but remain in the type for future flexibility.
  */
 import type { FC } from "react";
 import { ExternalLink } from "lucide-react";

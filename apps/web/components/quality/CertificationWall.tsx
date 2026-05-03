@@ -3,15 +3,19 @@
 /**
  * CertificationWall — /quality-compliance.
  *
- * Interactive grid of certifications + framework alignments. Clicking a card
- * opens a Radix Dialog with the full scope, issuer detail, and the "request
- * documentation" affordance (routes to /contact with a per-cert source tag).
+ * Interactive grid of operating frameworks the QMS is structured against.
+ * Clicking a card opens a Radix Dialog with the full scope, issuer detail,
+ * and the "request documentation" affordance (routes to /contact with a
+ * per-row source tag).
  *
- * Per Prompt 8 quickest-path policy:
- *  - Only the Health Canada DEL row carries status="confirmed" and a live
- *    primary-source link. Every other row is `under-confirmation` or
- *    `alignment` and renders a stub badge.
- *  - No fabricated cert numbers, no fabricated issue/expiry dates.
+ * Per the PR-D2b' specialty-CDMO repositioning (see content/quality.ts
+ * docstring): every row carries status="alignment" — operating-framework
+ * statements only, no credential claims. The `confirmed` and
+ * `under-confirmation` branches in this component remain reachable in
+ * principle (the type union still includes both), so future content that
+ * legitimately uses them (e.g., a verified cert linked to a primary-source
+ * register) will render correctly without a code change. They are simply
+ * unused by the current /quality-compliance content.
  */
 import { useState } from "react";
 import Link from "next/link";
@@ -229,9 +233,10 @@ function CertificationModal({ cert }: { cert: QualityCertification }) {
         ) : null}
         {cert.status !== "confirmed" ? (
           <div className="rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-slate-50)] p-3 text-xs leading-relaxed text-[var(--color-muted)]">
-            Documentation — certificate PDF, scope annex, and validity letter —
-            is released to qualified partners under NDA. Use the request button
-            on the wall to open a scoped conversation.
+            Internal documentation — SOP excerpts, framework alignment
+            summaries, validation packets, training records — is released to
+            qualified partners under NDA. Use the request button on the wall
+            to open a scoped conversation.
           </div>
         ) : null}
       </div>
