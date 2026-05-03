@@ -113,7 +113,14 @@
   /* -------------------------------------------------------------------- */
   /*  Color — Semantic                                                    */
   /* -------------------------------------------------------------------- */
-  --color-success:    #2A9E3A;                 /* Green-600 — visual brand */
+  /*
+   * --color-success darkened from Green-600 (#2A9E3A, ~3.5:1 on Paper) to
+   * Green-700 (#1F7A2C, ~5.0:1 on Paper) for WCAG AA compliance with normal
+   * text. The Green-600 visual remains available as `--color-green-600` for
+   * non-text decoration (icon fills, chip dots, gradient bg). axe-core CI
+   * gate flagged 13+ nodes/page on PR #55 with the prior #2A9E3A token.
+   */
+  --color-success:    #1F7A2C;
   --color-success-fg: #FFFFFF;
   /*
    * --color-warn preserved at #8B6508 (~5.2:1 on Paper) per the Prompt 26
