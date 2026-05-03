@@ -10,13 +10,14 @@
  * and CDMO-strategy long-form. There is no "bridge" service offering and no
  * article frames the firm as one.
  *
- * Seed content (3 articles + 1 whitepaper) anchors three of the five pillars
- * defined in docs/seo-playbook.md:
+ * Seed content (1 article + 1 whitepaper) anchors one of the four pillars
+ * (Health Canada DEL pillar was retired in PR-D2c2' alongside the
+ * "DEL primer" and "Inside our operating model" seed articles, both of
+ * which were anchored to DEL/3PL framing incompatible with the new
+ * specialty-CDMO positioning):
  *
- *  - del-at-a-glance-foreign-sponsor-primer — Pillar 1 (Health Canada DEL)
- *  - ich-q2-r2-method-validation-2024       — Pillar 2 (Analytical services)
- *  - inside-our-operating-model            — Pillar 3 (CDMO strategy)
- *  - canadian-cdmo-operating-model (whitepaper) — Pillar 3 (CDMO strategy, gated)
+ *  - ich-q2-r2-method-validation-2024            — Analytical services pillar
+ *  - canadian-cdmo-operating-model (whitepaper)  — CDMO strategy pillar (gated, retired URL surface)
  *
  * The other two pillars (Formulation, Global market entry) seed in the
  * editorial calendar built at Prompt 23. Article #4 onward enters as Sanity
@@ -75,7 +76,6 @@ export type InsightFilter = (typeof INSIGHT_FILTERS)[number]["id"];
  * eyebrow on each article hero.
  */
 export const INSIGHT_PILLARS = [
-  { id: "health-canada-del", label: "Health Canada DEL" },
   { id: "analytical-services", label: "Analytical services" },
   { id: "cdmo-strategy", label: "CDMO strategy" },
   { id: "formulation", label: "Formulation" },
@@ -146,20 +146,20 @@ export const INSIGHT_AUTHORS: Record<string, ArticleAuthor> = {
   "regulatory-practice": {
     id: "regulatory-practice",
     name: "Propharmex Regulatory Practice",
-    role: "Health Canada DEL · Regulatory affairs",
-    bio: "Regulatory affairs, DEL operations, and Canadian filing strategy under our Health Canada Drug Establishment Licence. Group authorship reflects internal review by named regulatory leads; individual bylines available on request.",
+    role: "Regulatory strategy and submissions",
+    bio: "Regulatory strategy, CMC dossier authoring, and submission support across Health Canada, USFDA, EMA, and other regulators on behalf of client programs. Group authorship reflects internal review by named regulatory leads; individual bylines available on request.",
   },
   "analytical-bench": {
     id: "analytical-bench",
     name: "Propharmex Analytical Bench",
     role: "Method development and validation",
-    bio: "Analytical method development, validation, and stability under WHO-GMP from the Propharmex analytical bench. Group authorship reflects internal review by named scientific leads; individual bylines available on request.",
+    bio: "Analytical method development, validation, and stability work from the Propharmex analytical bench, structured around ICH Q2(R2) and ICH Q1A(R2). Group authorship reflects internal review by named scientific leads; individual bylines available on request.",
   },
   editorial: {
     id: "editorial",
     name: "Propharmex Editorial",
     role: "CDMO strategy and operating model",
-    bio: "Editorial group covering CDMO strategy, the Canadian-anchored operating model, and cross-pillar topics. Reviewed by regulatory and analytical practice leads before publication.",
+    bio: "Editorial group covering specialty-CDMO strategy, the Propharmex operating model, and cross-pillar topics. Reviewed by regulatory and analytical practice leads before publication.",
   },
 };
 
@@ -167,11 +167,7 @@ export const INSIGHT_AUTHORS: Record<string, ArticleAuthor> = {
 /*  Article                                                                   */
 /* -------------------------------------------------------------------------- */
 
-export const ARTICLE_SLUGS = [
-  "del-at-a-glance-foreign-sponsor-primer",
-  "ich-q2-r2-method-validation-2024",
-  "inside-our-operating-model",
-] as const;
+export const ARTICLE_SLUGS = ["ich-q2-r2-method-validation-2024"] as const;
 export type ArticleSlug = (typeof ARTICLE_SLUGS)[number];
 
 export type ArticleContent = {
@@ -305,14 +301,14 @@ export const INSIGHTS: InsightsContent = {
   hub: {
     metaTitle: "Insights — Propharmex regulatory and analytical briefings",
     metaDescription:
-      "Short technical briefings from the Propharmex regulatory practice and analytical bench: Health Canada DEL, ICH method validation, and CDMO operating notes. About one per month.",
+      "Short technical briefings from the Propharmex regulatory practice and analytical bench — ICH method validation, regulatory pathways across multiple geographies, and specialty-CDMO operating notes. About one per month.",
     ogTitle: "Insights — Propharmex",
     ogDescription:
-      "Regulatory and analytical briefings from a Canadian pharmaceutical services company. Health Canada DEL, ICH, analytical method validation, and CDMO strategy.",
+      "Regulatory and analytical briefings from a specialty CDMO. ICH guidelines, analytical method validation, and CDMO strategy.",
     hero: {
       eyebrow: "Editorial",
       headline: "Briefings from the regulatory practice and analytical bench",
-      lede: "Plain-language primers on Health Canada DEL, ICH guidelines, and the operating model behind a Canadian DEL site running alongside an Indian analytical and development bench. About one new piece per month. No marketing fog.",
+      lede: "Plain-language primers on ICH guidelines, regulatory pathways, and the operating model behind a specialty CDMO with a Canadian headquarters and an Indian development centre. About one new piece per month. No marketing fog.",
     },
     filterCopy: {
       eyebrow: "Filter",
@@ -345,198 +341,11 @@ export const INSIGHTS: InsightsContent = {
 
   articles: [
     /* --------------------------------------------------------------------- */
-    /*  1 — Health Canada DEL primer                                         */
-    /* --------------------------------------------------------------------- */
-    {
-      slug: "del-at-a-glance-foreign-sponsor-primer",
-      pillar: "health-canada-del",
-      articleType: "article",
-      publishedAt: "2026-04-26",
-      readingMinutes: 8,
-      title:
-        "The Drug Establishment Licence at a glance: what every foreign sponsor should know before filing",
-      excerpt:
-        "GUI-0002 in plain language. What a Drug Establishment Licence actually authorizes, the three application errors we see most often, and where the Health Canada service standard sits as of April 2026.",
-      metaTitle:
-        "Drug Establishment Licence (DEL) primer for foreign sponsors — Propharmex",
-      metaDescription:
-        "Plain-language primer on Health Canada's Drug Establishment Licence (DEL) under GUI-0002 — what it authorizes, the three most common application errors, and the current service standard.",
-      ogTitle:
-        "DEL at a glance: a foreign-sponsor primer on Health Canada's Drug Establishment Licence",
-      ogDescription:
-        "What GUI-0002 actually requires, where applications most often stumble, and what the Health Canada service standard looks like in 2026.",
-      hero: {
-        eyebrow: "Health Canada DEL · Primer",
-        lede: "If you are a US, EU, or APAC sponsor preparing your first Drug Establishment Licence application, three things tend to surprise you. This is the version of GUI-0002 we wish we had read earlier.",
-      },
-      author: INSIGHT_AUTHORS["regulatory-practice"]!,
-      tags: [
-        "Health Canada",
-        "DEL",
-        "GUI-0002",
-        "Foreign sponsors",
-        "Regulatory affairs",
-      ],
-      body: [
-        {
-          type: "p",
-          text: "A Drug Establishment Licence (DEL) is the Canadian authorization required to fabricate, package, label, test, import, distribute, or wholesale a drug. It is issued by Health Canada's Regulatory Operations and Enforcement Branch under the Food and Drug Regulations. For a foreign sponsor planning to enter the Canadian market — by direct importation, by tech transfer to a Canadian site, or by partnering with a Canadian establishment — the DEL is the prerequisite that gates almost every downstream activity.",
-        },
-        {
-          type: "p",
-          text: "If you arrive at a DEL application with a working knowledge of US FDA establishment registration or EU MIA authorizations, the operating model will be familiar. The detail will not. What follows is the version of GUI-0002 we wish we had read earlier — what the licence authorizes, the three errors that most often delay first-time applications, and where the Health Canada service standard sits today.",
-        },
-
-        {
-          type: "h2",
-          text: "What a Drug Establishment Licence authorizes",
-          id: "what-a-del-authorizes",
-        },
-        {
-          type: "p",
-          text: "GUI-0002 is the operating manual for DEL applications. It scopes the activity classes the licence can cover, the categories of drugs in scope (pharmaceuticals, biologics, radiopharmaceuticals, and Schedule C/D drugs), and the evidence required for each activity-site-category triple. The licence is site-specific: each physical building where a regulated activity takes place is licensed separately, and the activities listed on the licence determine what the site is legally permitted to do.",
-        },
-        {
-          type: "callout",
-          tone: "regulatory",
-          heading: "Primary source",
-          body: "GUI-0002 — Guide to drug establishment licences and drug establishment licensing fees — is the canonical Health Canada document for DEL applications. Read it against your draft site master file before you start filling forms.",
-          source: {
-            kind: "primary",
-            label:
-              "Health Canada GUI-0002 (as of 2026-04-23)",
-            href: "https://www.canada.ca/en/health-canada/services/drugs-health-products/compliance-enforcement/establishment-licences/guidance-document.html",
-          },
-        },
-        {
-          type: "p",
-          text: "Activity classes commonly listed on a DEL include fabrication, packaging and labelling, testing, importation, distribution, and wholesaling. Each carries its own evidence expectations. A site licensed for fabrication has a higher GMP evidence bar than one licensed only for distribution. The activity scope is among the most consequential decisions in the application — it determines the inspection footprint, the GMP evidence package, and the renewal cadence.",
-        },
-        {
-          type: "ul",
-          items: [
-            "Fabrication and packaging require a full GMP evidence package and trigger an on-site Health Canada inspection.",
-            "Importation requires evidence that each foreign site supplying drugs into Canada operates under acceptable GMP — typically through a Health Canada inspection of the foreign site, a recognized foreign authority's inspection, or an applicable Mutual Recognition Agreement.",
-            "Distribution and wholesaling have lighter evidence expectations than fabrication but still require a quality system, a recall procedure, and complaints handling per Division 2 of the Food and Drug Regulations.",
-          ],
-        },
-
-        {
-          type: "h2",
-          text: "The three application errors we see most often",
-          id: "common-application-errors",
-        },
-        {
-          type: "p",
-          text: "Across DEL applications we have prepared, audited, or supported as Canadian agent, three categories of issue account for most pre-licence requests for additional information from Health Canada. Each is avoidable with a careful read of GUI-0002 against your draft site master file.",
-        },
-
-        {
-          type: "h3",
-          text: "Activity-class scoping mistakes",
-          id: "scoping-mistakes",
-        },
-        {
-          type: "p",
-          text: "First-time applicants frequently apply for either too narrow or too broad an activity scope. Too narrow — applying only for distribution when the site also conducts incoming raw-material testing — forces an amendment within months and a re-inspection. Too broad — applying for fabrication on a site that lacks the QA infrastructure for it — invites either deficiencies or a request to withdraw and refile. The right scope is the smallest one that covers your actual operating activities for the next 24 months, plus any planned activity that has signed-off project documentation.",
-        },
-
-        {
-          type: "h3",
-          text: "Foreign-site evidence package mismatches",
-          id: "foreign-site-evidence",
-        },
-        {
-          type: "p",
-          text: "Where drugs are imported into Canada, GUI-0002 requires evidence that each foreign manufacturing site operates under acceptable GMP. Mismatches happen when the evidence on file is older than the look-back window, when a renewal certificate is on a different legal entity than the drug-licence holder, or when the foreign site's listed scope no longer matches the activity being imported. Each mismatch is its own request for additional information, and they tend to surface late in the review.",
-        },
-
-        {
-          type: "h3",
-          text: "Site master file gaps",
-          id: "site-master-file-gaps",
-        },
-        {
-          type: "p",
-          text: "The site master file is the most-reviewed document in a DEL application. Common gaps: stale equipment qualification status, an organizational chart that does not match the current QMS, missing or out-of-date HVAC qualification documents, and SOPs referenced in the SMF that the inspector cannot locate on first request. The SMF is read literally — every cross-reference must resolve to a current, controlled document.",
-        },
-        {
-          type: "callout",
-          tone: "info",
-          body: "If you are planning a first DEL application in 2026, build the site master file at least three months before the planned filing date and run a mock inspection against it. The errors above are easier to fix in the dry run than in a live request for additional information.",
-        },
-
-        {
-          type: "inline-cta",
-          eyebrow: "Talk to the regulatory practice",
-          heading: "Planning a first-time DEL application?",
-          body: "We hold a DEL at our Mississauga site and act as Canadian agent for foreign sponsors entering the Canadian market. A 30-minute call clarifies activity-class scoping, evidence-package strategy, and timing before you commit to a filing date.",
-          cta: {
-            label: "Schedule a regulatory call",
-            href: "/contact?source=insights-del-primer",
-            variant: "primary",
-          },
-        },
-
-        {
-          type: "h2",
-          text: "Where the service standard sits as of April 2026",
-          id: "service-standard-2026",
-        },
-        {
-          type: "p",
-          text: "Health Canada publishes service standards for DEL applications and amendments on its public website, broken out by application type (new licence, amendment, annual licence review). For new licences, the published target captures complete-to-decision elapsed time and is updated periodically. Actual elapsed time for any individual application varies with the activity classes requested, the inspection footprint, and the quality of the application.",
-        },
-        {
-          type: "callout",
-          tone: "regulatory",
-          body: "Service standards are targets, not commitments. A request for additional information mid-review pauses the clock; a deficient site master file or unresolved foreign-site evidence package can extend an application well beyond the published target.",
-          source: {
-            kind: "primary",
-            label:
-              "Health Canada Drug Establishment Licence service standards (as of 2026-04-23)",
-            href: "https://www.canada.ca/en/health-canada/services/drugs-health-products/compliance-enforcement/establishment-licences/service-standards.html",
-          },
-        },
-
-        {
-          type: "h2",
-          text: "If you are starting an application this quarter",
-          id: "starting-an-application",
-        },
-        {
-          type: "p",
-          text: "Three practical recommendations for sponsors filing a first DEL application in the next 90 days:",
-        },
-        {
-          type: "ol",
-          items: [
-            "Lock the activity scope before you draft the site master file. Resolving scoping ambiguity after the SMF is drafted is roughly twice the work.",
-            "Confirm every foreign-site evidence reference is current, on the right legal entity, and within the required look-back window. A single mismatch can stall the entire application.",
-            "Plan a mock inspection three to four weeks before submission. Either an internal cross-functional walk-through or an external regulatory consultant — the goal is finding the gaps before the inspector does.",
-          ],
-        },
-        {
-          type: "p",
-          text: "DEL applications are operational-discipline projects, not transformational ones. Every gap a Health Canada reviewer or inspector finds is a gap that existed before the application was filed; the document review is the surface that exposes it. The applications that go through cleanly are the ones where the SMF is the artifact of the actual quality system on the day of filing — not a document written for the regulator.",
-        },
-
-        {
-          type: "callout",
-          tone: "caveat",
-          heading: "Disclaimer",
-          body: "This article is informational and does not constitute regulatory advice. Specific filings, timelines, and outcomes depend on facts not visible from public information. For advice tailored to your facility, your activities, and your filing strategy, contact our regulatory practice or a qualified Canadian regulatory professional.",
-        },
-      ],
-      related: ["inside-our-operating-model", "ich-q2-r2-method-validation-2024"],
-      primaryServiceLink: {
-        label: "Regulatory services",
-        href: "/services/regulatory-services",
-      },
-    },
-
-    /* --------------------------------------------------------------------- */
-    /*  2 — ICH Q2(R2) analytical primer                                     */
+    /*  1 — ICH Q2(R2) analytical primer                                     */
+    /*                                                                       */
+    /*  Note: a "Health Canada DEL primer for foreign sponsors" article was  */
+    /*  removed in PR-D2c2' (specialty-CDMO repositioning). The URL surface  */
+    /*  is 301'd to /insights via apps/web/next.config.ts.                   */
     /* --------------------------------------------------------------------- */
     {
       slug: "ich-q2-r2-method-validation-2024",
@@ -728,7 +537,7 @@ export const INSIGHTS: InsightsContent = {
           body: "This article is informational and does not constitute regulatory advice. Specific filings, regional positions, and acceptance criteria depend on the dossier, the regulator, and the molecule. For advice tailored to your validation package and filing strategy, contact our analytical practice or a qualified regulatory professional.",
         },
       ],
-      related: ["del-at-a-glance-foreign-sponsor-primer", "inside-our-operating-model"],
+      related: [],
       primaryServiceLink: {
         label: "Analytical services",
         href: "/services/analytical-services",
@@ -736,281 +545,26 @@ export const INSIGHTS: InsightsContent = {
     },
 
     /* --------------------------------------------------------------------- */
-    /*  3 — Two-hub CDMO operating model                                     */
+    /*  Note: an "Inside our operating model" article was removed in         */
+    /*  PR-D2c2' (specialty-CDMO repositioning). Its body was anchored to    */
+    /*  Health Canada DEL + 3PL framing and was incompatible with the new    */
+    /*  positioning. The URL surface is 301'd to /insights via               */
+    /*  apps/web/next.config.ts.                                             */
     /* --------------------------------------------------------------------- */
-    {
-      slug: "inside-our-operating-model",
-      pillar: "cdmo-strategy",
-      articleType: "article",
-      publishedAt: "2026-04-26",
-      readingMinutes: 10,
-      title:
-        "Inside our operating model: how a Canadian DEL site and an Indian development centre operate under one quality system",
-      excerpt:
-        "How a Canadian-anchored CDMO operating model actually functions day-to-day for global sponsors. Data flow, batch record chain-of-custody, QP release path, and where the operational seams are.",
-      metaTitle:
-        "Inside our operating model: a Canadian DEL site and an Indian development centre, one QMS — Propharmex",
-      metaDescription:
-        "How a Canadian DEL site and an Indian analytical and development centre operate under one quality system day-to-day. Data flow, QP release path, and operational discipline.",
-      ogTitle:
-        "Inside our operating model: how the Canadian-anchored CDMO actually works",
-      ogDescription:
-        "A Canadian-anchored CDMO operating model in practice — Health Canada DEL site with offshore development depth, one quality system, global sponsors.",
-      hero: {
-        eyebrow: "CDMO strategy · Operating model",
-        lede: "A Canadian DEL site, an offshore development centre, one quality system, global clients. Here is what that actually looks like across a real engagement — without the marketing.",
-      },
-      author: INSIGHT_AUTHORS.editorial!,
-      tags: [
-        "CDMO strategy",
-        "Canadian-anchored",
-        "Quality systems",
-        "Tech transfer",
-        "Operations",
-      ],
-      body: [
-        {
-          type: "p",
-          text: "Propharmex is a Canadian pharmaceutical services company anchored at our Mississauga, Ontario site, where we hold a Health Canada Drug Establishment Licence and run 3PL distribution. Our Indian development centre in Hyderabad provides operational depth in pharmaceutical development and analytical services, under the same QMS. Our clients are drug developers globally — US generic sponsors, EU innovators, multilateral procurement agencies, and a handful of NGO programs. There is no bridge service offering between the two countries. The operating structure is how the company actually runs, not a productized intermediary role.",
-        },
-        {
-          type: "p",
-          text: "That distinction matters more than it seems. A bridge framing implies the value is in the routing — moving work between Canada and an offshore site for some structural advantage. The actual value is the operational discipline of running a Canadian DEL site with offshore development depth under one quality system, for a client base that does not particularly care which side of the world the work happens on. They care that it lands on time, lands clean, and lands in a form their regulator accepts.",
-        },
-        {
-          type: "p",
-          text: "What follows is what that actually looks like, week to week, for a real engagement.",
-        },
-
-        {
-          type: "h2",
-          text: "What lives at each site",
-          id: "what-lives-at-each-site",
-        },
-
-        {
-          type: "h3",
-          text: "The DEL site: regulatory authority and release",
-          id: "del-site",
-        },
-        {
-          type: "p",
-          text: "The Mississauga site is the regulatory anchor. It holds a Health Canada Drug Establishment Licence and operates the Canadian-side quality, regulatory, and release functions: QP release where required, Canadian agent representation for foreign sponsors, primary point of contact with Health Canada, and 3PL distribution into the Canadian market. The site's quality system is the master quality system for the firm — not a regional copy.",
-        },
-        {
-          type: "callout",
-          tone: "regulatory",
-          heading: "Primary source",
-          body: "Propharmex's Drug Establishment Licence is held at our Mississauga site and is verifiable through the Health Canada Drug Product Database. The DEL determines what activities the site is authorized to perform; it does not constitute a regulatory approval of any product the site handles.",
-          source: {
-            kind: "primary",
-            label:
-              "Health Canada Drug Product Database (as of 2026-04-23)",
-            href: "https://health-products.canada.ca/dpd-bdpp/",
-          },
-        },
-
-        {
-          type: "h3",
-          text: "The development centre: analytical depth",
-          id: "development-centre",
-        },
-        {
-          type: "p",
-          text: "Our Indian development centre in Hyderabad is the development and analytical site. It runs formulation development across oral solids, oral liquids, sterile injectables, and topicals; analytical method development and validation; stability programs across ICH and WHO climatic zones; and tech-transfer execution into manufacturing partners. It operates under WHO-GMP, under the same QMS as the DEL site, with capability for sponsor or regulatory audits at standard cadence.",
-        },
-        {
-          type: "p",
-          text: "The development bench runs continuously, not episodically. A sponsor engagement does not stand up a project team from scratch — it is allocated to a development pod with formulation, analytical, and regulatory representation already configured. That continuity is the depth.",
-        },
-
-        {
-          type: "h2",
-          text: "How a typical engagement flows",
-          id: "engagement-flow",
-        },
-        {
-          type: "p",
-          text: "A representative engagement — say, a US generic sponsor planning a Canadian and US filing on a sterile injectable — moves through a defined sequence:",
-        },
-        {
-          type: "ol",
-          items: [
-            "Scope and quality plan finalized under the DEL site, with a Canadian Quality Agreement that sets data ownership, audit rights, and release path.",
-            "Formulation and analytical work executed at the development centre: formulation studies, method development, validation under ICH Q2(R2), stability initiated under appropriate climatic zone.",
-            "Tech-transfer package authored at the development centre, reviewed against the Canadian quality system, frozen for execution.",
-            "Manufacturing executed at the designated commercial site (sometimes our DEL site, more often a contracted manufacturer); release testing run on a cross-validated method; the DEL site performs Canadian release for any Canadian-bound product.",
-            "Filing authored across the team — analytical and CMC sections drafted at the development centre with US/Canadian regulatory editorial under the DEL, then submitted by the sponsor or by Propharmex as Canadian agent.",
-          ],
-        },
-        {
-          type: "p",
-          text: "What this sequence is not is a hand-off chain. It is a single project under one PMO, with execution sites that interact through a shared QMS, daily stand-ups during active phases, and a single project record visible to the sponsor.",
-        },
-
-        {
-          type: "h2",
-          text: "One quality system, end to end",
-          id: "one-quality-system",
-        },
-        {
-          type: "p",
-          text: "The structural commitment behind the operating model is a single QMS — the master quality system anchored at the DEL site, with the development centre operating as a controlled secondary site under that system. SOPs are versioned centrally; deviations and CAPAs are tracked in a single ledger with site-of-occurrence tagging; document control is single-source-of-truth; data integrity controls (ALCOA+) apply across the QMS.",
-        },
-        {
-          type: "callout",
-          tone: "info",
-          heading: "What this means in practice",
-          body: "When a sponsor's auditor or a regulator requests a document, the answer is the same regardless of which site executed the work — because the document control system is the same. There is no site-A-said, site-B-said reconciliation work.",
-        },
-        {
-          type: "p",
-          text: "The pharmaceutical quality system framework we operate against is consistent with ICH Q10. Q10 does not prescribe how a multi-site CDMO should be structured; it does set the expectation that the quality system covers the product lifecycle across whatever organizational structure the firm chooses. Our choice is a single master system rather than parallel systems linked by a quality agreement.",
-        },
-
-        {
-          type: "h2",
-          text: "Where the operational seams are",
-          id: "operational-seams",
-        },
-        {
-          type: "p",
-          text: "Honest about the seams: the operating model is not friction-free. The places it has to work hardest are the same places any multi-site operation has to work hardest, just with a longer flight time when an in-person resolution is needed.",
-        },
-        {
-          type: "ul",
-          items: [
-            "Time-zone overlap is roughly 90 minutes between the DEL site and the development centre on a standard business day. Active-phase projects use that window for stand-ups; everything else runs asynchronously with documented hand-offs.",
-            "Sample shipment for analytical work crosses customs in both directions. Cold-chain integrity, courier qualification, and lead-time buffers are first-class operational concerns, not afterthoughts.",
-            "Regulatory editorial split — analytical and CMC content drafted at the development centre, regional editorial finalized under the DEL — needs disciplined version control. We use a single dossier-staging environment to avoid email-attachment drift.",
-          ],
-        },
-        {
-          type: "p",
-          text: "These seams are not features. They are the cost of running two sites instead of one. The reason to absorb that cost is the depth and authority that comes from each side — and for the right sponsors and the right work, the math works.",
-        },
-
-        {
-          type: "inline-cta",
-          eyebrow: "Talk to the team",
-          heading: "Evaluating a Canadian-anchored CDMO partner?",
-          body: "If you are scoping a CDMO engagement that needs Canadian regulatory authority and offshore analytical depth under one quality system, a 30-minute call clarifies fit before either side spends real time on a proposal.",
-          cta: {
-            label: "Schedule a discovery call",
-            href: "/contact?source=insights-operating-model",
-            variant: "primary",
-          },
-        },
-
-        {
-          type: "h2",
-          text: "When this model is the right answer (and when it isn't)",
-          id: "when-its-the-right-answer",
-        },
-        {
-          type: "p",
-          text: "The operating model fits a specific sponsor profile. It is the right answer for sponsors who need Canadian regulatory authority (DEL holder, Canadian agent, Health Canada relationship) and analytical or development depth in the same engagement, with global filing reach. It is the right answer for sponsors who would otherwise be running a multi-vendor program — one Canadian regulatory consultant, one offshore analytical lab, a separate Canadian 3PL — and want the consolidation.",
-        },
-        {
-          type: "p",
-          text: "It is not the right answer for sponsors who need single-site, single-region work where neither geography matters. A US-only sterile-injectable manufacturer with no Canadian filing intent does not benefit from a Canadian DEL, and we will say so. The honest answer to the question is what gets the engagement off to a clean start; the alternative is a misfit project that either party regrets six months in.",
-        },
-
-        {
-          type: "blockquote",
-          text: "The operating model is operational, not aspirational. The DEL site does what a Canadian DEL site does. The development centre does what a development bench does. The work between them is the boring, disciplined kind that does not show up on a marketing page.",
-          cite: "Propharmex Editorial",
-        },
-
-        {
-          type: "callout",
-          tone: "caveat",
-          heading: "Disclaimer",
-          body: "This article describes our current operating model and is informational only. Specific engagement scope, regulatory pathways, and timelines depend on the sponsor, the molecule, and the filing strategy. For advice tailored to your program, contact our team or a qualified regulatory professional.",
-        },
-      ],
-      related: [
-        "del-at-a-glance-foreign-sponsor-primer",
-        "ich-q2-r2-method-validation-2024",
-      ],
-      primaryServiceLink: {
-        label: "Why Propharmex",
-        href: "/why-propharmex",
-      },
-    },
   ],
 
-  whitepapers: [
-    /* --------------------------------------------------------------------- */
-    /*  WP 1 — The Canadian CDMO operating model                             */
-    /* --------------------------------------------------------------------- */
-    {
-      slug: "canadian-cdmo-operating-model",
-      pillar: "cdmo-strategy",
-      articleType: "whitepaper",
-      publishedAt: "2026-04-27",
-      pages: 10,
-      title: "The Canadian CDMO operating model",
-      summary:
-        "A field guide for innovator and generic sponsors evaluating CDMO partners that operate a Canadian DEL site with offshore analytical and development depth under one quality system. Canadian-anchored, global clients.",
-      metaTitle:
-        "Whitepaper — The Canadian CDMO operating model | Propharmex",
-      metaDescription:
-        "Field guide on operating a Canadian DEL site with an offshore analytical and development centre under one quality system, for global drug developers.",
-      ogTitle: "Whitepaper: The Canadian CDMO operating model",
-      ogDescription:
-        "Canadian regulatory authority, offshore analytical depth, one quality system. A field guide for sponsors evaluating CDMO partners.",
-      hero: {
-        eyebrow: "Whitepaper · CDMO strategy",
-        lede: "The full operating model in 10 pages — why this structure exists, what each site holds, how a real engagement flows, where the operational seams are, and a decision framework for sponsors evaluating CDMO partners. Free download for verified business contacts.",
-      },
-      insideBullets: [
-        "Why this guide exists — and the three CDMO archetypes sponsors choose between.",
-        "What a Canadian DEL site under Health Canada Drug Establishment Licence actually authorizes — and what it does not.",
-        "How the offshore development centre operates under WHO-GMP, with formulation and analytical depth across seven dosage forms.",
-        "How a real engagement flows from scope to filing in five stages, under one PMO and one quality system.",
-        "Where the operational seams are — timezone, customs, editorial split — and how they are managed.",
-        "Decision framework: when this model is the right answer, and three questions to ask any CDMO partner.",
-      ],
-      contents: [
-        { id: "executive-summary", label: "Executive summary", pages: "1" },
-        { id: "context", label: "Why this guide exists — three CDMO archetypes", pages: "1" },
-        {
-          id: "del-site",
-          label: "The DEL site: regulatory authority, release, 3PL",
-          pages: "1",
-        },
-        {
-          id: "development-centre",
-          label: "The development centre: analytical depth, seven dosage forms",
-          pages: "1",
-        },
-        {
-          id: "one-quality-system",
-          label: "One quality system, end to end",
-          pages: "1",
-        },
-        {
-          id: "engagement-flow",
-          label: "How an engagement actually flows — five stages, worked example",
-          pages: "1",
-        },
-        {
-          id: "operational-seams",
-          label: "Where the operational seams are — and how they are managed",
-          pages: "1",
-        },
-        {
-          id: "decision-framework",
-          label: "Decision framework + three questions to ask any CDMO partner",
-          pages: "1",
-        },
-      ],
-      formFields: ["fullName", "email", "company", "role", "country", "useCase"],
-      pdfPath: "/downloads/canadian-cdmo-operating-model.pdf",
-      formDisclaimer:
-        "We use this contact information to send the download and a single follow-up. We do not sell or share contact lists. Full privacy notice at /legal/privacy.",
-      author: INSIGHT_AUTHORS.editorial!,
-    },
-  ],
+  // The "Canadian CDMO operating model" whitepaper was retired in
+  // PR-D2c2'. Its content was anchored to a Canadian DEL site + 3PL
+  // distribution + WHO-GMP framing incompatible with the new specialty-
+  // CDMO positioning. The /insights/whitepapers/canonical-cdmo-operating-
+  // model URL surface and the /downloads/canadian-cdmo-operating-model.pdf
+  // direct asset path are both 301'd to /insights/whitepapers via
+  // apps/web/next.config.ts (added in PR-D1'). The API route at
+  // /api/whitepaper-download already returns 404 when a slug is not
+  // present in INSIGHTS.whitepapers (see route.ts).
+  //
+  // PR-D2c3' will further prune `WHITEPAPER_SLUGS`, the static-route
+  // generator, and the Zod enum in the API route. Until then, the empty
+  // array below stops the /insights hub from rendering a stale card.
+  whitepapers: [],
 };

@@ -394,19 +394,19 @@ export const CASE_STUDIES_HUB: CaseStudyHubContent = {
     "Anonymized worked patterns across generics, innovators, and NGO supply programmes. Documentation on request under NDA.",
   ogTitle: "Case studies — Propharmex",
   ogDescription:
-    "Three seed studies: modified-release requalification, sterile-injectable second-sourcing, and an NGO oral-solid stability rebuild.",
+    "Anonymized worked-pattern case studies are under client review. Named references are available under NDA today.",
   hero: {
     eyebrow: "Evidence",
-    headline: "Outcomes we can document.",
-    lede: "A small, current set of anonymized case studies. Each one is the worked pattern behind a claim we make elsewhere on the site. Named references are available under NDA.",
+    headline: "Verified case studies are under review.",
+    lede: "Our anonymized worked-pattern case studies are being prepared with the engagement clients before publication. Until they are released here, named references and engagement summaries are available to qualified partners under NDA.",
     stats: [
-      { label: "Seed studies shipped", value: "3" },
+      { label: "Verified case studies", value: "Under review" },
       { label: "Named references", value: "On request" },
-      { label: "Updated", value: "2026-04" },
+      { label: "Updated", value: "2026-05" },
     ],
     primaryCta: {
-      label: "Start a similar project",
-      href: "/contact",
+      label: "Talk to us about a similar program",
+      href: "/contact?source=case-studies-placeholder",
       variant: "primary",
     },
     secondaryCta: {
@@ -1165,10 +1165,37 @@ export const CASE_STUDIES: Record<CaseStudySlug, CaseStudyContent> = {
 };
 
 /**
- * Pre-computed hub card list — the hub route reads this directly. Keeps the
- * source-of-truth on the detail-page `summary` blocks so the grid card and
- * the detail-page hero card never drift.
+ * Slugs whose detail page renders the "verified content pending review"
+ * placeholder instead of the full Problem/Approach/Solution/Result narrative.
+ *
+ * Per the PR-D2c2' specialty-CDMO repositioning, the three seeded case
+ * studies were anonymized worked patterns with metric-bearing outcomes
+ * ("Filed in 11 months", "18% COGS reduction", "Zero OOS in 24 months"). The
+ * client brief tells us not to publish invented or unverifiable metrics on
+ * the marketing site. Until the engagement clients sign off on a verified
+ * version, the detail pages short-circuit to a placeholder section and the
+ * hub filters these slugs out of `CASE_STUDY_CARDS`.
+ *
+ * The underlying content blocks (MODIFIED_RELEASE_REQUALIFICATION,
+ * STERILE_INJECTABLE_SECOND_SOURCING, NGO_ORAL_SOLID_STABILITY_REBUILD)
+ * remain in this file as historical reference — never rendered to users
+ * while the slug is present in this set, but available for future
+ * reactivation by removing the slug here.
  */
-export const CASE_STUDY_CARDS: CaseStudyCardSummary[] = CASE_STUDY_SLUGS.map(
-  (slug) => CASE_STUDIES[slug].summary,
-);
+export const CASE_STUDY_PLACEHOLDER_SLUGS: ReadonlySet<CaseStudySlug> =
+  new Set<CaseStudySlug>([
+    "modified-release-requalification",
+    "sterile-injectable-second-sourcing",
+    "ngo-oral-solid-stability-rebuild",
+  ]);
+
+/**
+ * Pre-computed hub card list — the hub route reads this directly. Filtered
+ * to exclude any slug currently in `CASE_STUDY_PLACEHOLDER_SLUGS`, so the
+ * hub does not surface unverified metric claims. With all three seeded
+ * studies currently in placeholder mode, this array is empty and the hub
+ * renders a "coming soon" empty state.
+ */
+export const CASE_STUDY_CARDS: CaseStudyCardSummary[] = CASE_STUDY_SLUGS.filter(
+  (slug) => !CASE_STUDY_PLACEHOLDER_SLUGS.has(slug),
+).map((slug) => CASE_STUDIES[slug].summary);
