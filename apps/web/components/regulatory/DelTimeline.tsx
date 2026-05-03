@@ -71,7 +71,7 @@ export const DelTimeline: FC<Props> = ({ content }) => {
             </p>
           </div>
 
-          <ol className="mt-10 flex flex-col gap-4" aria-label="DEL timeline steps">
+          <ol className="mt-10 flex flex-col gap-4" aria-label="Service timeline steps">
             {content.steps.map((step, idx) => {
               const meta = OWNER_META[step.owner];
               const OwnerIcon = meta.icon;

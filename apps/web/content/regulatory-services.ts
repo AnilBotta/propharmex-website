@@ -14,16 +14,26 @@
  *    in PR-D2d-1' because its body explicitly claimed Propharmex holds and
  *    operates a Health Canada Drug Establishment Licence at the
  *    Mississauga site. The URL is 301'd to the hub.
- *  - PR-D2d-2' will audit the four remaining leaves (US FDA submissions,
- *    CTD/eCTD dossier preparation, GMP audit preparation, lifecycle
- *    regulatory management) for residual DEL/3PL framing — each leaf
- *    currently includes a `threePlDelCombo` section and a
- *    "DEL-anchored QMS" stat that need surgery.
+ *  - PR-D2d-2' (this PR) audited the four remaining leaves (US FDA
+ *    submissions, CTD/eCTD dossier preparation, GMP audit preparation,
+ *    lifecycle regulatory management) and removed residual DEL / 3PL
+ *    framing throughout: hero stats, threePlDelCombo sections, body-copy
+ *    cross-references, FAQ items, and related-services links into the
+ *    retired DEL leaf. The leaves now describe services performed on
+ *    behalf of client programs targeting Health Canada, USFDA, EMA, and
+ *    other regulators — not credentials Propharmex holds.
+ *  - The misnomer-typed fields (`threePlDelCombo`, `DelTimeline`,
+ *    `DelExplainer`, `DelReadinessEmbedPlaceholder`, `DelCaseStudyFeature`,
+ *    `DelChecklistDownload`) are retained in the `RegulatoryLeafContent`
+ *    shape because all 4 remaining leaves still use them. A future cleanup
+ *    PR could rename them to neutral names (e.g. `LeafFeaturePanel`,
+ *    `LeafLifecyclePanel`) — that's a structural-naming refactor, not a
+ *    content concern.
  *  - `confirmed` and `under-confirmation` claim-status tiers remain in the
  *    `RegulatoryClaimStatus` union for component-side compatibility but
- *    are unused by /services/regulatory-services hub content as of
- *    PR-D2d-1' (matching the "abandon-but-don't-narrow" pattern set in
- *    PR-D2b' for `apps/web/content/quality.ts`).
+ *    are unused by /services/regulatory-services content as of PR-D2d-2'
+ *    (matching the "abandon-but-don't-narrow" pattern set in PR-D2b' for
+ *    `apps/web/content/quality.ts`).
  *
  * All regulatory claims in the body prose carry primary-source URLs
  * declared at the top of the content block. These mirror
@@ -321,12 +331,6 @@ export type RegulatoryLeafContent = {
 /*  These URLs mirror apps/web/content/quality.ts exactly.                    */
 /* -------------------------------------------------------------------------- */
 
-const HEALTH_CANADA_GUI_0002: RegulatorySource = {
-  kind: "primary",
-  label: "Health Canada — Guidance on Drug Establishment Licences (GUI-0002)",
-  href: "https://www.canada.ca/en/health-canada/services/drugs-health-products/compliance-enforcement/establishment-licences/directives-guidance-documents-policies.html",
-};
-
 const HEALTH_CANADA_GUI_0001: RegulatorySource = {
   kind: "primary",
   label: "Health Canada — Good Manufacturing Practices Guide (GUI-0001)",
@@ -616,14 +620,14 @@ export const REGULATORY_US_FDA_SUBMISSIONS: RegulatoryLeafContent = {
   hero: {
     eyebrow: "Regulatory Services · US FDA submissions",
     headline:
-      "FDA-facing CMC, authored once — reviewed against the record we release from.",
+      "FDA-facing CMC, authored once — cross-referenced to the development record.",
     valueProp:
-      "FDA-facing CMC authoring and eCTD submission work, reviewed against current FDA guidance, and cross-referenced to the same analytical record we release product against — under a single quality system.",
-    lede: "Most US submissions we support are ANDA or 505(b)(2) in shape, with a Type II Drug Master File running in parallel for the drug substance. The authoring happens against 21 CFR Part 314 and the FDA's current eCTD technical specifications; the analytical and stability record referenced inside Module 3 is the same one used for release testing under the Health Canada DEL. That continuity is the work — it is not a convenience. When a reviewer opens the specification in Module 3 and opens a release certificate six months later, they should be looking at the same number produced by the same method.",
+      "FDA-facing CMC authoring and eCTD submission work, reviewed against current FDA guidance, and cross-referenced to the analytical and stability record generated under a single quality system.",
+    lede: "Most US submissions we support are ANDA or 505(b)(2) in shape, with a Type II Drug Master File running in parallel for the drug substance. The authoring happens against 21 CFR Part 314 and the FDA's current eCTD technical specifications; the analytical and stability record referenced inside Module 3 is the same one our analytical bench has been generating throughout development. That continuity is the work — it is not a convenience. When a reviewer opens the specification in Module 3 and opens a method-validation report six months later, they should be looking at the same number produced by the same method.",
     stats: [
       { label: "Submission formats", value: "ANDA · 505(b)(2) · DMF · eCTD" },
       { label: "Authoring", value: "Single quality system" },
-      { label: "Record anchor", value: "DEL-anchored QMS" },
+      { label: "Operating framework", value: "ICH Q10-aligned QMS" },
     ],
     primaryCta: {
       label: "Scope an FDA submission engagement",
@@ -662,11 +666,11 @@ export const REGULATORY_US_FDA_SUBMISSIONS: RegulatoryLeafContent = {
     ],
   },
   threePlDelCombo: {
-    eyebrow: "Authored and filed under the DEL",
+    eyebrow: "Authoring and analytical record",
     heading: "Where the work happens, and what a sponsor plugs into",
-    lede: "FDA submissions are authored and reviewed against the analytical and QMS record under a single quality system. The columns below describe the operational flow — authoring and assembly on one side, the regulatory anchor on the other — both carrying parts of the same record.",
+    lede: "FDA submissions are authored and reviewed against the analytical and QMS record under a single quality system. The columns below describe the operational flow — authoring and assembly on one side, the underlying analytical record on the other — both carrying parts of the same dossier.",
     leftColumn: {
-      id: "hyderabad",
+      id: "authoring",
       heading: "Authoring and assembly",
       bullets: [
         "Module 2 summaries (QOS for Quality, non-clinical and clinical overviews where applicable) against ICH M4",
@@ -677,18 +681,18 @@ export const REGULATORY_US_FDA_SUBMISSIONS: RegulatoryLeafContent = {
       ],
     },
     rightColumn: {
-      id: "mississauga",
-      heading: "Regulatory anchor",
+      id: "analytical-record",
+      heading: "Analytical record",
       bullets: [
-        "Release-testing methods and validation records referenced inside Module 3 — the same methods used for lot release under the DEL",
-        "Stability data generated under ICH Q1A(R2) conditions inside the DEL scope, cross-referenced to the submission rather than re-authored for it",
+        "Method-development and validation records referenced inside Module 3 under ICH Q2(R2) parameters",
+        "Stability data generated under ICH Q1A(R2) Zone II / Zone IVb conditions, cross-referenced to the submission rather than re-authored for it",
         "Analytical raw data held under the QMS in alignment with ALCOA+ data-integrity principles, available on inspection or FDA desk-review request",
         "A single quality system linking the authored dossier and the record the methods were actually run under",
         "Canadian regulatory agent posture where the sponsor elects one, separate from the US filing itself",
       ],
     },
     closingNote:
-      "Authored and transferred under the Health Canada DEL — the dossier and the release record are continuous.",
+      "One quality system across authoring and analytical work — the dossier and the underlying record are continuous.",
   },
   timeline: {
     eyebrow: "ANDA CMC authoring window",
@@ -760,7 +764,7 @@ export const REGULATORY_US_FDA_SUBMISSIONS: RegulatoryLeafContent = {
         id: "method-divergence",
         label: "Methods in the dossier not matching the release record",
         description:
-          "A validation report referenced in Module 3 that does not match the method actually used for release. Keeping the dossier methods and the release methods on a single record is one of the reasons the DEL anchor is non-negotiable on our engagements.",
+          "A validation report referenced in Module 3 that does not match the method actually used in the analytical or release record. Keeping the dossier methods and the underlying record on a single quality system is the disciplined posture our engagements run on.",
       },
       {
         id: "dmf-loa-mismatch",
@@ -803,7 +807,7 @@ export const REGULATORY_US_FDA_SUBMISSIONS: RegulatoryLeafContent = {
   caseStudyFeature: {
     eyebrow: "Pattern of work",
     heading: "ANDA CMC for a BCS-II oral solid with parallel Type II DMF",
-    body: "A pattern we see often: a sponsor pursuing an ANDA for a BCS-II oral solid with an offshore API manufacturer that wants to file its own Type II DMF rather than disclose CMC detail to the finished-product sponsor. Propharmex authors the finished-product Module 3 and the DMF concurrently; the analytical and stability record referenced in both is anchored in the DEL-anchored QMS. The finished-product filing is handled by the sponsor; the DMF is filed by the API manufacturer under their own LoA control.",
+    body: "A pattern we see often: a sponsor pursuing an ANDA for a BCS-II oral solid with an offshore API manufacturer that wants to file its own Type II DMF rather than disclose CMC detail to the finished-product sponsor. Propharmex authors the finished-product Module 3 and the DMF concurrently; the analytical and stability record referenced in both is generated under the same ICH Q10-aligned quality system. The finished-product filing is handled by the sponsor; the DMF is filed by the API manufacturer under their own LoA control.",
     status: "under-confirmation",
     cta: {
       label: "Ask for the NDA-gated case file",
@@ -870,7 +874,7 @@ export const REGULATORY_US_FDA_SUBMISSIONS: RegulatoryLeafContent = {
         id: "raw-data-access",
         question: "How is raw data handled if FDA desk-reviews the methods?",
         answer:
-          "Analytical raw data underlying the submission is held under the DEL-anchored QMS in alignment with ALCOA+ data-integrity principles. FDA reviewers may request specific raw-data excerpts during CMC review or conduct a pre-approval inspection at the testing site. Our posture is to keep the record inspection-ready continuously rather than assemble an inspection package after the fact — it is also why the analytical record feeds directly into Module 3 rather than being re-authored for it.",
+          "Analytical raw data underlying the submission is held under the unified ICH Q10-aligned QMS in alignment with ALCOA+ data-integrity principles. FDA reviewers may request specific raw-data excerpts during CMC review or conduct a pre-approval inspection at the testing site. Our posture is to keep the record inspection-ready continuously rather than assemble an inspection package after the fact — it is also why the analytical record feeds directly into Module 3 rather than being re-authored for it.",
       },
     ],
   },
@@ -890,7 +894,7 @@ export const REGULATORY_US_FDA_SUBMISSIONS: RegulatoryLeafContent = {
         id: "analytical-services",
         label: "Analytical Services",
         description:
-          "The method-validation and release-testing record referenced inside Module 3 — authored and released under the DEL.",
+          "The method-validation and stability record referenced inside Module 3 — authored under one quality system across development and submission.",
         href: "/services/analytical-services",
       },
       {
@@ -983,11 +987,11 @@ export const REGULATORY_CTD_ECTD_DOSSIER_PREPARATION: RegulatoryLeafContent = {
     ],
   },
   threePlDelCombo: {
-    eyebrow: "Authored and filed under the DEL",
+    eyebrow: "Authored core and underlying record",
     heading: "Where the work happens, and what a sponsor plugs into",
-    lede: "CTD authoring happens against ICH M4; Regional Module 1 packaging and the relationship to the underlying release record is anchored under the DEL. The columns below describe the operational flow.",
+    lede: "CTD authoring happens against ICH M4; Regional Module 1 packaging is layered on top per target agency. The columns below describe the operational flow — authoring and assembly on one side, the analytical record Module 3 references on the other.",
     leftColumn: {
-      id: "hyderabad",
+      id: "authoring",
       heading: "Authoring and assembly",
       bullets: [
         "Module 2 — Quality Overall Summary, and non-clinical and clinical overviews where the pathway includes them — authored against ICH M4",
@@ -998,25 +1002,25 @@ export const REGULATORY_CTD_ECTD_DOSSIER_PREPARATION: RegulatoryLeafContent = {
       ],
     },
     rightColumn: {
-      id: "mississauga",
-      heading: "Regulatory anchor",
+      id: "analytical-record",
+      heading: "Analytical record",
       bullets: [
-        "The release-testing and stability record referenced inside Module 3 — the same record used for lot release under the DEL",
-        "A single QMS linking the authored dossier and the analytical raw data, so Module 3 claims are evidenced against data a reviewer can inspect",
+        "Method-development and validation records referenced inside Module 3 under ICH Q2(R2) parameters",
+        "Stability data generated under ICH Q1A(R2) Zone II / Zone IVb conditions, cross-referenced to the dossier rather than re-authored for it",
+        "A single ICH Q10-aligned QMS linking the authored dossier and the analytical raw data, so Module 3 claims are evidenced against data a reviewer can inspect",
         "Canadian regulatory agent posture for Health Canada submissions when the sponsor elects one",
-        "Document control and change-control linkage between the dossier record and post-issuance activities",
         "Inspection-ready access to Module 3 source records on request from Health Canada or the FDA during review or pre-approval inspection",
       ],
     },
     closingNote:
-      "Authored and anchored in the DEL record — one dossier core, packaged per agency.",
+      "One dossier core, repackaged per agency — anchored in a single quality system.",
   },
   timeline: {
     eyebrow: "Greenfield Module 2 + Module 3 authoring",
     heading: "From kickoff to eCTD-ready dossier",
     lede: "A typical greenfield Module 2 and Module 3 authoring engagement sits on roughly the cadence below. Durations are indicative and depend on the state of the analytical and stability record going in — when the underlying record is mature, the authoring blocks compress; when it is not, remediation work sits ahead of authoring rather than extending it.",
     serviceStandardCopy:
-      "No agency publishes a service standard for the authoring phase itself — the standards belong to the post-submission review window (Health Canada 250 calendar days for a new DEL, FDA's GDUFA goals for ANDAs, EMA's own review clocks for MAAs), as of 2026-04-23. The cadence below is an authoring-side plan, not a regulatory promise.",
+      "No agency publishes a service standard for the authoring phase itself — the standards belong to the post-submission review window (FDA's GDUFA goals for ANDAs, EMA's own review clocks for MAAs, Health Canada's published targets for NDS submissions), as of 2026-04-23. The cadence below is an authoring-side plan, not a regulatory promise.",
     steps: [
       {
         id: "scoping-and-gap-assessment",
@@ -1124,7 +1128,7 @@ export const REGULATORY_CTD_ECTD_DOSSIER_PREPARATION: RegulatoryLeafContent = {
   caseStudyFeature: {
     eyebrow: "Pattern of work",
     heading: "Shared Module 2/3 core, three regional packagings",
-    body: "A pattern we see often: a sponsor pursuing the same finished product across FDA, Health Canada and EMA on a staggered timeline. Propharmex authors Module 2 and Module 3 against ICH M4 once; Regional Module 1 is packaged for FDA at sequence 0000, repackaged for Health Canada six months later, and repackaged for EMA after that. The analytical and stability record in Module 3 is anchored under the DEL; the same record is referenced by all three regional submissions.",
+    body: "A pattern we see often: a sponsor pursuing the same finished product across FDA, Health Canada and EMA on a staggered timeline. Propharmex authors Module 2 and Module 3 against ICH M4 once; Regional Module 1 is packaged for FDA at sequence 0000, repackaged for Health Canada six months later, and repackaged for EMA after that. The analytical and stability record in Module 3 is generated under one ICH Q10-aligned quality system; the same record is referenced by all three regional submissions.",
     status: "under-confirmation",
     cta: {
       label: "Ask for the NDA-gated case file",
@@ -1211,7 +1215,7 @@ export const REGULATORY_CTD_ECTD_DOSSIER_PREPARATION: RegulatoryLeafContent = {
         id: "analytical-services",
         label: "Analytical Services",
         description:
-          "The method-validation and release-testing record Module 3 references — authored and released under the DEL.",
+          "The method-validation and stability record Module 3 references — generated under one ICH Q10-aligned quality system.",
         href: "/services/analytical-services",
       },
       {
@@ -1306,27 +1310,27 @@ export const REGULATORY_GMP_AUDIT_PREPARATION: RegulatoryLeafContent = {
   threePlDelCombo: {
     eyebrow: "Documentation and inspection readiness",
     heading: "Where the work happens, and what a site plugs into",
-    lede: "GMP audit preparation spans documentation shaping, CAPA authoring and training materials, with Canadian inspection hosting and on-site mock inspection coverage under the DEL. Strategy is co-owned across Propharmex.",
+    lede: "GMP audit preparation spans documentation shaping, CAPA authoring and training materials, with on-site mock inspection coverage and inspection-day coaching for client sites. Strategy is co-owned across the Propharmex regulatory and quality functions.",
     leftColumn: {
-      id: "hyderabad",
+      id: "documentation",
       heading: "Documentation and CAPA",
       bullets: [
-        "Documentation gap assessment against GUI-0001, 21 CFR 210/211 and ICH Q10 — SOP inventory, deviation records, change control, and CAPA record architecture",
+        "Documentation gap assessment against GUI-0001, 21 CFR 210/211, ICH Q10, EU GMP, and PIC/S — SOP inventory, deviation records, change control, and CAPA record architecture",
         "CAPA authoring and closure-evidence shaping — root-cause analysis methodology, effectiveness-check design, and documentation trails",
         "Training-matrix gap analysis and role-scoped competency record review",
         "Risk register authored against ICH Q9(R1), weighted to inspection likelihood and data-integrity exposure",
-        "Post-inspection response drafting — Health Canada observation responses and Form 483 responses against the raw observation text",
+        "Post-inspection response drafting — observation responses and Form 483 responses against the raw observation text",
       ],
     },
     rightColumn: {
-      id: "mississauga",
-      heading: "Inspection hosting under the DEL",
+      id: "inspection-coverage",
+      heading: "Inspection coverage at client sites",
       bullets: [
         "On-site mock inspection coverage — opening meetings, document-handling simulation, floor walkthroughs, raw-data access drills",
-        "Hosting Health Canada inspections under the DEL — opening and closing meetings, escort discipline, and inspector access coordination",
-        "Inspection-day coaching — SME response posture, scope-defence discipline, and when to commit to a CAPA versus seek clarification",
-        "Environmental monitoring, utility qualification and equipment IOQ/PQ evidence held inspection-ready continuously",
-        "Live QMS access — a reviewer opens the same system the site operates from, not an assembled inspection binder",
+        "Inspection-day support — SME response posture, scope-defence discipline, and when to commit to a CAPA versus seek clarification",
+        "Environmental monitoring, utility qualification and equipment IOQ/PQ evidence shaped to be inspection-ready continuously",
+        "Pre-inspection working sessions hosted at the Propharmex Mississauga or Hyderabad sites when programs benefit from off-site review",
+        "Live QMS access posture — a reviewer opens the same system the site operates from, not an assembled inspection binder",
       ],
     },
     closingNote:
@@ -1383,9 +1387,9 @@ export const REGULATORY_GMP_AUDIT_PREPARATION: RegulatoryLeafContent = {
       },
       {
         id: "inspection-day-coaching",
-        label: "Inspection-day coaching and hosting",
+        label: "Inspection-day coaching",
         description:
-          "SME briefings on response posture, scope-defence discipline, and raw-data access protocols. On Canadian inspections, the DEL site hosts directly; on US inspections, coaching is provided to the site team.",
+          "SME briefings on response posture, scope-defence discipline, and raw-data access protocols. Coaching is provided to the client's site team for the duration of the inspection window.",
         typicalDuration: "As scheduled by the agency",
         owner: "both",
       },
@@ -1493,7 +1497,7 @@ export const REGULATORY_GMP_AUDIT_PREPARATION: RegulatoryLeafContent = {
         id: "license-vs-licence",
         question: "Which spelling do you use in inspection documents?",
         answer:
-          "In Canadian inspection documents — the DEL, Health Canada responses, GUI-0001-aligned procedures — we use the Canadian spelling \"licence\" where the regulation uses it. In US inspection responses and 21 CFR-aligned documents, we use the US spelling \"license\" where 21 CFR text uses it. We do not mix the two inside a single document. On this site and in Canadian-context prose, the default is \"licence\".",
+          "In Canadian inspection documents — Health Canada responses, GUI-0001-aligned procedures — we use the Canadian spelling \"licence\" where the regulation uses it. In US inspection responses and 21 CFR-aligned documents, we use the US spelling \"license\" where 21 CFR text uses it. We do not mix the two inside a single document. On this site and in Canadian-context prose, the default is \"licence\".",
       },
       {
         id: "mra-reuse",
@@ -1518,27 +1522,20 @@ export const REGULATORY_GMP_AUDIT_PREPARATION: RegulatoryLeafContent = {
   related: {
     eyebrow: "Related services",
     heading: "Where inspection readiness connects to the rest of the site",
-    lede: "Three adjacent pages are worth reading alongside this one — the DEL that inspection readiness runs against, the quality system the readiness work is anchored in, and the lifecycle work that follows an inspection.",
+    lede: "Two adjacent pages are worth reading alongside this one — the quality system the readiness work is anchored in, and the lifecycle work that follows an inspection.",
     links: [
-      {
-        id: "del-licensing",
-        label: "Health Canada DEL licensing",
-        description:
-          "The DEL that inspection readiness is conducted under — pre-issuance inspection readiness and post-issuance inspection continuity.",
-        href: "/services/regulatory-services/health-canada-del-licensing",
-      },
       {
         id: "quality-compliance",
         label: "Quality & Compliance",
         description:
-          "The QMS posture the readiness work is anchored in — ICH Q10 alignment, ALCOA+ data integrity, and the three-tier claim-status convention.",
+          "The QMS posture the readiness work is anchored in — ICH Q10 alignment, ALCOA+ data integrity, and the operating-frameworks convention.",
         href: "/quality-compliance",
       },
       {
         id: "lifecycle",
         label: "Lifecycle regulatory management",
         description:
-          "Post-inspection CAPA closure, DEL amendments driven by inspection commitments, and continuous change control across the site's operating life.",
+          "Post-inspection CAPA closure, post-approval changes driven by inspection commitments, and continuous change control across the site's operating life.",
         href: "/services/regulatory-services/lifecycle-regulatory-management",
       },
     ],
@@ -1571,21 +1568,21 @@ export const REGULATORY_LIFECYCLE_MANAGEMENT: RegulatoryLeafContent = {
   crumbLabel: "Lifecycle management",
   metaTitle: "Lifecycle Regulatory Management — Propharmex",
   metaDescription:
-    "DEL amendments, annual DEL review, Post-NOC change management for Canada, and 21 CFR 314.70 supplement categorization for the US — anchored on ICH Q12 lifecycle principles.",
+    "Post-approval change management for client programs — Canadian Post-NOC changes, 21 CFR 314.70 supplement categorization for the US, and EMA variation support — anchored on ICH Q12 lifecycle principles.",
   ogTitle: "Lifecycle Regulatory Management — Propharmex",
   ogDescription:
-    "Post-issuance change management across DEL amendments, Canadian Post-NOC changes, and US supplement categorization — without rebuilding the underlying record.",
+    "Post-issuance change management across Canadian Post-NOC changes, US supplement categorization, and EMA variations — without rebuilding the underlying record.",
   hero: {
     eyebrow: "Regulatory Services · Lifecycle regulatory management",
     headline:
       "Change management that extends the record — without rebuilding it.",
     valueProp:
-      "Post-issuance change management across DEL amendments, Canadian Post-NOC changes, and US supplement categorization — without rebuilding the underlying record.",
-    lede: "Most of a product's regulatory life sits after the original authorization. Site changes, specification changes, formulation changes, manufacturing-site additions, equipment swaps, supplier changes — each has to be categorized against the right framework, filed under the right instrument, and linked back to the underlying development and release record. The lifecycle posture we work from is that every post-issuance change extends the authored record rather than replacing it. Done well, a reviewer opening the sequence-4 amendment sees a record continuous with sequence-0 original. Done poorly, they see a different dossier with the same product name on it.",
+      "Post-issuance change management across Canadian Post-NOC changes, US supplement categorization, and EMA variation work — without rebuilding the underlying record.",
+    lede: "Most of a product's regulatory life sits after the original authorization. Site changes, specification changes, formulation changes, manufacturing-site additions, equipment swaps, supplier changes — each has to be categorized against the right framework, filed under the right instrument, and linked back to the underlying development record. The lifecycle posture we work from is that every post-issuance change extends the authored record rather than replacing it. Done well, a reviewer opening the sequence-4 amendment sees a record continuous with sequence-0 original. Done poorly, they see a different dossier with the same product name on it.",
     stats: [
-      { label: "Canadian instruments", value: "DEL amendments · Post-NOC changes" },
+      { label: "Canadian instruments", value: "Post-NOC changes · annual notifications" },
       { label: "US instruments", value: "CBE-0 · CBE-30 · PAS · annual report" },
-      { label: "Lifecycle frame", value: "ICH Q12 · GUI-0002" },
+      { label: "Lifecycle frame", value: "ICH Q12-aligned" },
     ],
     primaryCta: {
       label: "Scope a lifecycle engagement",
@@ -1604,10 +1601,10 @@ export const REGULATORY_LIFECYCLE_MANAGEMENT: RegulatoryLeafContent = {
     lede: "Lifecycle regulatory work is often discussed as a set of filings without naming the categorization logic underneath them. The distinctions below are the ones that most often reshape a sponsor's plan once they are understood.",
     topics: [
       {
-        id: "del-amendments",
-        heading: "DEL amendments and annual licence review",
-        body: "A Drug Establishment Licence is a live instrument. Adding an activity, adding a dosage-form category, adding a foreign building to the scope, or changing a key personnel record requires a DEL amendment under GUI-0002. Some changes are notifiable after the fact; others require Health Canada's prior approval. Annual licence review is a separate, scheduled obligation — the licence is reviewed on its anniversary and fees are reassessed against the scope in effect on that date. We build the change-control posture for amendments at the original application stage so the first amendment is an administrative step rather than a rework project.",
-        source: HEALTH_CANADA_GUI_0002,
+        id: "ema-variations",
+        heading: "EMA variations across Type IA / IB / II",
+        body: "Post-approval changes to a Marketing Authorisation in the EU are filed as variations under EU Commission Regulation 1234/2008 — Type IA (notifications, often grouped at year-end), Type IB (notification with implementation after a 30-day silence period), and Type II (major variations subject to scientific assessment). Categorization is the highest-leverage step in any EMA variation — Type IA grouping rules in particular shape what can be filed when, and a misclassified Type IB that should have been Type II is reviewable by the agency. We categorize against the current EMA variations guideline and the relevant CMDh Q&As at the change-scoping stage.",
+        source: EMA_ECTD_TECH,
       },
       {
         id: "post-noc-changes",
@@ -1624,56 +1621,55 @@ export const REGULATORY_LIFECYCLE_MANAGEMENT: RegulatoryLeafContent = {
     ],
   },
   threePlDelCombo: {
-    eyebrow: "Authored and filed under the DEL",
+    eyebrow: "Authoring and filing",
     heading: "Where the work happens, and what a sponsor plugs into",
-    lede: "Lifecycle work spans CMC and amendment authoring, with DEL amendments filed and Post-NOC change submissions coordinated under the regulatory function. The columns below describe the operational flow.",
+    lede: "Lifecycle work spans CMC and supplement authoring, with submissions filed across Health Canada, the FDA, and the EMA on behalf of the sponsor. The columns below describe the operational flow.",
     leftColumn: {
-      id: "hyderabad",
+      id: "authoring",
       heading: "Authoring and assembly",
       bullets: [
-        "Change-categorization assessments against the Post-NOC Changes framework for Canada and 21 CFR 314.70 for the US",
-        "Supporting CMC packages drawn from the development record — not re-authored for the amendment, but extended from what was already filed",
+        "Change-categorization assessments against the Post-NOC Changes framework for Canada, 21 CFR 314.70 for the US, and EU Commission Regulation 1234/2008 for the EMA",
+        "Supporting CMC packages drawn from the development record — not re-authored for each amendment, but extended from what was already filed",
         "Amendment sequences as later eCTD entries referencing the original submission, preserving granularity and lifecycle discipline",
         "ICH Q12-aligned lifecycle management tools where they are in scope — established conditions, post-approval change management protocols",
         "Annual reports and annual notifications consolidating the year's activity against the authorization",
       ],
     },
     rightColumn: {
-      id: "mississauga",
-      heading: "Regulatory anchor",
+      id: "filing-coordination",
+      heading: "Filing and coordination",
       bullets: [
-        "DEL amendment filings under GUI-0002 — activity-scope additions, dosage-form category additions, foreign-building additions, key personnel changes",
-        "Annual DEL review handling, fee reassessment and scope reconciliation with Health Canada on the licence anniversary",
-        "Canadian regulatory point-of-contact for Post-NOC submissions and for Health Canada follow-up on any lifecycle filing",
+        "Submission filing on behalf of sponsors who elect a regulatory agent for any of Health Canada, the FDA, or the EMA",
+        "Canadian regulatory point-of-contact for Post-NOC submissions and Health Canada follow-up on any lifecycle filing where the sponsor elects one",
         "Change-control linkage between the authored amendment and the underlying QMS records — the amendment is not complete until the site operating record reflects it",
-        "Adjacent inspection-readiness coverage on changes that affect the DEL scope — some DEL amendments trigger an inspection window",
+        "Cross-agency timing coordination when a single change has to be filed in multiple jurisdictions on a staggered cadence",
+        "Adjacent inspection-readiness coverage on changes that affect the GMP scope — some changes trigger an inspection window",
       ],
     },
     closingNote:
-      "Authored and filed under the DEL — one record, extended across the product's life.",
+      "One record, extended across the product's life — under one ICH Q10-aligned quality system.",
   },
   timeline: {
     eyebrow: "Lifecycle cadences",
     heading: "Typical cadences for post-issuance work",
     lede: "Lifecycle work does not sit on a single timeline — it sits on several overlapping ones. The cadences below are the ones most often in scope on the engagements we run. Durations are indicative; agency service standards apply only where named.",
     serviceStandardCopy:
-      "Health Canada's Post-NOC Changes framework sets categorization expectations and filing windows rather than a single service standard; FDA's 21 CFR 314.70 sets supplement types with their own review clocks (PAS subject to GDUFA goals, CBE-30 by name a 30-day pre-distribution window, CBE-0 effective on submission, annual reports reviewed at cycle), as of 2026-04-23. The cadence below is a planning cadence for the Propharmex-owned authoring and filing work.",
+      "Health Canada's Post-NOC Changes framework sets categorization expectations and filing windows rather than a single service standard; FDA's 21 CFR 314.70 sets supplement types with their own review clocks (PAS subject to GDUFA goals, CBE-30 by name a 30-day pre-distribution window, CBE-0 effective on submission, annual reports reviewed at cycle); EU Commission Regulation 1234/2008 sets variations into Type IA / IB / II with their own clocks, as of 2026-04-23. The cadence below is a planning cadence for the Propharmex authoring and filing work.",
     steps: [
       {
-        id: "del-annual-review",
-        label: "Annual DEL review",
+        id: "ema-type-ia-grouping",
+        label: "EMA Type IA grouping and year-end consolidation",
         description:
-          "Reconciliation of the licence scope against the site's actual operating scope, fee reassessment with Health Canada, and filing of any pending amendments as part of the annual review posture.",
-        typicalDuration: "Cadence: once per licence year on the anniversary",
+          "Year-end grouping of Type IA notifications under EU Commission Regulation 1234/2008. Authored from the change-control record, filed as a single bundled notification rather than as individual Type IA entries.",
+        typicalDuration: "Cadence: once per year, with Type IA group filing window",
         owner: "propharmex",
-        source: HEALTH_CANADA_GUI_0002,
       },
       {
-        id: "del-amendment-filing",
-        label: "DEL amendment filing",
+        id: "ema-type-ib-ii",
+        label: "EMA Type IB / Type II variations",
         description:
-          "Activity-scope or dosage-form category additions, foreign-building additions, or key personnel changes filed under GUI-0002. Some amendments carry their own service standard and inspection-readiness expectations.",
-        typicalDuration: "Typical authoring window: 20–45 days; Health Canada review per GUI-0002",
+          "Type IB notifications (30-day silence period) and Type II major variations (scientific assessment) authored against the current EMA variations guideline and filed on the sponsor's behalf where the sponsor elects a regulatory agent.",
+        typicalDuration: "Authoring: 20–60 days depending on category",
         owner: "propharmex",
       },
       {
@@ -1737,10 +1733,10 @@ export const REGULATORY_LIFECYCLE_MANAGEMENT: RegulatoryLeafContent = {
           "Annual reports or Level III notifications built from the change-control log in the weeks before the anniversary. The common outcome is either items missed (generating agency questions at the next cycle) or items re-characterized under pressure. Authoring from the live record, incrementally, is the fix.",
       },
       {
-        id: "del-drift",
-        label: "DEL scope drift from actual operating scope",
+        id: "scope-drift",
+        label: "Operating scope drift from filed scope",
         description:
-          "Sites operating slightly outside the DEL scope they filed — a new dosage-form category in development, a new foreign building sending samples — without the scope amendment in flight. The next Health Canada inspection finds it; the licence is then amended under inspection pressure rather than on the site's cadence.",
+          "Sites operating slightly outside the scope they filed — a new dosage-form category in development, a new foreign building sending samples — without the scope amendment in flight at the relevant agency. The next inspection or routine review finds it; the change is then filed under pressure rather than on the site's cadence.",
       },
       {
         id: "multi-jurisdiction-diverge",
@@ -1751,9 +1747,9 @@ export const REGULATORY_LIFECYCLE_MANAGEMENT: RegulatoryLeafContent = {
     ],
   },
   readinessEmbed: {
-    eyebrow: "DEL Readiness Assessment",
+    eyebrow: "Regulatory readiness assessment",
     heading: "A self-check adjacent to the lifecycle work",
-    body: "The DEL Readiness Assessment is a short self-check on the five readiness axes that shape a DEL's trajectory — QMS, technical agreements, site readiness, documentation, and change-control posture. The change-control axis in particular is directly adjacent to lifecycle regulatory work: sites that score strongly on change-control posture are also the sites whose DEL amendments and Post-NOC submissions travel cleanly.",
+    body: "A short readiness self-check on the five axes most likely to shape a regulatory program's lifecycle trajectory — QMS, technical agreements, site readiness, documentation, and change-control posture. The change-control axis in particular is directly adjacent to lifecycle regulatory work: sites that score strongly on change-control posture are also the sites whose post-approval submissions travel cleanly.",
     shippingCopy:
       "Live with Prompt 20 of the website rebuild. A preview of the readiness dimensions is available now — the interactive tool ships with the AI tools phase.",
     previewCta: {
@@ -1764,8 +1760,8 @@ export const REGULATORY_LIFECYCLE_MANAGEMENT: RegulatoryLeafContent = {
   },
   caseStudyFeature: {
     eyebrow: "Pattern of work",
-    heading: "Post-NOC Level I plus parallel DEL amendment for a manufacturing-site addition",
-    body: "A pattern we see often: a sponsor adding a new finished-product manufacturing site to an existing Canadian authorization. The change is categorized as Post-NOC Level I (prior-approval supplement) and requires a parallel DEL amendment to cover the new site's activity scope under the DEL. Propharmex authors both the supplement CMC and the DEL amendment documentation; the DEL amendment is filed under the regulatory function as the Canadian point-of-contact for Health Canada follow-up on both instruments. The underlying QMS change-control record ties the two filings together.",
+    heading: "Post-NOC Level I plus parallel US supplement for a manufacturing-site addition",
+    body: "A pattern we see often: a sponsor adding a new finished-product manufacturing site across both a Canadian and a US authorization. The change is categorized as Post-NOC Level I (prior-approval supplement) for Canada and as a Prior Approval Supplement under 21 CFR 314.70 for the US. Propharmex authors the CMC supporting both submissions from the same development record, files the Canadian supplement on the sponsor's behalf, and supports the US PAS authoring with the sponsor as the filer of record. The underlying QMS change-control record ties the two filings together.",
     status: "under-confirmation",
     cta: {
       label: "Ask for the NDA-gated case file",
@@ -1776,13 +1772,13 @@ export const REGULATORY_LIFECYCLE_MANAGEMENT: RegulatoryLeafContent = {
   checklistDownload: {
     eyebrow: "Lifecycle readiness checklist",
     heading: "A post-issuance readiness checklist, on request",
-    lede: "A structured readiness checklist authored by Propharmex's regulatory team against Health Canada GUI-0002, the Post-NOC Changes framework, 21 CFR 314.70 and ICH Q12 lifecycle principles. It covers the six domains most likely to surface as issues during post-issuance regulatory work. Sent on request so we can scope the covering note to your programme.",
+    lede: "A structured readiness checklist authored by Propharmex's regulatory team against the Post-NOC Changes framework, 21 CFR 314.70, EU Commission Regulation 1234/2008, and ICH Q12 lifecycle principles. It covers the six domains most likely to surface as issues during post-issuance regulatory work. Sent on request so we can scope the covering note to your programme.",
     bullets: [
-      "DEL scope reconciliation — actual activities versus licensed activities, with change-amendment plan where they diverge",
+      "Operating-scope reconciliation — actual activities versus filed scope, with change-amendment plan where they diverge",
       "Post-NOC change register — ongoing and planned Canadian product changes with categorization pre-assigned",
       "US supplement register — ongoing and planned US changes categorized under 21 CFR 314.70",
+      "EMA variations register — ongoing and planned EU changes categorized under Type IA / IB / II",
       "QMS change-control linkage — each change-control record naming the regulatory filing it triggers",
-      "Annual-report cadence — live authoring posture, not year-end assembly",
       "Established conditions and PACMPs — ICH Q12 tooling where the authorization supports them",
     ],
     cta: {
@@ -1791,7 +1787,7 @@ export const REGULATORY_LIFECYCLE_MANAGEMENT: RegulatoryLeafContent = {
       variant: "primary",
     },
     disclaimer:
-      "Checklist is authored by Propharmex's regulatory team in alignment with GUI-0002, the Post-NOC Changes framework, 21 CFR 314.70 and ICH Q12, as of 2026-04-23. It is informational; each agency's review of your specific filings is what decides acceptance.",
+      "Checklist is authored by Propharmex's regulatory team in alignment with the Post-NOC Changes framework, 21 CFR 314.70, EU Commission Regulation 1234/2008, and ICH Q12, as of 2026-04-23. It is informational; each agency's review of your specific filings is what decides acceptance.",
   },
   faq: {
     eyebrow: "Frequently asked",
@@ -1799,10 +1795,10 @@ export const REGULATORY_LIFECYCLE_MANAGEMENT: RegulatoryLeafContent = {
     lede: "Short, regulatorily precise answers. Longer conversations are a call away — the answers below are the ones it is faster to read than to ask.",
     items: [
       {
-        id: "when-to-amend-del",
-        question: "When does a change actually require a DEL amendment?",
+        id: "ema-vs-fda-same-change",
+        question: "If the same change affects EMA and FDA authorizations, do we file twice?",
         answer:
-          "Most changes to the activity scope, dosage-form categories, foreign buildings, or key personnel listed on the DEL require an amendment under GUI-0002. Some are notifiable after implementation; others require Health Canada approval before implementation. Operational changes that sit inside the licensed scope — a new SOP revision, a routine equipment swap — generally do not require an amendment but do require change-control records inside the QMS. The decision is scope-by-scope, not category-by-category; we categorize at the change-scoping stage rather than at filing.",
+          "Yes — the two authorizations are separate, and the change is categorized under each agency's framework independently. A change categorized as a Type II variation under EU Commission Regulation 1234/2008 may be a CBE-30 or a PAS in the US under 21 CFR 314.70 depending on the change's nature and quality risk. The CMC content supporting the change is largely shared; the filings are separate. We run a cross-jurisdiction change register so the two filings stay synchronized on specification and scope even though they travel on different clocks.",
       },
       {
         id: "post-noc-level-choice",
@@ -1814,13 +1810,13 @@ export const REGULATORY_LIFECYCLE_MANAGEMENT: RegulatoryLeafContent = {
         id: "license-vs-licence",
         question: "Which spelling do you use in lifecycle filings?",
         answer:
-          "In Canadian lifecycle filings — DEL amendments, Post-NOC submissions, annual notifications — we use the Canadian spelling \"licence\" where the regulation uses it. In US supplements and 21 CFR 314.70-aligned documents, we use the US spelling \"license\" where 21 CFR text uses it. We do not mix the two inside a single filing. On this site, and in cross-jurisdiction prose, the default is \"licence\".",
+          "In Canadian lifecycle filings — Post-NOC submissions, annual notifications, Health Canada-bound documents — we use the Canadian spelling \"licence\" where the regulation uses it. In US supplements and 21 CFR 314.70-aligned documents, we use the US spelling \"license\" where 21 CFR text uses it. We do not mix the two inside a single filing. On this site, and in cross-jurisdiction prose, the default is \"licence\".",
       },
       {
         id: "us-vs-canada-same-change",
         question: "If the same change affects both Canadian and US authorizations, do we file twice?",
         answer:
-          "Yes — the two authorizations are separate and the change is categorized under each agency's framework independently. A change categorized as Post-NOC Level I in Canada may be a PAS or a CBE-30 in the US depending on 21 CFR 314.70 criteria. The CMC content supporting the change is largely shared; the filings are separate. We run a cross-jurisdiction change register so the two filings stay synchronized on specification and scope even though they travel on different clocks.",
+          "Yes — the two authorizations are separate and the change is categorized under each agency's framework independently. A change categorized as Post-NOC Level I in Canada may be a PAS or a CBE-30 in the US depending on 21 CFR 314.70 criteria. The CMC content supporting the change is largely shared; the filings are separate. We run a cross-jurisdiction change register on the sponsor's behalf so the two filings stay synchronized on specification and scope even though they travel on different clocks.",
       },
       {
         id: "ich-q12",
@@ -1830,24 +1826,17 @@ export const REGULATORY_LIFECYCLE_MANAGEMENT: RegulatoryLeafContent = {
       },
       {
         id: "after-expiry",
-        question: "What happens when the DEL is up for renewal or the product moves to discontinuation?",
+        question: "What happens when a product moves to discontinuation?",
         answer:
-          "The DEL is reviewed annually, not renewed — it is a continuous instrument unless suspended or cancelled. The annual review reconciles scope, fees and any amendments filed in the licence year. Product-level discontinuation is a separate process — withdrawal of the Notice of Compliance in Canada, or withdrawal of the approval in the US. The DEL continues to cover the site's other activities after a single product's discontinuation; the filing to withdraw the product is distinct from any licence-side change.",
+          "Product-level discontinuation is filed separately from any establishment-level change — withdrawal of the Notice of Compliance in Canada, withdrawal of the approval in the US, withdrawal of the Marketing Authorisation in the EU. Each filing has its own framework and its own evidence requirements, including post-marketing supply commitments and drug-shortage reporting in the relevant jurisdictions. Establishment-level scope at the manufacturing site is unaffected by a single product's discontinuation; the filing to withdraw the product is distinct from any change to the site's licensed scope.",
       },
     ],
   },
   related: {
     eyebrow: "Related services",
     heading: "Where lifecycle work connects to the rest of the site",
-    lede: "Three adjacent pages are worth reading alongside this one — the DEL the amendments extend, the quality system the change-control posture is anchored in, and the original dossier the supplements sequence against.",
+    lede: "Two adjacent pages are worth reading alongside this one — the eCTD sequence backbone the supplements travel on, and the quality system the change-control posture is anchored in.",
     links: [
-      {
-        id: "del-licensing",
-        label: "Health Canada DEL licensing",
-        description:
-          "The DEL the amendments extend — original-issuance work and the change-control posture that carries through to post-issuance lifecycle.",
-        href: "/services/regulatory-services/health-canada-del-licensing",
-      },
       {
         id: "ctd-ectd",
         label: "CTD / eCTD dossier preparation",
@@ -1867,7 +1856,7 @@ export const REGULATORY_LIFECYCLE_MANAGEMENT: RegulatoryLeafContent = {
   closing: {
     eyebrow: "Next step",
     heading: "Bring the change that's in scope. We'll bring the categorization.",
-    body: "A first call on lifecycle work usually resolves three questions quickly: what is the change and which authorizations does it affect; which framework categorizes it today (Post-NOC, 21 CFR 314.70, DEL amendment, or several at once); and is the QMS change-control record ready to extend into the filing or does it need to be rebuilt alongside. Bring the current state, including the gaps. We scope from there.",
+    body: "A first call on lifecycle work usually resolves three questions quickly: what is the change and which authorizations does it affect; which framework categorizes it today (Post-NOC, 21 CFR 314.70, EU variations, or several at once); and is the QMS change-control record ready to extend into the filing or does it need to be rebuilt alongside. Bring the current state, including the gaps. We scope from there.",
     primaryCta: {
       label: "Scope a lifecycle engagement",
       href: "/contact?source=rs-lifecycle-closing-scope",
