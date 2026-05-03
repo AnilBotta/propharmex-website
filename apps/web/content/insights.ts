@@ -198,7 +198,26 @@ export type ArticleContent = {
 /*  Whitepaper                                                                */
 /* -------------------------------------------------------------------------- */
 
-export const WHITEPAPER_SLUGS = ["canadian-cdmo-operating-model"] as const;
+/**
+ * Whitepaper slugs.
+ *
+ * Empty as of PR-D2c3' — the only seeded whitepaper ("The Canadian CDMO
+ * operating model") was retired with the specialty-CDMO repositioning. Its
+ * URL surface is 301'd to /insights/whitepapers via apps/web/next.config.ts
+ * (added in PR-D1'); INSIGHTS.whitepapers was emptied in PR-D2c2'; this PR
+ * closes the architectural surface (Zod enum, type narrowing, sitemap
+ * entries, static-params generator).
+ *
+ * `WhitepaperSlug` resolves to `never` while the array is empty. The
+ * downstream `Record<WhitepaperSlug, WhitepaperContent>` becomes
+ * `Record<never, WhitepaperContent> = {}`, which is correct: there is
+ * literally no valid whitepaper slug today.
+ *
+ * When client-approved whitepaper content lands, add the new slug here and
+ * the cascade re-engages: sitemap entry generates, page handler accepts the
+ * slug, API route validates against the union.
+ */
+export const WHITEPAPER_SLUGS = [] as const;
 export type WhitepaperSlug = (typeof WHITEPAPER_SLUGS)[number];
 
 export type WhitepaperFormField =

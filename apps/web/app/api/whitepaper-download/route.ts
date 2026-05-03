@@ -25,12 +25,28 @@ import { z } from "zod";
 
 import { env, log } from "@propharmex/lib";
 
-import { INSIGHTS, WHITEPAPER_SLUGS } from "../../../content/insights";
+import { INSIGHTS } from "../../../content/insights";
 
 export const runtime = "nodejs";
 
+/**
+ * Slug is validated against the live INSIGHTS.whitepapers registry
+ * downstream — `INSIGHTS.whitepapers.find((wp) => wp.slug === data.slug)`
+ * returns `undefined` for any slug not in the registry, and the route
+ * returns 404 in that case (see lines below).
+ *
+ * As of PR-D2c3' the registry is empty, so every download attempt 404s.
+ * The route remains in place so the form submission has a stable endpoint
+ * to POST to and so future whitepaper additions re-engage without an API
+ * route restoration.
+ *
+ * Prior to PR-D2c3' this used `z.enum(WHITEPAPER_SLUGS)` which required a
+ * non-empty tuple at the type level — incompatible with the empty-array
+ * state. `z.string()` here delegates the enum check to the registry
+ * lookup downstream, which is the source of truth anyway.
+ */
 const BodySchema = z.object({
-  slug: z.enum(WHITEPAPER_SLUGS),
+  slug: z.string().trim().min(1).max(160),
   fullName: z.string().trim().min(2).max(120),
   email: z.string().trim().toLowerCase().email().max(254),
   company: z.string().trim().min(2).max(160),
