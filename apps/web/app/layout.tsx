@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { draftMode } from "next/headers";
-import { Manrope, Inter_Tight, JetBrains_Mono } from "next/font/google";
+import { Inter, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import { env } from "@propharmex/lib";
 
 import "./globals.css";
@@ -10,23 +10,22 @@ import { DraftModeIndicator } from "../components/site/DraftModeIndicator";
 import { Footer } from "../components/site/Footer";
 import { Header } from "../components/site/Header";
 import { JsonLd } from "../components/site/JsonLd";
-import { RegionDetectionBanner } from "../components/site/RegionDetectionBanner";
-import { RegionProvider } from "../components/site/RegionContext";
 import { SkipToContent } from "../components/site/SkipToContent";
 import { VisualEditing } from "../components/site/VisualEditing";
 import { buildSiteJsonLd } from "../components/site/site-jsonld";
-import { getServerRegion, shouldShowRegionBanner } from "../lib/region-server";
 
-const manrope = Manrope({
+const inter = Inter({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-manrope",
+  variable: "--font-inter",
 });
 
-const interTight = Inter_Tight({
+const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-inter-tight",
+  variable: "--font-instrument-serif",
+  weight: "400",
+  style: ["normal", "italic"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -78,8 +77,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#FAFAF7" },
-    { media: "(prefers-color-scheme: dark)", color: "#0E4C5A" },
+    { media: "(prefers-color-scheme: light)", color: "#FBFBFD" },
+    { media: "(prefers-color-scheme: dark)", color: "#11195A" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -91,29 +90,23 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const initialRegion = await getServerRegion();
-  const showBanner = await shouldShowRegionBanner();
-
   const siteJsonLd = buildSiteJsonLd(env.NEXT_PUBLIC_SITE_URL);
   const { isEnabled: isDraftEnabled } = await draftMode();
 
   return (
     <html
       lang="en"
-      className={`${manrope.variable} ${interTight.variable} ${jetbrainsMono.variable}`}
+      className={`${inter.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
     >
       <body>
         <SkipToContent />
         <DraftModeIndicator enabled={isDraftEnabled} />
-        <RegionProvider initialRegion={initialRegion}>
-          {showBanner ? <RegionDetectionBanner /> : null}
-          <Header />
-          <main id="main-content" className="min-h-dvh">
-            {children}
-          </main>
-          <Footer />
-          <ConciergeBubble />
-        </RegionProvider>
+        <Header />
+        <main id="main-content" className="min-h-dvh">
+          {children}
+        </main>
+        <Footer />
+        <ConciergeBubble />
         <JsonLd id="site-jsonld" data={siteJsonLd} />
         <Analytics
           plausibleDomain={env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN}

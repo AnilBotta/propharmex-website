@@ -38,7 +38,6 @@ import {
 
 import { CTAS, PRIMARY_NAV } from "../../content/site-nav";
 import { BrandLogo } from "./BrandLogo";
-import { RegionSwitcher } from "./RegionSwitcher";
 
 export function Header() {
   const pathname = usePathname();
@@ -238,10 +237,6 @@ export function Header() {
         </nav>
 
         <div className="ml-auto flex items-center gap-2 lg:gap-3">
-          <div className="hidden md:block">
-            <RegionSwitcher variant="header" />
-          </div>
-
           <Button asChild variant="primary" size="sm" className="hidden md:inline-flex">
             <Link href="/contact?intent=quote">{CTAS.quote}</Link>
           </Button>
@@ -330,7 +325,6 @@ function MobileNav() {
         </Accordion>
       </nav>
       <div className="flex flex-col gap-3 border-t border-[var(--color-border)] p-5">
-        <RegionSwitcher variant="footer" />
         <Button asChild variant="primary" size="md" className="w-full">
           <Link href="/contact?intent=quote">{CTAS.quote}</Link>
         </Button>

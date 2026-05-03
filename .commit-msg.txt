@@ -1,0 +1,65 @@
+﻿feat(positioning): remove region/personalization layer (single unified site)
+
+PR-B′ of the positioning brief (2026-05-02). Strips the entire Canada/India/Global region personalization layer per client direction: one unified Propharmex website for all visitors, no geo-detection, no region switcher, no region-keyed content variants.
+
+Why
+- Client direction: "single unified Propharmex website for all visitors. Do not create separate versions of content for Canada, India, US, or Global audiences. Do not show region-specific CTAs, region-specific hero copy, or region-specific certification emphasis."
+- The personalization layer (Prompt 22) is incompatible with the new specialty-CDMO positioning that PR-C′ will land.
+
+Removed
+- Edge middleware: x-vercel-ip-country geo-detection + px-region cookie writes
+- React UI: RegionSwitcher (header + footer variants), RegionDetectionBanner, RegionContext/RegionProvider
+- API: POST /api/region (cookie writer)
+- Server helpers: getServerRegion, shouldShowRegionBanner
+- Content variants: home-region.ts (regionalizeHome), quality-region.ts (regionalizeQuality), region.ts (REGION_COPY)
+- Library: packages/lib/region/* (Region type, country-map, region-aware helpers, tests)
+- Analytics: region super-property in PostHog register(); region-cookie helpers; region-telemetry events (region.detected/changed/banner_dismissed)
+- Tests: 3 region-specific test files
+- Site-nav: REGIONS export + Region type re-export from @propharmex/lib/region
+- Docs: region rows + region middleware section + region breakdown dashboard from analytics-taxonomy.md
+
+Preserved
+- "Headquartered in Canada" copy as factual company positioning
+- Form-side regulatory-region selector on InquiryForm (different concept: user-input form data)
+- CaseRegion filter on /case-studies (case-study metadata)
+- addressRegion JSON-LD properties on facility pages (geographic metadata)
+
+Files updated (no longer reference region personalization)
+- apps/web/app/layout.tsx — drop RegionProvider, RegionDetectionBanner, region-server imports
+- apps/web/app/page.tsx — drop regionalizeHome, use HOME directly
+- apps/web/app/quality-compliance/page.tsx — drop regionalizeQuality, use QUALITY directly
+- apps/web/app/contact/page.tsx — drop prioritizeByRegion + FACILITY_PRIORITY; pass FACILITIES directly
+- apps/web/components/site/Header.tsx — drop both RegionSwitcher renders (header + mobile sheet)
+- apps/web/lib/analytics/super-properties.ts — drop region from PostHog register() (now 3 super-props)
+- apps/web/lib/analytics/index.ts — drop region-cookie re-exports
+- apps/web/components/site/Analytics.tsx — comment update only
+- apps/web/content/site-nav.ts — drop REGIONS + Region type re-export
+- docs/analytics-taxonomy.md — drop region super-property row + §4.4 + §6.4 + region_switch migration row
+
+Files deleted (18)
+- apps/web/middleware.ts
+- apps/web/lib/region-server.ts
+- apps/web/components/site/RegionContext.tsx
+- apps/web/components/site/RegionDetectionBanner.tsx
+- apps/web/components/site/RegionSwitcher.tsx
+- apps/web/components/site/region-telemetry.ts
+- apps/web/app/api/region/route.ts
+- apps/web/lib/analytics/region-cookie.ts
+- apps/web/lib/analytics/region-cookie.test.ts
+- apps/web/content/region.ts
+- apps/web/content/home-region.ts
+- apps/web/content/quality-region.ts
+- packages/lib/region/index.ts
+- packages/lib/region/types.ts
+- packages/lib/region/types.test.ts
+- packages/lib/region/country-map.ts
+- packages/lib/region/region-aware.ts
+- packages/lib/region/region-aware.test.ts
+
+Verification
+- Preview server: header renders without region switcher; no <RegionProvider> wrap; no banner; no region-keyed copy; / returns 200 OK
+- Existing px-region cookies in user browsers will be ignored (no consumer); they expire on their original max-age and never get refreshed
+
+Out of scope (next PRs in positioning cluster)
+- PR-C′: hero copy + trust strip + Why Propharmex + Capabilities + new Dosage Forms section + Canada-headquartered/globally-connected + Process + Contact + Footer rewrite
+- PR-D′: site-wide DEL/3PL/distribution/cert claim sweep + nav restructure + case study anonymization + service-page rewrite

@@ -2,107 +2,152 @@
  * Propharmex Design Tokens — source of truth
  * Imported by apps/web/app/globals.css and Storybook preview.
  *
- * Authored in Prompt 2 per the master plan:
- *   - Deep Teal #0E4C5A primary (50–950 scale)
- *   - Warm Amber #C99A4B accent
- *   - Pharma White #FAFAF7 neutrals
- *   - Manrope display + Inter Tight body + JetBrains Mono numeric
- *   - Spacing 4/8/12/16/24/32/48/64/96
- *   - Radii 4/8/12/16/24 (default 12)
- *   - Subtle multi-layer "pharma glass" shadow set
- *   - Motion 240/180/40ms (ease-out / ease-in / stagger)
+ * Rebranded per Claude Design handoff (Propharmex Homepage.html, 2026-05-02):
+ *   - Navy (Propharmex deep blue) primary, 50–950 scale anchored at #11195A
+ *   - Orange (CTA accent) #F47B20, 50–900 scale
+ *   - Two new ramps: Blue (clinical accent) #1E9BD8 + Green (QMS / nucleus accent) #3DB54A
+ *   - Slate ramp remapped to design's warm-cool Ink scale (#0A0E2C → #F5F6FB)
+ *   - Inter (display + body, single family) + Instrument Serif (editorial accents) + JetBrains Mono (numeric)
+ *   - Spacing 4/8/12/16/24/32/48/64/96 (unchanged)
+ *   - Radii 4/8/12/16/20/24 (cards bumped to 20px)
+ *   - Pharma-glass shadows re-tinted to navy (rgba(11,17,64,*))
+ *   - Motion 240/180/40ms (ease-out / ease-in / stagger) — unchanged
+ *
+ * --color-warn (#8B6508) and --color-danger (#A23B3B) preserved verbatim from
+ * the prior accessibility audit lock (Prompt 26 PR-A, ACR S1-1).
  *
  * Every token is consumed via Tailwind v4 @theme bindings — no legacy
  * `tailwind.config.ts theme.extend` object is used.
  */
 @theme {
   /* -------------------------------------------------------------------- */
-  /*  Color — Primary: Deep Teal 50–950                                   */
+  /*  Color — Primary: Navy 50–950                                        */
   /* -------------------------------------------------------------------- */
-  --color-primary-50:  oklch(97% 0.012 200);
-  --color-primary-100: oklch(93% 0.020 200);
-  --color-primary-200: oklch(87% 0.034 200);
-  --color-primary-300: oklch(78% 0.050 200);
-  --color-primary-400: oklch(65% 0.070 200);
-  --color-primary-500: oklch(52% 0.082 200);   /* brand base — #0E4C5A-adjacent */
-  --color-primary-600: #0E4C5A;                /* exact brand hex */
-  --color-primary-700: oklch(32% 0.064 200);
-  --color-primary-800: oklch(25% 0.052 200);
-  --color-primary-900: oklch(20% 0.040 200);
-  --color-primary-950: oklch(14% 0.030 200);
+  --color-primary-50:  #ECEEF5;
+  --color-primary-100: #D9DCE8;
+  --color-primary-200: #B8BCD1;
+  --color-primary-300: #8E93B0;
+  --color-primary-400: #6B7090;
+  --color-primary-500: #2E3AA8;                /* Navy 600 — interactive mid */
+  --color-primary-600: #11195A;                /* exact brand hex — primary */
+  --color-primary-700: #1A1F6B;
+  --color-primary-800: #161B3D;
+  --color-primary-900: #0B1140;
+  --color-primary-950: #0A0E2C;
   --color-primary:     var(--color-primary-600);
-  --color-primary-fg:  #FAFAF7;
+  --color-primary-fg:  #FFFFFF;
 
   /* -------------------------------------------------------------------- */
-  /*  Color — Accent: Warm Amber                                          */
+  /*  Color — Accent: Orange (CTA)                                        */
   /* -------------------------------------------------------------------- */
-  --color-accent-50:  oklch(97% 0.020 75);
-  --color-accent-100: oklch(94% 0.040 75);
-  --color-accent-200: oklch(88% 0.070 75);
-  --color-accent-300: oklch(82% 0.095 75);
-  --color-accent-400: oklch(76% 0.110 75);
-  --color-accent-500: #C99A4B;                 /* exact brand hex */
-  --color-accent-600: oklch(62% 0.110 75);
-  --color-accent-700: oklch(52% 0.095 75);
-  --color-accent-800: oklch(42% 0.075 75);
-  --color-accent-900: oklch(32% 0.055 75);
+  --color-accent-50:  #FFF6EE;
+  --color-accent-100: #FCE6D4;
+  --color-accent-200: #F8CDA8;
+  --color-accent-300: #F89759;
+  --color-accent-400: #F89759;
+  --color-accent-500: #F47B20;                 /* exact brand hex */
+  --color-accent-600: #E36A0F;
+  --color-accent-700: #BF560C;
+  --color-accent-800: #9B4A0A;
+  --color-accent-900: #6E3306;
   --color-accent:     var(--color-accent-500);
-  --color-accent-fg:  oklch(18% 0.030 75);
+  --color-accent-fg:  #FFFFFF;
 
   /* -------------------------------------------------------------------- */
-  /*  Color — Neutrals (Pharma White + Slate ramp)                        */
+  /*  Color — Blue (clinical / regulatory secondary accent)               */
   /* -------------------------------------------------------------------- */
-  --color-bg:      #FAFAF7;                    /* Pharma White */
+  --color-blue-50:  #F0F8FD;
+  --color-blue-100: #DEF1FA;
+  --color-blue-200: #BEE3F4;
+  --color-blue-300: #7CCBEE;
+  --color-blue-400: #3FB1E6;
+  --color-blue-500: #1E9BD8;                   /* design Blue 500 */
+  --color-blue-600: #0E7CB0;
+  --color-blue-700: #0E5E86;
+  --color-blue-800: #0E466A;
+  --color-blue-900: #0E3050;
+
+  /* -------------------------------------------------------------------- */
+  /*  Color — Green (QMS / nucleus secondary accent)                      */
+  /* -------------------------------------------------------------------- */
+  --color-green-50:  #F0FAF1;
+  --color-green-100: #DDF3DF;
+  --color-green-200: #BCE7C0;
+  --color-green-300: #98D9A0;
+  --color-green-400: #62C76D;
+  --color-green-500: #3DB54A;                  /* design Green 500 */
+  --color-green-600: #2A9E3A;
+  --color-green-700: #1F7A2C;
+  --color-green-800: #1B6B25;
+  --color-green-900: #114F1A;
+
+  /* -------------------------------------------------------------------- */
+  /*  Color — Neutrals (Paper + Ink ramp)                                 */
+  /* -------------------------------------------------------------------- */
+  --color-bg:      #FBFBFD;                    /* Paper */
   --color-surface: #FFFFFF;
-  --color-fg:      oklch(18% 0.010 260);       /* near slate-900 */
+  --color-fg:      #161B3D;                    /* Ink-900 */
   /*
-   * --color-muted lightness lowered from 54% → 50% per Prompt 26 a11y
-   * audit (color-contrast safety margin). 54% → ~4.4:1 on Pharma White
-   * was on the edge of the 4.5:1 AA threshold; 50% lands at ~4.9:1.
+   * --color-muted darkened from Ink-500 #6B7090 (4.47:1 on slate-50
+   * footer bg, 4.16:1 on slate-100; both fail AA normal text) to
+   * #5E6388. Recomputed: ~5.4:1 on slate-50, ~5.0:1 on slate-100,
+   * ~5.7:1 on Paper. The Ink-500 value remains available as
+   * `--color-slate-500` for non-text uses (icon fills, decoration).
+   * axe-core CI gate flagged 13–17 muted-on-slate nodes per page on
+   * PR #55 with the prior #6B7090 alias.
    */
-  --color-muted:   oklch(50% 0.010 260);
-  --color-border:  oklch(90% 0.006 260);
+  --color-muted:   #5E6388;
+  --color-border:  rgba(11, 17, 64, 0.08);     /* Hairline */
   --color-ring:    var(--color-primary-600);
 
-  --color-slate-50:  oklch(98% 0.004 260);
-  --color-slate-100: oklch(95% 0.006 260);
-  --color-slate-200: oklch(90% 0.008 260);
-  --color-slate-300: oklch(82% 0.010 260);
-  --color-slate-400: oklch(70% 0.012 260);
-  --color-slate-500: oklch(58% 0.012 260);
-  --color-slate-600: oklch(46% 0.012 260);
-  --color-slate-700: oklch(36% 0.012 260);
-  --color-slate-800: oklch(26% 0.012 260);
-  --color-slate-900: oklch(18% 0.010 260);
+  /* Slate ramp now tracks the design's warm-cool Ink scale; same names so
+     existing token-consumer files (193 across the workspace) cascade
+     automatically. */
+  --color-slate-50:  #F5F6FB;
+  --color-slate-100: #ECEEF5;
+  --color-slate-200: #D9DCE8;
+  --color-slate-300: #B8BCD1;
+  --color-slate-400: #8E93B0;
+  --color-slate-500: #6B7090;
+  --color-slate-600: #3A4061;
+  --color-slate-700: #2A3050;
+  --color-slate-800: #161B3D;
+  --color-slate-900: #0A0E2C;
 
   /* -------------------------------------------------------------------- */
   /*  Color — Semantic                                                    */
   /* -------------------------------------------------------------------- */
-  --color-success:    #16785A;
-  --color-success-fg: #FAFAF7;
   /*
-   * --color-warn was #B8860B (~3.4:1 on Pharma White) which fails WCAG AA
-   * for normal text. Darkened to #8B6508 (~5.2:1) per Prompt 26 a11y
-   * audit S1-1. Use --color-warn for fills + this darker --color-warn
-   * for text; --color-warn-fg stays for high-contrast text on warn fills.
+   * --color-success darkened from Green-600 (#2A9E3A, ~3.5:1 on Paper) to
+   * Green-700 (#1F7A2C, ~5.0:1 on Paper) for WCAG AA compliance with normal
+   * text. The Green-600 visual remains available as `--color-green-600` for
+   * non-text decoration (icon fills, chip dots, gradient bg). axe-core CI
+   * gate flagged 13+ nodes/page on PR #55 with the prior #2A9E3A token.
+   */
+  --color-success:    #1F7A2C;
+  --color-success-fg: #FFFFFF;
+  /*
+   * --color-warn preserved at #8B6508 (~5.2:1 on Paper) per the Prompt 26
+   * a11y audit lock (S1-1). Do not change without re-auditing.
    */
   --color-warn:       #8B6508;
   --color-warn-fg:    oklch(15% 0.040 75);
   --color-danger:     #A23B3B;
-  --color-danger-fg:  #FAFAF7;
-  --color-info:       var(--color-primary-600);
-  --color-info-fg:    #FAFAF7;
+  --color-danger-fg:  #FFFFFF;
+  --color-info:       var(--color-blue-600);
+  --color-info-fg:    #FFFFFF;
 
   /* -------------------------------------------------------------------- */
-  /*  Typography — three-family stack                                     */
+  /*  Typography — Inter primary stack + Instrument Serif editorial        */
   /* -------------------------------------------------------------------- */
-  --font-display: "Manrope",       var(--font-manrope),     ui-sans-serif, system-ui, sans-serif;
-  --font-body:    "Inter Tight",   var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
-  --font-mono:    "JetBrains Mono", var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
-  --font-sans:    var(--font-body); /* Tailwind default binding */
+  --font-display:        "Inter", var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-body:           "Inter", var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display-serif:  "Instrument Serif", var(--font-instrument-serif), "Times New Roman", serif;
+  --font-mono:           "JetBrains Mono", var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans:           var(--font-body); /* Tailwind default binding */
 
   /* -------------------------------------------------------------------- */
-  /*  Spacing — 4/8/12/16/24/32/48/64/96                                  */
+  /*  Spacing — 4/8/12/16/24/32/48/64/96 (unchanged)                      */
   /* -------------------------------------------------------------------- */
   --spacing-0:  0px;
   --spacing-1:  4px;
@@ -120,28 +165,28 @@
   --spacing-32: 128px;
 
   /* -------------------------------------------------------------------- */
-  /*  Radii — 4/8/12/16/24, default 12                                    */
+  /*  Radii — cards bumped 16 → 20px to match design                      */
   /* -------------------------------------------------------------------- */
   --radius-xs: 4px;
   --radius-sm: 8px;
   --radius-md: 12px;
-  --radius-lg: 16px;
+  --radius-lg: 20px;                           /* card radius (was 16px) */
   --radius-xl: 24px;
   --radius-full: 9999px;
   --radius:    var(--radius-md);
 
   /* -------------------------------------------------------------------- */
-  /*  Shadows — subtle multi-layer "pharma glass" set                     */
+  /*  Shadows — re-tinted to navy "pharma glass"                          */
   /* -------------------------------------------------------------------- */
-  --shadow-xs: 0 1px 2px rgba(14, 76, 90, 0.04);
-  --shadow-sm: 0 2px 4px rgba(14, 76, 90, 0.06), 0 1px 2px rgba(14, 76, 90, 0.04);
-  --shadow-md: 0 8px 16px rgba(14, 76, 90, 0.08), 0 2px 4px rgba(14, 76, 90, 0.04);
-  --shadow-lg: 0 16px 40px rgba(14, 76, 90, 0.10), 0 4px 8px rgba(14, 76, 90, 0.04);
-  --shadow-xl: 0 24px 64px rgba(14, 76, 90, 0.12), 0 8px 16px rgba(14, 76, 90, 0.06);
-  --shadow-inner: inset 0 1px 2px rgba(14, 76, 90, 0.06);
+  --shadow-xs: 0 1px 2px rgba(11, 17, 64, 0.04);
+  --shadow-sm: 0 2px 4px rgba(11, 17, 64, 0.06), 0 1px 2px rgba(11, 17, 64, 0.04);
+  --shadow-md: 0 8px 16px rgba(11, 17, 64, 0.08), 0 2px 4px rgba(11, 17, 64, 0.04);
+  --shadow-lg: 0 16px 40px rgba(11, 17, 64, 0.10), 0 4px 8px rgba(11, 17, 64, 0.04);
+  --shadow-xl: 0 24px 64px rgba(11, 17, 64, 0.12), 0 8px 16px rgba(11, 17, 64, 0.06);
+  --shadow-inner: inset 0 1px 2px rgba(11, 17, 64, 0.06);
 
   /* -------------------------------------------------------------------- */
-  /*  Motion — 240ms enter, 180ms exit, 40ms stagger                      */
+  /*  Motion — 240ms enter, 180ms exit, 40ms stagger (unchanged)          */
   /* -------------------------------------------------------------------- */
   --duration-enter:   240ms;
   --duration-exit:    180ms;

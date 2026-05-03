@@ -28,8 +28,6 @@ import { QmsArchitecture } from "../../components/quality/QmsArchitecture";
 import { RegulatoryBodies } from "../../components/quality/RegulatoryBodies";
 import { JsonLd } from "../../components/site/JsonLd";
 import { QUALITY } from "../../content/quality";
-import { regionalizeQuality } from "../../content/quality-region";
-import { getServerRegion } from "../../lib/region-server";
 
 export const revalidate = 300;
 
@@ -53,18 +51,16 @@ export const metadata: Metadata = {
 export default async function QualityCompliancePage() {
   const siteUrl = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
   const pageJsonLd = buildQualityJsonLd(siteUrl);
-  const region = await getServerRegion();
-  const quality = regionalizeQuality(region);
 
   return (
     <>
-      <Hero content={quality.hero} />
-      <CertificationWall content={quality.certifications} />
-      <QmsArchitecture content={quality.qms} />
-      <RegulatoryBodies content={quality.regulators} />
-      <AuditHistory content={quality.audit} />
-      <DelStoryTeaser content={quality.del} />
-      <DownloadCenter content={quality.downloads} />
+      <Hero content={QUALITY.hero} />
+      <CertificationWall content={QUALITY.certifications} />
+      <QmsArchitecture content={QUALITY.qms} />
+      <RegulatoryBodies content={QUALITY.regulators} />
+      <AuditHistory content={QUALITY.audit} />
+      <DelStoryTeaser content={QUALITY.del} />
+      <DownloadCenter content={QUALITY.downloads} />
 
       <JsonLd id="quality-jsonld" data={pageJsonLd} />
     </>
