@@ -40,6 +40,7 @@ const STATIC_ENTRIES: Entry[] = [
   entry("/services/pharmaceutical-development", 0.9, "monthly"),
   entry("/services/analytical-services", 0.9, "monthly"),
   entry("/services/regulatory-services", 0.9, "monthly"),
+  entry("/dosage-forms", 0.8, "monthly"),
   entry("/industries", 0.7, "monthly"),
   entry("/case-studies", 0.7, "weekly"),
   entry("/insights", 0.7, "weekly"),

@@ -31,195 +31,129 @@ export type NavSection = {
 /* -------------------------------------------------------------------------- */
 
 export const PRIMARY_NAV: NavSection[] = [
+  // Home is implicit — the logo links to /.
   {
-    label: "Services",
+    label: "Capabilities",
     href: "/services",
     columns: [
       {
-        heading: "Pharmaceutical development",
+        heading: "Pharmaceutical Development",
         links: [
-          { href: "/services/pharma-development", label: "Overview" },
           {
-            href: "/services/pharma-development/formulation-development",
-            label: "Formulation development",
-            description: "Oral, topical, sterile injectable.",
+            href: "/services/pharmaceutical-development",
+            label: "Overview",
+            description: "Specialty CDMO for complex and niche products.",
           },
           {
-            href: "/services/pharma-development/analytical-method-development",
-            label: "Analytical method development",
+            href: "/dosage-forms",
+            label: "View dosage forms",
+            description: "Seven dosage-form pathways.",
+          },
+          {
+            href: "/services/pharmaceutical-development/solid-oral-dosage",
+            label: "Solid oral dosage",
+            description: "Tablets, capsules, granules.",
+          },
+        ],
+      },
+      {
+        heading: "Analytical Services",
+        links: [
+          { href: "/services/analytical-services", label: "Overview" },
+          {
+            href: "/services/analytical-services/method-development",
+            label: "Method development",
             description: "HPLC, LC-MS/MS, dissolution.",
           },
           {
-            href: "/services/pharma-development/stability-studies",
+            href: "/services/analytical-services/method-validation",
+            label: "Method validation",
+            description: "ICH Q2(R2) compliant.",
+          },
+          {
+            href: "/services/analytical-services/stability-studies",
             label: "Stability studies",
             description: "ICH Q1A(R2) zones I–IVb.",
           },
           {
-            href: "/services/pharma-development/process-development",
-            label: "Process development",
+            href: "/services/analytical-services/impurity-profiling",
+            label: "Impurity profiling",
           },
           {
-            href: "/services/pharma-development/tech-transfer",
-            label: "Tech transfer",
+            href: "/services/analytical-services/bioanalytical",
+            label: "Bioanalytical",
           },
           {
-            href: "/services/pharma-development/clinical-trial-supplies",
-            label: "Clinical trial supplies",
+            href: "/services/analytical-services/extractables-and-leachables",
+            label: "Extractables & leachables",
           },
           {
-            href: "/services/pharma-development/dosage-form-development",
-            label: "Dosage form development",
-            description: "With the Dosage Form Matcher.",
+            href: "/services/analytical-services/reference-standard-characterization",
+            label: "Reference standards",
           },
         ],
       },
       {
-        heading: "Analytical services",
-        links: [
-          { href: "/services/analytical-services", label: "Overview" },
-          {
-            href: "/services/analytical-services/method-development-validation",
-            label: "Method development & validation",
-            description: "ICH Q2(R2) compliant.",
-          },
-          {
-            href: "/services/analytical-services/release-stability-testing",
-            label: "Release & stability testing",
-          },
-          {
-            href: "/services/analytical-services/impurities-extractables-leachables",
-            label: "Impurities, E&L",
-          },
-          {
-            href: "/services/analytical-services/dissolution-bioequivalence",
-            label: "Dissolution & bioequivalence",
-          },
-          {
-            href: "/services/analytical-services/microbiological-testing",
-            label: "Microbiological testing",
-          },
-          {
-            href: "/services/analytical-services/elemental-nitrosamine-testing",
-            label: "Elemental & nitrosamine testing",
-            description: "ICH Q3D + EMA/FDA nitrosamine guidance.",
-          },
-          {
-            href: "/services/analytical-services/regulatory-cmc-support",
-            label: "Regulatory CMC support",
-          },
-        ],
-      },
-      {
-        heading: "Regulatory services",
+        heading: "Regulatory Strategy",
         links: [
           { href: "/services/regulatory-services", label: "Overview" },
           {
             href: "/services/regulatory-services/us-fda-submissions",
             label: "USFDA submissions",
-            description: "ANDA, NDA, DMF Type II.",
+            description: "ANDA, 505(b)(2), DMF Type II.",
           },
           {
-            href: "/services/regulatory-services/cmc-dossier-preparation",
-            label: "CMC dossier preparation",
-            description: "eCTD Module 3.",
+            href: "/services/regulatory-services/ctd-ectd-dossier-preparation",
+            label: "CTD / eCTD dossier preparation",
+            description: "ICH M4 Module 3 authoring.",
           },
           {
-            href: "/services/regulatory-services/regulatory-strategy-consulting",
-            label: "Regulatory strategy consulting",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: "Industries",
-    href: "/industries",
-    columns: [
-      {
-        heading: "Sectors served",
-        links: [
-          {
-            href: "/industries/pharmaceutical-innovators",
-            label: "Pharmaceutical innovators",
+            href: "/services/regulatory-services/gmp-audit-preparation",
+            label: "GMP audit preparation",
           },
           {
-            href: "/industries/generic-manufacturers",
-            label: "Generic manufacturers",
-          },
-          { href: "/industries/cdmo-partners", label: "CDMO partners" },
-          {
-            href: "/industries/governments-and-ngos",
-            label: "Governments and NGOs",
-          },
-          {
-            href: "/industries/clinical-trial-sponsors",
-            label: "Clinical trial sponsors",
+            href: "/services/regulatory-services/lifecycle-regulatory-management",
+            label: "Lifecycle & post-approval",
           },
         ],
       },
     ],
   },
   {
-    label: "Resources",
+    label: "Dosage Forms",
+    href: "/dosage-forms",
     columns: [
       {
-        heading: "Evidence",
+        heading: "Available now",
         links: [
           {
-            href: "/case-studies",
-            label: "Case studies",
-            description: "Problem, approach, solution, result.",
-          },
-          { href: "/insights", label: "Insights" },
-          {
-            href: "/whitepapers",
-            label: "Whitepapers",
-            description: "Gated long-form downloads.",
+            href: "/services/pharmaceutical-development/solid-oral-dosage",
+            label: "Solid oral dosage",
+            description: "Tablets, capsules, granules.",
           },
         ],
       },
       {
-        heading: "AI tools",
+        heading: "Explore",
         links: [
           {
-            href: "/ai-tools/cdmo-concierge",
-            label: "CDMO Concierge",
-            description: "Answers grounded in our documentation.",
+            href: "/dosage-forms",
+            label: "View all dosage forms",
+            description: "Seven specialty pathways.",
           },
           {
-            href: "/ai-tools/scoping-assistant",
-            label: "Project Scoping Assistant",
-          },
-          {
-            href: "/ai-tools/dosage-form-matcher",
+            href: "/ai/dosage-matcher",
             label: "Dosage Form Matcher",
+            description: "AI-assisted form selection.",
           },
         ],
       },
-      {
-        heading: "Quality posture",
-        links: [
-          { href: "/quality-compliance", label: "Quality & Compliance" },
-          { href: "/facilities", label: "Facilities" },
-          { href: "/our-process", label: "Our process" },
-        ],
-      },
     ],
   },
-  {
-    label: "Company",
-    columns: [
-      {
-        heading: "About",
-        links: [
-          { href: "/why-propharmex", label: "Why Propharmex" },
-          { href: "/about", label: "About" },
-          { href: "/about/leadership", label: "Leadership" },
-          { href: "/contact", label: "Contact" },
-        ],
-      },
-    ],
-  },
+  // Flat-link items: no `columns` → Header.tsx renders a plain anchor.
+  { label: "About", href: "/about" },
+  { label: "Insights", href: "/insights" },
+  { label: "Contact", href: "/contact" },
 ];
 
 /* -------------------------------------------------------------------------- */
@@ -228,53 +162,73 @@ export const PRIMARY_NAV: NavSection[] = [
 
 export const FOOTER_COLUMNS: { heading: string; links: NavLink[] }[] = [
   {
-    heading: "Services",
+    heading: "Capabilities",
     links: [
-      { href: "/services/pharma-development", label: "Pharmaceutical development" },
+      {
+        href: "/services/pharmaceutical-development",
+        label: "Pharmaceutical development",
+      },
       { href: "/services/analytical-services", label: "Analytical services" },
-      { href: "/services/regulatory-services", label: "Regulatory services" },
+      { href: "/services/regulatory-services", label: "Regulatory strategy" },
     ],
   },
   {
-    heading: "Industries",
+    heading: "Dosage Forms",
     links: [
+      { href: "/dosage-forms", label: "All dosage forms" },
       {
-        href: "/industries/pharmaceutical-innovators",
-        label: "Pharmaceutical innovators",
+        href: "/services/pharmaceutical-development/solid-oral-dosage",
+        label: "Solid oral",
       },
       {
-        href: "/industries/generic-manufacturers",
-        label: "Generic manufacturers",
-      },
-      { href: "/industries/cdmo-partners", label: "CDMO partners" },
-      {
-        href: "/industries/governments-and-ngos",
-        label: "Governments and NGOs",
+        href: "/services/pharmaceutical-development/liquid-oral-dosage",
+        label: "Liquid oral",
       },
       {
-        href: "/industries/clinical-trial-sponsors",
-        label: "Clinical trial sponsors",
+        href: "/services/pharmaceutical-development/topical-semisolid",
+        label: "Topical & semisolid",
+      },
+      {
+        href: "/services/pharmaceutical-development/sterile-injectables",
+        label: "Sterile injectables",
+      },
+      {
+        href: "/services/pharmaceutical-development/inhalation",
+        label: "Inhalation",
+      },
+      {
+        href: "/services/pharmaceutical-development/ophthalmic",
+        label: "Ophthalmic",
+      },
+      {
+        href: "/services/pharmaceutical-development/transdermal-modified-release",
+        label: "Transdermal & modified release",
       },
     ],
   },
   {
     heading: "Company",
     links: [
-      { href: "/why-propharmex", label: "Why Propharmex" },
-      { href: "/about", label: "About" },
+      { href: "/about", label: "About Propharmex" },
       { href: "/about/leadership", label: "Leadership" },
-      { href: "/quality-compliance", label: "Quality & Compliance" },
-      { href: "/facilities", label: "Facilities" },
+      { href: "/why-propharmex", label: "Why Propharmex" },
       { href: "/our-process", label: "Our process" },
+      { href: "/facilities", label: "Facilities" },
+      { href: "/quality-compliance", label: "Quality & Compliance" },
+      { href: "/industries", label: "Industries served" },
     ],
   },
   {
     heading: "Resources",
     links: [
-      { href: "/case-studies", label: "Case studies" },
       { href: "/insights", label: "Insights" },
-      { href: "/whitepapers", label: "Whitepapers" },
-      { href: "/ai-tools/cdmo-concierge", label: "AI tools" },
+      { href: "/case-studies", label: "Case studies" },
+      {
+        href: "/ai/project-scoping-assistant",
+        label: "Project scoping assistant",
+      },
+      { href: "/ai/del-readiness", label: "Regulatory readiness tool" },
+      { href: "/ai/dosage-matcher", label: "Dosage form matcher" },
     ],
   },
 ];
