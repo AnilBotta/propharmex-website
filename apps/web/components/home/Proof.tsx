@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
@@ -42,12 +43,28 @@ export function Proof({ content }: Props) {
           </Button>
         </div>
 
+        <motion.div
+          initial={reduce ? false : "initial"}
+          whileInView="animate"
+          viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+          variants={fadeRise}
+          className="relative mt-12 aspect-[21/9] w-full overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] shadow-[var(--shadow-md)]"
+        >
+          <Image
+            src="/formulation-outcomes.png"
+            alt="Selected pharmaceutical development outcomes illustration"
+            fill
+            sizes="(min-width: 1024px) 1280px, 100vw"
+            className="object-cover object-center"
+          />
+        </motion.div>
+
         <motion.ul
           initial={reduce ? false : "initial"}
           whileInView="animate"
           viewport={{ once: true, margin: "0px 0px -10% 0px" }}
           variants={staggerContainer}
-          className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3"
+          className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3"
         >
           {content.cards.map((card) => (
             <motion.li key={card.id} variants={fadeRise} className="h-full">
