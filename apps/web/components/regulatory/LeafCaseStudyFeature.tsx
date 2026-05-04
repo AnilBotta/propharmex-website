@@ -1,5 +1,5 @@
 /**
- * DelCaseStudyFeature — DEL leaf anonymized pattern-of-work feature, RSC.
+ * LeafCaseStudyFeature — regulatory leaf anonymized pattern-of-work feature, RSC.
  *
  * Single large card. Named, permission-cleared case studies land with
  * Prompt 14; until then the pattern is described and the status pill is
@@ -11,16 +11,16 @@ import { ArrowRight, FileText } from "lucide-react";
 
 import { Button } from "@propharmex/ui";
 
-import type { DelCaseStudyFeature as CaseStudyContent } from "../../content/regulatory-services";
+import type { LeafCaseStudyFeature as CaseStudyContent } from "../../content/regulatory-services";
 
 import { SectionReveal } from "./SectionReveal";
 
 type Props = { content: CaseStudyContent };
 
-export const DelCaseStudyFeature: FC<Props> = ({ content }) => {
+export const LeafCaseStudyFeature: FC<Props> = ({ content }) => {
   return (
     <section
-      id="del-case-study"
+      id="leaf-case-study"
       aria-labelledby="rs-leaf-case-heading"
       className="scroll-mt-24 border-b border-[var(--color-border)] bg-[var(--color-bg)] py-20 sm:py-24"
     >

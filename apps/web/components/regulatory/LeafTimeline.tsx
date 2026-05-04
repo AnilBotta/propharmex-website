@@ -1,17 +1,17 @@
 /**
- * DelTimeline — DEL leaf 6-step new-licence timeline, RSC.
+ * LeafTimeline — regulatory leaf step-by-step timeline, RSC.
  *
  * Vertical numbered timeline with owner chips (propharmex / health-canada /
  * both), typical-duration chips, and per-step primary-source anchors. Opens
- * with the 250-calendar-day service-standard callout and closes with the
- * Health Canada DEL register source.
+ * with a service-standard callout and closes with the leaf's primary-source
+ * anchor.
  */
 import type { FC } from "react";
 import { Clock, ExternalLink, Landmark, Users2, Workflow } from "lucide-react";
 
 import type {
-  DelTimeline as TimelineContent,
-  DelTimelineStep,
+  LeafTimeline as TimelineContent,
+  LeafTimelineStep,
 } from "../../content/regulatory-services";
 
 import { SectionReveal } from "./SectionReveal";
@@ -19,7 +19,7 @@ import { SectionReveal } from "./SectionReveal";
 type Props = { content: TimelineContent };
 
 const OWNER_META: Record<
-  DelTimelineStep["owner"],
+  LeafTimelineStep["owner"],
   { label: string; tone: string; icon: typeof Workflow }
 > = {
   propharmex: {
@@ -39,11 +39,11 @@ const OWNER_META: Record<
   },
 };
 
-export const DelTimeline: FC<Props> = ({ content }) => {
+export const LeafTimeline: FC<Props> = ({ content }) => {
   const source = content.source;
   return (
     <section
-      id="del-timeline"
+      id="leaf-timeline"
       aria-labelledby="rs-leaf-timeline-heading"
       className="scroll-mt-24 border-b border-[var(--color-border)] bg-[var(--color-slate-50)] py-20 sm:py-24"
     >

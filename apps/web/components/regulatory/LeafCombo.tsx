@@ -1,22 +1,26 @@
 /**
- * ThreePlDelCombo — DEL leaf "DEL + 3PL — one posture" two-column block, RSC.
+ * LeafCombo — regulatory leaf two-column combo block, RSC.
+ *
+ * Renders two side-by-side card columns (left: primary tone; right: neutral
+ * tone) with a closing-note paragraph beneath. Used by the regulatory leaves
+ * to surface complementary aspects of a single service area.
  */
 import type { FC } from "react";
 import { CheckCircle2 } from "lucide-react";
 
 import type {
-  ThreePlDelColumn,
-  ThreePlDelCombo as ComboContent,
+  LeafCombo as ComboContent,
+  LeafComboColumn,
 } from "../../content/regulatory-services";
 
 import { SectionReveal } from "./SectionReveal";
 
 type Props = { content: ComboContent };
 
-export const ThreePlDelCombo: FC<Props> = ({ content }) => {
+export const LeafCombo: FC<Props> = ({ content }) => {
   return (
     <section
-      id="del-3pl-combo"
+      id="leaf-combo"
       aria-labelledby="rs-leaf-combo-heading"
       className="scroll-mt-24 border-b border-[var(--color-border)] bg-[var(--color-bg)] py-20 sm:py-24"
     >
@@ -54,7 +58,7 @@ function ComboColumn({
   column,
   tone,
 }: {
-  column: ThreePlDelColumn;
+  column: LeafComboColumn;
   tone: "primary" | "neutral";
 }) {
   const border =

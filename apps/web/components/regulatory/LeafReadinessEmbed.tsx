@@ -1,8 +1,8 @@
 /**
- * DelReadinessEmbed — DEL leaf placeholder for the DEL Readiness Assessment
- * AI tool that ships in Prompt 20.
+ * LeafReadinessEmbed — regulatory leaf placeholder for the leaf-specific
+ * readiness assessment AI tool, RSC.
  *
- * Rendered as a static card with a "Live with Prompt 20" pill and a preview
+ * Rendered as a static card with an "AI tool preview" pill and a preview
  * CTA that routes to /contact so inbound interest is captured before the
  * interactive tool ships.
  */
@@ -12,16 +12,16 @@ import { ArrowRight, Sparkles } from "lucide-react";
 
 import { Button } from "@propharmex/ui";
 
-import type { DelReadinessEmbedPlaceholder } from "../../content/regulatory-services";
+import type { LeafToolEmbedPlaceholder } from "../../content/regulatory-services";
 
 import { SectionReveal } from "./SectionReveal";
 
-type Props = { content: DelReadinessEmbedPlaceholder };
+type Props = { content: LeafToolEmbedPlaceholder };
 
-export const DelReadinessEmbed: FC<Props> = ({ content }) => {
+export const LeafReadinessEmbed: FC<Props> = ({ content }) => {
   return (
     <section
-      id="del-readiness"
+      id="leaf-readiness"
       aria-labelledby="rs-leaf-readiness-heading"
       className="scroll-mt-24 border-b border-[var(--color-border)] bg-[var(--color-slate-50)] py-20 sm:py-24"
     >

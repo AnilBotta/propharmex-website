@@ -1,23 +1,22 @@
 /**
- * DelExplainer — DEL leaf "what the DEL actually is" block, RSC.
+ * LeafExplainer — regulatory leaf "what this service is" block, RSC.
  *
- * Three-topic card row anchored on GUI-0002 / Division 1A / DEL Register.
- * Each card surfaces its own primary-source link so a reviewer can check the
- * regulatory wording directly.
+ * Three-topic card row. Each card surfaces its own primary-source link so
+ * a reviewer can check the regulatory wording directly.
  */
 import type { FC } from "react";
 import { ExternalLink } from "lucide-react";
 
-import type { DelExplainer as DelExplainerContent } from "../../content/regulatory-services";
+import type { LeafExplainer as LeafExplainerContent } from "../../content/regulatory-services";
 
 import { SectionReveal } from "./SectionReveal";
 
-type Props = { content: DelExplainerContent };
+type Props = { content: LeafExplainerContent };
 
-export const DelExplainer: FC<Props> = ({ content }) => {
+export const LeafExplainer: FC<Props> = ({ content }) => {
   return (
     <section
-      id="del-explainer"
+      id="leaf-explainer"
       aria-labelledby="rs-leaf-explainer-heading"
       className="scroll-mt-24 border-b border-[var(--color-border)] bg-[var(--color-slate-50)] py-20 sm:py-24"
     >

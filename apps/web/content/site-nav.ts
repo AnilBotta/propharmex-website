@@ -22,8 +22,6 @@ export type NavSection = {
   href?: string;
   /** When present, the top-level item opens a mega-menu instead of navigating. */
   columns?: { heading: string; links: NavLink[] }[];
-  /** Single-column mobile fallback + flat crawlable list. */
-  flatLinks?: NavLink[];
 };
 
 /* -------------------------------------------------------------------------- */

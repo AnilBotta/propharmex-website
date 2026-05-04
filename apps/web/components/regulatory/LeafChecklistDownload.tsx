@@ -1,5 +1,5 @@
 /**
- * DelChecklistDownload — DEL leaf gated-download card, RSC.
+ * LeafChecklistDownload — regulatory leaf gated-download card, RSC.
  *
  * The PDF artifact is produced through the Prompt 15 whitepaper/pdf pipeline.
  * Until then, the CTA routes to /contact so the covering note can be scoped
@@ -11,16 +11,16 @@ import { ArrowRight, CheckCircle2, Download } from "lucide-react";
 
 import { Button } from "@propharmex/ui";
 
-import type { DelChecklistDownload as ChecklistContent } from "../../content/regulatory-services";
+import type { LeafChecklistDownload as ChecklistContent } from "../../content/regulatory-services";
 
 import { SectionReveal } from "./SectionReveal";
 
 type Props = { content: ChecklistContent };
 
-export const DelChecklistDownload: FC<Props> = ({ content }) => {
+export const LeafChecklistDownload: FC<Props> = ({ content }) => {
   return (
     <section
-      id="del-checklist"
+      id="leaf-checklist"
       aria-labelledby="rs-leaf-checklist-heading"
       className="scroll-mt-24 border-b border-[var(--color-border)] bg-[var(--color-slate-50)] py-20 sm:py-24"
     >
