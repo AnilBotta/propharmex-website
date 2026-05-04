@@ -189,7 +189,7 @@ export function Header() {
                         duration: reduced ? 0 : 0.24,
                         ease: [0.16, 1, 0.3, 1],
                       }}
-                      className="absolute left-0 top-full z-50 mt-2 w-[min(880px,calc(100vw-2rem))] origin-top rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] p-6 shadow-[var(--shadow-xl)]"
+                      className="absolute left-0 top-full z-50 mt-2 w-[min(1080px,calc(100vw-2rem))] origin-top rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] p-6 shadow-[var(--shadow-xl)]"
                     >
                       <div
                         className={cn(
@@ -198,7 +198,9 @@ export function Header() {
                             ? "grid-cols-1"
                             : section.columns!.length === 2
                               ? "grid-cols-2"
-                              : "grid-cols-3",
+                              : section.columns!.length === 3
+                                ? "grid-cols-3"
+                                : "grid-cols-4",
                         )}
                       >
                         {section.columns!.map((col) => (
@@ -208,7 +210,7 @@ export function Header() {
                             </h3>
                             <ul className="flex flex-col gap-1">
                               {col.links.map((l) => (
-                                <li key={l.href}>
+                                <li key={`${l.href}-${l.label}`}>
                                   <Link
                                     href={l.href}
                                     className="group flex flex-col gap-0.5 rounded-[var(--radius-sm)] px-2 py-1.5 transition-colors hover:bg-[var(--color-primary-50)] focus-visible:bg-[var(--color-primary-50)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] focus-visible:ring-offset-2"
@@ -308,7 +310,7 @@ function MobileNav() {
                 <AccordionContent className="px-3 pb-2">
                   <ul className="flex flex-col gap-1 pl-2">
                     {section.columns!.flatMap((c) => c.links).map((l) => (
-                      <li key={l.href}>
+                      <li key={`${l.href}-${l.label}`}>
                         <Link
                           href={l.href}
                           className="flex min-h-11 items-center rounded-[var(--radius-sm)] px-3 py-2 text-sm text-[var(--color-fg)] hover:bg-[var(--color-slate-100)]"

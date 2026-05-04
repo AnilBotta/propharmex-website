@@ -10,6 +10,7 @@
         "http://localhost:3000/quality-compliance",
         "http://localhost:3000/services/pharmaceutical-development",
         "http://localhost:3000/services/pharmaceutical-development/solid-oral-dosage",
+        "http://localhost:3000/services/clinical-be-insight",
         "http://localhost:3000/dosage-forms",
         "http://localhost:3000/insights",
         "http://localhost:3000/insights/del-at-a-glance-foreign-sponsor-primer",

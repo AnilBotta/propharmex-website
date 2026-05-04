@@ -117,6 +117,31 @@ export const PRIMARY_NAV: NavSection[] = [
           },
         ],
       },
+      {
+        heading: "Clinical & BE Insight",
+        links: [
+          { href: "/services/clinical-be-insight", label: "Overview" },
+          {
+            href: "/services/clinical-be-insight",
+            label: "Bioequivalence study design",
+            description: "Comparator, sample size, ICH E9(R1).",
+          },
+          {
+            href: "/services/clinical-be-insight",
+            label: "Pivotal BE strategy",
+            description: "ANDA / ANDS / 505(j) pathways.",
+          },
+          {
+            href: "/services/clinical-be-insight",
+            label: "Clinical regulatory strategy",
+            description: "Biowaivers, BCS, Module 2.7.",
+          },
+          {
+            href: "/services/clinical-be-insight",
+            label: "IND-enabling consultation",
+          },
+        ],
+      },
     ],
   },
   {
@@ -170,6 +195,10 @@ export const FOOTER_COLUMNS: { heading: string; links: NavLink[] }[] = [
       },
       { href: "/services/analytical-services", label: "Analytical services" },
       { href: "/services/regulatory-services", label: "Regulatory strategy" },
+      {
+        href: "/services/clinical-be-insight",
+        label: "Clinical & BE insight",
+      },
     ],
   },
   {
