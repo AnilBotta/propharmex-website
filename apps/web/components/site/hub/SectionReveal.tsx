@@ -1,10 +1,15 @@
 "use client";
 
 /**
- * SectionReveal — client island for /services/pharmaceutical-development.
+ * SectionReveal — shared client island for hub primitives.
  *
- * Same posture as the facilities and quality versions. Kept local to the
- * feature until three+ copies trigger a hoist into packages/ui.
+ * Moved from components/pharmdev/ in PR-H' (hub primitives extraction) so
+ * the canonical version sits alongside the shared HubHero / HubClosing /
+ * CapabilityMatrix components in site/hub/. Other namespace-local
+ * SectionReveal copies (about/, quality/, facilities/, analytical/,
+ * regulatory/, industries/, case-studies/, insights/, process/, contact/)
+ * remain untouched in this PR — that broader consolidation is a separate
+ * future refactor.
  */
 import type { ReactNode } from "react";
 

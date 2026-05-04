@@ -1,15 +1,22 @@
 /**
- * CapabilityMatrix — hub capability grid, RSC.
+ * CapabilityMatrix — shared hub capability grid, RSC.
  *
- * Seven dosage-form cards. `live` cards link to the leaf detail page; cards
- * whose leaf is `shipping-next` render a muted disabled state so internal
- * links don't break while the follow-up PR is in flight.
+ * Seven dosage-form cards (or N items typed against the same shape). `live`
+ * cards link to the leaf detail page; cards whose leaf is `shipping-next`
+ * render a muted disabled state so internal links don't break.
+ *
+ * Moved from components/pharmdev/ in PR-H' (hub primitives extraction).
+ * Currently used by pharmaceutical-development hub and dosage-forms hub
+ * via the structural type-alias pattern. Note: the prop type is still
+ * bound to `PharmDevCapabilityMatrix` (which carries `DosageFormSlug`-typed
+ * slugs) — generalizing the slug type to a string union is a separate
+ * refactor beyond the scope of PR-H'.
  */
 import type { FC } from "react";
 import Link from "next/link";
 import { ArrowRight, Clock } from "lucide-react";
 
-import type { PharmDevCapabilityMatrix } from "../../content/pharmaceutical-development";
+import type { PharmDevCapabilityMatrix } from "../../../content/pharmaceutical-development";
 
 import { SectionReveal } from "./SectionReveal";
 

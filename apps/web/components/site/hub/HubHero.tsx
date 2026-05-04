@@ -1,8 +1,11 @@
 /**
- * HubHero — /services/pharmaceutical-development, RSC.
+ * HubHero — shared hub hero primitive, RSC.
  *
  * Headline, lede, three-stat strip and paired CTAs. LCP-safe — no client
- * components above the fold.
+ * components above the fold. Moved from components/pharmdev/ in PR-H'
+ * (hub primitives extraction). Used by all 3 hub pages today
+ * (pharmaceutical-development, dosage-forms, clinical-be-insight) via the
+ * structural type-alias pattern in their respective content files.
  */
 import type { FC } from "react";
 import Link from "next/link";
@@ -10,7 +13,7 @@ import { ArrowRight } from "lucide-react";
 
 import { Button } from "@propharmex/ui";
 
-import type { PharmDevHubHero } from "../../content/pharmaceutical-development";
+import type { PharmDevHubHero } from "../../../content/pharmaceutical-development";
 
 type Props = { content: PharmDevHubHero };
 

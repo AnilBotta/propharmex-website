@@ -16,11 +16,11 @@ import type { Metadata } from "next";
 
 import { env, jsonLdGraph } from "@propharmex/lib";
 
-import { CapabilityMatrix } from "../../../components/pharmdev/CapabilityMatrix";
 import { CaseStudyRail } from "../../../components/pharmdev/CaseStudyRail";
-import { HubClosing } from "../../../components/pharmdev/HubClosing";
-import { HubHero } from "../../../components/pharmdev/HubHero";
 import { Lifecycle } from "../../../components/pharmdev/Lifecycle";
+import { CapabilityMatrix } from "../../../components/site/hub/CapabilityMatrix";
+import { HubClosing } from "../../../components/site/hub/HubClosing";
+import { HubHero } from "../../../components/site/hub/HubHero";
 import { JsonLd } from "../../../components/site/JsonLd";
 import { PHARM_DEV_HUB } from "../../../content/pharmaceutical-development";
 
