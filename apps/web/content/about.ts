@@ -217,19 +217,19 @@ export const LEADERS: AboutLeader[] = [
     id: "leader-regulatory",
     slug: "principal-regulatory-affairs",
     name: "Principal, Regulatory Affairs",
-    role: "Health Canada DEL and USFDA submissions",
+    role: "Health Canada and USFDA submissions",
     location: "Mississauga",
     credential:
       "20+ years in ANDS, ANDA, and DMF Type II filings across generics and specialty dosage forms.",
     bio: [
-      "Leads Propharmex regulatory strategy across Health Canada, USFDA, TGA, and WHO-PQ pathways. Accountable for the Mississauga Drug Establishment Licence and every Canadian dossier.",
+      "Leads Propharmex regulatory strategy across Health Canada, USFDA, TGA, and WHO-PQ pathways. Accountable for every Canadian client-of-record dossier.",
       "Career background spans ANDS and ANDA filings for complex generics, DMF Type II authoring, and nitrosamine risk assessments aligned to current USFDA and EMA guidance.",
       "Profile in preparation — vetted biography and public credentials will replace this placeholder copy.",
     ],
     credentials: [
       "20+ years in pharmaceutical regulatory affairs",
       "Lead author on Health Canada ANDS and USFDA ANDA submissions",
-      "Named principal on Propharmex Drug Establishment Licence filings",
+      "Named principal on Propharmex regulatory dossiers",
     ],
     linkedin: null,
     publications: [],
@@ -258,22 +258,22 @@ export const LEADERS: AboutLeader[] = [
     stub: true,
   },
   {
-    id: "leader-operations",
-    slug: "director-operations",
-    name: "Director, Operations",
-    role: "Manufacturing, 3PL distribution, and cold chain",
+    id: "leader-programmes",
+    slug: "director-programmes",
+    name: "Director, Programmes",
+    role: "Programme management and tech transfer",
     location: "Mississauga",
     credential:
-      "Cold-chain and 3PL operations across Canadian and US distribution lanes, plus tech-transfer oversight from the development bench.",
+      "Programme management and tech-transfer oversight across the four capability pillars — development, analytical, regulatory, and clinical insight.",
     bio: [
-      "Owns manufacturing coordination between Mississauga and the development bench, plus the Propharmex 3PL — import, release, warehousing, and Canadian and US distribution under the Drug Establishment Licence.",
-      "Runs the daylight-overlap operating cadence that links the Mississauga office and the offshore development bench, including the weekly joint steering between regulatory, analytical, and manufacturing leads.",
+      "Owns programme coordination between the Canadian office and the development centre. Tech transfers, stage-gate reviews, and the operating cadence that keeps each engagement in one shared CTMS rather than five.",
+      "Runs the daylight-overlap cadence that links the Mississauga office and the development centre, including the weekly joint steering between regulatory, analytical, and development leads.",
       "Profile in preparation — vetted biography and public credentials will replace this placeholder copy.",
     ],
     credentials: [
-      "Cold-chain logistics (2–8 °C and controlled ambient) across CA + US lanes",
-      "3PL operations under Health Canada DEL",
+      "Programme management across complex-generic and specialty-dosage engagements",
       "Tech-transfer oversight under one Propharmex quality system",
+      "Operating cadence across the Canadian office and the development centre",
     ],
     linkedin: null,
     publications: [],
@@ -287,9 +287,9 @@ export const LEADERS: AboutLeader[] = [
 
 export const ABOUT: AboutContent = {
   metaTitle:
-    "About Propharmex — Canadian pharmaceutical services team",
+    "About Propharmex — specialty CDMO for complex and niche pharmaceutical products",
   metaDescription:
-    "Who we are, how we operate, and why we run development, analytical, regulatory, and 3PL distribution under one Canadian quality system. Anchored at our Mississauga, Ontario site under Health Canada Drug Establishment Licence — serving drug developers globally.",
+    "Who we are, how we operate, and why we run pharmaceutical development, analytical services, regulatory strategy, and clinical and BE insight under one quality system. Headquartered in Canada with a development centre in India — serving drug developers worldwide.",
   ogTitle: "About Propharmex",
   ogDescription:
     "Mission, values, timeline, and the named principals accountable on every Propharmex engagement.",
@@ -298,20 +298,19 @@ export const ABOUT: AboutContent = {
   founding: {
     eyebrow: "Founding story",
     headline: "One quality system. No handoffs between us.",
-    lede: "Propharmex was founded as a Canadian pharmaceutical services company anchored under Health Canada Drug Establishment Licence — built to close one specific gap, with the development depth to file under our own DEL.",
+    lede: "Propharmex was founded as a specialty pharmaceutical services company built around four capability pillars — pharmaceutical development, analytical services, regulatory strategy, and clinical and BE insight — for drug developers working on complex and niche products.",
     body: [
       "The trigger was a pattern we saw repeatedly across complex-generic and specialty-dosage programs — six or more independent vendors stitched together by overnight emails, and timelines that doubled every time a deviation crossed a contract boundary.",
-      "Our Mississauga site is the regulatory anchor — a Health Canada Drug Establishment Licence and the 3PL to import, release, and distribute finished product into Canada, the US, and the Caribbean. An offshore development bench under the same quality system gives us the dosage-form depth at a cost and cadence that keep complex-generic programs viable.",
-      "What makes it work is not geography. It is one CTMS, one change-control process, one named principal per engagement — and a deliberately boring handover cadence tuned to the daylight overlap between our Mississauga office and the offshore bench.",
+      "Propharmex is headquartered in Canada with a development centre in India. The Canadian office holds the client-of-record relationship and runs regulatory strategy; the development centre carries the formulation, analytical method, and stability work under the same quality system. Both sites read against the same SOPs and answer to the same quality lead.",
+      "What makes it work is not geography. It is one CTMS, one change-control process, one named principal per engagement — and a deliberately boring handover cadence tuned to the daylight overlap between the Canadian office and the development centre.",
     ],
     anchor: {
-      value: "1",
+      value: "4",
       label:
-        "Drug Establishment Licence — Mississauga site, Health Canada-issued",
+        "Capability pillars under one quality system — development, analytical, regulatory, clinical and BE insight",
       source: {
-        kind: "primary",
-        label: "Health Canada — Drug and Health Product Register",
-        href: "https://health-products.canada.ca/dpd-bdpp/",
+        kind: "internal",
+        label: "Propharmex operating model, 2025-Q4",
       },
     },
   },
@@ -324,11 +323,11 @@ export const ABOUT: AboutContent = {
       "The three statements below are not a marketing frame. They are the criteria we use to scope engagements, hire principals, and decline work that does not fit.",
     mission: {
       label: "Mission",
-      body: "Make complex-generic and specialty-dosage development faster and more predictable by running development, analytical, regulatory, and distribution as one team under one quality system.",
+      body: "Make complex-generic and specialty-dosage development faster and more predictable by running pharmaceutical development, analytical services, regulatory strategy, and clinical and BE insight as one team under one quality system.",
     },
     vision: {
       label: "Vision",
-      body: "Be the correct CDMO for the product profiles where a Canadian regulatory anchor with the development depth to file under it is the right structural answer — complex generics, modified-release orals, lyophilized sterile injectables, and dissolution-sensitive semi-solids.",
+      body: "Be the correct specialty CDMO for the product profiles where depth across development, analytical, regulatory, and clinical insight matters more than a generic capability menu — complex generics, modified-release orals, lyophilized sterile injectables, and dissolution-sensitive semi-solids.",
     },
     values: [
       {
@@ -359,19 +358,19 @@ export const ABOUT: AboutContent = {
   },
 
   /* ---------- 3. Timeline ---------------------------------------------- */
-  // TODO(prompt-7-followup): confirm exact founding and DEL issue dates with
-  // the founders. The current entries are placeholders dated by the decade the
-  // founders indicated in discovery; swap to exact months once verified.
+  // TODO(prompt-7-followup): confirm exact founding date with the founders.
+  // The current entries are placeholders dated by the decade the founders
+  // indicated in discovery; swap to exact months once verified.
   timeline: {
     eyebrow: "Timeline",
     heading: "A short history, dated.",
-    lede: "The entries below are the structural milestones — founding, regulatory issuance, expansion, and the programs that changed how we operate. Exact months are being verified; years are confirmed.",
+    lede: "The entries below are the structural milestones — founding, capability expansion, and the programs that changed how we operate. Exact months are being verified; years are confirmed.",
     events: [
       {
         year: "2010",
         kind: "founding",
         title: "Propharmex development operations founded.",
-        body: "Analytical services and formulation development benches stood up at our offshore site — initial focus on oral solids for emerging-market generics.",
+        body: "Analytical services and formulation development benches stood up at the development centre — initial focus on oral solids for emerging-market generics.",
         source: {
           kind: "internal",
           label: "Propharmex founding record",
@@ -391,44 +390,20 @@ export const ABOUT: AboutContent = {
         year: "2017",
         kind: "expansion",
         title: "Propharmex Canada incorporated in Mississauga, Ontario.",
-        body: "Canadian entity established to anchor the regulatory layer and distribution footprint for North American market work.",
+        body: "Canadian headquarters established to hold the client-of-record relationship and run regulatory strategy for North American programmes.",
         source: {
           kind: "internal",
           label: "Propharmex corporate filings",
         },
       },
       {
-        year: "2019",
-        kind: "regulatory",
-        title: "Health Canada Drug Establishment Licence issued.",
-        body: "DEL issued for the Mississauga site covering fabrication, packaging, labelling, testing, import, and wholesale activities per GUI-0002.",
-        source: {
-          kind: "primary",
-          label:
-            "Health Canada — Guidance on Drug Establishment Licences (GUI-0002)",
-          href: "https://www.canada.ca/en/health-canada/services/drugs-health-products/compliance-enforcement/establishment-licences/directives-guidance-documents-policies.html",
-        },
-      },
-      {
         year: "2021",
         kind: "expansion",
-        title: "3PL distribution and cold-chain lanes commissioned.",
-        body: "Mississauga cold-chain warehousing (2–8 °C and controlled ambient) and the CA / US / Caribbean distribution lanes brought online under the DEL.",
+        title: "Clinical and BE insight capability added.",
+        body: "Clinical insight and bioequivalence study design added as the fourth capability pillar alongside development, analytical services, and regulatory strategy.",
         source: {
           kind: "internal",
-          label: "Propharmex operations register",
-        },
-      },
-      {
-        year: "2023",
-        kind: "regulatory",
-        title: "USFDA registration and TGA recognition.",
-        body: "Establishment registration with the USFDA and recognition under the TGA framework added to the cert stack alongside WHO-GMP-aligned operations on the development bench.",
-        source: {
-          kind: "primary",
-          label:
-            "WHO — Good Manufacturing Practices for pharmaceutical products",
-          href: "https://www.who.int/teams/health-product-policy-and-standards/standards-and-specifications/norms-and-standards-for-pharmaceuticals/guidelines/production",
+          label: "Propharmex capability register",
         },
       },
       {
@@ -449,7 +424,7 @@ export const ABOUT: AboutContent = {
     eyebrow: "Leadership",
     heading: "A small team, named on the record.",
     intro:
-      "Every engagement is signed off by one named principal on the Propharmex side — development, analytical, regulatory, or distribution, depending on where your program is today. No account-team handoffs after signature.",
+      "Every engagement is signed off by one named principal on the Propharmex side — development, analytical, regulatory, or programmes, depending on where your program is today. No account-team handoffs after signature.",
     anchorId: "leadership",
     ctaHref: "/about/leadership",
     ctaLabel: "Meet the leadership team",
@@ -511,7 +486,7 @@ export const ABOUT: AboutContent = {
 export const LEADERSHIP_PAGE: AboutLeadershipPage = {
   metaTitle: "Leadership — Propharmex",
   metaDescription:
-    "The Propharmex leadership team. Named principals accountable for regulatory affairs, analytical operations, and distribution under one Canadian quality system.",
+    "The Propharmex leadership team. Named principals accountable for regulatory affairs, analytical operations, and programmes under one quality system.",
   heading: "The team accountable on every Propharmex engagement.",
   lede: "Every engagement is signed off by one named principal on our side. No account-team handoffs after signature. Detailed profiles are in preparation and will replace the placeholder copy below once each principal has reviewed their public credentials.",
   stubNotice:
