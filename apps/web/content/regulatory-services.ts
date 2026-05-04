@@ -14,21 +14,21 @@
  *    in PR-D2d-1' because its body explicitly claimed Propharmex holds and
  *    operates a Health Canada Drug Establishment Licence at the
  *    Mississauga site. The URL is 301'd to the hub.
- *  - PR-D2d-2' (this PR) audited the four remaining leaves (US FDA
- *    submissions, CTD/eCTD dossier preparation, GMP audit preparation,
- *    lifecycle regulatory management) and removed residual DEL / 3PL
- *    framing throughout: hero stats, threePlDelCombo sections, body-copy
- *    cross-references, FAQ items, and related-services links into the
- *    retired DEL leaf. The leaves now describe services performed on
- *    behalf of client programs targeting Health Canada, USFDA, EMA, and
- *    other regulators — not credentials Propharmex holds.
- *  - The misnomer-typed fields (`threePlDelCombo`, `DelTimeline`,
- *    `DelExplainer`, `DelReadinessEmbedPlaceholder`, `DelCaseStudyFeature`,
- *    `DelChecklistDownload`) are retained in the `RegulatoryLeafContent`
- *    shape because all 4 remaining leaves still use them. A future cleanup
- *    PR could rename them to neutral names (e.g. `LeafFeaturePanel`,
- *    `LeafLifecyclePanel`) — that's a structural-naming refactor, not a
- *    content concern.
+ *  - PR-D2d-2' audited the four remaining leaves (US FDA submissions,
+ *    CTD/eCTD dossier preparation, GMP audit preparation, lifecycle
+ *    regulatory management) and removed residual DEL / 3PL framing
+ *    throughout: hero stats, combo sections, body-copy cross-references,
+ *    FAQ items, and related-services links into the retired DEL leaf.
+ *    The leaves now describe services performed on behalf of client
+ *    programs targeting Health Canada, USFDA, EMA, and other regulators —
+ *    not credentials Propharmex holds.
+ *  - PR-G' (this PR) renamed the misnomer-typed fields and components to
+ *    neutral names: `DelExplainer` → `LeafExplainer`, `DelTimeline` →
+ *    `LeafTimeline`, `ThreePlDelCombo` → `LeafCombo`,
+ *    `DelReadinessEmbedPlaceholder` → `LeafToolEmbedPlaceholder`,
+ *    `DelCaseStudyFeature` → `LeafCaseStudyFeature`, `DelChecklistDownload`
+ *    → `LeafChecklistDownload`. The `threePlDelCombo` field on
+ *    `RegulatoryLeafContent` was renamed to `combo`.
  *  - `confirmed` and `under-confirmation` claim-status tiers remain in the
  *    `RegulatoryClaimStatus` union for component-side compatibility but
  *    are unused by /services/regulatory-services content as of PR-D2d-2'
@@ -167,7 +167,7 @@ export type RegulatoryHubContent = {
 };
 
 /* -------------------------------------------------------------------------- */
-/*  Leaf template — Health Canada DEL licensing                               */
+/*  Leaf template — neutral primitives shared by every regulatory leaf        */
 /* -------------------------------------------------------------------------- */
 
 export type RegulatoryLeafHero = {
@@ -181,37 +181,37 @@ export type RegulatoryLeafHero = {
   secondaryCta: RegulatoryCta;
 };
 
-export type DelExplainerTopic = {
+export type LeafExplainerTopic = {
   id: string;
   heading: string;
   body: string;
   source?: RegulatorySource;
 };
 
-export type DelExplainer = {
+export type LeafExplainer = {
   eyebrow: string;
   heading: string;
   lede: string;
-  /** Three topics: what the DEL authorizes / who needs it / why we hold it. */
-  topics: DelExplainerTopic[];
+  /** Three topics describing the service. */
+  topics: LeafExplainerTopic[];
 };
 
-export type ThreePlDelColumn = {
+export type LeafComboColumn = {
   id: string;
   heading: string;
   bullets: string[];
 };
 
-export type ThreePlDelCombo = {
+export type LeafCombo = {
   eyebrow: string;
   heading: string;
   lede: string;
-  leftColumn: ThreePlDelColumn;
-  rightColumn: ThreePlDelColumn;
+  leftColumn: LeafComboColumn;
+  rightColumn: LeafComboColumn;
   closingNote: string;
 };
 
-export type DelTimelineStep = {
+export type LeafTimelineStep = {
   id: string;
   label: string;
   description: string;
@@ -220,13 +220,13 @@ export type DelTimelineStep = {
   source?: RegulatorySource;
 };
 
-export type DelTimeline = {
+export type LeafTimeline = {
   eyebrow: string;
   heading: string;
   lede: string;
-  /** Copy citing Health Canada's 250 calendar-day service standard. */
+  /** Copy citing the relevant agency's service standard, when applicable. */
   serviceStandardCopy: string;
-  steps: DelTimelineStep[];
+  steps: LeafTimelineStep[];
   source: RegulatorySource;
 };
 
@@ -243,7 +243,7 @@ export type RegulatoryChallenges = {
   items: RegulatoryChallengeItem[];
 };
 
-export type DelReadinessEmbedPlaceholder = {
+export type LeafToolEmbedPlaceholder = {
   eyebrow: string;
   heading: string;
   body: string;
@@ -252,7 +252,7 @@ export type DelReadinessEmbedPlaceholder = {
   previewCta: RegulatoryCta;
 };
 
-export type DelCaseStudyFeature = {
+export type LeafCaseStudyFeature = {
   eyebrow: string;
   heading: string;
   body: string;
@@ -260,7 +260,7 @@ export type DelCaseStudyFeature = {
   cta: RegulatoryCta;
 };
 
-export type DelChecklistDownload = {
+export type LeafChecklistDownload = {
   eyebrow: string;
   heading: string;
   lede: string;
@@ -314,13 +314,13 @@ export type RegulatoryLeafContent = {
   ogTitle: string;
   ogDescription: string;
   hero: RegulatoryLeafHero;
-  explainer: DelExplainer;
-  threePlDelCombo: ThreePlDelCombo;
-  timeline: DelTimeline;
+  explainer: LeafExplainer;
+  combo: LeafCombo;
+  timeline: LeafTimeline;
   challenges: RegulatoryChallenges;
-  readinessEmbed: DelReadinessEmbedPlaceholder;
-  caseStudyFeature: DelCaseStudyFeature;
-  checklistDownload: DelChecklistDownload;
+  readinessEmbed: LeafToolEmbedPlaceholder;
+  caseStudyFeature: LeafCaseStudyFeature;
+  checklistDownload: LeafChecklistDownload;
   faq: RegulatoryFaq;
   related: RegulatoryRelated;
   closing: RegulatoryLeafClosing;
@@ -665,7 +665,7 @@ export const REGULATORY_US_FDA_SUBMISSIONS: RegulatoryLeafContent = {
       },
     ],
   },
-  threePlDelCombo: {
+  combo: {
     eyebrow: "Authoring and analytical record",
     heading: "Where the work happens, and what a sponsor plugs into",
     lede: "FDA submissions are authored and reviewed against the analytical and QMS record under a single quality system. The columns below describe the operational flow — authoring and assembly on one side, the underlying analytical record on the other — both carrying parts of the same dossier.",
@@ -986,7 +986,7 @@ export const REGULATORY_CTD_ECTD_DOSSIER_PREPARATION: RegulatoryLeafContent = {
       },
     ],
   },
-  threePlDelCombo: {
+  combo: {
     eyebrow: "Authored core and underlying record",
     heading: "Where the work happens, and what a sponsor plugs into",
     lede: "CTD authoring happens against ICH M4; Regional Module 1 packaging is layered on top per target agency. The columns below describe the operational flow — authoring and assembly on one side, the analytical record Module 3 references on the other.",
@@ -1307,7 +1307,7 @@ export const REGULATORY_GMP_AUDIT_PREPARATION: RegulatoryLeafContent = {
       },
     ],
   },
-  threePlDelCombo: {
+  combo: {
     eyebrow: "Documentation and inspection readiness",
     heading: "Where the work happens, and what a site plugs into",
     lede: "GMP audit preparation spans documentation shaping, CAPA authoring and training materials, with on-site mock inspection coverage and inspection-day coaching for client sites. Strategy is co-owned across the Propharmex regulatory and quality functions.",
@@ -1620,7 +1620,7 @@ export const REGULATORY_LIFECYCLE_MANAGEMENT: RegulatoryLeafContent = {
       },
     ],
   },
-  threePlDelCombo: {
+  combo: {
     eyebrow: "Authoring and filing",
     heading: "Where the work happens, and what a sponsor plugs into",
     lede: "Lifecycle work spans CMC and supplement authoring, with submissions filed across Health Canada, the FDA, and the EMA on behalf of the sponsor. The columns below describe the operational flow.",

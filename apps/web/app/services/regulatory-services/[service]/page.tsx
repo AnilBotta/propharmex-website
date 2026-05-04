@@ -18,16 +18,16 @@ import type { Metadata } from "next";
 import { env, jsonLdGraph } from "@propharmex/lib";
 
 import { ChallengesList } from "../../../../components/regulatory/ChallengesList";
-import { DelCaseStudyFeature } from "../../../../components/regulatory/DelCaseStudyFeature";
-import { DelChecklistDownload } from "../../../../components/regulatory/DelChecklistDownload";
-import { DelExplainer } from "../../../../components/regulatory/DelExplainer";
-import { DelReadinessEmbed } from "../../../../components/regulatory/DelReadinessEmbed";
-import { DelTimeline } from "../../../../components/regulatory/DelTimeline";
 import { FaqAccordion } from "../../../../components/regulatory/FaqAccordion";
+import { LeafCaseStudyFeature } from "../../../../components/regulatory/LeafCaseStudyFeature";
+import { LeafChecklistDownload } from "../../../../components/regulatory/LeafChecklistDownload";
 import { LeafClosing } from "../../../../components/regulatory/LeafClosing";
+import { LeafCombo } from "../../../../components/regulatory/LeafCombo";
+import { LeafExplainer } from "../../../../components/regulatory/LeafExplainer";
 import { LeafHero } from "../../../../components/regulatory/LeafHero";
+import { LeafReadinessEmbed } from "../../../../components/regulatory/LeafReadinessEmbed";
+import { LeafTimeline } from "../../../../components/regulatory/LeafTimeline";
 import { RelatedServices } from "../../../../components/regulatory/RelatedServices";
-import { ThreePlDelCombo } from "../../../../components/regulatory/ThreePlDelCombo";
 import { JsonLd } from "../../../../components/site/JsonLd";
 import {
   REGULATORY_LEAF_CONTENT,
@@ -102,13 +102,13 @@ export default async function RegulatoryServiceLeafPage({
   return (
     <>
       <LeafHero content={content.hero} />
-      <DelExplainer content={content.explainer} />
-      <ThreePlDelCombo content={content.threePlDelCombo} />
-      <DelTimeline content={content.timeline} />
+      <LeafExplainer content={content.explainer} />
+      <LeafCombo content={content.combo} />
+      <LeafTimeline content={content.timeline} />
       <ChallengesList content={content.challenges} />
-      <DelReadinessEmbed content={content.readinessEmbed} />
-      <DelCaseStudyFeature content={content.caseStudyFeature} />
-      <DelChecklistDownload content={content.checklistDownload} />
+      <LeafReadinessEmbed content={content.readinessEmbed} />
+      <LeafCaseStudyFeature content={content.caseStudyFeature} />
+      <LeafChecklistDownload content={content.checklistDownload} />
       <FaqAccordion content={content.faq} />
       <RelatedServices content={content.related} />
       <LeafClosing content={content.closing} />
