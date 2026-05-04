@@ -1,8 +1,11 @@
 /**
- * HubClosing — hub closing CTA block, RSC.
+ * HubClosing — shared hub closing CTA block, RSC.
  *
- * Same layout as the facilities IndexClosing — single card, paired CTAs, no
- * additional copy.
+ * Single card, paired CTAs, no additional copy. Moved from
+ * components/pharmdev/ in PR-H' (hub primitives extraction). Used by all 3
+ * hub pages today (pharmaceutical-development, dosage-forms,
+ * clinical-be-insight) via the structural type-alias pattern in their
+ * respective content files.
  */
 import type { FC } from "react";
 import Link from "next/link";
@@ -10,7 +13,7 @@ import { ArrowRight } from "lucide-react";
 
 import { Button } from "@propharmex/ui";
 
-import type { PharmDevHubClosing } from "../../content/pharmaceutical-development";
+import type { PharmDevHubClosing } from "../../../content/pharmaceutical-development";
 
 import { SectionReveal } from "./SectionReveal";
 

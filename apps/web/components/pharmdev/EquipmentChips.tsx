@@ -12,7 +12,7 @@ import { Button } from "@propharmex/ui";
 
 import type { DosageFormEquipment } from "../../content/pharmaceutical-development";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: DosageFormEquipment };
 

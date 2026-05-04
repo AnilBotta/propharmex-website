@@ -13,7 +13,7 @@ import { Button } from "@propharmex/ui";
 
 import type { DosageFormClosingCta } from "../../content/pharmaceutical-development";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: DosageFormClosingCta };
 

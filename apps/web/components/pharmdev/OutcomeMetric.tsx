@@ -10,7 +10,7 @@ import { FileText } from "lucide-react";
 
 import type { DosageFormOutcome } from "../../content/pharmaceutical-development";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: DosageFormOutcome };
 

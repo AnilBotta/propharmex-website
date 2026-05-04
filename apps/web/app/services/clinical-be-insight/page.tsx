@@ -19,9 +19,9 @@ import type { Metadata } from "next";
 import { env, jsonLdGraph } from "@propharmex/lib";
 
 import { ServicesMatrix } from "../../../components/clinical/ServicesMatrix";
-import { HubClosing } from "../../../components/pharmdev/HubClosing";
-import { HubHero } from "../../../components/pharmdev/HubHero";
 import { JsonLd } from "../../../components/site/JsonLd";
+import { HubClosing } from "../../../components/site/hub/HubClosing";
+import { HubHero } from "../../../components/site/hub/HubHero";
 import { CLINICAL_HUB } from "../../../content/clinical-be-insight";
 
 export const revalidate = 300;

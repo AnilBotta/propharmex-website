@@ -10,7 +10,7 @@ import { ArrowUpRight } from "lucide-react";
 
 import type { DosageFormRelated } from "../../content/pharmaceutical-development";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: DosageFormRelated };
 
