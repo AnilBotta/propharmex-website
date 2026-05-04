@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 
@@ -12,12 +13,11 @@ type Props = { content: OperationalDepthSection };
 /**
  * OperationalDepth — homepage section, two-column "anchor + depth" frame.
  *
- * Replaces the prior CanadaIndiaAdvantage / two-hub framing per the
- * Canadian-anchored positioning lexicon (docs/positioning-canadian-anchor.md).
- * The first column is the regulatory anchor (Mississauga DEL site); the
- * second column is the development depth (no site named on this surface).
- * The earlier WorldArc visualization (Mississauga → Hyderabad) has been
- * retired — the geography is no longer the headline.
+ * Per the specialty-CDMO repositioning, this section describes the operating
+ * model: Canada-headquartered, globally connected. The first column is the
+ * Canadian headquarters; the second column is the development depth. A
+ * banner image above the 2-column grid reinforces the human, globally-
+ * collaborative read of the section.
  */
 export function OperationalDepth({ content }: Props) {
   const reduce = useReducedMotion();
@@ -44,7 +44,23 @@ export function OperationalDepth({ content }: Props) {
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-12">
+        <motion.div
+          initial={reduce ? false : "initial"}
+          whileInView="animate"
+          viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+          variants={fadeRise}
+          className="relative mt-12 aspect-[21/9] w-full overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] shadow-[var(--shadow-md)]"
+        >
+          <Image
+            src="/team-global-collaboration.png"
+            alt="Canada-headquartered global pharmaceutical collaboration illustration"
+            fill
+            sizes="(min-width: 1024px) 1280px, 100vw"
+            className="object-cover object-center"
+          />
+        </motion.div>
+
+        <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-12">
           <OperatingCard column={anchor} reduce={reduce} />
           <OperatingCard column={depth} reduce={reduce} />
         </div>

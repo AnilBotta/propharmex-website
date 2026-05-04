@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { FlaskConical, Microscope, FileCheck2, Stethoscope, ArrowUpRight } from "lucide-react";
@@ -28,7 +29,23 @@ export function WhatWeDo({ content }: Props) {
       className="bg-[var(--color-slate-50)] py-20 sm:py-24"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col gap-3 max-w-3xl">
+        <motion.div
+          initial={reduce ? false : "initial"}
+          whileInView="animate"
+          viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+          variants={fadeRise}
+          className="relative aspect-[21/9] w-full overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] shadow-[var(--shadow-md)]"
+        >
+          <Image
+            src="/capabilities.png"
+            alt="Four pharmaceutical capability areas and one development pathway"
+            fill
+            sizes="(min-width: 1280px) 1280px, 100vw"
+            className="object-cover object-center"
+          />
+        </motion.div>
+
+        <div className="mt-10 flex max-w-3xl flex-col gap-3">
           <p className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-[0.12em] text-[var(--color-primary-700)]">
             {content.eyebrow}
           </p>
