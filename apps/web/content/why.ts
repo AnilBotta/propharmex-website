@@ -118,12 +118,12 @@ export type WhyContent = {
 
 export const WHY: WhyContent = {
   metaTitle:
-    "Why Propharmex — Canadian pharmaceutical services anchored under Health Canada DEL",
+    "Why Propharmex — specialty CDMO for complex and niche pharmaceutical products",
   metaDescription:
-    "Drug development is fragmented across too many vendors and jurisdictions. Propharmex closes that gap with an integrated four-leg operating model anchored on a Health Canada Drug Establishment Licence, with development depth running under one quality system.",
+    "Drug development is fragmented across too many vendors and jurisdictions. Propharmex closes that gap with four capability pillars — pharmaceutical development, analytical services, regulatory strategy, and clinical and BE insight — running under one quality system.",
   ogTitle: "Why Propharmex",
   ogDescription:
-    "The specific gap we exist to close — a Canadian regulatory anchor with the development depth to file under it, all run under one quality system.",
+    "The specific gap we exist to close — specialty CDMO depth across development, analytical, regulatory, and clinical insight, run under one quality system.",
 
   railLabel: "Chapter progress",
 
@@ -177,40 +177,39 @@ export const WHY: WhyContent = {
       eyebrow: "Chapter two",
       headline: "The gap we exist to close.",
       lede:
-        "There are Canadian CDMOs with Drug Establishment Licences. There are CDMOs elsewhere with deep analytical and manufacturing benches. There are not many organizations operating both under one Canadian quality system, on one dossier.",
+        "There are large CDMOs with broad capability menus. There are boutique labs deep in one discipline. There are not many specialty CDMOs covering pharmaceutical development, analytical services, regulatory strategy, and clinical and BE insight — under one quality system, for complex and niche products.",
       body: [
-        "A Canadian DEL is the anchor for Canadian market authorization. It is also the pre-requisite for importing finished product into Canada for release. No offshore-only arrangement can replace it.",
-        "Offshore analytical depth is the practical anchor for method development at a cost and cadence that keeps complex-generic programs viable. No Canadian lab-only arrangement replicates it for most dosage forms below a certain commercial scale.",
-        "Most CDMO networks pick one side of that trade. We are organized around the intersection — a Canadian DEL anchor plus an offshore development bench under one Canadian QMS, one CTMS, one change-control process, and one named principal per engagement.",
+        "Generic-CDMO breadth means everyone gets the same playbook, even when the molecule needs something specific. That works for commodity products. It rarely works for complex generics, modified-release orals, lyophilized injectables, or dissolution-sensitive semi-solids.",
+        "Boutique-lab depth solves the discipline question — but it leaves the integration question open. Programmes still hand off between five vendors; the analytical bench still does not see the regulatory deficiency letter; the formulation team still does not know which study the clinical lead is reading.",
+        "We are organized around the intersection — four capability pillars run as one team, under one CTMS, one change-control process, and one named principal per engagement. The quality system spans the Canadian office and the development centre.",
       ],
       stats: [
         {
-          value: "1",
-          label: "Drug Establishment Licence — Mississauga site, Health Canada",
+          value: "4",
+          label:
+            "Capability pillars: development, analytical, regulatory, clinical and BE insight",
           source: {
-            kind: "primary",
-            label: "Health Canada — Drug and Health Product Register",
-            href: "https://health-products.canada.ca/dpd-bdpp/",
+            kind: "internal",
+            label: "Propharmex operating model, 2025-Q4",
           },
         },
         {
-          value: "WHO-GMP",
-          label: "Manufacturing operations aligned to WHO-GMP principles",
+          value: "ICH Q10",
+          label: "Pharmaceutical quality-system framework",
           source: {
             kind: "primary",
-            label: "WHO — Good Manufacturing Practices guidance",
-            href: "https://www.who.int/teams/health-product-policy-and-standards/standards-and-specifications/norms-and-standards-for-pharmaceuticals/guidelines/production",
+            label: "ICH Q10 — Pharmaceutical Quality System (Step 4)",
+            href: "https://database.ich.org/sites/default/files/Q10%20Guideline.pdf",
           },
         },
       ],
       support: {
         kind: "dataPoint",
         headline:
-          "Health Canada's Drug Establishment Licence authorizes fabrication, packaging, labelling, testing, import, and wholesale — the authorization layer that most cross-border arrangements cannot replicate.",
+          "ICH Q10 defines the pharmaceutical quality system that supports development, technology transfer, and commercial manufacturing within one framework — the structural answer to fragmented vendor handoffs.",
         source: {
-          label:
-            "Health Canada — Guidance on Drug Establishment Licences (GUI-0002)",
-          href: "https://www.canada.ca/en/health-canada/services/drugs-health-products/compliance-enforcement/establishment-licences/directives-guidance-documents-policies.html",
+          label: "ICH Q10 — Pharmaceutical Quality System",
+          href: "https://database.ich.org/sites/default/files/Q10%20Guideline.pdf",
         },
       },
     },
@@ -220,19 +219,19 @@ export const WHY: WhyContent = {
       id: "model",
       railLabel: "Our model",
       eyebrow: "Chapter three",
-      headline: "Four legs. One engagement. One quality system.",
+      headline: "Four pillars. One engagement. One quality system.",
       lede:
-        "Development, analytical, regulatory, and 3PL distribution run inside one operating model. One CTMS. One change-control process. One principal accountable on the client side of the engagement, end to end.",
+        "Pharmaceutical development, analytical services, regulatory strategy, and clinical and BE insight run inside one operating model. One CTMS. One change-control process. One principal accountable on the client side of the engagement, end to end.",
       body: [
-        "The four legs are not bolted together for a landing page — they are run from the same quality manual. When a stability deviation fires on the development bench, the Mississauga quality lead sees it on the same dashboard and closes the CAPA under the same SOP the site inspectors read on every audit.",
-        "Handoffs that were interface risks between vendors become sign-offs inside one team. A tech transfer from analytical to release testing is a stage-gate with a named owner on both sides — not a new contract negotiation.",
-        "Our goal is not to be every CDMO. It is to be the correct CDMO for complex generics, modified-release orals, lyophilized sterile injectables, and semi-solids where the dissolution method matters more than the bulk chemistry.",
+        "The four pillars are not bolted together for a landing page — they are run from the same quality manual. When a stability deviation fires on the development bench, the regulatory lead sees it on the same dashboard and closes the CAPA under the same SOP the auditors read on every review.",
+        "Handoffs that were interface risks between vendors become sign-offs inside one team. A tech transfer from analytical method work into a regulatory dossier is a stage-gate with a named owner on both sides — not a new contract negotiation.",
+        "Our goal is not to be every CDMO. It is to be the correct specialty CDMO for complex generics, modified-release orals, lyophilized sterile injectables, and semi-solids where the dissolution method matters more than the bulk chemistry.",
       ],
       stats: [
         {
           value: "4",
           label:
-            "Integrated legs: development, analytical, regulatory, distribution",
+            "Capability pillars: development, analytical, regulatory, clinical and BE insight",
           source: {
             kind: "internal",
             label: "Propharmex operating model, 2025-Q4",
@@ -327,29 +326,30 @@ export const WHY: WhyContent = {
       eyebrow: "Chapter five",
       headline: "How the operating model runs.",
       lede:
-        "The model is operational, not aspirational. One Canadian quality manual across development, distribution, and regulatory work, with a daily handover cadence built on a few hours of daylight overlap between our Mississauga office and an offshore development bench.",
+        "The model is operational, not aspirational. One quality manual across the four capability pillars, with a daily handover cadence built on a few hours of daylight overlap between the Canadian office and the development centre.",
       body: [
-        "Mississauga holds the Drug Establishment Licence and runs the 3PL — import, release testing, warehousing, and Canadian distribution, with cold-chain lanes into the US and Caribbean. It is the regulatory face of every engagement.",
-        "The development bench carries the method work — HPLC, LC-MS/MS, dissolution, Karl Fischer, DSC — plus formulation and process depth for orals, sterile injectables, and semi-solids. Manufacturing runs under WHO-GMP-aligned principles for pilot and scale-up batches.",
-        "The handover cadence is boring on purpose. Data-room uploads close at end-of-day on the development bench; Mississauga picks them up first thing the next morning, ET. Weekly steering runs at 09:00 ET. Deviations are logged in the same system and reviewed by the same quality lead. The cert stack — Health Canada DEL, WHO-GMP-aligned operations, ISO 9001, USFDA registration, TGA recognition — is maintained on a single schedule.",
+        "The Canadian office holds the client-of-record relationship and runs regulatory strategy — submissions to Health Canada, USFDA, TGA, and WHO-PQ. It is the regulatory face of every engagement and the named principal point of contact.",
+        "The development centre carries the method work — HPLC, LC-MS/MS, dissolution, Karl Fischer, DSC — plus formulation and process depth for orals, sterile injectables, and semi-solids. Stability and bioequivalence study design sit alongside, under the same quality system.",
+        "The handover cadence is boring on purpose. Data-room uploads close at end-of-day on the development centre; the Canadian office picks them up first thing the next morning, ET. Weekly steering runs at 09:00 ET. Deviations are logged in the same system and reviewed by the same quality lead.",
       ],
       stats: [
         {
           value: "2.5 hrs",
           label:
-            "Daily daylight overlap between our Mississauga office and the offshore development bench",
+            "Daily daylight overlap between the Canadian office and the development centre",
           source: {
             kind: "internal",
             label: "Propharmex operating cadence",
           },
         },
         {
-          value: "5",
+          value: "ICH Q10",
           label:
-            "Active certifications under one quality system: DEL · WHO-GMP · ISO 9001 · USFDA · TGA",
+            "Pharmaceutical quality-system framework spanning both sites",
           source: {
-            kind: "internal",
-            label: "Propharmex certifications register, 2025-Q4",
+            kind: "primary",
+            label: "ICH Q10 — Pharmaceutical Quality System (Step 4)",
+            href: "https://database.ich.org/sites/default/files/Q10%20Guideline.pdf",
           },
         },
       ],
@@ -371,7 +371,7 @@ export const WHY: WhyContent = {
       eyebrow: "Chapter six",
       headline: "If the gap is real, the next step is a 15-minute call.",
       lede:
-        "We do not run a demo circuit. Discovery is a scoping conversation with a named principal — development, analytical, regulatory, or distribution, depending on where your program is today.",
+        "We do not run a demo circuit. Discovery is a scoping conversation with a named principal — development, analytical, regulatory, or programmes, depending on where your program is today.",
       body: [
         "If your program fits the model, you will hear a proposal with a timeline in weeks, costs named, and risks listed without euphemism. If it does not fit, you will hear that too, and we will point you to the organizations that do.",
         "The three actions below are the three ways most engagements begin. Pick the one that matches how you prefer to work.",
@@ -407,10 +407,10 @@ export const WHY: WhyContent = {
       {
         id: "playbook",
         icon: "book-open",
-        label: "Download the operating-model playbook",
+        label: "Read how we operate",
         supporting:
-          "A 10-page field guide on how our Canadian regulatory anchor and offshore development depth run under one quality system.",
-        href: "/insights/whitepapers/canadian-cdmo-operating-model",
+          "Walks through the four-pillar operating model — pharmaceutical development, analytical, regulatory, and clinical and BE insight — under one quality system.",
+        href: "/our-process",
         variant: "ghost",
       },
       {
