@@ -364,10 +364,96 @@ The script asserts on document structure (expected H1, expected H2 set, ≥6 tab
 
 ---
 
-## 15. Changelog
+## 15. Cloudflare-proxy ops
+
+The marketing site sits behind a Cloudflare proxy (Vercel is the origin). Architecture record + decision rationale lives in [docs/hosting-strategy.md](hosting-strategy.md). This section is the operational runbook for the proxy layer itself.
+
+### 15.1 Cache purge after a Vercel deploy
+
+Vercel's deploy promotion flips the origin to the new build, but Cloudflare keeps serving cached HTML and `/_next/static/*` until the `Cache-Control` `s-maxage` window elapses or you purge. For high-priority deploys (security fix, content correction visible above the fold) — purge immediately.
+
+```bash
+# Set once in your shell:
+export CF_API_TOKEN="<your zone-scoped token with Cache Purge:Edit>"
+export CF_ZONE_ID="<your zone id from CF dashboard overview>"
+
+# Purge everything:
+curl -X POST "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/purge_cache" \
+  -H "Authorization: Bearer $CF_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  --data '{"purge_everything": true}'
+```
+
+For routine deploys, no purge is needed — `/_next/image/*` carries content-hash URLs that change automatically, and ISR pages are short-TTL anyway.
+
+A `scripts/cf-purge-cache.mjs` utility wraps the curl above. Wire it into a Vercel deploy hook (Project Settings → Git → Deploy Hooks) only if you want automatic post-deploy purges.
+
+### 15.2 Dev mode (3-hour proxy bypass)
+
+For emergency debugging when you need to see exactly what Vercel is serving without any CF caching or transformation:
+
+1. Cloudflare dashboard → Caching → Configuration → **Development Mode** → **On**.
+2. Cloudflare bypasses cache + Polish + Auto Minify for 3 hours, then auto-disables.
+3. Verify with `curl -I https://propharmex.com/<path>` — `cf-cache-status` will be `DYNAMIC` or absent on every request.
+
+Don't leave Dev Mode on past your debugging window. It disables the cache layer entirely.
+
+### 15.3 Error code triage
+
+| Code | Meaning | First action |
+|---|---|---|
+| **522** | Origin connection timed out (>100s) | Check Vercel status page; check `/api/health` direct via Vercel preview URL |
+| **523** | Origin unreachable (DNS / routing) | Verify Vercel deploy succeeded; check `vercel.json` regions; rerun a deploy |
+| **525** | SSL handshake failed origin-side | Verify SSL/TLS Mode = Full (Strict) AND Vercel cert is valid (auto-renewed; check Vercel project SSL settings) |
+| **526** | Invalid SSL certificate | Same as 525 — usually means Vercel cert expired or domain mis-mapped |
+| **520** | Origin returned an empty / unexpected response | Check Vercel runtime logs via Vercel MCP for crashes |
+
+For all 5xx CF errors, "Always Online" should serve a stale CF copy if one exists. If users see 522 with no stale fallback → escalate to **rollback (§15.5)**.
+
+### 15.4 Bot Fight Mode false positives on `/contact`
+
+Bot Fight Mode runs upstream of Turnstile and may aggressively block automated traffic. False positives surface as:
+
+- PostHog `form_submit` event fires (user clicked Submit on `/contact`)
+- PostHog `contact_submit` success event does **not** fire
+- Sentry shows no error (the request never reached Vercel)
+
+**Triage:**
+
+1. Check Cloudflare dashboard → Security → Events → filter by host `/contact`. Look for `Bot Fight Mode` blocks in the time window.
+2. If a real user is being blocked, lower Security Level on `/contact` only via a Configuration Rule:
+   - Match: URI Path equals `/contact`
+   - Action: Security Level → Essentially Off
+3. Turnstile + WAF Managed Rules continue to protect the form. Bot Fight Mode bypass on `/contact` is acceptable because Turnstile is already specifically tuned for that path.
+
+### 15.5 Rollback
+
+If the proxy is the suspected cause of a production incident, rollback is **<60s**. Procedure documented in [docs/hosting-strategy.md §4](hosting-strategy.md). One-line summary: gray-cloud the apex DNS record in Cloudflare → Vercel direct.
+
+For full Cloudflare removal (rare): switch nameservers back at the registrar. Phase 1 of the original cutover lowered DNS TTL to 300s — this is what makes that switch fast. Keep the TTL low (300s) for at least 24h after any cutover or rollback so resolvers don't carry stale records.
+
+### 15.6 Verify the proxy is working
+
+Sanity check on any incident or after a deploy:
+
+```bash
+curl -I https://propharmex.com | grep -iE 'cf-ray|cf-cache-status|server'
+```
+
+Expected:
+- `cf-ray: <id>-<pop>` — Cloudflare request ID + serving PoP
+- `cf-cache-status: HIT|MISS|DYNAMIC|EXPIRED|BYPASS` — cache decision
+- `server: cloudflare`
+
+If `cf-ray` is absent, the request bypassed Cloudflare (DNS misrouted, gray-clouded record, or rollback in effect — verify intent before treating as an incident).
+
+---
+
+## 16. Changelog
 
 | Date | Change | PR |
 |---|---|---|
 | 2026-04-29 | Runbook initial — Prompt 25 PR-A | [#40](https://github.com/AnilBotta/propharmex-website/pull/40) |
 | 2026-04-29 | Bundle budget + uptime cron — Prompt 25 PR-B | [#41](https://github.com/AnilBotta/propharmex-website/pull/41) |
 | 2026-04-29 | A11y testing layers (§14) + ACR docx — Prompt 26 PR-B | TBD |
+| 2026-05-04 | Cloudflare-proxy ops (§15) + hosting-strategy.md — PR-K′ | TBD |
