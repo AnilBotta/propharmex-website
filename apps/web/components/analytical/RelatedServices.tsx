@@ -7,7 +7,7 @@ import { ArrowUpRight } from "lucide-react";
 
 import type { AnalyticalRelated } from "../../content/analytical-services";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: AnalyticalRelated };
 

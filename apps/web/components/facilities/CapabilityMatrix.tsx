@@ -10,7 +10,7 @@ import { CheckCircle2, Link2 } from "lucide-react";
 
 import type { FacilityCapabilityMatrix } from "../../content/facilities";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: FacilityCapabilityMatrix };
 

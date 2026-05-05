@@ -9,7 +9,7 @@ import { Button } from "@propharmex/ui";
 
 import type { InsightsHubContent } from "../../content/insights";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: InsightsHubContent["closing"] };
 

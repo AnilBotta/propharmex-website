@@ -9,7 +9,7 @@ import type { FC } from "react";
 import type { FacilityPhotoGallery } from "../../content/facilities";
 
 import { PhotoFrame } from "./PhotoFrame";
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: FacilityPhotoGallery };
 

@@ -12,7 +12,7 @@ import { Button } from "@propharmex/ui";
 
 import type { AnalyticalCaseRail as CaseRailContent } from "../../content/analytical-services";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: CaseRailContent };
 

@@ -6,7 +6,7 @@ import { AlertCircle } from "lucide-react";
 
 import type { AnalyticalChallenges } from "../../content/analytical-services";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: AnalyticalChallenges };
 

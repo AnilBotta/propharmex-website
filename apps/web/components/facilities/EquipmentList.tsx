@@ -17,7 +17,7 @@ import { Button } from "@propharmex/ui";
 
 import type { FacilityEquipmentList } from "../../content/facilities";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: FacilityEquipmentList };
 

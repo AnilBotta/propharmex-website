@@ -15,7 +15,7 @@ import type { FC } from "react";
 import type { ContactContent } from "../../content/contact";
 import { FACILITIES, type FacilityAddress } from "../../content/site-nav";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = {
   content: ContactContent["addresses"];

@@ -14,7 +14,7 @@ import type {
   RegulatoryServiceSummary,
 } from "../../content/regulatory-services";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 const HUB_PATH = "/services/regulatory-services";
 

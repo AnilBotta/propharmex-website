@@ -15,7 +15,7 @@ import type {
   IndustrySummary,
 } from "../../content/industries";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 const HUB_PATH = "/industries";
 

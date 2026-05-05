@@ -11,7 +11,7 @@ import { ExternalLink } from "lucide-react";
 
 import type { FacilitiesComparison } from "../../content/facilities";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: FacilitiesComparison };
 

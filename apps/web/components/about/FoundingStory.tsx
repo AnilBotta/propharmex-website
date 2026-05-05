@@ -9,7 +9,7 @@ import type { FC } from "react";
 
 import type { AboutFounding } from "../../content/about";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: AboutFounding };
 

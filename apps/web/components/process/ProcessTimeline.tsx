@@ -19,7 +19,7 @@ import { Clock } from "lucide-react";
 
 import type { ProcessPhase } from "../../content/process";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = {
   phases: ProcessPhase[];

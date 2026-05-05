@@ -9,7 +9,7 @@ import { Button } from "@propharmex/ui";
 
 import type { AnalyticalHubClosing as HubClosingContent } from "../../content/analytical-services";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: HubClosingContent };
 

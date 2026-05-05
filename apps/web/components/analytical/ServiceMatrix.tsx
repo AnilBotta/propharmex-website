@@ -13,7 +13,7 @@ import type {
   AnalyticalServiceSummary,
 } from "../../content/analytical-services";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 const HUB_PATH = "/services/analytical-services";
 

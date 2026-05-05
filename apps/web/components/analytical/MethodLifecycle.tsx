@@ -9,7 +9,7 @@ import type { FC } from "react";
 
 import type { AnalyticalLifecycle as LifecycleContent } from "../../content/analytical-services";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: LifecycleContent };
 
