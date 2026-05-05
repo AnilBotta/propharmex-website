@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { draftMode } from "next/headers";
+import { draftMode, headers } from "next/headers";
 import { Inter, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import { env } from "@propharmex/lib";
 
@@ -93,27 +93,38 @@ export default async function RootLayout({
   const siteJsonLd = buildSiteJsonLd(env.NEXT_PUBLIC_SITE_URL);
   const { isEnabled: isDraftEnabled } = await draftMode();
 
+  // Suppress marketing chrome on /studio so the embedded Sanity Studio (PR-L′)
+  // owns the full viewport. Pathname comes from middleware-set `x-pathname`.
+  const pathname = (await headers()).get("x-pathname") ?? "";
+  const isStudioRoute = pathname.startsWith("/studio");
+
   return (
     <html
       lang="en"
       className={`${inter.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
     >
       <body>
-        <SkipToContent />
-        <DraftModeIndicator enabled={isDraftEnabled} />
-        <Header />
-        <main id="main-content" className="min-h-dvh">
-          {children}
-        </main>
-        <Footer />
-        <ConciergeBubble />
-        <JsonLd id="site-jsonld" data={siteJsonLd} />
-        <Analytics
-          plausibleDomain={env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN}
-          posthogKey={env.NEXT_PUBLIC_POSTHOG_KEY}
-          posthogHost={env.NEXT_PUBLIC_POSTHOG_HOST}
-        />
-        <VisualEditing enabled={isDraftEnabled} />
+        {isStudioRoute ? (
+          children
+        ) : (
+          <>
+            <SkipToContent />
+            <DraftModeIndicator enabled={isDraftEnabled} />
+            <Header />
+            <main id="main-content" className="min-h-dvh">
+              {children}
+            </main>
+            <Footer />
+            <ConciergeBubble />
+            <JsonLd id="site-jsonld" data={siteJsonLd} />
+            <Analytics
+              plausibleDomain={env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN}
+              posthogKey={env.NEXT_PUBLIC_POSTHOG_KEY}
+              posthogHost={env.NEXT_PUBLIC_POSTHOG_HOST}
+            />
+            <VisualEditing enabled={isDraftEnabled} />
+          </>
+        )}
       </body>
     </html>
   );

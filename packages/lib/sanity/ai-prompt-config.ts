@@ -30,7 +30,7 @@ import { sanityFetch, sanityTag } from "./fetch";
 
 /**
  * Schema for the `concierge` slice of the aiPromptConfig singleton. Mirrors
- * the field shape declared in apps/studio/schemas/documents/aiPromptConfig.ts.
+ * the field shape declared in apps/web/sanity/schemas/documents/aiPromptConfig.ts.
  */
 export const conciergePromptParser = z.object({
   systemPrompt: z.string().min(40),

@@ -1,3 +1,9 @@
 packages:
-  - "apps/*"
+  # apps/studio was retired in PR-L′ — Sanity Studio is now embedded at
+  # /studio inside apps/web. The apps/studio/ folder remains on disk
+  # only until the operator runs `git rm -rf apps/studio` (no shell
+  # access from the implementation session). It is excluded from the
+  # workspace explicitly so pnpm/turbo no longer build, lint, or
+  # typecheck it.
+  - "apps/web"
   - "packages/*"

@@ -168,7 +168,7 @@ For a new engineer, these are the most useful files to read first.
 | Understand the build phases | docs/phase-roadmap.md |
 | Run the site locally | apps/web/README.md |
 | Modify a page | apps/web/app/<route>/page.tsx |
-| Add a content type | packages/lib/sanity/schemas/ + apps/studio/schemas/ |
+| Add a content type | packages/lib/sanity/schemas/ + apps/web/sanity/schemas/ (Studio is embedded at /studio inside apps/web — see PR-L′) |
 | Modify a component | packages/ui/components/ + matching docs/design-system/components/<X>.mdx |
 | Touch an AI endpoint | apps/web/app/api/ai/<tool>/route.ts |
 | Add a database migration | supabase/migrations/ + apply via Supabase MCP |

@@ -9,7 +9,7 @@
  *
  *   2. **SOP capability** — the canonical dosage-form × capability
  *      mapping that Propharmex publishes. Fields mirror
- *      `apps/studio/schemas/documents/sopCapability.ts` (the actual
+ *      `apps/web/sanity/schemas/documents/sopCapability.ts` (the actual
  *      schema, not the drifted parser at `packages/lib/sanity/parsers.ts`
  *      — to be cleaned up in Prompt 22).
  *
@@ -23,7 +23,7 @@
 import { z } from "zod";
 
 /* -------------------------------------------------------------------------- */
-/*  Enums (mirror apps/studio/schemas/documents/sopCapability.ts)              */
+/*  Enums (mirror apps/web/sanity/schemas/documents/sopCapability.ts)              */
 /* -------------------------------------------------------------------------- */
 
 /**

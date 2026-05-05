@@ -3,7 +3,7 @@
  * (Prompt 21 PR-A).
  *
  * Why hardcoded for v1: the Sanity `sopCapability` document type exists
- * (`apps/studio/schemas/documents/sopCapability.ts`) but the
+ * (`apps/web/sanity/schemas/documents/sopCapability.ts`) but the
  * `packages/lib/sanity/parsers.ts` Zod parser is drifted — it expects
  * fields the schema doesn't have (`category`, `equipment`,
  * `applicableServices`). A focused Sanity-backed fetcher is deferred
@@ -11,7 +11,7 @@
  * tool with a complete, accurate dosage-form × capability mapping that
  * the regulatory lead has signed off on.
  *
- * Each entry mirrors the shape `apps/studio/schemas/documents/sopCapability.ts`
+ * Each entry mirrors the shape `apps/web/sanity/schemas/documents/sopCapability.ts`
  * publishes — `dosageForm`, `capabilities[]`, optional batch-size
  * envelope, optional notes. Coverage scoring in `coverage.ts` uses these
  * `capabilities[]` arrays as the authoritative "what we offer per form"
