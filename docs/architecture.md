@@ -4,8 +4,9 @@
 
 ```
                           ┌──────────────────────────────────────┐
-                          │ Sanity Studio  (apps/studio)         │
-                          │ Content authors edit in real time    │
+                          │ Sanity Studio  (apps/web /studio)    │
+                          │ Embedded route — content authors     │
+                          │ edit in real time on propharmex.com  │
                           └──────────────┬───────────────────────┘
                                          │ publish webhook
                                          ▼
@@ -35,8 +36,7 @@
 
 ## Monorepo package dependencies
 
-- `apps/web` depends on `packages/ui`, `packages/config`, `packages/lib`
-- `apps/studio` depends on `packages/config` (shared types) and Sanity SDK
+- `apps/web` depends on `packages/ui`, `packages/config`, `packages/lib`. The Sanity Studio is embedded at `/studio` (PR-L′); schemas + studio config live under `apps/web/sanity/` and `apps/web/sanity.config.ts`.
 - `packages/ui` depends on `packages/config`
 - `packages/lib` has GROQ clients, RAG helpers, schema.org helpers, logger, zod schemas — no UI deps
 - No `apps/` depends on another `apps/`
@@ -80,7 +80,7 @@ Override via header switcher. Respects privacy (no gating, subtle banner on firs
 
 - Vercel production: `propharmex.com`
 - Vercel preview: every PR
-- Sanity Studio: `studio.propharmex.com` (or hosted via Sanity)
+- Sanity Studio: embedded at `propharmex.com/studio` (PR-L′). Sanity SSO authenticates editors; CORS origin must be allow-listed in Sanity manage console.
 - Supabase region: `us-east-1` (lowest latency to Vercel iad1)
 - Backups: Supabase daily + point-in-time via their tier; Sanity has its own versioning
 
@@ -105,10 +105,10 @@ Expand this doc in Prompt 4 (Sanity + RAG flow), Prompt 18 (Concierge detail), a
 
 ## Sanity content layer (added in Prompt 4)
 
-- Studio lives in `apps/studio`. Project ID `veo2rnkc`, dataset `production`. Run locally with `pnpm --filter studio dev` (port 3333). Deploy hosting separately via `sanity deploy` — the web app does not embed the Studio.
+- Studio is embedded inside `apps/web` at the `/studio` route (PR-L′). Project ID `veo2rnkc`, dataset `production`. Local dev: `pnpm --filter web dev`, then open `http://localhost:3000/studio`. Schemas + structure + presentation resolver live under `apps/web/sanity/`; the studio config is `apps/web/sanity.config.ts` with `basePath: "/studio"`. Editors authenticate via Sanity's hosted SSO. The deprecated `apps/studio/` workspace is excluded from `pnpm-workspace.yaml` and slated for `git rm -rf` once the embed is verified in production.
 - 14 document types: `siteSettings` + `aiPromptConfig` (singletons), `page`, `service`, `industry`, `caseStudy`, `insight`, `whitepaper`, `person`, `facility`, `certification`, `faq`, `testimonial`, `sopCapability`. All content docs share a base-field factory (`title`, `slug`, `seoTitle`, `seoDescription`, `ogImage`, `publishedAt`, `isVisible`, `region[]`, `ragEligible`).
 - 12 section-builder objects (`hero`, `pillars`, `statsStrip`, `processStepper`, `logoWall`, `caseStudyCarousel`, `capabilityMatrix`, `certBand`, `leaderCard`, `faqBlock`, `ctaSection`, `bentoGrid`) are registered as a discriminated-union array on `page.body`, `service.body`, `industry.body`, and `insight.body`.
-- Desk structure (`apps/studio/structure/index.ts`) pins the two singletons at the top and buckets remaining types under **Content**, **People & places**, and **Components**. Singleton creation/deletion is filtered out via `document.actions` and `document.newDocumentOptions`.
+- Desk structure (`apps/web/sanity/structure/index.ts`) pins the two singletons at the top and buckets remaining types under **Content**, **People & places**, and **Components**. Singleton creation/deletion is filtered out via `document.actions` and `document.newDocumentOptions`.
 - Presentation plugin is wired with `defineLocations` for every public-facing document type (page, service, industry, insight, caseStudy). Preview mode is enabled via the web app's `/api/draft` route; Studio passes a signed `secret`.
 - GROQ + Zod lib lives at `packages/lib/sanity/`:
   - `client.ts` — published + preview clients, `getClient(preview)` selector, stub clients that fail-loud at call time when `NEXT_PUBLIC_SANITY_PROJECT_ID` is unset so imports stay side-effect-free.

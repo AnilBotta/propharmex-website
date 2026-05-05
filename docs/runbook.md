@@ -16,7 +16,7 @@ update the doc, not both at once.
 | Component | Where | Provider |
 |---|---|---|
 | Marketing site | `apps/web` | Vercel (Next.js 15 + Edge runtime mix) |
-| CMS | `apps/studio` | Sanity Studio v3 (project `veo2rnkc`, dataset `production`) |
+| CMS | `apps/web/sanity` (embedded at `/studio`, PR-L′) | Sanity Studio v3 (project `veo2rnkc`, dataset `production`) |
 | DB | `packages/lib/supabase` | Supabase Postgres (`uvrgrulamuhwzuvbljbv`) + pgvector |
 | AI inference | `app/api/ai/*` | Anthropic Claude (primary), OpenAI GPT-4o (fallback), `text-embedding-3-large` |
 | Email | Resend | `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, `RESEND_CONTACT_TO_EMAIL` |
@@ -75,8 +75,7 @@ All secrets live in Vercel env (`Project Settings → Environment Variables`); n
 Migrations live in `supabase/migrations/`. They are **forward-only**.
 Rolling back a schema change requires a new migration that reverses it.
 The `supabase` MCP `apply_migration` should be used in production —
-never `psql` directly. See `apps/studio/README.md` for the safe-write
-gate.
+never `psql` directly.
 
 ### 3.3 Sanity content regression
 
@@ -236,7 +235,8 @@ redaction layer, then verify the change in production.
 ### 10.2 Sanity down
 
 - Pages render from the static content dictionaries (`apps/web/content/*.ts`). Editor previews break, but public site is unaffected.
-- The Studio at `studio.propharmex.com` will be unreachable. No public-site action needed.
+- The embedded Studio at `propharmex.com/studio` (PR-L′) will fail to load schema/desk data and editors will see a connection-error toast. The studio shell itself is hosted from the Next.js bundle and continues to render. No public-site action needed; recovery is automatic when Sanity's API returns.
+- If editors report `/studio` cannot reach `*.api.sanity.io`, verify (a) the project's CORS Origins list at https://www.sanity.io/manage/project/veo2rnkc/api includes the current host (production + any preview URL the editor is on) and (b) `vercel.json` CSP `connect-src` still allows the Sanity hostnames. Both were configured in PR-L′ — only re-check if a CSP edit landed since.
 
 ### 10.3 Resend down
 

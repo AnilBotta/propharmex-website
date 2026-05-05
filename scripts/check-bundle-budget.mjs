@@ -55,6 +55,9 @@ const BUDGET_BYTES = BUDGET_KB * 1024;
 //   /robots.txt             server-rendered text
 //   .../opengraph-image     PNG image generation route
 //   .../twitter-image       PNG image generation route
+//   /studio/...             embedded Sanity Studio (PR-L′) — multi-MB by
+//                           design; admin route, not a marketing surface.
+//                           Editors load it intentionally.
 //
 // Next 15's build table prints the "First Load JS" column with the shared
 // baseline (~173 kB) even for these routes, which is meaningless data
@@ -68,6 +71,7 @@ const EXCLUDED_ROUTE_PATTERNS = [
   /^\/robots\.txt$/,
   /opengraph-image$/,
   /twitter-image$/,
+  /^\/studio/,
 ];
 
 /* -------------------------------------------------------------------------- */

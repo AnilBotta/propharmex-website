@@ -21,7 +21,7 @@ import { z } from "zod";
 
 /**
  * Canonical Propharmex service pillars. Mirrors `pillarOptions` in
- * `apps/studio/schemas/documents/service.ts` — kept as a static literal here
+ * `apps/web/sanity/schemas/documents/service.ts` — kept as a static literal here
  * (not a runtime Sanity query) so the Zod schema is statically verifiable
  * and the route stays Edge-runtime-safe.
  *

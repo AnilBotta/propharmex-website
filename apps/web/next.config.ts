@@ -138,6 +138,15 @@ const nextConfig: NextConfig = {
         destination: "/insights/whitepapers",
         permanent: true,
       },
+      // PR-L′ — Sanity Studio moved from a separate apps/studio host
+      // (studio.propharmex.com) to an embedded route at /studio inside
+      // apps/web. The legacy /studio-info informational page is retired;
+      // any inbound links land directly at the live editor.
+      {
+        source: "/studio-info",
+        destination: "/studio",
+        permanent: true,
+      },
     ];
   },
 };
