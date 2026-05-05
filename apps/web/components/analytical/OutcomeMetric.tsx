@@ -6,7 +6,7 @@ import { FileText } from "lucide-react";
 
 import type { AnalyticalOutcome } from "../../content/analytical-services";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: AnalyticalOutcome };
 

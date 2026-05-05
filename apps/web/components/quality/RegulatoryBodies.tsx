@@ -18,7 +18,7 @@ import type {
   RegulatorScope,
 } from "../../content/quality";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: QualityRegulators };
 

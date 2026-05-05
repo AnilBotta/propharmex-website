@@ -13,7 +13,7 @@ import { Button } from "@propharmex/ui";
 
 import type { LeafCaseStudyFeature as CaseStudyContent } from "../../content/regulatory-services";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: CaseStudyContent };
 

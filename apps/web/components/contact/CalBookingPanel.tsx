@@ -24,7 +24,7 @@ import { Button } from "@propharmex/ui";
 
 import type { ContactContent } from "../../content/contact";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = {
   content: ContactContent["cal"];

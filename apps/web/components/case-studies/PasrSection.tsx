@@ -9,7 +9,7 @@ import { ExternalLink } from "lucide-react";
 
 import type { CaseStudyPasrBlock } from "../../content/case-studies";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = {
   /** DOM id for deep-linking + scroll-mt anchor. */

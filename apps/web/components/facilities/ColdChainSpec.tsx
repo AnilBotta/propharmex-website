@@ -11,7 +11,7 @@ import { ExternalLink, Thermometer } from "lucide-react";
 
 import type { FacilityColdChainSpec } from "../../content/facilities";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: FacilityColdChainSpec };
 

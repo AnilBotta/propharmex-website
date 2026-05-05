@@ -9,7 +9,7 @@ import { ExternalLink } from "lucide-react";
 
 import type { LeafExplainer as LeafExplainerContent } from "../../content/regulatory-services";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: LeafExplainerContent };
 

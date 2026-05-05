@@ -11,7 +11,7 @@ import type { FC } from "react";
 import type { FacilitiesCarousel as FacilitiesCarouselContent } from "../../content/facilities";
 
 import { PhotoFrame } from "./PhotoFrame";
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: FacilitiesCarouselContent };
 

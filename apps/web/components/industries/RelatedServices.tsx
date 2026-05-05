@@ -7,7 +7,7 @@ import { ArrowUpRight } from "lucide-react";
 
 import type { IndustryRelated } from "../../content/industries";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: IndustryRelated };
 

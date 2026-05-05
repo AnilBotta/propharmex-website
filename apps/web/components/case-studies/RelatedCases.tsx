@@ -9,7 +9,7 @@ import type { FC } from "react";
 import type { CaseStudyCardSummary } from "../../content/case-studies";
 
 import { CaseCard } from "./CaseCard";
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = {
   eyebrow: string;

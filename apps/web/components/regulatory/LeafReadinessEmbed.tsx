@@ -14,7 +14,7 @@ import { Button } from "@propharmex/ui";
 
 import type { LeafToolEmbedPlaceholder } from "../../content/regulatory-services";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: LeafToolEmbedPlaceholder };
 

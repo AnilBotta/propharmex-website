@@ -12,7 +12,7 @@ import { Button } from "@propharmex/ui";
 
 import type { FacilitiesContent } from "../../content/facilities";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: FacilitiesContent["closing"] };
 

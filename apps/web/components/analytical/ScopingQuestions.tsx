@@ -13,7 +13,7 @@ import { Button } from "@propharmex/ui";
 
 import type { AnalyticalScopingQuestions as ScopingContent } from "../../content/analytical-services";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: ScopingContent };
 

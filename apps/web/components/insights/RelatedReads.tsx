@@ -10,7 +10,7 @@ import type { FC } from "react";
 import type { ArticleContent } from "../../content/insights";
 
 import { InsightCard } from "./InsightCard";
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = {
   articles: ArticleContent[];

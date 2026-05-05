@@ -12,7 +12,7 @@ import { ArrowRight, MapPin } from "lucide-react";
 
 import type { FacilitiesMap } from "../../content/facilities";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: FacilitiesMap };
 

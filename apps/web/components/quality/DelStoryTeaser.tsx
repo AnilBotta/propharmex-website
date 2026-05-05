@@ -13,7 +13,7 @@ import { Button } from "@propharmex/ui";
 
 import type { QualityDelTeaser } from "../../content/quality";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: QualityDelTeaser };
 

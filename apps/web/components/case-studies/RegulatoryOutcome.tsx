@@ -10,7 +10,7 @@ import { ExternalLink } from "lucide-react";
 
 import type { CaseStudyRegulatoryOutcome as CaseStudyRegulatoryOutcomeContent } from "../../content/case-studies";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: CaseStudyRegulatoryOutcomeContent };
 

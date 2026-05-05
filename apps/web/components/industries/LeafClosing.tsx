@@ -12,7 +12,7 @@ import { Button } from "@propharmex/ui";
 
 import type { IndustryLeafClosing } from "../../content/industries";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: IndustryLeafClosing };
 

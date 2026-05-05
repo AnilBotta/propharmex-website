@@ -14,7 +14,7 @@ import { Button } from "@propharmex/ui";
 
 import type { ProcessClosing as ProcessClosingContent } from "../../content/process";
 
-import { SectionReveal } from "./SectionReveal";
+import { SectionReveal } from "../site/hub/SectionReveal";
 
 type Props = { content: ProcessClosingContent };
 
