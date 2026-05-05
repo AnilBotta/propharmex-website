@@ -53,7 +53,14 @@ export default function DosageFormsHubPage() {
   return (
     <>
       <HubHero content={DOSAGE_FORMS_HUB.hero} />
-      <CapabilityMatrix content={DOSAGE_FORMS_HUB.grid} />
+      <CapabilityMatrix
+        content={DOSAGE_FORMS_HUB.grid}
+        hrefBase="/services/pharmaceutical-development"
+        sectionId="capabilities"
+        headingId="df-hub-capabilities-heading"
+        gridLabel="Dosage forms"
+        gridCols={3}
+      />
       <HubClosing content={DOSAGE_FORMS_HUB.closing} />
 
       <JsonLd id="df-hub-jsonld" data={pageJsonLd} />

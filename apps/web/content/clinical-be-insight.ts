@@ -7,13 +7,14 @@
  * study design, pivotal BE strategy, clinical regulatory strategy, and
  * IND-enabling study consultation. We do not run trials.
  *
- * Type aliases reuse the PharmDev hub primitives structurally so the
- * existing <HubHero> and <HubClosing> components in components/pharmdev/
- * render this content without modification. The capability grid uses a
- * dedicated <ServicesMatrix> component (clinical/) because the pharm-dev
- * CapabilityMatrix is hard-typed to dosage-form slugs.
+ * After PR-J' (CapabilityMatrix prop generalization), this content uses
+ * the same `PharmDevCapabilityMatrix` shape as the pharma-dev and dosage-
+ * forms hubs, so all three render via the shared <CapabilityMatrix>
+ * component in components/site/hub/. The dedicated clinical/ServicesMatrix
+ * component is retired in PR-J'.
  */
 import type {
+  PharmDevCapabilityMatrix,
   PharmDevHubClosing,
   PharmDevHubHero,
 } from "./pharmaceutical-development";
@@ -24,10 +25,10 @@ import type {
 
 export type ClinicalHubHero = PharmDevHubHero;
 export type ClinicalHubClosing = PharmDevHubClosing;
+export type ClinicalServicesMatrix = PharmDevCapabilityMatrix;
 
-/** Clinical & BE Insight services. Slug is currently unused (no leaf pages */
-/** ship in this PR) but is reserved for future leaf routes under            */
-/** /services/clinical-be-insight/[service].                                  */
+/** Clinical & BE Insight service slugs. Reserved for future leaf routes     */
+/** under /services/clinical-be-insight/[service]; no leaves ship in PR-J'.  */
 export const CLINICAL_SERVICE_SLUGS = [
   "bioequivalence-study-design",
   "pivotal-be-strategy",
@@ -36,26 +37,6 @@ export const CLINICAL_SERVICE_SLUGS = [
 ] as const;
 
 export type ClinicalServiceSlug = (typeof CLINICAL_SERVICE_SLUGS)[number];
-
-export type ClinicalServiceSummary = {
-  slug: ClinicalServiceSlug;
-  label: string;
-  /** One-sentence elevator line on the hub card. */
-  blurb: string;
-  /** Short keyword chips below the blurb. */
-  highlights: string[];
-  /** Whether the leaf detail page is live in this PR. */
-  leafStatus: "live" | "shipping-next";
-};
-
-export type ClinicalServicesMatrix = {
-  eyebrow: string;
-  heading: string;
-  lede: string;
-  services: ClinicalServiceSummary[];
-  liveCopy: string;
-  shippingNextCopy: string;
-};
 
 export type ClinicalHubContent = {
   metaTitle: string;
@@ -102,7 +83,7 @@ export const CLINICAL_HUB: ClinicalHubContent = {
     eyebrow: "Service index",
     heading: "Four insight capabilities.",
     lede: "Each capability sits ahead of the trial — the work that decides whether the trial answers the question, and whether the agency will read the answer the way you intend it. Detail pages are shipping next; briefs are available on request in the meantime.",
-    services: [
+    forms: [
       {
         slug: "bioequivalence-study-design",
         label: "Bioequivalence study design",

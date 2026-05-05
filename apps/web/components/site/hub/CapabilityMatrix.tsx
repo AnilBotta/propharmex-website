@@ -1,16 +1,22 @@
 /**
  * CapabilityMatrix — shared hub capability grid, RSC.
  *
- * Seven dosage-form cards (or N items typed against the same shape). `live`
- * cards link to the leaf detail page; cards whose leaf is `shipping-next`
- * render a muted disabled state so internal links don't break.
+ * Renders an ordered card grid for any hub pillar — dosage forms,
+ * clinical services, etc. `live` cards link to the leaf detail page (built
+ * by joining `hrefBase` + `card.slug`); cards whose leaf is `shipping-next`
+ * render as a muted disabled affordance.
  *
- * Moved from components/pharmdev/ in PR-H' (hub primitives extraction).
- * Currently used by pharmaceutical-development hub and dosage-forms hub
- * via the structural type-alias pattern. Note: the prop type is still
- * bound to `PharmDevCapabilityMatrix` (which carries `DosageFormSlug`-typed
- * slugs) — generalizing the slug type to a string union is a separate
- * refactor beyond the scope of PR-H'.
+ * Generalized in PR-J' from the original pharm-dev-only version (PR-H'
+ * hoisted from `components/pharmdev/`). Now requires explicit prop wiring
+ * for href base, section id, heading id, grid aria-label, and grid column
+ * count — every consumer page passes the values that fit its pillar.
+ *
+ * Today's consumers (PR-J'+):
+ * - /services/pharmaceutical-development → 7 dosage forms, 3-col grid,
+ *   hrefBase `/services/pharmaceutical-development`
+ * - /dosage-forms → 7 dosage forms (same shape, same hrefBase, same grid)
+ * - /services/clinical-be-insight → 4 clinical services, 2-col grid,
+ *   hrefBase `/services/clinical-be-insight`
  */
 import type { FC } from "react";
 import Link from "next/link";
@@ -20,13 +26,33 @@ import type { PharmDevCapabilityMatrix } from "../../../content/pharmaceutical-d
 
 import { SectionReveal } from "./SectionReveal";
 
-type Props = { content: PharmDevCapabilityMatrix };
+type Props = {
+  content: PharmDevCapabilityMatrix;
+  /** URL prefix joined with each card's slug to build the leaf link. */
+  hrefBase: string;
+  /** DOM id on the wrapping <section>; powers in-page deep-links. */
+  sectionId: string;
+  /** DOM id on the heading; the section's `aria-labelledby` references it. */
+  headingId: string;
+  /** Accessible name for the card grid `<ul>`. */
+  gridLabel: string;
+  /** Column count on lg+ viewports. Defaults to 3 (matches pharm-dev hub). */
+  gridCols?: 2 | 3;
+};
 
-export const CapabilityMatrix: FC<Props> = ({ content }) => {
+export const CapabilityMatrix: FC<Props> = ({
+  content,
+  hrefBase,
+  sectionId,
+  headingId,
+  gridLabel,
+  gridCols = 3,
+}) => {
+  const lgGridClass = gridCols === 2 ? "lg:grid-cols-2" : "lg:grid-cols-3";
   return (
     <section
-      id="capabilities"
-      aria-labelledby="pd-hub-capabilities-heading"
+      id={sectionId}
+      aria-labelledby={headingId}
       className="scroll-mt-24 border-b border-[var(--color-border)] bg-[var(--color-bg)] py-20 sm:py-24"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -35,7 +61,7 @@ export const CapabilityMatrix: FC<Props> = ({ content }) => {
             {content.eyebrow}
           </p>
           <h2
-            id="pd-hub-capabilities-heading"
+            id={headingId}
             className="mt-3 font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-[var(--color-fg)] sm:text-4xl"
           >
             {content.heading}
@@ -47,12 +73,12 @@ export const CapabilityMatrix: FC<Props> = ({ content }) => {
 
         <SectionReveal className="mt-12">
           <ul
-            className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3"
-            aria-label="Dosage forms"
+            className={`grid grid-cols-1 gap-5 md:grid-cols-2 ${lgGridClass}`}
+            aria-label={gridLabel}
           >
             {content.forms.map((form) => {
               const isLive = form.leafStatus === "live";
-              const href = `/services/pharmaceutical-development/${form.slug}`;
+              const href = `${hrefBase}/${form.slug}`;
               const cardClasses = `flex h-full flex-col gap-3 rounded-[var(--radius-lg)] border p-5 ${
                 isLive
                   ? "border-[var(--color-primary-600)] bg-[var(--color-surface)]"
