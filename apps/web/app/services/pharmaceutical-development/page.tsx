@@ -52,7 +52,14 @@ export default function PharmaceuticalDevelopmentHubPage() {
   return (
     <>
       <HubHero content={PHARM_DEV_HUB.hero} />
-      <CapabilityMatrix content={PHARM_DEV_HUB.capabilityMatrix} />
+      <CapabilityMatrix
+        content={PHARM_DEV_HUB.capabilityMatrix}
+        hrefBase="/services/pharmaceutical-development"
+        sectionId="capabilities"
+        headingId="pd-hub-capabilities-heading"
+        gridLabel="Dosage forms"
+        gridCols={3}
+      />
       <Lifecycle content={PHARM_DEV_HUB.lifecycle} />
       <CaseStudyRail content={PHARM_DEV_HUB.caseRail} />
       <HubClosing content={PHARM_DEV_HUB.closing} />

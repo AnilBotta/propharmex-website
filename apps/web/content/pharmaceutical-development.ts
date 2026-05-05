@@ -45,8 +45,18 @@ export const DOSAGE_FORM_SLUGS = [
 
 export type DosageFormSlug = (typeof DOSAGE_FORM_SLUGS)[number];
 
+/**
+ * A card on a hub capability matrix.
+ *
+ * `slug` is `string` rather than `DosageFormSlug` so the shared
+ * `<CapabilityMatrix>` component (apps/web/components/site/hub/) can render
+ * cards for any pillar — dosage forms, clinical services, etc. Pharm-dev
+ * leaf routes still rely on the narrow `DosageFormSlug` literal union via
+ * `DosageFormContent.slug` and `DOSAGE_FORM_SLUGS`; only the summary-card
+ * shape was relaxed in PR-J' (CapabilityMatrix prop generalization).
+ */
 export type DosageFormSummary = {
-  slug: DosageFormSlug;
+  slug: string;
   label: string;
   /** One-sentence elevator line shown on the hub capability matrix. */
   blurb: string;

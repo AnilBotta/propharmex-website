@@ -6,10 +6,10 @@
  * (insight + design work, not running trials).
  *
  * - RSC page. ISR 300s.
- * - Reuses <HubHero> + <HubClosing> from components/pharmdev/ via
- *   structural type aliases. Uses dedicated <ServicesMatrix> from
- *   components/clinical/ (pharm-dev CapabilityMatrix is hard-typed to
- *   dosage-form slugs; the 4-card 2x2 layout also differs).
+ * - PR-J' (CapabilityMatrix prop generalization) made the shared
+ *   <CapabilityMatrix> reusable across pillars. This page now renders the
+ *   shared component with a 2-col layout for its 4 cards instead of the
+ *   dedicated clinical/ServicesMatrix.tsx (deleted in PR-J').
  * - Emits CollectionPage + Service + ItemList(4) + BreadcrumbList JSON-LD;
  *   explicit canonical so search engines see this as the canonical
  *   pillar URL (parallel to /services/pharmaceutical-development).
@@ -18,8 +18,8 @@ import type { Metadata } from "next";
 
 import { env, jsonLdGraph } from "@propharmex/lib";
 
-import { ServicesMatrix } from "../../../components/clinical/ServicesMatrix";
 import { JsonLd } from "../../../components/site/JsonLd";
+import { CapabilityMatrix } from "../../../components/site/hub/CapabilityMatrix";
 import { HubClosing } from "../../../components/site/hub/HubClosing";
 import { HubHero } from "../../../components/site/hub/HubHero";
 import { CLINICAL_HUB } from "../../../content/clinical-be-insight";
@@ -52,7 +52,14 @@ export default function ClinicalBeInsightHubPage() {
   return (
     <>
       <HubHero content={CLINICAL_HUB.hero} />
-      <ServicesMatrix content={CLINICAL_HUB.matrix} />
+      <CapabilityMatrix
+        content={CLINICAL_HUB.matrix}
+        hrefBase="/services/clinical-be-insight"
+        sectionId="services"
+        headingId="cli-hub-services-heading"
+        gridLabel="Clinical and BE insight services"
+        gridCols={2}
+      />
       <HubClosing content={CLINICAL_HUB.closing} />
 
       <JsonLd id="cli-hub-jsonld" data={pageJsonLd} />
@@ -88,7 +95,7 @@ function buildHubJsonLd(siteUrl: string) {
   const itemList = {
     "@type": "ItemList",
     "@id": `${pageUrl}#itemlist`,
-    itemListElement: CLINICAL_HUB.matrix.services.map((service, idx) => ({
+    itemListElement: CLINICAL_HUB.matrix.forms.map((service, idx) => ({
       "@type": "ListItem",
       position: idx + 1,
       name: service.label,
