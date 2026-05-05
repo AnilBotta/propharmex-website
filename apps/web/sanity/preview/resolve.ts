@@ -3,6 +3,10 @@ import { defineLocations, type PresentationPluginOptions } from "sanity/presenta
 /**
  * Presentation tool resolver — maps a Sanity document to the public URL(s)
  * where it appears on the Next.js site. Used for visual editing overlays.
+ *
+ * Lives at `sanity/preview/` (not `sanity/presentation/`) to avoid shadowing
+ * the `sanity/presentation` npm subpath when TypeScript resolves bare
+ * specifiers with `baseUrl: "."` set — see PR-L′ and apps/web/tsconfig.json.
  */
 export const resolve: PresentationPluginOptions["resolve"] = {
   locations: {

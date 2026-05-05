@@ -3,8 +3,12 @@ import { structureTool } from "sanity/structure";
 import { presentationTool } from "sanity/presentation";
 import { visionTool } from "@sanity/vision";
 import { schemaTypes, SINGLETON_TYPES } from "./sanity/schemas";
-import { structure } from "./sanity/structure";
-import { resolve } from "./sanity/presentation/resolve";
+// Local desk + preview live under sanity/desk and sanity/preview (NOT
+// sanity/structure or sanity/presentation) to avoid shadowing the npm
+// subpath exports of the same name when TypeScript resolves bare
+// specifiers with `baseUrl: "."` set in apps/web/tsconfig.json.
+import { structure } from "./sanity/desk";
+import { resolve } from "./sanity/preview/resolve";
 
 /**
  * Sanity Studio v3 config — embedded into apps/web at /studio.

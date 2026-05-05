@@ -4,6 +4,10 @@ import { SINGLETON_IDS } from "../schemas";
 /**
  * Desk structure — pins singletons at the top, then groups remaining
  * document types under logical buckets.
+ *
+ * Lives at `sanity/desk/` (not `sanity/structure/`) to avoid shadowing the
+ * `sanity/structure` npm subpath when TypeScript resolves bare specifiers
+ * with `baseUrl: "."` set — see PR-L′ and apps/web/tsconfig.json.
  */
 export const structure: StructureResolver = (S: StructureBuilder) =>
   S.list()
