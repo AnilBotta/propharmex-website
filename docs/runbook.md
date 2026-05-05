@@ -26,7 +26,7 @@ update the doc, not both at once.
 | Rate limit | Upstash Redis | `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` |
 | Errors | Sentry | `NEXT_PUBLIC_SENTRY_DSN`, `SENTRY_AUTH_TOKEN` |
 | Logs | Axiom (structured logger) | `AXIOM_TOKEN`, `AXIOM_DATASET` |
-| Liveness | `/api/health` | Edge runtime; Vercel + scheduled-tasks MCP probe |
+| Liveness | `/api/health` | Edge runtime; pinged every 5 min by external uptime monitor (UptimeRobot free tier — see §13). Vercel Pro `crons[]` retired in PR-M′ for Hobby-plan compatibility. |
 
 All secrets live in Vercel env (`Project Settings → Environment Variables`); never in the repo. `.env.example` is the spec.
 
@@ -309,10 +309,25 @@ Tickets to bring the ceiling down toward a healthier ~300 kB and to promote demo
 
 ## 13. Uptime monitoring
 
-Vercel Cron (`vercel.json` → `crons[]`) hits `/api/health` every minute. The endpoint is edge-runtime, returns `{status:"ok"}`, and is cheap (~5 ms). Cron requires Vercel **Pro plan** — on Hobby tier the entry is a no-op and uptime is best-effort via external pingers.
+`/api/health` is an edge-runtime route that returns `{status:"ok"}` in ~5 ms. It's pinged from outside Vercel by **UptimeRobot free tier** (configured in PR-M′; the previous Vercel Pro `crons[]` was removed because the project ships on Vercel Hobby).
 
-- **External uptime check (recommended)**: configure a 60-second ping at https://propharmex.com/api/health from a third-party uptime service (BetterStack / Uptime Kuma / Cronitor). Vercel Cron is good enough for "is the deployment healthy" but doesn't tell you if Vercel itself is up.
-- **Alerts**: page on `/api/health` returning non-200 for >2 consecutive checks. Don't alert on a single failure — Vercel cold-start and brief 5xx during deploy promotion are normal and not actionable.
+**Setup recipe** (run once after creating an UptimeRobot account):
+
+1. Sign up at https://uptimerobot.com/ (free, no credit card).
+2. **Add new monitor** → Monitor type **HTTPS**.
+3. Friendly name: `Propharmex production`. URL: `https://propharmex.com/api/health`.
+4. Monitoring interval: **5 minutes** (free-tier max). Timeout: 30 s.
+5. Alert contacts: at least one email; add Slack/SMS/webhook as needed.
+6. Save → first ping fires within 5 minutes; the monitor flips to "Up" once it returns 200.
+
+**Recommended additions:**
+
+- A second monitor against `https://<project>.vercel.app/api/health` so a broken-preview deploy gets caught before promotion.
+- A status-page (UptimeRobot's free public status page is sufficient for client-facing transparency).
+
+**Alerting rule of thumb:** page on `/api/health` returning non-200 for **>2 consecutive checks** (i.e. ≥10 min). Don't alert on a single failure — Vercel cold-start and brief 5xx during deploy promotion are normal and not actionable. UptimeRobot's "Down after X failed checks" setting handles this directly.
+
+**Operating costs:** $0 at free tier. If you outgrow it (need <5 min interval, more monitors, multi-region pings), BetterStack and Cronitor have similar free tiers worth comparing before paying.
 
 ---
 
@@ -455,5 +470,6 @@ If `cf-ray` is absent, the request bypassed Cloudflare (DNS misrouted, gray-clou
 |---|---|---|
 | 2026-04-29 | Runbook initial — Prompt 25 PR-A | [#40](https://github.com/AnilBotta/propharmex-website/pull/40) |
 | 2026-04-29 | Bundle budget + uptime cron — Prompt 25 PR-B | [#41](https://github.com/AnilBotta/propharmex-website/pull/41) |
+| 2026-05-05 | Drop Vercel cron, switch uptime to UptimeRobot — PR-M′ | (Hobby-plan compatibility; cron retired, external 5-min ping replaces it) |
 | 2026-04-29 | A11y testing layers (§14) + ACR docx — Prompt 26 PR-B | TBD |
 | 2026-05-04 | Cloudflare-proxy ops (§15) + hosting-strategy.md — PR-K′ | TBD |
