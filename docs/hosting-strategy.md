@@ -51,7 +51,6 @@ works.
 | Sanity Visual Editing draft mode | Cookies (`__prerender_bypass`, `__next_preview_data`) round-trip cleanly |
 | Sentry tunnel at `/monitoring` | `withSentryConfig` auto-creates the route handler; rewrites work |
 | Vercel MCP integration (deploy logs, runtime logs, doc search) | Configured in our workflow per `CLAUDE.md` §6 |
-| `/api/health` minute-cadence cron | Vercel Pro `crons[]` in `vercel.json` |
 | Source-map upload + release tagging | `withSentryConfig` does this on every Vercel build |
 
 ### What Cloudflare adds in front
@@ -72,8 +71,8 @@ works.
 
 - **Migrate to Cloudflare Pages or Workers.** No native Next.js 15 ISR
   (would need `@opennextjs/cloudflare`, a community adapter); `pdf-lib`
-  Node-runtime routes need rework; Vercel MCP / cron / Sentry tunnel
-  investment lost. Multi-PR migration with significant ops cost.
+  Node-runtime routes need rework; Vercel MCP / Sentry tunnel investment
+  lost. Multi-PR migration with significant ops cost.
 - **Replace Vercel image optimization with Cloudflare Image Resizing.**
   $5/mo, marginal benefit — Vercel already does AVIF/WebP via `next/image`.
 - **Move asset storage to Cloudflare R2.** Not a bottleneck on a marketing
@@ -186,8 +185,8 @@ the next operator doesn't redo the analysis from scratch.
 
 - [docs/runbook.md](runbook.md) §15 — Cloudflare-proxy operations (cache
   purge, dev-mode toggle, error code triage).
-- [docs/runbook.md](runbook.md) §13 — Uptime monitoring (Vercel cron
-  `/api/health`, external pingers).
+- [docs/runbook.md](runbook.md) §13 — Uptime monitoring (UptimeRobot
+  free-tier 5-min ping at `/api/health`; Vercel Pro cron retired in PR-M′).
 - `vercel.json` — origin-side security headers + CSP. Cloudflare honors
   these; do **not** duplicate them in Cloudflare.
 - `next.config.ts` — Sentry tunnel route (`/monitoring`), redirects, image

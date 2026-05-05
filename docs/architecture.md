@@ -89,7 +89,7 @@ Override via header switcher. Respects privacy (no gating, subtle banner on firs
 - **Errors** → Sentry (web + API routes) with PII redaction on message + stack
 - **Logs** → structured (pino + Axiom transport) with correlation-id per request
 - **Metrics** — Plausible (traffic), PostHog (events + funnels + flags)
-- **Uptime** — Vercel analytics + external ping every 60s to `/api/health`
+- **Uptime** — Vercel analytics + external 5-min ping to `/api/health` from UptimeRobot free tier (Vercel Pro `crons[]` retired in PR-M′ for Hobby-plan compatibility; see runbook §13)
 - **Perf** — weekly Lighthouse CI via scheduled task
 
 Expand this doc in Prompt 4 (Sanity + RAG flow), Prompt 18 (Concierge detail), and Prompt 25 (security + observability).

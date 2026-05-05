@@ -87,7 +87,7 @@ These must clear before staging sign-off. Each row has a single owner; multi-own
 | CSP enforces and `report-uri /api/csp-report` receives any violations | Engineering | Force a CSP violation in dev tools; confirm report appears in Axiom |
 | Axiom production logs receiving structured events | Engineering | Recent events visible in Axiom dataset within 5 minutes |
 | PostHog events firing with super-properties | Product | Visit `/`, `/contact`, an `/ai/*` tool; confirm `region`, `referrer_group`, `device_class` populate |
-| Health check cron green | Engineering | `vercel.json` `crons[]` entry firing; `/api/health` 200 within 60 seconds |
+| External uptime monitor green | Engineering | UptimeRobot monitor at `https://propharmex.com/api/health` returning 200 within the 5-min interval window (Vercel Pro `crons[]` retired in PR-M′; see runbook §13 setup recipe) |
 
 ### 2.7 SEO
 
