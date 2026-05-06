@@ -1,7 +1,7 @@
 import type { LeadSource } from "@propharmex/lib/leads/types";
 
 import { LeadAvatar } from "./LeadAvatar";
-import { SOURCE_LABEL, SourcePill } from "./Pills";
+import { SourcePill } from "./Pills";
 
 export interface ActivityItem {
   id: string;

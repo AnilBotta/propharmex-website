@@ -10,10 +10,16 @@
  *   const supabase = await createSupabaseServerClient();
  *   const { data: { user } } = await supabase.auth.getUser();
  */
-import { createServerClient } from "@supabase/ssr";
+import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
 import { env } from "@propharmex/lib";
+
+interface CookieToSet {
+  name: string;
+  value: string;
+  options: CookieOptions;
+}
 
 export async function createSupabaseServerClient() {
   if (!env.NEXT_PUBLIC_SUPABASE_URL || !env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
@@ -30,7 +36,7 @@ export async function createSupabaseServerClient() {
         getAll() {
           return cookieStore.getAll();
         },
-        setAll(cookiesToSet) {
+        setAll(cookiesToSet: CookieToSet[]) {
           // In Server Components, setAll is a no-op (cookies are read-only
           // in that context). Route handlers and middleware get a working
           // setAll. The library accepts the no-op gracefully.
