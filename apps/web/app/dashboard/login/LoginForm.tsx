@@ -4,8 +4,8 @@ import { useState } from "react";
 
 export function LoginForm({ initialError }: { initialError?: string | null }) {
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [submitting, setSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(initialError ?? null);
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -16,39 +16,22 @@ export function LoginForm({ initialError }: { initialError?: string | null }) {
       const res = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, password }),
       });
-      if (!res.ok && res.status !== 202) {
+      if (!res.ok) {
         const data = (await res.json().catch(() => null)) as
           | { error?: string }
           | null;
-        setError(data?.error ?? "Something went wrong. Please retry.");
+        setError(data?.error ?? "Sign-in failed. Check your credentials.");
         setSubmitting(false);
         return;
       }
-      setSubmitted(true);
+      // Cookies set on the response — redirect to the dashboard.
+      window.location.href = "/dashboard";
     } catch {
       setError("Network error. Please retry.");
       setSubmitting(false);
     }
-  }
-
-  if (submitted) {
-    return (
-      <div
-        role="status"
-        aria-live="polite"
-        className="rounded-lg border border-green-200 bg-green-50 p-5"
-      >
-        <strong className="text-[14px] text-green-700">
-          Check your inbox.
-        </strong>
-        <p className="mt-1 text-[13px] text-slate-600">
-          If your email is allowlisted, a sign-in link is on its way. The link
-          expires in 15 minutes. Don&apos;t see it? Check your spam folder.
-        </p>
-      </div>
-    );
   }
 
   return (
@@ -71,6 +54,25 @@ export function LoginForm({ initialError }: { initialError?: string | null }) {
         placeholder="you@propharmex.com"
         className="rounded-md border border-[color:var(--color-border)] px-3 py-2 text-[14px] text-slate-800 placeholder:text-slate-400 focus:border-primary-500 disabled:bg-slate-50"
       />
+
+      <label
+        htmlFor="dashboard-password"
+        className="mt-1 text-[13px] font-medium text-slate-700"
+      >
+        Password
+      </label>
+      <input
+        id="dashboard-password"
+        type="password"
+        required
+        autoComplete="current-password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        disabled={submitting}
+        placeholder="••••••••"
+        className="rounded-md border border-[color:var(--color-border)] px-3 py-2 text-[14px] text-slate-800 placeholder:text-slate-400 focus:border-primary-500 disabled:bg-slate-50"
+      />
+
       {error ? (
         <div role="alert" className="text-[13px] text-[color:var(--color-danger)]">
           {error}
@@ -78,14 +80,14 @@ export function LoginForm({ initialError }: { initialError?: string | null }) {
       ) : null}
       <button
         type="submit"
-        disabled={submitting || email.length < 5}
+        disabled={submitting || email.length < 5 || password.length < 6}
         className="mt-1 rounded-md bg-primary-600 px-4 py-2 text-[14px] font-medium text-white disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {submitting ? "Sending…" : "Send sign-in link"}
+        {submitting ? "Signing in…" : "Sign in"}
       </button>
       <p className="text-[12px] text-slate-500">
-        We&apos;ll email you a one-time link valid for 15 minutes. No password
-        needed.
+        Forgot your password? Reset it from the Supabase dashboard
+        (Authentication → Users → your account → Send password recovery).
       </p>
     </form>
   );

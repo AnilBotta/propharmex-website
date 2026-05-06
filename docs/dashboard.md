@@ -15,7 +15,7 @@ not user-facing copy.
 
 | Layer | Where it lives | Notes |
 |---|---|---|
-| Auth | Supabase Auth (`signInWithOtp`) via `@supabase/ssr` | Email magic link; Supabase delivers the email + manages refresh tokens |
+| Auth | Supabase Auth (`signInWithPassword`) via `@supabase/ssr` | Email + password; users pre-created in the Supabase dashboard. No email round-trip |
 | Auth helpers | `apps/web/lib/supabase-auth/{server,browser}.ts` | `getDashboardUserEmail()` is the canonical access check |
 | Allowlist gate | `DASHBOARD_ALLOWED_EMAILS` env var | Checked before sending the magic-link email AND on every page/route |
 | Lead spine | `public.leads` + `public.lead_notes` | Service-role only (no RLS policies) |
@@ -118,16 +118,18 @@ is append-only — never delete from it.
    paste each into the SQL editor at https://supabase.com/dashboard.
 
 2. **Configure Supabase Auth** in the Supabase dashboard:
-   - **Authentication → Providers → Email**: ensure "Email" is enabled
-     and "Magic Link" is on. The default Supabase email sender works
-     for low volume; for production, configure custom SMTP (Resend
-     supports this) under Authentication → Settings → SMTP Settings.
-   - **Authentication → URL Configuration**: add `https://propharmex.com/api/auth/confirm`
-     to the allowed redirect URLs list. For dev, also add
-     `http://localhost:3000/api/auth/confirm`.
-   - (Optional, recommended for tight allowlisting) **Authentication →
-     Settings → User Signups**: turn OFF "Enable Sign Up" and pre-create
-     each allowlisted user manually under Authentication → Users.
+   - **Authentication → Providers → Email**: ensure "Email" provider is
+     enabled. (Magic-link toggle doesn't matter — we use password sign-in
+     only.)
+   - **Authentication → Sign In/Up → User Signups**: turn **OFF** "Enable
+     Sign Up". The dashboard is allowlist-only; sign-up creation happens
+     manually below.
+   - **Authentication → Users → Add user → "Create new user"**: for each
+     person on the team, enter their email + a strong password.
+     Tick "Auto Confirm User" so they don't have to click an email link.
+     This is the ONLY place new dashboard accounts are created.
+   - URL Configuration redirect URLs are no longer needed — there's no
+     magic-link round-trip in the password flow.
 
 3. **Set env vars** (production via Vercel UI):
    - `NEXT_PUBLIC_SUPABASE_URL=...` (already set)
@@ -136,8 +138,12 @@ is append-only — never delete from it.
    - `DASHBOARD_ALLOWED_EMAILS=anilbabubotta@gmail.com,...` (comma list)
    - `NEXT_PUBLIC_SITE_URL=https://propharmex.com` (already set; used as the redirect base)
 
-4. **Visit** `https://propharmex.com/dashboard` → enter your allowlisted
-   email → click the Supabase magic-link in your inbox → you're in.
+4. **Visit** `https://propharmex.com/dashboard` → enter the email +
+   password you set in step 2 → click "Sign in" → you're in.
+
+   Forgot password? Reset it from the Supabase dashboard:
+   Authentication → Users → click the user → "Send password recovery"
+   (or just edit the password directly).
 
 5. **Submit a test lead** via `/contact` and confirm it appears in the
    dashboard within 1–2 seconds.
