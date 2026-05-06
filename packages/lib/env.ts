@@ -76,6 +76,11 @@ const EnvSchema = z.object({
   // Optional dedicated From address for magic-link emails. Falls back to
   // RESEND_FROM_EMAIL when unset.
   RESEND_DASHBOARD_FROM_EMAIL: optionalNonEmpty,
+  // Temporary auth bypass (PR-N5). When set to "true", /dashboard is
+  // publicly accessible without sign-in. Use only in environments where
+  // PII exposure is acceptable for the bypass window. Unset to restore
+  // full Supabase auth.
+  DASHBOARD_AUTH_DISABLED: z.enum(["true", "false"]).optional(),
 });
 
 export type Env = z.infer<typeof EnvSchema>;
