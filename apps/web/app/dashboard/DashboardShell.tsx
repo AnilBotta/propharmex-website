@@ -9,6 +9,7 @@ import { KpiCard } from "./components/KpiCard";
 import { LeadSourcesCard, type SourceShare } from "./components/LeadSourcesCard";
 import { LeadTable } from "./components/LeadTable";
 import { Placeholder } from "./components/Placeholder";
+import { ProjectPipeline, type ProjectRow } from "./components/ProjectPipeline";
 import { LeadDrawer } from "./LeadDrawer";
 
 interface Kpis {
@@ -24,17 +25,24 @@ export function DashboardShell({
   kpis,
   sources,
   activity,
+  initialProjects,
 }: {
   initialLeads: LeadRow[];
   kpis: Kpis;
   sources: SourceShare[];
   activity: ActivityItem[];
+  initialProjects: ProjectRow[];
 }) {
   const [leads, setLeads] = useState<LeadRow[]>(initialLeads);
   const [openLeadId, setOpenLeadId] = useState<string | null>(null);
 
   function handleLeadUpdate(updated: LeadRow) {
     setLeads((prev) => prev.map((l) => (l.id === updated.id ? updated : l)));
+  }
+
+  function handleLeadCreated(newLead: LeadRow) {
+    setLeads((prev) => [newLead, ...prev]);
+    setOpenLeadId(newLead.id);
   }
 
   return (
@@ -125,18 +133,18 @@ export function DashboardShell({
 
       {/* Main two-col: lead intake (60%) + sources (40%) */}
       <section className="mb-5 grid grid-cols-1 gap-4 lg:grid-cols-[3fr_2fr]">
-        <LeadTable leads={leads} onOpenLead={setOpenLeadId} />
+        <LeadTable
+          leads={leads}
+          onOpenLead={setOpenLeadId}
+          onLeadCreated={handleLeadCreated}
+        />
         <LeadSourcesCard shares={sources} />
       </section>
 
-      {/* Pipeline + Inspections placeholders + Activity feed (3-col grid) */}
+      {/* Pipeline (full-width) + Activity feed in a column */}
       <section className="grid grid-cols-1 gap-4 lg:grid-cols-[3fr_2fr]">
         <div className="flex flex-col gap-4">
-          <Placeholder
-            title="Project pipeline"
-            count="0 active"
-            body="Five-stage Kanban view (Discovery → Scoping & NDA → Execution → QA Review → Delivered) with deal owner avatars and gating flags."
-          />
+          <ProjectPipeline initialProjects={initialProjects} />
           <Placeholder
             title="Inspections & gates · this week"
             body="Per-track schedule for Health Canada / USFDA / TGA-WHO-PQ / Internal QA / Stability — synced to a forthcoming inspections data model."
