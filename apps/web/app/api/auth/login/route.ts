@@ -1,21 +1,20 @@
 /**
- * /api/auth/login — Send a Supabase magic-link to an allowlisted email.
+ * /api/auth/login — Email + password sign-in via Supabase Auth.
  *
- * Why server-side: Supabase's `signInWithOtp` can be called from the
- * browser, but we want the allowlist gate to happen BEFORE the email is
- * dispatched. Calling from the server lets us reject non-allowlisted
- * emails without leaking which addresses are valid (we still 202).
+ * The user creates their Supabase account in the Supabase dashboard
+ * (Authentication → Users → Add user → "Create new user" with a password).
+ * Then they sign in here with the same email + password — no email
+ * confirmation round-trip needed.
  *
- * The Supabase project handles email delivery via its own SMTP
- * (default sender works without any custom Resend domain config — the
- * dev-tier sender is rate-limited to a few emails/hour, which is fine
- * for a small BD team). Customize the email template + SMTP later via
- * the Supabase dashboard.
+ * Allowlist gate: even if a Supabase user exists, sign-in is rejected
+ * unless their email is in DASHBOARD_ALLOWED_EMAILS. This is the same
+ * env-var gate used by getDashboardUserEmail() so removing an email
+ * from the allowlist locks the user out everywhere.
  */
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
-import { env, getRateLimiter, log } from "@propharmex/lib";
+import { getRateLimiter, log } from "@propharmex/lib";
 
 import {
   createSupabaseServerClient,
@@ -26,11 +25,12 @@ export const runtime = "nodejs";
 
 const BodySchema = z.object({
   email: z.string().email().max(254),
+  password: z.string().min(6).max(256),
 });
 
 const loginRateLimiter = getRateLimiter("auth:login:ip", {
-  tokens: 3,
-  window: "1 h",
+  tokens: 10,
+  window: "15 m",
 });
 
 export async function POST(req: Request) {
@@ -44,7 +44,7 @@ export async function POST(req: Request) {
     );
     log.warn("auth.login.rate_limited", { ip, retryAfterSeconds });
     return NextResponse.json(
-      { error: "Too many attempts. Try again in an hour." },
+      { error: "Too many attempts. Try again in a few minutes." },
       { status: 429, headers: { "Retry-After": String(retryAfterSeconds) } },
     );
   }
@@ -58,17 +58,22 @@ export async function POST(req: Request) {
   const parsed = BodySchema.safeParse(raw);
   if (!parsed.success) {
     return NextResponse.json(
-      { error: "Please enter a valid email address." },
+      { error: "Email and password (≥ 6 chars) are required." },
       { status: 400 },
     );
   }
   const email = parsed.data.email.trim().toLowerCase();
   const emailDomain = email.split("@")[1] ?? "unknown";
 
-  // Always 202 — never reveal which emails are allowlisted.
+  // Reject non-allowlisted emails before hitting Supabase. Use the same
+  // generic error message as a credential failure so we don't leak which
+  // emails are allowlisted.
   if (!isAllowedEmail(email)) {
     log.info("auth.login.not_allowlisted", { emailDomain });
-    return NextResponse.json({ ok: true }, { status: 202 });
+    return NextResponse.json(
+      { error: "Invalid email or password." },
+      { status: 401 },
+    );
   }
 
   let supabase;
@@ -78,35 +83,28 @@ export async function POST(req: Request) {
     log.error("auth.login.client_unavailable", {
       message: err instanceof Error ? err.message : String(err),
     });
-    return NextResponse.json({ ok: true }, { status: 202 });
+    return NextResponse.json(
+      { error: "Sign-in is temporarily unavailable. Please retry." },
+      { status: 503 },
+    );
   }
 
-  const siteUrl = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
-  const redirectTo = `${siteUrl}/api/auth/confirm`;
-
-  const { error } = await supabase.auth.signInWithOtp({
+  const { data, error } = await supabase.auth.signInWithPassword({
     email,
-    options: {
-      emailRedirectTo: redirectTo,
-      // Don't auto-create users — only allowlisted emails allowed in.
-      // (The user is created on first verify if Supabase Auth is set to
-      // allow signup. To prevent random sign-ups, set "Enable Sign Up"
-      // to OFF in the Supabase dashboard and pre-create the allowlisted
-      // users. The allowlist check above is the primary gate either way.)
-      shouldCreateUser: true,
-    },
+    password: parsed.data.password,
   });
 
-  if (error) {
-    log.error("auth.login.supabase_error", {
+  if (error || !data.user) {
+    log.warn("auth.login.failed", {
       emailDomain,
-      message: error.message,
+      message: error?.message ?? "no_user",
     });
-    // Don't expose Supabase errors to the user — they could leak
-    // existence info. Log it; respond 202.
-    return NextResponse.json({ ok: true }, { status: 202 });
+    return NextResponse.json(
+      { error: "Invalid email or password." },
+      { status: 401 },
+    );
   }
 
-  log.info("auth.login.sent", { emailDomain });
-  return NextResponse.json({ ok: true, queued: true }, { status: 202 });
+  log.info("auth.login.ok", { emailDomain });
+  return NextResponse.json({ ok: true }, { status: 200 });
 }
