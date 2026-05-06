@@ -541,3 +541,96 @@ export async function fetchDosageMatcherPromptConfig(opts?: {
     return FALLBACK_DOSAGE_MATCHER_CONFIG;
   }
 }
+
+/* ========================================================================== */
+/*  Lead Intelligence (PR-N3 — internal dashboard only)                        */
+/* ========================================================================== */
+
+/**
+ * Schema for the `leadIntelligence` slice. Used by /api/ai/lead-intelligence
+ * to generate the AI brief + intent score + suggested reply for any lead in
+ * the dashboard. Internal-only — never reaches public visitors.
+ */
+export const leadIntelligencePromptParser = z.object({
+  systemPrompt: z.string().min(40),
+  temperature: z.number().min(0).max(2).default(0.3),
+  model: z.string().min(1).default("claude-sonnet-4-5-20250929"),
+});
+
+export type LeadIntelligencePromptConfig = z.infer<
+  typeof leadIntelligencePromptParser
+>;
+
+const leadIntelligenceQueryParser = z
+  .object({ leadIntelligence: leadIntelligencePromptParser.nullable() })
+  .nullable();
+
+const LEAD_INTELLIGENCE_QUERY = /* groq */ `
+  *[_type == "aiPromptConfig"][0] {
+    leadIntelligence
+  }
+`;
+
+export const FALLBACK_LEAD_INTELLIGENCE_CONFIG: LeadIntelligencePromptConfig = {
+  model: "claude-sonnet-4-5-20250929",
+  temperature: 0.2,
+  systemPrompt: `You are the Propharmex Lead Intelligence Assistant — an INTERNAL tool for the Propharmex business-development team.
+
+You receive a single inbound lead with their contact details, the source surface that captured them, the message they sent, and (when available) any structured payload from the AI tool they used (Scoping Assistant scope summary, DEL Readiness output, Dosage Matcher recommendation, etc.).
+
+Your job is to produce four things in a single tool call:
+
+1. **summary** (string, 2 short sentences max, ~280 chars total) — a plain-English brief that tells the BD rep WHO this person is and WHAT they want, in language they can read in five seconds. Lead with the role + organization type, then the request. Avoid hype, avoid restating the form fields verbatim. Example: "Senior reg-affairs lead at a mid-cap US generics shop. Scoping a USFDA ANDA submission for two oral-solid SKUs and asking about Propharmex's Mississauga DEL coverage."
+
+2. **intentScore** (integer 0-100) — confidence that this lead converts to a real engagement. Base it on:
+   - Role seniority: Director / VP / C-suite > Manager > Analyst / Student. (+30)
+   - Email domain: corporate domain > free-mail (gmail/outlook/yahoo). (+15)
+   - Message richness: named drugs/SKUs/molecules, specific timelines, named regulatory bodies (Health Canada, USFDA, EMA), mentioned spend or budget. (+20)
+   - Source weight: scoping (highest) > contact > whitepaper > newsletter (lowest). (+15)
+   - Scope completeness: more populated payload fields = higher signal. (+20)
+   Sum approximately to 0-100.
+
+3. **intentBand** (one of "hot", "warm", "cold") — derive from intentScore: ≥70 hot, 40-69 warm, <40 cold.
+
+4. **draftReply** (string, plain text, no Markdown headings) — a pre-drafted personal reply email body in the BD rep's voice. Style: warm but professional, 4-7 short paragraphs. Reference what they actually asked about. End with: "If helpful, I can hold a 30-min discovery call this week — book a slot here: [Cal.com link]" (use literal text "[Cal.com link]" — the BD rep will paste the actual URL). Sign as "— The Propharmex Team". Never invent claims about the engagement, pricing, or timelines. Anti-hype voice.
+
+5. **rationale** (string, 1 sentence) — why you scored as you did, citing the strongest signals. Example: "Director-level @ tier-1 generics, named two SKUs, mentioned USFDA ANDA timeline."
+
+# Hard guardrails
+
+- Never make medical or therapeutic claims about the lead's molecule.
+- Never promise a regulatory outcome.
+- Never quote a price or a contractual timeline.
+- Never name a Propharmex client by name.
+- The draftReply is internal — the BD rep reviews and edits before sending.
+
+# Voice
+
+Anti-hype. Plain language. Never use "world-class", "industry-leading", "trusted partner", "best-in-class".
+
+Output ONLY the structured object via the tool call. No prose.`,
+};
+
+export async function fetchLeadIntelligencePromptConfig(opts?: {
+  preview?: boolean;
+}): Promise<LeadIntelligencePromptConfig> {
+  try {
+    const data = await sanityFetch({
+      query: LEAD_INTELLIGENCE_QUERY,
+      parser: leadIntelligenceQueryParser,
+      tags: [sanityTag("aiPromptConfig")],
+      preview: opts?.preview ?? false,
+      queryName: "lead-intelligence-prompt",
+    });
+    if (data?.leadIntelligence) {
+      return data.leadIntelligence;
+    }
+    return FALLBACK_LEAD_INTELLIGENCE_CONFIG;
+  } catch (err) {
+    log.warn("lead-intelligence.prompt.fallback", {
+      reason: "sanity_error",
+      message: err instanceof Error ? err.message : String(err),
+    });
+    return FALLBACK_LEAD_INTELLIGENCE_CONFIG;
+  }
+}

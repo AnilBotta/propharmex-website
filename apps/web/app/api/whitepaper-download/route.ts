@@ -23,7 +23,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
 
-import { env, log } from "@propharmex/lib";
+import { env, leads as leadsLib, log } from "@propharmex/lib";
 
 import { INSIGHTS } from "../../../content/insights";
 
@@ -138,6 +138,19 @@ export async function POST(req: Request) {
     company: data.company,
     role: data.role,
     country: data.country,
+  });
+
+  // Persist to public.leads (PR-N1). Best-effort.
+  await leadsLib.insertLead({
+    source: "whitepaper",
+    email: data.email,
+    contactName: data.fullName,
+    company: data.company,
+    role: data.role,
+    region: data.country,
+    message: data.useCase || undefined,
+    payload: { slug: data.slug, title: whitepaper.title },
+    ...leadsLib.extractAttribution(req),
   });
 
   if (!env.RESEND_API_KEY || !env.RESEND_FROM_EMAIL) {

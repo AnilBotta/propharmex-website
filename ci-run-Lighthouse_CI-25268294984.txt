@@ -1,0 +1,369 @@
+﻿CWV budget gate	Set up job	∩╗┐2026-05-03T03:00:39.8602949Z Current runner version: '2.334.0'
+CWV budget gate	Set up job	2026-05-03T03:00:39.8625994Z ##[group]Runner Image Provisioner
+CWV budget gate	Set up job	2026-05-03T03:00:39.8626781Z Hosted Compute Agent
+CWV budget gate	Set up job	2026-05-03T03:00:39.8627236Z Version: 20260213.493
+CWV budget gate	Set up job	2026-05-03T03:00:39.8627676Z Commit: 5c115507f6dd24b8de37d8bbe0bb4509d0cc0fa3
+CWV budget gate	Set up job	2026-05-03T03:00:39.8628300Z Build Date: 2026-02-13T00:28:41Z
+CWV budget gate	Set up job	2026-05-03T03:00:39.8628803Z Worker ID: {c2a65524-2027-4771-adb9-fcfc01cf9571}
+CWV budget gate	Set up job	2026-05-03T03:00:39.8629340Z Azure Region: westus
+CWV budget gate	Set up job	2026-05-03T03:00:39.8629723Z ##[endgroup]
+CWV budget gate	Set up job	2026-05-03T03:00:39.8630822Z ##[group]Operating System
+CWV budget gate	Set up job	2026-05-03T03:00:39.8631263Z Ubuntu
+CWV budget gate	Set up job	2026-05-03T03:00:39.8631654Z 24.04.4
+CWV budget gate	Set up job	2026-05-03T03:00:39.8632151Z LTS
+CWV budget gate	Set up job	2026-05-03T03:00:39.8632644Z ##[endgroup]
+CWV budget gate	Set up job	2026-05-03T03:00:39.8633026Z ##[group]Runner Image
+CWV budget gate	Set up job	2026-05-03T03:00:39.8633487Z Image: ubuntu-24.04
+CWV budget gate	Set up job	2026-05-03T03:00:39.8633896Z Version: 20260413.86.1
+CWV budget gate	Set up job	2026-05-03T03:00:39.8634666Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260413.86/images/ubuntu/Ubuntu2404-Readme.md
+CWV budget gate	Set up job	2026-05-03T03:00:39.8635986Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260413.86
+CWV budget gate	Set up job	2026-05-03T03:00:39.8636679Z ##[endgroup]
+CWV budget gate	Set up job	2026-05-03T03:00:39.8637576Z ##[group]GITHUB_TOKEN Permissions
+CWV budget gate	Set up job	2026-05-03T03:00:39.8639103Z Contents: read
+CWV budget gate	Set up job	2026-05-03T03:00:39.8639566Z Metadata: read
+CWV budget gate	Set up job	2026-05-03T03:00:39.8639991Z Packages: read
+CWV budget gate	Set up job	2026-05-03T03:00:39.8640357Z ##[endgroup]
+CWV budget gate	Set up job	2026-05-03T03:00:39.8642133Z Secret source: Actions
+CWV budget gate	Set up job	2026-05-03T03:00:39.8642874Z Prepare workflow directory
+CWV budget gate	Set up job	2026-05-03T03:00:39.8918196Z Prepare all required actions
+CWV budget gate	Set up job	2026-05-03T03:00:39.8950999Z Getting action download info
+CWV budget gate	Set up job	2026-05-03T03:00:40.3687380Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+CWV budget gate	Set up job	2026-05-03T03:00:40.5498048Z Download action repository 'pnpm/action-setup@v4' (SHA:b906affcce14559ad1aafd4ab0e942779e9f58b1)
+CWV budget gate	Set up job	2026-05-03T03:00:41.0109599Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+CWV budget gate	Set up job	2026-05-03T03:00:41.3446107Z Complete job name: CWV budget gate
+CWV budget gate	Checkout	∩╗┐2026-05-03T03:00:41.4113268Z ##[group]Run actions/checkout@v4
+CWV budget gate	Checkout	2026-05-03T03:00:41.4114276Z with:
+CWV budget gate	Checkout	2026-05-03T03:00:41.4114852Z   repository: AnilBotta/propharmex-website
+CWV budget gate	Checkout	2026-05-03T03:00:41.4115920Z   token: ***
+CWV budget gate	Checkout	2026-05-03T03:00:41.4116468Z   ssh-strict: true
+CWV budget gate	Checkout	2026-05-03T03:00:41.4117026Z   ssh-user: git
+CWV budget gate	Checkout	2026-05-03T03:00:41.4117606Z   persist-credentials: true
+CWV budget gate	Checkout	2026-05-03T03:00:41.4118260Z   clean: true
+CWV budget gate	Checkout	2026-05-03T03:00:41.4118851Z   sparse-checkout-cone-mode: true
+CWV budget gate	Checkout	2026-05-03T03:00:41.4119600Z   fetch-depth: 1
+CWV budget gate	Checkout	2026-05-03T03:00:41.4120163Z   fetch-tags: false
+CWV budget gate	Checkout	2026-05-03T03:00:41.4120785Z   show-progress: true
+CWV budget gate	Checkout	2026-05-03T03:00:41.4121383Z   lfs: false
+CWV budget gate	Checkout	2026-05-03T03:00:41.4121924Z   submodules: false
+CWV budget gate	Checkout	2026-05-03T03:00:41.4122646Z   set-safe-directory: true
+CWV budget gate	Checkout	2026-05-03T03:00:41.4123468Z ##[endgroup]
+CWV budget gate	Checkout	2026-05-03T03:00:41.5069703Z Syncing repository: AnilBotta/propharmex-website
+CWV budget gate	Checkout	2026-05-03T03:00:41.5072019Z ##[group]Getting Git version info
+CWV budget gate	Checkout	2026-05-03T03:00:41.5073462Z Working directory is '/home/runner/work/propharmex-website/propharmex-website'
+CWV budget gate	Checkout	2026-05-03T03:00:41.5075243Z [command]/usr/bin/git version
+CWV budget gate	Checkout	2026-05-03T03:00:41.5151288Z git version 2.53.0
+CWV budget gate	Checkout	2026-05-03T03:00:41.5171841Z ##[endgroup]
+CWV budget gate	Checkout	2026-05-03T03:00:41.5184904Z Temporarily overriding HOME='/home/runner/work/_temp/5f1fd840-3569-4637-855d-2cf2202ee6e0' before making global git config changes
+CWV budget gate	Checkout	2026-05-03T03:00:41.5187520Z Adding repository directory to the temporary git global config as a safe directory
+CWV budget gate	Checkout	2026-05-03T03:00:41.5189698Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/propharmex-website/propharmex-website
+CWV budget gate	Checkout	2026-05-03T03:00:41.5219038Z Deleting the contents of '/home/runner/work/propharmex-website/propharmex-website'
+CWV budget gate	Checkout	2026-05-03T03:00:41.5222088Z ##[group]Initializing the repository
+CWV budget gate	Checkout	2026-05-03T03:00:41.5225901Z [command]/usr/bin/git init /home/runner/work/propharmex-website/propharmex-website
+CWV budget gate	Checkout	2026-05-03T03:00:41.5281923Z hint: Using 'master' as the name for the initial branch. This default branch name
+CWV budget gate	Checkout	2026-05-03T03:00:41.5284048Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+CWV budget gate	Checkout	2026-05-03T03:00:41.5285411Z hint: to use in all of your new repositories, which will suppress this warning,
+CWV budget gate	Checkout	2026-05-03T03:00:41.5286589Z hint: call:
+CWV budget gate	Checkout	2026-05-03T03:00:41.5287270Z hint:
+CWV budget gate	Checkout	2026-05-03T03:00:41.5287965Z hint: 	git config --global init.defaultBranch <name>
+CWV budget gate	Checkout	2026-05-03T03:00:41.5288821Z hint:
+CWV budget gate	Checkout	2026-05-03T03:00:41.5289604Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+CWV budget gate	Checkout	2026-05-03T03:00:41.5290927Z hint: 'development'. The just-created branch can be renamed via this command:
+CWV budget gate	Checkout	2026-05-03T03:00:41.5292487Z hint:
+CWV budget gate	Checkout	2026-05-03T03:00:41.5293014Z hint: 	git branch -m <name>
+CWV budget gate	Checkout	2026-05-03T03:00:41.5293643Z hint:
+CWV budget gate	Checkout	2026-05-03T03:00:41.5294493Z hint: Disable this message with "git config set advice.defaultBranchName false"
+CWV budget gate	Checkout	2026-05-03T03:00:41.5296233Z Initialized empty Git repository in /home/runner/work/propharmex-website/propharmex-website/.git/
+CWV budget gate	Checkout	2026-05-03T03:00:41.5298849Z [command]/usr/bin/git remote add origin https://github.com/AnilBotta/propharmex-website
+CWV budget gate	Checkout	2026-05-03T03:00:41.5320656Z ##[endgroup]
+CWV budget gate	Checkout	2026-05-03T03:00:41.5321662Z ##[group]Disabling automatic garbage collection
+CWV budget gate	Checkout	2026-05-03T03:00:41.5323986Z [command]/usr/bin/git config --local gc.auto 0
+CWV budget gate	Checkout	2026-05-03T03:00:41.5349617Z ##[endgroup]
+CWV budget gate	Checkout	2026-05-03T03:00:41.5350557Z ##[group]Setting up auth
+CWV budget gate	Checkout	2026-05-03T03:00:41.5355034Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+CWV budget gate	Checkout	2026-05-03T03:00:41.5380516Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+CWV budget gate	Checkout	2026-05-03T03:00:41.5846906Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+CWV budget gate	Checkout	2026-05-03T03:00:41.5873302Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+CWV budget gate	Checkout	2026-05-03T03:00:41.6071579Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+CWV budget gate	Checkout	2026-05-03T03:00:41.6101677Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+CWV budget gate	Checkout	2026-05-03T03:00:41.6296849Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+CWV budget gate	Checkout	2026-05-03T03:00:41.6328525Z ##[endgroup]
+CWV budget gate	Checkout	2026-05-03T03:00:41.6330001Z ##[group]Fetching the repository
+CWV budget gate	Checkout	2026-05-03T03:00:41.6337615Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +cc3d4b43dcc03478d1a6d609f20d248a6d34d521:refs/remotes/pull/55/merge
+CWV budget gate	Checkout	2026-05-03T03:00:42.4512247Z From https://github.com/AnilBotta/propharmex-website
+CWV budget gate	Checkout	2026-05-03T03:00:42.4513913Z  * [new ref]         cc3d4b43dcc03478d1a6d609f20d248a6d34d521 -> pull/55/merge
+CWV budget gate	Checkout	2026-05-03T03:00:42.4538376Z ##[endgroup]
+CWV budget gate	Checkout	2026-05-03T03:00:42.4540050Z ##[group]Determining the checkout info
+CWV budget gate	Checkout	2026-05-03T03:00:42.4541925Z ##[endgroup]
+CWV budget gate	Checkout	2026-05-03T03:00:42.4545136Z [command]/usr/bin/git sparse-checkout disable
+CWV budget gate	Checkout	2026-05-03T03:00:42.4576927Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+CWV budget gate	Checkout	2026-05-03T03:00:42.4600045Z ##[group]Checking out the ref
+CWV budget gate	Checkout	2026-05-03T03:00:42.4602078Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/55/merge
+CWV budget gate	Checkout	2026-05-03T03:00:42.4951779Z Note: switching to 'refs/remotes/pull/55/merge'.
+CWV budget gate	Checkout	2026-05-03T03:00:42.4953091Z 
+CWV budget gate	Checkout	2026-05-03T03:00:42.4953874Z You are in 'detached HEAD' state. You can look around, make experimental
+CWV budget gate	Checkout	2026-05-03T03:00:42.4955733Z changes and commit them, and you can discard any commits you make in this
+CWV budget gate	Checkout	2026-05-03T03:00:42.4957345Z state without impacting any branches by switching back to a branch.
+CWV budget gate	Checkout	2026-05-03T03:00:42.4958172Z 
+CWV budget gate	Checkout	2026-05-03T03:00:42.4958708Z If you want to create a new branch to retain commits you create, you may
+CWV budget gate	Checkout	2026-05-03T03:00:42.4960455Z do so (now or later) by using -c with the switch command. Example:
+CWV budget gate	Checkout	2026-05-03T03:00:42.4961659Z 
+CWV budget gate	Checkout	2026-05-03T03:00:42.4962018Z   git switch -c <new-branch-name>
+CWV budget gate	Checkout	2026-05-03T03:00:42.4962786Z 
+CWV budget gate	Checkout	2026-05-03T03:00:42.4963133Z Or undo this operation with:
+CWV budget gate	Checkout	2026-05-03T03:00:42.4963649Z 
+CWV budget gate	Checkout	2026-05-03T03:00:42.4963986Z   git switch -
+CWV budget gate	Checkout	2026-05-03T03:00:42.4964635Z 
+CWV budget gate	Checkout	2026-05-03T03:00:42.4965293Z Turn off this advice by setting config variable advice.detachedHead to false
+CWV budget gate	Checkout	2026-05-03T03:00:42.4966253Z 
+CWV budget gate	Checkout	2026-05-03T03:00:42.4967239Z HEAD is now at cc3d4b4 Merge 51a9ca3602f944cbda45cbd52e2d6c8ee0a73800 into 382b5976ee0e7b3748eeb377f99e53eb2d05016e
+CWV budget gate	Checkout	2026-05-03T03:00:42.4970705Z ##[endgroup]
+CWV budget gate	Checkout	2026-05-03T03:00:42.4995446Z [command]/usr/bin/git log -1 --format=%H
+CWV budget gate	Checkout	2026-05-03T03:00:42.5014645Z cc3d4b43dcc03478d1a6d609f20d248a6d34d521
+CWV budget gate	Setup pnpm	∩╗┐2026-05-03T03:00:42.5250980Z ##[group]Run pnpm/action-setup@v4
+CWV budget gate	Setup pnpm	2026-05-03T03:00:42.5251875Z with:
+CWV budget gate	Setup pnpm	2026-05-03T03:00:42.5252735Z   version: 9.12.0
+CWV budget gate	Setup pnpm	2026-05-03T03:00:42.5253483Z   dest: ~/setup-pnpm
+CWV budget gate	Setup pnpm	2026-05-03T03:00:42.5254175Z   run_install: null
+CWV budget gate	Setup pnpm	2026-05-03T03:00:42.5254949Z   cache: false
+CWV budget gate	Setup pnpm	2026-05-03T03:00:42.5255641Z   cache_dependency_path: pnpm-lock.yaml
+CWV budget gate	Setup pnpm	2026-05-03T03:00:42.5256554Z   package_json_file: package.json
+CWV budget gate	Setup pnpm	2026-05-03T03:00:42.5257425Z   standalone: false
+CWV budget gate	Setup pnpm	2026-05-03T03:00:42.5258102Z ##[endgroup]
+CWV budget gate	Setup pnpm	2026-05-03T03:00:42.6447956Z ##[group]Running self-installer...
+CWV budget gate	Setup pnpm	2026-05-03T03:00:43.1359310Z Progress: resolved 1, reused 0, downloaded 0, added 0
+CWV budget gate	Setup pnpm	2026-05-03T03:00:43.1449234Z Packages: +1
+CWV budget gate	Setup pnpm	2026-05-03T03:00:43.1450286Z +
+CWV budget gate	Setup pnpm	2026-05-03T03:00:43.4534817Z Progress: resolved 1, reused 0, downloaded 1, added 1, done
+CWV budget gate	Setup pnpm	2026-05-03T03:00:43.5243832Z 
+CWV budget gate	Setup pnpm	2026-05-03T03:00:43.5244224Z dependencies:
+CWV budget gate	Setup pnpm	2026-05-03T03:00:43.5244570Z + pnpm 9.12.0 (10.33.2 is available)
+CWV budget gate	Setup pnpm	2026-05-03T03:00:43.5244948Z 
+CWV budget gate	Setup pnpm	2026-05-03T03:00:43.5269286Z Done in 742ms
+CWV budget gate	Setup pnpm	2026-05-03T03:00:43.5402873Z ##[endgroup]
+CWV budget gate	Setup pnpm	2026-05-03T03:00:43.5405276Z Installation Completed!
+CWV budget gate	Setup Node	∩╗┐2026-05-03T03:00:43.5611380Z ##[group]Run actions/setup-node@v4
+CWV budget gate	Setup Node	2026-05-03T03:00:43.5611631Z with:
+CWV budget gate	Setup Node	2026-05-03T03:00:43.5611783Z   node-version: 20
+CWV budget gate	Setup Node	2026-05-03T03:00:43.5611973Z   cache: pnpm
+CWV budget gate	Setup Node	2026-05-03T03:00:43.5612131Z   always-auth: false
+CWV budget gate	Setup Node	2026-05-03T03:00:43.5612502Z   check-latest: false
+CWV budget gate	Setup Node	2026-05-03T03:00:43.5612794Z   token: ***
+CWV budget gate	Setup Node	2026-05-03T03:00:43.5612955Z env:
+CWV budget gate	Setup Node	2026-05-03T03:00:43.5613165Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+CWV budget gate	Setup Node	2026-05-03T03:00:43.5613413Z ##[endgroup]
+CWV budget gate	Setup Node	2026-05-03T03:00:43.7187517Z Found in cache @ /opt/hostedtoolcache/node/20.20.2/x64
+CWV budget gate	Setup Node	2026-05-03T03:00:43.7193671Z ##[group]Environment details
+CWV budget gate	Setup Node	2026-05-03T03:00:46.8684674Z node: v20.20.2
+CWV budget gate	Setup Node	2026-05-03T03:00:46.8685045Z npm: 10.8.2
+CWV budget gate	Setup Node	2026-05-03T03:00:46.8685263Z yarn: 1.22.22
+CWV budget gate	Setup Node	2026-05-03T03:00:46.8686486Z ##[endgroup]
+CWV budget gate	Setup Node	2026-05-03T03:00:46.8707948Z [command]/home/runner/setup-pnpm/node_modules/.bin/pnpm store path --silent
+CWV budget gate	Setup Node	2026-05-03T03:00:47.1792715Z /home/runner/setup-pnpm/node_modules/.bin/store/v3
+CWV budget gate	Setup Node	2026-05-03T03:00:47.5053820Z Cache hit for: node-cache-Linux-x64-pnpm-a8d3c3209ae799514a126d0a08cc150039c0bca7485e874de373b25801ad526e
+CWV budget gate	Setup Node	2026-05-03T03:00:48.7878884Z Received 4194304 of 357378039 (1.2%), 4.0 MBs/sec
+CWV budget gate	Setup Node	2026-05-03T03:00:49.7880175Z Received 130023424 of 357378039 (36.4%), 62.0 MBs/sec
+CWV budget gate	Setup Node	2026-05-03T03:00:50.8070035Z Received 268435456 of 357378039 (75.1%), 84.8 MBs/sec
+CWV budget gate	Setup Node	2026-05-03T03:00:51.3005642Z Received 357378039 of 357378039 (100.0%), 97.0 MBs/sec
+CWV budget gate	Setup Node	2026-05-03T03:00:51.3006713Z Cache Size: ~341 MB (357378039 B)
+CWV budget gate	Setup Node	2026-05-03T03:00:51.3037043Z [command]/usr/bin/tar -xf /home/runner/work/_temp/98e2f7c5-cd07-4aa2-85f2-ccf3995f6165/cache.tzst -P -C /home/runner/work/propharmex-website/propharmex-website --use-compress-program unzstd
+CWV budget gate	Setup Node	2026-05-03T03:00:54.6197039Z Cache restored successfully
+CWV budget gate	Setup Node	2026-05-03T03:00:54.6353430Z Cache restored from key: node-cache-Linux-x64-pnpm-a8d3c3209ae799514a126d0a08cc150039c0bca7485e874de373b25801ad526e
+CWV budget gate	Install dependencies	∩╗┐2026-05-03T03:00:54.6526643Z ##[group]Run pnpm install --frozen-lockfile
+CWV budget gate	Install dependencies	2026-05-03T03:00:54.6527016Z [36;1mpnpm install --frozen-lockfile[0m
+CWV budget gate	Install dependencies	2026-05-03T03:00:54.6553784Z shell: /usr/bin/bash -e {0}
+CWV budget gate	Install dependencies	2026-05-03T03:00:54.6554028Z env:
+CWV budget gate	Install dependencies	2026-05-03T03:00:54.6554457Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+CWV budget gate	Install dependencies	2026-05-03T03:00:54.6554749Z ##[endgroup]
+CWV budget gate	Install dependencies	2026-05-03T03:00:55.0337249Z Scope: all 6 workspace projects
+CWV budget gate	Install dependencies	2026-05-03T03:00:55.1150765Z Lockfile is up to date, resolution step is skipped
+CWV budget gate	Install dependencies	2026-05-03T03:00:55.2380423Z Progress: resolved 1, reused 0, downloaded 0, added 0
+CWV budget gate	Install dependencies	2026-05-03T03:00:55.4121172Z Packages: +1773
+CWV budget gate	Install dependencies	2026-05-03T03:00:55.4122186Z ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CWV budget gate	Install dependencies	2026-05-03T03:00:56.2388361Z Progress: resolved 1773, reused 124, downloaded 0, added 0
+CWV budget gate	Install dependencies	2026-05-03T03:00:57.5562940Z Progress: resolved 1773, reused 125, downloaded 0, added 0
+CWV budget gate	Install dependencies	2026-05-03T03:00:58.5696711Z Progress: resolved 1773, reused 1641, downloaded 0, added 0
+CWV budget gate	Install dependencies	2026-05-03T03:00:59.5702948Z Progress: resolved 1773, reused 1743, downloaded 0, added 307
+CWV budget gate	Install dependencies	2026-05-03T03:01:00.5702726Z Progress: resolved 1773, reused 1743, downloaded 0, added 519
+CWV budget gate	Install dependencies	2026-05-03T03:01:01.5708392Z Progress: resolved 1773, reused 1743, downloaded 0, added 656
+CWV budget gate	Install dependencies	2026-05-03T03:01:02.5724311Z Progress: resolved 1773, reused 1743, downloaded 0, added 775
+CWV budget gate	Install dependencies	2026-05-03T03:01:03.5734904Z Progress: resolved 1773, reused 1743, downloaded 0, added 955
+CWV budget gate	Install dependencies	2026-05-03T03:01:04.5766063Z Progress: resolved 1773, reused 1743, downloaded 0, added 1354
+CWV budget gate	Install dependencies	2026-05-03T03:01:05.5770533Z Progress: resolved 1773, reused 1743, downloaded 0, added 1552
+CWV budget gate	Install dependencies	2026-05-03T03:01:06.5353027Z Progress: resolved 1773, reused 1743, downloaded 0, added 1773, done
+CWV budget gate	Install dependencies	2026-05-03T03:01:08.6638106Z 
+CWV budget gate	Install dependencies	2026-05-03T03:01:08.6638797Z devDependencies:
+CWV budget gate	Install dependencies	2026-05-03T03:01:08.6639197Z + @storybook/addon-a11y 8.6.18
+CWV budget gate	Install dependencies	2026-05-03T03:01:08.6639595Z + @storybook/addon-essentials 8.6.14
+CWV budget gate	Install dependencies	2026-05-03T03:01:08.6640110Z + @storybook/addon-interactions 8.6.14
+CWV budget gate	Install dependencies	2026-05-03T03:01:08.6640410Z + @storybook/blocks 8.6.14
+CWV budget gate	Install dependencies	2026-05-03T03:01:08.6640742Z + @storybook/react 8.6.18
+CWV budget gate	Install dependencies	2026-05-03T03:01:08.6641040Z + @storybook/react-vite 8.6.18
+CWV budget gate	Install dependencies	2026-05-03T03:01:08.6641333Z + @storybook/test 8.6.15
+CWV budget gate	Install dependencies	2026-05-03T03:01:08.6641612Z + @tailwindcss/vite 4.2.4
+CWV budget gate	Install dependencies	2026-05-03T03:01:08.6641891Z + @types/node 20.19.39
+CWV budget gate	Install dependencies	2026-05-03T03:01:08.6642170Z + docx 9.6.1
+CWV budget gate	Install dependencies	2026-05-03T03:01:08.6642527Z + eslint 9.39.4
+CWV budget gate	Install dependencies	2026-05-03T03:01:08.6642729Z + husky 9.1.7
+CWV budget gate	Install dependencies	2026-05-03T03:01:08.6642973Z + lint-staged 15.5.2
+CWV budget gate	Install dependencies	2026-05-03T03:01:08.6643206Z + prettier 3.8.3
+CWV budget gate	Install dependencies	2026-05-03T03:01:08.6643447Z + storybook 8.6.18
+CWV budget gate	Install dependencies	2026-05-03T03:01:08.6643708Z + tsx 4.21.0
+CWV budget gate	Install dependencies	2026-05-03T03:01:08.6643922Z + turbo 2.9.6
+CWV budget gate	Install dependencies	2026-05-03T03:01:08.6644148Z + typescript 5.9.3
+CWV budget gate	Install dependencies	2026-05-03T03:01:08.6644364Z + vite 5.4.21
+CWV budget gate	Install dependencies	2026-05-03T03:01:08.6644472Z 
+CWV budget gate	Install dependencies	2026-05-03T03:01:08.6792289Z . prepare$ husky
+CWV budget gate	Install dependencies	2026-05-03T03:01:08.7278652Z . prepare: Done
+CWV budget gate	Install dependencies	2026-05-03T03:01:08.7504699Z Done in 14s
+CWV budget gate	Build	∩╗┐2026-05-03T03:01:08.7914699Z ##[group]Run pnpm build
+CWV budget gate	Build	2026-05-03T03:01:08.7914941Z [36;1mpnpm build[0m
+CWV budget gate	Build	2026-05-03T03:01:08.7933740Z shell: /usr/bin/bash -e {0}
+CWV budget gate	Build	2026-05-03T03:01:08.7933944Z env:
+CWV budget gate	Build	2026-05-03T03:01:08.7934141Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+CWV budget gate	Build	2026-05-03T03:01:08.7934436Z   NEXT_PUBLIC_SITE_URL: https://propharmex.com
+CWV budget gate	Build	2026-05-03T03:01:08.7934697Z   NEXT_PUBLIC_SANITY_PROJECT_ID: 
+CWV budget gate	Build	2026-05-03T03:01:08.7934900Z   NEXT_PUBLIC_SANITY_DATASET: 
+CWV budget gate	Build	2026-05-03T03:01:08.7935083Z ##[endgroup]
+CWV budget gate	Build	2026-05-03T03:01:09.1608308Z 
+CWV budget gate	Build	2026-05-03T03:01:09.1609273Z > propharmex-site@1.0.0 build /home/runner/work/propharmex-website/propharmex-website
+CWV budget gate	Build	2026-05-03T03:01:09.1609819Z > turbo run build
+CWV budget gate	Build	2026-05-03T03:01:09.1609952Z 
+CWV budget gate	Build	2026-05-03T03:01:09.2007137Z 
+CWV budget gate	Build	2026-05-03T03:01:09.2007450Z Attention:
+CWV budget gate	Build	2026-05-03T03:01:09.2007842Z Turborepo now collects completely anonymous telemetry regarding usage.
+CWV budget gate	Build	2026-05-03T03:01:09.2008336Z This information is used to shape the Turborepo roadmap and prioritize features.
+CWV budget gate	Build	2026-05-03T03:01:09.2009238Z You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+CWV budget gate	Build	2026-05-03T03:01:09.2010096Z https://turborepo.dev/docs/telemetry
+CWV budget gate	Build	2026-05-03T03:01:09.2010328Z 
+CWV budget gate	Build	2026-05-03T03:01:09.2977327Z 
+CWV budget gate	Build	2026-05-03T03:01:09.2978397Z    ΓÇó Packages in scope: @propharmex/config, @propharmex/lib, @propharmex/ui, studio, web
+CWV budget gate	Build	2026-05-03T03:01:09.2979351Z    ΓÇó Running build in 5 packages
+CWV budget gate	Build	2026-05-03T03:01:09.2979800Z    ΓÇó Remote caching disabled
+CWV budget gate	Build	2026-05-03T03:01:09.2980048Z 
+CWV budget gate	Build	2026-05-03T03:01:14.7419597Z ##[group]studio:build
+CWV budget gate	Build	2026-05-03T03:01:14.7420245Z cache miss, executing 612ab6d5a53aba09
+CWV budget gate	Build	2026-05-03T03:01:14.7421321Z 
+CWV budget gate	Build	2026-05-03T03:01:14.7422158Z > studio@0.1.0 build /home/runner/work/propharmex-website/propharmex-website/apps/studio
+CWV budget gate	Build	2026-05-03T03:01:14.7423124Z > sanity build
+CWV budget gate	Build	2026-05-03T03:01:14.7423351Z 
+CWV budget gate	Build	2026-05-03T03:01:14.7423741Z 
+CWV budget gate	Build	2026-05-03T03:01:14.7424660Z    ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+CWV budget gate	Build	2026-05-03T03:01:14.7425738Z    Γöé                                                                                                               Γöé
+CWV budget gate	Build	2026-05-03T03:01:14.7426662Z    Γöé   The `sanity` package is moving to v4 on July 15 and will require Node.js 20+.                               Γöé
+CWV budget gate	Build	2026-05-03T03:01:14.7433920Z    Γöé   Learn what this means for your apps at https://www.sanity.io/blog/a-major-version-bump-for-a-minor-reason   Γöé
+CWV budget gate	Build	2026-05-03T03:01:14.7434905Z    Γöé                                                                                                               Γöé
+CWV budget gate	Build	2026-05-03T03:01:14.7435741Z    ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ
+CWV budget gate	Build	2026-05-03T03:01:14.7436282Z 
+CWV budget gate	Build	2026-05-03T03:01:14.7437142Z ΓÜá Declared version of styled-components (^6.1.13) is not compatible with the version required by sanity (^6.1.15). This might cause problems!
+CWV budget gate	Build	2026-05-03T03:01:14.7438115Z Γä╣ Building with auto-updates enabled
+CWV budget gate	Build	2026-05-03T03:01:14.7438936Z WARNING: The following local package versions are different from the versions currently served at runtime.
+CWV budget gate	Build	2026-05-03T03:01:14.7439977Z When using auto updates, we recommend that you test locally with the same versions before deploying. 
+CWV budget gate	Build	2026-05-03T03:01:14.7440495Z 
+CWV budget gate	Build	2026-05-03T03:01:14.7445210Z  - sanity (local version: 3.99.0, runtime version: 4.22.0)
+CWV budget gate	Build	2026-05-03T03:01:14.7446116Z  - @sanity/vision (local version: 3.99.0, runtime version: 4.22.0) 
+CWV budget gate	Build	2026-05-03T03:01:14.7446722Z 
+CWV budget gate	Build	2026-05-03T03:01:14.7447011Z 
+CWV budget gate	Build	2026-05-03T03:01:14.7447361Z - Clean output folder
+CWV budget gate	Build	2026-05-03T03:01:14.7448269Z Γ£ô Clean output folder (4ms)
+CWV budget gate	Build	2026-05-03T03:01:14.7448877Z - Build Sanity Studio
+CWV budget gate	Build	2026-05-03T03:01:14.7449526Z Γ£ô Build Sanity Studio (663ms)
+CWV budget gate	Build	2026-05-03T03:01:14.7450324Z ##[endgroup]
+CWV budget gate	Build	2026-05-03T03:01:51.6413471Z [;31mweb:build[;0m
+CWV budget gate	Build	2026-05-03T03:01:51.6413961Z cache miss, executing df0cdc2b103febb6
+CWV budget gate	Build	2026-05-03T03:01:51.6414194Z 
+CWV budget gate	Build	2026-05-03T03:01:51.6414601Z > web@1.0.0 build /home/runner/work/propharmex-website/propharmex-website/apps/web
+CWV budget gate	Build	2026-05-03T03:01:51.6415548Z > next build
+CWV budget gate	Build	2026-05-03T03:01:51.6415713Z 
+CWV budget gate	Build	2026-05-03T03:01:51.6416509Z ΓÜá No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+CWV budget gate	Build	2026-05-03T03:01:51.6417525Z Attention: Next.js now collects completely anonymous telemetry regarding usage.
+CWV budget gate	Build	2026-05-03T03:01:51.6418358Z This information is used to shape Next.js' roadmap and prioritize features.
+CWV budget gate	Build	2026-05-03T03:01:51.6419533Z You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+CWV budget gate	Build	2026-05-03T03:01:51.6420307Z https://nextjs.org/telemetry
+CWV budget gate	Build	2026-05-03T03:01:51.6420520Z 
+CWV budget gate	Build	2026-05-03T03:01:51.6420688Z    Γû▓ Next.js 15.5.15
+CWV budget gate	Build	2026-05-03T03:01:51.6420971Z    - Experiments (use with caution):
+CWV budget gate	Build	2026-05-03T03:01:51.6421333Z      ┬╖ serverActions
+CWV budget gate	Build	2026-05-03T03:01:51.6421620Z      ┬╖ clientTraceMetadata
+CWV budget gate	Build	2026-05-03T03:01:51.6421801Z 
+CWV budget gate	Build	2026-05-03T03:01:51.6421982Z    Creating an optimized production build ...
+CWV budget gate	Build	2026-05-03T03:01:51.6425090Z [@sentry/nextjs] The Sentry SDK has enabled source map generation for your Next.js app. If you don't want to serve Source Maps to your users, either set the `sourcemaps.deleteSourcemapsAfterUpload` option to true, or manually delete the source maps after the build. In future Sentry SDK versions `sourcemaps.deleteSourcemapsAfterUpload` will default to `true`. If you do not want to generate and upload sourcemaps, set the `sourcemaps.disable` option in `withSentryConfig()`.
+CWV budget gate	Build	2026-05-03T03:01:51.6428652Z [@sentry/nextjs - Node.js] Warning: No auth token provided. Will not create release. Please set the `authToken` option. You can find information on how to generate a Sentry auth token here: https://docs.sentry.io/api/auth/
+CWV budget gate	Build	2026-05-03T03:01:51.6430850Z [@sentry/nextjs - Node.js] Warning: No auth token provided. Will not upload source maps. Please set the `authToken` option. You can find information on how to generate a Sentry auth token here: https://docs.sentry.io/api/auth/
+CWV budget gate	Build	2026-05-03T03:01:51.6433076Z [@sentry/nextjs - Node.js] Info: Sending telemetry data on issues and performance to Sentry. To disable telemetry, set `options.telemetry` to `false`.
+CWV budget gate	Build	2026-05-03T03:01:51.6434937Z [@sentry/nextjs - Edge] Warning: No auth token provided. Will not create release. Please set the `authToken` option. You can find information on how to generate a Sentry auth token here: https://docs.sentry.io/api/auth/
+CWV budget gate	Build	2026-05-03T03:01:51.6437113Z [@sentry/nextjs - Edge] Warning: No auth token provided. Will not upload source maps. Please set the `authToken` option. You can find information on how to generate a Sentry auth token here: https://docs.sentry.io/api/auth/
+CWV budget gate	Build	2026-05-03T03:01:51.6438844Z [@sentry/nextjs - Edge] Info: Sending telemetry data on issues and performance to Sentry. To disable telemetry, set `options.telemetry` to `false`.
+CWV budget gate	Build	2026-05-03T03:01:51.6439657Z Failed to compile.
+CWV budget gate	Build	2026-05-03T03:01:51.6439805Z 
+CWV budget gate	Build	2026-05-03T03:01:51.6439993Z ../../packages/lib/index.ts:45:1
+CWV budget gate	Build	2026-05-03T03:01:51.6440409Z Module not found: Can't resolve './region'
+CWV budget gate	Build	2026-05-03T03:01:51.6440872Z   43 | export * as delReadiness from "./del-readiness";
+CWV budget gate	Build	2026-05-03T03:01:51.6441385Z   44 | export * as dosageMatcher from "./dosage-matcher";
+CWV budget gate	Build	2026-05-03T03:01:51.6441887Z > 45 | export * as region from "./region";
+CWV budget gate	Build	2026-05-03T03:01:51.6442231Z      | ^
+CWV budget gate	Build	2026-05-03T03:01:51.6442574Z   46 |
+CWV budget gate	Build	2026-05-03T03:01:51.6442691Z 
+CWV budget gate	Build	2026-05-03T03:01:51.6442923Z https://nextjs.org/docs/messages/module-not-found
+CWV budget gate	Build	2026-05-03T03:01:51.6443198Z 
+CWV budget gate	Build	2026-05-03T03:01:51.6443385Z Import trace for requested module:
+CWV budget gate	Build	2026-05-03T03:01:51.6443751Z ./app/global-error.tsx
+CWV budget gate	Build	2026-05-03T03:01:51.6443931Z 
+CWV budget gate	Build	2026-05-03T03:01:51.6444116Z ../../packages/lib/index.ts:45:1
+CWV budget gate	Build	2026-05-03T03:01:51.6444523Z Module not found: Can't resolve './region'
+CWV budget gate	Build	2026-05-03T03:01:51.6445007Z   43 | export * as delReadiness from "./del-readiness";
+CWV budget gate	Build	2026-05-03T03:01:51.6445486Z   44 | export * as dosageMatcher from "./dosage-matcher";
+CWV budget gate	Build	2026-05-03T03:01:51.6445954Z > 45 | export * as region from "./region";
+CWV budget gate	Build	2026-05-03T03:01:51.6446461Z      | ^
+CWV budget gate	Build	2026-05-03T03:01:51.6446684Z   46 |
+CWV budget gate	Build	2026-05-03T03:01:51.6446816Z 
+CWV budget gate	Build	2026-05-03T03:01:51.6447060Z https://nextjs.org/docs/messages/module-not-found
+CWV budget gate	Build	2026-05-03T03:01:51.6447322Z 
+CWV budget gate	Build	2026-05-03T03:01:51.6447505Z Import trace for requested module:
+CWV budget gate	Build	2026-05-03T03:01:51.6447823Z ./app/page.tsx
+CWV budget gate	Build	2026-05-03T03:01:51.6447966Z 
+CWV budget gate	Build	2026-05-03T03:01:51.6448144Z ../../packages/lib/index.ts:45:1
+CWV budget gate	Build	2026-05-03T03:01:51.6448543Z Module not found: Can't resolve './region'
+CWV budget gate	Build	2026-05-03T03:01:51.6448981Z   43 | export * as delReadiness from "./del-readiness";
+CWV budget gate	Build	2026-05-03T03:01:51.6449462Z   44 | export * as dosageMatcher from "./dosage-matcher";
+CWV budget gate	Build	2026-05-03T03:01:51.6449939Z > 45 | export * as region from "./region";
+CWV budget gate	Build	2026-05-03T03:01:51.6450240Z      | ^
+CWV budget gate	Build	2026-05-03T03:01:51.6450476Z   46 |
+CWV budget gate	Build	2026-05-03T03:01:51.6450583Z 
+CWV budget gate	Build	2026-05-03T03:01:51.6450838Z https://nextjs.org/docs/messages/module-not-found
+CWV budget gate	Build	2026-05-03T03:01:51.6451095Z 
+CWV budget gate	Build	2026-05-03T03:01:51.6451252Z Import trace for requested module:
+CWV budget gate	Build	2026-05-03T03:01:51.6451647Z ./app/api/ai/del-readiness/route.ts
+CWV budget gate	Build	2026-05-03T03:01:51.7017249Z ../../node_modules/.pnpm/next@15.5.15_@babel+core@7.29.0_@opentelemetry+api@1.9.1_@playwright+test@1.59.1_react-dom@19_iuov2bt4gs3an5fonhqyiylxmq/node_modules/next/dist/build/webpack/loaders/next-edge-app-route-loader/index.js?absolutePagePath=private-next-app-dir%2Fapi%2Fai%2Fdel-readiness%2Froute.ts&page=%2Fapi%2Fai%2Fdel-readiness%2Froute&appDirLoader=bmV4dC1hcHAtbG9hZGVyP25hbWU9YXBwJTJGYXBpJTJGYWklMkZkZWwtcmVhZGluZXNzJTJGcm91dGUmcGFnZT0lMkZhcGklMkZhaSUyRmRlbC1yZWFkaW5lc3MlMkZyb3V0ZSZwYWdlUGF0aD1wcml2YXRlLW5leHQtYXBwLWRpciUyRmFwaSUyRmFpJTJGZGVsLXJlYWRpbmVzcyUyRnJvdXRlLnRzJmFwcERpcj0lMkZob21lJTJGcnVubmVyJTJGd29yayUyRnByb3BoYXJtZXgtd2Vic2l0ZSUyRnByb3BoYXJtZXgtd2Vic2l0ZSUyRmFwcHMlMkZ3ZWIlMkZhcHAmYXBwUGF0aHM9JTJGYXBpJTJGYWklMkZkZWwtcmVhZGluZXNzJTJGcm91dGUmcGFnZUV4dGVuc2lvbnM9dHN4JnBhZ2VFeHRlbnNpb25zPXRzJnBhZ2VFeHRlbnNpb25zPWpzeCZwYWdlRXh0ZW5zaW9ucz1qcyZiYXNlUGF0aD0mYXNzZXRQcmVmaXg9Jm5leHRDb25maWdPdXRwdXQ9JnByZWZlcnJlZFJlZ2lvbj0mbWlkZGxld2FyZUNvbmZpZz1lMzAlM0QmaXNHbG9iYWxOb3RGb3VuZEVuYWJsZWQ9IQ%3D%3D&nextConfig=eyJlbnYiOnsiX3NlbnRyeVJld3JpdGVGcmFtZXNEaXN0RGlyIjoiLm5leHQiLCJfc2VudHJ5UmV3cml0ZUZyYW1lc0Fzc2V0UHJlZml4UGF0aCI6IiIsIl9zZW50cnlSZXdyaXRlc1R1bm5lbFBhdGgiOiIvbW9uaXRvcmluZyJ9LCJlc2xpbnQiOnsiaWdub3JlRHVyaW5nQnVpbGRzIjpmYWxzZX0sInR5cGVzY3JpcHQiOnsiaWdub3JlQnVpbGRFcnJvcnMiOmZhbHNlLCJ0c2NvbmZpZ1BhdGgiOiJ0c2NvbmZpZy5qc29uIn0sInR5cGVkUm91dGVzIjpmYWxzZSwiZGlzdERpciI6Ii5uZXh0IiwiY2xlYW5EaXN0RGlyIjp0cnVlLCJhc3NldFByZWZpeCI6IiIsImNhY2hlTWF4TWVtb3J5U2l6ZSI6NTI0Mjg4MDAsImNvbmZpZ09yaWdpbiI6Im5leHQuY29uZmlnLnRzIiwidXNlRmlsZVN5c3RlbVB1YmxpY1JvdXRlcyI6dHJ1ZSwiZ2VuZXJhdGVFdGFncyI6dHJ1ZSwicGFnZUV4dGVuc2lvbnMiOlsidHN4IiwidHMiLCJqc3giLCJqcyJdLCJwb3dlcmVkQnlIZWFkZXIiOmZhbHNlLCJjb21wcmVzcyI6dHJ1ZSwiaW1hZ2VzIjp7ImRldmljZVNpemVzIjpbNjQwLDc1MCw4MjgsMTA4MCwxMjAwLDE5MjAsMjA0OCwzODQwXSwiaW1hZ2VTaXplcyI6WzE2LDMyLDQ4LDY0LDk2LDEyOCwyNTYsMzg0XSwicGF0aCI6Ii9fbmV4dC9pbWFnZSIsImxvYWRlciI6ImRlZmF1bHQiLCJsb2FkZXJGaWxlIjoiIiwiZG9tYWlucyI6W10sImRpc2FibGVTdGF0aWNJbWFnZXMiOmZhbHNlLCJtaW5pbXVtQ2FjaGVUVEwiOjYwLCJmb3JtYXRzIjpbImltYWdlL2F2aWYiLCJpbWFnZS93ZWJwIl0sIm1heGltdW1SZXNwb25zZUJvZHkiOjUwMDAwMDAwLCJkYW5nZXJvdXNseUFsbG93U1ZHIjpmYWxzZSwiY29udGVudFNlY3VyaXR5UG9saWN5Ijoic2NyaXB0LXNyYyAnbm9uZSc7IGZyYW1lLXNyYyAnbm9uZSc7IHNhbmRib3g7IiwiY29udGVudERpc3Bvc2l0aW9uVHlwZSI6ImF0dGFjaG1lbnQiLCJyZW1vdGVQYXR0ZXJucyI6W3sicHJvdG9jb2wiOiJodHRwcyIsImhvc3RuYW1lIjoiY2RuLnNhbml0eS5pbyJ9LHsicHJvdG9jb2wiOiJodHRwcyIsImhvc3RuYW1lIjoiaW1hZ2VzLnVuc3BsYXNoLmNvbSJ9XSwidW5vcHRpbWl6ZWQiOmZhbHNlfSwiZGV2SW5kaWNhdG9ycyI6eyJwb3NpdGlvbiI6ImJvdHRvbS1sZWZ0In0sIm9uRGVtYW5kRW50cmllcyI6eyJtYXhJbmFjdGl2ZUFnZSI6NjAwMDAsInBhZ2VzQnVmZmVyTGVuZ3RoIjo1fSwiYW1wIjp7ImNhbm9uaWNhbEJhc2UiOiIifSwiYmFzZVBhdGgiOiIiLCJzYXNzT3B0aW9ucyI6e30sInRyYWlsaW5nU2xhc2giOmZhbHNlLCJpMThuIjpudWxsLCJwcm9kdWN0aW9uQnJvd3NlclNvdXJjZU1hcHMiOmZhbHNlLCJleGNsdWRlRGVmYXVsdE1vbWVudExvY2FsZXMiOnRydWUsInNlcnZlclJ1bnRpbWVDb25maWciOnt9LCJwdWJsaWNSdW50aW1lQ29uZmlnIjp7fSwicmVhY3RQcm9kdWN0aW9uUHJvZmlsaW5nIjpmYWxzZSwicmVhY3RTdHJpY3RNb2RlIjp0cnVlLCJyZWFjdE1heEhlYWRlcnNMZW5ndGgiOjYwMDAsImh0dHBBZ2VudE9wdGlvbnMiOnsia2VlcEFsaXZlIjp0cnVlfSwibG9nZ2luZyI6e30sImNvbXBpbGVyIjp7fSwiZXhwaXJlVGltZSI6MzE1MzYwMDAsInN0YXRpY1BhZ2VHZW5lcmF0aW9uVGltZW91dCI6NjAsIm1vZHVsYXJpemVJbXBvcnRzIjp7IkBtdWkvaWNvbnMtbWF0ZXJpYWwiOnsidHJhbnNmb3JtIjoiQG11aS9pY29ucy1tYXRlcmlhbC97e21lbWJlcn19In0sImxvZGFzaCI6eyJ0cmFuc2Zvcm0iOiJsb2Rhc2gve3ttZW1iZXJ9fSJ9fSwib3V0cHV0RmlsZVRyYWNpbmdSb290IjoiL2hvbWUvcnVubmVyL3dvcmsvcHJvcGhhcm1leC13ZWJzaXRlL3Byb3BoYXJtZXgtd2Vic2l0ZSIsImV4cGVyaW1lbnRhbCI6eyJ1c2VTa2V3Q29va2llIjpmYWxzZSwiY2FjaGVMaWZlIjp7ImRlZmF1bHQiOnsic3RhbGUiOjMwMCwicmV2YWxpZGF0ZSI6OTAwLCJleHBpcmUiOjQyOTQ5NjcyOTR9LCJzZWNvbmRzIjp7InN0YWxlIjozMCwicmV2YWxpZGF0ZSI6MSwiZXhwaXJlIjo2MH0sIm1pbnV0ZXMiOnsic3RhbGUiOjMwMCwicmV2YWxpZGF0ZSI6NjAsImV4cGlyZSI6MzYwMH0sImhvdXJzIjp7InN0YWxlIjozMDAsInJldmFsaWRhdGUiOjM2MDAsImV4cGlyZSI6ODY0MDB9LCJkYXlzIjp7InN0YWxlIjozMDAsInJldmFsaWRhdGUiOjg2NDAwLCJleHBpcmUiOjYwNDgwMH0sIndlZWtzIjp7InN0YWxlIjozMDAsInJldmFsaWRhdGUiOjYwNDgwMCwiZXhwaXJlIjoyNTkyMDAwfSwibWF4Ijp7InN0YWxlIjozMDAsInJldmFsaWRhdGUiOjI1OTIwMDAsImV4cGlyZSI6NDI5NDk2NzI5NH19LCJjYWNoZUhhbmRsZXJzIjp7fSwiY3NzQ2h1bmtpbmciOnRydWUsIm11bHRpWm9uZURyYWZ0TW9kZSI6ZmFsc2UsImFwcE5hdkZhaWxIYW5kbGluZyI6ZmFsc2UsInByZXJlbmRlckVhcmx5RXhpdCI6dHJ1ZSwic2VydmVyTWluaWZpY2F0aW9uIjp0cnVlLCJzZXJ2ZXJTb3VyY2VNYXBzIjpmYWxzZSwibGlua05vVG91Y2hTdGFydCI6ZmFsc2UsImNhc2VTZW5zaXRpdmVSb3V0ZXMiOmZhbHNlLCJjbGllbnRTZWdtZW50Q2FjaGUiOmZhbHNlLCJjbGllbnRQYXJhbVBhcnNpbmciOmZhbHNlLCJkeW5hbWljT25Ib3ZlciI6ZmFsc2UsInByZWxvYWRFbnRyaWVzT25TdGFydCI6dHJ1ZSwiY2xpZW50Um91dGVyRmlsdGVyIjp0cnVlLCJjbGllbnRSb3V0ZXJGaWx0ZXJSZWRpcmVjdHMiOmZhbHNlLCJmZXRjaENhY2hlS2V5UHJlZml4IjoiIiwibWlkZGxld2FyZVByZWZldGNoIjoiZmxleGlibGUiLCJvcHRpbWlzdGljQ2xpZW50Q2FjaGUiOnRydWUsIm1hbnVhbENsaWVudEJhc2VQYXRoIjpmYWxzZSwiY3B1cyI6MywibWVtb3J5QmFzZWRXb3JrZXJzQ291bnQiOmZhbHNlLCJpbWdPcHRDb25jdXJyZW5jeSI6bnVsbCwiaW1nT3B0VGltZW91dEluU2Vjb25kcyI6NywiaW1nT3B0TWF4SW5wdXRQaXhlbHMiOjI2ODQwMjY4OSwiaW1nT3B0U2VxdWVudGlhbFJlYWQiOm51bGwsImltZ09wdFNraXBNZXRhZGF0YSI6bnVsbCwiaXNyRmx1c2hUb0Rpc2siOnRydWUsIndvcmtlclRocmVhZHMiOmZhbHNlLCJvcHRpbWl6ZUNzcyI6ZmFsc2UsIm5leHRTY3JpcHRXb3JrZXJzIjpmYWxzZSwic2Nyb2xsUmVzdG9yYXRpb24iOmZhbHNlLCJleHRlcm5hbERpciI6ZmFsc2UsImRpc2FibGVPcHRpbWl6ZWRMb2FkaW5nIjpmYWxzZSwiZ3ppcFNpemUiOnRydWUsImNyYUNvbXBhdCI6ZmFsc2UsImVzbUV4dGVybmFscyI6dHJ1ZSwiZnVsbHlTcGVjaWZpZWQiOmZhbHNlLCJzd2NUcmFjZVByb2ZpbGluZyI6ZmFsc2UsImZvcmNlU3djVHJhbnNmb3JtcyI6ZmFsc2UsImxhcmdlUGFnZURhdGFCeXRlcyI6MTI4MDAwLCJ0eXBlZEVudiI6ZmFsc2UsImNsaWVudFRyYWNlTWV0YWRhdGEiOlsiYmFnZ2FnZSIsInNlbnRyeS10cmFjZSJdLCJwYXJhbGxlbFNlcnZlckNvbXBpbGVzIjpmYWxzZSwicGFyYWxsZWxTZXJ2ZXJCdWlsZFRyYWNlcyI6ZmFsc2UsInBwciI6ZmFsc2UsImF1dGhJbnRlcnJ1cHRzIjpmYWxzZSwid2VicGFja01lbW9yeU9wdGltaXphdGlvbnMiOmZhbHNlLCJvcHRpbWl6ZVNlcnZlclJlYWN0Ijp0cnVlLCJ2aWV3VHJhbnNpdGlvbiI6ZmFsc2UsInJvdXRlckJGQ2FjaGUiOmZhbHNlLCJyZW1vdmVVbmNhdWdodEVycm9yQW5kUmVqZWN0aW9uTGlzdGVuZXJzIjpmYWxzZSwidmFsaWRhdGVSU0NSZXF1ZXN0SGVhZGVycyI6ZmFsc2UsInN0YWxlVGltZXMiOnsiZHluYW1pYyI6MCwic3RhdGljIjozMDB9LCJzZXJ2ZXJDb21wb25lbnRzSG1yQ2FjaGUiOnRydWUsInN0YXRpY0dlbmVyYXRpb25NYXhDb25jdXJyZW5jeSI6OCwic3RhdGljR2VuZXJhdGlvbk1pblBhZ2VzUGVyV29ya2VyIjoyNSwiY2FjaGVDb21wb25lbnRzIjpmYWxzZSwiaW5saW5lQ3NzIjpmYWxzZSwidXNlQ2FjaGUiOmZhbHNlLCJnbG9iYWxOb3RGb3VuZCI6ZmFsc2UsImRldnRvb2xTZWdtZW50RXhwbG9yZXIiOnRydWUsImJyb3dzZXJEZWJ1Z0luZm9JblRlcm1pbmFsIjpmYWxzZSwib3B0aW1pemVSb3V0ZXJTY3JvbGxpbmciOmZhbHNlLCJtaWRkbGV3YXJlQ2xpZW50TWF4Qm9keVNpemUiOjEwNDg1NzYwLCJzZXJ2ZXJBY3Rpb25zIjp7ImJvZHlTaXplTGltaXQiOiIybWIifSwib3B0aW1pemVQYWNrYWdlSW1wb3J0cyI6WyJsdWNpZGUtcmVhY3QiLCJkYXRlLWZucyIsImxvZGFzaC1lcyIsInJhbWRhIiwiYW50ZCIsInJlYWN0LWJvb3RzdHJhcCIsImFob29rcyIsIkBhbnQtZGVzaWduL2ljb25zIiwiQGhlYWRsZXNzdWkvcmVhY3QiLCJAaGVhZGxlc3N1aS1mbG9hdC9yZWFjdCIsIkBoZXJvaWNvbnMvcmVhY3QvMjAvc29saWQiLCJAaGVyb2ljb25zL3JlYWN0LzI0L3NvbGlkIiwiQGhlcm9pY29ucy9yZWFjdC8yNC9vdXRsaW5lIiwiQHZpc3gvdmlzeCIsIkB0cmVtb3IvcmVhY3QiLCJyeGpzIiwiQG11aS9tYXRlcmlhbCIsIkBtdWkvaWNvbnMtbWF0ZXJpYWwiLCJyZWNoYXJ0cyIsInJlYWN0LXVzZSIsImVmZmVjdCIsIkBlZmZlY3Qvc2NoZW1hIiwiQGVmZmVjdC9wbGF0Zm9ybSIsIkBlZmZlY3QvcGxhdGZvcm0tbm9kZSIsIkBlZmZlY3QvcGxhdGZvcm0tYnJvd3NlciIsIkBlZmZlY3QvcGxhdGZvcm0tYnVuIiwiQGVmZmVjdC9zcWwiLCJAZWZmZWN0L3NxbC1tc3NxbCIsIkBlZmZlY3Qvc3FsLW15c3FsMiIsIkBlZmZlY3Qvc3FsLXBnIiwiQGVmZmVjdC9zcWwtc3FsaXRlLW5vZGUiLCJAZWZmZWN0L3NxbC1zcWxpdGUtYnVuIiwiQGVmZmVjdC9zcWwtc3FsaXRlLXdhc20iLCJAZWZmZWN0L3NxbC1zcWxpdGUtcmVhY3QtbmF0aXZlIiwiQGVmZmVjdC9ycGMiLCJAZWZmZWN0L3JwYy1odHRwIiwiQGVmZmVjdC90eXBlY2xhc3MiLCJAZWZmZWN0L2V4cGVyaW1lbnRhbCIsIkBlZmZlY3Qvb3BlbnRlbGVtZXRyeSIsIkBtYXRlcmlhbC11aS9jb3JlIiwiQG1hdGVyaWFsLXVpL2ljb25zIiwiQHRhYmxlci9pY29ucy1yZWFjdCIsIm11aS1jb3JlIiwicmVhY3QtaWNvbnMvYWkiLCJyZWFjdC1pY29ucy9iaSIsInJlYWN0LWljb25zL2JzIiwicmVhY3QtaWNvbnMvY2ciLCJyZWFjdC1pY29ucy9jaSIsInJlYWN0LWljb25zL2RpIiwicmVhY3QtaWNvbnMvZmEiLCJyZWFjdC1pY29ucy9mYTYiLCJyZWFjdC1pY29ucy9mYyIsInJlYWN0LWljb25zL2ZpIiwicmVhY3QtaWNvbnMvZ2kiLCJyZWFjdC1pY29ucy9nbyIsInJlYWN0LWljb25zL2dyIiwicmVhY3QtaWNvbnMvaGkiLCJyZWFjdC1pY29ucy9oaTIiLCJyZWFjdC1pY29ucy9pbSIsInJlYWN0LWljb25zL2lvIiwicmVhY3QtaWNvbnMvaW81IiwicmVhY3QtaWNvbnMvbGlhIiwicmVhY3QtaWNvbnMvbGliIiwicmVhY3QtaWNvbnMvbHUiLCJyZWFjdC1pY29ucy9tZCIsInJlYWN0LWljb25zL3BpIiwicmVhY3QtaWNvbnMvcmkiLCJyZWFjdC1pY29ucy9yeCIsInJlYWN0LWljb25zL3NpIiwicmVhY3QtaWNvbnMvc2wiLCJyZWFjdC1pY29ucy90YiIsInJlYWN0LWljb25zL3RmaSIsInJlYWN0LWljb25zL3RpIiwicmVhY3QtaWNvbnMvdnNjIiwicmVhY3QtaWNvbnMvd2kiXX0sImh0bWxMaW1pdGVkQm90cyI6IltcXHctXSstR29vZ2xlfEdvb2dsZS1bXFx3LV0rfENocm9tZS1MaWdodGhvdXNlfFNsdXJwfER1Y2tEdWNrQm90fGJhaWR1c3BpZGVyfHlhbmRleHxzb2dvdXxiaXRseWJvdHx0dW1ibHJ8dmtTaGFyZXxxdW9yYSBsaW5rIHByZXZpZXd8cmVkZGl0Ym90fGlhX2FyY2hpdmVyfEJpbmdib3R8QmluZ1ByZXZpZXd8YXBwbGVib3R8ZmFjZWJvb2tleHRlcm5hbGhpdHxmYWNlYm9va2NhdGFsb2d8VHdpdHRlcmJvdHxMaW5rZWRJbkJvdHxTbGFja2JvdHxEaXNjb3JkYm90fFdoYXRzQXBwfFNreXBlVXJpUHJldmlld3xZZXRpfGdvb2dsZXdlYmxpZ2h0IiwiYnVuZGxlUGFnZXNSb3V0ZXJEZXBlbmRlbmNpZXMiOmZhbHNlLCJjb25maWdGaWxlIjoiL2hvbWUvcnVubmVyL3dvcmsvcHJvcGhhcm1leC13ZWJzaXRlL3Byb3BoYXJtZXgtd2Vic2l0ZS9hcHBzL3dlYi9uZXh0LmNvbmZpZy50cyIsImNvbmZpZ0ZpbGVOYW1lIjoibmV4dC5jb25maWcudHMiLCJ0cmFuc3BpbGVQYWNrYWdlcyI6WyJAcHJvcGhhcm1leC91aSIsIkBwcm9waGFybWV4L2xpYiJdLCJ0dXJib3BhY2siOnsicm9vdCI6Ii9ob21lL3J1bm5lci93b3JrL3Byb3BoYXJtZXgtd2Vic2l0ZS9wcm9waGFybWV4LXdlYnNpdGUifSwiX29yaWdpbmFsUmV3cml0ZXMiOnsiYmVmb3JlRmlsZXMiOltdLCJhZnRlckZpbGVzIjpbeyJzb3VyY2UiOiIvbW9uaXRvcmluZygvPykiLCJoYXMiOlt7InR5cGUiOiJxdWVyeSIsImtleSI6Im8iLCJ2YWx1ZSI6Iig%2FPG9yZ2lkPlxcZCopIn0seyJ0eXBlIjoicXVlcnkiLCJrZXkiOiJwIiwidmFsdWUiOiIoPzxwcm9qZWN0aWQ%2BXFxkKikifSx7InR5cGUiOiJxdWVyeSIsImtleSI6InIiLCJ2YWx1ZSI6Iig%2FPHJlZ2lvbj5bYS16XXsyfSkifV0sImRlc3RpbmF0aW9uIjoiaHR0cHM6Ly9vOm9yZ2lkLmluZ2VzdC46cmVnaW9uLnNlbnRyeS5pby9hcGkvOnByb2plY3RpZC9lbnZlbG9wZS8%2FaHN0cz0wIn0seyJzb3VyY2UiOiIvbW9uaXRvcmluZygvPykiLCJoYXMiOlt7InR5cGUiOiJxdWVyeSIsImtleSI6Im8iLCJ2YWx1ZSI6Iig%2FPG9yZ2lkPlxcZCopIn0seyJ0eXBlIjoicXVlcnkiLCJrZXkiOiJwIiwidmFsdWUiOiIoPzxwcm9qZWN0aWQ%2BXFxkKikifV0sImRlc3RpbmF0aW9uIjoiaHR0cHM6Ly9vOm9yZ2lkLmluZ2VzdC5zZW50cnkuaW8vYXBpLzpwcm9qZWN0aWQvZW52ZWxvcGUvP2hzdHM9MCJ9XSwiZmFsbGJhY2siOltdfSwiX29yaWdpbmFsUmVkaXJlY3RzIjpbeyJzb3VyY2UiOiIvd2hpdGVwYXBlcnMvY2FuYWRhLWluZGlhLXBsYXlib29rIiwiZGVzdGluYXRpb24iOiIvaW5zaWdodHMvd2hpdGVwYXBlcnMvY2FuYWRpYW4tY2Rtby1vcGVyYXRpbmctbW9kZWwiLCJwZXJtYW5lbnQiOnRydWV9LHsic291cmNlIjoiL2luc2lnaHRzL3doaXRlcGFwZXJzL3R3by1odWItb3BlcmF0aW5nLW1vZGVsIiwiZGVzdGluYXRpb24iOiIvaW5zaWdodHMvd2hpdGVwYXBlcnMvY2FuYWRpYW4tY2Rtby1vcGVyYXRpbmctbW9kZWwiLCJwZXJtYW5lbnQiOnRydWV9LHsic291cmNlIjoiL2luc2lnaHRzL2luc2lkZS1hLXR3by1odWItY2RtbyIsImRlc3RpbmF0aW9uIjoiL2luc2lnaHRzL2luc2lkZS1vdXItb3BlcmF0aW5nLW1vZGVsIiwicGVybWFuZW50Ijp0cnVlfSx7InNvdXJjZSI6Ii9kb3dubG9hZHMvdHdvLWh1Yi1vcGVyYXRpbmctbW9kZWwucGRmIiwiZGVzdGluYXRpb24iOiIvZG93bmxvYWRzL2NhbmFkaWFuLWNkbW8tb3BlcmF0aW5nLW1vZGVsLnBkZiIsInBlcm1hbmVudCI6dHJ1ZX1dfQ%3D%3D&preferredRegion=&middlewareConfig=e30%3D&cacheHandlers=%7B%7D!
+CWV budget gate	Build	2026-05-03T03:01:51.7465872Z 
+CWV budget gate	Build	2026-05-03T03:01:51.7465898Z 
+CWV budget gate	Build	2026-05-03T03:01:51.7466100Z > Build failed because of webpack errors
+CWV budget gate	Build	2026-05-03T03:01:51.7466964Z ΓÇëELIFECYCLEΓÇë Command failed with exit code 1.
+CWV budget gate	Build	2026-05-03T03:01:51.7485174Z ##[error]web#build: command (/home/runner/work/propharmex-website/propharmex-website/apps/web) /home/runner/setup-pnpm/node_modules/.bin/pnpm run build exited (1)
+CWV budget gate	Build	2026-05-03T03:01:51.7491605Z  ERROR  web#build: command (/home/runner/work/propharmex-website/propharmex-website/apps/web) /home/runner/setup-pnpm/node_modules/.bin/pnpm run build exited (1)
+CWV budget gate	Build	2026-05-03T03:01:51.7492619Z  ERROR  run failed: command  exited (1)
+CWV budget gate	Build	2026-05-03T03:01:51.7492779Z 
+CWV budget gate	Build	2026-05-03T03:01:51.7492889Z  Tasks:    1 successful, 2 total
+CWV budget gate	Build	2026-05-03T03:01:51.7493122Z Cached:    0 cached, 2 total
+CWV budget gate	Build	2026-05-03T03:01:51.7493322Z   Time:    42.417s 
+CWV budget gate	Build	2026-05-03T03:01:51.7493494Z Failed:    web#build
+CWV budget gate	Build	2026-05-03T03:01:51.7493594Z 
+CWV budget gate	Build	2026-05-03T03:01:51.7493862Z ΓÇëELIFECYCLEΓÇë Command failed with exit code 1.
+CWV budget gate	Build	2026-05-03T03:01:51.7495679Z ##[error]Process completed with exit code 1.
+CWV budget gate	Post Setup pnpm	∩╗┐2026-05-03T03:01:51.7549876Z Post job cleanup.
+CWV budget gate	Post Setup pnpm	2026-05-03T03:01:51.8680786Z Pruning is unnecessary.
+CWV budget gate	Post Checkout	∩╗┐2026-05-03T03:01:51.8817322Z Post job cleanup.
+CWV budget gate	Post Checkout	2026-05-03T03:01:51.9588021Z [command]/usr/bin/git version
+CWV budget gate	Post Checkout	2026-05-03T03:01:51.9622815Z git version 2.53.0
+CWV budget gate	Post Checkout	2026-05-03T03:01:51.9655234Z Temporarily overriding HOME='/home/runner/work/_temp/f5ef93df-8d21-41f4-9991-702ed9cb8b14' before making global git config changes
+CWV budget gate	Post Checkout	2026-05-03T03:01:51.9656322Z Adding repository directory to the temporary git global config as a safe directory
+CWV budget gate	Post Checkout	2026-05-03T03:01:51.9660135Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/propharmex-website/propharmex-website
+CWV budget gate	Post Checkout	2026-05-03T03:01:51.9689245Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+CWV budget gate	Post Checkout	2026-05-03T03:01:51.9716081Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+CWV budget gate	Post Checkout	2026-05-03T03:01:51.9909079Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+CWV budget gate	Post Checkout	2026-05-03T03:01:51.9927083Z http.https://github.com/.extraheader
+CWV budget gate	Post Checkout	2026-05-03T03:01:51.9936662Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+CWV budget gate	Post Checkout	2026-05-03T03:01:51.9961218Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+CWV budget gate	Post Checkout	2026-05-03T03:01:52.0144448Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+CWV budget gate	Post Checkout	2026-05-03T03:01:52.0169254Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+CWV budget gate	Complete job	∩╗┐2026-05-03T03:01:52.0468605Z Cleaning up orphan processes
+CWV budget gate	Complete job	2026-05-03T03:01:52.0696240Z ##[warning]Node.js 20 actions are deprecated. The following actions are running on Node.js 20 and may not work as expected: actions/checkout@v4, actions/setup-node@v4, pnpm/action-setup@v4. Actions will be forced to run with Node.js 24 by default starting June 2nd, 2026. Node.js 20 will be removed from the runner on September 16th, 2026. Please check if updated versions of these actions are available that support Node.js 24. To opt into Node.js 24 now, set the FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true environment variable on the runner or in your workflow file. Once Node.js 24 becomes the default, you can temporarily opt out by setting ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

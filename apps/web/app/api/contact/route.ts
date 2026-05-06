@@ -24,7 +24,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
 
-import { env, log } from "@propharmex/lib";
+import { env, leads as leadsLib, log } from "@propharmex/lib";
 
 import {
   DOSAGE_FORMS,
@@ -150,6 +150,22 @@ export async function POST(req: Request) {
     hasMessage,
     companyLength: company.length,
   } as const;
+
+  // Persist to public.leads (PR-N1). Best-effort: errors are logged but do not
+  // fail the request, since the Resend send below is the load-bearing step.
+  await leadsLib.insertLead({
+    source: "contact",
+    email,
+    contactName: name,
+    company,
+    role,
+    region,
+    service,
+    dosageForm: typeof dosageForm === "string" ? dosageForm : undefined,
+    stage,
+    message,
+    ...leadsLib.extractAttribution(req),
+  });
 
   if (!env.RESEND_API_KEY || !env.RESEND_CONTACT_TO_EMAIL || !env.RESEND_FROM_EMAIL) {
     log.info("contact.submitted_unconfigured", logFields);

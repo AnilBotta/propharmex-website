@@ -93,10 +93,13 @@ export default async function RootLayout({
   const siteJsonLd = buildSiteJsonLd(env.NEXT_PUBLIC_SITE_URL);
   const { isEnabled: isDraftEnabled } = await draftMode();
 
-  // Suppress marketing chrome on /studio so the embedded Sanity Studio (PR-L′)
-  // owns the full viewport. Pathname comes from middleware-set `x-pathname`.
+  // Suppress marketing chrome on /studio (Sanity Studio, PR-L′) and /dashboard
+  // (leads dashboard, PR-N) so each owns the full viewport. Pathname comes
+  // from middleware-set `x-pathname`.
   const pathname = (await headers()).get("x-pathname") ?? "";
   const isStudioRoute = pathname.startsWith("/studio");
+  const isDashboardRoute = pathname.startsWith("/dashboard");
+  const isAppRoute = isStudioRoute || isDashboardRoute;
 
   return (
     <html
@@ -104,7 +107,7 @@ export default async function RootLayout({
       className={`${inter.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
     >
       <body>
-        {isStudioRoute ? (
+        {isAppRoute ? (
           children
         ) : (
           <>

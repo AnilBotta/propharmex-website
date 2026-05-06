@@ -19,7 +19,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
 
-import { env, log } from "@propharmex/lib";
+import { env, leads as leadsLib, log } from "@propharmex/lib";
 
 export const runtime = "nodejs";
 
@@ -77,6 +77,13 @@ export async function POST(req: Request) {
       );
     }
   }
+
+  // Persist to public.leads (PR-N1). Best-effort.
+  await leadsLib.insertLead({
+    source: "newsletter",
+    email,
+    ...leadsLib.extractAttribution(req),
+  });
 
   // Resend
   if (!env.RESEND_API_KEY || !env.RESEND_NEWSLETTER_AUDIENCE_ID) {

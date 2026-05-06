@@ -42,3 +42,8 @@ export * as supabase from "./supabase";
 export * as scoping from "./scoping";
 export * as delReadiness from "./del-readiness";
 export * as dosageMatcher from "./dosage-matcher";
+export * as leads from "./leads";
+// `auth` is intentionally NOT re-exported from the barrel — it imports
+// `node:crypto` which webpack can't bundle when accidentally pulled into
+// a client component graph. Server-only consumers must use the subpath:
+//   import * as auth from "@propharmex/lib/auth";

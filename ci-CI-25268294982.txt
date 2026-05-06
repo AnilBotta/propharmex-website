@@ -1,0 +1,716 @@
+﻿Lint / Typecheck / Test / Build	UNKNOWN STEP	∩╗┐2026-05-03T03:00:39.5901393Z Current runner version: '2.334.0'
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5925741Z ##[group]Runner Image Provisioner
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5926494Z Hosted Compute Agent
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5927046Z Version: 20260213.493
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5928008Z Commit: 5c115507f6dd24b8de37d8bbe0bb4509d0cc0fa3
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5928812Z Build Date: 2026-02-13T00:28:41Z
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5929471Z Worker ID: {20f88255-7d66-4a42-89ba-c58c57271552}
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5930179Z Azure Region: centralus
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5930795Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5932123Z ##[group]Operating System
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5932772Z Ubuntu
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5933273Z 24.04.4
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5933742Z LTS
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5934154Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5934738Z ##[group]Runner Image
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5935310Z Image: ubuntu-24.04
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5935778Z Version: 20260413.86.1
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5937034Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260413.86/images/ubuntu/Ubuntu2404-Readme.md
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5939097Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260413.86
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5940018Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5941145Z ##[group]GITHUB_TOKEN Permissions
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5943342Z Contents: read
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5943906Z Metadata: read
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5944386Z Packages: read
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5945000Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5946946Z Secret source: Actions
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5947840Z Prepare workflow directory
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.6280214Z Prepare all required actions
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.6318325Z Getting action download info
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.0323702Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.1345712Z Download action repository 'pnpm/action-setup@v4' (SHA:b906affcce14559ad1aafd4ab0e942779e9f58b1)
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.6619505Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.8742631Z Complete job name: Lint / Typecheck / Test / Build
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9586444Z ##[group]Run actions/checkout@v4
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9587949Z with:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9588781Z   repository: AnilBotta/propharmex-website
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9590106Z   token: ***
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9590863Z   ssh-strict: true
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9591637Z   ssh-user: git
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9592424Z   persist-credentials: true
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9593314Z   clean: true
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9594136Z   sparse-checkout-cone-mode: true
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9595097Z   fetch-depth: 1
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9595872Z   fetch-tags: false
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9596689Z   show-progress: true
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9597610Z   lfs: false
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9598364Z   submodules: false
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9599178Z   set-safe-directory: true
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9600288Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0720970Z Syncing repository: AnilBotta/propharmex-website
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0723683Z ##[group]Getting Git version info
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0725253Z Working directory is '/home/runner/work/propharmex-website/propharmex-website'
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0727365Z [command]/usr/bin/git version
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0758995Z git version 2.53.0
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0783199Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0797018Z Temporarily overriding HOME='/home/runner/work/_temp/ac0ab773-fed2-4514-a324-7e51377b2451' before making global git config changes
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0799967Z Adding repository directory to the temporary git global config as a safe directory
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0802808Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/propharmex-website/propharmex-website
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0833864Z Deleting the contents of '/home/runner/work/propharmex-website/propharmex-website'
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0837182Z ##[group]Initializing the repository
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0841558Z [command]/usr/bin/git init /home/runner/work/propharmex-website/propharmex-website
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0899518Z hint: Using 'master' as the name for the initial branch. This default branch name
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0902113Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0903924Z hint: to use in all of your new repositories, which will suppress this warning,
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0905347Z hint: call:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0906246Z hint:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0907167Z hint: 	git config --global init.defaultBranch <name>
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0908682Z hint:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0909911Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0911817Z hint: 'development'. The just-created branch can be renamed via this command:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0914047Z hint:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0915128Z hint: 	git branch -m <name>
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0916386Z hint:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0918404Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0921087Z Initialized empty Git repository in /home/runner/work/propharmex-website/propharmex-website/.git/
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0924874Z [command]/usr/bin/git remote add origin https://github.com/AnilBotta/propharmex-website
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0945859Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0948214Z ##[group]Disabling automatic garbage collection
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0950232Z [command]/usr/bin/git config --local gc.auto 0
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0980097Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0982094Z ##[group]Setting up auth
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0988753Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.1021179Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.1310528Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.1342226Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.1574074Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.1605768Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.1836140Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.1872456Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.1873999Z ##[group]Fetching the repository
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.1881334Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +cc3d4b43dcc03478d1a6d609f20d248a6d34d521:refs/remotes/pull/55/merge
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9147100Z From https://github.com/AnilBotta/propharmex-website
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9148708Z  * [new ref]         cc3d4b43dcc03478d1a6d609f20d248a6d34d521 -> pull/55/merge
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9176982Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9178818Z ##[group]Determining the checkout info
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9180269Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9184179Z [command]/usr/bin/git sparse-checkout disable
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9222564Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9250080Z ##[group]Checking out the ref
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9253682Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/55/merge
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9691324Z Note: switching to 'refs/remotes/pull/55/merge'.
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9691944Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9692583Z You are in 'detached HEAD' state. You can look around, make experimental
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9693643Z changes and commit them, and you can discard any commits you make in this
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9694749Z state without impacting any branches by switching back to a branch.
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9695303Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9695831Z If you want to create a new branch to retain commits you create, you may
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9696825Z do so (now or later) by using -c with the switch command. Example:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9698085Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9698450Z   git switch -c <new-branch-name>
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9698908Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9699225Z Or undo this operation with:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9699985Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9700385Z   git switch -
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9700803Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9701325Z Turn off this advice by setting config variable advice.detachedHead to false
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9701905Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9702513Z HEAD is now at cc3d4b4 Merge 51a9ca3602f944cbda45cbd52e2d6c8ee0a73800 into 382b5976ee0e7b3748eeb377f99e53eb2d05016e
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9705344Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9736283Z [command]/usr/bin/git log -1 --format=%H
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9759969Z cc3d4b43dcc03478d1a6d609f20d248a6d34d521
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.0005529Z ##[group]Run pnpm/action-setup@v4
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.0006302Z with:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.0006989Z   version: 9.12.0
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.0007956Z   dest: ~/setup-pnpm
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.0008650Z   run_install: null
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.0009374Z   cache: false
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.0010043Z   cache_dependency_path: pnpm-lock.yaml
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.0010935Z   package_json_file: package.json
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.0011661Z   standalone: false
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.0012379Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.1408968Z ##[group]Running self-installer...
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.7808910Z Progress: resolved 1, reused 0, downloaded 0, added 0
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.7889513Z Packages: +1
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.7890252Z +
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.2338060Z Progress: resolved 1, reused 0, downloaded 1, added 1, done
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.2587928Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.2588315Z dependencies:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.2591864Z + pnpm 9.12.0 (10.33.2 is available)
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.2592286Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.2618278Z Done in 949ms
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.2786804Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.2791116Z Installation Completed!
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.3037895Z ##[group]Run actions/setup-node@v4
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.3038185Z with:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.3038389Z   node-version: 20
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.3038608Z   cache: pnpm
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.3038812Z   always-auth: false
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.3039032Z   check-latest: false
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.3039376Z   token: ***
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.3039566Z env:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.3039819Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.3040117Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.4773874Z Found in cache @ /opt/hostedtoolcache/node/20.20.2/x64
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.4779852Z ##[group]Environment details
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.7795633Z node: v20.20.2
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.7796016Z npm: 10.8.2
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.7796303Z yarn: 1.22.22
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.7797939Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.7822122Z [command]/home/runner/setup-pnpm/node_modules/.bin/pnpm store path --silent
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:44.1794495Z /home/runner/setup-pnpm/node_modules/.bin/store/v3
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:44.3351715Z Cache hit for: node-cache-Linux-x64-pnpm-a8d3c3209ae799514a126d0a08cc150039c0bca7485e874de373b25801ad526e
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:45.5199910Z Received 104857600 of 357378039 (29.3%), 99.9 MBs/sec
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:46.5310383Z Received 289406976 of 357378039 (81.0%), 137.2 MBs/sec
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:46.9121748Z Received 357378039 of 357378039 (100.0%), 142.4 MBs/sec
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:46.9123361Z Cache Size: ~341 MB (357378039 B)
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:46.9203897Z [command]/usr/bin/tar -xf /home/runner/work/_temp/5525f754-3c84-4da4-bf7d-fa39d930d0a7/cache.tzst -P -C /home/runner/work/propharmex-website/propharmex-website --use-compress-program unzstd
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:51.1716213Z Cache restored successfully
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:51.1884705Z Cache restored from key: node-cache-Linux-x64-pnpm-a8d3c3209ae799514a126d0a08cc150039c0bca7485e874de373b25801ad526e
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:51.2061184Z ##[group]Run pnpm install --frozen-lockfile
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:51.2061587Z [36;1mpnpm install --frozen-lockfile[0m
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:51.2156364Z shell: /usr/bin/bash -e {0}
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:51.2156632Z env:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:51.2156884Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:51.2157405Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:51.6538493Z Scope: all 6 workspace projects
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:51.7458808Z Lockfile is up to date, resolution step is skipped
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:51.8752607Z Progress: resolved 1, reused 0, downloaded 0, added 0
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:52.0651146Z Packages: +1773
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:52.0651817Z ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:52.8756452Z Progress: resolved 1773, reused 1371, downloaded 0, added 0
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:53.8769293Z Progress: resolved 1773, reused 1743, downloaded 0, added 511
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:54.8766673Z Progress: resolved 1773, reused 1743, downloaded 0, added 1355
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:55.8383272Z Progress: resolved 1773, reused 1743, downloaded 0, added 1773, done
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8221981Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8222998Z devDependencies:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8223737Z + @storybook/addon-a11y 8.6.18
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8224437Z + @storybook/addon-essentials 8.6.14
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8225198Z + @storybook/addon-interactions 8.6.14
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8225783Z + @storybook/blocks 8.6.14
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8226345Z + @storybook/react 8.6.18
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8226881Z + @storybook/react-vite 8.6.18
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8227635Z + @storybook/test 8.6.15
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8228143Z + @tailwindcss/vite 4.2.4
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8228674Z + @types/node 20.19.39
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8229221Z + docx 9.6.1
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8229661Z + eslint 9.39.4
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8230062Z + husky 9.1.7
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8230527Z + lint-staged 15.5.2
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8230968Z + prettier 3.8.3
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8231457Z + storybook 8.6.18
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8231858Z + tsx 4.21.0
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8232370Z + turbo 2.9.6
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8232794Z + typescript 5.9.3
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8233258Z + vite 5.4.21
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8233540Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8399613Z . prepare$ husky
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8947090Z . prepare: Done
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.9180419Z Done in 6.6s
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.9631286Z ##[group]Run pnpm typecheck
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.9631602Z [36;1mpnpm typecheck[0m
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.9654415Z shell: /usr/bin/bash -e {0}
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.9654655Z env:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.9654905Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.9655203Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.3680666Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.3681884Z > propharmex-site@1.0.0 typecheck /home/runner/work/propharmex-website/propharmex-website
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.3682705Z > turbo run typecheck
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.3682930Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.4219836Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.4220481Z Attention:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.4221238Z Turborepo now collects completely anonymous telemetry regarding usage.
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.4222524Z This information is used to shape the Turborepo roadmap and prioritize features.
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.4223976Z You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.4225166Z https://turborepo.dev/docs/telemetry
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.4225522Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.5234347Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.5236050Z    ΓÇó Packages in scope: @propharmex/config, @propharmex/lib, @propharmex/ui, studio, web
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.5237698Z    ΓÇó Running typecheck in 5 packages
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.5238523Z    ΓÇó Remote caching disabled
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.5238994Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:59.1651138Z ##[group]@propharmex/config:typecheck
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:59.1667906Z cache miss, executing d72106cf48317fc3
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:59.1668491Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:59.1669542Z > @propharmex/config@0.0.0 typecheck /home/runner/work/propharmex-website/propharmex-website/packages/config
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:59.1670654Z > echo "(config package)"
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:59.1671089Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:59.1671380Z (config package)
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:59.1672107Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.2852698Z ##[group]@propharmex/ui:typecheck
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.2870887Z cache miss, executing 35d92b6e05f57fdb
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.2871506Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.2872426Z > @propharmex/ui@0.0.0 typecheck /home/runner/work/propharmex-website/propharmex-website/packages/ui
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.2873675Z > tsc --noEmit
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.2874028Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.2874568Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.3823027Z [;31m@propharmex/lib:typecheck[;0m
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.3825393Z cache miss, executing c25a45afa4e23f1e
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.3830442Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.3831407Z > @propharmex/lib@0.0.0 typecheck /home/runner/work/propharmex-website/propharmex-website/packages/lib
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.3832445Z > tsc --noEmit
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.3832669Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.3855134Z ##[error]index.ts(45,25): error TS2307: Cannot find module './region' or its corresponding type declarations.
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.3865661Z ΓÇëELIFECYCLEΓÇë Command failed with exit code 2.
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4204916Z ##[group]studio:typecheck
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4205972Z cache miss, executing ae716d5659b3ce17
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4206433Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4207333Z > studio@0.1.0 typecheck /home/runner/work/propharmex-website/propharmex-website/apps/studio
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4208288Z > tsc --noEmit
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4208466Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4208828Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4317958Z ##[group]web:typecheck
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4318720Z cache miss, executing a331cd9d9f09001d
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4319005Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4319503Z > web@1.0.0 typecheck /home/runner/work/propharmex-website/propharmex-website/apps/web
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4320156Z > tsc --noEmit
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4320340Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4320746Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4337314Z ##[error]@propharmex/lib#typecheck: command (/home/runner/work/propharmex-website/propharmex-website/packages/lib) /home/runner/setup-pnpm/node_modules/.bin/pnpm run typecheck exited (2)
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4341213Z  ERROR  @propharmex/lib#typecheck: command (/home/runner/work/propharmex-website/propharmex-website/packages/lib) /home/runner/setup-pnpm/node_modules/.bin/pnpm run typecheck exited (2)
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4342806Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4343082Z  Tasks:    2 successful, 5 total
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4343570Z Cached:    0 cached, 5 total
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4343993Z   Time:    10.007s 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4344491Z Failed:    @propharmex/lib#typecheck
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4344816Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4399820Z  ERROR  run failed: command  exited (2)
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4470180Z ΓÇëELIFECYCLEΓÇë Command failed with exit code 2.
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4671145Z ##[error]Process completed with exit code 2.
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4756819Z Post job cleanup.
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.6213866Z Pruning is unnecessary.
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.6366703Z Post job cleanup.
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.7456111Z [command]/usr/bin/git version
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.7503308Z git version 2.53.0
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.7549113Z Temporarily overriding HOME='/home/runner/work/_temp/c310bec9-a5fe-4b0e-ad40-5c26a6d3d408' before making global git config changes
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.7550458Z Adding repository directory to the temporary git global config as a safe directory
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.7556045Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/propharmex-website/propharmex-website
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.7599340Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.7635960Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.7888143Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.7913371Z http.https://github.com/.extraheader
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.7926093Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.7959767Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.8201338Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.8240188Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.8615524Z Cleaning up orphan processes
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.8911936Z ##[warning]Node.js 20 actions are deprecated. The following actions are running on Node.js 20 and may not work as expected: actions/checkout@v4, actions/setup-node@v4, pnpm/action-setup@v4. Actions will be forced to run with Node.js 24 by default starting June 2nd, 2026. Node.js 20 will be removed from the runner on September 16th, 2026. Please check if updated versions of these actions are available that support Node.js 24. To opt into Node.js 24 now, set the FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true environment variable on the runner or in your workflow file. Once Node.js 24 becomes the default, you can temporarily opt out by setting ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Storybook build	Set up job	∩╗┐2026-05-03T03:00:40.5766682Z Current runner version: '2.334.0'
+Storybook build	Set up job	2026-05-03T03:00:40.5791540Z ##[group]Runner Image Provisioner
+Storybook build	Set up job	2026-05-03T03:00:40.5792429Z Hosted Compute Agent
+Storybook build	Set up job	2026-05-03T03:00:40.5792987Z Version: 20260213.493
+Storybook build	Set up job	2026-05-03T03:00:40.5793622Z Commit: 5c115507f6dd24b8de37d8bbe0bb4509d0cc0fa3
+Storybook build	Set up job	2026-05-03T03:00:40.5794360Z Build Date: 2026-02-13T00:28:41Z
+Storybook build	Set up job	2026-05-03T03:00:40.5794982Z Worker ID: {e9574cb0-ef15-4022-a534-6608559059f6}
+Storybook build	Set up job	2026-05-03T03:00:40.5795649Z Azure Region: westus3
+Storybook build	Set up job	2026-05-03T03:00:40.5796337Z ##[endgroup]
+Storybook build	Set up job	2026-05-03T03:00:40.5797892Z ##[group]Operating System
+Storybook build	Set up job	2026-05-03T03:00:40.5798470Z Ubuntu
+Storybook build	Set up job	2026-05-03T03:00:40.5798920Z 24.04.4
+Storybook build	Set up job	2026-05-03T03:00:40.5799427Z LTS
+Storybook build	Set up job	2026-05-03T03:00:40.5799911Z ##[endgroup]
+Storybook build	Set up job	2026-05-03T03:00:40.5800369Z ##[group]Runner Image
+Storybook build	Set up job	2026-05-03T03:00:40.5800974Z Image: ubuntu-24.04
+Storybook build	Set up job	2026-05-03T03:00:40.5801481Z Version: 20260413.86.1
+Storybook build	Set up job	2026-05-03T03:00:40.5802426Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260413.86/images/ubuntu/Ubuntu2404-Readme.md
+Storybook build	Set up job	2026-05-03T03:00:40.5804069Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260413.86
+Storybook build	Set up job	2026-05-03T03:00:40.5804980Z ##[endgroup]
+Storybook build	Set up job	2026-05-03T03:00:40.5806383Z ##[group]GITHUB_TOKEN Permissions
+Storybook build	Set up job	2026-05-03T03:00:40.5808550Z Contents: read
+Storybook build	Set up job	2026-05-03T03:00:40.5809141Z Metadata: read
+Storybook build	Set up job	2026-05-03T03:00:40.5809696Z Packages: read
+Storybook build	Set up job	2026-05-03T03:00:40.5810155Z ##[endgroup]
+Storybook build	Set up job	2026-05-03T03:00:40.5812451Z Secret source: Actions
+Storybook build	Set up job	2026-05-03T03:00:40.5813162Z Prepare workflow directory
+Storybook build	Set up job	2026-05-03T03:00:40.6153079Z Prepare all required actions
+Storybook build	Set up job	2026-05-03T03:00:40.6192712Z Getting action download info
+Storybook build	Set up job	2026-05-03T03:00:41.0941393Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+Storybook build	Set up job	2026-05-03T03:00:41.5691356Z Download action repository 'pnpm/action-setup@v4' (SHA:b906affcce14559ad1aafd4ab0e942779e9f58b1)
+Storybook build	Set up job	2026-05-03T03:00:42.3941125Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+Storybook build	Set up job	2026-05-03T03:00:42.5344047Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+Storybook build	Set up job	2026-05-03T03:00:42.8250121Z Complete job name: Storybook build
+Storybook build	Checkout	∩╗┐2026-05-03T03:00:42.8979573Z ##[group]Run actions/checkout@v4
+Storybook build	Checkout	2026-05-03T03:00:42.8980254Z with:
+Storybook build	Checkout	2026-05-03T03:00:42.8980537Z   repository: AnilBotta/propharmex-website
+Storybook build	Checkout	2026-05-03T03:00:42.8981150Z   token: ***
+Storybook build	Checkout	2026-05-03T03:00:42.8981378Z   ssh-strict: true
+Storybook build	Checkout	2026-05-03T03:00:42.8981612Z   ssh-user: git
+Storybook build	Checkout	2026-05-03T03:00:42.8981849Z   persist-credentials: true
+Storybook build	Checkout	2026-05-03T03:00:42.8982124Z   clean: true
+Storybook build	Checkout	2026-05-03T03:00:42.8982363Z   sparse-checkout-cone-mode: true
+Storybook build	Checkout	2026-05-03T03:00:42.8982656Z   fetch-depth: 1
+Storybook build	Checkout	2026-05-03T03:00:42.8982907Z   fetch-tags: false
+Storybook build	Checkout	2026-05-03T03:00:42.8983134Z   show-progress: true
+Storybook build	Checkout	2026-05-03T03:00:42.8983371Z   lfs: false
+Storybook build	Checkout	2026-05-03T03:00:42.8983578Z   submodules: false
+Storybook build	Checkout	2026-05-03T03:00:42.8983832Z   set-safe-directory: true
+Storybook build	Checkout	2026-05-03T03:00:42.8984421Z ##[endgroup]
+Storybook build	Checkout	2026-05-03T03:00:43.0167429Z Syncing repository: AnilBotta/propharmex-website
+Storybook build	Checkout	2026-05-03T03:00:43.0168996Z ##[group]Getting Git version info
+Storybook build	Checkout	2026-05-03T03:00:43.0169507Z Working directory is '/home/runner/work/propharmex-website/propharmex-website'
+Storybook build	Checkout	2026-05-03T03:00:43.0170244Z [command]/usr/bin/git version
+Storybook build	Checkout	2026-05-03T03:00:43.0654341Z git version 2.53.0
+Storybook build	Checkout	2026-05-03T03:00:43.0682915Z ##[endgroup]
+Storybook build	Checkout	2026-05-03T03:00:43.0699602Z Temporarily overriding HOME='/home/runner/work/_temp/f9680ca2-45fa-45b2-91c3-df0f2c3cf786' before making global git config changes
+Storybook build	Checkout	2026-05-03T03:00:43.0700818Z Adding repository directory to the temporary git global config as a safe directory
+Storybook build	Checkout	2026-05-03T03:00:43.0705699Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/propharmex-website/propharmex-website
+Storybook build	Checkout	2026-05-03T03:00:43.0742244Z Deleting the contents of '/home/runner/work/propharmex-website/propharmex-website'
+Storybook build	Checkout	2026-05-03T03:00:43.0746208Z ##[group]Initializing the repository
+Storybook build	Checkout	2026-05-03T03:00:43.0750857Z [command]/usr/bin/git init /home/runner/work/propharmex-website/propharmex-website
+Storybook build	Checkout	2026-05-03T03:00:43.0966338Z hint: Using 'master' as the name for the initial branch. This default branch name
+Storybook build	Checkout	2026-05-03T03:00:43.0967330Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Storybook build	Checkout	2026-05-03T03:00:43.0968035Z hint: to use in all of your new repositories, which will suppress this warning,
+Storybook build	Checkout	2026-05-03T03:00:43.0968853Z hint: call:
+Storybook build	Checkout	2026-05-03T03:00:43.0969219Z hint:
+Storybook build	Checkout	2026-05-03T03:00:43.0969834Z hint: 	git config --global init.defaultBranch <name>
+Storybook build	Checkout	2026-05-03T03:00:43.0970639Z hint:
+Storybook build	Checkout	2026-05-03T03:00:43.0971087Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Storybook build	Checkout	2026-05-03T03:00:43.0971684Z hint: 'development'. The just-created branch can be renamed via this command:
+Storybook build	Checkout	2026-05-03T03:00:43.0972288Z hint:
+Storybook build	Checkout	2026-05-03T03:00:43.0972587Z hint: 	git branch -m <name>
+Storybook build	Checkout	2026-05-03T03:00:43.0972934Z hint:
+Storybook build	Checkout	2026-05-03T03:00:43.0973718Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Storybook build	Checkout	2026-05-03T03:00:43.0974681Z Initialized empty Git repository in /home/runner/work/propharmex-website/propharmex-website/.git/
+Storybook build	Checkout	2026-05-03T03:00:43.0980647Z [command]/usr/bin/git remote add origin https://github.com/AnilBotta/propharmex-website
+Storybook build	Checkout	2026-05-03T03:00:43.1013162Z ##[endgroup]
+Storybook build	Checkout	2026-05-03T03:00:43.1013955Z ##[group]Disabling automatic garbage collection
+Storybook build	Checkout	2026-05-03T03:00:43.1017811Z [command]/usr/bin/git config --local gc.auto 0
+Storybook build	Checkout	2026-05-03T03:00:43.1047385Z ##[endgroup]
+Storybook build	Checkout	2026-05-03T03:00:43.1048033Z ##[group]Setting up auth
+Storybook build	Checkout	2026-05-03T03:00:43.1055209Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Storybook build	Checkout	2026-05-03T03:00:43.1085679Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Storybook build	Checkout	2026-05-03T03:00:43.2503561Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Storybook build	Checkout	2026-05-03T03:00:43.2544071Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Storybook build	Checkout	2026-05-03T03:00:43.2777680Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Storybook build	Checkout	2026-05-03T03:00:43.2810842Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Storybook build	Checkout	2026-05-03T03:00:43.3040724Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Storybook build	Checkout	2026-05-03T03:00:43.3076794Z ##[endgroup]
+Storybook build	Checkout	2026-05-03T03:00:43.3077528Z ##[group]Fetching the repository
+Storybook build	Checkout	2026-05-03T03:00:43.3085279Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +cc3d4b43dcc03478d1a6d609f20d248a6d34d521:refs/remotes/pull/55/merge
+Storybook build	Checkout	2026-05-03T03:00:44.3560679Z From https://github.com/AnilBotta/propharmex-website
+Storybook build	Checkout	2026-05-03T03:00:44.3562511Z  * [new ref]         cc3d4b43dcc03478d1a6d609f20d248a6d34d521 -> pull/55/merge
+Storybook build	Checkout	2026-05-03T03:00:44.3594742Z ##[endgroup]
+Storybook build	Checkout	2026-05-03T03:00:44.3596968Z ##[group]Determining the checkout info
+Storybook build	Checkout	2026-05-03T03:00:44.3598335Z ##[endgroup]
+Storybook build	Checkout	2026-05-03T03:00:44.3600980Z [command]/usr/bin/git sparse-checkout disable
+Storybook build	Checkout	2026-05-03T03:00:44.3640700Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Storybook build	Checkout	2026-05-03T03:00:44.3670281Z ##[group]Checking out the ref
+Storybook build	Checkout	2026-05-03T03:00:44.3674753Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/55/merge
+Storybook build	Checkout	2026-05-03T03:00:44.4125903Z Note: switching to 'refs/remotes/pull/55/merge'.
+Storybook build	Checkout	2026-05-03T03:00:44.4126669Z 
+Storybook build	Checkout	2026-05-03T03:00:44.4127272Z You are in 'detached HEAD' state. You can look around, make experimental
+Storybook build	Checkout	2026-05-03T03:00:44.4128159Z changes and commit them, and you can discard any commits you make in this
+Storybook build	Checkout	2026-05-03T03:00:44.4128835Z state without impacting any branches by switching back to a branch.
+Storybook build	Checkout	2026-05-03T03:00:44.4129175Z 
+Storybook build	Checkout	2026-05-03T03:00:44.4129527Z If you want to create a new branch to retain commits you create, you may
+Storybook build	Checkout	2026-05-03T03:00:44.4130369Z do so (now or later) by using -c with the switch command. Example:
+Storybook build	Checkout	2026-05-03T03:00:44.4130675Z 
+Storybook build	Checkout	2026-05-03T03:00:44.4130822Z   git switch -c <new-branch-name>
+Storybook build	Checkout	2026-05-03T03:00:44.4131064Z 
+Storybook build	Checkout	2026-05-03T03:00:44.4131278Z Or undo this operation with:
+Storybook build	Checkout	2026-05-03T03:00:44.4131486Z 
+Storybook build	Checkout	2026-05-03T03:00:44.4131634Z   git switch -
+Storybook build	Checkout	2026-05-03T03:00:44.4131806Z 
+Storybook build	Checkout	2026-05-03T03:00:44.4132062Z Turn off this advice by setting config variable advice.detachedHead to false
+Storybook build	Checkout	2026-05-03T03:00:44.4132436Z 
+Storybook build	Checkout	2026-05-03T03:00:44.4132898Z HEAD is now at cc3d4b4 Merge 51a9ca3602f944cbda45cbd52e2d6c8ee0a73800 into 382b5976ee0e7b3748eeb377f99e53eb2d05016e
+Storybook build	Checkout	2026-05-03T03:00:44.4137605Z ##[endgroup]
+Storybook build	Checkout	2026-05-03T03:00:44.4179141Z [command]/usr/bin/git log -1 --format=%H
+Storybook build	Checkout	2026-05-03T03:00:44.4202720Z cc3d4b43dcc03478d1a6d609f20d248a6d34d521
+Storybook build	Setup pnpm	∩╗┐2026-05-03T03:00:44.4428892Z ##[group]Run pnpm/action-setup@v4
+Storybook build	Setup pnpm	2026-05-03T03:00:44.4429318Z with:
+Storybook build	Setup pnpm	2026-05-03T03:00:44.4429616Z   version: 9.12.0
+Storybook build	Setup pnpm	2026-05-03T03:00:44.4429894Z   dest: ~/setup-pnpm
+Storybook build	Setup pnpm	2026-05-03T03:00:44.4500626Z   run_install: null
+Storybook build	Setup pnpm	2026-05-03T03:00:44.4501183Z   cache: false
+Storybook build	Setup pnpm	2026-05-03T03:00:44.4501572Z   cache_dependency_path: pnpm-lock.yaml
+Storybook build	Setup pnpm	2026-05-03T03:00:44.4502031Z   package_json_file: package.json
+Storybook build	Setup pnpm	2026-05-03T03:00:44.4502381Z   standalone: false
+Storybook build	Setup pnpm	2026-05-03T03:00:44.4502724Z ##[endgroup]
+Storybook build	Setup pnpm	2026-05-03T03:00:44.5951653Z ##[group]Running self-installer...
+Storybook build	Setup pnpm	2026-05-03T03:00:45.2823345Z Progress: resolved 1, reused 0, downloaded 0, added 0
+Storybook build	Setup pnpm	2026-05-03T03:00:45.2947875Z Packages: +1
+Storybook build	Setup pnpm	2026-05-03T03:00:45.2948639Z +
+Storybook build	Setup pnpm	2026-05-03T03:00:45.7295071Z Progress: resolved 1, reused 0, downloaded 1, added 1, done
+Storybook build	Setup pnpm	2026-05-03T03:00:45.7575629Z 
+Storybook build	Setup pnpm	2026-05-03T03:00:45.7576437Z dependencies:
+Storybook build	Setup pnpm	2026-05-03T03:00:45.7577178Z + pnpm 9.12.0 (10.33.2 is available)
+Storybook build	Setup pnpm	2026-05-03T03:00:45.7577640Z 
+Storybook build	Setup pnpm	2026-05-03T03:00:45.7606898Z Done in 994ms
+Storybook build	Setup pnpm	2026-05-03T03:00:45.7767213Z ##[endgroup]
+Storybook build	Setup pnpm	2026-05-03T03:00:45.7772160Z Installation Completed!
+Storybook build	Setup Node	∩╗┐2026-05-03T03:00:45.7933313Z ##[group]Run actions/setup-node@v4
+Storybook build	Setup Node	2026-05-03T03:00:45.7933607Z with:
+Storybook build	Setup Node	2026-05-03T03:00:45.7933789Z   node-version: 20
+Storybook build	Setup Node	2026-05-03T03:00:45.7933977Z   cache: pnpm
+Storybook build	Setup Node	2026-05-03T03:00:45.7934189Z   always-auth: false
+Storybook build	Setup Node	2026-05-03T03:00:45.7934397Z   check-latest: false
+Storybook build	Setup Node	2026-05-03T03:00:45.7934762Z   token: ***
+Storybook build	Setup Node	2026-05-03T03:00:45.7934988Z env:
+Storybook build	Setup Node	2026-05-03T03:00:45.7935217Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+Storybook build	Setup Node	2026-05-03T03:00:45.7935513Z ##[endgroup]
+Storybook build	Setup Node	2026-05-03T03:00:45.9930722Z Found in cache @ /opt/hostedtoolcache/node/20.20.2/x64
+Storybook build	Setup Node	2026-05-03T03:00:45.9938446Z ##[group]Environment details
+Storybook build	Setup Node	2026-05-03T03:00:48.8590314Z node: v20.20.2
+Storybook build	Setup Node	2026-05-03T03:00:48.8590785Z npm: 10.8.2
+Storybook build	Setup Node	2026-05-03T03:00:48.8591044Z yarn: 1.22.22
+Storybook build	Setup Node	2026-05-03T03:00:48.8592353Z ##[endgroup]
+Storybook build	Setup Node	2026-05-03T03:00:48.8620353Z [command]/home/runner/setup-pnpm/node_modules/.bin/pnpm store path --silent
+Storybook build	Setup Node	2026-05-03T03:00:49.3071957Z /home/runner/setup-pnpm/node_modules/.bin/store/v3
+Storybook build	Setup Node	2026-05-03T03:00:49.5796333Z Cache hit for: node-cache-Linux-x64-pnpm-a8d3c3209ae799514a126d0a08cc150039c0bca7485e874de373b25801ad526e
+Storybook build	Setup Node	2026-05-03T03:00:50.8382207Z Received 29360128 of 357378039 (8.2%), 28.0 MBs/sec
+Storybook build	Setup Node	2026-05-03T03:00:51.8427197Z Received 167772160 of 357378039 (46.9%), 80.0 MBs/sec
+Storybook build	Setup Node	2026-05-03T03:00:52.8401426Z Received 310378496 of 357378039 (86.8%), 98.6 MBs/sec
+Storybook build	Setup Node	2026-05-03T03:00:53.0973216Z Received 357378039 of 357378039 (100.0%), 104.5 MBs/sec
+Storybook build	Setup Node	2026-05-03T03:00:53.0974831Z Cache Size: ~341 MB (357378039 B)
+Storybook build	Setup Node	2026-05-03T03:00:53.1101520Z [command]/usr/bin/tar -xf /home/runner/work/_temp/42db6fd6-ff06-43dd-8927-1dac96e61c11/cache.tzst -P -C /home/runner/work/propharmex-website/propharmex-website --use-compress-program unzstd
+Storybook build	Setup Node	2026-05-03T03:00:57.7176187Z Cache restored successfully
+Storybook build	Setup Node	2026-05-03T03:00:57.7333025Z Cache restored from key: node-cache-Linux-x64-pnpm-a8d3c3209ae799514a126d0a08cc150039c0bca7485e874de373b25801ad526e
+Storybook build	Install dependencies	∩╗┐2026-05-03T03:00:57.7528197Z ##[group]Run pnpm install --frozen-lockfile
+Storybook build	Install dependencies	2026-05-03T03:00:57.7528627Z [36;1mpnpm install --frozen-lockfile[0m
+Storybook build	Install dependencies	2026-05-03T03:00:57.7569225Z shell: /usr/bin/bash -e {0}
+Storybook build	Install dependencies	2026-05-03T03:00:57.7569617Z env:
+Storybook build	Install dependencies	2026-05-03T03:00:57.7570007Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+Storybook build	Install dependencies	2026-05-03T03:00:57.7570519Z ##[endgroup]
+Storybook build	Install dependencies	2026-05-03T03:00:58.2119515Z Scope: all 6 workspace projects
+Storybook build	Install dependencies	2026-05-03T03:00:58.3167138Z Lockfile is up to date, resolution step is skipped
+Storybook build	Install dependencies	2026-05-03T03:00:58.5020930Z Progress: resolved 1, reused 0, downloaded 0, added 0
+Storybook build	Install dependencies	2026-05-03T03:00:58.7747958Z Packages: +1773
+Storybook build	Install dependencies	2026-05-03T03:00:58.7749015Z ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Storybook build	Install dependencies	2026-05-03T03:00:59.5057495Z Progress: resolved 1773, reused 900, downloaded 0, added 0
+Storybook build	Install dependencies	2026-05-03T03:01:00.5037232Z Progress: resolved 1773, reused 1743, downloaded 0, added 97
+Storybook build	Install dependencies	2026-05-03T03:01:01.5067555Z Progress: resolved 1773, reused 1743, downloaded 0, added 1065
+Storybook build	Install dependencies	2026-05-03T03:01:02.5049389Z Progress: resolved 1773, reused 1743, downloaded 0, added 1516
+Storybook build	Install dependencies	2026-05-03T03:01:03.1167531Z Progress: resolved 1773, reused 1743, downloaded 0, added 1773, done
+Storybook build	Install dependencies	2026-05-03T03:01:05.3261139Z 
+Storybook build	Install dependencies	2026-05-03T03:01:05.3261876Z devDependencies:
+Storybook build	Install dependencies	2026-05-03T03:01:05.3262378Z + @storybook/addon-a11y 8.6.18
+Storybook build	Install dependencies	2026-05-03T03:01:05.3262894Z + @storybook/addon-essentials 8.6.14
+Storybook build	Install dependencies	2026-05-03T03:01:05.3263473Z + @storybook/addon-interactions 8.6.14
+Storybook build	Install dependencies	2026-05-03T03:01:05.3263990Z + @storybook/blocks 8.6.14
+Storybook build	Install dependencies	2026-05-03T03:01:05.3264441Z + @storybook/react 8.6.18
+Storybook build	Install dependencies	2026-05-03T03:01:05.3264923Z + @storybook/react-vite 8.6.18
+Storybook build	Install dependencies	2026-05-03T03:01:05.3265345Z + @storybook/test 8.6.15
+Storybook build	Install dependencies	2026-05-03T03:01:05.3265745Z + @tailwindcss/vite 4.2.4
+Storybook build	Install dependencies	2026-05-03T03:01:05.3266408Z + @types/node 20.19.39
+Storybook build	Install dependencies	2026-05-03T03:01:05.3266780Z + docx 9.6.1
+Storybook build	Install dependencies	2026-05-03T03:01:05.3267077Z + eslint 9.39.4
+Storybook build	Install dependencies	2026-05-03T03:01:05.3267386Z + husky 9.1.7
+Storybook build	Install dependencies	2026-05-03T03:01:05.3267717Z + lint-staged 15.5.2
+Storybook build	Install dependencies	2026-05-03T03:01:05.3268070Z + prettier 3.8.3
+Storybook build	Install dependencies	2026-05-03T03:01:05.3268409Z + storybook 8.6.18
+Storybook build	Install dependencies	2026-05-03T03:01:05.3268819Z + tsx 4.21.0
+Storybook build	Install dependencies	2026-05-03T03:01:05.3269127Z + turbo 2.9.6
+Storybook build	Install dependencies	2026-05-03T03:01:05.3269500Z + typescript 5.9.3
+Storybook build	Install dependencies	2026-05-03T03:01:05.3269817Z + vite 5.4.21
+Storybook build	Install dependencies	2026-05-03T03:01:05.3269997Z 
+Storybook build	Install dependencies	2026-05-03T03:01:05.3458594Z . prepare$ husky
+Storybook build	Install dependencies	2026-05-03T03:01:05.3991714Z . prepare: Done
+Storybook build	Install dependencies	2026-05-03T03:01:05.4257525Z Done in 7.6s
+Storybook build	Build Storybook (static)	∩╗┐2026-05-03T03:01:05.4721494Z ##[group]Run pnpm build-storybook
+Storybook build	Build Storybook (static)	2026-05-03T03:01:05.4721828Z [36;1mpnpm build-storybook[0m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:05.4743661Z shell: /usr/bin/bash -e {0}
+Storybook build	Build Storybook (static)	2026-05-03T03:01:05.4743903Z env:
+Storybook build	Build Storybook (static)	2026-05-03T03:01:05.4744126Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+Storybook build	Build Storybook (static)	2026-05-03T03:01:05.4744414Z ##[endgroup]
+Storybook build	Build Storybook (static)	2026-05-03T03:01:05.8940938Z 
+Storybook build	Build Storybook (static)	2026-05-03T03:01:05.8942116Z > propharmex-site@1.0.0 build-storybook /home/runner/work/propharmex-website/propharmex-website
+Storybook build	Build Storybook (static)	2026-05-03T03:01:05.8942847Z > storybook build --quiet --disable-telemetry
+Storybook build	Build Storybook (static)	2026-05-03T03:01:05.8943090Z 
+Storybook build	Build Storybook (static)	2026-05-03T03:01:06.4401092Z [1m@storybook/core v8.6.18
+Storybook build	Build Storybook (static)	2026-05-03T03:01:06.4401745Z [22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:06.4423408Z info => Cleaning outputDir: [36mstorybook-static[39m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:06.5139645Z info => Loading presets
+Storybook build	Build Storybook (static)	2026-05-03T03:01:06.9839466Z info => Building manager..
+Storybook build	Build Storybook (static)	2026-05-03T03:01:07.1683206Z info => Manager built ([38;2;181;126;229m185 ms[39m)
+Storybook build	Build Storybook (static)	2026-05-03T03:01:07.1714444Z info => Building preview..
+Storybook build	Build Storybook (static)	2026-05-03T03:01:07.1896314Z WARN No story files found for the specified pattern: [34mpackages/ui/**/*.mdx[39m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:07.7601375Z info Using tsconfig paths for react-docgen
+Storybook build	Build Storybook (static)	2026-05-03T03:01:10.9282677Z [36mvite v5.4.21 [32mbuilding for production...[36m[39m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:10.9949807Z transforming...
+Storybook build	Build Storybook (static)	2026-05-03T03:01:14.2422343Z packages/ui/components/Accordion.tsx (1:0): Error when using sourcemap for reporting an error: Can't resolve original location of error.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:14.2426218Z packages/ui/components/Accordion.tsx (1:0): Module level directives cause errors when bundled, "use client" in "packages/ui/components/Accordion.tsx" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:14.7645056Z packages/ui/components/Button.tsx (1:0): Error when using sourcemap for reporting an error: Can't resolve original location of error.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:14.7648442Z packages/ui/components/Button.tsx (1:0): Module level directives cause errors when bundled, "use client" in "packages/ui/components/Button.tsx" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:14.9333535Z Found 1 warning while optimizing generated CSS:
+Storybook build	Build Storybook (static)	2026-05-03T03:01:14.9334088Z 
+Storybook build	Build Storybook (static)	2026-05-03T03:01:14.9334714Z [2mΓöé   }[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:14.9335152Z [2mΓöé }[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:14.9337315Z [2mΓöé[22m @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap");
+Storybook build	Build Storybook (static)	2026-05-03T03:01:14.9339568Z [2mΓöå[22m        [33m[2m^--[22m @import rules must precede all rules aside from @charset and @layer statements[39m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:14.9340480Z [2mΓöå[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:14.9340857Z [2mΓöé body {[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:14.9341415Z [2mΓöé   font-family: var(--font-body);[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:14.9341760Z 
+Storybook build	Build Storybook (static)	2026-05-03T03:01:15.0634435Z packages/ui/components/Carousel.tsx (1:0): Error when using sourcemap for reporting an error: Can't resolve original location of error.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:15.0637377Z packages/ui/components/Carousel.tsx (1:0): Module level directives cause errors when bundled, "use client" in "packages/ui/components/Carousel.tsx" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:15.0658001Z packages/ui/components/Dialog.tsx (1:0): Error when using sourcemap for reporting an error: Can't resolve original location of error.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:15.0660314Z packages/ui/components/Dialog.tsx (1:0): Module level directives cause errors when bundled, "use client" in "packages/ui/components/Dialog.tsx" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:15.0674781Z packages/ui/components/Tabs.tsx (1:0): Error when using sourcemap for reporting an error: Can't resolve original location of error.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:15.0682504Z packages/ui/components/Tabs.tsx (1:0): Module level directives cause errors when bundled, "use client" in "packages/ui/components/Tabs.tsx" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:15.3530989Z packages/ui/components/Select.tsx (1:0): Error when using sourcemap for reporting an error: Can't resolve original location of error.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:15.3547709Z packages/ui/components/Select.tsx (1:0): Module level directives cause errors when bundled, "use client" in "packages/ui/components/Select.tsx" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:15.3561452Z packages/ui/components/Sheet.tsx (1:0): Error when using sourcemap for reporting an error: Can't resolve original location of error.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:15.3563670Z packages/ui/components/Sheet.tsx (1:0): Module level directives cause errors when bundled, "use client" in "packages/ui/components/Sheet.tsx" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:15.4940682Z packages/ui/components/Tooltip.tsx (1:0): Error when using sourcemap for reporting an error: Can't resolve original location of error.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:15.4942347Z packages/ui/components/Tooltip.tsx (1:0): Module level directives cause errors when bundled, "use client" in "packages/ui/components/Tooltip.tsx" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:15.5042458Z packages/ui/components/Marquee.tsx (1:0): Error when using sourcemap for reporting an error: Can't resolve original location of error.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:15.5044174Z packages/ui/components/Marquee.tsx (1:0): Module level directives cause errors when bundled, "use client" in "packages/ui/components/Marquee.tsx" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:15.5064255Z packages/ui/components/Pagination.tsx (1:0): Error when using sourcemap for reporting an error: Can't resolve original location of error.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:15.5065810Z packages/ui/components/Pagination.tsx (1:0): Module level directives cause errors when bundled, "use client" in "packages/ui/components/Pagination.tsx" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:15.5350741Z node_modules/.pnpm/@radix-ui+react-accordion@1.2.12_@types+react-dom@19.2.3_@types+react@19.2.14__@types+react@1_wtdibmbfy36u76ror3hhkix5ji/node_modules/@radix-ui/react-accordion/dist/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/@radix-ui+react-accordion@1.2.12_@types+react-dom@19.2.3_@types+react@19.2.14__@types+react@1_wtdibmbfy36u76ror3hhkix5ji/node_modules/@radix-ui/react-accordion/dist/index.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:15.7655273Z node_modules/.pnpm/@radix-ui+react-dialog@1.1.15_@types+react-dom@19.2.3_@types+react@19.2.14__@types+react@19.2_g5gmfey5r22ra7iu7yfsbivzgu/node_modules/@radix-ui/react-dialog/dist/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/@radix-ui+react-dialog@1.1.15_@types+react-dom@19.2.3_@types+react@19.2.14__@types+react@19.2_g5gmfey5r22ra7iu7yfsbivzgu/node_modules/@radix-ui/react-dialog/dist/index.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:15.7705128Z node_modules/.pnpm/@radix-ui+react-tabs@1.1.13_@types+react-dom@19.2.3_@types+react@19.2.14__@types+react@19.2.1_7n5zvcpjo5aorahmuojlp3d3am/node_modules/@radix-ui/react-tabs/dist/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/@radix-ui+react-tabs@1.1.13_@types+react-dom@19.2.3_@types+react@19.2.14__@types+react@19.2.1_7n5zvcpjo5aorahmuojlp3d3am/node_modules/@radix-ui/react-tabs/dist/index.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:15.8449719Z node_modules/.pnpm/@radix-ui+react-tooltip@1.2.8_@types+react-dom@19.2.3_@types+react@19.2.14__@types+react@19.2_cewby2spa7lz253wgiqy767dai/node_modules/@radix-ui/react-tooltip/dist/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/@radix-ui+react-tooltip@1.2.8_@types+react-dom@19.2.3_@types+react@19.2.14__@types+react@19.2_cewby2spa7lz253wgiqy767dai/node_modules/@radix-ui/react-tooltip/dist/index.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:15.8498148Z node_modules/.pnpm/@radix-ui+react-select@2.2.6_@types+react-dom@19.2.3_@types+react@19.2.14__@types+react@19.2._nx7m4qdpb3wa6me4mczdno4ff4/node_modules/@radix-ui/react-select/dist/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/@radix-ui+react-select@2.2.6_@types+react-dom@19.2.3_@types+react@19.2.14__@types+react@19.2._nx7m4qdpb3wa6me4mczdno4ff4/node_modules/@radix-ui/react-select/dist/index.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:15.8583911Z node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/index.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:15.9188994Z packages/ui/hooks/use-reduced-motion.ts (1:0): Error when using sourcemap for reporting an error: Can't resolve original location of error.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:15.9190493Z packages/ui/hooks/use-reduced-motion.ts (1:0): Module level directives cause errors when bundled, "use client" in "packages/ui/hooks/use-reduced-motion.ts" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:16.3656357Z node_modules/.pnpm/@radix-ui+react-collection@1.1.7_@types+react-dom@19.2.3_@types+react@19.2.14__@types+react@1_micm2esneyyh3yjc3ayjqjqwv4/node_modules/@radix-ui/react-collection/dist/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/@radix-ui+react-collection@1.1.7_@types+react-dom@19.2.3_@types+react@19.2.14__@types+react@1_micm2esneyyh3yjc3ayjqjqwv4/node_modules/@radix-ui/react-collection/dist/index.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:16.3703781Z node_modules/.pnpm/@radix-ui+react-collapsible@1.1.12_@types+react-dom@19.2.3_@types+react@19.2.14__@types+react_ppgfluzcezav3w4okor7tsmhc4/node_modules/@radix-ui/react-collapsible/dist/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/@radix-ui+react-collapsible@1.1.12_@types+react-dom@19.2.3_@types+react@19.2.14__@types+react_ppgfluzcezav3w4okor7tsmhc4/node_modules/@radix-ui/react-collapsible/dist/index.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:17.4402057Z node_modules/.pnpm/@radix-ui+react-dismissable-layer@1.1.11_@types+react-dom@19.2.3_@types+react@19.2.14__@types_6olyyppa2gx6cvulycepfvoqbu/node_modules/@radix-ui/react-dismissable-layer/dist/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/@radix-ui+react-dismissable-layer@1.1.11_@types+react-dom@19.2.3_@types+react@19.2.14__@types_6olyyppa2gx6cvulycepfvoqbu/node_modules/@radix-ui/react-dismissable-layer/dist/index.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:17.4429859Z node_modules/.pnpm/@radix-ui+react-focus-scope@1.1.7_@types+react-dom@19.2.3_@types+react@19.2.14__@types+react@_xn3cnv54lmiinazlizj6twdisy/node_modules/@radix-ui/react-focus-scope/dist/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/@radix-ui+react-focus-scope@1.1.7_@types+react-dom@19.2.3_@types+react@19.2.14__@types+react@_xn3cnv54lmiinazlizj6twdisy/node_modules/@radix-ui/react-focus-scope/dist/index.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:17.4452076Z node_modules/.pnpm/@radix-ui+react-presence@1.1.5_@types+react-dom@19.2.3_@types+react@19.2.14__@types+react@19._22lauk2th5m7k22fo4un453jz4/node_modules/@radix-ui/react-presence/dist/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/@radix-ui+react-presence@1.1.5_@types+react-dom@19.2.3_@types+react@19.2.14__@types+react@19._22lauk2th5m7k22fo4un453jz4/node_modules/@radix-ui/react-presence/dist/index.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:17.4469513Z node_modules/.pnpm/@radix-ui+react-portal@1.1.9_@types+react-dom@19.2.3_@types+react@19.2.14__@types+react@19.2._rhw4v5ba3kly7ytmq6lx6hif5m/node_modules/@radix-ui/react-portal/dist/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/@radix-ui+react-portal@1.1.9_@types+react-dom@19.2.3_@types+react@19.2.14__@types+react@19.2._rhw4v5ba3kly7ytmq6lx6hif5m/node_modules/@radix-ui/react-portal/dist/index.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:17.4609838Z node_modules/.pnpm/@radix-ui+react-focus-guards@1.1.3_@types+react@19.2.14_react@19.2.5/node_modules/@radix-ui/react-focus-guards/dist/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/@radix-ui+react-focus-guards@1.1.3_@types+react@19.2.14_react@19.2.5/node_modules/@radix-ui/react-focus-guards/dist/index.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:17.4770779Z node_modules/.pnpm/@radix-ui+react-roving-focus@1.1.11_@types+react-dom@19.2.3_@types+react@19.2.14__@types+reac_jcdraojoe67ybfkumq6rzl6zte/node_modules/@radix-ui/react-roving-focus/dist/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/@radix-ui+react-roving-focus@1.1.11_@types+react-dom@19.2.3_@types+react@19.2.14__@types+reac_jcdraojoe67ybfkumq6rzl6zte/node_modules/@radix-ui/react-roving-focus/dist/index.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:17.4839922Z node_modules/.pnpm/@radix-ui+react-popper@1.2.8_@types+react-dom@19.2.3_@types+react@19.2.14__@types+react@19.2._vatfsh6mmxrlxzny342yn5vptq/node_modules/@radix-ui/react-popper/dist/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/@radix-ui+react-popper@1.2.8_@types+react-dom@19.2.3_@types+react@19.2.14__@types+react@19.2._vatfsh6mmxrlxzny342yn5vptq/node_modules/@radix-ui/react-popper/dist/index.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:17.4949786Z node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/components/LayoutGroup/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/components/LayoutGroup/index.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:17.5064536Z node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/components/LazyMotion/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/components/LazyMotion/index.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:17.5102011Z node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/components/MotionConfig/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/components/MotionConfig/index.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:17.5950247Z node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/context/LayoutGroupContext.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/context/LayoutGroupContext.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:17.6024759Z node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/context/MotionConfigContext.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/context/MotionConfigContext.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:17.6033894Z node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/context/MotionContext/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/context/MotionContext/index.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:17.6069653Z node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/context/PresenceContext.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/context/PresenceContext.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:17.6100191Z node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/context/SwitchLayoutGroupContext.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/context/SwitchLayoutGroupContext.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:17.9175457Z node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:17.9420181Z node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/motion/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/motion/index.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:18.0701381Z node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/context/LazyContext.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/context/LazyContext.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:18.0909831Z node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/components/Reorder/Group.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/components/Reorder/Group.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:18.0921375Z node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/components/Reorder/Item.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/components/Reorder/Item.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:18.1179457Z node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/components/AnimatePresence/PresenceChild.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/components/AnimatePresence/PresenceChild.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:18.1624013Z node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/motion/features/layout/MeasureLayout.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/motion/features/layout/MeasureLayout.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:18.1702302Z node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/context/ReorderContext.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/context/ReorderContext.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:18.1981077Z node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/components/AnimatePresence/PopChild.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/.pnpm/framer-motion@11.18.2_@emotion+is-prop-valid@1.4.0_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/framer-motion/dist/es/components/AnimatePresence/PopChild.mjs" was ignored.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:23.6868377Z [32mΓ£ô[39m 2128 modules transformed.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:24.1900204Z node_modules/.pnpm/@storybook+core@8.6.18_prettier@3.8.3_storybook@8.6.18_prettier@3.8.3_/node_modules/@storybook/core/dist/preview/runtime.js (3683:15): Use of eval in "node_modules/.pnpm/@storybook+core@8.6.18_prettier@3.8.3_storybook@8.6.18_prettier@3.8.3_/node_modules/@storybook/core/dist/preview/runtime.js" is strongly discouraged as it poses security risks and may cause issues with minification.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:24.1929742Z node_modules/.pnpm/@storybook+core@8.6.18_prettier@3.8.3_storybook@8.6.18_prettier@3.8.3_/node_modules/@storybook/core/dist/preview/runtime.js (3685:16): Use of eval in "node_modules/.pnpm/@storybook+core@8.6.18_prettier@3.8.3_storybook@8.6.18_prettier@3.8.3_/node_modules/@storybook/core/dist/preview/runtime.js" is strongly discouraged as it poses security risks and may cause issues with minification.
+Storybook build	Build Storybook (static)	2026-05-03T03:01:24.4161446Z rendering chunks...
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.1595496Z computing gzip size...
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2086979Z [2mstorybook-static/[22m[32miframe.html                               [39m[1m[2m 17.76 kB[22m[1m[22m[2m Γöé gzip:   5.00 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2089021Z [2mstorybook-static/[22m[2massets/[22m[35mpreview-Caubu7pw.css               [39m[1m[2m 73.92 kB[22m[1m[22m[2m Γöé gzip:  12.93 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2090611Z [2mstorybook-static/[22m[2massets/[22m[36mpreview-CvbIS5ZJ.js                [39m[1m[2m  0.18 kB[22m[1m[22m[2m Γöé gzip:   0.16 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2092557Z [2mstorybook-static/[22m[2massets/[22m[36mindex-CLFlh7pk.js                  [39m[1m[2m  0.21 kB[22m[1m[22m[2m Γöé gzip:   0.18 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2094527Z [2mstorybook-static/[22m[2massets/[22m[36m_commonjsHelpers-Cpj98o6Y.js       [39m[1m[2m  0.24 kB[22m[1m[22m[2m Γöé gzip:   0.18 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2096652Z [2mstorybook-static/[22m[2massets/[22m[36mchevron-down-5MYR2r9X.js           [39m[1m[2m  0.31 kB[22m[1m[22m[2m Γöé gzip:   0.25 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2098600Z [2mstorybook-static/[22m[2massets/[22m[36mchevron-left-CklEOsk_.js           [39m[1m[2m  0.31 kB[22m[1m[22m[2m Γöé gzip:   0.25 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2100505Z [2mstorybook-static/[22m[2massets/[22m[36mchevron-right-DWoI7_gz.js          [39m[1m[2m  0.31 kB[22m[1m[22m[2m Γöé gzip:   0.25 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2102364Z [2mstorybook-static/[22m[2massets/[22m[36mindex-BodLf3CC.js                  [39m[1m[2m  0.40 kB[22m[1m[22m[2m Γöé gzip:   0.27 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2104192Z [2mstorybook-static/[22m[2massets/[22m[36mindex-DR3I1rOg.js                  [39m[1m[2m  0.46 kB[22m[1m[22m[2m Γöé gzip:   0.30 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2106197Z [2mstorybook-static/[22m[2massets/[22m[36mpreview-Dw3_qjX4.js                [39m[1m[2m  0.57 kB[22m[1m[22m[2m Γöé gzip:   0.34 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2108139Z [2mstorybook-static/[22m[2massets/[22m[36mjsx-runtime-BjG_zV1W.js            [39m[1m[2m  0.64 kB[22m[1m[22m[2m Γöé gzip:   0.42 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2110499Z [2mstorybook-static/[22m[2massets/[22m[36mchunk-XP5HYGXS-BHXC9YeQ.js         [39m[1m[2m  0.71 kB[22m[1m[22m[2m Γöé gzip:   0.40 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2112390Z [2mstorybook-static/[22m[2massets/[22m[36mpreview-DGUiP6tS.js                [39m[1m[2m  0.71 kB[22m[1m[22m[2m Γöé gzip:   0.50 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2114225Z [2mstorybook-static/[22m[2massets/[22m[36mindex-DrFu-skq.js                  [39m[1m[2m  0.77 kB[22m[1m[22m[2m Γöé gzip:   0.47 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2116213Z [2mstorybook-static/[22m[2massets/[22m[36mindex-1evVQkiP.js                  [39m[1m[2m  0.80 kB[22m[1m[22m[2m Γöé gzip:   0.44 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2118131Z [2mstorybook-static/[22m[2massets/[22m[36mreact-18-B24lbMYf.js               [39m[1m[2m  0.84 kB[22m[1m[22m[2m Γöé gzip:   0.50 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2119718Z [2mstorybook-static/[22m[2massets/[22m[36mpreview-B_YNNlJQ.js                [39m[1m[2m  0.92 kB[22m[1m[22m[2m Γöé gzip:   0.59 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2120828Z [2mstorybook-static/[22m[2massets/[22m[36mtest-utils-DNbbSvcu.js             [39m[1m[2m  1.07 kB[22m[1m[22m[2m Γöé gzip:   0.68 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2121894Z [2mstorybook-static/[22m[2massets/[22m[36mindex-CY9MB5bw.js                  [39m[1m[2m  1.38 kB[22m[1m[22m[2m Γöé gzip:   0.68 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2122968Z [2mstorybook-static/[22m[2massets/[22m[36mcreateLucideIcon-Be0-S4nJ.js       [39m[1m[2m  1.55 kB[22m[1m[22m[2m Γöé gzip:   0.65 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2124055Z [2mstorybook-static/[22m[2massets/[22m[36mSkeleton.stories-BA3zWC8j.js       [39m[1m[2m  1.63 kB[22m[1m[22m[2m Γöé gzip:   0.74 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2126804Z [2mstorybook-static/[22m[2massets/[22m[36mindex-DLGEPBwL.js                  [39m[1m[2m  2.17 kB[22m[1m[22m[2m Γöé gzip:   0.95 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2128631Z [2mstorybook-static/[22m[2massets/[22m[36mTextarea.stories-B-p7ecPB.js       [39m[1m[2m  2.27 kB[22m[1m[22m[2m Γöé gzip:   0.98 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2130712Z [2mstorybook-static/[22m[2massets/[22m[36mCard-atg4iGlS.js                   [39m[1m[2m  2.49 kB[22m[1m[22m[2m Γöé gzip:   0.78 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2132722Z [2mstorybook-static/[22m[2massets/[22m[36mCard.stories-C3TzEL9-.js           [39m[1m[2m  2.80 kB[22m[1m[22m[2m Γöé gzip:   0.98 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2134851Z [2mstorybook-static/[22m[2massets/[22m[36mBreadcrumb.stories-BHTIcaWh.js     [39m[1m[2m  2.95 kB[22m[1m[22m[2m Γöé gzip:   1.25 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2137372Z [2mstorybook-static/[22m[2massets/[22m[36mStat.stories-canrc4jK.js           [39m[1m[2m  2.99 kB[22m[1m[22m[2m Γöé gzip:   1.20 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2138729Z [33m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2139327Z (!) Some chunks are larger than 500 kB after minification. Consider:
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2140123Z - Using dynamic import() to code-split the application
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2141420Z - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2143138Z - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2145010Z [2mstorybook-static/[22m[2massets/[22m[36mInput.stories-BkoTPuOT.js          [39m[1m[2m  3.32 kB[22m[1m[22m[2m Γöé gzip:   1.28 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2147301Z [2mstorybook-static/[22m[2massets/[22m[36mButton.stories-BFWBVKuX.js         [39m[1m[2m  3.48 kB[22m[1m[22m[2m Γöé gzip:   1.13 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2148573Z [2mstorybook-static/[22m[2massets/[22m[36mpreview-DD_OYowb.js                [39m[1m[2m  3.51 kB[22m[1m[22m[2m Γöé gzip:   1.69 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2149743Z [2mstorybook-static/[22m[2massets/[22m[36mPagination.stories-BgilGAA_.js     [39m[1m[2m  3.71 kB[22m[1m[22m[2m Γöé gzip:   1.54 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2150866Z [2mstorybook-static/[22m[2massets/[22m[36mindex-JG1J0hlI.js                  [39m[1m[2m  3.87 kB[22m[1m[22m[2m Γöé gzip:   1.52 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2152413Z [2mstorybook-static/[22m[2massets/[22m[36mindex-BOk1pleY.js                  [39m[1m[2m  4.21 kB[22m[1m[22m[2m Γöé gzip:   1.53 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2153683Z [2mstorybook-static/[22m[2massets/[22m[36mButton-BiaDmRZZ.js                 [39m[1m[2m  4.25 kB[22m[1m[22m[2m Γöé gzip:   1.75 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2154765Z [2mstorybook-static/[22m[2massets/[22m[36mBadge.stories-CPTXeO0J.js          [39m[1m[2m  4.61 kB[22m[1m[22m[2m Γöé gzip:   1.45 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2155824Z [2mstorybook-static/[22m[2massets/[22m[36mindex-CZ27mcT1.js                  [39m[1m[2m  4.87 kB[22m[1m[22m[2m Γöé gzip:   2.12 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2158018Z [2mstorybook-static/[22m[2massets/[22m[36mpreview-B8lJiyuQ.js                [39m[1m[2m  5.06 kB[22m[1m[22m[2m Γöé gzip:   1.88 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2159448Z [2mstorybook-static/[22m[2massets/[22m[36mDialog.stories-BQXZvrrj.js         [39m[1m[2m  5.70 kB[22m[1m[22m[2m Γöé gzip:   1.72 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2160548Z [2mstorybook-static/[22m[2massets/[22m[36mindex-BVwl_U-e.js                  [39m[1m[2m  5.73 kB[22m[1m[22m[2m Γöé gzip:   2.26 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2161609Z [2mstorybook-static/[22m[2massets/[22m[36mCallout.stories-Bu7vazxu.js        [39m[1m[2m  5.95 kB[22m[1m[22m[2m Γöé gzip:   2.00 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2162684Z [2mstorybook-static/[22m[2massets/[22m[36mSheet.stories-DD1ld7rW.js          [39m[1m[2m  6.63 kB[22m[1m[22m[2m Γöé gzip:   1.91 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2163732Z [2mstorybook-static/[22m[2massets/[22m[36mpreview-BWzBA1C2.js                [39m[1m[2m  7.62 kB[22m[1m[22m[2m Γöé gzip:   1.56 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2164967Z [2mstorybook-static/[22m[2massets/[22m[36mpreview-BBWR9nbA.js                [39m[1m[2m  8.12 kB[22m[1m[22m[2m Γöé gzip:   3.10 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2165992Z [2mstorybook-static/[22m[2massets/[22m[36mindex-B3e6rcmj.js                  [39m[1m[2m  8.21 kB[22m[1m[22m[2m Γöé gzip:   3.24 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2167345Z [2mstorybook-static/[22m[2massets/[22m[36mTabs.stories-D7iLlOmu.js           [39m[1m[2m  9.54 kB[22m[1m[22m[2m Γöé gzip:   3.47 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2168417Z [2mstorybook-static/[22m[2massets/[22m[36mAccordion.stories-CAmId7gd.js      [39m[1m[2m  9.93 kB[22m[1m[22m[2m Γöé gzip:   3.44 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2169494Z [2mstorybook-static/[22m[2massets/[22m[36mTooltip.stories-CCh2bIdG.js        [39m[1m[2m  9.98 kB[22m[1m[22m[2m Γöé gzip:   3.67 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2170540Z [2mstorybook-static/[22m[2massets/[22m[36mindex-Bfu3ggaa.js                  [39m[1m[2m 16.72 kB[22m[1m[22m[2m Γöé gzip:   6.34 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2171560Z [2mstorybook-static/[22m[2massets/[22m[36mutils-BLSKlp9E.js                  [39m[1m[2m 20.33 kB[22m[1m[22m[2m Γöé gzip:   6.85 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2172605Z [2mstorybook-static/[22m[2massets/[22m[36mSelect.stories-SHlRcAhr.js         [39m[1m[2m 25.58 kB[22m[1m[22m[2m Γöé gzip:   8.46 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2173678Z [2mstorybook-static/[22m[2massets/[22m[36mCarousel.stories-D4r8agLH.js       [39m[1m[2m 25.76 kB[22m[1m[22m[2m Γöé gzip:  10.20 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2174790Z [2mstorybook-static/[22m[2massets/[22m[36mindex-D02xfW8s.js                  [39m[1m[2m 28.08 kB[22m[1m[22m[2m Γöé gzip:  10.80 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2175859Z [2mstorybook-static/[22m[2massets/[22m[36mColor-YHDXOIA2-BveOlwaK.js         [39m[1m[2m 29.37 kB[22m[1m[22m[2m Γöé gzip:  11.07 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2177384Z [2mstorybook-static/[22m[2massets/[22m[36mmatchers-7Z3WT2CE-OIiPHzXs.js      [39m[1m[2m 29.79 kB[22m[1m[22m[2m Γöé gzip:  10.29 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2178515Z [2mstorybook-static/[22m[2massets/[22m[36mentry-preview-DBHO-S6T.js          [39m[1m[2m 29.85 kB[22m[1m[22m[2m Γöé gzip:   9.56 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2179743Z [2mstorybook-static/[22m[2massets/[22m[36mindex-Bhelpi4i.js                  [39m[1m[2m 57.15 kB[22m[1m[22m[2m Γöé gzip:  16.30 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2180827Z [2mstorybook-static/[22m[2massets/[22m[36mMarquee.stories-QSlQQKhp.js        [39m[1m[2m114.74 kB[22m[1m[22m[2m Γöé gzip:  38.00 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2181892Z [2mstorybook-static/[22m[2massets/[22m[36mclient-DzDRB_2o.js                 [39m[1m[2m180.30 kB[22m[1m[22m[2m Γöé gzip:  56.76 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2183016Z [2mstorybook-static/[22m[2massets/[22m[36miframe-5e8YhR0Y.js                 [39m[1m[2m211.69 kB[22m[1m[22m[2m Γöé gzip:  72.65 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2184140Z [2mstorybook-static/[22m[2massets/[22m[36mentry-preview-docs-DH-Bz8vJ.js     [39m[1m[2m244.71 kB[22m[1m[22m[2m Γöé gzip:  73.44 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2185197Z [2mstorybook-static/[22m[2massets/[22m[36maxe-bWKRriZH.js                    [39m[1m[33m583.85 kB[39m[22m[2m Γöé gzip: 160.83 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2186662Z [2mstorybook-static/[22m[2massets/[22m[36mpreview-D-Qz4Vhp.js                [39m[1m[33m660.64 kB[39m[22m[2m Γöé gzip: 156.58 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2187758Z [2mstorybook-static/[22m[2massets/[22m[36mindex-DgAF9SIF.js                  [39m[1m[33m662.40 kB[39m[22m[2m Γöé gzip: 157.06 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2188783Z [2mstorybook-static/[22m[2massets/[22m[36mpreview-DoyjuqxV.js                [39m[1m[33m662.75 kB[39m[22m[2m Γöé gzip: 157.59 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2189853Z [2mstorybook-static/[22m[2massets/[22m[36mDocsRenderer-CFRXHY34-B6j_glM-.js  [39m[1m[33m884.05 kB[39m[22m[2m Γöé gzip: 275.85 kB[22m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2190679Z [32mΓ£ô built in 14.25s[39m
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2191051Z info => Preview built ([38;2;181;126;229m18 s[39m)
+Storybook build	Build Storybook (static)	2026-05-03T03:01:25.2191657Z info => Output directory: /home/runner/work/propharmex-website/propharmex-website/storybook-static
+Storybook build	Upload Storybook artifact	∩╗┐2026-05-03T03:01:25.4087145Z ##[group]Run actions/upload-artifact@v4
+Storybook build	Upload Storybook artifact	2026-05-03T03:01:25.4087463Z with:
+Storybook build	Upload Storybook artifact	2026-05-03T03:01:25.4087649Z   name: storybook-static
+Storybook build	Upload Storybook artifact	2026-05-03T03:01:25.4087883Z   path: storybook-static
+Storybook build	Upload Storybook artifact	2026-05-03T03:01:25.4088102Z   retention-days: 7
+Storybook build	Upload Storybook artifact	2026-05-03T03:01:25.4088298Z   if-no-files-found: warn
+Storybook build	Upload Storybook artifact	2026-05-03T03:01:25.4088510Z   compression-level: 6
+Storybook build	Upload Storybook artifact	2026-05-03T03:01:25.4088711Z   overwrite: false
+Storybook build	Upload Storybook artifact	2026-05-03T03:01:25.4088898Z   include-hidden-files: false
+Storybook build	Upload Storybook artifact	2026-05-03T03:01:25.4089115Z env:
+Storybook build	Upload Storybook artifact	2026-05-03T03:01:25.4089335Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+Storybook build	Upload Storybook artifact	2026-05-03T03:01:25.4089624Z ##[endgroup]
+Storybook build	Upload Storybook artifact	2026-05-03T03:01:25.6516475Z With the provided path, there will be 95 files uploaded
+Storybook build	Upload Storybook artifact	2026-05-03T03:01:25.6536822Z Artifact name is valid!
+Storybook build	Upload Storybook artifact	2026-05-03T03:01:25.6537373Z Root directory input is valid!
+Storybook build	Upload Storybook artifact	2026-05-03T03:01:25.9254781Z Beginning upload of artifact content to blob storage
+Storybook build	Upload Storybook artifact	2026-05-03T03:01:26.9133458Z Uploaded bytes 2665534
+Storybook build	Upload Storybook artifact	2026-05-03T03:01:26.9783141Z Finished uploading artifact content to blob storage!
+Storybook build	Upload Storybook artifact	2026-05-03T03:01:26.9786747Z SHA256 digest of uploaded artifact zip is 0933aeb00af393efc519d801dd38a2727637ef2255cb54189074a470c8d87988
+Storybook build	Upload Storybook artifact	2026-05-03T03:01:26.9788667Z Finalizing artifact upload
+Storybook build	Upload Storybook artifact	2026-05-03T03:01:27.1362806Z Artifact storybook-static.zip successfully finalized. Artifact ID 6767574601
+Storybook build	Upload Storybook artifact	2026-05-03T03:01:27.1364402Z Artifact storybook-static has been successfully uploaded! Final size is 2665534 bytes. Artifact ID is 6767574601
+Storybook build	Upload Storybook artifact	2026-05-03T03:01:27.1372264Z Artifact download URL: https://github.com/AnilBotta/propharmex-website/actions/runs/25268294982/artifacts/6767574601
+Storybook build	Post Setup Node	∩╗┐2026-05-03T03:01:27.1516719Z Post job cleanup.
+Storybook build	Post Setup Node	2026-05-03T03:01:27.3139102Z Cache hit occurred on the primary key node-cache-Linux-x64-pnpm-a8d3c3209ae799514a126d0a08cc150039c0bca7485e874de373b25801ad526e, not saving cache.
+Storybook build	Post Setup pnpm	∩╗┐2026-05-03T03:01:27.3233059Z Post job cleanup.
+Storybook build	Post Setup pnpm	2026-05-03T03:01:27.4710502Z Pruning is unnecessary.
+Storybook build	Post Checkout	∩╗┐2026-05-03T03:01:27.4847174Z Post job cleanup.
+Storybook build	Post Checkout	2026-05-03T03:01:27.5850304Z [command]/usr/bin/git version
+Storybook build	Post Checkout	2026-05-03T03:01:27.5896949Z git version 2.53.0
+Storybook build	Post Checkout	2026-05-03T03:01:27.5943345Z Temporarily overriding HOME='/home/runner/work/_temp/355bad72-fafb-413c-80ed-f355f34c4ffe' before making global git config changes
+Storybook build	Post Checkout	2026-05-03T03:01:27.5945072Z Adding repository directory to the temporary git global config as a safe directory
+Storybook build	Post Checkout	2026-05-03T03:01:27.5950535Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/propharmex-website/propharmex-website
+Storybook build	Post Checkout	2026-05-03T03:01:27.5987844Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Storybook build	Post Checkout	2026-05-03T03:01:27.6022878Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Storybook build	Post Checkout	2026-05-03T03:01:27.6254106Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Storybook build	Post Checkout	2026-05-03T03:01:27.6276411Z http.https://github.com/.extraheader
+Storybook build	Post Checkout	2026-05-03T03:01:27.6290662Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+Storybook build	Post Checkout	2026-05-03T03:01:27.6322203Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Storybook build	Post Checkout	2026-05-03T03:01:27.6548095Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Storybook build	Post Checkout	2026-05-03T03:01:27.6580575Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Storybook build	Complete job	∩╗┐2026-05-03T03:01:27.6919982Z Cleaning up orphan processes
+Storybook build	Complete job	2026-05-03T03:01:27.7223156Z ##[warning]Node.js 20 actions are deprecated. The following actions are running on Node.js 20 and may not work as expected: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4, pnpm/action-setup@v4. Actions will be forced to run with Node.js 24 by default starting June 2nd, 2026. Node.js 20 will be removed from the runner on September 16th, 2026. Please check if updated versions of these actions are available that support Node.js 24. To opt into Node.js 24 now, set the FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true environment variable on the runner or in your workflow file. Once Node.js 24 becomes the default, you can temporarily opt out by setting ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

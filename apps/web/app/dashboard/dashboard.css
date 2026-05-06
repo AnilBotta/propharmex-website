@@ -1,0 +1,31 @@
+/* Dashboard-specific surface — small additions on top of the global
+   Tailwind v4 @theme tokens. Most styling is handled by utility classes
+   in the components themselves. */
+
+.pmx-dashboard {
+  background: #F5F6FB; /* slate-50 */
+  color: var(--color-fg);
+  min-height: 100dvh;
+  font-family: var(--font-body);
+  font-feature-settings: "ss01", "cv11", "tnum";
+}
+
+/* Sidebar nav active-state pill */
+.pmx-nav-item-active {
+  background: rgba(17, 25, 90, 0.06);
+  color: var(--color-primary-600);
+}
+.pmx-nav-item-active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 3px;
+  border-radius: 0 2px 2px 0;
+  background: var(--color-accent-500);
+}
+
+.pmx-dashboard table {
+  font-variant-numeric: tabular-nums;
+}
