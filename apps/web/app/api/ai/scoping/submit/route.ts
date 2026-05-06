@@ -37,6 +37,7 @@ import { z } from "zod";
 import {
   env,
   getRateLimiter,
+  leads as leadsLib,
   log,
   scoping,
   supabase,
@@ -171,6 +172,23 @@ export async function POST(req: Request) {
       });
     }
   }
+
+  // 4b) Also persist to public.leads so scoping submissions appear in the
+  // unified dashboard inbox alongside contact/whitepaper/newsletter leads
+  // (PR-N1). The full scope summary is preserved in `payload` for the
+  // dashboard's lead detail drawer + AI intelligence input.
+  await leadsLib.insertLead({
+    source: "scoping",
+    email: contact.email,
+    contactName: contact.name,
+    company: contact.company,
+    region,
+    stage: scope.developmentStage,
+    dosageForm: scope.dosageForms[0],
+    message: contact.message,
+    payload: { scope },
+    ...leadsLib.extractAttribution(req, { referrer }),
+  });
 
   log.info("scoping.submit.ok", {
     emailDomain: domain,

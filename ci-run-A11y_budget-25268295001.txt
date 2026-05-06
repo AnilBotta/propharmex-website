@@ -1,0 +1,571 @@
+﻿axe-core (no serious or critical violations)	Set up job	∩╗┐2026-05-03T03:00:39.6042139Z Current runner version: '2.334.0'
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6069891Z ##[group]Runner Image Provisioner
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6070674Z Hosted Compute Agent
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6071333Z Version: 20260213.493
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6071958Z Commit: 5c115507f6dd24b8de37d8bbe0bb4509d0cc0fa3
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6072616Z Build Date: 2026-02-13T00:28:41Z
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6073339Z Worker ID: {3d1b9777-de77-4f4c-a69f-eb5104f62c45}
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6074073Z Azure Region: centralus
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6074601Z ##[endgroup]
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6076453Z ##[group]Operating System
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6077050Z Ubuntu
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6077550Z 24.04.4
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6078020Z LTS
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6078547Z ##[endgroup]
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6079010Z ##[group]Runner Image
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6079594Z Image: ubuntu-24.04
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6080141Z Version: 20260413.86.1
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6081099Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260413.86/images/ubuntu/Ubuntu2404-Readme.md
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6082938Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260413.86
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6083838Z ##[endgroup]
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6085265Z ##[group]GITHUB_TOKEN Permissions
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6087435Z Contents: read
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6087945Z Metadata: read
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6088594Z Packages: read
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6089063Z ##[endgroup]
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6091040Z Secret source: Actions
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6092119Z Prepare workflow directory
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6426789Z Prepare all required actions
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:39.6468853Z Getting action download info
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:40.0176927Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:40.1389639Z Download action repository 'pnpm/action-setup@v4' (SHA:b906affcce14559ad1aafd4ab0e942779e9f58b1)
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:40.6977812Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:40.7980610Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+axe-core (no serious or critical violations)	Set up job	2026-05-03T03:00:41.0290876Z Complete job name: axe-core (no serious or critical violations)
+axe-core (no serious or critical violations)	Checkout	∩╗┐2026-05-03T03:00:41.1134362Z ##[group]Run actions/checkout@v4
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.1135802Z with:
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.1136573Z   repository: AnilBotta/propharmex-website
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.1137859Z   token: ***
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.1138576Z   ssh-strict: true
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.1139316Z   ssh-user: git
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.1140073Z   persist-credentials: true
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.1140927Z   clean: true
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.1141702Z   sparse-checkout-cone-mode: true
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.1142613Z   fetch-depth: 1
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.1143377Z   fetch-tags: false
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.1144116Z   show-progress: true
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.1145077Z   lfs: false
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.1145781Z   submodules: false
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.1146559Z   set-safe-directory: true
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.1147739Z ##[endgroup]
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2281140Z Syncing repository: AnilBotta/propharmex-website
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2283907Z ##[group]Getting Git version info
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2285793Z Working directory is '/home/runner/work/propharmex-website/propharmex-website'
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2288247Z [command]/usr/bin/git version
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2323447Z git version 2.53.0
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2348740Z ##[endgroup]
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2363589Z Temporarily overriding HOME='/home/runner/work/_temp/b922cfe1-4c7c-4f7e-81a3-ac6c683c8692' before making global git config changes
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2366561Z Adding repository directory to the temporary git global config as a safe directory
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2369551Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/propharmex-website/propharmex-website
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2403078Z Deleting the contents of '/home/runner/work/propharmex-website/propharmex-website'
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2406675Z ##[group]Initializing the repository
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2411022Z [command]/usr/bin/git init /home/runner/work/propharmex-website/propharmex-website
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2471589Z hint: Using 'master' as the name for the initial branch. This default branch name
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2474232Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2476514Z hint: to use in all of your new repositories, which will suppress this warning,
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2478017Z hint: call:
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2478778Z hint:
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2480025Z hint: 	git config --global init.defaultBranch <name>
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2481209Z hint:
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2482543Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2484752Z hint: 'development'. The just-created branch can be renamed via this command:
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2487351Z hint:
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2488555Z hint: 	git branch -m <name>
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2489875Z hint:
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2491809Z hint: Disable this message with "git config set advice.defaultBranchName false"
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2493989Z Initialized empty Git repository in /home/runner/work/propharmex-website/propharmex-website/.git/
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2498446Z [command]/usr/bin/git remote add origin https://github.com/AnilBotta/propharmex-website
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2518072Z ##[endgroup]
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2519769Z ##[group]Disabling automatic garbage collection
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2521803Z [command]/usr/bin/git config --local gc.auto 0
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2553492Z ##[endgroup]
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2556110Z ##[group]Setting up auth
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2560918Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2592332Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2874438Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.2905050Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.3142411Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.3173541Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.3407778Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.3443908Z ##[endgroup]
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.3445704Z ##[group]Fetching the repository
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.3453008Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +cc3d4b43dcc03478d1a6d609f20d248a6d34d521:refs/remotes/pull/55/merge
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.9766684Z From https://github.com/AnilBotta/propharmex-website
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.9771016Z  * [new ref]         cc3d4b43dcc03478d1a6d609f20d248a6d34d521 -> pull/55/merge
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.9802680Z ##[endgroup]
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.9805372Z ##[group]Determining the checkout info
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.9807818Z ##[endgroup]
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.9809355Z [command]/usr/bin/git sparse-checkout disable
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.9851876Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.9880503Z ##[group]Checking out the ref
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:41.9882959Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/55/merge
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:42.0327524Z Note: switching to 'refs/remotes/pull/55/merge'.
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:42.0329092Z 
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:42.0330109Z You are in 'detached HEAD' state. You can look around, make experimental
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:42.0332661Z changes and commit them, and you can discard any commits you make in this
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:42.0334531Z state without impacting any branches by switching back to a branch.
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:42.0335873Z 
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:42.0336988Z If you want to create a new branch to retain commits you create, you may
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:42.0339102Z do so (now or later) by using -c with the switch command. Example:
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:42.0340147Z 
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:42.0340617Z   git switch -c <new-branch-name>
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:42.0341264Z 
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:42.0341697Z Or undo this operation with:
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:42.0342430Z 
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:42.0342769Z   git switch -
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:42.0343318Z 
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:42.0344077Z Turn off this advice by setting config variable advice.detachedHead to false
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:42.0345347Z 
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:42.0346611Z HEAD is now at cc3d4b4 Merge 51a9ca3602f944cbda45cbd52e2d6c8ee0a73800 into 382b5976ee0e7b3748eeb377f99e53eb2d05016e
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:42.0350671Z ##[endgroup]
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:42.0380086Z [command]/usr/bin/git log -1 --format=%H
+axe-core (no serious or critical violations)	Checkout	2026-05-03T03:00:42.0403909Z cc3d4b43dcc03478d1a6d609f20d248a6d34d521
+axe-core (no serious or critical violations)	Setup pnpm	∩╗┐2026-05-03T03:00:42.0811159Z ##[group]Run pnpm/action-setup@v4
+axe-core (no serious or critical violations)	Setup pnpm	2026-05-03T03:00:42.0812112Z with:
+axe-core (no serious or critical violations)	Setup pnpm	2026-05-03T03:00:42.0812747Z   version: 9.12.0
+axe-core (no serious or critical violations)	Setup pnpm	2026-05-03T03:00:42.0813448Z   dest: ~/setup-pnpm
+axe-core (no serious or critical violations)	Setup pnpm	2026-05-03T03:00:42.0814165Z   run_install: null
+axe-core (no serious or critical violations)	Setup pnpm	2026-05-03T03:00:42.0815083Z   cache: false
+axe-core (no serious or critical violations)	Setup pnpm	2026-05-03T03:00:42.0815829Z   cache_dependency_path: pnpm-lock.yaml
+axe-core (no serious or critical violations)	Setup pnpm	2026-05-03T03:00:42.0816791Z   package_json_file: package.json
+axe-core (no serious or critical violations)	Setup pnpm	2026-05-03T03:00:42.0817657Z   standalone: false
+axe-core (no serious or critical violations)	Setup pnpm	2026-05-03T03:00:42.0818338Z ##[endgroup]
+axe-core (no serious or critical violations)	Setup pnpm	2026-05-03T03:00:42.2263003Z ##[group]Running self-installer...
+axe-core (no serious or critical violations)	Setup pnpm	2026-05-03T03:00:42.8575873Z Progress: resolved 1, reused 0, downloaded 0, added 0
+axe-core (no serious or critical violations)	Setup pnpm	2026-05-03T03:00:42.8687721Z Packages: +1
+axe-core (no serious or critical violations)	Setup pnpm	2026-05-03T03:00:42.8688958Z +
+axe-core (no serious or critical violations)	Setup pnpm	2026-05-03T03:00:43.3285249Z Progress: resolved 1, reused 0, downloaded 1, added 1, done
+axe-core (no serious or critical violations)	Setup pnpm	2026-05-03T03:00:43.3566985Z 
+axe-core (no serious or critical violations)	Setup pnpm	2026-05-03T03:00:43.3567568Z dependencies:
+axe-core (no serious or critical violations)	Setup pnpm	2026-05-03T03:00:43.3568130Z + pnpm 9.12.0 (10.33.2 is available)
+axe-core (no serious or critical violations)	Setup pnpm	2026-05-03T03:00:43.3568498Z 
+axe-core (no serious or critical violations)	Setup pnpm	2026-05-03T03:00:43.3599484Z Done in 961ms
+axe-core (no serious or critical violations)	Setup pnpm	2026-05-03T03:00:43.3767669Z ##[endgroup]
+axe-core (no serious or critical violations)	Setup pnpm	2026-05-03T03:00:43.3771390Z Installation Completed!
+axe-core (no serious or critical violations)	Setup Node	∩╗┐2026-05-03T03:00:43.3945750Z ##[group]Run actions/setup-node@v4
+axe-core (no serious or critical violations)	Setup Node	2026-05-03T03:00:43.3946132Z with:
+axe-core (no serious or critical violations)	Setup Node	2026-05-03T03:00:43.3946369Z   node-version: 20
+axe-core (no serious or critical violations)	Setup Node	2026-05-03T03:00:43.3946626Z   cache: pnpm
+axe-core (no serious or critical violations)	Setup Node	2026-05-03T03:00:43.3946870Z   always-auth: false
+axe-core (no serious or critical violations)	Setup Node	2026-05-03T03:00:43.3947144Z   check-latest: false
+axe-core (no serious or critical violations)	Setup Node	2026-05-03T03:00:43.3947565Z   token: ***
+axe-core (no serious or critical violations)	Setup Node	2026-05-03T03:00:43.3947796Z env:
+axe-core (no serious or critical violations)	Setup Node	2026-05-03T03:00:43.3948100Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+axe-core (no serious or critical violations)	Setup Node	2026-05-03T03:00:43.3948469Z ##[endgroup]
+axe-core (no serious or critical violations)	Setup Node	2026-05-03T03:00:43.5790876Z Found in cache @ /opt/hostedtoolcache/node/20.20.2/x64
+axe-core (no serious or critical violations)	Setup Node	2026-05-03T03:00:43.5799532Z ##[group]Environment details
+axe-core (no serious or critical violations)	Setup Node	2026-05-03T03:00:47.2799170Z node: v20.20.2
+axe-core (no serious or critical violations)	Setup Node	2026-05-03T03:00:47.2799686Z npm: 10.8.2
+axe-core (no serious or critical violations)	Setup Node	2026-05-03T03:00:47.2799987Z yarn: 1.22.22
+axe-core (no serious or critical violations)	Setup Node	2026-05-03T03:00:47.2801026Z ##[endgroup]
+axe-core (no serious or critical violations)	Setup Node	2026-05-03T03:00:47.2823920Z [command]/home/runner/setup-pnpm/node_modules/.bin/pnpm store path --silent
+axe-core (no serious or critical violations)	Setup Node	2026-05-03T03:00:47.7008481Z /home/runner/setup-pnpm/node_modules/.bin/store/v3
+axe-core (no serious or critical violations)	Setup Node	2026-05-03T03:00:47.8866578Z Cache hit for: node-cache-Linux-x64-pnpm-a8d3c3209ae799514a126d0a08cc150039c0bca7485e874de373b25801ad526e
+axe-core (no serious or critical violations)	Setup Node	2026-05-03T03:00:49.0316157Z Received 92274688 of 357378039 (25.8%), 87.9 MBs/sec
+axe-core (no serious or critical violations)	Setup Node	2026-05-03T03:00:50.0358217Z Received 272629760 of 357378039 (76.3%), 129.6 MBs/sec
+axe-core (no serious or critical violations)	Setup Node	2026-05-03T03:00:50.3632086Z Received 357378039 of 357378039 (100.0%), 146.1 MBs/sec
+axe-core (no serious or critical violations)	Setup Node	2026-05-03T03:00:50.3635566Z Cache Size: ~341 MB (357378039 B)
+axe-core (no serious or critical violations)	Setup Node	2026-05-03T03:00:50.3678154Z [command]/usr/bin/tar -xf /home/runner/work/_temp/dbbe9cb3-ec3c-4bd9-b13d-e6649a02f570/cache.tzst -P -C /home/runner/work/propharmex-website/propharmex-website --use-compress-program unzstd
+axe-core (no serious or critical violations)	Setup Node	2026-05-03T03:00:54.4200865Z Cache restored successfully
+axe-core (no serious or critical violations)	Setup Node	2026-05-03T03:00:54.4373985Z Cache restored from key: node-cache-Linux-x64-pnpm-a8d3c3209ae799514a126d0a08cc150039c0bca7485e874de373b25801ad526e
+axe-core (no serious or critical violations)	Install dependencies	∩╗┐2026-05-03T03:00:54.4571704Z ##[group]Run pnpm install --frozen-lockfile
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:00:54.4572130Z [36;1mpnpm install --frozen-lockfile[0m
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:00:54.4603041Z shell: /usr/bin/bash -e {0}
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:00:54.4603323Z env:
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:00:54.4603576Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:00:54.4603893Z ##[endgroup]
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:00:54.8865348Z Scope: all 6 workspace projects
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:00:54.9826737Z Lockfile is up to date, resolution step is skipped
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:00:55.1365431Z Progress: resolved 1, reused 0, downloaded 0, added 0
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:00:55.3429261Z Packages: +1773
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:00:55.3430049Z ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:00:56.1379617Z Progress: resolved 1773, reused 1190, downloaded 0, added 0
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:00:57.1406497Z Progress: resolved 1773, reused 1743, downloaded 0, added 450
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:00:58.1383761Z Progress: resolved 1773, reused 1743, downloaded 0, added 1323
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:00:59.1449860Z Progress: resolved 1773, reused 1743, downloaded 0, added 1591
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:00:59.5131159Z Progress: resolved 1773, reused 1743, downloaded 0, added 1773, done
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:01:01.6184083Z 
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:01:01.6184936Z devDependencies:
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:01:01.6185575Z + @storybook/addon-a11y 8.6.18
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:01:01.6186091Z + @storybook/addon-essentials 8.6.14
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:01:01.6186636Z + @storybook/addon-interactions 8.6.14
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:01:01.6187089Z + @storybook/blocks 8.6.14
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:01:01.6187456Z + @storybook/react 8.6.18
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:01:01.6187865Z + @storybook/react-vite 8.6.18
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:01:01.6188251Z + @storybook/test 8.6.15
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:01:01.6188618Z + @tailwindcss/vite 4.2.4
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:01:01.6188972Z + @types/node 20.19.39
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:01:01.6189280Z + docx 9.6.1
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:01:01.6189543Z + eslint 9.39.4
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:01:01.6189806Z + husky 9.1.7
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:01:01.6190071Z + lint-staged 15.5.2
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:01:01.6190358Z + prettier 3.8.3
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:01:01.6190651Z + storybook 8.6.18
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:01:01.6191023Z + tsx 4.21.0
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:01:01.6191267Z + turbo 2.9.6
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:01:01.6191557Z + typescript 5.9.3
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:01:01.6191844Z + vite 5.4.21
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:01:01.6191995Z 
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:01:01.6353316Z . prepare$ husky
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:01:01.6886981Z . prepare: Done
+axe-core (no serious or critical violations)	Install dependencies	2026-05-03T03:01:01.7123316Z Done in 7.2s
+axe-core (no serious or critical violations)	Install Playwright Chromium	∩╗┐2026-05-03T03:01:01.7574035Z ##[group]Run pnpm --filter web exec playwright install --with-deps chromium
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:01.7574594Z [36;1mpnpm --filter web exec playwright install --with-deps chromium[0m
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:01.7598297Z shell: /usr/bin/bash -e {0}
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:01.7598561Z env:
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:01.7598820Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:01.7599121Z ##[endgroup]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:02.4610563Z Installing dependencies...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:02.4701627Z Switching to root user to install dependencies...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:02.5854601Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:02.6320898Z Hit:6 https://packages.microsoft.com/repos/azure-cli noble InRelease
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:02.6343312Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:02.7051379Z Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:02.7063397Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:02.7101056Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:02.7115860Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:02.7741035Z Get:8 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [132 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:02.7848660Z Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [107 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:02.7862032Z Get:10 https://dl.google.com/linux/chrome-stable/deb stable InRelease [1825 B]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:02.7878075Z Get:11 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [11.6 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:02.8930454Z Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1946 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:02.9075307Z Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [348 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:02.9092895Z Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [177 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:02.9102348Z Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 c-n-f Metadata [17.1 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:02.9141218Z Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1685 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:02.9245996Z Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [324 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:02.9263135Z Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [386 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:02.9293915Z Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 c-n-f Metadata [34.5 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:02.9311851Z Get:20 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [3095 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:02.9506174Z Get:21 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [715 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:02.9973796Z Get:22 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Components [212 B]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:02.9982390Z Get:23 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 c-n-f Metadata [480 B]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:02.9991859Z Get:24 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [44.4 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.0007572Z Get:25 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en [10.2 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.0021254Z Get:26 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.0032310Z Get:27 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 c-n-f Metadata [656 B]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.0044971Z Get:28 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [64.5 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.0053596Z Get:29 http://azure.archive.ubuntu.com/ubuntu noble-backports/main Translation-en [9172 B]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.0061620Z Get:30 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [7368 B]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.0130147Z Get:31 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 c-n-f Metadata [368 B]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.0132021Z Get:32 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [34.1 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.0133534Z Get:33 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe Translation-en [18.2 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.0135147Z Get:34 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [10.5 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.0136640Z Get:35 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 c-n-f Metadata [1484 B]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.0578448Z Get:36 http://azure.archive.ubuntu.com/ubuntu noble-backports/restricted amd64 Components [212 B]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.0584174Z Get:37 http://azure.archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [748 B]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.0594656Z Get:38 http://azure.archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Components [212 B]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.0621041Z Get:39 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [1625 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.0722291Z Get:40 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [259 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.0743402Z Get:41 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [21.9 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.0753515Z Get:42 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 c-n-f Metadata [11.0 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.0765167Z Get:43 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1182 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.0835056Z Get:44 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [227 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.0855883Z Get:45 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [74.2 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.0868344Z Get:46 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 c-n-f Metadata [23.1 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.0881001Z Get:47 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [2844 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.1037331Z Get:48 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [666 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.1072674Z Get:53 https://dl.google.com/linux/chrome-stable/deb stable/main amd64 Packages [1216 B]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.1076621Z Get:49 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Components [212 B]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.1085339Z Get:50 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [28.8 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.1536498Z Get:51 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Translation-en [7172 B]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:03.1545835Z Get:52 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Components [208 B]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:13.4592466Z Fetched 16.5 MB in 2s (8100 kB/s)
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.2894706Z Reading package lists...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.3162132Z Reading package lists...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.5255822Z Building dependency tree...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.5263334Z Reading state information...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7059760Z libasound2t64 is already the newest version (1.2.11-1ubuntu0.2).
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7060571Z libasound2t64 set to manually installed.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7061387Z libatk-bridge2.0-0t64 is already the newest version (2.52.0-1build1).
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7062143Z libatk-bridge2.0-0t64 set to manually installed.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7062950Z libatk1.0-0t64 is already the newest version (2.52.0-1build1).
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7063593Z libatk1.0-0t64 set to manually installed.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7064258Z libatspi2.0-0t64 is already the newest version (2.52.0-1build1).
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7065065Z libatspi2.0-0t64 set to manually installed.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7065619Z libcairo2 is already the newest version (1.18.0-3build1).
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7066193Z libcairo2 set to manually installed.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7066599Z libcups2t64 is already the newest version (2.4.7-1.2ubuntu7.9).
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7066975Z libcups2t64 set to manually installed.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7067890Z libdbus-1-3 is already the newest version (1.14.10-4ubuntu4.1).
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7068318Z libdbus-1-3 set to manually installed.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7068716Z libdrm2 is already the newest version (2.4.125-1ubuntu0.1~24.04.1).
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7069095Z libdrm2 set to manually installed.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7069541Z libgbm1 is already the newest version (25.2.8-0ubuntu0.24.04.1).
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7069971Z libgbm1 set to manually installed.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7070353Z libglib2.0-0t64 is already the newest version (2.80.0-6ubuntu3.8).
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7070736Z libglib2.0-0t64 set to manually installed.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7071140Z libnspr4 is already the newest version (2:4.35-1.1build1).
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7071502Z libnspr4 set to manually installed.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7071879Z libnss3 is already the newest version (2:3.98-1ubuntu0.1).
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7072218Z libnss3 set to manually installed.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7072597Z libpango-1.0-0 is already the newest version (1.52.1+ds-1build1).
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7072983Z libpango-1.0-0 set to manually installed.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7073365Z libx11-6 is already the newest version (2:1.8.7-1build1).
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7073713Z libx11-6 set to manually installed.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7074047Z libxcb1 is already the newest version (1.15-1ubuntu2).
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7074397Z libxcb1 set to manually installed.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7074979Z libxcomposite1 is already the newest version (1:0.4.5-1build3).
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7075419Z libxcomposite1 set to manually installed.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7075825Z libxdamage1 is already the newest version (1:1.1.6-1build1).
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7076190Z libxdamage1 set to manually installed.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7076560Z libxext6 is already the newest version (2:1.3.4-1build2).
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7077222Z libxext6 set to manually installed.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7077596Z libxfixes3 is already the newest version (1:6.0.0-2build1).
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7077951Z libxfixes3 set to manually installed.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7078335Z libxkbcommon0 is already the newest version (1.6.0-1build1).
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7078704Z libxkbcommon0 set to manually installed.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7079082Z libxrandr2 is already the newest version (2:1.5.2-2build1).
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7079424Z libxrandr2 set to manually installed.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7079796Z xvfb is already the newest version (2:21.1.12-1ubuntu1.5).
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7080300Z fonts-noto-color-emoji is already the newest version (2.047-0ubuntu0.24.04.1).
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7080829Z libfontconfig1 is already the newest version (2.15.0-1.1ubuntu2).
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7081229Z libfontconfig1 set to manually installed.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7081640Z libfreetype6 is already the newest version (2.13.2+dfsg-1ubuntu0.1).
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7082044Z libfreetype6 set to manually installed.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7082443Z fonts-liberation is already the newest version (1:2.1.5-3).
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7082833Z fonts-liberation set to manually installed.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7083215Z The following additional packages will be installed:
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7083555Z   xfonts-encodings xfonts-utils
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7083820Z Recommended packages:
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7084086Z   fonts-ipafont-mincho fonts-tlwg-loma
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7561042Z The following NEW packages will be installed:
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7562008Z   fonts-freefont-ttf fonts-ipafont-gothic fonts-tlwg-loma-otf fonts-unifont
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7568873Z   fonts-wqy-zenhei xfonts-cyrillic xfonts-encodings xfonts-scalable
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7569500Z   xfonts-utils
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7759832Z 0 upgraded, 9 newly installed, 0 to remove and 53 not upgraded.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7760532Z Need to get 21.1 MB of archives.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7761194Z After this operation, 79.5 MB of additional disk space will be used.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.7762001Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:14.8642249Z Get:2 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-ipafont-gothic all 00303-21ubuntu1 [3513 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:15.1872975Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 fonts-freefont-ttf all 20211204+svn4273-2 [5641 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:15.3236020Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-tlwg-loma-otf all 1:0.7.3-1 [107 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:15.3597072Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-unifont all 1:15.1.01-1build1 [2993 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:15.4382888Z Get:6 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-wqy-zenhei all 0.9.45-8 [7472 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:15.5741254Z Get:7 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings all 1:1.0.5-0ubuntu2 [578 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:15.6167490Z Get:8 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3 [94.4 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:15.6539174Z Get:9 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1 [384 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:15.6936274Z Get:10 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3 [304 kB]
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:15.9734983Z Fetched 21.1 MB in 1s (22.6 MB/s)
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:16.0069804Z Selecting previously unselected package fonts-ipafont-gothic.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:16.1039402Z (Reading database ... 
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:16.1039801Z (Reading database ... 5%
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:16.1040087Z (Reading database ... 10%
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:16.1040354Z (Reading database ... 15%
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:16.1040584Z (Reading database ... 20%
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:16.1040831Z (Reading database ... 25%
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:16.1041070Z (Reading database ... 30%
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:16.1041299Z (Reading database ... 35%
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:16.1041520Z (Reading database ... 40%
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:16.1041746Z (Reading database ... 45%
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:16.1042304Z (Reading database ... 50%
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:16.1331149Z (Reading database ... 55%
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:16.4156427Z (Reading database ... 60%
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:16.6881120Z (Reading database ... 65%
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:16.9841446Z (Reading database ... 70%
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:17.2756981Z (Reading database ... 75%
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:17.6712516Z (Reading database ... 80%
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:18.1830652Z (Reading database ... 85%
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:18.7522536Z (Reading database ... 90%
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:19.5068081Z (Reading database ... 95%
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:19.5068603Z (Reading database ... 100%
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:19.5069276Z (Reading database ... 220764 files and directories currently installed.)
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:19.5119703Z Preparing to unpack .../0-fonts-ipafont-gothic_00303-21ubuntu1_all.deb ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:19.5216059Z Unpacking fonts-ipafont-gothic (00303-21ubuntu1) ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:19.7817545Z Selecting previously unselected package fonts-freefont-ttf.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:19.7980799Z Preparing to unpack .../1-fonts-freefont-ttf_20211204+svn4273-2_all.deb ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:19.7999091Z Unpacking fonts-freefont-ttf (20211204+svn4273-2) ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:20.4121024Z Selecting previously unselected package fonts-tlwg-loma-otf.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:20.4267514Z Preparing to unpack .../2-fonts-tlwg-loma-otf_1%3a0.7.3-1_all.deb ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:20.4275378Z Unpacking fonts-tlwg-loma-otf (1:0.7.3-1) ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:20.4537062Z Selecting previously unselected package fonts-unifont.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:20.4683150Z Preparing to unpack .../3-fonts-unifont_1%3a15.1.01-1build1_all.deb ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:20.4689985Z Unpacking fonts-unifont (1:15.1.01-1build1) ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:20.5779015Z Selecting previously unselected package fonts-wqy-zenhei.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:20.5923454Z Preparing to unpack .../4-fonts-wqy-zenhei_0.9.45-8_all.deb ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:20.6070718Z Unpacking fonts-wqy-zenhei (0.9.45-8) ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:21.0749215Z Selecting previously unselected package xfonts-encodings.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:21.0894049Z Preparing to unpack .../5-xfonts-encodings_1%3a1.0.5-0ubuntu2_all.deb ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:21.0903436Z Unpacking xfonts-encodings (1:1.0.5-0ubuntu2) ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:21.1194551Z Selecting previously unselected package xfonts-utils.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:21.1340772Z Preparing to unpack .../6-xfonts-utils_1%3a7.7+6build3_amd64.deb ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:21.1347457Z Unpacking xfonts-utils (1:7.7+6build3) ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:21.1733119Z Selecting previously unselected package xfonts-cyrillic.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:21.1879653Z Preparing to unpack .../7-xfonts-cyrillic_1%3a1.0.5+nmu1_all.deb ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:21.1886813Z Unpacking xfonts-cyrillic (1:1.0.5+nmu1) ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:21.2221018Z Selecting previously unselected package xfonts-scalable.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:21.2365976Z Preparing to unpack .../8-xfonts-scalable_1%3a1.0.3-1.3_all.deb ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:21.2373633Z Unpacking xfonts-scalable (1:1.0.3-1.3) ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:21.2808732Z Setting up fonts-wqy-zenhei (0.9.45-8) ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:21.2924183Z Setting up fonts-freefont-ttf (20211204+svn4273-2) ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:21.2941694Z Setting up fonts-tlwg-loma-otf (1:0.7.3-1) ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:21.2958176Z Setting up xfonts-encodings (1:1.0.5-0ubuntu2) ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:21.2976628Z Setting up fonts-ipafont-gothic (00303-21ubuntu1) ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:21.3043899Z update-alternatives: using /usr/share/fonts/opentype/ipafont-gothic/ipag.ttf to provide /usr/share/fonts/truetype/fonts-japanese-gothic.ttf (fonts-japanese-gothic.ttf) in auto mode
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:21.3058984Z Setting up fonts-unifont (1:15.1.01-1build1) ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:21.3075050Z Setting up xfonts-utils (1:7.7+6build3) ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:21.3112841Z Setting up xfonts-cyrillic (1:1.0.5+nmu1) ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:21.3398140Z Setting up xfonts-scalable (1:1.0.3-1.3) ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:21.3765707Z Processing triggers for man-db (2.12.0-4build2) ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:21.3784416Z Not building database; man-db/auto-update is not 'true'.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:21.3796677Z Processing triggers for fontconfig (2.15.0-1.1ubuntu2) ...
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:22.7804613Z 
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:22.7805555Z Running kernel seems to be up-to-date.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:22.7805932Z 
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:22.7806153Z No services need to be restarted.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:22.7806457Z 
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:22.7806681Z No containers need to be restarted.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:22.7806950Z 
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:22.7807216Z No user sessions are running outdated binaries.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:22.7807507Z 
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:22.7807938Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:23.7997333Z Downloading Chrome for Testing 147.0.7727.15 (playwright chromium v1217) from https://cdn.playwright.dev/builds/cft/147.0.7727.15/linux64/chrome-linux64.zip
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:24.6673605Z |                                                                                |   0% of 170.4 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:25.0850016Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá                                                                        |  10% of 170.4 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:25.1670892Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá                                                                |  20% of 170.4 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:25.2378389Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá                                                        |  30% of 170.4 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:25.3075976Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá                                                |  40% of 170.4 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:25.3751841Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá                                        |  50% of 170.4 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:25.4411493Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá                                |  60% of 170.4 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:25.5061508Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá                        |  70% of 170.4 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:25.5755266Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá                |  80% of 170.4 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:25.6420561Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá        |  90% of 170.4 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:25.7067564Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá| 100% of 170.4 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:28.7861706Z Chrome for Testing 147.0.7727.15 (playwright chromium v1217) downloaded to /home/runner/.cache/ms-playwright/chromium-1217
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:28.7865646Z Downloading FFmpeg (playwright ffmpeg v1011) from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1011/ffmpeg-linux.zip
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:29.5689165Z |                                                                                |   0% of 2.3 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:29.6026657Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá                                                                        |  10% of 2.3 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:29.6162811Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá                                                                |  20% of 2.3 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:29.6262967Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá                                                        |  30% of 2.3 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:29.6369648Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá                                                |  40% of 2.3 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:29.6406610Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá                                        |  50% of 2.3 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:29.6491711Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá                                |  60% of 2.3 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:29.6519159Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá                        |  70% of 2.3 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:29.6587779Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá                |  80% of 2.3 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:29.6612311Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá        |  90% of 2.3 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:29.6634506Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá| 100% of 2.3 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:29.7348207Z FFmpeg (playwright ffmpeg v1011) downloaded to /home/runner/.cache/ms-playwright/ffmpeg-1011
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:29.7352014Z Downloading Chrome Headless Shell 147.0.7727.15 (playwright chromium-headless-shell v1217) from https://cdn.playwright.dev/builds/cft/147.0.7727.15/linux64/chrome-headless-shell-linux64.zip
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:30.5694745Z |                                                                                |   0% of 112 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:30.8766025Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá                                                                        |  10% of 112 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:30.9480882Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá                                                                |  20% of 112 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:30.9985711Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá                                                        |  30% of 112 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:31.0478469Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá                                                |  40% of 112 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:31.0940340Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá                                        |  50% of 112 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:31.1445540Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá                                |  60% of 112 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:31.1917602Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá                        |  70% of 112 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:31.2359669Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá                |  80% of 112 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:31.2776539Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá        |  90% of 112 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:31.3208162Z |ΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûáΓûá| 100% of 112 MiB
+axe-core (no serious or critical violations)	Install Playwright Chromium	2026-05-03T03:01:33.5443254Z Chrome Headless Shell 147.0.7727.15 (playwright chromium-headless-shell v1217) downloaded to /home/runner/.cache/ms-playwright/chromium_headless_shell-1217
+axe-core (no serious or critical violations)	Build	∩╗┐2026-05-03T03:01:33.5634434Z ##[group]Run pnpm --filter web build
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:33.5634990Z [36;1mpnpm --filter web build[0m
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:33.5657917Z shell: /usr/bin/bash -e {0}
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:33.5658173Z env:
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:33.5658431Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:33.5658987Z   NEXT_PUBLIC_SITE_URL: https://propharmex.com
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:33.5659295Z   NEXT_PUBLIC_SANITY_PROJECT_ID: 
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:33.5659552Z   NEXT_PUBLIC_SANITY_DATASET: 
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:33.5659788Z ##[endgroup]
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:33.9975645Z 
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:33.9985637Z > web@1.0.0 build /home/runner/work/propharmex-website/propharmex-website/apps/web
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:33.9986152Z > next build
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:33.9986286Z 
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:35.0094723Z ΓÜá No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:35.0173202Z Attention: Next.js now collects completely anonymous telemetry regarding usage.
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:35.0174385Z This information is used to shape Next.js' roadmap and prioritize features.
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:35.0175949Z You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:35.0176953Z https://nextjs.org/telemetry
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:35.0177220Z 
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:35.1115149Z    Γû▓ Next.js 15.5.15
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:35.1115748Z    - Experiments (use with caution):
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:35.1116334Z      ┬╖ serverActions
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:35.1116756Z      ┬╖ clientTraceMetadata
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:35.1116998Z 
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:35.1932818Z    Creating an optimized production build ...
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:35.4762472Z [@sentry/nextjs] The Sentry SDK has enabled source map generation for your Next.js app. If you don't want to serve Source Maps to your users, either set the `sourcemaps.deleteSourcemapsAfterUpload` option to true, or manually delete the source maps after the build. In future Sentry SDK versions `sourcemaps.deleteSourcemapsAfterUpload` will default to `true`. If you do not want to generate and upload sourcemaps, set the `sourcemaps.disable` option in `withSentryConfig()`.
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:35.5186427Z [@sentry/nextjs - Node.js] Warning: No auth token provided. Will not create release. Please set the `authToken` option. You can find information on how to generate a Sentry auth token here: https://docs.sentry.io/api/auth/
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:35.5188961Z [@sentry/nextjs - Node.js] Warning: No auth token provided. Will not upload source maps. Please set the `authToken` option. You can find information on how to generate a Sentry auth token here: https://docs.sentry.io/api/auth/
+axe-core (no serious or critical violations)	Build	2026-05-03T03:01:35.5824178Z [@sentry/nextjs - Node.js] Info: Sending telemetry data on issues and performance to Sentry. To disable telemetry, set `options.telemetry` to `false`.
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:12.4963214Z [@sentry/nextjs - Edge] Warning: No auth token provided. Will not create release. Please set the `authToken` option. You can find information on how to generate a Sentry auth token here: https://docs.sentry.io/api/auth/
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:12.4966373Z [@sentry/nextjs - Edge] Warning: No auth token provided. Will not upload source maps. Please set the `authToken` option. You can find information on how to generate a Sentry auth token here: https://docs.sentry.io/api/auth/
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:12.5249705Z [@sentry/nextjs - Edge] Info: Sending telemetry data on issues and performance to Sentry. To disable telemetry, set `options.telemetry` to `false`.
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8687671Z Failed to compile.
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8707645Z 
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8708851Z ../../packages/lib/index.ts:45:1
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8709596Z Module not found: Can't resolve './region'
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8710322Z   43 | export * as delReadiness from "./del-readiness";
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8711063Z   44 | export * as dosageMatcher from "./dosage-matcher";
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8711770Z > 45 | export * as region from "./region";
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8712291Z      | ^
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8712650Z   46 |
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8713446Z 
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8713857Z https://nextjs.org/docs/messages/module-not-found
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8714316Z 
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8714631Z Import trace for requested module:
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8743496Z ./app/error.tsx
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8744229Z 
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8744582Z ../../packages/lib/index.ts:45:1
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8745583Z Module not found: Can't resolve './region'
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8750996Z   43 | export * as delReadiness from "./del-readiness";
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8751700Z   44 | export * as dosageMatcher from "./dosage-matcher";
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8752313Z > 45 | export * as region from "./region";
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8752929Z      | ^
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8753317Z   46 |
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8753551Z 
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8753973Z https://nextjs.org/docs/messages/module-not-found
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8754448Z 
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8754966Z Import trace for requested module:
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8755501Z ./app/layout.tsx
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8755818Z 
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8756167Z ../../packages/lib/index.ts:45:1
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8756807Z Module not found: Can't resolve './region'
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8757507Z   43 | export * as delReadiness from "./del-readiness";
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8758253Z   44 | export * as dosageMatcher from "./dosage-matcher";
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8758985Z > 45 | export * as region from "./region";
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8759549Z      | ^
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8759976Z   46 |
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8760247Z 
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8760743Z https://nextjs.org/docs/messages/module-not-found
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8761335Z 
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8761646Z Import trace for requested module:
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.8762152Z ./app/api/ai/scoping/route.ts
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.9395660Z ../../node_modules/.pnpm/next@15.5.15_@babel+core@7.29.0_@opentelemetry+api@1.9.1_@playwright+test@1.59.1_react-dom@19_iuov2bt4gs3an5fonhqyiylxmq/node_modules/next/dist/build/webpack/loaders/next-edge-app-route-loader/index.js?absolutePagePath=private-next-app-dir%2Fapi%2Fai%2Fscoping%2Froute.ts&page=%2Fapi%2Fai%2Fscoping%2Froute&appDirLoader=bmV4dC1hcHAtbG9hZGVyP25hbWU9YXBwJTJGYXBpJTJGYWklMkZzY29waW5nJTJGcm91dGUmcGFnZT0lMkZhcGklMkZhaSUyRnNjb3BpbmclMkZyb3V0ZSZwYWdlUGF0aD1wcml2YXRlLW5leHQtYXBwLWRpciUyRmFwaSUyRmFpJTJGc2NvcGluZyUyRnJvdXRlLnRzJmFwcERpcj0lMkZob21lJTJGcnVubmVyJTJGd29yayUyRnByb3BoYXJtZXgtd2Vic2l0ZSUyRnByb3BoYXJtZXgtd2Vic2l0ZSUyRmFwcHMlMkZ3ZWIlMkZhcHAmYXBwUGF0aHM9JTJGYXBpJTJGYWklMkZzY29waW5nJTJGcm91dGUmcGFnZUV4dGVuc2lvbnM9dHN4JnBhZ2VFeHRlbnNpb25zPXRzJnBhZ2VFeHRlbnNpb25zPWpzeCZwYWdlRXh0ZW5zaW9ucz1qcyZiYXNlUGF0aD0mYXNzZXRQcmVmaXg9Jm5leHRDb25maWdPdXRwdXQ9JnByZWZlcnJlZFJlZ2lvbj0mbWlkZGxld2FyZUNvbmZpZz1lMzAlM0QmaXNHbG9iYWxOb3RGb3VuZEVuYWJsZWQ9IQ%3D%3D&nextConfig=eyJlbnYiOnsiX3NlbnRyeVJld3JpdGVGcmFtZXNEaXN0RGlyIjoiLm5leHQiLCJfc2VudHJ5UmV3cml0ZUZyYW1lc0Fzc2V0UHJlZml4UGF0aCI6IiIsIl9zZW50cnlSZXdyaXRlc1R1bm5lbFBhdGgiOiIvbW9uaXRvcmluZyJ9LCJlc2xpbnQiOnsiaWdub3JlRHVyaW5nQnVpbGRzIjpmYWxzZX0sInR5cGVzY3JpcHQiOnsiaWdub3JlQnVpbGRFcnJvcnMiOmZhbHNlLCJ0c2NvbmZpZ1BhdGgiOiJ0c2NvbmZpZy5qc29uIn0sInR5cGVkUm91dGVzIjpmYWxzZSwiZGlzdERpciI6Ii5uZXh0IiwiY2xlYW5EaXN0RGlyIjp0cnVlLCJhc3NldFByZWZpeCI6IiIsImNhY2hlTWF4TWVtb3J5U2l6ZSI6NTI0Mjg4MDAsImNvbmZpZ09yaWdpbiI6Im5leHQuY29uZmlnLnRzIiwidXNlRmlsZVN5c3RlbVB1YmxpY1JvdXRlcyI6dHJ1ZSwiZ2VuZXJhdGVFdGFncyI6dHJ1ZSwicGFnZUV4dGVuc2lvbnMiOlsidHN4IiwidHMiLCJqc3giLCJqcyJdLCJwb3dlcmVkQnlIZWFkZXIiOmZhbHNlLCJjb21wcmVzcyI6dHJ1ZSwiaW1hZ2VzIjp7ImRldmljZVNpemVzIjpbNjQwLDc1MCw4MjgsMTA4MCwxMjAwLDE5MjAsMjA0OCwzODQwXSwiaW1hZ2VTaXplcyI6WzE2LDMyLDQ4LDY0LDk2LDEyOCwyNTYsMzg0XSwicGF0aCI6Ii9fbmV4dC9pbWFnZSIsImxvYWRlciI6ImRlZmF1bHQiLCJsb2FkZXJGaWxlIjoiIiwiZG9tYWlucyI6W10sImRpc2FibGVTdGF0aWNJbWFnZXMiOmZhbHNlLCJtaW5pbXVtQ2FjaGVUVEwiOjYwLCJmb3JtYXRzIjpbImltYWdlL2F2aWYiLCJpbWFnZS93ZWJwIl0sIm1heGltdW1SZXNwb25zZUJvZHkiOjUwMDAwMDAwLCJkYW5nZXJvdXNseUFsbG93U1ZHIjpmYWxzZSwiY29udGVudFNlY3VyaXR5UG9saWN5Ijoic2NyaXB0LXNyYyAnbm9uZSc7IGZyYW1lLXNyYyAnbm9uZSc7IHNhbmRib3g7IiwiY29udGVudERpc3Bvc2l0aW9uVHlwZSI6ImF0dGFjaG1lbnQiLCJyZW1vdGVQYXR0ZXJucyI6W3sicHJvdG9jb2wiOiJodHRwcyIsImhvc3RuYW1lIjoiY2RuLnNhbml0eS5pbyJ9LHsicHJvdG9jb2wiOiJodHRwcyIsImhvc3RuYW1lIjoiaW1hZ2VzLnVuc3BsYXNoLmNvbSJ9XSwidW5vcHRpbWl6ZWQiOmZhbHNlfSwiZGV2SW5kaWNhdG9ycyI6eyJwb3NpdGlvbiI6ImJvdHRvbS1sZWZ0In0sIm9uRGVtYW5kRW50cmllcyI6eyJtYXhJbmFjdGl2ZUFnZSI6NjAwMDAsInBhZ2VzQnVmZmVyTGVuZ3RoIjo1fSwiYW1wIjp7ImNhbm9uaWNhbEJhc2UiOiIifSwiYmFzZVBhdGgiOiIiLCJzYXNzT3B0aW9ucyI6e30sInRyYWlsaW5nU2xhc2giOmZhbHNlLCJpMThuIjpudWxsLCJwcm9kdWN0aW9uQnJvd3NlclNvdXJjZU1hcHMiOmZhbHNlLCJleGNsdWRlRGVmYXVsdE1vbWVudExvY2FsZXMiOnRydWUsInNlcnZlclJ1bnRpbWVDb25maWciOnt9LCJwdWJsaWNSdW50aW1lQ29uZmlnIjp7fSwicmVhY3RQcm9kdWN0aW9uUHJvZmlsaW5nIjpmYWxzZSwicmVhY3RTdHJpY3RNb2RlIjp0cnVlLCJyZWFjdE1heEhlYWRlcnNMZW5ndGgiOjYwMDAsImh0dHBBZ2VudE9wdGlvbnMiOnsia2VlcEFsaXZlIjp0cnVlfSwibG9nZ2luZyI6e30sImNvbXBpbGVyIjp7fSwiZXhwaXJlVGltZSI6MzE1MzYwMDAsInN0YXRpY1BhZ2VHZW5lcmF0aW9uVGltZW91dCI6NjAsIm1vZHVsYXJpemVJbXBvcnRzIjp7IkBtdWkvaWNvbnMtbWF0ZXJpYWwiOnsidHJhbnNmb3JtIjoiQG11aS9pY29ucy1tYXRlcmlhbC97e21lbWJlcn19In0sImxvZGFzaCI6eyJ0cmFuc2Zvcm0iOiJsb2Rhc2gve3ttZW1iZXJ9fSJ9fSwib3V0cHV0RmlsZVRyYWNpbmdSb290IjoiL2hvbWUvcnVubmVyL3dvcmsvcHJvcGhhcm1leC13ZWJzaXRlL3Byb3BoYXJtZXgtd2Vic2l0ZSIsImV4cGVyaW1lbnRhbCI6eyJ1c2VTa2V3Q29va2llIjpmYWxzZSwiY2FjaGVMaWZlIjp7ImRlZmF1bHQiOnsic3RhbGUiOjMwMCwicmV2YWxpZGF0ZSI6OTAwLCJleHBpcmUiOjQyOTQ5NjcyOTR9LCJzZWNvbmRzIjp7InN0YWxlIjozMCwicmV2YWxpZGF0ZSI6MSwiZXhwaXJlIjo2MH0sIm1pbnV0ZXMiOnsic3RhbGUiOjMwMCwicmV2YWxpZGF0ZSI6NjAsImV4cGlyZSI6MzYwMH0sImhvdXJzIjp7InN0YWxlIjozMDAsInJldmFsaWRhdGUiOjM2MDAsImV4cGlyZSI6ODY0MDB9LCJkYXlzIjp7InN0YWxlIjozMDAsInJldmFsaWRhdGUiOjg2NDAwLCJleHBpcmUiOjYwNDgwMH0sIndlZWtzIjp7InN0YWxlIjozMDAsInJldmFsaWRhdGUiOjYwNDgwMCwiZXhwaXJlIjoyNTkyMDAwfSwibWF4Ijp7InN0YWxlIjozMDAsInJldmFsaWRhdGUiOjI1OTIwMDAsImV4cGlyZSI6NDI5NDk2NzI5NH19LCJjYWNoZUhhbmRsZXJzIjp7fSwiY3NzQ2h1bmtpbmciOnRydWUsIm11bHRpWm9uZURyYWZ0TW9kZSI6ZmFsc2UsImFwcE5hdkZhaWxIYW5kbGluZyI6ZmFsc2UsInByZXJlbmRlckVhcmx5RXhpdCI6dHJ1ZSwic2VydmVyTWluaWZpY2F0aW9uIjp0cnVlLCJzZXJ2ZXJTb3VyY2VNYXBzIjpmYWxzZSwibGlua05vVG91Y2hTdGFydCI6ZmFsc2UsImNhc2VTZW5zaXRpdmVSb3V0ZXMiOmZhbHNlLCJjbGllbnRTZWdtZW50Q2FjaGUiOmZhbHNlLCJjbGllbnRQYXJhbVBhcnNpbmciOmZhbHNlLCJkeW5hbWljT25Ib3ZlciI6ZmFsc2UsInByZWxvYWRFbnRyaWVzT25TdGFydCI6dHJ1ZSwiY2xpZW50Um91dGVyRmlsdGVyIjp0cnVlLCJjbGllbnRSb3V0ZXJGaWx0ZXJSZWRpcmVjdHMiOmZhbHNlLCJmZXRjaENhY2hlS2V5UHJlZml4IjoiIiwibWlkZGxld2FyZVByZWZldGNoIjoiZmxleGlibGUiLCJvcHRpbWlzdGljQ2xpZW50Q2FjaGUiOnRydWUsIm1hbnVhbENsaWVudEJhc2VQYXRoIjpmYWxzZSwiY3B1cyI6MywibWVtb3J5QmFzZWRXb3JrZXJzQ291bnQiOmZhbHNlLCJpbWdPcHRDb25jdXJyZW5jeSI6bnVsbCwiaW1nT3B0VGltZW91dEluU2Vjb25kcyI6NywiaW1nT3B0TWF4SW5wdXRQaXhlbHMiOjI2ODQwMjY4OSwiaW1nT3B0U2VxdWVudGlhbFJlYWQiOm51bGwsImltZ09wdFNraXBNZXRhZGF0YSI6bnVsbCwiaXNyRmx1c2hUb0Rpc2siOnRydWUsIndvcmtlclRocmVhZHMiOmZhbHNlLCJvcHRpbWl6ZUNzcyI6ZmFsc2UsIm5leHRTY3JpcHRXb3JrZXJzIjpmYWxzZSwic2Nyb2xsUmVzdG9yYXRpb24iOmZhbHNlLCJleHRlcm5hbERpciI6ZmFsc2UsImRpc2FibGVPcHRpbWl6ZWRMb2FkaW5nIjpmYWxzZSwiZ3ppcFNpemUiOnRydWUsImNyYUNvbXBhdCI6ZmFsc2UsImVzbUV4dGVybmFscyI6dHJ1ZSwiZnVsbHlTcGVjaWZpZWQiOmZhbHNlLCJzd2NUcmFjZVByb2ZpbGluZyI6ZmFsc2UsImZvcmNlU3djVHJhbnNmb3JtcyI6ZmFsc2UsImxhcmdlUGFnZURhdGFCeXRlcyI6MTI4MDAwLCJ0eXBlZEVudiI6ZmFsc2UsImNsaWVudFRyYWNlTWV0YWRhdGEiOlsiYmFnZ2FnZSIsInNlbnRyeS10cmFjZSJdLCJwYXJhbGxlbFNlcnZlckNvbXBpbGVzIjpmYWxzZSwicGFyYWxsZWxTZXJ2ZXJCdWlsZFRyYWNlcyI6ZmFsc2UsInBwciI6ZmFsc2UsImF1dGhJbnRlcnJ1cHRzIjpmYWxzZSwid2VicGFja01lbW9yeU9wdGltaXphdGlvbnMiOmZhbHNlLCJvcHRpbWl6ZVNlcnZlclJlYWN0Ijp0cnVlLCJ2aWV3VHJhbnNpdGlvbiI6ZmFsc2UsInJvdXRlckJGQ2FjaGUiOmZhbHNlLCJyZW1vdmVVbmNhdWdodEVycm9yQW5kUmVqZWN0aW9uTGlzdGVuZXJzIjpmYWxzZSwidmFsaWRhdGVSU0NSZXF1ZXN0SGVhZGVycyI6ZmFsc2UsInN0YWxlVGltZXMiOnsiZHluYW1pYyI6MCwic3RhdGljIjozMDB9LCJzZXJ2ZXJDb21wb25lbnRzSG1yQ2FjaGUiOnRydWUsInN0YXRpY0dlbmVyYXRpb25NYXhDb25jdXJyZW5jeSI6OCwic3RhdGljR2VuZXJhdGlvbk1pblBhZ2VzUGVyV29ya2VyIjoyNSwiY2FjaGVDb21wb25lbnRzIjpmYWxzZSwiaW5saW5lQ3NzIjpmYWxzZSwidXNlQ2FjaGUiOmZhbHNlLCJnbG9iYWxOb3RGb3VuZCI6ZmFsc2UsImRldnRvb2xTZWdtZW50RXhwbG9yZXIiOnRydWUsImJyb3dzZXJEZWJ1Z0luZm9JblRlcm1pbmFsIjpmYWxzZSwib3B0aW1pemVSb3V0ZXJTY3JvbGxpbmciOmZhbHNlLCJtaWRkbGV3YXJlQ2xpZW50TWF4Qm9keVNpemUiOjEwNDg1NzYwLCJzZXJ2ZXJBY3Rpb25zIjp7ImJvZHlTaXplTGltaXQiOiIybWIifSwib3B0aW1pemVQYWNrYWdlSW1wb3J0cyI6WyJsdWNpZGUtcmVhY3QiLCJkYXRlLWZucyIsImxvZGFzaC1lcyIsInJhbWRhIiwiYW50ZCIsInJlYWN0LWJvb3RzdHJhcCIsImFob29rcyIsIkBhbnQtZGVzaWduL2ljb25zIiwiQGhlYWRsZXNzdWkvcmVhY3QiLCJAaGVhZGxlc3N1aS1mbG9hdC9yZWFjdCIsIkBoZXJvaWNvbnMvcmVhY3QvMjAvc29saWQiLCJAaGVyb2ljb25zL3JlYWN0LzI0L3NvbGlkIiwiQGhlcm9pY29ucy9yZWFjdC8yNC9vdXRsaW5lIiwiQHZpc3gvdmlzeCIsIkB0cmVtb3IvcmVhY3QiLCJyeGpzIiwiQG11aS9tYXRlcmlhbCIsIkBtdWkvaWNvbnMtbWF0ZXJpYWwiLCJyZWNoYXJ0cyIsInJlYWN0LXVzZSIsImVmZmVjdCIsIkBlZmZlY3Qvc2NoZW1hIiwiQGVmZmVjdC9wbGF0Zm9ybSIsIkBlZmZlY3QvcGxhdGZvcm0tbm9kZSIsIkBlZmZlY3QvcGxhdGZvcm0tYnJvd3NlciIsIkBlZmZlY3QvcGxhdGZvcm0tYnVuIiwiQGVmZmVjdC9zcWwiLCJAZWZmZWN0L3NxbC1tc3NxbCIsIkBlZmZlY3Qvc3FsLW15c3FsMiIsIkBlZmZlY3Qvc3FsLXBnIiwiQGVmZmVjdC9zcWwtc3FsaXRlLW5vZGUiLCJAZWZmZWN0L3NxbC1zcWxpdGUtYnVuIiwiQGVmZmVjdC9zcWwtc3FsaXRlLXdhc20iLCJAZWZmZWN0L3NxbC1zcWxpdGUtcmVhY3QtbmF0aXZlIiwiQGVmZmVjdC9ycGMiLCJAZWZmZWN0L3JwYy1odHRwIiwiQGVmZmVjdC90eXBlY2xhc3MiLCJAZWZmZWN0L2V4cGVyaW1lbnRhbCIsIkBlZmZlY3Qvb3BlbnRlbGVtZXRyeSIsIkBtYXRlcmlhbC11aS9jb3JlIiwiQG1hdGVyaWFsLXVpL2ljb25zIiwiQHRhYmxlci9pY29ucy1yZWFjdCIsIm11aS1jb3JlIiwicmVhY3QtaWNvbnMvYWkiLCJyZWFjdC1pY29ucy9iaSIsInJlYWN0LWljb25zL2JzIiwicmVhY3QtaWNvbnMvY2ciLCJyZWFjdC1pY29ucy9jaSIsInJlYWN0LWljb25zL2RpIiwicmVhY3QtaWNvbnMvZmEiLCJyZWFjdC1pY29ucy9mYTYiLCJyZWFjdC1pY29ucy9mYyIsInJlYWN0LWljb25zL2ZpIiwicmVhY3QtaWNvbnMvZ2kiLCJyZWFjdC1pY29ucy9nbyIsInJlYWN0LWljb25zL2dyIiwicmVhY3QtaWNvbnMvaGkiLCJyZWFjdC1pY29ucy9oaTIiLCJyZWFjdC1pY29ucy9pbSIsInJlYWN0LWljb25zL2lvIiwicmVhY3QtaWNvbnMvaW81IiwicmVhY3QtaWNvbnMvbGlhIiwicmVhY3QtaWNvbnMvbGliIiwicmVhY3QtaWNvbnMvbHUiLCJyZWFjdC1pY29ucy9tZCIsInJlYWN0LWljb25zL3BpIiwicmVhY3QtaWNvbnMvcmkiLCJyZWFjdC1pY29ucy9yeCIsInJlYWN0LWljb25zL3NpIiwicmVhY3QtaWNvbnMvc2wiLCJyZWFjdC1pY29ucy90YiIsInJlYWN0LWljb25zL3RmaSIsInJlYWN0LWljb25zL3RpIiwicmVhY3QtaWNvbnMvdnNjIiwicmVhY3QtaWNvbnMvd2kiXX0sImh0bWxMaW1pdGVkQm90cyI6IltcXHctXSstR29vZ2xlfEdvb2dsZS1bXFx3LV0rfENocm9tZS1MaWdodGhvdXNlfFNsdXJwfER1Y2tEdWNrQm90fGJhaWR1c3BpZGVyfHlhbmRleHxzb2dvdXxiaXRseWJvdHx0dW1ibHJ8dmtTaGFyZXxxdW9yYSBsaW5rIHByZXZpZXd8cmVkZGl0Ym90fGlhX2FyY2hpdmVyfEJpbmdib3R8QmluZ1ByZXZpZXd8YXBwbGVib3R8ZmFjZWJvb2tleHRlcm5hbGhpdHxmYWNlYm9va2NhdGFsb2d8VHdpdHRlcmJvdHxMaW5rZWRJbkJvdHxTbGFja2JvdHxEaXNjb3JkYm90fFdoYXRzQXBwfFNreXBlVXJpUHJldmlld3xZZXRpfGdvb2dsZXdlYmxpZ2h0IiwiYnVuZGxlUGFnZXNSb3V0ZXJEZXBlbmRlbmNpZXMiOmZhbHNlLCJjb25maWdGaWxlIjoiL2hvbWUvcnVubmVyL3dvcmsvcHJvcGhhcm1leC13ZWJzaXRlL3Byb3BoYXJtZXgtd2Vic2l0ZS9hcHBzL3dlYi9uZXh0LmNvbmZpZy50cyIsImNvbmZpZ0ZpbGVOYW1lIjoibmV4dC5jb25maWcudHMiLCJ0cmFuc3BpbGVQYWNrYWdlcyI6WyJAcHJvcGhhcm1leC91aSIsIkBwcm9waGFybWV4L2xpYiJdLCJ0dXJib3BhY2siOnsicm9vdCI6Ii9ob21lL3J1bm5lci93b3JrL3Byb3BoYXJtZXgtd2Vic2l0ZS9wcm9waGFybWV4LXdlYnNpdGUifSwiX29yaWdpbmFsUmV3cml0ZXMiOnsiYmVmb3JlRmlsZXMiOltdLCJhZnRlckZpbGVzIjpbeyJzb3VyY2UiOiIvbW9uaXRvcmluZygvPykiLCJoYXMiOlt7InR5cGUiOiJxdWVyeSIsImtleSI6Im8iLCJ2YWx1ZSI6Iig%2FPG9yZ2lkPlxcZCopIn0seyJ0eXBlIjoicXVlcnkiLCJrZXkiOiJwIiwidmFsdWUiOiIoPzxwcm9qZWN0aWQ%2BXFxkKikifSx7InR5cGUiOiJxdWVyeSIsImtleSI6InIiLCJ2YWx1ZSI6Iig%2FPHJlZ2lvbj5bYS16XXsyfSkifV0sImRlc3RpbmF0aW9uIjoiaHR0cHM6Ly9vOm9yZ2lkLmluZ2VzdC46cmVnaW9uLnNlbnRyeS5pby9hcGkvOnByb2plY3RpZC9lbnZlbG9wZS8%2FaHN0cz0wIn0seyJzb3VyY2UiOiIvbW9uaXRvcmluZygvPykiLCJoYXMiOlt7InR5cGUiOiJxdWVyeSIsImtleSI6Im8iLCJ2YWx1ZSI6Iig%2FPG9yZ2lkPlxcZCopIn0seyJ0eXBlIjoicXVlcnkiLCJrZXkiOiJwIiwidmFsdWUiOiIoPzxwcm9qZWN0aWQ%2BXFxkKikifV0sImRlc3RpbmF0aW9uIjoiaHR0cHM6Ly9vOm9yZ2lkLmluZ2VzdC5zZW50cnkuaW8vYXBpLzpwcm9qZWN0aWQvZW52ZWxvcGUvP2hzdHM9MCJ9XSwiZmFsbGJhY2siOltdfSwiX29yaWdpbmFsUmVkaXJlY3RzIjpbeyJzb3VyY2UiOiIvd2hpdGVwYXBlcnMvY2FuYWRhLWluZGlhLXBsYXlib29rIiwiZGVzdGluYXRpb24iOiIvaW5zaWdodHMvd2hpdGVwYXBlcnMvY2FuYWRpYW4tY2Rtby1vcGVyYXRpbmctbW9kZWwiLCJwZXJtYW5lbnQiOnRydWV9LHsic291cmNlIjoiL2luc2lnaHRzL3doaXRlcGFwZXJzL3R3by1odWItb3BlcmF0aW5nLW1vZGVsIiwiZGVzdGluYXRpb24iOiIvaW5zaWdodHMvd2hpdGVwYXBlcnMvY2FuYWRpYW4tY2Rtby1vcGVyYXRpbmctbW9kZWwiLCJwZXJtYW5lbnQiOnRydWV9LHsic291cmNlIjoiL2luc2lnaHRzL2luc2lkZS1hLXR3by1odWItY2RtbyIsImRlc3RpbmF0aW9uIjoiL2luc2lnaHRzL2luc2lkZS1vdXItb3BlcmF0aW5nLW1vZGVsIiwicGVybWFuZW50Ijp0cnVlfSx7InNvdXJjZSI6Ii9kb3dubG9hZHMvdHdvLWh1Yi1vcGVyYXRpbmctbW9kZWwucGRmIiwiZGVzdGluYXRpb24iOiIvZG93bmxvYWRzL2NhbmFkaWFuLWNkbW8tb3BlcmF0aW5nLW1vZGVsLnBkZiIsInBlcm1hbmVudCI6dHJ1ZX1dfQ%3D%3D&preferredRegion=&middlewareConfig=e30%3D&cacheHandlers=%7B%7D!
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.9979245Z 
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.9979295Z 
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:19.9979528Z > Build failed because of webpack errors
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:20.0375476Z /home/runner/work/propharmex-website/propharmex-website/apps/web:
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:20.0376672Z ΓÇëERR_PNPM_RECURSIVE_RUN_FIRST_FAILΓÇë web@1.0.0 build: `next build`
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:20.0377031Z Exit status 1
+axe-core (no serious or critical violations)	Build	2026-05-03T03:02:20.0565897Z ##[error]Process completed with exit code 1.
+axe-core (no serious or critical violations)	Upload axe reports	∩╗┐2026-05-03T03:02:20.0661499Z ##[group]Run actions/upload-artifact@v4
+axe-core (no serious or critical violations)	Upload axe reports	2026-05-03T03:02:20.0661804Z with:
+axe-core (no serious or critical violations)	Upload axe reports	2026-05-03T03:02:20.0661997Z   name: axe-reports
+axe-core (no serious or critical violations)	Upload axe reports	2026-05-03T03:02:20.0662199Z   path: .axe-reports/
+axe-core (no serious or critical violations)	Upload axe reports	2026-05-03T03:02:20.0662415Z   retention-days: 14
+axe-core (no serious or critical violations)	Upload axe reports	2026-05-03T03:02:20.0662626Z   if-no-files-found: warn
+axe-core (no serious or critical violations)	Upload axe reports	2026-05-03T03:02:20.0662850Z   compression-level: 6
+axe-core (no serious or critical violations)	Upload axe reports	2026-05-03T03:02:20.0663061Z   overwrite: false
+axe-core (no serious or critical violations)	Upload axe reports	2026-05-03T03:02:20.0663273Z   include-hidden-files: false
+axe-core (no serious or critical violations)	Upload axe reports	2026-05-03T03:02:20.0663511Z env:
+axe-core (no serious or critical violations)	Upload axe reports	2026-05-03T03:02:20.0663737Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+axe-core (no serious or critical violations)	Upload axe reports	2026-05-03T03:02:20.0664033Z ##[endgroup]
+axe-core (no serious or critical violations)	Upload axe reports	2026-05-03T03:02:20.2818843Z ##[warning]No files were found with the provided path: .axe-reports/. No artifacts will be uploaded.
+axe-core (no serious or critical violations)	Post Setup pnpm	∩╗┐2026-05-03T03:02:20.2943644Z Post job cleanup.
+axe-core (no serious or critical violations)	Post Setup pnpm	2026-05-03T03:02:20.4386425Z Pruning is unnecessary.
+axe-core (no serious or critical violations)	Post Checkout	∩╗┐2026-05-03T03:02:20.4524624Z Post job cleanup.
+axe-core (no serious or critical violations)	Post Checkout	2026-05-03T03:02:20.5518146Z [command]/usr/bin/git version
+axe-core (no serious or critical violations)	Post Checkout	2026-05-03T03:02:20.5561626Z git version 2.53.0
+axe-core (no serious or critical violations)	Post Checkout	2026-05-03T03:02:20.5603571Z Temporarily overriding HOME='/home/runner/work/_temp/5e296b8b-1843-4032-a006-9ba65217628c' before making global git config changes
+axe-core (no serious or critical violations)	Post Checkout	2026-05-03T03:02:20.5605186Z Adding repository directory to the temporary git global config as a safe directory
+axe-core (no serious or critical violations)	Post Checkout	2026-05-03T03:02:20.5610211Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/propharmex-website/propharmex-website
+axe-core (no serious or critical violations)	Post Checkout	2026-05-03T03:02:20.5645336Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+axe-core (no serious or critical violations)	Post Checkout	2026-05-03T03:02:20.5678156Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+axe-core (no serious or critical violations)	Post Checkout	2026-05-03T03:02:20.5921158Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+axe-core (no serious or critical violations)	Post Checkout	2026-05-03T03:02:20.5943327Z http.https://github.com/.extraheader
+axe-core (no serious or critical violations)	Post Checkout	2026-05-03T03:02:20.5956727Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+axe-core (no serious or critical violations)	Post Checkout	2026-05-03T03:02:20.5987990Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+axe-core (no serious or critical violations)	Post Checkout	2026-05-03T03:02:20.6220678Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+axe-core (no serious or critical violations)	Post Checkout	2026-05-03T03:02:20.6253762Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+axe-core (no serious or critical violations)	Complete job	∩╗┐2026-05-03T03:02:20.6599772Z Cleaning up orphan processes
+axe-core (no serious or critical violations)	Complete job	2026-05-03T03:02:20.6955188Z ##[warning]Node.js 20 actions are deprecated. The following actions are running on Node.js 20 and may not work as expected: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4, pnpm/action-setup@v4. Actions will be forced to run with Node.js 24 by default starting June 2nd, 2026. Node.js 20 will be removed from the runner on September 16th, 2026. Please check if updated versions of these actions are available that support Node.js 24. To opt into Node.js 24 now, set the FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true environment variable on the runner or in your workflow file. Once Node.js 24 becomes the default, you can temporarily opt out by setting ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

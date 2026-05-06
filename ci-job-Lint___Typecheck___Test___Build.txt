@@ -1,0 +1,297 @@
+﻿Lint / Typecheck / Test / Build	UNKNOWN STEP	∩╗┐2026-05-03T03:00:39.5901393Z Current runner version: '2.334.0'
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5925741Z ##[group]Runner Image Provisioner
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5926494Z Hosted Compute Agent
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5927046Z Version: 20260213.493
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5928008Z Commit: 5c115507f6dd24b8de37d8bbe0bb4509d0cc0fa3
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5928812Z Build Date: 2026-02-13T00:28:41Z
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5929471Z Worker ID: {20f88255-7d66-4a42-89ba-c58c57271552}
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5930179Z Azure Region: centralus
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5930795Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5932123Z ##[group]Operating System
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5932772Z Ubuntu
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5933273Z 24.04.4
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5933742Z LTS
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5934154Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5934738Z ##[group]Runner Image
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5935310Z Image: ubuntu-24.04
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5935778Z Version: 20260413.86.1
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5937034Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260413.86/images/ubuntu/Ubuntu2404-Readme.md
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5939097Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260413.86
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5940018Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5941145Z ##[group]GITHUB_TOKEN Permissions
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5943342Z Contents: read
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5943906Z Metadata: read
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5944386Z Packages: read
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5945000Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5946946Z Secret source: Actions
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.5947840Z Prepare workflow directory
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.6280214Z Prepare all required actions
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:39.6318325Z Getting action download info
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.0323702Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.1345712Z Download action repository 'pnpm/action-setup@v4' (SHA:b906affcce14559ad1aafd4ab0e942779e9f58b1)
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.6619505Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.8742631Z Complete job name: Lint / Typecheck / Test / Build
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9586444Z ##[group]Run actions/checkout@v4
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9587949Z with:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9588781Z   repository: AnilBotta/propharmex-website
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9590106Z   token: ***
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9590863Z   ssh-strict: true
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9591637Z   ssh-user: git
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9592424Z   persist-credentials: true
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9593314Z   clean: true
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9594136Z   sparse-checkout-cone-mode: true
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9595097Z   fetch-depth: 1
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9595872Z   fetch-tags: false
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9596689Z   show-progress: true
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9597610Z   lfs: false
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9598364Z   submodules: false
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9599178Z   set-safe-directory: true
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:40.9600288Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0720970Z Syncing repository: AnilBotta/propharmex-website
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0723683Z ##[group]Getting Git version info
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0725253Z Working directory is '/home/runner/work/propharmex-website/propharmex-website'
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0727365Z [command]/usr/bin/git version
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0758995Z git version 2.53.0
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0783199Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0797018Z Temporarily overriding HOME='/home/runner/work/_temp/ac0ab773-fed2-4514-a324-7e51377b2451' before making global git config changes
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0799967Z Adding repository directory to the temporary git global config as a safe directory
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0802808Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/propharmex-website/propharmex-website
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0833864Z Deleting the contents of '/home/runner/work/propharmex-website/propharmex-website'
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0837182Z ##[group]Initializing the repository
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0841558Z [command]/usr/bin/git init /home/runner/work/propharmex-website/propharmex-website
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0899518Z hint: Using 'master' as the name for the initial branch. This default branch name
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0902113Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0903924Z hint: to use in all of your new repositories, which will suppress this warning,
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0905347Z hint: call:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0906246Z hint:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0907167Z hint: 	git config --global init.defaultBranch <name>
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0908682Z hint:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0909911Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0911817Z hint: 'development'. The just-created branch can be renamed via this command:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0914047Z hint:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0915128Z hint: 	git branch -m <name>
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0916386Z hint:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0918404Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0921087Z Initialized empty Git repository in /home/runner/work/propharmex-website/propharmex-website/.git/
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0924874Z [command]/usr/bin/git remote add origin https://github.com/AnilBotta/propharmex-website
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0945859Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0948214Z ##[group]Disabling automatic garbage collection
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0950232Z [command]/usr/bin/git config --local gc.auto 0
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0980097Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0982094Z ##[group]Setting up auth
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.0988753Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.1021179Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.1310528Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.1342226Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.1574074Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.1605768Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.1836140Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.1872456Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.1873999Z ##[group]Fetching the repository
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.1881334Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +cc3d4b43dcc03478d1a6d609f20d248a6d34d521:refs/remotes/pull/55/merge
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9147100Z From https://github.com/AnilBotta/propharmex-website
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9148708Z  * [new ref]         cc3d4b43dcc03478d1a6d609f20d248a6d34d521 -> pull/55/merge
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9176982Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9178818Z ##[group]Determining the checkout info
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9180269Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9184179Z [command]/usr/bin/git sparse-checkout disable
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9222564Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9250080Z ##[group]Checking out the ref
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9253682Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/55/merge
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9691324Z Note: switching to 'refs/remotes/pull/55/merge'.
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9691944Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9692583Z You are in 'detached HEAD' state. You can look around, make experimental
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9693643Z changes and commit them, and you can discard any commits you make in this
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9694749Z state without impacting any branches by switching back to a branch.
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9695303Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9695831Z If you want to create a new branch to retain commits you create, you may
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9696825Z do so (now or later) by using -c with the switch command. Example:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9698085Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9698450Z   git switch -c <new-branch-name>
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9698908Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9699225Z Or undo this operation with:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9699985Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9700385Z   git switch -
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9700803Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9701325Z Turn off this advice by setting config variable advice.detachedHead to false
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9701905Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9702513Z HEAD is now at cc3d4b4 Merge 51a9ca3602f944cbda45cbd52e2d6c8ee0a73800 into 382b5976ee0e7b3748eeb377f99e53eb2d05016e
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9705344Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9736283Z [command]/usr/bin/git log -1 --format=%H
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:41.9759969Z cc3d4b43dcc03478d1a6d609f20d248a6d34d521
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.0005529Z ##[group]Run pnpm/action-setup@v4
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.0006302Z with:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.0006989Z   version: 9.12.0
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.0007956Z   dest: ~/setup-pnpm
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.0008650Z   run_install: null
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.0009374Z   cache: false
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.0010043Z   cache_dependency_path: pnpm-lock.yaml
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.0010935Z   package_json_file: package.json
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.0011661Z   standalone: false
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.0012379Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.1408968Z ##[group]Running self-installer...
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.7808910Z Progress: resolved 1, reused 0, downloaded 0, added 0
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.7889513Z Packages: +1
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:42.7890252Z +
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.2338060Z Progress: resolved 1, reused 0, downloaded 1, added 1, done
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.2587928Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.2588315Z dependencies:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.2591864Z + pnpm 9.12.0 (10.33.2 is available)
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.2592286Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.2618278Z Done in 949ms
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.2786804Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.2791116Z Installation Completed!
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.3037895Z ##[group]Run actions/setup-node@v4
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.3038185Z with:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.3038389Z   node-version: 20
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.3038608Z   cache: pnpm
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.3038812Z   always-auth: false
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.3039032Z   check-latest: false
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.3039376Z   token: ***
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.3039566Z env:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.3039819Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.3040117Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.4773874Z Found in cache @ /opt/hostedtoolcache/node/20.20.2/x64
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.4779852Z ##[group]Environment details
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.7795633Z node: v20.20.2
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.7796016Z npm: 10.8.2
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.7796303Z yarn: 1.22.22
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.7797939Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:43.7822122Z [command]/home/runner/setup-pnpm/node_modules/.bin/pnpm store path --silent
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:44.1794495Z /home/runner/setup-pnpm/node_modules/.bin/store/v3
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:44.3351715Z Cache hit for: node-cache-Linux-x64-pnpm-a8d3c3209ae799514a126d0a08cc150039c0bca7485e874de373b25801ad526e
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:45.5199910Z Received 104857600 of 357378039 (29.3%), 99.9 MBs/sec
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:46.5310383Z Received 289406976 of 357378039 (81.0%), 137.2 MBs/sec
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:46.9121748Z Received 357378039 of 357378039 (100.0%), 142.4 MBs/sec
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:46.9123361Z Cache Size: ~341 MB (357378039 B)
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:46.9203897Z [command]/usr/bin/tar -xf /home/runner/work/_temp/5525f754-3c84-4da4-bf7d-fa39d930d0a7/cache.tzst -P -C /home/runner/work/propharmex-website/propharmex-website --use-compress-program unzstd
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:51.1716213Z Cache restored successfully
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:51.1884705Z Cache restored from key: node-cache-Linux-x64-pnpm-a8d3c3209ae799514a126d0a08cc150039c0bca7485e874de373b25801ad526e
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:51.2061184Z ##[group]Run pnpm install --frozen-lockfile
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:51.2061587Z [36;1mpnpm install --frozen-lockfile[0m
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:51.2156364Z shell: /usr/bin/bash -e {0}
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:51.2156632Z env:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:51.2156884Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:51.2157405Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:51.6538493Z Scope: all 6 workspace projects
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:51.7458808Z Lockfile is up to date, resolution step is skipped
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:51.8752607Z Progress: resolved 1, reused 0, downloaded 0, added 0
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:52.0651146Z Packages: +1773
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:52.0651817Z ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:52.8756452Z Progress: resolved 1773, reused 1371, downloaded 0, added 0
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:53.8769293Z Progress: resolved 1773, reused 1743, downloaded 0, added 511
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:54.8766673Z Progress: resolved 1773, reused 1743, downloaded 0, added 1355
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:55.8383272Z Progress: resolved 1773, reused 1743, downloaded 0, added 1773, done
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8221981Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8222998Z devDependencies:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8223737Z + @storybook/addon-a11y 8.6.18
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8224437Z + @storybook/addon-essentials 8.6.14
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8225198Z + @storybook/addon-interactions 8.6.14
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8225783Z + @storybook/blocks 8.6.14
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8226345Z + @storybook/react 8.6.18
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8226881Z + @storybook/react-vite 8.6.18
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8227635Z + @storybook/test 8.6.15
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8228143Z + @tailwindcss/vite 4.2.4
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8228674Z + @types/node 20.19.39
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8229221Z + docx 9.6.1
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8229661Z + eslint 9.39.4
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8230062Z + husky 9.1.7
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8230527Z + lint-staged 15.5.2
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8230968Z + prettier 3.8.3
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8231457Z + storybook 8.6.18
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8231858Z + tsx 4.21.0
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8232370Z + turbo 2.9.6
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8232794Z + typescript 5.9.3
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8233258Z + vite 5.4.21
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8233540Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8399613Z . prepare$ husky
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.8947090Z . prepare: Done
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.9180419Z Done in 6.6s
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.9631286Z ##[group]Run pnpm typecheck
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.9631602Z [36;1mpnpm typecheck[0m
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.9654415Z shell: /usr/bin/bash -e {0}
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.9654655Z env:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.9654905Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:57.9655203Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.3680666Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.3681884Z > propharmex-site@1.0.0 typecheck /home/runner/work/propharmex-website/propharmex-website
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.3682705Z > turbo run typecheck
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.3682930Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.4219836Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.4220481Z Attention:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.4221238Z Turborepo now collects completely anonymous telemetry regarding usage.
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.4222524Z This information is used to shape the Turborepo roadmap and prioritize features.
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.4223976Z You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.4225166Z https://turborepo.dev/docs/telemetry
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.4225522Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.5234347Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.5236050Z    ΓÇó Packages in scope: @propharmex/config, @propharmex/lib, @propharmex/ui, studio, web
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.5237698Z    ΓÇó Running typecheck in 5 packages
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.5238523Z    ΓÇó Remote caching disabled
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:58.5238994Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:59.1651138Z ##[group]@propharmex/config:typecheck
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:59.1667906Z cache miss, executing d72106cf48317fc3
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:59.1668491Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:59.1669542Z > @propharmex/config@0.0.0 typecheck /home/runner/work/propharmex-website/propharmex-website/packages/config
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:59.1670654Z > echo "(config package)"
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:59.1671089Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:59.1671380Z (config package)
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:00:59.1672107Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.2852698Z ##[group]@propharmex/ui:typecheck
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.2870887Z cache miss, executing 35d92b6e05f57fdb
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.2871506Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.2872426Z > @propharmex/ui@0.0.0 typecheck /home/runner/work/propharmex-website/propharmex-website/packages/ui
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.2873675Z > tsc --noEmit
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.2874028Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.2874568Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.3823027Z [;31m@propharmex/lib:typecheck[;0m
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.3825393Z cache miss, executing c25a45afa4e23f1e
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.3830442Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.3831407Z > @propharmex/lib@0.0.0 typecheck /home/runner/work/propharmex-website/propharmex-website/packages/lib
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.3832445Z > tsc --noEmit
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.3832669Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.3855134Z ##[error]index.ts(45,25): error TS2307: Cannot find module './region' or its corresponding type declarations.
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.3865661Z ΓÇëELIFECYCLEΓÇë Command failed with exit code 2.
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4204916Z ##[group]studio:typecheck
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4205972Z cache miss, executing ae716d5659b3ce17
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4206433Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4207333Z > studio@0.1.0 typecheck /home/runner/work/propharmex-website/propharmex-website/apps/studio
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4208288Z > tsc --noEmit
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4208466Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4208828Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4317958Z ##[group]web:typecheck
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4318720Z cache miss, executing a331cd9d9f09001d
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4319005Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4319503Z > web@1.0.0 typecheck /home/runner/work/propharmex-website/propharmex-website/apps/web
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4320156Z > tsc --noEmit
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4320340Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4320746Z ##[endgroup]
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4337314Z ##[error]@propharmex/lib#typecheck: command (/home/runner/work/propharmex-website/propharmex-website/packages/lib) /home/runner/setup-pnpm/node_modules/.bin/pnpm run typecheck exited (2)
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4341213Z  ERROR  @propharmex/lib#typecheck: command (/home/runner/work/propharmex-website/propharmex-website/packages/lib) /home/runner/setup-pnpm/node_modules/.bin/pnpm run typecheck exited (2)
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4342806Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4343082Z  Tasks:    2 successful, 5 total
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4343570Z Cached:    0 cached, 5 total
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4343993Z   Time:    10.007s 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4344491Z Failed:    @propharmex/lib#typecheck
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4344816Z 
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4399820Z  ERROR  run failed: command  exited (2)
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4470180Z ΓÇëELIFECYCLEΓÇë Command failed with exit code 2.
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4671145Z ##[error]Process completed with exit code 2.
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.4756819Z Post job cleanup.
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.6213866Z Pruning is unnecessary.
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.6366703Z Post job cleanup.
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.7456111Z [command]/usr/bin/git version
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.7503308Z git version 2.53.0
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.7549113Z Temporarily overriding HOME='/home/runner/work/_temp/c310bec9-a5fe-4b0e-ad40-5c26a6d3d408' before making global git config changes
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.7550458Z Adding repository directory to the temporary git global config as a safe directory
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.7556045Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/propharmex-website/propharmex-website
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.7599340Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.7635960Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.7888143Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.7913371Z http.https://github.com/.extraheader
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.7926093Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.7959767Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.8201338Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.8240188Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.8615524Z Cleaning up orphan processes
+Lint / Typecheck / Test / Build	UNKNOWN STEP	2026-05-03T03:01:08.8911936Z ##[warning]Node.js 20 actions are deprecated. The following actions are running on Node.js 20 and may not work as expected: actions/checkout@v4, actions/setup-node@v4, pnpm/action-setup@v4. Actions will be forced to run with Node.js 24 by default starting June 2nd, 2026. Node.js 20 will be removed from the runner on September 16th, 2026. Please check if updated versions of these actions are available that support Node.js 24. To opt into Node.js 24 now, set the FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true environment variable on the runner or in your workflow file. Once Node.js 24 becomes the default, you can temporarily opt out by setting ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

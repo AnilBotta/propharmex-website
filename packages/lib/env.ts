@@ -69,6 +69,13 @@ const EnvSchema = z.object({
   SENTRY_PROJECT: optionalNonEmpty,
   AXIOM_TOKEN: optionalNonEmpty,
   AXIOM_DATASET: optionalNonEmpty,
+
+  // Dashboard (PR-N) — magic-link auth + AI lead intelligence
+  // Comma-separated allowlist of emails permitted to log into /dashboard.
+  DASHBOARD_ALLOWED_EMAILS: optionalNonEmpty,
+  // Optional dedicated From address for magic-link emails. Falls back to
+  // RESEND_FROM_EMAIL when unset.
+  RESEND_DASHBOARD_FROM_EMAIL: optionalNonEmpty,
 });
 
 export type Env = z.infer<typeof EnvSchema>;

@@ -1,0 +1,21 @@
+-- 0006_auth_sessions — superseded by Supabase Auth (PR-N4 follow-up).
+--
+-- The dashboard auth flow originally rolled its own magic-link tokens
+-- with an auth_sessions table (sha256 of cookie value, 30-day TTL). That
+-- has been replaced by Supabase Auth — Supabase manages sessions in its
+-- own internal `auth.users` and `auth.sessions` tables, with refresh
+-- tokens, email delivery, and cookie rotation handled by @supabase/ssr.
+--
+-- This migration is kept as a no-op so the migration history is not
+-- rewritten. The original CREATE TABLE statement has been removed.
+-- The runtime never references public.auth_sessions anymore. To drop
+-- the table cleanly (if it was ever applied locally), add a follow-up
+-- migration `00XX_drop_auth_sessions.sql` with `drop table if exists
+-- public.auth_sessions;`.
+--
+-- Allowlist enforcement: still done in app code via the
+-- DASHBOARD_ALLOWED_EMAILS env var, checked both before sending the
+-- magic-link email (in /api/auth/login) and after verify
+-- (in /api/auth/confirm + getDashboardUserEmail()).
+
+select 1;

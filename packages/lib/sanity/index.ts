@@ -43,6 +43,10 @@ export {
   dosageMatcherPromptParser,
   FALLBACK_DOSAGE_MATCHER_CONFIG,
   type DosageMatcherPromptConfig,
+  fetchLeadIntelligencePromptConfig,
+  leadIntelligencePromptParser,
+  FALLBACK_LEAD_INTELLIGENCE_CONFIG,
+  type LeadIntelligencePromptConfig,
 } from "./ai-prompt-config";
 
 /* Queries */

@@ -72,6 +72,9 @@ const EXCLUDED_ROUTE_PATTERNS = [
   /opengraph-image$/,
   /twitter-image$/,
   /^\/studio/,
+  // /dashboard/* (PR-N) is an internal admin surface, not a marketing
+  // route. Auth-gated, only allowlisted users hit it.
+  /^\/dashboard/,
 ];
 
 /* -------------------------------------------------------------------------- */
