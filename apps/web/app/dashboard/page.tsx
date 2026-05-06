@@ -15,6 +15,7 @@ import type { ActivityItem } from "./components/ActivityFeed";
 import type { SourceShare } from "./components/LeadSourcesCard";
 import { SOURCE_LABEL } from "./components/Pills";
 import type { ProjectRow } from "./components/ProjectPipeline";
+import type { InspectionEventRow } from "./components/InspectionsGrid";
 
 export const metadata: Metadata = {
   title: "Lead intake · Propharmex Console",
@@ -36,6 +37,8 @@ export default async function DashboardHome() {
   let activity: ActivityItem[] = [];
   let hotOpenCount = 0;
   let projects: ProjectRow[] = [];
+  let inspectionEvents: InspectionEventRow[] = [];
+  const { weekStart, weekEnd } = currentWeekRange();
 
   if (sb) {
     const [
@@ -77,6 +80,17 @@ export default async function DashboardHome() {
     projects = (projectRows ?? []) as ProjectRow[];
 
     activity = buildActivity(leads, noteRows ?? []);
+
+    // Fetch this week's inspection events. Separate query so the dashboard
+    // still renders if the inspection_events table doesn't exist yet
+    // (migration 0009 not applied).
+    const { data: eventRows } = await sb
+      .from("inspection_events")
+      .select("*")
+      .gte("event_date", weekStart)
+      .lte("event_date", weekEnd)
+      .order("event_date", { ascending: true });
+    inspectionEvents = (eventRows ?? []) as InspectionEventRow[];
   }
 
   const kpis = computeKpis(allLeads, hotOpenCount);
@@ -89,8 +103,30 @@ export default async function DashboardHome() {
       sources={sources}
       activity={activity}
       initialProjects={projects}
+      initialInspectionEvents={inspectionEvents}
+      inspectionsWeekStart={weekStart}
     />
   );
+}
+
+/** Returns the Monday/Sunday ISO dates of the current ISO week (UTC). */
+function currentWeekRange(): { weekStart: string; weekEnd: string } {
+  const now = new Date();
+  const day = now.getUTCDay(); // 0 = Sun, 1 = Mon
+  const offset = (day + 6) % 7;
+  const monday = new Date(
+    Date.UTC(
+      now.getUTCFullYear(),
+      now.getUTCMonth(),
+      now.getUTCDate() - offset,
+    ),
+  );
+  const sunday = new Date(monday);
+  sunday.setUTCDate(monday.getUTCDate() + 6);
+  return {
+    weekStart: monday.toISOString().slice(0, 10),
+    weekEnd: sunday.toISOString().slice(0, 10),
+  };
 }
 
 /* -------------------------------------------------------------------------- */

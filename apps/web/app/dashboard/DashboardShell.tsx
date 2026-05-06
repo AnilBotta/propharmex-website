@@ -5,10 +5,13 @@ import { useState } from "react";
 import type { LeadRow } from "@propharmex/lib/leads/types";
 
 import { ActivityFeed, type ActivityItem } from "./components/ActivityFeed";
+import {
+  InspectionsGrid,
+  type InspectionEventRow,
+} from "./components/InspectionsGrid";
 import { KpiCard } from "./components/KpiCard";
 import { LeadSourcesCard, type SourceShare } from "./components/LeadSourcesCard";
 import { LeadTable } from "./components/LeadTable";
-import { Placeholder } from "./components/Placeholder";
 import { ProjectPipeline, type ProjectRow } from "./components/ProjectPipeline";
 import { LeadDrawer } from "./LeadDrawer";
 
@@ -26,12 +29,16 @@ export function DashboardShell({
   sources,
   activity,
   initialProjects,
+  initialInspectionEvents,
+  inspectionsWeekStart,
 }: {
   initialLeads: LeadRow[];
   kpis: Kpis;
   sources: SourceShare[];
   activity: ActivityItem[];
   initialProjects: ProjectRow[];
+  initialInspectionEvents: InspectionEventRow[];
+  inspectionsWeekStart: string;
 }) {
   const [leads, setLeads] = useState<LeadRow[]>(initialLeads);
   const [openLeadId, setOpenLeadId] = useState<string | null>(null);
@@ -145,9 +152,9 @@ export function DashboardShell({
       <section className="grid grid-cols-1 gap-4 lg:grid-cols-[3fr_2fr]">
         <div className="flex flex-col gap-4">
           <ProjectPipeline initialProjects={initialProjects} />
-          <Placeholder
-            title="Inspections & gates · this week"
-            body="Per-track schedule for Health Canada / USFDA / TGA-WHO-PQ / Internal QA / Stability — synced to a forthcoming inspections data model."
+          <InspectionsGrid
+            initialEvents={initialInspectionEvents}
+            initialStartDate={inspectionsWeekStart}
           />
         </div>
         <ActivityFeed items={activity} />
