@@ -32,6 +32,7 @@ import {
   supabase,
 } from "@propharmex/lib";
 
+import { notifyHotLead } from "../../../../lib/hot-lead-alerts";
 import { getDashboardUserEmail } from "../../../../lib/supabase-auth/server";
 
 export const runtime = "nodejs";
@@ -184,6 +185,27 @@ export async function POST(req: Request) {
     intentScore: out.intentScore,
     by: sessionEmail.split("@")[1] ?? "unknown",
   });
+
+  // Fan out to Slack/email if this brief came back "hot". Fire-and-forget;
+  // failures inside notifyHotLead are logged, never thrown.
+  if (!upsertErr && out.intentBand === "hot") {
+    void notifyHotLead({
+      lead: {
+        id: leadId,
+        email: lead.email,
+        contact_name: lead.contact_name,
+        company: lead.company,
+        source: lead.source,
+        service: lead.service,
+        dosage_form: lead.dosage_form,
+      },
+      intelligence: {
+        intent_score: out.intentScore,
+        summary: out.summary,
+        rationale: out.rationale,
+      },
+    });
+  }
 
   return NextResponse.json({ intelligence: insertRow, cached: false });
 }

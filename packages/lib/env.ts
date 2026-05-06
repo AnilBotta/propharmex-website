@@ -81,6 +81,15 @@ const EnvSchema = z.object({
   // PII exposure is acceptable for the bypass window. Unset to restore
   // full Supabase auth.
   DASHBOARD_AUTH_DISABLED: z.enum(["true", "false"]).optional(),
+
+  // Hot-lead notifications. Either or both can be set; presence of the
+  // value enables the channel. When the AI brief returns intent_band="hot",
+  // a one-line summary is fanned out to whichever channels are configured.
+  // Slack: an Incoming Webhook URL (https://api.slack.com/messaging/webhooks).
+  HOT_LEAD_SLACK_WEBHOOK_URL: optionalUrl,
+  // Comma-separated list of email recipients for hot-lead alerts. Sent via
+  // Resend; falls back silently if RESEND_API_KEY is unset.
+  HOT_LEAD_ALERT_EMAILS: optionalNonEmpty,
 });
 
 export type Env = z.infer<typeof EnvSchema>;

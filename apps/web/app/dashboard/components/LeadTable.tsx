@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import {
   LEAD_SOURCES,
@@ -27,13 +27,21 @@ interface LeadTableProps {
   leads: LeadRow[];
   onOpenLead: (id: string) => void;
   onLeadCreated: (lead: LeadRow) => void;
+  onLeadDeleted: (id: string) => void;
 }
 
-export function LeadTable({ leads, onOpenLead, onLeadCreated }: LeadTableProps) {
+export function LeadTable({
+  leads,
+  onOpenLead,
+  onLeadCreated,
+  onLeadDeleted,
+}: LeadTableProps) {
   const [tab, setTab] = useState<Tab>("all");
   const [search, setSearch] = useState("");
   const [exporting, setExporting] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
+  const [openMenuLeadId, setOpenMenuLeadId] = useState<string | null>(null);
+  const [confirmDelete, setConfirmDelete] = useState<LeadRow | null>(null);
 
   async function handleExport() {
     if (exporting) return;
@@ -180,13 +188,14 @@ export function LeadTable({ leads, onOpenLead, onLeadCreated }: LeadTableProps) 
               <th className="px-4 py-2.5">SOURCE</th>
               <th className="px-4 py-2.5">INTEREST</th>
               <th className="px-4 py-2.5">STAT</th>
+              <th className="w-10 px-2 py-2.5 text-right" aria-label="Actions" />
             </tr>
           </thead>
           <tbody>
             {visible.length === 0 ? (
               <tr>
                 <td
-                  colSpan={6}
+                  colSpan={7}
                   className="px-4 py-12 text-center text-slate-400"
                 >
                   No leads match this filter yet. New form submissions appear
@@ -243,12 +252,41 @@ export function LeadTable({ leads, onOpenLead, onLeadCreated }: LeadTableProps) 
                   <td className="px-4 py-3">
                     <StatusPill status={lead.status} />
                   </td>
+                  <td className="relative w-10 px-2 py-3 text-right">
+                    <RowActions
+                      lead={lead}
+                      isOpen={openMenuLeadId === lead.id}
+                      onToggle={(e) => {
+                        e.stopPropagation();
+                        setOpenMenuLeadId((prev) =>
+                          prev === lead.id ? null : lead.id,
+                        );
+                      }}
+                      onClose={() => setOpenMenuLeadId(null)}
+                      onDeleteClick={(e) => {
+                        e.stopPropagation();
+                        setOpenMenuLeadId(null);
+                        setConfirmDelete(lead);
+                      }}
+                    />
+                  </td>
                 </tr>
               ))
             )}
           </tbody>
         </table>
       </div>
+
+      {confirmDelete ? (
+        <DeleteLeadDialog
+          lead={confirmDelete}
+          onClose={() => setConfirmDelete(null)}
+          onDeleted={(id) => {
+            setConfirmDelete(null);
+            onLeadDeleted(id);
+          }}
+        />
+      ) : null}
 
       {showAddModal ? (
         <AddLeadModal
@@ -266,6 +304,160 @@ export function LeadTable({ leads, onOpenLead, onLeadCreated }: LeadTableProps) 
 function shortId(uuid: string): string {
   // Stable 4-char display ID derived from the uuid.
   return uuid.replace(/-/g, "").slice(0, 4).toUpperCase();
+}
+
+function RowActions({
+  lead,
+  isOpen,
+  onToggle,
+  onClose,
+  onDeleteClick,
+}: {
+  lead: LeadRow;
+  isOpen: boolean;
+  onToggle: (e: React.MouseEvent) => void;
+  onClose: () => void;
+  onDeleteClick: (e: React.MouseEvent) => void;
+}) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    function onDocClick(e: MouseEvent) {
+      if (!containerRef.current?.contains(e.target as Node)) onClose();
+    }
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") onClose();
+    }
+    document.addEventListener("mousedown", onDocClick);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDocClick);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [isOpen, onClose]);
+
+  return (
+    <div ref={containerRef} className="inline-block">
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-label={`Lead actions for ${lead.email}`}
+        aria-haspopup="menu"
+        aria-expanded={isOpen}
+        className="grid h-7 w-7 place-items-center rounded-md text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-700"
+      >
+        <span aria-hidden className="text-[16px] leading-none">⋯</span>
+      </button>
+      {isOpen ? (
+        <div
+          role="menu"
+          className="absolute right-2 top-9 z-20 min-w-[140px] rounded-md border border-[color:var(--color-border)] bg-white py-1 shadow-md"
+        >
+          <button
+            type="button"
+            role="menuitem"
+            onClick={onDeleteClick}
+            className="block w-full px-3 py-1.5 text-left text-[12px] text-red-600 hover:bg-red-50"
+          >
+            Delete lead
+          </button>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function DeleteLeadDialog({
+  lead,
+  onClose,
+  onDeleted,
+}: {
+  lead: LeadRow;
+  onClose: () => void;
+  onDeleted: (id: string) => void;
+}) {
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function handleConfirm() {
+    if (busy) return;
+    setBusy(true);
+    setError(null);
+    try {
+      const res = await fetch(`/api/dashboard/leads/${lead.id}`, {
+        method: "DELETE",
+      });
+      if (!res.ok) {
+        const body = (await res.json().catch(() => ({}))) as { error?: string };
+        setError(body.error ?? `Delete failed (${res.status}).`);
+        return;
+      }
+      onDeleted(lead.id);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Network error.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <div
+      className="fixed inset-0 z-50 grid place-items-center bg-slate-900/40 px-4"
+      onClick={onClose}
+      role="presentation"
+    >
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="delete-lead-title"
+        className="w-full max-w-sm rounded-lg border border-[color:var(--color-border)] bg-white p-5 shadow-xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <h2
+          id="delete-lead-title"
+          className="text-[15px] font-semibold text-slate-900"
+        >
+          Delete this lead?
+        </h2>
+        <p className="mt-2 text-[13px] leading-snug text-slate-600">
+          {lead.contact_name || lead.email}
+          {lead.company ? <> · {lead.company}</> : null}
+        </p>
+        <p className="mt-2 text-[12px] leading-snug text-slate-500">
+          This permanently removes the lead and any AI brief or notes attached
+          to it. Linked projects stay but lose the lead reference. This cannot
+          be undone.
+        </p>
+        {error ? (
+          <p
+            role="alert"
+            className="mt-3 rounded-md border border-red-200 bg-red-50 px-2 py-1.5 text-[12px] text-red-700"
+          >
+            {error}
+          </p>
+        ) : null}
+        <div className="mt-4 flex justify-end gap-2">
+          <button
+            type="button"
+            onClick={onClose}
+            disabled={busy}
+            className="rounded-md border border-[color:var(--color-border)] bg-white px-3 py-1.5 text-[12px] text-slate-700 hover:bg-slate-50 disabled:opacity-60"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            onClick={handleConfirm}
+            disabled={busy}
+            className="rounded-md bg-red-600 px-3 py-1.5 text-[12px] font-medium text-white hover:bg-red-700 disabled:opacity-60"
+          >
+            {busy ? "Deleting…" : "Delete lead"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 // Re-export for the page to use in source-share computations.
