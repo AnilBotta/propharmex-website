@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { LogoutButton } from "./LogoutButton";
@@ -21,16 +22,16 @@ export function Sidebar({ sessionEmail, active, counts }: SidebarProps) {
     <aside className="flex w-64 shrink-0 flex-col border-r border-[color:var(--color-border)] bg-white">
       {/* Brand block */}
       <div className="flex items-center gap-2 px-4 pt-4 pb-3">
-        <span className="grid h-8 w-8 place-items-center rounded-md bg-primary-600 text-xs font-semibold text-white">
-          PX
-        </span>
-        <div className="leading-tight">
-          <div className="text-[13px] font-semibold text-slate-800">
-            Propharmex Console
-          </div>
-          <div className="text-[10px] tracking-[0.08em] text-slate-500">
-            MISSISSAUGA · <span className="text-green-600">LIVE</span>
-          </div>
+        <Image
+          src="/Propharmexlogo.png"
+          alt="Propharmex"
+          width={32}
+          height={32}
+          className="h-8 w-8 shrink-0 rounded-md object-contain"
+          priority
+        />
+        <div className="text-[13px] font-semibold text-slate-800 leading-tight">
+          Propharmex Dashboard
         </div>
       </div>
 

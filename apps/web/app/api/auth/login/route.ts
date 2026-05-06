@@ -95,8 +95,16 @@ export async function POST(req: Request) {
   });
 
   if (error || !data.user) {
+    // Log the supabase-side reason so an operator can debug from the
+    // Vercel runtime log without exposing it to the user. Common cases:
+    //   - "Invalid login credentials" → wrong password OR user.email_confirmed_at is null
+    //     (fix: open the user in Supabase → "Confirm user" or recreate with Auto Confirm)
+    //   - "Email not confirmed" → same as above (older Supabase phrasing)
+    //   - "Email logins are disabled" → enable Email provider in Supabase
     log.warn("auth.login.failed", {
       emailDomain,
+      supabaseStatus: error?.status ?? null,
+      supabaseCode: error?.code ?? null,
       message: error?.message ?? "no_user",
     });
     return NextResponse.json(

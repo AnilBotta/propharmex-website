@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 import { LoginForm } from "./LoginForm";
 
 export const metadata: Metadata = {
-  title: "Sign in · Propharmex Console",
+  title: "Sign in · Propharmex Dashboard",
   robots: { index: false, follow: false },
 };
 
@@ -29,21 +30,21 @@ export default async function DashboardLoginPage({
         aria-labelledby="dashboard-login-heading"
         className="w-full max-w-[420px] rounded-lg border border-[color:var(--color-border)] bg-white p-8 shadow-sm"
       >
-        <div className="mb-5 flex items-center gap-2">
-          <span className="grid h-9 w-9 place-items-center rounded-md bg-primary-600 text-[13px] font-semibold text-white">
-            PX
-          </span>
-          <div className="leading-tight">
-            <h1
-              id="dashboard-login-heading"
-              className="text-[16px] font-semibold text-slate-900"
-            >
-              Propharmex Console
-            </h1>
-            <div className="text-[10px] tracking-[0.08em] text-slate-500">
-              MISSISSAUGA · <span className="text-green-600">LIVE</span>
-            </div>
-          </div>
+        <div className="mb-5 flex items-center gap-2.5">
+          <Image
+            src="/Propharmexlogo.png"
+            alt="Propharmex"
+            width={36}
+            height={36}
+            className="h-9 w-9 shrink-0 rounded-md object-contain"
+            priority
+          />
+          <h1
+            id="dashboard-login-heading"
+            className="text-[16px] font-semibold text-slate-900 leading-tight"
+          >
+            Propharmex Dashboard
+          </h1>
         </div>
         <p className="mb-5 text-[13px] text-slate-600">
           Sign in to view leads, AI-tool funnel stats, and outreach status.
