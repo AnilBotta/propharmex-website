@@ -122,6 +122,39 @@ export function LeadDrawer({
     }
   }
 
+  async function handleConvertToProject() {
+    if (!detail) return;
+    const lead = detail.lead;
+    const titleSuggestion =
+      [lead.company ?? lead.contact_name ?? lead.email, lead.service ?? lead.dosage_form ?? "engagement"]
+        .filter(Boolean)
+        .join(" · ");
+    // eslint-disable-next-line no-alert
+    const title = window.prompt(
+      "Project title (will appear on the kanban):",
+      titleSuggestion,
+    );
+    if (!title || title.trim().length < 2) return;
+
+    const res = await fetch("/api/dashboard/projects", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: title.trim(),
+        company: lead.company ?? undefined,
+        leadId: lead.id,
+        stage: "discovery",
+      }),
+    });
+    if (!res.ok) {
+      // eslint-disable-next-line no-alert
+      alert("Couldn't create the project. Please retry.");
+      return;
+    }
+    // eslint-disable-next-line no-alert
+    alert("Project created in Discovery stage. Refresh to see it in the kanban.");
+  }
+
   function handleCopy(text: string) {
     navigator.clipboard.writeText(text).catch(() => {
       // silent
@@ -297,6 +330,15 @@ export function LeadDrawer({
                     </button>
                   ))}
                 </div>
+                {detail.lead.status === "won" || detail.lead.status === "contacted" ? (
+                  <button
+                    type="button"
+                    onClick={handleConvertToProject}
+                    className="mt-2 rounded-md border border-primary-200 bg-primary-50 px-3 py-1.5 text-[12px] font-medium text-primary-700 hover:bg-primary-100"
+                  >
+                    + Convert to project
+                  </button>
+                ) : null}
               </section>
 
               {/* Notes */}

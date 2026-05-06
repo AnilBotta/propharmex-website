@@ -8,6 +8,7 @@ import {
   type LeadSource,
 } from "@propharmex/lib/leads/types";
 
+import { AddLeadModal } from "./AddLeadModal";
 import { LeadAvatar } from "./LeadAvatar";
 import { SOURCE_LABEL, SourcePill, StatusPill } from "./Pills";
 
@@ -25,11 +26,52 @@ const TABS: { id: Tab; label: string }[] = [
 interface LeadTableProps {
   leads: LeadRow[];
   onOpenLead: (id: string) => void;
+  onLeadCreated: (lead: LeadRow) => void;
 }
 
-export function LeadTable({ leads, onOpenLead }: LeadTableProps) {
+export function LeadTable({ leads, onOpenLead, onLeadCreated }: LeadTableProps) {
   const [tab, setTab] = useState<Tab>("all");
   const [search, setSearch] = useState("");
+  const [exporting, setExporting] = useState(false);
+  const [showAddModal, setShowAddModal] = useState(false);
+
+  async function handleExport() {
+    if (exporting) return;
+    setExporting(true);
+    try {
+      // Forward the active source/status filters to the server so the CSV
+      // matches what's currently visible in the table. The free-text
+      // search is client-only and isn't sent to the server.
+      const params = new URLSearchParams();
+      if (tab === "new") params.set("status", "new");
+      else if (tab === "qualified") params.set("status", "contacted");
+      else if (tab !== "all") params.set("source", tab);
+      const qs = params.toString();
+      const res = await fetch(
+        `/api/dashboard/leads/export${qs ? `?${qs}` : ""}`,
+      );
+      if (!res.ok) {
+        // eslint-disable-next-line no-alert
+        alert("Export failed. Please retry.");
+        return;
+      }
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download =
+        res.headers
+          .get("content-disposition")
+          ?.match(/filename="?([^"]+)"?/)?.[1] ??
+        `propharmex-leads-${new Date().toISOString().slice(0, 10)}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } finally {
+      setExporting(false);
+    }
+  }
 
   const visible = useMemo(() => {
     return leads.filter((lead) => {
@@ -82,15 +124,16 @@ export function LeadTable({ leads, onOpenLead }: LeadTableProps) {
           />
           <button
             type="button"
-            disabled
-            className="cursor-not-allowed rounded-md border border-[color:var(--color-border)] bg-white px-2 py-1 text-[12px] text-slate-500"
+            onClick={handleExport}
+            disabled={exporting || leads.length === 0}
+            className="rounded-md border border-[color:var(--color-border)] bg-white px-2 py-1 text-[12px] text-slate-700 transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
           >
-            Export CSV
+            {exporting ? "Exporting…" : "Export CSV"}
           </button>
           <button
             type="button"
-            disabled
-            className="cursor-not-allowed rounded-md bg-primary-600 px-2.5 py-1 text-[12px] font-medium text-white opacity-70"
+            onClick={() => setShowAddModal(true)}
+            className="rounded-md bg-primary-600 px-2.5 py-1 text-[12px] font-medium text-white hover:bg-primary-700"
           >
             + Add lead
           </button>
@@ -206,6 +249,16 @@ export function LeadTable({ leads, onOpenLead }: LeadTableProps) {
           </tbody>
         </table>
       </div>
+
+      {showAddModal ? (
+        <AddLeadModal
+          onClose={() => setShowAddModal(false)}
+          onCreated={(lead) => {
+            setShowAddModal(false);
+            onLeadCreated(lead);
+          }}
+        />
+      ) : null}
     </section>
   );
 }

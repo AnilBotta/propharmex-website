@@ -14,6 +14,7 @@ import { DashboardShell } from "./DashboardShell";
 import type { ActivityItem } from "./components/ActivityFeed";
 import type { SourceShare } from "./components/LeadSourcesCard";
 import { SOURCE_LABEL } from "./components/Pills";
+import type { ProjectRow } from "./components/ProjectPipeline";
 
 export const metadata: Metadata = {
   title: "Lead intake · Propharmex Console",
@@ -34,34 +35,46 @@ export default async function DashboardHome() {
   let allLeads: LeadRow[] = [];
   let activity: ActivityItem[] = [];
   let hotOpenCount = 0;
+  let projects: ProjectRow[] = [];
 
   if (sb) {
-    const [{ data: leadRows }, { data: allLeadRows }, { data: noteRows }, { count: hotCount }] =
-      await Promise.all([
-        sb
-          .from("leads")
-          .select("*")
-          .order("created_at", { ascending: false })
-          .limit(50),
-        sb
-          .from("leads")
-          .select("*")
-          .order("created_at", { ascending: false })
-          .limit(500),
-        sb
-          .from("lead_notes")
-          .select("id, lead_id, author_email, body, kind, created_at")
-          .order("created_at", { ascending: false })
-          .limit(20),
-        sb
-          .from("lead_intelligence")
-          .select("*", { count: "exact", head: true })
-          .eq("intent_band", "hot"),
-      ]);
+    const [
+      { data: leadRows },
+      { data: allLeadRows },
+      { data: noteRows },
+      { count: hotCount },
+      { data: projectRows },
+    ] = await Promise.all([
+      sb
+        .from("leads")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(50),
+      sb
+        .from("leads")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(500),
+      sb
+        .from("lead_notes")
+        .select("id, lead_id, author_email, body, kind, created_at")
+        .order("created_at", { ascending: false })
+        .limit(20),
+      sb
+        .from("lead_intelligence")
+        .select("*", { count: "exact", head: true })
+        .eq("intent_band", "hot"),
+      sb
+        .from("projects")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(200),
+    ]);
 
     leads = (leadRows ?? []) as LeadRow[];
     allLeads = (allLeadRows ?? []) as LeadRow[];
     hotOpenCount = hotCount ?? 0;
+    projects = (projectRows ?? []) as ProjectRow[];
 
     activity = buildActivity(leads, noteRows ?? []);
   }
@@ -75,6 +88,7 @@ export default async function DashboardHome() {
       kpis={kpis}
       sources={sources}
       activity={activity}
+      initialProjects={projects}
     />
   );
 }
