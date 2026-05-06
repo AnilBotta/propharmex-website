@@ -78,7 +78,10 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
-  const rows = (data ?? []) as Array<Record<string, unknown>>;
+  // Supabase types `.select("a,b,c")` as a union including GenericStringError;
+  // we know the runtime shape so cast through `unknown` (the TS2352 error
+  // explicitly tells you to do this).
+  const rows = (data ?? []) as unknown as Array<Record<string, unknown>>;
   const csv = toCsv(COLUMNS, rows);
 
   const filename = `propharmex-leads-${new Date().toISOString().slice(0, 10)}.csv`;
