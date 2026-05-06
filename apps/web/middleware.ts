@@ -33,7 +33,13 @@ export async function middleware(req: NextRequest) {
       req.nextUrl.pathname === "/dashboard/login" ||
       req.nextUrl.pathname.startsWith("/dashboard/login/");
 
-    if (!isPublicSurface) {
+    // Temporary bypass (PR-N5). When DASHBOARD_AUTH_DISABLED=true the
+    // dashboard is publicly accessible — skip the session check entirely.
+    // Read from process.env directly because middleware runs in edge
+    // runtime (no @propharmex/lib).
+    const authDisabled = process.env.DASHBOARD_AUTH_DISABLED === "true";
+
+    if (!isPublicSurface && !authDisabled) {
       const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
       const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 

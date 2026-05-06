@@ -54,13 +54,30 @@ export async function createSupabaseServerClient() {
 }
 
 /**
+ * Sentinel email returned by `getDashboardUserEmail()` when the temporary
+ * auth bypass is enabled (DASHBOARD_AUTH_DISABLED=true). The Sidebar
+ * detects this string and renders a "Preview mode" banner instead of the
+ * user pill. Any `lead_notes` written in this state get stamped with
+ * this address so the audit trail is honest about what happened in the
+ * bypass window.
+ */
+export const DISABLED_PLACEHOLDER_EMAIL = "disabled-auth@propharmex.local";
+
+/**
  * Resolve the currently logged-in user, with allowlist enforcement.
  * Returns the email if the user is authenticated AND in
  * DASHBOARD_ALLOWED_EMAILS. Returns null otherwise.
  *
+ * Bypass: when DASHBOARD_AUTH_DISABLED=true, returns the placeholder
+ * email above. Every page + API route that calls this helper picks up
+ * the bypass automatically with no per-call-site change.
+ *
  * Tip: pages should call this and `redirect("/dashboard/login")` on null.
  */
 export async function getDashboardUserEmail(): Promise<string | null> {
+  if (env.DASHBOARD_AUTH_DISABLED === "true") {
+    return DISABLED_PLACEHOLDER_EMAIL;
+  }
   let supabase;
   try {
     supabase = await createSupabaseServerClient();

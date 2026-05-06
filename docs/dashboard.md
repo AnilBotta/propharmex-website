@@ -5,6 +5,15 @@ covering every lead the marketing site captures plus an AI-tool conversion
 funnel. This document is for operators (BD team, engineering, ops) — it is
 not user-facing copy.
 
+### Temporary auth bypass (PR-N5)
+
+Set `DASHBOARD_AUTH_DISABLED=true` in the Vercel env to make `/dashboard`
+publicly accessible without sign-in. While enabled, the Sidebar shows an
+amber "Preview mode" banner instead of the user pill — anyone with the
+URL can view the lead inbox (PII). Use only on Preview during the
+Supabase auth config window. Unset (or set to anything other than
+`"true"`) to restore full Supabase auth — no code changes needed.
+
 > **TL;DR:** edit `DASHBOARD_ALLOWED_EMAILS` to control who can log in. Apply
 > the three new migrations (`0005_leads.sql`, `0006_auth_sessions.sql`,
 > `0007_lead_intelligence.sql`) once. Magic-link emails come through Resend.
