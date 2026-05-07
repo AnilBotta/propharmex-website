@@ -1,8 +1,10 @@
 /**
- * /api/dashboard/leads/[id] — fetch + update a single lead.
+ * /api/dashboard/leads/[id] — fetch + update + delete a single lead.
  *
  * GET    → returns { lead, notes, intelligence? }
  * PATCH  → updates status / owner_email; auto-writes a status_change note.
+ * DELETE → removes the lead. Cascades to lead_intelligence + lead_notes;
+ *          projects.lead_id becomes NULL (project survives, audit intact).
  */
 import { NextResponse } from "next/server";
 import { z } from "zod";
@@ -149,4 +151,47 @@ export async function PATCH(
   });
 
   return NextResponse.json({ ok: true, changed: true });
+}
+
+export async function DELETE(
+  _req: Request,
+  { params }: { params: Promise<{ id: string }> },
+) {
+  const sessionEmail = await getDashboardUserEmail();
+  if (!sessionEmail) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+  const sb = supabase.getServerSupabase();
+  if (!sb) {
+    return NextResponse.json(
+      { error: "Database not configured" },
+      { status: 503 },
+    );
+  }
+  const { id } = await params;
+
+  const { data: existing, error: readErr } = await sb
+    .from("leads")
+    .select("id, email, source")
+    .eq("id", id)
+    .maybeSingle();
+  if (readErr) {
+    return NextResponse.json({ error: readErr.message }, { status: 500 });
+  }
+  if (!existing) {
+    return NextResponse.json({ error: "Lead not found" }, { status: 404 });
+  }
+
+  const { error: delErr } = await sb.from("leads").delete().eq("id", id);
+  if (delErr) {
+    return NextResponse.json({ error: delErr.message }, { status: 500 });
+  }
+
+  log.info("dashboard.lead.deleted", {
+    leadId: id,
+    source: existing.source,
+    by: sessionEmail.split("@")[1] ?? "unknown",
+  });
+
+  return NextResponse.json({ ok: true });
 }

@@ -52,6 +52,11 @@ export function DashboardShell({
     setOpenLeadId(newLead.id);
   }
 
+  function handleLeadDeleted(id: string) {
+    setLeads((prev) => prev.filter((l) => l.id !== id));
+    if (openLeadId === id) setOpenLeadId(null);
+  }
+
   return (
     <main className="px-6 py-6">
       {/* Page header */}
@@ -144,6 +149,7 @@ export function DashboardShell({
           leads={leads}
           onOpenLead={setOpenLeadId}
           onLeadCreated={handleLeadCreated}
+          onLeadDeleted={handleLeadDeleted}
         />
         <LeadSourcesCard shares={sources} />
       </section>

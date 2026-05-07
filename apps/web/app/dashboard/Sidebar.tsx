@@ -26,18 +26,15 @@ export function Sidebar({ sessionEmail, active, counts }: SidebarProps) {
   return (
     <aside className="flex w-64 shrink-0 flex-col border-r border-[color:var(--color-border)] bg-white">
       {/* Brand block */}
-      <div className="flex items-center gap-2 px-4 pt-4 pb-3">
+      <div className="flex items-center justify-center px-4 pt-4 pb-3">
         <Image
           src="/Propharmexlogo.png"
           alt="Propharmex"
-          width={32}
-          height={32}
-          className="h-8 w-8 shrink-0 rounded-md object-contain"
+          width={220}
+          height={64}
+          className="h-14 w-auto object-contain"
           priority
         />
-        <div className="text-[13px] font-semibold text-slate-800 leading-tight">
-          Propharmex Dashboard
-        </div>
       </div>
 
       <nav className="flex-1 overflow-y-auto px-2 py-3 text-sm">
