@@ -3,7 +3,7 @@ import { longFormPortableText } from "../_helpers/baseFields";
 
 /**
  * Singleton — source of truth for every system prompt used by the four AI
- * tools (Concierge, Scoping, DEL Readiness, Dosage Matcher). Accessible via
+ * tools (Concierge, Scoping, Regulatory Readiness, Dosage Matcher). Accessible via
  * fixed document ID `aiPromptConfig`.
  */
 export const groqProjection = `{
@@ -79,7 +79,7 @@ export default defineType({
   fields: [
     promptField("concierge", "Concierge"),
     promptField("scoping", "Scoping"),
-    promptField("delReadiness", "DEL readiness"),
+    promptField("delReadiness", "Regulatory readiness"),
     promptField("dosageMatcher", "Dosage form matcher"),
     promptField("leadIntelligence", "Lead intelligence"),
     defineField({
