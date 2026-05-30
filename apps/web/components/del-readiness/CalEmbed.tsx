@@ -1,14 +1,14 @@
 "use client";
 
 /**
- * CalEmbed — "Book a DEL consultation" CTA on the results screen.
+ * CalEmbed — readiness consultation CTA on the results screen.
  *
  * When `calLink` is set, renders an `<a target="_blank">` to the
  * sponsor's Cal.com URL with a `metadata[source]` parameter so booking
  * analytics can attribute back to the assessment.
  *
  * When `calLink` is unset (preview deploys, dev without secrets), falls
- * through to the same `/contact?source=del-readiness-results` link the
+ * through to the same readiness-results contact link the
  * placeholder used. The user always has a path forward.
  *
  * No iframe — opening Cal.com in a new tab is the lighter pattern for a
@@ -26,7 +26,7 @@ interface Props {
 
 export function CalEmbed({ calLink, onClick }: Props) {
   const href = calLink
-    ? `https://cal.com/${calLink}?metadata[source]=del-readiness`
+    ? `https://cal.com/${calLink}?metadata[source]=regulatory-readiness`
     : DEL_READINESS.results.actions.bookConsultation.href;
   const isExternal = Boolean(calLink);
 

@@ -25,22 +25,11 @@
  *   - 429 with Retry-After when the limiter rejects
  */
 import { createAnthropic } from "@ai-sdk/anthropic";
-import {
-  createDataStreamResponse,
-  streamText,
-  tool,
-  type CoreMessage,
-} from "ai";
+import { createDataStreamResponse, streamText, tool, type CoreMessage } from "ai";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
-import {
-  delReadiness,
-  env,
-  getRateLimiter,
-  log,
-  sanity,
-} from "@propharmex/lib";
+import { delReadiness, env, getRateLimiter, log, sanity } from "@propharmex/lib";
 
 export const runtime = "edge";
 
@@ -76,32 +65,28 @@ export async function POST(req: Request) {
     return NextResponse.json(
       {
         error:
-          "Our DEL Readiness Assistant is being set up — please use the contact form for now.",
-        contactUrl: "/contact?source=del-readiness-unconfigured",
+          "Our Regulatory Readiness Assessment is being set up — please use the contact form for now.",
+        contactUrl: "/contact?source=regulatory-readiness-unconfigured",
       },
-      { status: 503 },
+      { status: 503 }
     );
   }
 
   // 2) Per-IP rate limit.
-  const ip =
-    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "anon";
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "anon";
   const rl = await delReadinessRateLimiter.limit(ip);
   if (!rl.success) {
-    const retryAfterSeconds = Math.max(
-      1,
-      Math.ceil((rl.reset - Date.now()) / 1000),
-    );
+    const retryAfterSeconds = Math.max(1, Math.ceil((rl.reset - Date.now()) / 1000));
     log.warn("del-readiness.rate_limited", { ip, retryAfterSeconds });
     return NextResponse.json(
       {
         error: "Too many assessments in a short window. Please wait and retry.",
-        contactUrl: "/contact?source=del-readiness-rate-limited",
+        contactUrl: "/contact?source=regulatory-readiness-rate-limited",
       },
       {
         status: 429,
         headers: { "Retry-After": String(retryAfterSeconds) },
-      },
+      }
     );
   }
 
@@ -114,10 +99,7 @@ export async function POST(req: Request) {
   }
   const parsed = BodySchema.safeParse(raw);
   if (!parsed.success) {
-    return NextResponse.json(
-      { error: "Invalid request shape." },
-      { status: 400 },
-    );
+    return NextResponse.json({ error: "Invalid request shape." }, { status: 400 });
   }
   const { answers } = parsed.data;
 
@@ -133,7 +115,7 @@ export async function POST(req: Request) {
     });
     return NextResponse.json(
       { error: "We couldn't score those answers — please retry." },
-      { status: 400 },
+      { status: 400 }
     );
   }
 
@@ -174,18 +156,15 @@ export async function POST(req: Request) {
         tools: {
           recommend: tool({
             description:
-              "Emit the qualitative DEL readiness assessment. Call exactly once with the most material gaps and a prioritized remediation plan. The numeric score is computed deterministically by the server — do not emit a score.",
+              "Emit the qualitative regulatory readiness assessment. Call exactly once with the most material gaps and a prioritized remediation plan. The numeric score is computed deterministically by the server — do not emit a score.",
             parameters: delReadiness.AssessmentRecommendationSchema,
-            execute: async () => ({ ok: true } as const),
+            execute: async () => ({ ok: true }) as const,
           }),
         },
         onChunk: ({ chunk }) => {
           // Attach the deterministic score on the first text-delta chunk
           // so the client can pair it with the streaming tool-call args.
-          if (
-            !scoreAttached &&
-            (chunk.type === "text-delta" || chunk.type === "tool-call")
-          ) {
+          if (!scoreAttached && (chunk.type === "text-delta" || chunk.type === "tool-call")) {
             writer.writeMessageAnnotation({
               type: "del-readiness.score",
               rubricVersion: rubric.version,
@@ -236,19 +215,15 @@ function buildUserMessage(input: {
   lines.push("# DEL Readiness Assessment — synthesize");
   lines.push("");
   lines.push(
-    `Rubric version ${rubric.version}. Determine the most material gaps and a prioritized remediation plan, then call \`recommend\`. Do NOT emit a score — that has already been computed.`,
+    `Rubric version ${rubric.version}. Determine the most material gaps and a prioritized remediation plan, then call \`recommend\`. Do NOT emit a score — that has already been computed.`
   );
   lines.push("");
   lines.push("## Computed score");
   lines.push("");
-  lines.push(
-    `- Overall: **${scoreOnly.score} / 100** (${scoreOnly.trafficLight})`,
-  );
+  lines.push(`- Overall: **${scoreOnly.score} / 100** (${scoreOnly.trafficLight})`);
   for (const cs of scoreOnly.categoryScores) {
     const cat = rubric.categories.find((c) => c.id === cs.category);
-    lines.push(
-      `- ${cat?.label ?? cs.category}: ${cs.score} / 100 (${cs.trafficLight})`,
-    );
+    lines.push(`- ${cat?.label ?? cs.category}: ${cs.score} / 100 (${cs.trafficLight})`);
   }
   lines.push("");
   lines.push("## Rubric");

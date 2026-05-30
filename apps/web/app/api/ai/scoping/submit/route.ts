@@ -34,14 +34,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
 
-import {
-  env,
-  getRateLimiter,
-  leads as leadsLib,
-  log,
-  scoping,
-  supabase,
-} from "@propharmex/lib";
+import { env, getRateLimiter, leads as leadsLib, log, scoping, supabase } from "@propharmex/lib";
 
 export const runtime = "nodejs";
 
@@ -53,6 +46,7 @@ const ContactSchema = z.object({
   email: z.string().email().max(254),
   company: z.string().min(1).max(200),
   name: z.string().min(1).max(200).optional(),
+  role: z.string().min(1).max(80).optional(),
   message: z.string().max(2000).optional(),
 });
 
@@ -87,21 +81,17 @@ const submitRateLimiter = getRateLimiter("scoping:submit:ip", {
 
 export async function POST(req: Request) {
   // 1) Rate limit per IP. Submissions are real and low-volume; 5 / 5 min.
-  const ip =
-    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "anon";
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "anon";
   const rl = await submitRateLimiter.limit(ip);
   if (!rl.success) {
-    const retryAfterSeconds = Math.max(
-      1,
-      Math.ceil((rl.reset - Date.now()) / 1000),
-    );
+    const retryAfterSeconds = Math.max(1, Math.ceil((rl.reset - Date.now()) / 1000));
     log.warn("scoping.submit.rate_limited", { ip, retryAfterSeconds });
     return NextResponse.json(
       { error: "Too many submissions. Please wait a minute and try again." },
       {
         status: 429,
         headers: { "Retry-After": String(retryAfterSeconds) },
-      },
+      }
     );
   }
 
@@ -116,7 +106,7 @@ export async function POST(req: Request) {
   if (!parsed.success) {
     return NextResponse.json(
       { error: "Please check the form fields and try again." },
-      { status: 400 },
+      { status: 400 }
     );
   }
   const { scope, contact, transcript, region, referrer } = parsed.data;
@@ -126,11 +116,7 @@ export async function POST(req: Request) {
   // 3) BD email via Resend. When env keys are missing we still 202 and
   // record the attempt — useful in dev / preview without secrets.
   let queued = false;
-  if (
-    env.RESEND_API_KEY &&
-    env.RESEND_CONTACT_TO_EMAIL &&
-    env.RESEND_FROM_EMAIL
-  ) {
+  if (env.RESEND_API_KEY && env.RESEND_CONTACT_TO_EMAIL && env.RESEND_FROM_EMAIL) {
     try {
       const resend = new Resend(env.RESEND_API_KEY);
       await resend.emails.send({
@@ -148,7 +134,7 @@ export async function POST(req: Request) {
       });
       return NextResponse.json(
         { error: "We couldn't send that right now. Please retry." },
-        { status: 502 },
+        { status: 502 }
       );
     }
   }
@@ -182,6 +168,7 @@ export async function POST(req: Request) {
     email: contact.email,
     contactName: contact.name,
     company: contact.company,
+    role: contact.role,
     region,
     stage: scope.developmentStage,
     dosageForm: scope.dosageForms[0],
@@ -228,6 +215,7 @@ function renderPlainText(p: {
     "── Submitter ─────────────────────────────",
   ];
   if (contact.name) lines.push(`Name: ${contact.name}`);
+  if (contact.role) lines.push(`Role: ${contact.role}`);
   lines.push(`Email: ${contact.email}`);
   lines.push(`Company: ${contact.company}`);
   if (region) lines.push(`Region: ${region}`);
@@ -240,11 +228,9 @@ function renderPlainText(p: {
   lines.push(`Dosage forms: ${scope.dosageForms.join(", ")}`);
   lines.push(`Stage: ${scope.developmentStage}`);
   lines.push(
-    `Ballpark timeline: ${scope.ballparkTimelineWeeks.min}–${scope.ballparkTimelineWeeks.max} weeks`,
+    `Ballpark timeline: ${scope.ballparkTimelineWeeks.min}–${scope.ballparkTimelineWeeks.max} weeks`
   );
-  lines.push(
-    `Recommended services: ${scope.recommendedServices.join(", ")}`,
-  );
+  lines.push(`Recommended services: ${scope.recommendedServices.join(", ")}`);
 
   lines.push("", "Deliverables:");
   for (const d of scope.deliverables) lines.push(`  • ${d}`);
@@ -264,15 +250,13 @@ function renderPlainText(p: {
   lines.push("", "Phases:");
   scope.phases.forEach((ph, i) => {
     lines.push(
-      `  ${i + 1}. ${ph.name} (${ph.durationWeeks} ${ph.durationWeeks === 1 ? "wk" : "wks"})`,
+      `  ${i + 1}. ${ph.name} (${ph.durationWeeks} ${ph.durationWeeks === 1 ? "wk" : "wks"})`
     );
     for (const m of ph.milestones) lines.push(`       - ${m}`);
   });
 
   lines.push("", "── Note ─────────────────────────────────");
-  lines.push(
-    "AI-assisted draft. Confirm scope, schedule a discovery call, then quote.",
-  );
+  lines.push("AI-assisted draft. Confirm scope, schedule a discovery call, then quote.");
 
   return lines.join("\n");
 }

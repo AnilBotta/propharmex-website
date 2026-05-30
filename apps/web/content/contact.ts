@@ -47,7 +47,7 @@ export const SERVICES = [
   { id: "pharmaceutical-development", label: "Pharmaceutical development" },
   { id: "analytical-services", label: "Analytical services" },
   { id: "regulatory-services", label: "Regulatory affairs" },
-  { id: "3pl-distribution", label: "3PL distribution (Canada)" },
+  { id: "clinical-be-insight", label: "Clinical and bioequivalence insight" },
   { id: "general", label: "Not sure yet — general inquiry" },
 ] as const;
 export type ServiceId = (typeof SERVICES)[number]["id"];
@@ -176,7 +176,7 @@ export type ContactContent = {
 export const CONTACT: ContactContent = {
   metaTitle: "Contact Propharmex",
   metaDescription:
-    "Reach the Propharmex team for pharmaceutical development, analytical services, regulatory affairs, or 3PL distribution. A Canadian pharmaceutical services company anchored at our Mississauga DEL site, with an Indian development centre in Hyderabad.",
+    "Reach Propharmex for pharmaceutical development, analytical services, regulatory affairs, or clinical and bioequivalence insight. Canada-headquartered support for global sponsors.",
   ogTitle: "Contact Propharmex",
   ogDescription:
     "Send a programme brief and we'll route it to the right desk. Most replies within one Canadian business day.",
@@ -191,10 +191,9 @@ export const CONTACT: ContactContent = {
   },
   addresses: {
     eyebrow: "Where we work",
-    heading: "Anchored in Mississauga, supported by our development bench",
-    lede: "Our Mississauga site holds the Health Canada Drug Establishment Licence and runs Canadian 3PL distribution. Our Indian development centre in Hyderabad runs pharmaceutical development and analytical services under the same quality system.",
-    addressOnFileNote:
-      "Exact site address shared during pre-visit briefing, under NDA.",
+    heading: "Canada-headquartered, serving global sponsors",
+    lede: "Propharmex is led from Canada and works with global sponsors through a disciplined scoping model, clear scientific review, and documented handoffs. Site-specific details are shared when they are relevant to a qualified engagement.",
+    addressOnFileNote: "Exact site address shared during pre-visit briefing, under NDA.",
     phoneOnFileNote: "Phone number shared after first email exchange.",
     mapsLinkLabel: "Open location in Google Maps",
   },
@@ -254,7 +253,7 @@ export const CONTACT: ContactContent = {
     errorFallback:
       "We couldn't send that right now. Please retry, or email hello@propharmex.com directly.",
     disclaimer:
-      "Submitting this form sends your details to Propharmex by email only. We do not store inquiries in a CRM at this stage of the build.",
+      "Submitting this form sends your details to Propharmex for review and follow-up. It does not create a quote, regulatory commitment, or engagement scope.",
   },
   cal: {
     eyebrow: "Prefer to talk first",

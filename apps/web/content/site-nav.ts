@@ -174,6 +174,37 @@ export const PRIMARY_NAV: NavSection[] = [
     ],
   },
   // Flat-link items: no `columns` → Header.tsx renders a plain anchor.
+  {
+    label: "AI Tools",
+    href: "/ai",
+    columns: [
+      {
+        heading: "Tool-led scoping",
+        links: [
+          {
+            href: "/ai",
+            label: "AI tools hub",
+            description: "Choose the right assistant for the next step.",
+          },
+          {
+            href: "/ai/project-scoping-assistant",
+            label: "Project Scoping Assistant",
+            description: "Turn early context into a qualified brief.",
+          },
+          {
+            href: "/ai/dosage-matcher",
+            label: "Dosage Form Matcher",
+            description: "Check dosage-form fit before the first call.",
+          },
+          {
+            href: "/ai/del-readiness",
+            label: "Readiness Assessment",
+            description: "Surface regulatory and quality gaps.",
+          },
+        ],
+      },
+    ],
+  },
   { label: "About", href: "/about" },
   { label: "Insights", href: "/insights" },
   { label: "Contact", href: "/contact" },
@@ -248,6 +279,7 @@ export const FOOTER_COLUMNS: { heading: string; links: NavLink[] }[] = [
   {
     heading: "Resources",
     links: [
+      { href: "/ai", label: "AI tools" },
       { href: "/insights", label: "Insights" },
       { href: "/case-studies", label: "Case studies" },
       {
@@ -323,18 +355,16 @@ export const NEWSLETTER = {
     "Short technical notes on Health Canada, USFDA, and ICH topics as they land. About one email per month. No sales pitches.",
   emailLabel: "Work email",
   emailPlaceholder: "you@company.com",
-  consentLabel:
-    "I agree to receive Propharmex briefings. I can unsubscribe from any email.",
+  consentLabel: "I agree to receive Propharmex briefings. I can unsubscribe from any email.",
   submitLabel: "Subscribe",
   submittingLabel: "Subscribing…",
-  successLabel:
-    "Check your inbox — we've sent a confirmation link. Opt-in completes on click.",
+  successLabel: "Check your inbox — we've sent a confirmation link. Opt-in completes on click.",
   errorGeneric:
     "We couldn't process that subscription. Please try again or email hello@propharmex.com.",
 };
 
 export const CTAS = {
-  quote: "Request a quote",
+  quote: "Start scoping",
   book: "Book a 30-minute call",
   contact: "Contact us",
 };

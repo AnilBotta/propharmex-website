@@ -63,7 +63,7 @@ export const DOSAGE_FORMS_HUB: DosageFormsHubContent = {
     },
     secondaryCta: {
       label: "Scope a development programme",
-      href: "/contact?intent=quote&source=dosage-forms-hub-hero",
+      href: "/ai/project-scoping-assistant?source=dosage-forms-hub-hero",
       variant: "outline",
     },
   },
@@ -137,8 +137,8 @@ export const DOSAGE_FORMS_HUB: DosageFormsHubContent = {
     heading: "Bring the molecule, the target market, and the timeline.",
     body: "We will read your target product profile against the seven dosage-form pathways and tell you which fits the molecule, the manufacturing footprint, and the regulatory route — with the bench, equipment, and analytical reading that pathway will require.",
     primaryCta: {
-      label: "Request a quote",
-      href: "/contact?intent=quote&source=dosage-forms-hub-closing",
+      label: "Start scoping",
+      href: "/ai/project-scoping-assistant?source=dosage-forms-hub-closing",
       variant: "primary",
     },
     secondaryCta: {

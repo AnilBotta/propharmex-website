@@ -8,9 +8,8 @@
  *
  * Voice: same anti-hype editorial register as case-studies.ts and
  * insights.ts. Operating discipline framing, not aspirational marketing.
- * The "Start my project" CTA in the closing block points at /contact?
- * source=process-closing today; it will retarget to /ai-tools/project-
- * scoping-assistant when that AI feature ships at Prompt 19.
+ * The primary CTA now points to the Project Scoping Assistant so process
+ * traffic creates a qualified brief before handoff.
  *
  * Migration path: shape mirrors a future Sanity `processPhase` collection.
  * The slug-as-id pattern (PROCESS_PHASE_IDS) and the four-field body
@@ -132,14 +131,13 @@ export const PROCESS: ProcessContent = {
       },
     ],
     primaryCta: {
-      label: "Start my project",
-      // TODO(prompt-19): swap to /ai-tools/project-scoping-assistant when shipped.
-      href: "/contact?source=process-hero",
+      label: "Start scoping",
+      href: "/ai/project-scoping-assistant",
       variant: "primary",
     },
     secondaryCta: {
-      label: "Talk through your scope",
-      href: "/contact?source=process-discovery",
+      label: "Review the AI tools",
+      href: "/ai",
       variant: "secondary",
     },
   },
@@ -233,8 +231,7 @@ export const PROCESS: ProcessContent = {
       number: "05",
       label: "Execute",
       title: "Execute",
-      summary:
-        "Active engagement under one quality system, with weekly visibility.",
+      summary: "Active engagement under one quality system, with weekly visibility.",
       whatHappens:
         "The project runs as designed in the proposal. Weekly project meetings between your team and our project manager; bi-weekly milestone reviews with the workstream owners; monthly executive steering committees for projects long enough to need them. All deviations and CAPAs visible in real time through the shared project workspace; data integrity controls (ALCOA+) apply across the QMS. Regulatory pre-meetings with Health Canada or your target regulator are scheduled into the timeline rather than treated as external dependencies.",
       whatWeNeed: [
@@ -280,9 +277,8 @@ export const PROCESS: ProcessContent = {
     heading: "Start your project.",
     body: "First call is 30 minutes, no NDA required. We listen, share what we have done in adjacent space, and tell you honestly whether your project is a good fit. If it is not, we say so on this call rather than after a proposal cycle.",
     primaryCta: {
-      label: "Start my project",
-      // TODO(prompt-19): swap to /ai-tools/project-scoping-assistant when shipped.
-      href: "/contact?source=process-closing",
+      label: "Start scoping",
+      href: "/ai/project-scoping-assistant",
       variant: "primary",
     },
     secondaryCta: {
