@@ -27,22 +27,18 @@ export default async function FunnelPage() {
   const sb = supabase.getServerSupabase();
   let tools: ToolStat[] = [];
   if (sb) {
-    const [
-      { count: scopingRuns },
-      { count: delRuns },
-      { count: dmRuns },
-      { data: leadsRows },
-    ] = await Promise.all([
-      sb.from("scoping_sessions").select("*", { count: "exact", head: true }),
-      sb.from("del_readiness_sessions").select("*", { count: "exact", head: true }),
-      sb.from("dosage_matcher_sessions").select("*", { count: "exact", head: true }),
-      sb.from("leads").select("source, status"),
-    ]);
+    const [{ count: scopingRuns }, { count: delRuns }, { count: dmRuns }, { data: leadsRows }] =
+      await Promise.all([
+        sb.from("scoping_sessions").select("*", { count: "exact", head: true }),
+        sb.from("del_readiness_sessions").select("*", { count: "exact", head: true }),
+        sb.from("dosage_matcher_sessions").select("*", { count: "exact", head: true }),
+        sb.from("leads").select("source, status"),
+      ]);
     const by = (s: string, status?: string) =>
       Array.isArray(leadsRows)
         ? leadsRows.filter(
             (r: { source: string; status: string }) =>
-              r.source === s && (status ? r.status === status : true),
+              r.source === s && (status ? r.status === status : true)
           ).length
         : 0;
 
@@ -56,7 +52,7 @@ export default async function FunnelPage() {
       },
       {
         id: "del_readiness",
-        label: "DEL Readiness",
+        label: "Regulatory readiness",
         runs: delRuns ?? 0,
         leads: by("del_readiness"),
         won: by("del_readiness", "won"),
@@ -85,12 +81,9 @@ export default async function FunnelPage() {
   return (
     <main className="px-6 py-6">
       <header className="mb-5">
-        <h1 className="text-[22px] font-semibold tracking-tight text-slate-900">
-          AI tool funnel
-        </h1>
+        <h1 className="text-[22px] font-semibold tracking-tight text-slate-900">AI tool funnel</h1>
         <p className="mt-1 text-[13px] text-slate-500">
-          How each AI tool turns into a real engagement. Refresh weekly to see
-          the trend.
+          How each AI tool turns into a real engagement. Refresh weekly to see the trend.
         </p>
       </header>
 
@@ -101,18 +94,14 @@ export default async function FunnelPage() {
           label="Leads from AI tools"
           value={totalLeads.toString()}
           sub={
-            totalRuns > 0
-              ? `${Math.round((totalLeads / totalRuns) * 100)}% conversion`
-              : undefined
+            totalRuns > 0 ? `${Math.round((totalLeads / totalRuns) * 100)}% conversion` : undefined
           }
         />
         <AggCell
           label="Won deals"
           value={totalWon.toString()}
           sub={
-            totalLeads > 0
-              ? `${Math.round((totalWon / totalLeads) * 100)}% close rate`
-              : undefined
+            totalLeads > 0 ? `${Math.round((totalWon / totalLeads) * 100)}% close rate` : undefined
           }
         />
       </section>
@@ -123,9 +112,7 @@ export default async function FunnelPage() {
             key={tool.id}
             className="rounded-lg border border-[color:var(--color-border)] bg-white p-4"
           >
-            <h3 className="text-[14px] font-semibold text-slate-800">
-              {tool.label}
-            </h3>
+            <h3 className="text-[14px] font-semibold text-slate-800">{tool.label}</h3>
             <div className="mt-3 grid grid-cols-3 gap-2">
               <Metric label="Runs" value={tool.runs} />
               <Metric label="Leads" value={tool.leads} accent="#1E9BD8" />
@@ -139,9 +126,7 @@ export default async function FunnelPage() {
                   : "no closes yet"}
               </p>
             ) : (
-              <p className="mt-3 text-[12px] text-slate-400">
-                No runs recorded yet.
-              </p>
+              <p className="mt-3 text-[12px] text-slate-400">No runs recorded yet.</p>
             )}
           </article>
         ))}
@@ -150,20 +135,10 @@ export default async function FunnelPage() {
   );
 }
 
-function AggCell({
-  label,
-  value,
-  sub,
-}: {
-  label: string;
-  value: string;
-  sub?: string;
-}) {
+function AggCell({ label, value, sub }: { label: string; value: string; sub?: string }) {
   return (
     <article className="rounded-lg border border-[color:var(--color-border)] bg-white p-4">
-      <span className="text-[10px] font-semibold tracking-[0.1em] text-slate-500">
-        {label}
-      </span>
+      <span className="text-[10px] font-semibold tracking-[0.1em] text-slate-500">{label}</span>
       <div className="mt-1 font-mono text-[28px] font-semibold leading-tight tracking-tight text-slate-900">
         {value}
       </div>
@@ -172,24 +147,11 @@ function AggCell({
   );
 }
 
-function Metric({
-  label,
-  value,
-  accent,
-}: {
-  label: string;
-  value: number;
-  accent?: string;
-}) {
+function Metric({ label, value, accent }: { label: string; value: number; accent?: string }) {
   return (
     <div>
-      <div className="text-[10px] font-semibold tracking-[0.06em] text-slate-400">
-        {label}
-      </div>
-      <div
-        className="font-mono text-[18px] font-semibold"
-        style={{ color: accent ?? undefined }}
-      >
+      <div className="text-[10px] font-semibold tracking-[0.06em] text-slate-400">{label}</div>
+      <div className="font-mono text-[18px] font-semibold" style={{ color: accent ?? undefined }}>
         {value}
       </div>
     </div>

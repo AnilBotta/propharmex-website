@@ -6,7 +6,7 @@
  * hash-based deep-link logic (#<slug>) can drive the active modal.
  *
  * Leadership data is stubbed in `apps/web/content/about.ts` under option B —
- * every record carries `stub: true` and renders a "Profile in preparation"
+ * every record carries `stub: true` and renders a credential-review
  * badge until the founders supply vetted bios, credentials, and headshots.
  *
  * JSON-LD: emits AboutPage + BreadcrumbList + a Person node per leader. The

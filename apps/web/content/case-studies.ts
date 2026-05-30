@@ -2,9 +2,9 @@
  * Content dictionary for /case-studies (hub) and the three seed detail
  * pages at /case-studies/[slug] — Prompt 14.
  *
- * Positioning (CLAUDE.md §1): case studies are the evidence layer for the
- * Canadian-anchored operating model — Health Canada DEL site with offshore
- * analytical and development depth, serving global sponsors. Three
+ * Positioning: case studies are the evidence layer for the
+ * Canada-headquartered operating model — analytical, regulatory, and
+ * development depth for global sponsors. Three
  * seed studies anchor the three archetypes the rest of the site talks about:
  *
  *  - modified-release-requalification — a Top-5 US generic manufacturer whose
@@ -31,9 +31,8 @@
  * are descriptive, not certification claims. The regulatory-outcome blocks
  * state filings and service-standard context using `alignment` framing —
  * "consistent with", "authored against", "reviewed under the X service
- * standard" — never "approved by". The only `confirmed` anchor on this page
- * set is the Health Canada DEL reference on the detail-page closing block,
- * matching the pattern used across /industries and /services/regulatory-services.
+ * standard" — never "approved by". The detail-page closing block carries an
+ * internal scope note rather than an unverified licence or certification claim.
  *
  * All primary-source URLs stamped with "as of 2026-04-23" mirror the
  * canonical URLs used in regulatory-services.ts / analytical-services.ts /
@@ -128,7 +127,7 @@ export type CaseStudySlug = (typeof CASE_STUDY_SLUGS)[number];
 /*  Hub card (shared between hub grid, related rail, etc.)                    */
 /* -------------------------------------------------------------------------- */
 
-export type CaseStudyCardSummary = {
+export interface CaseStudyCardSummary {
   slug: CaseStudySlug;
   /** Card headline — no client name, patterned per anonymization rules. */
   title: string;
@@ -144,22 +143,22 @@ export type CaseStudyCardSummary = {
   services: CaseService[];
   dosageForm: CaseDosageForm;
   region: CaseRegion;
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Hub page                                                                  */
 /* -------------------------------------------------------------------------- */
 
-export type CaseStudyHubHero = {
+export interface CaseStudyHubHero {
   eyebrow: string;
   headline: string;
   lede: string;
   stats: { label: string; value: string }[];
   primaryCta: CaseStudyCta;
   secondaryCta: CaseStudyCta;
-};
+}
 
-export type CaseStudyHubFilterCopy = {
+export interface CaseStudyHubFilterCopy {
   eyebrow: string;
   heading: string;
   lede: string;
@@ -176,17 +175,17 @@ export type CaseStudyHubFilterCopy = {
   resultCountSingular: string;
   resultCountPlural: string;
   documentationNote: string;
-};
+}
 
-export type CaseStudyHubClosing = {
+export interface CaseStudyHubClosing {
   eyebrow: string;
   heading: string;
   body: string;
   primaryCta: CaseStudyCta;
   secondaryCta: CaseStudyCta;
-};
+}
 
-export type CaseStudyHubContent = {
+export interface CaseStudyHubContent {
   metaTitle: string;
   metaDescription: string;
   ogTitle: string;
@@ -194,13 +193,13 @@ export type CaseStudyHubContent = {
   hero: CaseStudyHubHero;
   filterCopy: CaseStudyHubFilterCopy;
   closing: CaseStudyHubClosing;
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Detail page                                                               */
 /* -------------------------------------------------------------------------- */
 
-export type CaseStudyClient = {
+export interface CaseStudyClient {
   /** Anonymized descriptor: "Top-5 US generic manufacturer". */
   descriptor: string;
   /**
@@ -213,22 +212,22 @@ export type CaseStudyClient = {
    * "Named reference available under NDA" or similar.
    */
   availabilityNote: string;
-};
+}
 
-export type CaseStudyMetric = {
+export interface CaseStudyMetric {
   /** The big headline number / phrase. */
   value: string;
   /** One-sentence label under the number. */
   label: string;
-};
+}
 
-export type CaseStudySnapshotRow = {
+export interface CaseStudySnapshotRow {
   id: string;
   label: string;
   value: string;
-};
+}
 
-export type CaseStudyPasrBlock = {
+export interface CaseStudyPasrBlock {
   eyebrow: string;
   heading: string;
   lede: string;
@@ -244,26 +243,26 @@ export type CaseStudyPasrBlock = {
     label: string;
     source?: CaseStudySource;
   };
-};
+}
 
-export type CaseStudyTimelinePhase = {
+export interface CaseStudyTimelinePhase {
   id: string;
   /** Human phase label: "Month 0–2: Method gap analysis". */
   period: string;
   title: string;
   body: string;
-};
+}
 
-export type CaseStudyTimeline = {
+export interface CaseStudyTimeline {
   eyebrow: string;
   heading: string;
   lede: string;
   phases: CaseStudyTimelinePhase[];
   /** Closing note, e.g. "End-to-end elapsed: ~11 months". */
   closingNote: string;
-};
+}
 
-export type CaseStudyRegulatoryOutcome = {
+export interface CaseStudyRegulatoryOutcome {
   eyebrow: string;
   heading: string;
   lede: string;
@@ -275,33 +274,33 @@ export type CaseStudyRegulatoryOutcome = {
   }[];
   /** Short closing paragraph framing the outcome in alignment-not-guarantee terms. */
   closingNote: string;
-};
+}
 
-export type CaseStudyRelatedServiceLink = {
+export interface CaseStudyRelatedServiceLink {
   id: string;
   label: string;
   description: string;
   href: string;
-};
+}
 
-export type CaseStudyRelatedServices = {
+export interface CaseStudyRelatedServices {
   eyebrow: string;
   heading: string;
   lede: string;
   links: CaseStudyRelatedServiceLink[];
-};
+}
 
-export type CaseStudyDetailClosing = {
+export interface CaseStudyDetailClosing {
   eyebrow: string;
   heading: string;
   body: string;
   primaryCta: CaseStudyCta;
   secondaryCta: CaseStudyCta;
-  /** Closing source reference — always the Health Canada DEL. */
+  /** Closing scope note. */
   regulatoryNote: CaseStudySource;
-};
+}
 
-export type CaseStudyContent = {
+export interface CaseStudyContent {
   slug: CaseStudySlug;
   label: string;
   crumbLabel: string;
@@ -326,17 +325,17 @@ export type CaseStudyContent = {
   regulatory: CaseStudyRegulatoryOutcome;
   related: CaseStudyRelatedServices;
   closing: CaseStudyDetailClosing;
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Shared primary-source constants                                           */
 /*  Mirrored from industries.ts / regulatory-services.ts / analytical-services. */
 /* -------------------------------------------------------------------------- */
 
-const HEALTH_CANADA_DEL_REGISTER: CaseStudySource = {
-  kind: "primary",
-  label: "Health Canada — Drug and Health Product Register",
-  href: "https://health-products.canada.ca/dpd-bdpp/",
+const INTERNAL_SCOPE_NOTE: CaseStudySource = {
+  kind: "internal",
+  label:
+    "Anonymized case patterns are illustrative. Engagement scope, quality responsibilities, and regulatory assumptions are confirmed case by case before work begins.",
 };
 
 const ICH_Q2_R2: CaseStudySource = {
@@ -366,15 +365,13 @@ const FDA_BE_GUIDANCE: CaseStudySource = {
 
 const CFR_PART_314: CaseStudySource = {
   kind: "primary",
-  label:
-    "21 CFR Part 314 — Applications for FDA approval to market a new drug",
+  label: "21 CFR Part 314 — Applications for FDA approval to market a new drug",
   href: "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-314",
 };
 
 const CFR_PART_211: CaseStudySource = {
   kind: "primary",
-  label:
-    "21 CFR Part 211 — Current Good Manufacturing Practice for Finished Pharmaceuticals",
+  label: "21 CFR Part 211 — Current Good Manufacturing Practice for Finished Pharmaceuticals",
   href: "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211",
 };
 
@@ -462,8 +459,7 @@ const MODIFIED_RELEASE_REQUALIFICATION: CaseStudyContent = {
     "Modified-release requalification after a dissolution deficiency — Propharmex case study",
   metaDescription:
     "Top-5 US generic manufacturer. ANDA returned with a dissolution deficiency letter. Method rebuilt under ICH Q2(R2), three bioequivalence cohorts requalified, resubmission filed roughly eleven months after engagement start.",
-  ogTitle:
-    "Modified-release requalification after a dissolution deficiency",
+  ogTitle: "Modified-release requalification after a dissolution deficiency",
   ogDescription:
     "Anonymized worked pattern. ICH Q2(R2) dissolution method rebuild and BE cohort requalification for a Top-5 US generic manufacturer.",
   summary: {
@@ -489,7 +485,7 @@ const MODIFIED_RELEASE_REQUALIFICATION: CaseStudyContent = {
     label: "From deficiency letter to resubmission filing",
   },
   heroLede:
-    "First ANDA filing came back with a dissolution deficiency letter. The sponsor needed a rebuilt method, three requalified bioequivalence cohorts, and a credible resubmission package. We rebuilt the dissolution method, revalidated per ICH Q2(R2), and authored the amendment under our Health Canada Drug Establishment Licence.",
+    "First ANDA filing came back with a dissolution deficiency letter. The sponsor needed a rebuilt method, three requalified bioequivalence cohorts, and a credible resubmission package. We rebuilt the dissolution method, revalidated per ICH Q2(R2), and authored the amendment as part of a documented regulatory amendment package.",
   snapshot: [
     {
       id: "client-pattern",
@@ -530,7 +526,8 @@ const MODIFIED_RELEASE_REQUALIFICATION: CaseStudyContent = {
   },
   approach: {
     eyebrow: "Approach",
-    heading: "Rebuild the method first. Requalify the BE cohorts against it. Then re-author the module.",
+    heading:
+      "Rebuild the method first. Requalify the BE cohorts against it. Then re-author the module.",
     lede: "We split the problem into an analytical rebuild and a regulatory-authoring workstream, running them in parallel with a weekly joint steering call. Both reported to a single programme manager on the sponsor's side, and both ran under one Propharmex quality system.",
     bullets: [
       "Method gap analysis against ICH Q2(R2) validation characteristics — specificity, linearity, accuracy, precision, range, robustness — with agency deficiency points mapped back to each characteristic.",
@@ -557,7 +554,8 @@ const MODIFIED_RELEASE_REQUALIFICATION: CaseStudyContent = {
   },
   result: {
     eyebrow: "Result",
-    heading: "Resubmission filed with a coherent method-BE narrative, roughly eleven months from engagement start.",
+    heading:
+      "Resubmission filed with a coherent method-BE narrative, roughly eleven months from engagement start.",
     lede: "The amendment went in inside the sponsor's target window. The revised method was the one used for the commercial release specification going forward.",
     bullets: [
       "Resubmission filed roughly eleven months after engagement start — within the sponsor's target window for the commercial-launch plan.",
@@ -597,7 +595,7 @@ const MODIFIED_RELEASE_REQUALIFICATION: CaseStudyContent = {
         id: "ph-4",
         period: "Month 7–10",
         title: "Amendment authoring and QA",
-        body: "Module 2.7.1 and Module 3.2.P.5 rebuilt as a single coherent narrative. QA review closed before submission under the DEL.",
+        body: "Module 2.7.1 and Module 3.2.P.5 rebuilt as a single coherent narrative. QA review closed before submission under the documented quality record.",
       },
       {
         id: "ph-5",
@@ -652,8 +650,7 @@ const MODIFIED_RELEASE_REQUALIFICATION: CaseStudyContent = {
       {
         id: "rel-2",
         label: "Dissolution and bioequivalence",
-        description:
-          "Two-tier dissolution design and BE cohort requalification work.",
+        description: "Two-tier dissolution design and BE cohort requalification work.",
         href: "/services/analytical-services/dissolution-bioequivalence",
       },
       {
@@ -679,7 +676,7 @@ const MODIFIED_RELEASE_REQUALIFICATION: CaseStudyContent = {
       href: "/contact",
       variant: "ghost",
     },
-    regulatoryNote: HEALTH_CANADA_DEL_REGISTER,
+    regulatoryNote: INTERNAL_SCOPE_NOTE,
   },
 };
 
@@ -762,7 +759,8 @@ const STERILE_INJECTABLE_SECOND_SOURCING: CaseStudyContent = {
   },
   approach: {
     eyebrow: "Approach",
-    heading: "Split the transfer into analytical-first and process-second. Qualify the second supplier against the same release spec the incumbent runs to.",
+    heading:
+      "Split the transfer into analytical-first and process-second. Qualify the second supplier against the same release spec the incumbent runs to.",
     lede: "Tech transfers fail when the analytical and the process workstreams collide on the same critical path. We ran them sequentially: the analytical package transferred first, validated end-to-end under ICH Q2(R2), and only then did the process transfer begin. The second supplier was qualified against the release specification the incumbent was already running to — the aim was interchangeability, not a redesign.",
     bullets: [
       "Analytical tech transfer into the Propharmex lab — full method-validation re-run under ICH Q2(R2), with side-by-side comparability against the incumbent's release data.",
@@ -778,8 +776,9 @@ const STERILE_INJECTABLE_SECOND_SOURCING: CaseStudyContent = {
   },
   solution: {
     eyebrow: "Solution",
-    heading: "Propharmex analytical bench running the data, Canadian QA authoring the comparability story.",
-    lede: "Propharmex ran the full analytical re-validation and the side-by-side comparability study, then authored the supplement, including the comparability protocol and the post-approval commitment wording, under our Health Canada DEL. The incumbent supplier stayed on primary release throughout the qualification window.",
+    heading:
+      "Propharmex analytical bench running the data, Canadian QA authoring the comparability story.",
+    lede: "Propharmex ran the full analytical re-validation and the side-by-side comparability study, then authored the supplement, including the comparability protocol and the post-approval commitment wording, under a documented scope review. The incumbent supplier stayed on primary release throughout the qualification window.",
     bullets: [
       "Analytical re-validation under ICH Q2(R2) closed inside the Propharmex lab — specificity, linearity, accuracy, precision, range, robustness, all runs documented.",
       "Comparability protocol authored against 21 CFR Part 211 and run as paired release batches: three incumbent, three second-supplier, same release specification, same analytical method.",
@@ -789,7 +788,8 @@ const STERILE_INJECTABLE_SECOND_SOURCING: CaseStudyContent = {
   },
   result: {
     eyebrow: "Result",
-    heading: "Second supplier qualified, COGS reduced into the target band, release cadence uninterrupted.",
+    heading:
+      "Second supplier qualified, COGS reduced into the target band, release cadence uninterrupted.",
     lede: "The second supplier came online roughly fourteen months after engagement start. The sponsor's governance board closed the single-source supply-risk item the same quarter.",
     bullets: [
       "Second supplier qualified against the same release specification as the incumbent — interchangeable, not parallel.",
@@ -832,7 +832,8 @@ const STERILE_INJECTABLE_SECOND_SOURCING: CaseStudyContent = {
         body: "Supplement-level change authored against 21 CFR Part 314, post-approval commitment wording agreed, second-supplier release qualification closed.",
       },
     ],
-    closingNote: "End-to-end elapsed: ~14 months from engagement start to second-supplier qualification.",
+    closingNote:
+      "End-to-end elapsed: ~14 months from engagement start to second-supplier qualification.",
   },
   regulatory: {
     eyebrow: "Regulatory outcome",
@@ -872,22 +873,19 @@ const STERILE_INJECTABLE_SECOND_SOURCING: CaseStudyContent = {
       {
         id: "rel-1",
         label: "Tech transfer",
-        description:
-          "Analytical-first, process-second sequencing across two manufacturing sites.",
+        description: "Analytical-first, process-second sequencing across two manufacturing sites.",
         href: "/services/pharma-development/tech-transfer",
       },
       {
         id: "rel-2",
         label: "Method development and validation",
-        description:
-          "Release-method re-validation under ICH Q2(R2).",
+        description: "Release-method re-validation under ICH Q2(R2).",
         href: "/services/analytical-services/method-development-validation",
       },
       {
         id: "rel-3",
         label: "USFDA submissions",
-        description:
-          "Supplement-level change authoring against 21 CFR Part 314.",
+        description: "Supplement-level change authoring against 21 CFR Part 314.",
         href: "/services/regulatory-services/us-fda-submissions",
       },
     ],
@@ -906,7 +904,7 @@ const STERILE_INJECTABLE_SECOND_SOURCING: CaseStudyContent = {
       href: "/contact#schedule",
       variant: "ghost",
     },
-    regulatoryNote: HEALTH_CANADA_DEL_REGISTER,
+    regulatoryNote: INTERNAL_SCOPE_NOTE,
   },
 };
 
@@ -918,12 +916,10 @@ const NGO_ORAL_SOLID_STABILITY_REBUILD: CaseStudyContent = {
   slug: "ngo-oral-solid-stability-rebuild",
   label: "Rebuilding release testing on an NGO oral-solid portfolio",
   crumbLabel: "NGO oral-solid stability rebuild",
-  metaTitle:
-    "Rebuilding release testing on an NGO oral-solid portfolio — Propharmex case study",
+  metaTitle: "Rebuilding release testing on an NGO oral-solid portfolio — Propharmex case study",
   metaDescription:
     "Global NGO procurement agency with an oral-solid portfolio for a public-health programme. Recurring out-of-spec events at release. Release testing restructured under ICH Q10, stability moved to Zone IVb, supplier qualification rebuilt. Zero OOS events in the 24 months following.",
-  ogTitle:
-    "Rebuilding release testing on an NGO oral-solid portfolio",
+  ogTitle: "Rebuilding release testing on an NGO oral-solid portfolio",
   ogDescription:
     "Anonymized worked pattern. ICH Q10 release-testing rebuild, Zone IVb stability transition, and supplier-qualification rework for a global NGO procurement programme.",
   summary: {
@@ -970,8 +966,7 @@ const NGO_ORAL_SOLID_STABILITY_REBUILD: CaseStudyContent = {
     {
       id: "pathway",
       label: "Regulatory pathway",
-      value:
-        "Capability alignment with WHO Prequalification expectations — no PQ claim",
+      value: "Capability alignment with WHO Prequalification expectations — no PQ claim",
     },
     {
       id: "duration",
@@ -1008,7 +1003,8 @@ const NGO_ORAL_SOLID_STABILITY_REBUILD: CaseStudyContent = {
   },
   solution: {
     eyebrow: "Solution",
-    heading: "One PQS rebuild across three symptom areas, delivered in a single 12-month programme.",
+    heading:
+      "One PQS rebuild across three symptom areas, delivered in a single 12-month programme.",
     lede: "The rebuild ran as a single programme with three workstreams: quality system, stability, supplier qualification. Propharmex ran the stability-transition work and authored the PQS documentation and the supplier-qualification checklist under one quality system. Weekly steering with the NGO's procurement lead.",
     bullets: [
       "PQS documentation rewritten against ICH Q10 — governance, change control, CAPA, management review, continuous-improvement loop.",
@@ -1109,22 +1105,19 @@ const NGO_ORAL_SOLID_STABILITY_REBUILD: CaseStudyContent = {
       {
         id: "rel-1",
         label: "Quality and compliance",
-        description:
-          "The ICH Q10 PQS rebuild that anchored the programme.",
+        description: "The ICH Q10 PQS rebuild that anchored the programme.",
         href: "/quality-compliance",
       },
       {
         id: "rel-2",
         label: "Stability studies",
-        description:
-          "Zone IVb long-term stability transition in the Propharmex lab.",
+        description: "Zone IVb long-term stability transition in the Propharmex lab.",
         href: "/services/pharma-development/stability-studies",
       },
       {
         id: "rel-3",
         label: "Release and stability testing",
-        description:
-          "Release-testing workflow rebuild and second-review structure.",
+        description: "Release-testing workflow rebuild and second-review structure.",
         href: "/services/analytical-services/release-stability-testing",
       },
     ],
@@ -1143,7 +1136,7 @@ const NGO_ORAL_SOLID_STABILITY_REBUILD: CaseStudyContent = {
       href: "/contact#schedule",
       variant: "ghost",
     },
-    regulatoryNote: HEALTH_CANADA_DEL_REGISTER,
+    regulatoryNote: INTERNAL_SCOPE_NOTE,
   },
 };
 
@@ -1182,12 +1175,11 @@ export const CASE_STUDIES: Record<CaseStudySlug, CaseStudyContent> = {
  * while the slug is present in this set, but available for future
  * reactivation by removing the slug here.
  */
-export const CASE_STUDY_PLACEHOLDER_SLUGS: ReadonlySet<CaseStudySlug> =
-  new Set<CaseStudySlug>([
-    "modified-release-requalification",
-    "sterile-injectable-second-sourcing",
-    "ngo-oral-solid-stability-rebuild",
-  ]);
+export const CASE_STUDY_PLACEHOLDER_SLUGS: ReadonlySet<CaseStudySlug> = new Set<CaseStudySlug>([
+  "modified-release-requalification",
+  "sterile-injectable-second-sourcing",
+  "ngo-oral-solid-stability-rebuild",
+]);
 
 /**
  * Pre-computed hub card list — the hub route reads this directly. Filtered
@@ -1197,5 +1189,5 @@ export const CASE_STUDY_PLACEHOLDER_SLUGS: ReadonlySet<CaseStudySlug> =
  * renders a "coming soon" empty state.
  */
 export const CASE_STUDY_CARDS: CaseStudyCardSummary[] = CASE_STUDY_SLUGS.filter(
-  (slug) => !CASE_STUDY_PLACEHOLDER_SLUGS.has(slug),
+  (slug) => !CASE_STUDY_PLACEHOLDER_SLUGS.has(slug)
 ).map((slug) => CASE_STUDIES[slug].summary);

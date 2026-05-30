@@ -1,8 +1,7 @@
 /**
  * DetailClosing — detail-page final CTA block, RSC.
  *
- * Closing card plus a primary-source regulatory reference (the Mississauga
- * DEL register, mirroring the /industries leaf pattern).
+ * Closing card plus a scope note or primary-source regulatory reference.
  */
 import type { FC } from "react";
 import Link from "next/link";
@@ -14,7 +13,7 @@ import type { CaseStudyDetailClosing } from "../../content/case-studies";
 
 import { SectionReveal } from "../site/hub/SectionReveal";
 
-type Props = { content: CaseStudyDetailClosing };
+interface Props { content: CaseStudyDetailClosing }
 
 export const DetailClosing: FC<Props> = ({ content }) => {
   const note = content.regulatoryNote;
@@ -48,9 +47,7 @@ export const DetailClosing: FC<Props> = ({ content }) => {
                 </Link>
               </Button>
               <Button asChild variant={content.secondaryCta.variant} size="lg">
-                <Link href={content.secondaryCta.href}>
-                  {content.secondaryCta.label}
-                </Link>
+                <Link href={content.secondaryCta.href}>{content.secondaryCta.label}</Link>
               </Button>
             </div>
 

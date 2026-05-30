@@ -1,5 +1,5 @@
 /**
- * PostHog telemetry for the DEL Readiness Assessment.
+ * PostHog telemetry for the Regulatory Readiness Assessment.
  *
  * Mirrors `apps/web/components/scoping/telemetry.ts` and
  * `apps/web/components/concierge/telemetry.ts` exactly — same
@@ -14,7 +14,7 @@
  *   - del_readiness.submitted          submitted form (may not have
  *                                       received the model response yet)
  *   - del_readiness.scored             assessment streamed back cleanly
- *   - del_readiness.consultation_clicked  "Book a DEL consultation" click
+ *   - del_readiness.consultation_clicked  readiness consultation click
  *   - del_readiness.pdf_downloaded     PDF download succeeded
  *   - del_readiness.retake             user clicked Re-take
  */
@@ -45,9 +45,7 @@ export function trackDelReadinessQuestionAnswered(props: {
   capture("del_readiness.question_answered", props);
 }
 
-export function trackDelReadinessSubmitted(props: {
-  answeredCount: number;
-}): void {
+export function trackDelReadinessSubmitted(props: { answeredCount: number }): void {
   capture("del_readiness.submitted", props);
 }
 
@@ -60,9 +58,7 @@ export function trackDelReadinessScored(props: {
   capture("del_readiness.scored", props);
 }
 
-export function trackDelReadinessConsultationClicked(props?: {
-  hasCalLink: boolean;
-}): void {
+export function trackDelReadinessConsultationClicked(props?: { hasCalLink: boolean }): void {
   capture("del_readiness.consultation_clicked", props);
 }
 

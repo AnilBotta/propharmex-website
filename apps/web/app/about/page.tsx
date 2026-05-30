@@ -48,9 +48,7 @@ export default function AboutPage() {
   const siteUrl = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
   const pageJsonLd = buildAboutJsonLd(siteUrl);
   const previewLeaders = LEADERS.slice(0, 3);
-  const stubBadgeLabel = previewLeaders.some((l) => l.stub)
-    ? "Profile in preparation"
-    : "";
+  const stubBadgeLabel = previewLeaders.some((l) => l.stub) ? "Credential review" : "";
 
   return (
     <>

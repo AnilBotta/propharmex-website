@@ -11,8 +11,8 @@
  *
  * PR-C′ (2026-05-03) — repositioned per client brief: Propharmex is a
  * specialty CDMO for complex and niche pharmaceutical products, not a
- * distribution / 3PL / DEL-anchored services company. All claims about
- * Health Canada DEL ownership, 3PL distribution, certification badges,
+ * distribution / logistics / licence-anchored services company. All claims about
+ * establishment status, logistics, certification badges,
  * warehousing, cold chain, and named manufacturing facilities have been
  * removed unless verified. Two-hub Canada–India framing replaced with
  * Canada-headquartered + globally connected. The lighter "scientific and
@@ -29,22 +29,22 @@
 /*  Shared primitives                                                         */
 /* -------------------------------------------------------------------------- */
 
-export type HomeCTA = {
+export interface HomeCTA {
   href: string;
   label: string;
   variant: "primary" | "secondary" | "tertiary";
-};
+}
 
-export type DosageChip = {
+export interface DosageChip {
   id: string;
   label: string;
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  1. Hero                                                                   */
 /* -------------------------------------------------------------------------- */
 
-export type HeroSection = {
+export interface HeroSection {
   kind: "hero";
   eyebrow: string;
   headline: string;
@@ -52,92 +52,92 @@ export type HeroSection = {
   subhead: string;
   ctas: HomeCTA[];
   microTrust: string;
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  2. Trust strip — repurposed in PR-C′ from cert badges to capability       */
 /*     pillars per the new positioning. Cert claims removed.                  */
 /* -------------------------------------------------------------------------- */
 
-export type CapabilityBadgeItem = {
+export interface CapabilityBadgeItem {
   id: "complex-dosage" | "regulatory-aware" | "analytical" | "clinical" | "canada-platform";
   label: string;
   caption: string;
   href: string;
-};
+}
 
-export type TrustStripSection = {
+export interface TrustStripSection {
   kind: "trustStrip";
   heading: string;
   items: CapabilityBadgeItem[];
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  3. Why Propharmex                                                         */
 /* -------------------------------------------------------------------------- */
 
-export type WhyPillar = {
+export interface WhyPillar {
   id: "complex-focus" | "integrated-thinking" | "tailored-programs" | "canada-platform";
   title: string;
   body: string;
-};
+}
 
-export type WhyPillarsSection = {
+export interface WhyPillarsSection {
   kind: "whyPillars";
   eyebrow: string;
   heading: string;
   subhead: string;
   pillars: WhyPillar[];
-};
+}
 
 /* -------------------------------------------------------------------------- */
-/*  4. What We Do — four service lines (PR-C′: 3PL/distribution removed,      */
+/*  4. What We Do — four service lines (logistics removed,                   */
 /*     Clinical & BE insight added)                                           */
 /* -------------------------------------------------------------------------- */
 
-export type CapabilityCard = {
+export interface CapabilityCard {
   id: "development" | "analytical" | "regulatory" | "clinical";
   icon: "flask" | "microscope" | "file-check" | "stethoscope";
   title: string;
   description: string;
   href: string;
   linkLabel: string;
-};
+}
 
-export type WhatWeDoSection = {
+export interface WhatWeDoSection {
   kind: "whatWeDo";
   eyebrow: string;
   heading: string;
   cards: CapabilityCard[];
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  5. Operational depth — repositioned in PR-C′ from "Mississauga DEL +      */
 /*     offshore depth" to "Canada-headquartered + globally connected"         */
 /* -------------------------------------------------------------------------- */
 
-export type OperatingColumn = {
+export interface OperatingColumn {
   id: "anchor" | "depth";
   label: string;
   sublabel: string;
   role: string;
   capabilities: string[];
   certificationNote: string;
-};
+}
 
-export type OperationalDepthSection = {
+export interface OperationalDepthSection {
   kind: "operationalDepth";
   eyebrow: string;
   heading: string;
   subhead: string;
   columns: [OperatingColumn, OperatingColumn];
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  6. AI Matcher teaser                                                      */
 /* -------------------------------------------------------------------------- */
 
-export type MatcherSection = {
+export interface MatcherSection {
   kind: "matcherTeaser";
   eyebrow: string;
   heading: string;
@@ -146,22 +146,22 @@ export type MatcherSection = {
   ctaHref: string;
   ctaLabel: string;
   disclaimer: string;
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  7. Proof (case studies)                                                   */
 /* -------------------------------------------------------------------------- */
 
-export type ProofCard = {
+export interface ProofCard {
   id: string;
   industry: string;
   problem: string;
   outcome: string;
   metric: string;
   href: string;
-};
+}
 
-export type ProofSection = {
+export interface ProofSection {
   kind: "proof";
   eyebrow: string;
   heading: string;
@@ -169,59 +169,59 @@ export type ProofSection = {
   cards: ProofCard[];
   ctaHref: string;
   ctaLabel: string;
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  8. Process stepper                                                        */
 /* -------------------------------------------------------------------------- */
 
-export type ProcessStep = {
+export interface ProcessStep {
   step: number;
   title: string;
   description: string;
-};
+}
 
-export type ProcessSection = {
+export interface ProcessSection {
   kind: "process";
   eyebrow: string;
   heading: string;
   subhead: string;
   steps: ProcessStep[];
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  9. Industries served                                                      */
 /* -------------------------------------------------------------------------- */
 
-export type IndustryTile = {
+export interface IndustryTile {
   id: "innovators" | "generics" | "cdmo" | "ngo";
   title: string;
   description: string;
   href: string;
   /** Bento sizing — "lg" spans 2 columns on desktop. */
   size: "sm" | "lg";
-};
+}
 
-export type IndustriesSection = {
+export interface IndustriesSection {
   kind: "industries";
   eyebrow: string;
   heading: string;
   subhead: string;
   tiles: IndustryTile[];
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  10. Leadership glimpse                                                    */
 /* -------------------------------------------------------------------------- */
 
-export type LeaderCardItem = {
+export interface LeaderCardItem {
   id: string;
   name: string;
   role: string;
   credential: string;
-};
+}
 
-export type LeadershipSection = {
+export interface LeadershipSection {
   kind: "leadership";
   eyebrow: string;
   heading: string;
@@ -229,21 +229,21 @@ export type LeadershipSection = {
   leaders: LeaderCardItem[];
   ctaHref: string;
   ctaLabel: string;
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  11. Insights / Resources                                                  */
 /* -------------------------------------------------------------------------- */
 
-export type InsightCardItem = {
+export interface InsightCardItem {
   id: string;
   category: "Whitepaper" | "Article" | "Case study";
   title: string;
   blurb: string;
   href: string;
-};
+}
 
-export type InsightsSection = {
+export interface InsightsSection {
   kind: "insights";
   eyebrow: string;
   heading: string;
@@ -251,7 +251,7 @@ export type InsightsSection = {
   cards: InsightCardItem[];
   ctaHref: string;
   ctaLabel: string;
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  12. Tool callout (was DelBanner) — PR-C′ broadened from a DEL-specific    */
@@ -260,7 +260,7 @@ export type InsightsSection = {
 /*     visitor's regulatory pathway.                                          */
 /* -------------------------------------------------------------------------- */
 
-export type DelBannerSection = {
+export interface DelBannerSection {
   kind: "delBanner";
   eyebrow: string;
   heading: string;
@@ -268,13 +268,13 @@ export type DelBannerSection = {
   ctaHref: string;
   ctaLabel: string;
   disclaimer: string;
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  13. Contact mini-form                                                     */
 /* -------------------------------------------------------------------------- */
 
-export type ContactFormCopy = {
+export interface ContactFormCopy {
   kind: "contactMini";
   eyebrow: string;
   heading: string;
@@ -291,7 +291,7 @@ export type ContactFormCopy = {
   successBody: string;
   errorGeneric: string;
   privacyNote: string;
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  14. Above-footer chips — PR-C′ trimmed to registered office + a generic   */
@@ -299,12 +299,12 @@ export type ContactFormCopy = {
 /*     claim is not in scope for the homepage under the new positioning.      */
 /* -------------------------------------------------------------------------- */
 
-export type RegulatoryChipsSection = {
+export interface RegulatoryChipsSection {
   kind: "regulatoryChips";
   registeredOffice: string;
   delIdentifier: string;
   disclaimer: string;
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Page-level content                                                        */
@@ -326,7 +326,7 @@ export type HomeSection =
   | ContactFormCopy
   | RegulatoryChipsSection;
 
-export type HomeContent = {
+export interface HomeContent {
   metaTitle: string;
   metaDescription: string;
   ogTitle: string;
@@ -345,7 +345,7 @@ export type HomeContent = {
   delBanner: DelBannerSection;
   contact: ContactFormCopy;
   regulatory: RegulatoryChipsSection;
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Reusable dosage-form chip set (matcher + contact form)                    */
@@ -457,7 +457,7 @@ export const HOME: HomeContent = {
     ],
   },
 
-  // 4. What we do — core capabilities (4 service lines, no 3PL/distribution)
+  // 4. What we do — core capabilities
   whatWeDo: {
     kind: "whatWeDo",
     eyebrow: "Capability map",

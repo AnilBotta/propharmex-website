@@ -2,7 +2,7 @@
  * /api/ai/dosage-matcher — Match a programme description to dosage forms.
  *
  * Prompt 21 PR-A. Edge runtime. Architecturally: same one-shot tool-
- * call pattern as DEL Readiness, with three differences:
+ * call pattern as the regulatory readiness tool, with three differences:
  *
  *   1. NO rubric, NO score. The model returns up to 3 dosage-form
  *      recommendations with qualitative `fitTier` (high/medium/low) and
@@ -13,7 +13,7 @@
  *   3. Coverage % is computed deterministically per match in
  *      `enrichRecommendation` and shipped back via
  *      `writer.writeMessageAnnotation` — same delivery channel as
- *      DEL Readiness's score.
+ *      the readiness tool's score.
  *
  * Reused verbatim from Prompts 18–20:
  *   - `redact()` over the user description (free text — could carry PII)
@@ -21,23 +21,11 @@
  *   - 503 / 429 / 400 graceful-degradation shapes
  */
 import { createAnthropic } from "@ai-sdk/anthropic";
-import {
-  createDataStreamResponse,
-  streamText,
-  tool,
-  type CoreMessage,
-} from "ai";
+import { createDataStreamResponse, streamText, tool, type CoreMessage } from "ai";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
-import {
-  dosageMatcher,
-  env,
-  getRateLimiter,
-  log,
-  redact,
-  sanity,
-} from "@propharmex/lib";
+import { dosageMatcher, env, getRateLimiter, log, redact, sanity } from "@propharmex/lib";
 
 export const runtime = "edge";
 
@@ -72,23 +60,18 @@ export async function POST(req: Request) {
     log.warn("dosage-matcher.unconfigured", { reason: "no_anthropic_key" });
     return NextResponse.json(
       {
-        error:
-          "Our Dosage Form Matcher is being set up — please use the contact form for now.",
+        error: "Our Dosage Form Matcher is being set up — please use the contact form for now.",
         contactUrl: "/contact?source=dosage-matcher-unconfigured",
       },
-      { status: 503 },
+      { status: 503 }
     );
   }
 
   // 2) Per-IP rate limit.
-  const ip =
-    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "anon";
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "anon";
   const rl = await matcherRateLimiter.limit(ip);
   if (!rl.success) {
-    const retryAfterSeconds = Math.max(
-      1,
-      Math.ceil((rl.reset - Date.now()) / 1000),
-    );
+    const retryAfterSeconds = Math.max(1, Math.ceil((rl.reset - Date.now()) / 1000));
     log.warn("dosage-matcher.rate_limited", { ip, retryAfterSeconds });
     return NextResponse.json(
       {
@@ -98,7 +81,7 @@ export async function POST(req: Request) {
       {
         status: 429,
         headers: { "Retry-After": String(retryAfterSeconds) },
-      },
+      }
     );
   }
 
@@ -111,10 +94,7 @@ export async function POST(req: Request) {
   }
   const parsed = BodySchema.safeParse(raw);
   if (!parsed.success) {
-    return NextResponse.json(
-      { error: "Invalid request shape." },
-      { status: 400 },
-    );
+    return NextResponse.json({ error: "Invalid request shape." }, { status: 400 });
   }
   const { input } = parsed.data;
 
@@ -147,8 +127,7 @@ export async function POST(req: Request) {
   log.info("dosage-matcher.invoked", {
     hasDescription: Boolean(redactedInput.description),
     filterCount: redactedInput.filters
-      ? Object.values(redactedInput.filters).filter((v) => v != null && v !== "")
-          .length
+      ? Object.values(redactedInput.filters).filter((v) => v != null && v !== "").length
       : 0,
     model: config.model,
   });
@@ -246,7 +225,7 @@ function buildUserMessage(input: dosageMatcher.MatcherInput): string {
   lines.push("# Dosage Form Capability Matcher — match request");
   lines.push("");
   lines.push(
-    "Match the request below against the Propharmex SOP capability list. Call `recommend` exactly once with up to 3 ranked dosage-form recommendations. Do NOT emit a capability coverage % — that is computed by the server.",
+    "Match the request below against the Propharmex SOP capability list. Call `recommend` exactly once with up to 3 ranked dosage-form recommendations. Do NOT emit a capability coverage % — that is computed by the server."
   );
   lines.push("");
 
@@ -274,16 +253,13 @@ function buildUserMessage(input: dosageMatcher.MatcherInput): string {
   lines.push("## Propharmex SOP capability list");
   lines.push("");
   lines.push(
-    "Each entry shows the dosage form, the capabilities Propharmex offers for it, optional batch-size envelope, and operational notes. Do NOT recommend a dosage form that isn't in this list.",
+    "Each entry shows the dosage form, the capabilities Propharmex offers for it, optional batch-size envelope, and operational notes. Do NOT recommend a dosage form that isn't in this list."
   );
   lines.push("");
   for (const sc of dosageMatcher.DEFAULT_SOP_CAPABILITIES) {
     lines.push(`### ${sc.dosageForm}`);
     lines.push(`Capabilities: ${sc.capabilities.join(", ")}`);
-    if (
-      typeof sc.batchSizeMinKg === "number" ||
-      typeof sc.batchSizeMaxKg === "number"
-    ) {
+    if (typeof sc.batchSizeMinKg === "number" || typeof sc.batchSizeMaxKg === "number") {
       const min = sc.batchSizeMinKg ?? "—";
       const max = sc.batchSizeMaxKg ?? "—";
       lines.push(`Batch size envelope (kg): ${min} → ${max}`);

@@ -73,7 +73,7 @@ export const CONCIERGE: ConciergeContent = {
   },
   empty: {
     heading: "What are you scoping?",
-    body: "Ask anything about our development, analytical, regulatory, or 3PL work. Answers cite the page they came from. For specifics on a real engagement, talk to our team.",
+    body: "Ask anything about our development, analytical, regulatory, or scoping work. Answers cite the page they came from. For specifics on a real engagement, talk to our team.",
     suggestionsLabel: "Suggested questions",
     suggestions: [
       {

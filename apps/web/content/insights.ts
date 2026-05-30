@@ -2,18 +2,16 @@
  * Content dictionary for /insights (hub), /insights/[slug] (article detail),
  * and /insights/whitepapers/[slug] (gated whitepaper detail) — Prompt 15.
  *
- * Positioning (CLAUDE.md §1): Propharmex is a Canadian pharmaceutical
- * services company anchored at our Mississauga DEL site, with an Indian
- * development centre in Hyderabad providing operational depth, serving drug
- * developers globally. The Insights surface is the editorial layer that
+ * Positioning: Propharmex is a Canada-headquartered pharmaceutical
+ * services company serving drug developers globally. The Insights surface is
+ * the editorial layer that
  * backs that positioning with regulatory primers, analytical pillar pieces,
  * and CDMO-strategy long-form. There is no "bridge" service offering and no
  * article frames the firm as one.
  *
  * Seed content (1 article + 1 whitepaper) anchors one of the four pillars
- * (Health Canada DEL pillar was retired in PR-D2c2' alongside the
- * "DEL primer" and "Inside our operating model" seed articles, both of
- * which were anchored to DEL/3PL framing incompatible with the new
+ * (the licence-specific pillar was retired alongside related seed articles
+ * that were incompatible with the current
  * specialty-CDMO positioning):
  *
  *  - ich-q2-r2-method-validation-2024            — Analytical services pillar
@@ -135,14 +133,14 @@ export type ArticleBlock =
  * articles are attributed to editorial groups within Propharmex. The shape
  * matches the Sanity `person` document partial used on insight detail pages.
  */
-export type ArticleAuthor = {
+export interface ArticleAuthor {
   id: string;
   name: string;
   role: string;
   bio: string;
-};
+}
 
-export const INSIGHT_AUTHORS: Record<string, ArticleAuthor> = {
+export const INSIGHT_AUTHORS = {
   "regulatory-practice": {
     id: "regulatory-practice",
     name: "Propharmex Regulatory Practice",
@@ -161,7 +159,7 @@ export const INSIGHT_AUTHORS: Record<string, ArticleAuthor> = {
     role: "CDMO strategy and operating model",
     bio: "Editorial group covering specialty-CDMO strategy, the Propharmex operating model, and cross-pillar topics. Reviewed by regulatory and analytical practice leads before publication.",
   },
-};
+} satisfies Record<string, ArticleAuthor>;
 
 /* -------------------------------------------------------------------------- */
 /*  Article                                                                   */
@@ -170,7 +168,7 @@ export const INSIGHT_AUTHORS: Record<string, ArticleAuthor> = {
 export const ARTICLE_SLUGS = ["ich-q2-r2-method-validation-2024"] as const;
 export type ArticleSlug = (typeof ARTICLE_SLUGS)[number];
 
-export type ArticleContent = {
+export interface ArticleContent {
   slug: ArticleSlug;
   pillar: InsightPillar;
   articleType: "article";
@@ -192,7 +190,7 @@ export type ArticleContent = {
   related: ArticleSlug[];
   /** Primary service the article maps to — used for the in-body CTA target. */
   primaryServiceLink: { label: string; href: string };
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Whitepaper                                                                */
@@ -220,15 +218,9 @@ export type ArticleContent = {
 export const WHITEPAPER_SLUGS = [] as const;
 export type WhitepaperSlug = (typeof WHITEPAPER_SLUGS)[number];
 
-export type WhitepaperFormField =
-  | "fullName"
-  | "email"
-  | "company"
-  | "role"
-  | "country"
-  | "useCase";
+export type WhitepaperFormField = "fullName" | "email" | "company" | "role" | "country" | "useCase";
 
-export type WhitepaperContent = {
+export interface WhitepaperContent {
   slug: WhitepaperSlug;
   pillar: InsightPillar;
   articleType: "whitepaper";
@@ -253,13 +245,13 @@ export type WhitepaperContent = {
   formDisclaimer: string;
   /** Author group attribution shown on the landing page. */
   author: ArticleAuthor;
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Hub                                                                       */
 /* -------------------------------------------------------------------------- */
 
-export type InsightsHubContent = {
+export interface InsightsHubContent {
   metaTitle: string;
   metaDescription: string;
   ogTitle: string;
@@ -289,17 +281,17 @@ export type InsightsHubContent = {
     primaryCta: InsightCta;
     secondaryCta: InsightCta;
   };
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Aggregate                                                                 */
 /* -------------------------------------------------------------------------- */
 
-export type InsightsContent = {
+export interface InsightsContent {
   hub: InsightsHubContent;
   articles: ArticleContent[];
   whitepapers: WhitepaperContent[];
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Constant — INSIGHTS                                                       */
@@ -327,7 +319,7 @@ export const INSIGHTS: InsightsContent = {
     hero: {
       eyebrow: "Editorial",
       headline: "Briefings from the regulatory practice and analytical bench",
-      lede: "Plain-language primers on ICH guidelines, regulatory pathways, and the operating model behind a specialty CDMO with a Canadian headquarters and an Indian development centre. About one new piece per month. No marketing fog.",
+      lede: "Plain-language primers on ICH guidelines, regulatory pathways, analytical method validation, and the operating model behind a Canada-headquartered pharmaceutical services company. About one new piece per month. No marketing fog.",
     },
     filterCopy: {
       eyebrow: "Filter",
@@ -338,8 +330,7 @@ export const INSIGHTS: InsightsContent = {
         "We publish about once a month. Clear the filter to see the full list, or check back — the editorial calendar is filling out through 2026.",
       resultCountSingular: "piece",
       resultCountPlural: "pieces",
-      caseStudiesNote:
-        "Case studies are anonymized client work and live at /case-studies.",
+      caseStudiesNote: "Case studies are anonymized client work and live at /case-studies.",
     },
     closing: {
       eyebrow: "Subscribe or talk to us",
@@ -362,7 +353,7 @@ export const INSIGHTS: InsightsContent = {
     /* --------------------------------------------------------------------- */
     /*  1 — ICH Q2(R2) analytical primer                                     */
     /*                                                                       */
-    /*  Note: a "Health Canada DEL primer for foreign sponsors" article was  */
+    /*  Note: a licence-specific primer article was                          */
     /*  removed in PR-D2c2' (specialty-CDMO repositioning). The URL surface  */
     /*  is 301'd to /insights via apps/web/next.config.ts.                   */
     /* --------------------------------------------------------------------- */
@@ -372,30 +363,21 @@ export const INSIGHTS: InsightsContent = {
       articleType: "article",
       publishedAt: "2026-04-26",
       readingMinutes: 9,
-      title:
-        "ICH Q2(R2) and what it changed for method validation in 2024",
+      title: "ICH Q2(R2) and what it changed for method validation in 2024",
       excerpt:
         "ICH Q2 was revised in 2023 and adopted into regional guidance through 2024. A practical walkthrough of what changed, what it means for validation packages already in flight, and where the Q14-aligned analytical procedure development guidance fits beside it.",
-      metaTitle:
-        "ICH Q2(R2) method validation: what changed in 2024 — Propharmex",
+      metaTitle: "ICH Q2(R2) method validation: what changed in 2024 — Propharmex",
       metaDescription:
         "What ICH Q2(R2) actually changed for analytical method validation, how to update an in-flight validation package, and how it interacts with Q14 analytical procedure development.",
-      ogTitle:
-        "ICH Q2(R2): a practical method-validation walkthrough",
+      ogTitle: "ICH Q2(R2): a practical method-validation walkthrough",
       ogDescription:
         "The 2023 revision in plain language, with the in-flight validation packages most likely to need an addendum.",
       hero: {
         eyebrow: "Analytical services · ICH",
         lede: "ICH Q2(R2) is a tighter, more lifecycle-aware document than its predecessor. Most validation packages already in flight do not need a redo — but a small subset do, and that distinction matters.",
       },
-      author: INSIGHT_AUTHORS["analytical-bench"]!,
-      tags: [
-        "ICH",
-        "Q2(R2)",
-        "Method validation",
-        "Q14",
-        "Analytical services",
-      ],
+      author: INSIGHT_AUTHORS["analytical-bench"],
+      tags: ["ICH", "Q2(R2)", "Method validation", "Q14", "Analytical services"],
       body: [
         {
           type: "p",
@@ -566,15 +548,14 @@ export const INSIGHTS: InsightsContent = {
     /* --------------------------------------------------------------------- */
     /*  Note: an "Inside our operating model" article was removed in         */
     /*  PR-D2c2' (specialty-CDMO repositioning). Its body was anchored to    */
-    /*  Health Canada DEL + 3PL framing and was incompatible with the new    */
+    /*  licence/logistics framing and was incompatible with the current      */
     /*  positioning. The URL surface is 301'd to /insights via               */
     /*  apps/web/next.config.ts.                                             */
     /* --------------------------------------------------------------------- */
   ],
 
   // The "Canadian CDMO operating model" whitepaper was retired in
-  // PR-D2c2'. Its content was anchored to a Canadian DEL site + 3PL
-  // distribution + WHO-GMP framing incompatible with the new specialty-
+  // PR-D2c2'. Its content used licence/logistics framing incompatible with
   // CDMO positioning. The /insights/whitepapers/canonical-cdmo-operating-
   // model URL surface and the /downloads/canadian-cdmo-operating-model.pdf
   // direct asset path are both 301'd to /insights/whitepapers via

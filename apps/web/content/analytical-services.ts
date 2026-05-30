@@ -49,7 +49,7 @@ export const ANALYTICAL_SERVICE_SLUGS = [
 
 export type AnalyticalServiceSlug = (typeof ANALYTICAL_SERVICE_SLUGS)[number];
 
-export type AnalyticalServiceSummary = {
+export interface AnalyticalServiceSummary {
   slug: AnalyticalServiceSlug;
   label: string;
   /** One-sentence elevator line shown on the hub service matrix. */
@@ -58,22 +58,22 @@ export type AnalyticalServiceSummary = {
   highlights: string[];
   /** Whether the leaf detail page is live in this PR. */
   leafStatus: "live" | "shipping-next";
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Hub page                                                                  */
 /* -------------------------------------------------------------------------- */
 
-export type AnalyticalHubHero = {
+export interface AnalyticalHubHero {
   eyebrow: string;
   headline: string;
   lede: string;
   stats: { label: string; value: string }[];
   primaryCta: AnalyticalCta;
   secondaryCta: AnalyticalCta;
-};
+}
 
-export type AnalyticalServiceMatrix = {
+export interface AnalyticalServiceMatrix {
   eyebrow: string;
   heading: string;
   lede: string;
@@ -81,23 +81,23 @@ export type AnalyticalServiceMatrix = {
   services: AnalyticalServiceSummary[];
   liveCopy: string;
   shippingNextCopy: string;
-};
+}
 
-export type LifecycleStage = {
+export interface LifecycleStage {
   id: string;
   label: string;
   description: string;
-};
+}
 
-export type AnalyticalLifecycle = {
+export interface AnalyticalLifecycle {
   eyebrow: string;
   heading: string;
   lede: string;
   stages: LifecycleStage[];
   handoffNote: string;
-};
+}
 
-export type CaseStudyTeaser = {
+export interface CaseStudyTeaser {
   id: string;
   /** The sub-service the teaser sits under (e.g. "Method development"). */
   service: string;
@@ -106,25 +106,25 @@ export type CaseStudyTeaser = {
   /** Rendered as an `under-confirmation` pill until a named, permitted case */
   /** study replaces it in Prompt 14.                                       */
   status: "under-confirmation";
-};
+}
 
-export type AnalyticalCaseRail = {
+export interface AnalyticalCaseRail {
   eyebrow: string;
   heading: string;
   lede: string;
   teasers: CaseStudyTeaser[];
   cta: AnalyticalCta;
-};
+}
 
-export type AnalyticalHubClosing = {
+export interface AnalyticalHubClosing {
   eyebrow: string;
   heading: string;
   body: string;
   primaryCta: AnalyticalCta;
   secondaryCta: AnalyticalCta;
-};
+}
 
-export type AnalyticalHubContent = {
+export interface AnalyticalHubContent {
   metaTitle: string;
   metaDescription: string;
   ogTitle: string;
@@ -134,13 +134,13 @@ export type AnalyticalHubContent = {
   lifecycle: AnalyticalLifecycle;
   caseRail: AnalyticalCaseRail;
   closing: AnalyticalHubClosing;
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Leaf template                                                             */
 /* -------------------------------------------------------------------------- */
 
-export type AnalyticalLeafHero = {
+export interface AnalyticalLeafHero {
   eyebrow: string;
   headline: string;
   /** One-sentence value prop per Prompt 11 spec section 1. */
@@ -149,37 +149,37 @@ export type AnalyticalLeafHero = {
   stats: { label: string; value: string }[];
   primaryCta: AnalyticalCta;
   secondaryCta: AnalyticalCta;
-};
+}
 
-export type ChallengeItem = {
+export interface ChallengeItem {
   id: string;
   label: string;
   description: string;
-};
+}
 
-export type AnalyticalChallenges = {
+export interface AnalyticalChallenges {
   eyebrow: string;
   heading: string;
   lede: string;
   items: ChallengeItem[];
-};
+}
 
-export type ProcessStep = {
+export interface ProcessStep {
   id: string;
   label: string;
   description: string;
   /** Short technical notes surfaced under the step description. */
   notes: string[];
-};
+}
 
-export type AnalyticalProcess = {
+export interface AnalyticalProcess {
   eyebrow: string;
   heading: string;
   lede: string;
   steps: ProcessStep[];
-};
+}
 
-export type InstrumentRow = {
+export interface InstrumentRow {
   id: string;
   /** Free-text instrument name (make, model). */
   instrument: string;
@@ -189,9 +189,9 @@ export type InstrumentRow = {
   application: string;
   /** Qualification status. Uses the `qualified` verb, not `certified`. */
   qualification: string;
-};
+}
 
-export type AnalyticalInstrumentInventory = {
+export interface AnalyticalInstrumentInventory {
   eyebrow: string;
   heading: string;
   lede: string;
@@ -199,16 +199,16 @@ export type AnalyticalInstrumentInventory = {
   rows: InstrumentRow[];
   representativeNote: string;
   cta: AnalyticalCta;
-};
+}
 
-export type OutcomeMetricCard = {
+export interface OutcomeMetricCard {
   id: string;
   label: string;
   value: string;
   context: string;
-};
+}
 
-export type AnalyticalOutcome = {
+export interface AnalyticalOutcome {
   eyebrow: string;
   heading: string;
   lede: string;
@@ -216,16 +216,16 @@ export type AnalyticalOutcome = {
   /** Same `under-confirmation` affordance as the hub case rail. */
   status: "under-confirmation";
   statusCopy: string;
-};
+}
 
-export type ScopingQuestion = {
+export interface ScopingQuestion {
   id: string;
   prompt: string;
   /** Short one-line helper text rendered under the prompt. */
   helper: string;
-};
+}
 
-export type AnalyticalScopingQuestions = {
+export interface AnalyticalScopingQuestions {
   eyebrow: string;
   heading: string;
   lede: string;
@@ -233,45 +233,45 @@ export type AnalyticalScopingQuestions = {
   /** CTA routes into /contact with a prefilled `source` param. */
   cta: AnalyticalCta;
   disclaimer: string;
-};
+}
 
-export type FaqItem = {
+export interface FaqItem {
   id: string;
   question: string;
   answer: string;
-};
+}
 
-export type AnalyticalFaq = {
+export interface AnalyticalFaq {
   eyebrow: string;
   heading: string;
   lede: string;
   items: FaqItem[];
-};
+}
 
-export type RelatedServiceLink = {
+export interface RelatedServiceLink {
   id: string;
   label: string;
   description: string;
   href: string;
-};
+}
 
-export type AnalyticalRelated = {
+export interface AnalyticalRelated {
   eyebrow: string;
   heading: string;
   lede: string;
   links: RelatedServiceLink[];
-};
+}
 
-export type AnalyticalClosingCta = {
+export interface AnalyticalClosingCta {
   eyebrow: string;
   heading: string;
   body: string;
   primaryCta: AnalyticalCta;
   secondaryCta: AnalyticalCta;
   regulatoryNote: AnalyticalSource;
-};
+}
 
-export type AnalyticalLeafContent = {
+export interface AnalyticalLeafContent {
   slug: AnalyticalServiceSlug;
   label: string;
   /** Crumb label used in BreadcrumbList — generally shorter than `label`. */
@@ -289,7 +289,7 @@ export type AnalyticalLeafContent = {
   faq: AnalyticalFaq;
   related: AnalyticalRelated;
   closing: AnalyticalClosingCta;
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Hub content                                                               */
@@ -298,7 +298,7 @@ export type AnalyticalLeafContent = {
 export const ANALYTICAL_HUB: AnalyticalHubContent = {
   metaTitle: "Analytical Services — Propharmex",
   metaDescription:
-    "Analytical method development, validation, stability, impurity profiling, bioanalytical, E&L and reference standard characterization. Executed by Propharmex, filed under our Health Canada Drug Establishment Licence.",
+    "Analytical method development, validation, stability, impurity profiling, bioanalytical, E&L and reference standard characterization for global pharmaceutical sponsors.",
   ogTitle: "Analytical Services — Propharmex",
   ogDescription:
     "Seven analytical services, one quality system. Methods authored to travel — from the bench into validation, transfer, and the dossier.",
@@ -309,11 +309,11 @@ export const ANALYTICAL_HUB: AnalyticalHubContent = {
     stats: [
       { label: "Sub-services supported", value: "7" },
       { label: "Development anchor", value: "ICH Q14 + Q2(R2)" },
-      { label: "Release-testing anchor", value: "Health Canada DEL" },
+      { label: "Evidence anchor", value: "Documented method lifecycle" },
     ],
     primaryCta: {
       label: "Scope an analytical programme",
-      href: "/contact?source=as-hub-hero-scope",
+      href: "/ai/project-scoping-assistant?source=as-hub-hero-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -429,7 +429,7 @@ export const ANALYTICAL_HUB: AnalyticalHubContent = {
         id: "stability-indicating",
         service: "Method development",
         title: "Stability-indicating assay redevelopment for a BCS-II generic",
-        body: "Assay and related-substances methods rebuilt to resolve known and forced-degradation impurities, qualified against ICH Q14 attribute targets, and transferred into release use under our Health Canada DEL.",
+        body: "Assay and related-substances methods rebuilt to resolve known and forced-degradation impurities, qualified against ICH Q14 attribute targets, and prepared for validation and dossier use.",
         status: "under-confirmation",
       },
       {
@@ -459,7 +459,7 @@ export const ANALYTICAL_HUB: AnalyticalHubContent = {
     body: "We scope analytical work around what the specification requires, what the regulator will ask for, and which hub owns which stage of the method's life. Share the draft specification and the programme context — the first call is a working conversation, not a pitch.",
     primaryCta: {
       label: "Scope an analytical programme",
-      href: "/contact?source=as-hub-closing-scope",
+      href: "/ai/project-scoping-assistant?source=as-hub-closing-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -483,10 +483,11 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
     "Analytical method development at Propharmex — stability-indicating assay, related-substances and dissolution methods authored in alignment with ICH Q14 and the relevant USP general chapters.",
   ogTitle: "Analytical Method Development — Propharmex",
   ogDescription:
-    "From analytical target profile to a method that travels. Executed by Propharmex — developed, qualified under an active IOQ/PQ programme, and transferred into release use under our Health Canada DEL.",
+    "From analytical target profile to a method that travels. Developed, qualified, and documented for validation, transfer, and dossier use.",
   hero: {
     eyebrow: "Analytical Services · Method development",
-    headline: "Methods built against the analytical target profile — not against the first chromatogram that runs.",
+    headline:
+      "Methods built against the analytical target profile — not against the first chromatogram that runs.",
     valueProp:
       "Method-development work anchored in ICH Q14, with stability-indicating power and robustness written into the design rather than discovered in validation.",
     lede: "Most method-development briefs we see arrive with a specification, a known degradation concern, and a delivery date. We work the method against the analytical target profile — resolution, specificity, quantitation range, robustness — so that by the time the method enters validation under ICH Q2(R2), its critical attributes are already characterized and the validation is a confirmation step rather than a discovery one.",
@@ -497,7 +498,7 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
     ],
     primaryCta: {
       label: "Scope a method-development project",
-      href: "/contact?source=as-method-dev-hero-scope",
+      href: "/ai/project-scoping-assistant?source=as-method-dev-hero-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -730,19 +731,22 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
         id: "stability-indicating",
         label: "Stability-indicating evidence",
         value: "Forced-degradation covered",
-        context: "Methods developed with acid, base, oxidative, thermal and photolytic stress evaluated; mass-balance and peak-purity checks documented.",
+        context:
+          "Methods developed with acid, base, oxidative, thermal and photolytic stress evaluated; mass-balance and peak-purity checks documented.",
       },
       {
         id: "validation-readiness",
         label: "Validation readiness",
         value: "Q2(R2) confirmation, not discovery",
-        context: "Pre-validation package under ICH Q2(R2) principles so the formal study confirms method performance rather than finds it.",
+        context:
+          "Pre-validation package under ICH Q2(R2) principles so the formal study confirms method performance rather than finds it.",
       },
       {
         id: "transfer",
         label: "Transfer outcome",
         value: "Equivalence, not re-development",
-        context: "System-suitability limits and column-equivalence guidance written into the method, so the receiving release lab runs comparative testing rather than re-optimizing.",
+        context:
+          "System-suitability limits and column-equivalence guidance written into the method, so the receiving release lab runs comparative testing rather than re-optimizing.",
       },
     ],
     status: "under-confirmation",
@@ -756,7 +760,8 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
     questions: [
       {
         id: "specification",
-        prompt: "Do you have a draft specification, or are we scoping one against the target product profile?",
+        prompt:
+          "Do you have a draft specification, or are we scoping one against the target product profile?",
         helper:
           "If no specification is drafted, we walk through the relevant ICH Q6A/Q6B tests before the method scope is agreed.",
       },
@@ -778,8 +783,7 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
       href: "/contact?source=as-method-dev-scoping",
       variant: "primary",
     },
-    disclaimer:
-      "The answers shape the first call — they do not commit either side to a scope.",
+    disclaimer: "The answers shape the first call — they do not commit either side to a scope.",
   },
   faq: {
     eyebrow: "FAQ",
@@ -790,7 +794,7 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
         id: "which-hub",
         question: "Which site actually does the method-development work?",
         answer:
-          "Method development, qualification and the pre-validation package are authored by Propharmex. Transfer close-out, release testing and ongoing method maintenance sit under the Health Canada Drug Establishment Licence. The record is continuous under a single quality system rather than stitched together at the handoff.",
+          "Method development, qualification and the pre-validation package are authored by Propharmex. Transfer close-out, release-testing readiness and ongoing method maintenance are documented under one quality record rather than stitched together at the handoff.",
       },
       {
         id: "q14-vs-q2",
@@ -808,7 +812,7 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
         id: "dissolution",
         question: "How do you approach dissolution method development?",
         answer:
-          "Media and apparatus are selected against the BCS class, the dosage form and the question the method needs to answer. Sink conditions and discriminatory power are demonstrated before the method is locked. The method carries into validation under ICH Q2(R2) and into release use under the DEL without re-authoring.",
+          "Media and apparatus are selected against the BCS class, the dosage form and the question the method needs to answer. Sink conditions and discriminatory power are demonstrated before the method is locked. The method carries into validation under ICH Q2(R2) without re-authoring.",
       },
       {
         id: "data-integrity",
@@ -841,7 +845,7 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
         id: "quality",
         label: "Quality and compliance",
         description:
-          "The DEL and the unified QMS under which the method is qualified, transferred and released.",
+          "The quality records that keep method qualification, transfer, and maintenance traceable.",
         href: "/quality-compliance",
       },
     ],
@@ -852,7 +856,7 @@ export const ANALYTICAL_METHOD_DEVELOPMENT: AnalyticalLeafContent = {
     body: "Most first calls are a working conversation: we walk through the API, the specification, the known degradation concerns and the submission plan, and draft a method-development outline against that. If the project fits better with an existing compendial method, we will say so on that call.",
     primaryCta: {
       label: "Scope a method-development project",
-      href: "/contact?source=as-method-dev-closing-scope",
+      href: "/ai/project-scoping-assistant?source=as-method-dev-closing-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -895,7 +899,7 @@ export const ANALYTICAL_METHOD_VALIDATION: AnalyticalLeafContent = {
     ],
     primaryCta: {
       label: "Scope a method validation",
-      href: "/contact?source=as-method-val-hero-scope",
+      href: "/ai/project-scoping-assistant?source=as-method-val-hero-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -1012,7 +1016,8 @@ export const ANALYTICAL_METHOD_VALIDATION: AnalyticalLeafContent = {
         id: "hplc-agilent-1260",
         instrument: "Agilent 1260 Infinity II HPLC (UV / DAD)",
         technique: "HPLC",
-        application: "Primary validation platform for assay, related substances and dissolution methods",
+        application:
+          "Primary validation platform for assay, related substances and dissolution methods",
         qualification: "Qualified under IOQ/PQ programme aligned to USP ⟨1058⟩",
       },
       {
@@ -1026,7 +1031,8 @@ export const ANALYTICAL_METHOD_VALIDATION: AnalyticalLeafContent = {
         id: "second-hplc-family",
         instrument: "Shimadzu LC-2030C Plus HPLC (second instrument family)",
         technique: "HPLC",
-        application: "Intermediate-precision runs across a second instrument family for robustness evidence",
+        application:
+          "Intermediate-precision runs across a second instrument family for robustness evidence",
         qualification: "IOQ/PQ current under USP ⟨1058⟩",
       },
       {
@@ -1040,7 +1046,8 @@ export const ANALYTICAL_METHOD_VALIDATION: AnalyticalLeafContent = {
         id: "lcmsms-xevo-tqs",
         instrument: "Waters Xevo TQ-S triple quadrupole",
         technique: "LC-MS/MS",
-        application: "Specificity support for trace-level impurity methods; confirmatory identification",
+        application:
+          "Specificity support for trace-level impurity methods; confirmatory identification",
         qualification: "IOQ/PQ current; performance verification per in-house protocol",
       },
       {
@@ -1076,7 +1083,8 @@ export const ANALYTICAL_METHOD_VALIDATION: AnalyticalLeafContent = {
         instrument: "Qualified USP / Ph. Eur. reference standards + in-house working standards",
         technique: "Reference standards",
         application: "Identity, assay and impurity reference across validation runs",
-        qualification: "Primary standards sourced from USP / Ph. Eur.; working standards qualified under the QMS",
+        qualification:
+          "Primary standards sourced from USP / Ph. Eur.; working standards qualified under the QMS",
       },
     ],
     representativeNote:
@@ -1096,19 +1104,22 @@ export const ANALYTICAL_METHOD_VALIDATION: AnalyticalLeafContent = {
         id: "first-pass",
         label: "First-pass acceptance",
         value: "Criteria pre-agreed, not retrofitted",
-        context: "Acceptance criteria for each Q2(R2) characteristic set in the protocol before execution, so the report reads as a confirmation rather than a justification.",
+        context:
+          "Acceptance criteria for each Q2(R2) characteristic set in the protocol before execution, so the report reads as a confirmation rather than a justification.",
       },
       {
         id: "dossier-ready",
         label: "Dossier readiness",
         value: "Module 3 shape, on first draft",
-        context: "Validation report authored in a structure that drops into CTD Module 3 without re-formatting.",
+        context:
+          "Validation report authored in a structure that drops into CTD Module 3 without re-formatting.",
       },
       {
         id: "change-control",
         label: "Change-control tie-in",
         value: "Revalidation triggers documented",
-        context: "Post-validation changes — column chemistry, instrument family, reagent source — have a pre-agreed revalidation path rather than an ad-hoc one.",
+        context:
+          "Post-validation changes — column chemistry, instrument family, reagent source — have a pre-agreed revalidation path rather than an ad-hoc one.",
       },
     ],
     status: "under-confirmation",
@@ -1122,7 +1133,8 @@ export const ANALYTICAL_METHOD_VALIDATION: AnalyticalLeafContent = {
     questions: [
       {
         id: "method-origin",
-        prompt: "Is the method developed in-house, a compendial method being verified, or transferred from another site?",
+        prompt:
+          "Is the method developed in-house, a compendial method being verified, or transferred from another site?",
         helper:
           "Origin drives the protocol shape — full validation, compendial verification, or transfer with equivalence criteria.",
       },
@@ -1144,8 +1156,7 @@ export const ANALYTICAL_METHOD_VALIDATION: AnalyticalLeafContent = {
       href: "/contact?source=as-method-val-scoping",
       variant: "primary",
     },
-    disclaimer:
-      "The answers shape the first call — they do not commit either side to a scope.",
+    disclaimer: "The answers shape the first call — they do not commit either side to a scope.",
   },
   faq: {
     eyebrow: "FAQ",
@@ -1224,7 +1235,7 @@ export const ANALYTICAL_METHOD_VALIDATION: AnalyticalLeafContent = {
     body: "Most first calls walk through the method, its intended use, the filing it supports and any known risk — and produce a protocol outline against ICH Q2(R2) that QA can red-line before execution is scheduled. Where the method is compendial, we discuss verification under USP ⟨1226⟩ rather than full validation.",
     primaryCta: {
       label: "Scope a method validation",
-      href: "/contact?source=as-method-val-closing-scope",
+      href: "/ai/project-scoping-assistant?source=as-method-val-closing-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -1267,7 +1278,7 @@ export const ANALYTICAL_STABILITY_STUDIES: AnalyticalLeafContent = {
     ],
     primaryCta: {
       label: "Scope a stability programme",
-      href: "/contact?source=as-stability-hero-scope",
+      href: "/ai/project-scoping-assistant?source=as-stability-hero-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -1486,19 +1497,22 @@ export const ANALYTICAL_STABILITY_STUDIES: AnalyticalLeafContent = {
         id: "submission-aligned",
         label: "Submission-aligned data",
         value: "Pull cadence matches filing date",
-        context: "Protocol pull-points scheduled so the required 12-month long-term and 6-month accelerated data lands when the dossier needs it.",
+        context:
+          "Protocol pull-points scheduled so the required 12-month long-term and 6-month accelerated data lands when the dossier needs it.",
       },
       {
         id: "shelf-life",
         label: "Shelf-life evaluation",
         value: "Q1E statistical treatment",
-        context: "Proposed shelf-life supported by the statistical approach in ICH Q1E — not the most convenient observed point.",
+        context:
+          "Proposed shelf-life supported by the statistical approach in ICH Q1E — not the most convenient observed point.",
       },
       {
         id: "photostability-acceptance",
         label: "Photostability evidence",
         value: "Q1B-acceptable exposure",
-        context: "Actinometry-verified exposure with confirmatory and forced-degradation samples, authored in the form reviewers expect.",
+        context:
+          "Actinometry-verified exposure with confirmatory and forced-degradation samples, authored in the form reviewers expect.",
       },
     ],
     status: "under-confirmation",
@@ -1524,7 +1538,8 @@ export const ANALYTICAL_STABILITY_STUDIES: AnalyticalLeafContent = {
       },
       {
         id: "pack-design",
-        prompt: "Is the container-closure locked, or are we stability-testing across candidate packs?",
+        prompt:
+          "Is the container-closure locked, or are we stability-testing across candidate packs?",
         helper:
           "If pack is unlocked, we discuss bracketing under Q1D rather than running every pack at full cadence.",
       },
@@ -1534,8 +1549,7 @@ export const ANALYTICAL_STABILITY_STUDIES: AnalyticalLeafContent = {
       href: "/contact?source=as-stability-scoping",
       variant: "primary",
     },
-    disclaimer:
-      "The answers shape the first call — they do not commit either side to a scope.",
+    disclaimer: "The answers shape the first call — they do not commit either side to a scope.",
   },
   faq: {
     eyebrow: "FAQ",
@@ -1614,7 +1628,7 @@ export const ANALYTICAL_STABILITY_STUDIES: AnalyticalLeafContent = {
     body: "Most first calls walk through the target markets, the container-closure, the submission date and the specification — and produce a stability protocol outline against ICH Q1A(R2) that QA and regulatory can review together before chambers are loaded. Where bracketing or matrixing is on the table, we flag the regulatory risk early.",
     primaryCta: {
       label: "Scope a stability programme",
-      href: "/contact?source=as-stability-closing-scope",
+      href: "/ai/project-scoping-assistant?source=as-stability-closing-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -1657,7 +1671,7 @@ export const ANALYTICAL_IMPURITY_PROFILING: AnalyticalLeafContent = {
     ],
     primaryCta: {
       label: "Scope an impurity workup",
-      href: "/contact?source=as-impurity-hero-scope",
+      href: "/ai/project-scoping-assistant?source=as-impurity-hero-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -1785,7 +1799,8 @@ export const ANALYTICAL_IMPURITY_PROFILING: AnalyticalLeafContent = {
         id: "lcmsms-xevo-tqs",
         instrument: "Waters Xevo TQ-S triple quadrupole LC-MS/MS",
         technique: "LC-MS/MS",
-        application: "Trace-level organic impurities, mutagenic impurity quantitation, nitrosamine confirmation",
+        application:
+          "Trace-level organic impurities, mutagenic impurity quantitation, nitrosamine confirmation",
         qualification: "IOQ/PQ current; performance verification per in-house protocol",
       },
       {
@@ -1869,19 +1884,22 @@ export const ANALYTICAL_IMPURITY_PROFILING: AnalyticalLeafContent = {
         id: "profile-connected",
         label: "Profile authored as one argument",
         value: "Q3A/B/C/D + M7 in one package",
-        context: "The profile reads as a connected risk-and-control argument across organic, solvent, elemental and mutagenic impurities rather than as isolated assay reports.",
+        context:
+          "The profile reads as a connected risk-and-control argument across organic, solvent, elemental and mutagenic impurities rather than as isolated assay reports.",
       },
       {
         id: "nitrosamine",
         label: "Nitrosamine risk coverage",
         value: "USFDA / EMA guidance addressed",
-        context: "Structured risk assessment with acceptable intake limits per ICH M7 and confirmatory LC-MS/MS where the assessment requires it.",
+        context:
+          "Structured risk assessment with acceptable intake limits per ICH M7 and confirmatory LC-MS/MS where the assessment requires it.",
       },
       {
         id: "module-3",
         label: "Module 3 readiness",
         value: "S.3.2 and P.5.5 in shape",
-        context: "Impurity sections authored in CTD shape with cross-reference to validation and stability rather than as standalone lab reports.",
+        context:
+          "Impurity sections authored in CTD shape with cross-reference to validation and stability rather than as standalone lab reports.",
       },
     ],
     status: "under-confirmation",
@@ -1895,7 +1913,8 @@ export const ANALYTICAL_IMPURITY_PROFILING: AnalyticalLeafContent = {
     questions: [
       {
         id: "scope",
-        prompt: "Which impurity classes are in scope — organic, residual solvent, elemental, mutagenic, or all of the above?",
+        prompt:
+          "Which impurity classes are in scope — organic, residual solvent, elemental, mutagenic, or all of the above?",
         helper:
           "The scope sets the technique stack and whether HRMS partner work is needed for structural ID.",
       },
@@ -1917,8 +1936,7 @@ export const ANALYTICAL_IMPURITY_PROFILING: AnalyticalLeafContent = {
       href: "/contact?source=as-impurity-scoping",
       variant: "primary",
     },
-    disclaimer:
-      "The answers shape the first call — they do not commit either side to a scope.",
+    disclaimer: "The answers shape the first call — they do not commit either side to a scope.",
   },
   faq: {
     eyebrow: "FAQ",
@@ -1993,11 +2011,12 @@ export const ANALYTICAL_IMPURITY_PROFILING: AnalyticalLeafContent = {
   },
   closing: {
     eyebrow: "Next step",
-    heading: "Send the route, the specification and the indication. We'll send back a risk-ranked workplan.",
+    heading:
+      "Send the route, the specification and the indication. We'll send back a risk-ranked workplan.",
     body: "Most first calls walk through the synthesis route, the excipient list, the daily dose and the markets in scope — and produce an impurity risk-and-control workplan against the ICH Q3 family, M7 and the relevant regulator's nitrosamine guidance. We flag the items that need partner HRMS or NMR work up front rather than later.",
     primaryCta: {
       label: "Scope an impurity workup",
-      href: "/contact?source=as-impurity-closing-scope",
+      href: "/ai/project-scoping-assistant?source=as-impurity-closing-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -2029,7 +2048,8 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
     "Regulated PK and biomarker quantitation — ICH M10 and USFDA bioanalytical guidance, LC-MS/MS triple-quadrupole workflows, and a CRO-collaboration model for clinical-study sample analysis.",
   hero: {
     eyebrow: "Analytical Services · Bioanalytical",
-    headline: "Bioanalytical methods authored to meet regulated-PK expectations on the first validation run.",
+    headline:
+      "Bioanalytical methods authored to meet regulated-PK expectations on the first validation run.",
     valueProp:
       "LC-MS/MS method development and validation aligned to ICH M10 and the USFDA 2018 bioanalytical method validation guidance, with CRO collaboration where clinical-study samples are analyzed.",
     lede: "Bioanalytical work is unforgiving at the edges — matrix effect, recovery, selectivity and incurred-sample reanalysis decide whether a regulated PK study is accepted or repeated. We develop and validate LC-MS/MS methods against ICH M10 and the USFDA 2018 bioanalytical method validation guidance, scope the calibration curve and QC scheme to the study, and collaborate with accredited CROs for clinical-study sample analysis where the programme requires it.",
@@ -2040,7 +2060,7 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
     ],
     primaryCta: {
       label: "Scope a bioanalytical method",
-      href: "/contact?source=as-bioanalytical-hero-scope",
+      href: "/ai/project-scoping-assistant?source=as-bioanalytical-hero-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -2157,14 +2177,16 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
         id: "lcmsms-xevo-tqs",
         instrument: "Waters Xevo TQ-S triple quadrupole LC-MS/MS",
         technique: "LC-MS/MS",
-        application: "Primary bioanalytical workhorse — small-molecule PK quantitation and biomarker work",
+        application:
+          "Primary bioanalytical workhorse — small-molecule PK quantitation and biomarker work",
         qualification: "IOQ/PQ current; performance verification per in-house protocol",
       },
       {
         id: "lcmsms-second",
         instrument: "Sciex Triple Quad 5500+ LC-MS/MS",
         technique: "LC-MS/MS",
-        application: "Second instrument family for intermediate precision and orthogonal confirmation",
+        application:
+          "Second instrument family for intermediate precision and orthogonal confirmation",
         qualification: "IOQ/PQ current; performance verification per in-house protocol",
       },
       {
@@ -2241,19 +2263,22 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
         id: "m10-aligned",
         label: "ICH M10 alignment",
         value: "Validation characteristics pre-agreed",
-        context: "Acceptance criteria for each M10 validation characteristic defined in the protocol before execution, so the validation report confirms rather than justifies.",
+        context:
+          "Acceptance criteria for each M10 validation characteristic defined in the protocol before execution, so the validation report confirms rather than justifies.",
       },
       {
         id: "isr",
         label: "Incurred-sample reanalysis",
         value: "Passed at the M10 threshold",
-        context: "ISR pass-rate target of two-thirds within 20% of original for small molecules, written into the sample-analysis protocol from day one.",
+        context:
+          "ISR pass-rate target of two-thirds within 20% of original for small molecules, written into the sample-analysis protocol from day one.",
       },
       {
         id: "cro-handover",
         label: "CRO collaboration",
         value: "Method ownership stays with us",
-        context: "Clinical-study sample analysis runs at the CRO; method ownership, QC review and investigator-facing documentation stay with Propharmex.",
+        context:
+          "Clinical-study sample analysis runs at the CRO; method ownership, QC review and investigator-facing documentation stay with Propharmex.",
       },
     ],
     status: "under-confirmation",
@@ -2267,15 +2292,15 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
     questions: [
       {
         id: "study-type",
-        prompt: "Is this a regulated PK study, a pharmacodynamic / biomarker study, or exploratory?",
+        prompt:
+          "Is this a regulated PK study, a pharmacodynamic / biomarker study, or exploratory?",
         helper:
           "Study type drives validation depth — regulated PK lands the full M10 package; exploratory biomarker work is validated on a fit-for-purpose basis.",
       },
       {
         id: "matrix",
         prompt: "Which matrix — plasma, serum, urine, tissue, or more than one?",
-        helper:
-          "Matrix choice sets extraction chemistry, selectivity design and stability suite.",
+        helper: "Matrix choice sets extraction chemistry, selectivity design and stability suite.",
       },
       {
         id: "sample-analysis",
@@ -2289,8 +2314,7 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
       href: "/contact?source=as-bioanalytical-scoping",
       variant: "primary",
     },
-    disclaimer:
-      "The answers shape the first call — they do not commit either side to a scope.",
+    disclaimer: "The answers shape the first call — they do not commit either side to a scope.",
   },
   faq: {
     eyebrow: "FAQ",
@@ -2369,7 +2393,7 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
     body: "Most first calls walk through the analyte, the expected PK range, the matrix and the study purpose — and produce a method-development and validation outline against ICH M10 that CRO and clinical teams can review together. Where clinical-study sample analysis is in scope, we flag CRO partner and QA-agreement requirements early.",
     primaryCta: {
       label: "Scope a bioanalytical method",
-      href: "/contact?source=as-bioanalytical-closing-scope",
+      href: "/ai/project-scoping-assistant?source=as-bioanalytical-closing-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -2401,7 +2425,8 @@ export const ANALYTICAL_EXTRACTABLES_AND_LEACHABLES: AnalyticalLeafContent = {
     "Controlled extractions, simulation and in-use leachables, AET calculation from dose and exposure, and toxicological risk assessment hand-off for container-closure and single-use systems.",
   hero: {
     eyebrow: "Analytical Services · Extractables & leachables",
-    headline: "E&L studies designed around the patient dose, the contact material and the decision the study has to support.",
+    headline:
+      "E&L studies designed around the patient dose, the contact material and the decision the study has to support.",
     valueProp:
       "Extractables and leachables studies aligned to USP ⟨1663⟩ and ⟨1664⟩ with PQRI and BPOG best-practice frameworks, AET calculated from exposure, and toxicological risk assessment hand-off.",
     lede: "E&L work is where chemistry, toxicology and container-closure engineering meet. We design controlled extraction studies under USP ⟨1663⟩, simulation and in-use leachables under USP ⟨1664⟩, and reference PQRI and BPOG best-practice frameworks where the dosage form calls for them — OINDP, parenteral, ophthalmic, and single-use systems. The AET is calculated from the patient dose and exposure; the toxicological risk assessment hand-off is written into the plan rather than tacked on at the end.",
@@ -2412,7 +2437,7 @@ export const ANALYTICAL_EXTRACTABLES_AND_LEACHABLES: AnalyticalLeafContent = {
     ],
     primaryCta: {
       label: "Scope an E&L study",
-      href: "/contact?source=as-el-hero-scope",
+      href: "/ai/project-scoping-assistant?source=as-el-hero-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -2624,19 +2649,22 @@ export const ANALYTICAL_EXTRACTABLES_AND_LEACHABLES: AnalyticalLeafContent = {
         id: "aet-defensible",
         label: "Defensible AET",
         value: "Calculated from dose and exposure",
-        context: "AET derived from patient dose, dosage-form exposure and safety concern threshold — with the calculation documented for review rather than a default applied.",
+        context:
+          "AET derived from patient dose, dosage-form exposure and safety concern threshold — with the calculation documented for review rather than a default applied.",
       },
       {
         id: "tra-first-pass",
         label: "Toxicological hand-off",
         value: "TRA-ready on first delivery",
-        context: "Data delivered in the shape a toxicologist can author from — compound, ID confidence, measured concentration, daily exposure — so the TRA lands on first cycle.",
+        context:
+          "Data delivered in the shape a toxicologist can author from — compound, ID confidence, measured concentration, daily exposure — so the TRA lands on first cycle.",
       },
       {
         id: "frameworks-referenced",
         label: "Frameworks referenced",
         value: "USP ⟨1663⟩/⟨1664⟩ + PQRI / BPOG",
-        context: "Study design references the relevant best-practice framework — PQRI for OINDP, BPOG for single-use — with rationale documented rather than implied.",
+        context:
+          "Study design references the relevant best-practice framework — PQRI for OINDP, BPOG for single-use — with rationale documented rather than implied.",
       },
     ],
     status: "under-confirmation",
@@ -2650,7 +2678,8 @@ export const ANALYTICAL_EXTRACTABLES_AND_LEACHABLES: AnalyticalLeafContent = {
     questions: [
       {
         id: "dosage-form",
-        prompt: "What is the dosage form — parenteral, OINDP, ophthalmic, oral, or a bioprocess single-use application?",
+        prompt:
+          "What is the dosage form — parenteral, OINDP, ophthalmic, oral, or a bioprocess single-use application?",
         helper:
           "Dosage form drives the applicable framework — PQRI for OINDP, BPOG for single-use, and USP ⟨1663⟩/⟨1664⟩ as the common spine.",
       },
@@ -2672,8 +2701,7 @@ export const ANALYTICAL_EXTRACTABLES_AND_LEACHABLES: AnalyticalLeafContent = {
       href: "/contact?source=as-el-scoping",
       variant: "primary",
     },
-    disclaimer:
-      "The answers shape the first call — they do not commit either side to a scope.",
+    disclaimer: "The answers shape the first call — they do not commit either side to a scope.",
   },
   faq: {
     eyebrow: "FAQ",
@@ -2748,11 +2776,12 @@ export const ANALYTICAL_EXTRACTABLES_AND_LEACHABLES: AnalyticalLeafContent = {
   },
   closing: {
     eyebrow: "Next step",
-    heading: "Share the dosage form, the component inventory and the dose. We'll send back an E&L plan.",
+    heading:
+      "Share the dosage form, the component inventory and the dose. We'll send back an E&L plan.",
     body: "Most first calls walk through the dosage form, the container-closure or single-use component inventory, the patient dose and the submission plan — and produce an E&L study outline against USP ⟨1663⟩/⟨1664⟩ and the relevant best-practice framework. The AET and TRA hand-off shape are agreed up front rather than negotiated later.",
     primaryCta: {
       label: "Scope an E&L study",
-      href: "/contact?source=as-el-closing-scope",
+      href: "/ai/project-scoping-assistant?source=as-el-closing-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -2762,7 +2791,8 @@ export const ANALYTICAL_EXTRACTABLES_AND_LEACHABLES: AnalyticalLeafContent = {
     },
     regulatoryNote: {
       kind: "primary",
-      label: "USP ⟨1663⟩ — Assessment of Extractables Associated with Pharmaceutical Packaging / Delivery Systems",
+      label:
+        "USP ⟨1663⟩ — Assessment of Extractables Associated with Pharmaceutical Packaging / Delivery Systems",
       href: "https://www.usp.org/",
     },
   },
@@ -2795,7 +2825,7 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
     ],
     primaryCta: {
       label: "Scope a reference standard qualification",
-      href: "/contact?source=as-refstd-hero-scope",
+      href: "/ai/project-scoping-assistant?source=as-refstd-hero-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -3021,19 +3051,22 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
         id: "orthogonal-id",
         label: "Orthogonal identity",
         value: "Two or more techniques",
-        context: "Identity evidenced by NMR, IR, MS or elemental analysis rather than a single-technique check — disambiguating polymorph and stereoisomer risk.",
+        context:
+          "Identity evidenced by NMR, IR, MS or elemental analysis rather than a single-technique check — disambiguating polymorph and stereoisomer risk.",
       },
       {
         id: "mass-balance",
         label: "Assay by mass balance",
         value: "Cross-checked chromatographically",
-        context: "Assay derived from 100% minus water, residual solvents, inorganic residues and organic impurities, with a chromatographic check and reconciled variance.",
+        context:
+          "Assay derived from 100% minus water, residual solvents, inorganic residues and organic impurities, with a chromatographic check and reconciled variance.",
       },
       {
         id: "coa-qms",
         label: "CoA under QMS",
         value: "Versioned, stable, requalified",
-        context: "CoA held under QMS with stability monitoring and a pre-defined requalification schedule — so expiry does not surface mid-batch release.",
+        context:
+          "CoA held under QMS with stability monitoring and a pre-defined requalification schedule — so expiry does not surface mid-batch release.",
       },
     ],
     status: "under-confirmation",
@@ -3047,7 +3080,8 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
     questions: [
       {
         id: "primary-or-working",
-        prompt: "Is this a primary standard qualification, a working standard qualification, or a periodic requalification?",
+        prompt:
+          "Is this a primary standard qualification, a working standard qualification, or a periodic requalification?",
         helper:
           "Qualification depth varies — primary standards are characterized from first principles; working standards are qualified against the primary; requalification runs against the original CoA.",
       },
@@ -3059,9 +3093,9 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
       },
       {
         id: "intended-use",
-        prompt: "What is the intended analytical use — release testing, method validation, impurity quantitation, or stability reference?",
-        helper:
-          "Intended use drives the purity panel depth and the impurity-profile scope.",
+        prompt:
+          "What is the intended analytical use — release testing, method validation, impurity quantitation, or stability reference?",
+        helper: "Intended use drives the purity panel depth and the impurity-profile scope.",
       },
     ],
     cta: {
@@ -3069,8 +3103,7 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
       href: "/contact?source=as-refstd-scoping",
       variant: "primary",
     },
-    disclaimer:
-      "The answers shape the first call — they do not commit either side to a scope.",
+    disclaimer: "The answers shape the first call — they do not commit either side to a scope.",
   },
   faq: {
     eyebrow: "FAQ",
@@ -3149,7 +3182,7 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
     body: "Most first calls walk through the material, its intended analytical use, any compendial primary available, and the release specification it supports — and produce a characterization plan against USP ⟨11⟩, the USP General Notices and Ph. Eur. 5.12. Where qNMR or partner NMR work is needed, we flag it up front.",
     primaryCta: {
       label: "Scope a reference standard qualification",
-      href: "/contact?source=as-refstd-closing-scope",
+      href: "/ai/project-scoping-assistant?source=as-refstd-closing-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -3169,15 +3202,12 @@ export const ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION: AnalyticalLeafConte
 /*  Leaf registry                                                             */
 /* -------------------------------------------------------------------------- */
 
-export const ANALYTICAL_LEAF_CONTENT: Record<
-  AnalyticalServiceSlug,
-  AnalyticalLeafContent
-> = {
+export const ANALYTICAL_LEAF_CONTENT: Record<AnalyticalServiceSlug, AnalyticalLeafContent> = {
   "method-development": ANALYTICAL_METHOD_DEVELOPMENT,
   "method-validation": ANALYTICAL_METHOD_VALIDATION,
   "stability-studies": ANALYTICAL_STABILITY_STUDIES,
   "impurity-profiling": ANALYTICAL_IMPURITY_PROFILING,
-  "bioanalytical": ANALYTICAL_BIOANALYTICAL,
+  bioanalytical: ANALYTICAL_BIOANALYTICAL,
   "extractables-and-leachables": ANALYTICAL_EXTRACTABLES_AND_LEACHABLES,
   "reference-standard-characterization": ANALYTICAL_REFERENCE_STANDARD_CHARACTERIZATION,
 };

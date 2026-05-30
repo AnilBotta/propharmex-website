@@ -8,17 +8,14 @@
  *    for sponsors targeting Health Canada, USFDA, EMA, TGA, and other
  *    regulators. The unit is described as a *service we provide to clients*
  *    rather than as a commercial expression of any specific licence
- *    Propharmex holds. The previous "Mississauga DEL is the operating
- *    anchor" framing has been retired.
- *  - The fifth leaf (`health-canada-del-licensing`) was removed entirely
- *    in PR-D2d-1' because its body explicitly claimed Propharmex holds and
- *    operates a Health Canada Drug Establishment Licence at the
- *    Mississauga site. The URL is 301'd to the hub.
+ *    Propharmex holds. Establishment-status framing has been retired.
+ *  - The fifth licence-specific leaf was removed entirely because its body
+ *    asserted unverified establishment status. The URL is 301'd to the hub.
  *  - PR-D2d-2' audited the four remaining leaves (US FDA submissions,
  *    CTD/eCTD dossier preparation, GMP audit preparation, lifecycle
- *    regulatory management) and removed residual DEL / 3PL framing
+ *    regulatory management) and removed residual licence / logistics framing
  *    throughout: hero stats, combo sections, body-copy cross-references,
- *    FAQ items, and related-services links into the retired DEL leaf.
+ *    FAQ items, and related-services links into retired readiness content.
  *    The leaves now describe services performed on behalf of client
  *    programs targeting Health Canada, USFDA, EMA, and other regulators —
  *    not credentials Propharmex holds.
@@ -61,7 +58,7 @@ export const REGULATORY_SERVICE_SLUGS = [
 ] as const;
 export type RegulatoryServiceSlug = (typeof REGULATORY_SERVICE_SLUGS)[number];
 
-export type RegulatoryServiceSummary = {
+export interface RegulatoryServiceSummary {
   slug: RegulatoryServiceSlug;
   label: string;
   /** One-sentence elevator line shown on the hub service matrix. */
@@ -72,22 +69,22 @@ export type RegulatoryServiceSummary = {
   leafStatus: "live" | "shipping-next";
   /** Whether this card gets the flagship emphasis on the hub matrix. */
   flagship: boolean;
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Hub page                                                                  */
 /* -------------------------------------------------------------------------- */
 
-export type RegulatoryHubHero = {
+export interface RegulatoryHubHero {
   eyebrow: string;
   headline: string;
   lede: string;
   stats: { label: string; value: string }[];
   primaryCta: RegulatoryCta;
   secondaryCta: RegulatoryCta;
-};
+}
 
-export type RegulatoryServiceMatrix = {
+export interface RegulatoryServiceMatrix {
   eyebrow: string;
   heading: string;
   lede: string;
@@ -95,9 +92,9 @@ export type RegulatoryServiceMatrix = {
   liveCopy: string;
   shippingNextCopy: string;
   flagshipCopy: string;
-};
+}
 
-export type RegulatoryPostureCard = {
+export interface RegulatoryPostureCard {
   id: string;
   status: RegulatoryClaimStatus;
   label: string;
@@ -105,55 +102,55 @@ export type RegulatoryPostureCard = {
   source?: RegulatorySource;
   affordanceLabel?: string;
   affordanceHref?: string;
-};
+}
 
-export type RegulatoryPosture = {
+export interface RegulatoryPosture {
   eyebrow: string;
   heading: string;
   lede: string;
   /** Exactly three cards — one per tier in the claim-status convention. */
   cards: RegulatoryPostureCard[];
-};
+}
 
-export type SubmissionLifecycleStage = {
+export interface SubmissionLifecycleStage {
   id: string;
   label: string;
   description: string;
-};
+}
 
-export type SubmissionLifecycle = {
+export interface SubmissionLifecycle {
   eyebrow: string;
   heading: string;
   lede: string;
   stages: SubmissionLifecycleStage[];
   handoffNote: string;
-};
+}
 
-export type RegulatoryCaseTeaser = {
+export interface RegulatoryCaseTeaser {
   id: string;
   service: string;
   title: string;
   body: string;
   status: "under-confirmation";
-};
+}
 
-export type RegulatoryCaseRail = {
+export interface RegulatoryCaseRail {
   eyebrow: string;
   heading: string;
   lede: string;
   teasers: RegulatoryCaseTeaser[];
   cta: RegulatoryCta;
-};
+}
 
-export type RegulatoryHubClosing = {
+export interface RegulatoryHubClosing {
   eyebrow: string;
   heading: string;
   body: string;
   primaryCta: RegulatoryCta;
   secondaryCta: RegulatoryCta;
-};
+}
 
-export type RegulatoryHubContent = {
+export interface RegulatoryHubContent {
   metaTitle: string;
   metaDescription: string;
   ogTitle: string;
@@ -164,13 +161,13 @@ export type RegulatoryHubContent = {
   lifecycle: SubmissionLifecycle;
   caseRail: RegulatoryCaseRail;
   closing: RegulatoryHubClosing;
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Leaf template — neutral primitives shared by every regulatory leaf        */
 /* -------------------------------------------------------------------------- */
 
-export type RegulatoryLeafHero = {
+export interface RegulatoryLeafHero {
   eyebrow: string;
   headline: string;
   /** One-sentence value prop — mirrors AnalyticalLeafHero.valueProp. */
@@ -179,48 +176,48 @@ export type RegulatoryLeafHero = {
   stats: { label: string; value: string }[];
   primaryCta: RegulatoryCta;
   secondaryCta: RegulatoryCta;
-};
+}
 
-export type LeafExplainerTopic = {
+export interface LeafExplainerTopic {
   id: string;
   heading: string;
   body: string;
   source?: RegulatorySource;
-};
+}
 
-export type LeafExplainer = {
+export interface LeafExplainer {
   eyebrow: string;
   heading: string;
   lede: string;
   /** Three topics describing the service. */
   topics: LeafExplainerTopic[];
-};
+}
 
-export type LeafComboColumn = {
+export interface LeafComboColumn {
   id: string;
   heading: string;
   bullets: string[];
-};
+}
 
-export type LeafCombo = {
+export interface LeafCombo {
   eyebrow: string;
   heading: string;
   lede: string;
   leftColumn: LeafComboColumn;
   rightColumn: LeafComboColumn;
   closingNote: string;
-};
+}
 
-export type LeafTimelineStep = {
+export interface LeafTimelineStep {
   id: string;
   label: string;
   description: string;
   typicalDuration: string;
   owner: "propharmex" | "health-canada" | "both";
   source?: RegulatorySource;
-};
+}
 
-export type LeafTimeline = {
+export interface LeafTimeline {
   eyebrow: string;
   heading: string;
   lede: string;
@@ -228,84 +225,84 @@ export type LeafTimeline = {
   serviceStandardCopy: string;
   steps: LeafTimelineStep[];
   source: RegulatorySource;
-};
+}
 
-export type RegulatoryChallengeItem = {
+export interface RegulatoryChallengeItem {
   id: string;
   label: string;
   description: string;
-};
+}
 
-export type RegulatoryChallenges = {
+export interface RegulatoryChallenges {
   eyebrow: string;
   heading: string;
   lede: string;
   items: RegulatoryChallengeItem[];
-};
+}
 
-export type LeafToolEmbedPlaceholder = {
+export interface LeafToolEmbedPlaceholder {
   eyebrow: string;
   heading: string;
   body: string;
   /** "Live with Prompt 20 of the website rebuild" — ships in Prompt 20. */
   shippingCopy: string;
   previewCta: RegulatoryCta;
-};
+}
 
-export type LeafCaseStudyFeature = {
+export interface LeafCaseStudyFeature {
   eyebrow: string;
   heading: string;
   body: string;
   status: "under-confirmation";
   cta: RegulatoryCta;
-};
+}
 
-export type LeafChecklistDownload = {
+export interface LeafChecklistDownload {
   eyebrow: string;
   heading: string;
   lede: string;
   bullets: string[];
   cta: RegulatoryCta;
   disclaimer: string;
-};
+}
 
-export type RegulatoryFaqItem = {
+export interface RegulatoryFaqItem {
   id: string;
   question: string;
   answer: string;
-};
+}
 
-export type RegulatoryFaq = {
+export interface RegulatoryFaq {
   eyebrow: string;
   heading: string;
   lede: string;
   items: RegulatoryFaqItem[];
-};
+}
 
-export type RegulatoryRelatedLink = {
+export interface RegulatoryRelatedLink {
   id: string;
   label: string;
   description: string;
   href: string;
-};
+}
 
-export type RegulatoryRelated = {
+export interface RegulatoryRelated {
   eyebrow: string;
   heading: string;
   lede: string;
   links: RegulatoryRelatedLink[];
-};
+}
 
-export type RegulatoryLeafClosing = {
+export interface RegulatoryLeafClosing {
   eyebrow: string;
   heading: string;
   body: string;
   primaryCta: RegulatoryCta;
   secondaryCta: RegulatoryCta;
   regulatoryNote: RegulatorySource;
-};
+}
 
-export type RegulatoryLeafContent = {
+export interface RegulatoryLeafContent {
   slug: RegulatoryServiceSlug;
   label: string;
   crumbLabel: string;
@@ -324,7 +321,7 @@ export type RegulatoryLeafContent = {
   faq: RegulatoryFaq;
   related: RegulatoryRelated;
   closing: RegulatoryLeafClosing;
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Shared primary-source constants                                           */
@@ -377,7 +374,8 @@ const EMA_ECTD_TECH: RegulatorySource = {
 
 const HEALTH_CANADA_GUIDANCE_INDEX: RegulatorySource = {
   kind: "primary",
-  label: "Health Canada — Drug products guidance documents (Regional Module 1, submission guidance)",
+  label:
+    "Health Canada — Drug products guidance documents (Regional Module 1, submission guidance)",
   href: "https://www.canada.ca/en/health-canada/services/drugs-health-products/drug-products/applications-submissions/guidance-documents.html",
 };
 
@@ -389,7 +387,8 @@ const CFR_PART_211: RegulatorySource = {
 
 const ICH_QUALITY_GUIDELINES: RegulatorySource = {
   kind: "primary",
-  label: "ICH — Quality guidelines (Q9(R1) risk management, Q10 pharmaceutical quality system, Q12 lifecycle management)",
+  label:
+    "ICH — Quality guidelines (Q9(R1) risk management, Q10 pharmaceutical quality system, Q12 lifecycle management)",
   href: "https://www.ich.org/page/quality-guidelines",
 };
 
@@ -421,7 +420,7 @@ export const REGULATORY_HUB: RegulatoryHubContent = {
     ],
     primaryCta: {
       label: "Scope a regulatory engagement",
-      href: "/contact?source=rs-hub-hero-scope",
+      href: "/ai/project-scoping-assistant?source=rs-hub-hero-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -578,7 +577,7 @@ export const REGULATORY_HUB: RegulatoryHubContent = {
     body: "A first conversation usually covers target jurisdictions, the pathway decision still open, and the operating shape — is Propharmex the author, the filer of record on the sponsor's behalf, the Canadian regulatory agent, or some combination. Share the commercial horizon and the current regulatory state; the call is a working one.",
     primaryCta: {
       label: "Scope a regulatory engagement",
-      href: "/contact?source=rs-hub-closing-scope",
+      href: "/ai/project-scoping-assistant?source=rs-hub-closing-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -590,17 +589,10 @@ export const REGULATORY_HUB: RegulatoryHubContent = {
 };
 
 /* -------------------------------------------------------------------------- */
-/*  Health Canada DEL licensing leaf — REMOVED in PR-D2d-1' (specialty-CDMO   */
-/*  repositioning). The leaf described Propharmex as a Health Canada Drug    */
-/*  Establishment Licence holder operating a Mississauga DEL site with 3PL   */
-/*  distribution. That framing was retired with the homepage repositioning   */
-/*  (PR #57) and the inner-page claim sweep (PRs #58/#59/#60/#61). The URL   */
-/*  /services/regulatory-services/health-canada-del-licensing is 301'd to    */
-/*  /services/regulatory-services via apps/web/next.config.ts.               */
-/*                                                                            */
-/*  PR-D2d-2' will audit the four remaining leaves below for residual DEL +  */
-/*  3PL framing (each leaf currently includes a `threePlDelCombo` section    */
-/*  and "DEL-anchored QMS" stat that need surgery).                          */
+/*  Licence-specific leaf — retired during the specialty-CDMO repositioning.  */
+/*  That route now redirects to the regulatory-services hub; the active tree  */
+/*  describes regulatory work performed for clients without asserting         */
+/*  unverified establishment status.                                          */
 /* -------------------------------------------------------------------------- */
 
 /* -------------------------------------------------------------------------- */
@@ -619,8 +611,7 @@ export const REGULATORY_US_FDA_SUBMISSIONS: RegulatoryLeafContent = {
     "FDA-facing CMC authoring and eCTD submission work done under one quality system — the same record we release product against.",
   hero: {
     eyebrow: "Regulatory Services · US FDA submissions",
-    headline:
-      "FDA-facing CMC, authored once — cross-referenced to the development record.",
+    headline: "FDA-facing CMC, authored once — cross-referenced to the development record.",
     valueProp:
       "FDA-facing CMC authoring and eCTD submission work, reviewed against current FDA guidance, and cross-referenced to the analytical and stability record generated under a single quality system.",
     lede: "Most US submissions we support are ANDA or 505(b)(2) in shape, with a Type II Drug Master File running in parallel for the drug substance. The authoring happens against 21 CFR Part 314 and the FDA's current eCTD technical specifications; the analytical and stability record referenced inside Module 3 is the same one our analytical bench has been generating throughout development. That continuity is the work — it is not a convenience. When a reviewer opens the specification in Module 3 and opens a method-validation report six months later, they should be looking at the same number produced by the same method.",
@@ -631,7 +622,7 @@ export const REGULATORY_US_FDA_SUBMISSIONS: RegulatoryLeafContent = {
     ],
     primaryCta: {
       label: "Scope an FDA submission engagement",
-      href: "/contact?source=rs-fda-hero-scope",
+      href: "/ai/project-scoping-assistant?source=rs-fda-hero-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -856,7 +847,7 @@ export const REGULATORY_US_FDA_SUBMISSIONS: RegulatoryLeafContent = {
         id: "license-vs-licence",
         question: "Do you use US spelling for FDA documents?",
         answer:
-          "Inside Module 3 prose that quotes 21 CFR text or FDA guidance, we use the US spelling \"license\" where the regulation uses it — a regulator reading the filing should not trip over a spelling mismatch with their own framework. Elsewhere on this site, and in Canadian-context documentation, we use the Canadian spelling \"licence\". We do not mix them inside a single paragraph.",
+          'Inside Module 3 prose that quotes 21 CFR text or FDA guidance, we use the US spelling "license" where the regulation uses it — a regulator reading the filing should not trip over a spelling mismatch with their own framework. Elsewhere on this site, and in Canadian-context documentation, we use the Canadian spelling "licence". We do not mix them inside a single paragraph.',
       },
       {
         id: "dmf-reference",
@@ -912,7 +903,7 @@ export const REGULATORY_US_FDA_SUBMISSIONS: RegulatoryLeafContent = {
     body: "A first call on FDA submission work usually resolves three questions quickly: is the pathway ANDA, 505(b)(2) or something else; is there a Type II DMF in scope and who holds it; and is the analytical and stability record mature enough to support the claim the dossier will make. Bring the current state, including the gaps. We scope from there.",
     primaryCta: {
       label: "Scope an FDA submission engagement",
-      href: "/contact?source=rs-fda-closing-scope",
+      href: "/ai/project-scoping-assistant?source=rs-fda-closing-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -952,7 +943,7 @@ export const REGULATORY_CTD_ECTD_DOSSIER_PREPARATION: RegulatoryLeafContent = {
     ],
     primaryCta: {
       label: "Scope a dossier engagement",
-      href: "/contact?source=rs-ctd-hero-scope",
+      href: "/ai/project-scoping-assistant?source=rs-ctd-hero-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -1012,8 +1003,7 @@ export const REGULATORY_CTD_ECTD_DOSSIER_PREPARATION: RegulatoryLeafContent = {
         "Inspection-ready access to Module 3 source records on request from Health Canada or the FDA during review or pre-approval inspection",
       ],
     },
-    closingNote:
-      "One dossier core, repackaged per agency — anchored in a single quality system.",
+    closingNote: "One dossier core, repackaged per agency — anchored in a single quality system.",
   },
   timeline: {
     eyebrow: "Greenfield Module 2 + Module 3 authoring",
@@ -1177,7 +1167,7 @@ export const REGULATORY_CTD_ECTD_DOSSIER_PREPARATION: RegulatoryLeafContent = {
         id: "licence-vs-license",
         question: "Which spelling do you use inside the dossier?",
         answer:
-          "Inside a Health Canada submission, we use the Canadian spelling \"licence\" where the regulation uses it. Inside an FDA submission, we use the US spelling \"license\" where 21 CFR text uses it — the authored content should not diverge from the regulatory framework it is filed against. We do not mix the two inside a single paragraph. On this site, and in Canadian-context prose, the default is \"licence\".",
+          'Inside a Health Canada submission, we use the Canadian spelling "licence" where the regulation uses it. Inside an FDA submission, we use the US spelling "license" where 21 CFR text uses it — the authored content should not diverge from the regulatory framework it is filed against. We do not mix the two inside a single paragraph. On this site, and in Canadian-context prose, the default is "licence".',
       },
       {
         id: "ich-m4-vs-agency-guidance",
@@ -1233,7 +1223,7 @@ export const REGULATORY_CTD_ECTD_DOSSIER_PREPARATION: RegulatoryLeafContent = {
     body: "A first call on dossier work usually resolves three questions quickly: which agencies are in scope now and which are in scope later; is the analytical and stability record mature enough to anchor Module 3; and is the granularity and lifecycle sequencing plan something we are setting now or inheriting. Bring the current state, including the gaps. We scope from there.",
     primaryCta: {
       label: "Scope a dossier engagement",
-      href: "/contact?source=rs-ctd-closing-scope",
+      href: "/ai/project-scoping-assistant?source=rs-ctd-closing-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -1261,8 +1251,7 @@ export const REGULATORY_GMP_AUDIT_PREPARATION: RegulatoryLeafContent = {
     "Inspection-ready on a standing cadence, not bolted on ahead of a scheduled visit. GUI-0001, 21 CFR 210/211, ICH Q10 and Q9(R1).",
   hero: {
     eyebrow: "Regulatory Services · GMP audit preparation",
-    headline:
-      "Inspection-ready continuously — not bolted on ahead of a scheduled visit.",
+    headline: "Inspection-ready continuously — not bolted on ahead of a scheduled visit.",
     valueProp:
       "Inspection-ready continuously — gap assessment, mock inspection coverage, and CAPA shaping run on a standing cadence, not bolted on ahead of a scheduled visit.",
     lede: "The posture we work from is simple: a site that is inspection-ready on a standing cadence meets a Health Canada or USFDA inspection as one more day of operating the QMS. A site that is inspection-ready only ahead of a scheduled visit meets the same inspection as an event. The difference shows up in the record a reviewer opens — continuous versus assembled — and in the quality of the observations issued. This page describes the pre-inspection, inspection-day and post-inspection work we run in alignment with Health Canada GUI-0001, 21 CFR Parts 210 and 211, ICH Q10 and ICH Q9(R1).",
@@ -1273,7 +1262,7 @@ export const REGULATORY_GMP_AUDIT_PREPARATION: RegulatoryLeafContent = {
     ],
     primaryCta: {
       label: "Scope an inspection-readiness engagement",
-      href: "/contact?source=rs-gmp-hero-scope",
+      href: "/ai/project-scoping-assistant?source=rs-gmp-hero-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -1285,7 +1274,7 @@ export const REGULATORY_GMP_AUDIT_PREPARATION: RegulatoryLeafContent = {
   explainer: {
     eyebrow: "What the work covers",
     heading: "Three things worth getting straight before the first call",
-    lede: "Inspection-readiness work is often reduced to a \"mock audit\" week. That framing underserves the work. The distinctions below are the ones that most often reshape a sponsor's plan once they are understood.",
+    lede: 'Inspection-readiness work is often reduced to a "mock audit" week. That framing underserves the work. The distinctions below are the ones that most often reshape a sponsor\'s plan once they are understood.',
     topics: [
       {
         id: "mock-inspection-not-audit",
@@ -1333,8 +1322,7 @@ export const REGULATORY_GMP_AUDIT_PREPARATION: RegulatoryLeafContent = {
         "Live QMS access posture — a reviewer opens the same system the site operates from, not an assembled inspection binder",
       ],
     },
-    closingNote:
-      "Documentation shaped and inspections hosted under one QMS record.",
+    closingNote: "Documentation shaped and inspections hosted under one QMS record.",
   },
   timeline: {
     eyebrow: "90-day pre-inspection readiness engagement",
@@ -1497,7 +1485,7 @@ export const REGULATORY_GMP_AUDIT_PREPARATION: RegulatoryLeafContent = {
         id: "license-vs-licence",
         question: "Which spelling do you use in inspection documents?",
         answer:
-          "In Canadian inspection documents — Health Canada responses, GUI-0001-aligned procedures — we use the Canadian spelling \"licence\" where the regulation uses it. In US inspection responses and 21 CFR-aligned documents, we use the US spelling \"license\" where 21 CFR text uses it. We do not mix the two inside a single document. On this site and in Canadian-context prose, the default is \"licence\".",
+          'In Canadian inspection documents — Health Canada responses, GUI-0001-aligned procedures — we use the Canadian spelling "licence" where the regulation uses it. In US inspection responses and 21 CFR-aligned documents, we use the US spelling "license" where 21 CFR text uses it. We do not mix the two inside a single document. On this site and in Canadian-context prose, the default is "licence".',
       },
       {
         id: "mra-reuse",
@@ -1546,7 +1534,7 @@ export const REGULATORY_GMP_AUDIT_PREPARATION: RegulatoryLeafContent = {
     body: "A first call on inspection readiness usually resolves three questions quickly: which agency is expected and on what horizon; what is the state of the data-integrity posture today; and is the engagement greenfield or an extension of a standing readiness cadence. Bring the current state, including the gaps. We scope from there.",
     primaryCta: {
       label: "Scope an inspection-readiness engagement",
-      href: "/contact?source=rs-gmp-closing-scope",
+      href: "/ai/project-scoping-assistant?source=rs-gmp-closing-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -1574,8 +1562,7 @@ export const REGULATORY_LIFECYCLE_MANAGEMENT: RegulatoryLeafContent = {
     "Post-issuance change management across Canadian Post-NOC changes, US supplement categorization, and EMA variations — without rebuilding the underlying record.",
   hero: {
     eyebrow: "Regulatory Services · Lifecycle regulatory management",
-    headline:
-      "Change management that extends the record — without rebuilding it.",
+    headline: "Change management that extends the record — without rebuilding it.",
     valueProp:
       "Post-issuance change management across Canadian Post-NOC changes, US supplement categorization, and EMA variation work — without rebuilding the underlying record.",
     lede: "Most of a product's regulatory life sits after the original authorization. Site changes, specification changes, formulation changes, manufacturing-site additions, equipment swaps, supplier changes — each has to be categorized against the right framework, filed under the right instrument, and linked back to the underlying development record. The lifecycle posture we work from is that every post-issuance change extends the authored record rather than replacing it. Done well, a reviewer opening the sequence-4 amendment sees a record continuous with sequence-0 original. Done poorly, they see a different dossier with the same product name on it.",
@@ -1586,7 +1573,7 @@ export const REGULATORY_LIFECYCLE_MANAGEMENT: RegulatoryLeafContent = {
     ],
     primaryCta: {
       label: "Scope a lifecycle engagement",
-      href: "/contact?source=rs-lifecycle-hero-scope",
+      href: "/ai/project-scoping-assistant?source=rs-lifecycle-hero-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -1810,11 +1797,12 @@ export const REGULATORY_LIFECYCLE_MANAGEMENT: RegulatoryLeafContent = {
         id: "license-vs-licence",
         question: "Which spelling do you use in lifecycle filings?",
         answer:
-          "In Canadian lifecycle filings — Post-NOC submissions, annual notifications, Health Canada-bound documents — we use the Canadian spelling \"licence\" where the regulation uses it. In US supplements and 21 CFR 314.70-aligned documents, we use the US spelling \"license\" where 21 CFR text uses it. We do not mix the two inside a single filing. On this site, and in cross-jurisdiction prose, the default is \"licence\".",
+          'In Canadian lifecycle filings — Post-NOC submissions, annual notifications, Health Canada-bound documents — we use the Canadian spelling "licence" where the regulation uses it. In US supplements and 21 CFR 314.70-aligned documents, we use the US spelling "license" where 21 CFR text uses it. We do not mix the two inside a single filing. On this site, and in cross-jurisdiction prose, the default is "licence".',
       },
       {
         id: "us-vs-canada-same-change",
-        question: "If the same change affects both Canadian and US authorizations, do we file twice?",
+        question:
+          "If the same change affects both Canadian and US authorizations, do we file twice?",
         answer:
           "Yes — the two authorizations are separate and the change is categorized under each agency's framework independently. A change categorized as Post-NOC Level I in Canada may be a PAS or a CBE-30 in the US depending on 21 CFR 314.70 criteria. The CMC content supporting the change is largely shared; the filings are separate. We run a cross-jurisdiction change register on the sponsor's behalf so the two filings stay synchronized on specification and scope even though they travel on different clocks.",
       },
@@ -1859,7 +1847,7 @@ export const REGULATORY_LIFECYCLE_MANAGEMENT: RegulatoryLeafContent = {
     body: "A first call on lifecycle work usually resolves three questions quickly: what is the change and which authorizations does it affect; which framework categorizes it today (Post-NOC, 21 CFR 314.70, EU variations, or several at once); and is the QMS change-control record ready to extend into the filing or does it need to be rebuilt alongside. Bring the current state, including the gaps. We scope from there.",
     primaryCta: {
       label: "Scope a lifecycle engagement",
-      href: "/contact?source=rs-lifecycle-closing-scope",
+      href: "/ai/project-scoping-assistant?source=rs-lifecycle-closing-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -1876,15 +1864,11 @@ export const REGULATORY_LIFECYCLE_MANAGEMENT: RegulatoryLeafContent = {
 /* -------------------------------------------------------------------------- */
 
 /**
- * Full registry — all five regulatory sub-service leaves are live as of the
- * Prompt 12 follow-up PR. The DEL flagship shipped in PR #14; the four
- * non-DEL leaves (US FDA submissions, CTD/eCTD dossier preparation, GMP
- * audit preparation, lifecycle regulatory management) ship with this PR.
+ * Full registry — the active regulatory leaves cover US FDA submissions,
+ * CTD/eCTD dossier preparation, GMP audit preparation, and lifecycle
+ * regulatory management.
  */
-export const REGULATORY_LEAF_CONTENT: Record<
-  RegulatoryServiceSlug,
-  RegulatoryLeafContent
-> = {
+export const REGULATORY_LEAF_CONTENT: Record<RegulatoryServiceSlug, RegulatoryLeafContent> = {
   "us-fda-submissions": REGULATORY_US_FDA_SUBMISSIONS,
   "ctd-ectd-dossier-preparation": REGULATORY_CTD_ECTD_DOSSIER_PREPARATION,
   "gmp-audit-preparation": REGULATORY_GMP_AUDIT_PREPARATION,

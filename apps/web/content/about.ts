@@ -9,11 +9,11 @@
  * regulatory-precise. Banned words: world-class, cutting-edge, seamless,
  * industry-leading, trusted partner, innovative (unless literally novel + cited).
  *
- * Leadership stubbing policy (per Prompt 7 decision, option B):
- *  - Three named principals below carry placeholder names and the sentinel
+ * Leadership public-profile policy:
+ *  - Three named principals below carry role-based labels and the sentinel
  *    `stub: true` flag. Any UI that renders a leader must fall back to the
- *    placeholder headshot SVG at /brand/leadership/placeholder-headshot.svg
- *    and show a "Profile in preparation" badge.
+ *    reserved headshot SVG at /brand/leadership/placeholder-headshot.svg
+ *    and show a credential-review badge.
  *  - LinkedIn URLs and publications are intentionally empty arrays/null until
  *    the founders supply vetted copy. No fabricated credentials.
  *  - When the Sanity `person` schema lands (Prompt 4 follow-up) these records
@@ -28,11 +28,11 @@
 /*  Primitives                                                                */
 /* -------------------------------------------------------------------------- */
 
-export type AboutCTA = {
+export interface AboutCTA {
   href: string;
   label: string;
   variant: "primary" | "secondary" | "ghost";
-};
+}
 
 export type AboutSource =
   | { kind: "primary"; label: string; href: string }
@@ -42,7 +42,7 @@ export type AboutSource =
 /*  1. Founding story                                                         */
 /* -------------------------------------------------------------------------- */
 
-export type AboutFounding = {
+export interface AboutFounding {
   eyebrow: string;
   headline: string;
   lede: string;
@@ -52,21 +52,21 @@ export type AboutFounding = {
     label: string;
     source: AboutSource;
   };
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  2. Mission / Vision / Values                                              */
 /* -------------------------------------------------------------------------- */
 
-export type AboutValue = {
+export interface AboutValue {
   id: "integrity" | "rigour" | "named-principals" | "cadence";
   /** Icon key rendered by an animated SVG trio on the client. */
   icon: "shield-check" | "microscope" | "user-check" | "gauge";
   title: string;
   body: string;
-};
+}
 
-export type AboutMVV = {
+export interface AboutMVV {
   eyebrow: string;
   heading: string;
   intro: string;
@@ -79,7 +79,7 @@ export type AboutMVV = {
     body: string;
   };
   values: [AboutValue, AboutValue, AboutValue, AboutValue];
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  3. Timeline                                                               */
@@ -87,34 +87,34 @@ export type AboutMVV = {
 
 export type TimelineKind = "founding" | "regulatory" | "expansion" | "program";
 
-export type AboutTimelineEvent = {
+export interface AboutTimelineEvent {
   year: string;
   kind: TimelineKind;
   title: string;
   body: string;
   source: AboutSource;
-};
+}
 
-export type AboutTimeline = {
+export interface AboutTimeline {
   eyebrow: string;
   heading: string;
   lede: string;
   /** Ordered oldest → newest. Renderer reverses for latest-first mobile view. */
   events: AboutTimelineEvent[];
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  4. Leadership (shared by preview section + /about/leadership page)        */
 /* -------------------------------------------------------------------------- */
 
-export type LeaderPublication = {
+export interface LeaderPublication {
   title: string;
   venue: string;
   year: string;
   href?: string;
-};
+}
 
-export type AboutLeader = {
+export interface AboutLeader {
   /** Stable id for React keys + the leadership-page anchor. */
   id: string;
   /** URL slug — used on /about/leadership#<slug> for deep-linking. */
@@ -130,11 +130,11 @@ export type AboutLeader = {
   credentials: string[];
   linkedin: string | null;
   publications: LeaderPublication[];
-  /** When true, the UI renders a "Profile in preparation" badge. */
+  /** When true, the UI renders a credential-review badge. */
   stub: boolean;
-};
+}
 
-export type AboutLeadershipPreview = {
+export interface AboutLeadershipPreview {
   eyebrow: string;
   heading: string;
   intro: string;
@@ -142,9 +142,9 @@ export type AboutLeadershipPreview = {
   anchorId: "leadership";
   ctaHref: "/about/leadership";
   ctaLabel: string;
-};
+}
 
-export type AboutLeadershipPage = {
+export interface AboutLeadershipPage {
   metaTitle: string;
   metaDescription: string;
   heading: string;
@@ -158,41 +158,41 @@ export type AboutLeadershipPage = {
     linkedinLabel: string;
     linkedinEmpty: string;
   };
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  6. Culture                                                                */
 /* -------------------------------------------------------------------------- */
 
-export type AboutCulturePrinciple = {
+export interface AboutCulturePrinciple {
   id: string;
   title: string;
   body: string;
-};
+}
 
-export type AboutCulture = {
+export interface AboutCulture {
   eyebrow: string;
   heading: string;
   lede: string;
   principles: AboutCulturePrinciple[];
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  7. Careers CTA                                                            */
 /* -------------------------------------------------------------------------- */
 
-export type AboutCareersCta = {
+export interface AboutCareersCta {
   eyebrow: string;
   heading: string;
   body: string;
   actions: [AboutCTA, AboutCTA];
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Page root                                                                 */
 /* -------------------------------------------------------------------------- */
 
-export type AboutContent = {
+export interface AboutContent {
   metaTitle: string;
   metaDescription: string;
   ogTitle: string;
@@ -203,7 +203,7 @@ export type AboutContent = {
   leadershipPreview: AboutLeadershipPreview;
   culture: AboutCulture;
   careers: AboutCareersCta;
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Leadership records — stubbed (option B).                                  */
@@ -224,7 +224,7 @@ export const LEADERS: AboutLeader[] = [
     bio: [
       "Leads Propharmex regulatory strategy across Health Canada, USFDA, TGA, and WHO-PQ pathways. Accountable for every Canadian client-of-record dossier.",
       "Career background spans ANDS and ANDA filings for complex generics, DMF Type II authoring, and nitrosamine risk assessments aligned to current USFDA and EMA guidance.",
-      "Profile in preparation — vetted biography and public credentials will replace this placeholder copy.",
+      "Full public biography will be published after credential review and principal approval.",
     ],
     credentials: [
       "20+ years in pharmaceutical regulatory affairs",
@@ -246,7 +246,7 @@ export const LEADERS: AboutLeader[] = [
     bio: [
       "Directs the analytical bench — method development and validation, release and stability testing, impurity and nitrosamine work, and elemental analysis under ICH Q3D.",
       "Deep bench strength in complex-generic methods where the dissolution profile matters more than the bulk chemistry. Accountable for method transfer cycles into Canadian release testing.",
-      "Profile in preparation — vetted biography and public credentials will replace this placeholder copy.",
+      "Full public biography will be published after credential review and principal approval.",
     ],
     credentials: [
       "ICH Q2(R2) method validation — HPLC, LC-MS/MS, dissolution",
@@ -266,9 +266,9 @@ export const LEADERS: AboutLeader[] = [
     credential:
       "Programme management and tech-transfer oversight across the four capability pillars — development, analytical, regulatory, and clinical insight.",
     bio: [
-      "Owns programme coordination between the Canadian office and the development centre. Tech transfers, stage-gate reviews, and the operating cadence that keeps each engagement in one shared CTMS rather than five.",
-      "Runs the daylight-overlap cadence that links the Mississauga office and the development centre, including the weekly joint steering between regulatory, analytical, and development leads.",
-      "Profile in preparation — vetted biography and public credentials will replace this placeholder copy.",
+      "Owns programme coordination across regulatory, analytical, development, and clinical-insight workstreams. Tech transfers, stage-gate reviews, and the operating cadence keep each engagement in one shared CTMS rather than five.",
+      "Runs the sponsor-facing cadence that links scientific work, regulatory review, and commercial priorities into one decision record.",
+      "Full public biography will be published after credential review and principal approval.",
     ],
     credentials: [
       "Programme management across complex-generic and specialty-dosage engagements",
@@ -286,10 +286,9 @@ export const LEADERS: AboutLeader[] = [
 /* -------------------------------------------------------------------------- */
 
 export const ABOUT: AboutContent = {
-  metaTitle:
-    "About Propharmex — specialty CDMO for complex and niche pharmaceutical products",
+  metaTitle: "About Propharmex — specialty CDMO for complex and niche pharmaceutical products",
   metaDescription:
-    "Who we are, how we operate, and why we run pharmaceutical development, analytical services, regulatory strategy, and clinical and BE insight under one quality system. Headquartered in Canada with a development centre in India — serving drug developers worldwide.",
+    "Who we are, how we operate, and why we run pharmaceutical development, analytical services, regulatory strategy, and clinical and BE insight under one quality system. Headquartered in Canada and serving drug developers worldwide.",
   ogTitle: "About Propharmex",
   ogDescription:
     "Mission, values, timeline, and the named principals accountable on every Propharmex engagement.",
@@ -301,8 +300,8 @@ export const ABOUT: AboutContent = {
     lede: "Propharmex was founded as a specialty pharmaceutical services company built around four capability pillars — pharmaceutical development, analytical services, regulatory strategy, and clinical and BE insight — for drug developers working on complex and niche products.",
     body: [
       "The trigger was a pattern we saw repeatedly across complex-generic and specialty-dosage programs — six or more independent vendors stitched together by overnight emails, and timelines that doubled every time a deviation crossed a contract boundary.",
-      "Propharmex is headquartered in Canada with a development centre in India. The Canadian office holds the client-of-record relationship and runs regulatory strategy; the development centre carries the formulation, analytical method, and stability work under the same quality system. Both sites read against the same SOPs and answer to the same quality lead.",
-      "What makes it work is not geography. It is one CTMS, one change-control process, one named principal per engagement — and a deliberately boring handover cadence tuned to the daylight overlap between the Canadian office and the development centre.",
+      "Propharmex is headquartered in Canada and works with global sponsors through a single documented operating model. The Canadian team owns the client relationship, regulatory strategy, scope governance, and final accountability for the engagement.",
+      "What makes it work is not geography. It is one CTMS, one change-control process, one named principal per engagement — and a deliberately boring handover cadence that keeps scientific, regulatory, and commercial decisions in the same record.",
     ],
     anchor: {
       value: "4",
@@ -488,15 +487,14 @@ export const LEADERSHIP_PAGE: AboutLeadershipPage = {
   metaDescription:
     "The Propharmex leadership team. Named principals accountable for regulatory affairs, analytical operations, and programmes under one quality system.",
   heading: "The team accountable on every Propharmex engagement.",
-  lede: "Every engagement is signed off by one named principal on our side. No account-team handoffs after signature. Detailed profiles are in preparation and will replace the placeholder copy below once each principal has reviewed their public credentials.",
+  lede: "Every engagement is signed off by one named principal on our side. No account-team handoffs after signature. Full public biographies will be published after each principal has reviewed their credentials for public use.",
   stubNotice:
-    "Profile in preparation. Vetted biography, credentials, and publications will replace this placeholder copy.",
+    "Public profile under credential review. Vetted biography, credentials, and publications will be published only after principal approval.",
   modal: {
     closeLabel: "Close profile",
     credentialsHeading: "Credentials",
     publicationsHeading: "Selected publications",
-    publicationsEmpty:
-      "Publication list in preparation.",
+    publicationsEmpty: "Publication list in preparation.",
     linkedinLabel: "LinkedIn profile",
     linkedinEmpty: "LinkedIn profile link coming soon.",
   },

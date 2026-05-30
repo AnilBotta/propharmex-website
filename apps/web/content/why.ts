@@ -22,13 +22,7 @@
 /*  Primitives                                                                */
 /* -------------------------------------------------------------------------- */
 
-export type ChapterId =
-  | "problem"
-  | "gap"
-  | "model"
-  | "proof"
-  | "engine"
-  | "call";
+export type ChapterId = "problem" | "gap" | "model" | "proof" | "engine" | "call";
 
 export type StatSource =
   | {
@@ -43,28 +37,28 @@ export type StatSource =
       label: string;
     };
 
-export type ChapterStat = {
+export interface ChapterStat {
   value: string;
   label: string;
   source?: StatSource;
-};
+}
 
-export type ChapterQuote = {
+export interface ChapterQuote {
   kind: "quote";
   text: string;
   attribution: string;
-};
+}
 
-export type ChapterDataPoint = {
+export interface ChapterDataPoint {
   kind: "dataPoint";
   headline: string;
   source: { label: string; href: string };
-};
+}
 
 /** Exactly one of `quote` or `dataPoint` per chapter — never both. */
 export type ChapterSupport = ChapterQuote | ChapterDataPoint;
 
-export type WhyChapter = {
+export interface WhyChapter {
   id: ChapterId;
   /** Vertically-stacked short label shown alongside the rail. */
   railLabel: string;
@@ -76,49 +70,41 @@ export type WhyChapter = {
   body: string[];
   stats: ChapterStat[];
   support: ChapterSupport;
-};
+}
 
-export type WhyCtaAction = {
+export interface WhyCtaAction {
   id: "schedule" | "playbook" | "start";
   icon: "calendar" | "book-open" | "arrow-right";
   label: string;
   supporting: string;
   href: string;
   variant: "primary" | "secondary" | "ghost";
-};
+}
 
-export type WhyCtaBlock = {
+export interface WhyCtaBlock {
   eyebrow: string;
   /** Visually-hidden heading for a11y. */
   heading: string;
   intro: string;
   actions: [WhyCtaAction, WhyCtaAction, WhyCtaAction];
-};
+}
 
-export type WhyContent = {
+export interface WhyContent {
   metaTitle: string;
   metaDescription: string;
   ogTitle: string;
   ogDescription: string;
   railLabel: string;
-  chapters: [
-    WhyChapter,
-    WhyChapter,
-    WhyChapter,
-    WhyChapter,
-    WhyChapter,
-    WhyChapter,
-  ];
+  chapters: [WhyChapter, WhyChapter, WhyChapter, WhyChapter, WhyChapter, WhyChapter];
   cta: WhyCtaBlock;
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Content                                                                   */
 /* -------------------------------------------------------------------------- */
 
 export const WHY: WhyContent = {
-  metaTitle:
-    "Why Propharmex — specialty CDMO for complex and niche pharmaceutical products",
+  metaTitle: "Why Propharmex — specialty CDMO for complex and niche pharmaceutical products",
   metaDescription:
     "Drug development is fragmented across too many vendors and jurisdictions. Propharmex closes that gap with four capability pillars — pharmaceutical development, analytical services, regulatory strategy, and clinical and BE insight — running under one quality system.",
   ogTitle: "Why Propharmex",
@@ -134,8 +120,7 @@ export const WHY: WhyContent = {
       railLabel: "Problem",
       eyebrow: "Chapter one",
       headline: "Drug development is fragmented — and it costs time.",
-      lede:
-        "Most complex-generic and specialty-dosage programs pass through six or more independent vendors between bench and first filing. Each handoff is a re-validation, a re-qualification, and a week or two on the clock.",
+      lede: "Most complex-generic and specialty-dosage programs pass through six or more independent vendors between bench and first filing. Each handoff is a re-validation, a re-qualification, and a week or two on the clock.",
       body: [
         "Analytical sits with one contract lab. Formulation sits with a second. Regulatory consults a third. Manufacturing is a fourth. Distribution is a fifth. When something fails a release test at month 14, the review spans five contracts, five CAPAs, and five project managers who have never met.",
         "The regulatory layer compounds it. Health Canada, USFDA, and CDSCO each want a slightly different document set. A dossier built for Ottawa needs structural edits for Rockville and translation for New Delhi. Teams that are strong on one jurisdiction are rarely strong on all three.",
@@ -176,8 +161,7 @@ export const WHY: WhyContent = {
       railLabel: "Gap",
       eyebrow: "Chapter two",
       headline: "The gap we exist to close.",
-      lede:
-        "There are large CDMOs with broad capability menus. There are boutique labs deep in one discipline. There are not many specialty CDMOs covering pharmaceutical development, analytical services, regulatory strategy, and clinical and BE insight — under one quality system, for complex and niche products.",
+      lede: "There are large CDMOs with broad capability menus. There are boutique labs deep in one discipline. There are not many specialty CDMOs covering pharmaceutical development, analytical services, regulatory strategy, and clinical and BE insight — under one quality system, for complex and niche products.",
       body: [
         "Generic-CDMO breadth means everyone gets the same playbook, even when the molecule needs something specific. That works for commodity products. It rarely works for complex generics, modified-release orals, lyophilized injectables, or dissolution-sensitive semi-solids.",
         "Boutique-lab depth solves the discipline question — but it leaves the integration question open. Programmes still hand off between five vendors; the analytical bench still does not see the regulatory deficiency letter; the formulation team still does not know which study the clinical lead is reading.",
@@ -186,8 +170,7 @@ export const WHY: WhyContent = {
       stats: [
         {
           value: "4",
-          label:
-            "Capability pillars: development, analytical, regulatory, clinical and BE insight",
+          label: "Capability pillars: development, analytical, regulatory, clinical and BE insight",
           source: {
             kind: "internal",
             label: "Propharmex operating model, 2025-Q4",
@@ -220,8 +203,7 @@ export const WHY: WhyContent = {
       railLabel: "Our model",
       eyebrow: "Chapter three",
       headline: "Four pillars. One engagement. One quality system.",
-      lede:
-        "Pharmaceutical development, analytical services, regulatory strategy, and clinical and BE insight run inside one operating model. One CTMS. One change-control process. One principal accountable on the client side of the engagement, end to end.",
+      lede: "Pharmaceutical development, analytical services, regulatory strategy, and clinical and BE insight run inside one operating model. One CTMS. One change-control process. One principal accountable on the client side of the engagement, end to end.",
       body: [
         "The four pillars are not bolted together for a landing page — they are run from the same quality manual. When a stability deviation fires on the development bench, the regulatory lead sees it on the same dashboard and closes the CAPA under the same SOP the auditors read on every review.",
         "Handoffs that were interface risks between vendors become sign-offs inside one team. A tech transfer from analytical method work into a regulatory dossier is a stage-gate with a named owner on both sides — not a new contract negotiation.",
@@ -230,8 +212,7 @@ export const WHY: WhyContent = {
       stats: [
         {
           value: "4",
-          label:
-            "Capability pillars: development, analytical, regulatory, clinical and BE insight",
+          label: "Capability pillars: development, analytical, regulatory, clinical and BE insight",
           source: {
             kind: "internal",
             label: "Propharmex operating model, 2025-Q4",
@@ -273,8 +254,7 @@ export const WHY: WhyContent = {
       railLabel: "Proof",
       eyebrow: "Chapter four",
       headline: "Outcomes, anonymized and specific.",
-      lede:
-        "Case studies are anonymized per the client-naming policy in docs/content-style.md. Named references are available under NDA. The numbers below are drawn from completed engagements in the last 24 months.",
+      lede: "Case studies are anonymized per the client-naming policy in docs/content-style.md. Named references are available under NDA. The numbers below are drawn from completed engagements in the last 24 months.",
       body: [
         "Across seven complex-generic programs in 2024, integrated engagements with a single CTMS closed first-filing timelines 40–60% faster than the equivalent multi-vendor baseline we had observed in the two years prior. The gain was not in the lab. It was in the handoffs.",
         "On a commercial-stage injectable running 22% over its target COGS, a tech transfer of analytical plus process under our QMS — while maintaining US release through our Canadian site — recovered 18 points of margin inside 10 months. The second-source qualification ran in parallel.",
@@ -284,8 +264,7 @@ export const WHY: WhyContent = {
         {
           value: "40–60%",
           // TODO: replace with Sanity caseStudy aggregate when Prompt 14 lands.
-          label:
-            "Faster first-filing timelines across 7 complex-generic programs, 2024",
+          label: "Faster first-filing timelines across 7 complex-generic programs, 2024",
           source: {
             kind: "internal",
             label: "Propharmex program retrospective, 2024",
@@ -314,8 +293,7 @@ export const WHY: WhyContent = {
         kind: "quote",
         // TODO: replace with Sanity testimonial doc when Prompt 14 lands.
         text: "We filed in eleven months on a product that had been sitting in deficiency for two years. What changed was that there was one team answering the phone — not four.",
-        attribution:
-          "Head of Regulatory, US generic manufacturer (reference available under NDA)",
+        attribution: "Head of Regulatory, US generic manufacturer (reference available under NDA)",
       },
     },
 
@@ -325,8 +303,7 @@ export const WHY: WhyContent = {
       railLabel: "Engine",
       eyebrow: "Chapter five",
       headline: "How the operating model runs.",
-      lede:
-        "The model is operational, not aspirational. One quality manual across the four capability pillars, with a daily handover cadence built on a few hours of daylight overlap between the Canadian office and the development centre.",
+      lede: "The model is operational, not aspirational. One quality manual across the four capability pillars, with a daily handover cadence built on a few hours of daylight overlap between the Canadian office and the development centre.",
       body: [
         "The Canadian office holds the client-of-record relationship and runs regulatory strategy — submissions to Health Canada, USFDA, TGA, and WHO-PQ. It is the regulatory face of every engagement and the named principal point of contact.",
         "The development centre carries the method work — HPLC, LC-MS/MS, dissolution, Karl Fischer, DSC — plus formulation and process depth for orals, sterile injectables, and semi-solids. Stability and bioequivalence study design sit alongside, under the same quality system.",
@@ -335,8 +312,7 @@ export const WHY: WhyContent = {
       stats: [
         {
           value: "2.5 hrs",
-          label:
-            "Daily daylight overlap between the Canadian office and the development centre",
+          label: "Daily daylight overlap between the Canadian office and the development centre",
           source: {
             kind: "internal",
             label: "Propharmex operating cadence",
@@ -344,8 +320,7 @@ export const WHY: WhyContent = {
         },
         {
           value: "ICH Q10",
-          label:
-            "Pharmaceutical quality-system framework spanning both sites",
+          label: "Pharmaceutical quality-system framework spanning both sites",
           source: {
             kind: "primary",
             label: "ICH Q10 — Pharmaceutical Quality System (Step 4)",
@@ -370,8 +345,7 @@ export const WHY: WhyContent = {
       railLabel: "Call",
       eyebrow: "Chapter six",
       headline: "If the gap is real, the next step is a 15-minute call.",
-      lede:
-        "We do not run a demo circuit. Discovery is a scoping conversation with a named principal — development, analytical, regulatory, or programmes, depending on where your program is today.",
+      lede: "We do not run a demo circuit. Discovery is a scoping conversation with a named principal — development, analytical, regulatory, or programmes, depending on where your program is today.",
       body: [
         "If your program fits the model, you will hear a proposal with a timeline in weeks, costs named, and risks listed without euphemism. If it does not fit, you will hear that too, and we will point you to the organizations that do.",
         "The three actions below are the three ways most engagements begin. Pick the one that matches how you prefer to work.",
@@ -399,8 +373,7 @@ export const WHY: WhyContent = {
         id: "schedule",
         icon: "calendar",
         label: "Schedule a 15-min discovery call",
-        supporting:
-          "A scoping conversation with a named principal. No sales deck.",
+        supporting: "A scoping conversation with a named principal. No sales deck.",
         href: "/contact?source=why",
         variant: "secondary",
       },
@@ -417,8 +390,7 @@ export const WHY: WhyContent = {
         id: "start",
         icon: "arrow-right",
         label: "Start a project",
-        supporting:
-          "Share the target product profile. We reply within one business day.",
+        supporting: "Share the target product profile. We reply within one business day.",
         href: "/contact?source=why-primary",
         variant: "primary",
       },

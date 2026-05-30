@@ -2,7 +2,7 @@
  * LeafClosing — regulatory leaf final CTA block, RSC.
  *
  * Closing card plus a primary-source regulatory reference for the sub-service
- * (Health Canada DEL Register for the DEL licensing leaf).
+ * (primary-source references are used only where claim support is available).
  */
 import type { FC } from "react";
 import Link from "next/link";
@@ -14,7 +14,7 @@ import type { RegulatoryLeafClosing } from "../../content/regulatory-services";
 
 import { SectionReveal } from "../site/hub/SectionReveal";
 
-type Props = { content: RegulatoryLeafClosing };
+interface Props { content: RegulatoryLeafClosing }
 
 export const LeafClosing: FC<Props> = ({ content }) => {
   const note = content.regulatoryNote;
@@ -48,9 +48,7 @@ export const LeafClosing: FC<Props> = ({ content }) => {
                 </Link>
               </Button>
               <Button asChild variant={content.secondaryCta.variant} size="lg">
-                <Link href={content.secondaryCta.href}>
-                  {content.secondaryCta.label}
-                </Link>
+                <Link href={content.secondaryCta.href}>{content.secondaryCta.label}</Link>
               </Button>
             </div>
 

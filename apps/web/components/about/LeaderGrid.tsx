@@ -13,7 +13,7 @@
  *    page checks `location.hash` on mount and opens the matching leader.
  *  - Dialog uses the shared `Dialog` primitive which already handles focus
  *    trap, Escape to close, and scroll-lock.
- *  - Each stub leader renders a "Profile in preparation" badge so the placeholder
+ *  - Each stub leader renders a credential-review badge so the reserved
  *    state is visible to assistive tech, not just visually.
  */
 import { useEffect, useState } from "react";
@@ -32,15 +32,12 @@ import {
   useReducedMotion,
 } from "@propharmex/ui";
 
-import type {
-  AboutLeader,
-  AboutLeadershipPage,
-} from "../../content/about";
+import type { AboutLeader, AboutLeadershipPage } from "../../content/about";
 
-type Props = {
+interface Props {
   leaders: AboutLeader[];
   copy: AboutLeadershipPage;
-};
+}
 
 export function LeaderGrid({ leaders, copy }: Props) {
   const reduce = useReducedMotion();
@@ -77,7 +74,7 @@ export function LeaderGrid({ leaders, copy }: Props) {
             key={leader.id}
             variants={fadeRise}
             id={leader.slug}
-            className="list-none scroll-mt-28"
+            className="scroll-mt-28 list-none"
           >
             <LeaderCard
               leader={leader}
@@ -94,9 +91,7 @@ export function LeaderGrid({ leaders, copy }: Props) {
           if (!next) setOpenId(null);
         }}
       >
-        {activeLeader ? (
-          <LeaderModal leader={activeLeader} copy={copy} />
-        ) : null}
+        {activeLeader ? <LeaderModal leader={activeLeader} copy={copy} /> : null}
       </Dialog>
     </>
   );
@@ -131,23 +126,17 @@ function LeaderCard({
         <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-[var(--color-fg)]">
           {leader.name}
         </h3>
-        <p className="mt-1 text-sm text-[var(--color-primary-700)]">
-          {leader.role}
-        </p>
-        <p className="mt-1 text-xs text-[var(--color-muted)]">
-          {leader.location}
-        </p>
+        <p className="mt-1 text-sm text-[var(--color-primary-700)]">{leader.role}</p>
+        <p className="mt-1 text-xs text-[var(--color-muted)]">{leader.location}</p>
       </div>
-      <p className="text-sm leading-relaxed text-[var(--color-slate-800)]">
-        {leader.credential}
-      </p>
+      <p className="text-sm leading-relaxed text-[var(--color-slate-800)]">{leader.credential}</p>
       <div className="mt-auto flex items-center justify-between">
         {leader.stub ? (
           <span
             aria-label={stubBadgeLabel}
             className="inline-flex items-center gap-1 rounded-[var(--radius-full)] border border-[var(--color-border)] bg-[var(--color-slate-50)] px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-[var(--color-muted)]"
           >
-            Profile in preparation
+            Credential review
           </span>
         ) : (
           <span />
@@ -163,13 +152,7 @@ function LeaderCard({
   );
 }
 
-function LeaderModal({
-  leader,
-  copy,
-}: {
-  leader: AboutLeader;
-  copy: AboutLeadershipPage;
-}) {
+function LeaderModal({ leader, copy }: { leader: AboutLeader; copy: AboutLeadershipPage }) {
   return (
     <DialogContent className="max-w-2xl">
       <DialogHeader>
@@ -201,10 +184,7 @@ function LeaderModal({
       <div className="flex max-h-[55vh] flex-col gap-5 overflow-y-auto pr-1">
         <div className="flex flex-col gap-3">
           {leader.bio.map((paragraph, i) => (
-            <p
-              key={i}
-              className="text-sm leading-relaxed text-[var(--color-slate-800)]"
-            >
+            <p key={i} className="text-sm leading-relaxed text-[var(--color-slate-800)]">
               {paragraph}
             </p>
           ))}
@@ -275,9 +255,7 @@ function LeaderModal({
               ))}
             </ul>
           ) : (
-            <p className="mt-2 text-sm text-[var(--color-muted)]">
-              {copy.modal.publicationsEmpty}
-            </p>
+            <p className="mt-2 text-sm text-[var(--color-muted)]">{copy.modal.publicationsEmpty}</p>
           )}
         </section>
 
@@ -299,9 +277,7 @@ function LeaderModal({
               View on LinkedIn
             </a>
           ) : (
-            <p className="mt-2 text-sm text-[var(--color-muted)]">
-              {copy.modal.linkedinEmpty}
-            </p>
+            <p className="mt-2 text-sm text-[var(--color-muted)]">{copy.modal.linkedinEmpty}</p>
           )}
         </section>
       </div>

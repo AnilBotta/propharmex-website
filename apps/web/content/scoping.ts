@@ -35,7 +35,7 @@ export const SCOPING = {
         id: "anda-stability",
         label: "ICH stability for an ANDA",
         prompt:
-          "I'm scoping an ICH-aligned 12-month stability programme for an oral solid (immediate-release tablet) that will file as a US ANDA. We need a Canadian sponsor-of-record under your DEL.",
+          "I'm scoping an ICH-aligned 12-month stability programme for an oral solid immediate-release tablet that may support a US ANDA. We need help clarifying the analytical plan, dossier evidence, and Canadian-market considerations.",
       },
       {
         id: "method-validation",
@@ -44,10 +44,10 @@ export const SCOPING = {
           "We need analytical method development and validation for a small-molecule API and a finished product — assay, content uniformity, dissolution, related substances. Drug developer is in the EU; Canadian filing is in scope later.",
       },
       {
-        id: "del-coverage",
-        label: "Health Canada DEL coverage",
+        id: "canadian-readiness",
+        label: "Canadian readiness",
         prompt:
-          "We have an approved product in another market and want a Canadian distribution surface under your Health Canada DEL — including 3PL out of Mississauga.",
+          "We have an approved product in another market and want to understand the evidence, regulatory, quality, and commercial steps needed before considering Canadian market entry.",
       },
     ] as ScopingSuggestion[],
   },
@@ -99,8 +99,7 @@ export const SCOPING = {
     },
     /** Persistent acknowledgement banner after a successful submit. */
     submittedHeading: "Sent to Propharmex",
-    submittedBody:
-      "Our business-development team will reply within one Canadian business day.",
+    submittedBody: "Our business-development team will reply within one Canadian business day.",
   },
   /** Persistent "talk to a human" link, mirrored from the Concierge. */
   escapeHatch: {
@@ -109,14 +108,11 @@ export const SCOPING = {
   },
   errors: {
     /** 503 — no Anthropic key. */
-    unconfigured:
-      "Our Scoping Assistant is being set up. Please use the contact form for now.",
+    unconfigured: "Our Scoping Assistant is being set up. Please use the contact form for now.",
     /** Network or stream failure. */
-    streamFailed:
-      "We couldn't finish that response. Please try again, or use the contact form.",
+    streamFailed: "We couldn't finish that response. Please try again, or use the contact form.",
     /** 429 — rate limited. */
-    rateLimited:
-      "Too many requests in a short window. Please wait a minute and try again.",
+    rateLimited: "Too many requests in a short window. Please wait a minute and try again.",
     /** Generic catch-all. */
     generic: "Something went wrong. Please try again, or use the contact form.",
   },

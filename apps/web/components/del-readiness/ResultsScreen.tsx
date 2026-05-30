@@ -8,16 +8,11 @@
  *   2. Per-category breakdown (label → score → traffic light)
  *   3. Gaps list + prioritized remediation list (from the model)
  *
- * Action footer: "Book a DEL consultation" (PR-A points at /contact;
- * PR-B swaps in a Cal.com embed) + "Download report" (disabled in PR-A,
- * wired in PR-B) + "Re-take" (resets the form).
+ * Action footer: readiness consultation, download report, and retake actions.
  */
 import { Download, RefreshCw } from "lucide-react";
 
-import type {
-  Assessment,
-  Rubric,
-} from "@propharmex/lib/del-readiness";
+import type { Assessment, Rubric } from "@propharmex/lib/del-readiness";
 
 import { DEL_READINESS } from "../../content/del-readiness";
 
@@ -45,8 +40,7 @@ export function ResultsScreen({
   onDownloadPdf,
   onConsultationClick,
 }: Props) {
-  const categoryLabel = (id: string) =>
-    rubric.categories.find((c) => c.id === id)?.label ?? id;
+  const categoryLabel = (id: string) => rubric.categories.find((c) => c.id === id)?.label ?? id;
 
   return (
     <div className="flex flex-col gap-8">
@@ -68,10 +62,7 @@ export function ResultsScreen({
         </p>
         <div className="mt-3 flex flex-wrap items-end gap-4">
           <div>
-            <p
-              id="del-results-overall"
-              className="text-sm font-medium text-[var(--color-muted)]"
-            >
+            <p id="del-results-overall" className="text-sm font-medium text-[var(--color-muted)]">
               {DEL_READINESS.results.overallLabel}
             </p>
             <p className="font-[family-name:var(--font-display)] text-5xl font-semibold tracking-tight text-[var(--color-fg)]">
@@ -135,9 +126,7 @@ export function ResultsScreen({
                 className="rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-3"
               >
                 <div className="flex items-baseline justify-between gap-3">
-                  <p className="text-sm font-semibold text-[var(--color-fg)]">
-                    {g.headline}
-                  </p>
+                  <p className="text-sm font-semibold text-[var(--color-fg)]">{g.headline}</p>
                   <span className="text-[10px] font-semibold uppercase tracking-[0.08em] text-[var(--color-muted)]">
                     {categoryLabel(g.category)}
                   </span>
@@ -198,7 +187,7 @@ export function ResultsScreen({
           onClick={onDownloadPdf}
           disabled={downloading}
           aria-label={DEL_READINESS.results.actions.downloadReport.label}
-          className="inline-flex items-center gap-1.5 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2 text-sm font-medium text-[var(--color-fg)] hover:border-[var(--color-primary-700)] hover:text-[var(--color-primary-700)] disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)]"
+          className="inline-flex items-center gap-1.5 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2 text-sm font-medium text-[var(--color-fg)] hover:border-[var(--color-primary-700)] hover:text-[var(--color-primary-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] disabled:cursor-not-allowed disabled:opacity-60"
         >
           <Download aria-hidden="true" size={14} />
           {downloading
@@ -222,13 +211,7 @@ export function ResultsScreen({
  * Linear score bar — visual cue paired with the numeric score. Width
  * tracks `score`, colour tracks `level` (mirroring TrafficLightPill).
  */
-function ScoreBar({
-  score,
-  level,
-}: {
-  score: number;
-  level: "green" | "yellow" | "red";
-}) {
+function ScoreBar({ score, level }: { score: number; level: "green" | "yellow" | "red" }) {
   const fill =
     level === "green"
       ? "bg-[var(--color-success)]"
