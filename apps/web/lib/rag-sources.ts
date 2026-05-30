@@ -26,8 +26,13 @@
 import { rag } from "@propharmex/lib";
 
 import { ABOUT, LEADERSHIP_PAGE } from "../content/about";
+import { AI_TOOLS } from "../content/ai-tools";
 import { ANALYTICAL_HUB, ANALYTICAL_LEAF_CONTENT } from "../content/analytical-services";
 import { CASE_STUDIES_HUB, CASE_STUDIES } from "../content/case-studies";
+import { CLINICAL_HUB } from "../content/clinical-be-insight";
+import { CONTACT } from "../content/contact";
+import { DEL_READINESS } from "../content/del-readiness";
+import { DOSAGE_FORMS_HUB } from "../content/dosage-forms-hub";
 import { FACILITIES_CONTENT, FACILITY_DETAILS } from "../content/facilities";
 import { HOME } from "../content/home";
 import { INDUSTRIES_HUB, INDUSTRIES_LEAF_CONTENT } from "../content/industries";
@@ -36,6 +41,7 @@ import { PHARM_DEV_HUB, DOSAGE_FORM_CONTENT } from "../content/pharmaceutical-de
 import { PROCESS } from "../content/process";
 import { QUALITY } from "../content/quality";
 import { REGULATORY_HUB, REGULATORY_LEAF_CONTENT } from "../content/regulatory-services";
+import { SERVICES_OVERVIEW } from "../content/services-overview";
 import { FACILITIES as FACILITY_ADDRESSES } from "../content/site-nav";
 import { WHY } from "../content/why";
 
@@ -65,7 +71,7 @@ function collectStrings(value: unknown, keyHint?: string): string[] {
   }
   if (typeof value === "object") {
     return Object.entries(value as Record<string, unknown>).flatMap(([k, v]) =>
-      collectStrings(v, k),
+      collectStrings(v, k)
     );
   }
   return [];
@@ -116,13 +122,19 @@ function walkTopLevel(opts: {
         sourceUrl: opts.sourceUrl,
         sourceTitle: opts.sourceTitle,
         contentType: opts.contentType,
-      }),
+      })
     );
   }
   return out;
 }
 
 function humanise(key: string): string {
+  const sectionAliases: Record<string, string> = {
+    del: "Quality philosophy",
+    delBanner: "Regulatory readiness tool",
+  };
+  if (sectionAliases[key]) return sectionAliases[key];
+
   return key
     .replace(/([A-Z])/g, " $1")
     .replace(/[-_]/g, " ")
@@ -158,7 +170,7 @@ const whySource: IngestSource = {
           sourceUrl: "/why-propharmex",
           sourceTitle: "Why Propharmex",
           contentType: "page",
-        }),
+        })
       );
     }
     if (WHY.cta) {
@@ -169,7 +181,7 @@ const whySource: IngestSource = {
           sourceUrl: "/why-propharmex",
           sourceTitle: "Why Propharmex",
           contentType: "page",
-        }),
+        })
       );
     }
     return out;
@@ -186,7 +198,7 @@ const aboutSource: IngestSource = {
         sourceUrl: "/about",
         sourceTitle: "About Propharmex",
         contentType: "page",
-      }),
+      })
     );
     out.push(
       ...walkTopLevel({
@@ -194,7 +206,7 @@ const aboutSource: IngestSource = {
         sourceUrl: "/about/leadership",
         sourceTitle: "Leadership",
         contentType: "page",
-      }),
+      })
     );
     return out;
   },
@@ -210,7 +222,7 @@ const facilitiesSource: IngestSource = {
         sourceUrl: "/facilities",
         sourceTitle: "Facilities",
         contentType: "facility",
-      }),
+      })
     );
     for (const [code, detail] of Object.entries(FACILITY_DETAILS)) {
       if (!detail) continue;
@@ -227,7 +239,7 @@ const facilitiesSource: IngestSource = {
           sourceUrl: `/facilities/${slug}`,
           sourceTitle: `Facility — ${(detail as unknown as { name?: string }).name ?? code}`,
           contentType: "facility",
-        }),
+        })
       );
     }
     out.push(
@@ -237,7 +249,7 @@ const facilitiesSource: IngestSource = {
         sourceUrl: "/facilities",
         sourceTitle: "Facilities",
         contentType: "facility",
-      }),
+      })
     );
     return out;
   },
@@ -265,23 +277,63 @@ const processSource: IngestSource = {
     }),
 };
 
-// NOTE: contactSource removed pending PR #25 merge. apps/web/content/contact.ts
-// doesn't exist on main yet (it's part of feat/prompt-17-contact). Once that
-// PR merges and PR-A is rebased, add it back as:
-//
-//   const contactSource: IngestSource = {
-//     label: "contact",
-//     extract: () => walkTopLevel({
-//       module: CONTACT as unknown as Record<string, unknown>,
-//       sourceUrl: "/contact",
-//       sourceTitle: "Contact",
-//       contentType: "page",
-//       skip: ["form", "cal"],
-//     }),
-//   };
-//
-// The contact page's addresses are already covered by facilitiesSource via
-// the FACILITIES site-nav export, so the corpus loses minimal coverage.
+const contactSource: IngestSource = {
+  label: "contact",
+  extract: () =>
+    walkTopLevel({
+      module: CONTACT as unknown as Record<string, unknown>,
+      sourceUrl: "/contact",
+      sourceTitle: "Contact Propharmex",
+      contentType: "page",
+      skip: ["form", "cal"],
+    }),
+};
+
+const servicesOverviewSource: IngestSource = {
+  label: "services-overview",
+  extract: () =>
+    walkTopLevel({
+      module: SERVICES_OVERVIEW as unknown as Record<string, unknown>,
+      sourceUrl: "/services",
+      sourceTitle: "Services",
+      contentType: "service",
+    }),
+};
+
+const aiToolsSource: IngestSource = {
+  label: "ai-tools",
+  extract: () => {
+    const out: Chunk[] = [];
+    out.push(
+      ...walkTopLevel({
+        module: AI_TOOLS as unknown as Record<string, unknown>,
+        sourceUrl: "/ai",
+        sourceTitle: "AI tools",
+        contentType: "page",
+      })
+    );
+    out.push(
+      ...walkTopLevel({
+        module: DEL_READINESS as unknown as Record<string, unknown>,
+        sourceUrl: "/ai/del-readiness",
+        sourceTitle: "Regulatory Readiness Assessment",
+        contentType: "page",
+      })
+    );
+    return out;
+  },
+};
+
+const dosageFormsSource: IngestSource = {
+  label: "dosage-forms",
+  extract: () =>
+    walkTopLevel({
+      module: DOSAGE_FORMS_HUB as unknown as Record<string, unknown>,
+      sourceUrl: "/dosage-forms",
+      sourceTitle: "Dosage forms",
+      contentType: "service",
+    }),
+};
 
 const analyticalSource: IngestSource = {
   label: "analytical-services",
@@ -293,7 +345,7 @@ const analyticalSource: IngestSource = {
         sourceUrl: "/services/analytical-services",
         sourceTitle: "Analytical services",
         contentType: "service",
-      }),
+      })
     );
     for (const [slug, leaf] of Object.entries(ANALYTICAL_LEAF_CONTENT)) {
       if (!leaf) continue;
@@ -303,7 +355,7 @@ const analyticalSource: IngestSource = {
           sourceUrl: `/services/analytical-services/${slug}`,
           sourceTitle: `Analytical services — ${(leaf as unknown as { label: string }).label}`,
           contentType: "service",
-        }),
+        })
       );
     }
     return out;
@@ -320,7 +372,7 @@ const pharmDevSource: IngestSource = {
         sourceUrl: "/services/pharmaceutical-development",
         sourceTitle: "Pharmaceutical development",
         contentType: "service",
-      }),
+      })
     );
     for (const [slug, leaf] of Object.entries(DOSAGE_FORM_CONTENT)) {
       if (!leaf) continue;
@@ -330,11 +382,22 @@ const pharmDevSource: IngestSource = {
           sourceUrl: `/services/pharmaceutical-development/${slug}`,
           sourceTitle: `Pharmaceutical development — ${(leaf as unknown as { label: string }).label}`,
           contentType: "service",
-        }),
+        })
       );
     }
     return out;
   },
+};
+
+const clinicalSource: IngestSource = {
+  label: "clinical-be-insight",
+  extract: () =>
+    walkTopLevel({
+      module: CLINICAL_HUB as unknown as Record<string, unknown>,
+      sourceUrl: "/services/clinical-be-insight",
+      sourceTitle: "Clinical and bioequivalence insight",
+      contentType: "service",
+    }),
 };
 
 const regulatorySource: IngestSource = {
@@ -347,7 +410,7 @@ const regulatorySource: IngestSource = {
         sourceUrl: "/services/regulatory-services",
         sourceTitle: "Regulatory services",
         contentType: "service",
-      }),
+      })
     );
     for (const [slug, leaf] of Object.entries(REGULATORY_LEAF_CONTENT)) {
       if (!leaf) continue;
@@ -357,7 +420,7 @@ const regulatorySource: IngestSource = {
           sourceUrl: `/services/regulatory-services/${slug}`,
           sourceTitle: `Regulatory services — ${(leaf as unknown as { label: string }).label}`,
           contentType: "service",
-        }),
+        })
       );
     }
     return out;
@@ -374,7 +437,7 @@ const industriesSource: IngestSource = {
         sourceUrl: "/industries",
         sourceTitle: "Industries",
         contentType: "industry",
-      }),
+      })
     );
     for (const [slug, leaf] of Object.entries(INDUSTRIES_LEAF_CONTENT)) {
       if (!leaf) continue;
@@ -384,7 +447,7 @@ const industriesSource: IngestSource = {
           sourceUrl: `/industries/${slug}`,
           sourceTitle: `Industries — ${(leaf as unknown as { label: string }).label}`,
           contentType: "industry",
-        }),
+        })
       );
     }
     return out;
@@ -401,7 +464,7 @@ const caseStudiesSource: IngestSource = {
         sourceUrl: "/case-studies",
         sourceTitle: "Case studies",
         contentType: "case-study",
-      }),
+      })
     );
     for (const [slug, study] of Object.entries(CASE_STUDIES)) {
       if (!study) continue;
@@ -411,7 +474,7 @@ const caseStudiesSource: IngestSource = {
           sourceUrl: `/case-studies/${slug}`,
           sourceTitle: `Case study — ${(study as unknown as { headline?: string }).headline ?? slug}`,
           contentType: "case-study",
-        }),
+        })
       );
     }
     return out;
@@ -428,7 +491,7 @@ const insightsSource: IngestSource = {
         sourceUrl: "/insights",
         sourceTitle: "Insights",
         contentType: "insight",
-      }),
+      })
     );
     for (const article of INSIGHTS.articles) {
       out.push(
@@ -438,7 +501,7 @@ const insightsSource: IngestSource = {
           sourceTitle: `Insight — ${article.title}`,
           contentType: "insight",
           skip: ["tags", "publishedAt", "readingMinutes"],
-        }),
+        })
       );
     }
     for (const wp of INSIGHTS.whitepapers) {
@@ -449,7 +512,7 @@ const insightsSource: IngestSource = {
           sourceTitle: `Whitepaper — ${wp.title}`,
           contentType: "insight",
           skip: ["formFields", "pdfPath", "pages", "publishedAt"],
-        }),
+        })
       );
     }
     return out;
@@ -464,11 +527,16 @@ export const FILE_CONTENT_SOURCES: IngestSource[] = [
   homeSource,
   whySource,
   aboutSource,
+  contactSource,
   facilitiesSource,
   qualitySource,
   processSource,
+  servicesOverviewSource,
+  aiToolsSource,
+  dosageFormsSource,
   analyticalSource,
   pharmDevSource,
+  clinicalSource,
   regulatorySource,
   industriesSource,
   caseStudiesSource,

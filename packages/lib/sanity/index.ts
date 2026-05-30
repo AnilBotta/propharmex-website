@@ -9,12 +9,7 @@
  */
 
 /* Client */
-export {
-  publishedClient,
-  previewClient,
-  getClient,
-  sanityConfig,
-} from "./client";
+export { publishedClient, previewClient, getClient, sanityConfig } from "./client";
 
 /* Image helpers */
 export { urlFor, urlForWidth } from "./image";
@@ -25,7 +20,7 @@ export { toPlainText, type PortableTextBlock } from "./portable-text";
 /* Fetch wrapper */
 export { sanityFetch, sanityTag, type SanityFetchOptions } from "./fetch";
 
-/* AI prompt config (Concierge / Scoping / DEL Readiness / Dosage Matcher — Prompts 18–21) */
+/* AI prompt config (Concierge / Scoping / Regulatory Readiness / Dosage Matcher — Prompts 18–21) */
 export {
   fetchConciergePromptConfig,
   conciergePromptParser,
