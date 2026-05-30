@@ -79,17 +79,20 @@ export const CONCIERGE: ConciergeContent = {
       {
         id: "dosage-forms",
         label: "What dosage forms do you handle?",
-        prompt: "What dosage forms does Propharmex develop and where do you have the deepest experience?",
+        prompt:
+          "What dosage forms does Propharmex develop and where do you have the deepest experience?",
       },
       {
-        id: "del-timeline",
-        label: "How long does a Health Canada DEL take?",
-        prompt: "How long does a Health Canada Drug Establishment Licence application typically take, and what does Propharmex's DEL position let a foreign sponsor do today?",
+        id: "readiness",
+        label: "How should we prepare a scope?",
+        prompt:
+          "What information should a global sponsor prepare before scoping analytical, regulatory, or development work with Propharmex?",
       },
       {
         id: "bioequivalence",
         label: "Do you do bioequivalence studies?",
-        prompt: "Does Propharmex run bioequivalence studies, and how do you support an ANDA programme that needs BE data?",
+        prompt:
+          "Does Propharmex run bioequivalence studies, and how do you support an ANDA programme that needs BE data?",
       },
     ],
   },
@@ -97,8 +100,7 @@ export const CONCIERGE: ConciergeContent = {
     placeholder: "Ask the Concierge…",
     sendLabel: "Send",
     sendingLabel: "Sending…",
-    disclaimer:
-      "Informational only. Always confirm regulatory specifics with our team.",
+    disclaimer: "Informational only. Always confirm regulatory specifics with our team.",
   },
   message: {
     sourcesHeading: "Sources",
@@ -111,11 +113,8 @@ export const CONCIERGE: ConciergeContent = {
     href: "/contact?source=concierge",
   },
   errors: {
-    unconfigured:
-      "Our Concierge is being set up. Please use the contact form for now.",
-    streamFailed:
-      "We couldn't finish that response. Please try again, or use the contact form.",
-    generic:
-      "Something went wrong. Please try again, or use the contact form below.",
+    unconfigured: "Our Concierge is being set up. Please use the contact form for now.",
+    streamFailed: "We couldn't finish that response. Please try again, or use the contact form.",
+    generic: "Something went wrong. Please try again, or use the contact form below.",
   },
 };

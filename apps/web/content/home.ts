@@ -365,69 +365,62 @@ export const DOSAGE_CHIPS: DosageChip[] = [
 /* -------------------------------------------------------------------------- */
 
 export const HOME: HomeContent = {
-  metaTitle:
-    "Propharmex — specialty CDMO for complex and niche pharmaceutical products",
+  metaTitle: "Propharmex - Canada-headquartered pharmaceutical services for global sponsors",
   metaDescription:
-    "Propharmex is a Canada-headquartered specialty CDMO advancing complex and niche pharmaceutical products from concept to commercialization. Pharmaceutical development, advanced analytical services, regulatory strategy, and clinical study insight under one development pathway.",
-  ogTitle:
-    "Propharmex — specialty CDMO for complex and niche pharmaceutical products",
+    "Propharmex helps global pharmaceutical sponsors scope analytical, regulatory, development, and clinical evidence work from a Canada-headquartered platform.",
+  ogTitle: "Propharmex - Canada-headquartered pharmaceutical services",
   ogDescription:
-    "Headquartered in Canada. A strategic development partner for complex dosage forms — solids, liquids, topicals, injectables, ophthalmics, and transdermal systems.",
+    "Analytical evidence, regulatory strategy, development planning, and clinical insight for global sponsors working on complex or niche pharmaceutical programmes.",
 
   // 1. Hero
   hero: {
     kind: "hero",
-    eyebrow: "Specialty CDMO · Headquartered in Canada",
-    headline: "Specialty CDMO for",
-    headlineAccent: "Complex and Niche Pharmaceutical Products.",
+    eyebrow: "Canada-headquartered. Serving global sponsors.",
+    headline: "Scope complex pharma programmes with",
+    headlineAccent: "analytical and regulatory clarity.",
     subhead:
-      "Propharmex advances complex dosage forms from concept to commercialization through pharmaceutical development, advanced analytical services, regulatory strategy, and clinical study insight.",
+      "Propharmex helps global sponsors turn product, evidence, and pathway questions into a practical development scope across analytical services, regulatory strategy, pharmaceutical development, and clinical or bioequivalence insight.",
     ctas: [
-      { href: "/contact", label: "Start a Development Discussion", variant: "primary" },
-      { href: "/services", label: "Explore Capabilities", variant: "secondary" },
+      { href: "/ai/project-scoping-assistant", label: "Start scoping", variant: "primary" },
+      { href: "/ai", label: "Review AI tools", variant: "secondary" },
     ],
     microTrust:
-      "Headquartered in Canada · Scientific depth · Transparent execution · Globally accessible development platform",
+      "Canada-headquartered governance. Global sponsor support. Human review before scope.",
   },
 
   // 2. Trust strip — repurposed to capability pillars (no cert claims)
   trust: {
     kind: "trustStrip",
-    heading: "What we bring to a development partnership",
+    heading: "What gives sponsors confidence before the first call",
     items: [
       {
         id: "complex-dosage",
-        label: "Complex Dosage Forms",
-        caption:
-          "Solids, liquids, topicals, injectables, ophthalmics, and transdermal systems",
-        href: "/services",
+        label: "Complex product context",
+        caption: "Dosage form, target market, stage, and evidence gap considered together",
+        href: "/ai/project-scoping-assistant",
       },
       {
         id: "regulatory-aware",
-        label: "Regulatory-Aware Development",
-        caption:
-          "Pathway alignment built into formulation, analytical, and clinical planning",
-        href: "/services",
+        label: "Regulatory-aware scoping",
+        caption: "Pathway questions surfaced early without promising agency outcomes",
+        href: "/services/regulatory-services",
       },
       {
         id: "analytical",
-        label: "Advanced Analytical Sciences",
-        caption:
-          "Method development, validation, and stability under ICH expectations",
-        href: "/services",
+        label: "Analytical evidence first",
+        caption: "Method, stability, impurity, and data-package needs shaped before execution",
+        href: "/services/analytical-services",
       },
       {
         id: "clinical",
-        label: "Clinical Study Insight",
-        caption:
-          "Bioequivalence and clinical strategy linked to product and pathway",
-        href: "/services",
+        label: "Clinical and BE insight",
+        caption: "Bioequivalence and clinical strategy linked to product and pathway",
+        href: "/services/clinical-be-insight",
       },
       {
         id: "canada-platform",
-        label: "Canada-Headquartered Platform",
-        caption:
-          "Transparent collaboration, high business standards, global accessibility",
+        label: "Canada-headquartered team",
+        caption: "Clear accountability, disciplined communication, and global sponsor access",
         href: "/about",
       },
     ],
@@ -439,31 +432,27 @@ export const HOME: HomeContent = {
     eyebrow: "Why Propharmex",
     heading: "Why partners choose Propharmex.",
     subhead:
-      "We position ourselves as a strategic development partner — not a transactional vendor. Each pillar below reflects how we approach complex and niche pharmaceutical products.",
+      "Global sponsors need a team that can read the product, the evidence gap, and the regulatory path together. These are the operating habits we want visible before the first call.",
     pillars: [
       {
         id: "complex-focus",
         title: "Complex Product Focus",
-        body:
-          "Focused on niche and technically challenging pharmaceutical products where formulation, analytics, regulatory strategy, and clinical planning must work together.",
+        body: "Focused on niche and technically challenging products where formulation, analytics, regulatory strategy, and clinical planning must be scoped together.",
       },
       {
         id: "integrated-thinking",
         title: "Integrated Development Thinking",
-        body:
-          "We connect molecule understanding, dosage form design, analytical evidence, and regulatory expectations into one clear development pathway.",
+        body: "We connect molecule understanding, dosage form design, analytical evidence, and regulatory expectations into one clear development pathway.",
       },
       {
         id: "tailored-programs",
         title: "Tailored Scientific Programs",
-        body:
-          "Every project is structured around the product, pathway, risk profile, and intended market — not a generic template.",
+        body: "Every project is structured around the product, pathway, risk profile, and intended market, not a generic template.",
       },
       {
         id: "canada-platform",
         title: "Canada-Based Strategic Platform",
-        body:
-          "Headquartered in Canada, Propharmex offers transparent collaboration, high business standards, and global accessibility.",
+        body: "Headquartered in Canada, Propharmex gives global sponsors a clear operating centre for scope, communication, and accountability.",
       },
     ],
   },
@@ -471,8 +460,8 @@ export const HOME: HomeContent = {
   // 4. What we do — core capabilities (4 service lines, no 3PL/distribution)
   whatWeDo: {
     kind: "whatWeDo",
-    eyebrow: "Core capabilities",
-    heading: "Four capability areas. One development pathway.",
+    eyebrow: "Capability map",
+    heading: "Four workstreams, one qualified scope.",
     cards: [
       {
         id: "development",
@@ -488,7 +477,7 @@ export const HOME: HomeContent = {
         icon: "microscope",
         title: "Advanced Analytical Services",
         description:
-          "Method development and validation under ICH Q2(R2). Release and stability testing, dissolution, extractables and leachables, nitrosamine assessment.",
+          "Method development, validation planning, stability thinking, impurity profiling, and related analytical work shaped around the evidence package.",
         href: "/services/analytical-services",
         linkLabel: "Analytical services",
       },
@@ -497,7 +486,7 @@ export const HOME: HomeContent = {
         icon: "file-check",
         title: "Regulatory Strategy",
         description:
-          "Pathway design and dossier preparation aligned to product profile, target market, and risk. Strategy is part of development, not an afterthought.",
+          "Pathway design and dossier planning aligned to product profile, target market, evidence state, and risk. Strategy is part of development, not an afterthought.",
         href: "/services/regulatory-services",
         linkLabel: "Regulatory strategy",
       },
@@ -506,8 +495,8 @@ export const HOME: HomeContent = {
         icon: "stethoscope",
         title: "Clinical Study & Bioequivalence Insight",
         description:
-          "Clinical and bioequivalence planning informed by molecule understanding, formulation choices, and regulatory pathway. Designed alongside the development program, not bolted on.",
-        href: "/services",
+          "Clinical and bioequivalence planning informed by molecule understanding, formulation choices, and regulatory pathway.",
+        href: "/services/clinical-be-insight",
         linkLabel: "Clinical & bioequivalence",
       },
     ],
@@ -523,9 +512,9 @@ export const HOME: HomeContent = {
     columns: [
       {
         id: "anchor",
-        label: "Canada — strategic platform",
+        label: "Canada - strategic platform",
         sublabel: "Headquartered in Canada",
-        role: "Strategic partnership · Program governance · Client of record",
+        role: "Strategic partnership. Programme governance. Sponsor communication.",
         capabilities: [
           "Strategic development partnership for complex and niche pharmaceutical products",
           "Single point of accountability across formulation, analytical, regulatory, and clinical planning",
@@ -538,11 +527,11 @@ export const HOME: HomeContent = {
         id: "depth",
         label: "Globally connected development",
         sublabel: "Internationally aligned execution",
-        role: "Scientific depth · Method development · Stability · Manufacturing collaborations",
+        role: "Scientific review. Method development. Stability planning. Manufacturing collaboration.",
         capabilities: [
           "Formulation and analytical development across complex dosage forms",
           "Stability program design under ICH Q1A(R2) and zone-appropriate conditions",
-          "Supported by scientific and development collaborations in India for selected programs",
+          "Structured collaboration model for global sponsors and selected specialist partners",
         ],
         certificationNote:
           "Operations governed under the Propharmex unified quality system, harmonised SOPs, and audit-trailed change control.",
@@ -555,8 +544,7 @@ export const HOME: HomeContent = {
     kind: "matcherTeaser",
     eyebrow: "AI tool",
     heading: "Complex dosage forms we support",
-    body:
-      "Capabilities span solids, liquids, topicals and semisolids, injectables, ophthalmics, and transdermal systems. Describe a target product in a sentence and the matcher returns the dosage forms we can develop end-to-end, with explicit reasoning.",
+    body: "Capabilities span solids, liquids, topicals and semisolids, injectables, ophthalmics, and transdermal systems. Describe a target product in a sentence and the matcher returns the dosage forms we can develop end-to-end, with explicit reasoning.",
     chips: DOSAGE_CHIPS,
     ctaHref: "/ai/dosage-matcher",
     ctaLabel: "Open the matcher",
@@ -567,10 +555,10 @@ export const HOME: HomeContent = {
   // 7. Proof — anonymized titles per client brief; placeholder until verified case studies land
   proof: {
     kind: "proof",
-    eyebrow: "Selected outcomes",
-    heading: "Selected development outcomes.",
+    eyebrow: "Anonymized proof patterns",
+    heading: "The work is scoped around the risk that matters.",
     subhead:
-      "Anonymized examples of the kinds of programs we support. Named client references and detailed case studies are available under NDA once a discussion is opened.",
+      "These are safe, anonymized work patterns rather than named client claims. They show how Propharmex thinks through complex sponsor problems before a scope is confirmed.",
     cards: [
       {
         id: "cs-complex-topical",
@@ -578,9 +566,9 @@ export const HOME: HomeContent = {
         problem:
           "Complex topical product requiring coordinated formulation design, analytical method development, and regulatory pathway alignment.",
         outcome:
-          "Example case study content pending client approval — illustrative only.",
-        metric: "Development pathway",
-        href: "/contact",
+          "Scoping focuses on the relationship between formulation choices, analytical method readiness, and the evidence needed for a credible pathway discussion.",
+        metric: "Integrated scope",
+        href: "/ai/project-scoping-assistant",
       },
       {
         id: "cs-niche-generic-regulatory",
@@ -588,9 +576,9 @@ export const HOME: HomeContent = {
         problem:
           "Niche generic product where regulatory strategy needed to be defined alongside formulation and analytical work, not after.",
         outcome:
-          "Example case study content pending client approval — illustrative only.",
-        metric: "Regulatory strategy",
-        href: "/contact",
+          "The first deliverable is a gap-aware regulatory and analytical workplan, so the sponsor understands what evidence is missing before committing to execution.",
+        metric: "Gap-led plan",
+        href: "/services/regulatory-services",
       },
       {
         id: "cs-analytical-method",
@@ -598,13 +586,13 @@ export const HOME: HomeContent = {
         problem:
           "Challenging product requiring analytical method development capable of supporting both release testing and stability.",
         outcome:
-          "Example case study content pending client approval — illustrative only.",
-        metric: "Analytical evidence",
-        href: "/contact",
+          "The analytical method is treated as a programme risk, not a lab task, because weak evidence can slow every downstream decision.",
+        metric: "Evidence first",
+        href: "/services/analytical-services",
       },
     ],
-    ctaHref: "/contact",
-    ctaLabel: "Talk about your program",
+    ctaHref: "/ai/project-scoping-assistant",
+    ctaLabel: "Start with your programme",
   },
 
   // 8. Process — 7-step development journey per client brief
@@ -709,7 +697,7 @@ export const HOME: HomeContent = {
     eyebrow: "Leadership",
     heading: "A small team, named on the record.",
     subhead:
-      "Every engagement is signed off by a named principal. The names below are stubbed until the Prompt 9 Sanity seeding lands.",
+      "Every qualified engagement should have clear technical ownership. Public biographies can be expanded as approved credentials are supplied.",
     leaders: [
       {
         id: "leader-1",
@@ -743,7 +731,7 @@ export const HOME: HomeContent = {
     eyebrow: "Briefings",
     heading: "Recent reading.",
     subhead:
-      "Short, technical, source-cited. One email a month if you subscribe in the footer. Placeholders below pending Prompt 15 content.",
+      "Short technical reading for sponsors who are deciding how to scope analytical, regulatory, and development work before the first call.",
     cards: [
       {
         id: "insight-1",
@@ -751,7 +739,7 @@ export const HOME: HomeContent = {
         title: "Designing a development pathway for complex dosage forms",
         blurb:
           "How formulation, analytical evidence, regulatory strategy, and clinical planning should be designed together — not sequentially.",
-        href: "/whitepapers/placeholder-1",
+        href: "/insights/whitepapers/canadian-cdmo-operating-model",
       },
       {
         id: "insight-2",
@@ -759,7 +747,7 @@ export const HOME: HomeContent = {
         title: "When analytical method development drives the program",
         blurb:
           "Three complex-dosage-form patterns where the analytical method has to be solved before the formulation can move.",
-        href: "/insights/placeholder-2",
+        href: "/insights",
       },
       {
         id: "insight-3",
@@ -767,7 +755,7 @@ export const HOME: HomeContent = {
         title: "Niche generics and the case for integrated development",
         blurb:
           "Why niche generic programs benefit from a single development partner that owns formulation, analytical, regulatory, and clinical thinking together.",
-        href: "/insights/placeholder-3",
+        href: "/case-studies",
       },
     ],
     ctaHref: "/insights",
@@ -778,22 +766,21 @@ export const HOME: HomeContent = {
   delBanner: {
     kind: "delBanner",
     eyebrow: "Regulatory tool",
-    heading: "How regulator-ready is your program?",
-    body:
-      "A short questionnaire covering quality, facilities, and personnel. Returns a stage-of-readiness view with gap notes you can take to your internal team. Informational only.",
+    heading: "How ready is the programme for regulatory review?",
+    body: "A short questionnaire covering evidence, quality posture, team readiness, and documentation gaps. Returns a stage-of-readiness view you can take into internal planning.",
     ctaHref: "/ai/del-readiness",
     ctaLabel: "Open the assessment",
     disclaimer:
-      "This is an informational assessment tool. It is not legal advice, not a pre-inspection outcome, and not a substitute for a regulatory submission.",
+      "This is an informational assessment tool. It is not legal advice, not an agency outcome prediction, and not a substitute for qualified regulatory review.",
   },
 
   // 13. Contact mini-form
   contact: {
     kind: "contactMini",
     eyebrow: "Talk to us",
-    heading: "Tell us what you are building.",
+    heading: "Send a qualified brief.",
     subhead:
-      "We reply within one business day. Scope calls happen within three. No sales funnel behind this form.",
+      "For the strongest first conversation, start with the scoping assistant. If you already know what you need, send the brief here and we will route it to the right reviewer.",
     fields: {
       email: { label: "Work email", placeholder: "you@company.com" },
       company: { label: "Company", placeholder: "Company or organization" },
@@ -809,15 +796,14 @@ export const HOME: HomeContent = {
         hint: "Optional. Skip if you prefer to talk first.",
       },
     },
-    submitLabel: "Start a Development Discussion",
+    submitLabel: "Send the brief",
     submittingLabel: "Sending…",
     successHeading: "Thanks — we received it.",
     successBody:
       "You will hear back from a named person within one business day. We do not add inbound contacts to a newsletter list.",
     errorGeneric:
       "Something went wrong sending that. Please retry, or email hello@propharmex.com directly.",
-    privacyNote:
-      "We use your email only to reply. See our privacy notice for details.",
+    privacyNote: "We use your email only to reply. See our privacy notice for details.",
   },
 
   // 14. Above-footer chips — DEL identifier removed in PR-C′

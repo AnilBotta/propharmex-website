@@ -70,7 +70,7 @@ export const CLINICAL_HUB: ClinicalHubContent = {
     ],
     primaryCta: {
       label: "Scope a BE strategy review",
-      href: "/contact?intent=quote&source=clinical-hub-hero",
+      href: "/ai/project-scoping-assistant?source=clinical-hub-hero",
       variant: "primary",
     },
     secondaryCta: {
@@ -125,8 +125,8 @@ export const CLINICAL_HUB: ClinicalHubContent = {
     heading: "Bring the protocol question, not just the molecule.",
     body: "We will read your draft protocol or product-specific guidance gap against current regulator practice — and tell you which study answers the question you actually need answered, what statistical lock the agency will accept, and which CRO is the right operational partner for the trial itself.",
     primaryCta: {
-      label: "Request a quote",
-      href: "/contact?intent=quote&source=clinical-hub-closing",
+      label: "Start scoping",
+      href: "/ai/project-scoping-assistant?source=clinical-hub-closing",
       variant: "primary",
     },
     secondaryCta: {

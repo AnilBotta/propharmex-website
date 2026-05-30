@@ -1,10 +1,8 @@
 /**
- * /ai/del-readiness — Health Canada DEL Readiness Assessment.
+ * /ai/del-readiness — Regulatory Readiness Assessment.
  *
- * Prompt 20 PR-A. Replaces the prior `PlaceholderPage` stub with the full
- * multi-step form + AI synthesis surface. Action buttons on the results
- * screen point at /contact for now; PR-B swaps in the Cal.com booking
- * embed and the branded PDF report.
+ * The route path is retained for compatibility with existing links, while
+ * the public surface uses licence-neutral readiness language.
  *
  * RSC shell: hero copy + JSON-LD live in this server component; the
  * assessment itself is a client component (`DelReadinessAssessment`)

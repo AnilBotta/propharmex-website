@@ -16,12 +16,7 @@
 import Link from "next/link";
 import { Mail, MapPin } from "lucide-react";
 
-import {
-  FACILITIES,
-  FOOTER_COLUMNS,
-  LEGAL_LINKS,
-  NEWSLETTER,
-} from "../../content/site-nav";
+import { FACILITIES, FOOTER_COLUMNS, LEGAL_LINKS, NEWSLETTER } from "../../content/site-nav";
 import { BrandLogo } from "./BrandLogo";
 import { NewsletterForm } from "./NewsletterForm";
 
@@ -39,19 +34,14 @@ export function Footer() {
           <div className="flex flex-col gap-6">
             <BrandLogo />
             <p className="text-sm leading-relaxed text-[var(--color-slate-700)]">
-              Specialty CDMO for complex and niche pharmaceutical products.
-              Pharmaceutical development, analytical services, regulatory
-              strategy, and clinical and BE insight for drug developers
-              worldwide. Headquartered in Canada with a development centre
-              in India.
+              Canada-headquartered pharmaceutical services partner for global sponsors. Analytical
+              evidence, regulatory strategy, development planning, and clinical or bioequivalence
+              insight for complex and niche programmes.
             </p>
           </div>
 
           {/* Link columns */}
-          <nav
-            aria-label="Footer"
-            className="grid grid-cols-2 gap-8 sm:grid-cols-4"
-          >
+          <nav aria-label="Footer" className="grid grid-cols-2 gap-8 sm:grid-cols-4">
             {FOOTER_COLUMNS.map((col) => (
               <div key={col.heading}>
                 <h3 className="mb-4 font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-[0.08em] text-[var(--color-muted)]">
@@ -78,23 +68,16 @@ export function Footer() {
             <h3 className="mb-2 font-[family-name:var(--font-display)] text-sm font-semibold tracking-tight text-[var(--color-fg)]">
               {NEWSLETTER.heading}
             </h3>
-            <p className="mb-4 text-sm text-[var(--color-slate-700)]">
-              {NEWSLETTER.description}
-            </p>
+            <p className="mb-4 text-sm text-[var(--color-slate-700)]">{NEWSLETTER.description}</p>
             <NewsletterForm />
           </div>
         </div>
 
         {/* Addresses */}
         <div className="mt-12 grid gap-6 border-t border-[var(--color-border)] pt-8 sm:grid-cols-2">
-          {FACILITIES.map((f) => (
-            <address
-              key={f.code}
-              className="not-italic text-sm text-[var(--color-slate-700)]"
-            >
-              <p className="mb-1 font-semibold text-[var(--color-fg)]">
-                {f.name}
-              </p>
+          {FACILITIES.filter((f) => f.countryCode === "CA").map((f) => (
+            <address key={f.code} className="text-sm not-italic text-[var(--color-slate-700)]">
+              <p className="mb-1 font-semibold text-[var(--color-fg)]">{f.name}</p>
               <p className="mb-2 text-xs uppercase tracking-[0.06em] text-[var(--color-muted)]">
                 {f.role}
               </p>
@@ -111,14 +94,8 @@ export function Footer() {
               </p>
               {f.email && (
                 <p className="mt-1 flex items-center gap-2">
-                  <Mail
-                    aria-hidden="true"
-                    className="size-4 shrink-0 text-[var(--color-muted)]"
-                  />
-                  <a
-                    href={`mailto:${f.email}`}
-                    className="hover:text-[var(--color-primary-700)]"
-                  >
+                  <Mail aria-hidden="true" className="size-4 shrink-0 text-[var(--color-muted)]" />
+                  <a href={`mailto:${f.email}`} className="hover:text-[var(--color-primary-700)]">
                     {f.email}
                   </a>
                 </p>
@@ -130,8 +107,8 @@ export function Footer() {
         {/* Legal row */}
         <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-[var(--color-border)] pt-6 text-xs text-[var(--color-muted)] sm:flex-row sm:items-center">
           <p>
-            © {currentYear} Propharmex Inc. All rights reserved. Propharmex is
-            not a licensed pharmacy; no medical advice is provided on this site.
+            © {currentYear} Propharmex Inc. All rights reserved. Propharmex is not a licensed
+            pharmacy; no medical advice is provided on this site.
           </p>
           <ul aria-label="Legal" className="flex flex-wrap gap-x-4 gap-y-1">
             {LEGAL_LINKS.map((l) => (

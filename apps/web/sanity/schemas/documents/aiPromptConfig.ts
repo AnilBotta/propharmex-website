@@ -12,10 +12,11 @@ export const groqProjection = `{
   scoping,
   delReadiness,
   dosageMatcher,
+  leadIntelligence,
   globalDisclaimer
 }`;
 
-type PromptKey = "concierge" | "scoping" | "delReadiness" | "dosageMatcher";
+type PromptKey = "concierge" | "scoping" | "delReadiness" | "dosageMatcher" | "leadIntelligence";
 
 function promptField(name: PromptKey, title: string) {
   return defineField({
@@ -60,8 +61,7 @@ function promptField(name: PromptKey, title: string) {
         title: "Tool-specific disclaimer",
         type: "text",
         rows: 3,
-        description:
-          "Shown to users alongside every response from this tool. Factual, anti-hype.",
+        description: "Shown to users alongside every response from this tool. Factual, anti-hype.",
         validation: (rule) => rule.required().max(480),
       }),
     ],
@@ -81,13 +81,13 @@ export default defineType({
     promptField("scoping", "Scoping"),
     promptField("delReadiness", "DEL readiness"),
     promptField("dosageMatcher", "Dosage form matcher"),
+    promptField("leadIntelligence", "Lead intelligence"),
     defineField({
       name: "globalDisclaimer",
       title: "Global AI disclaimer",
       type: "text",
       rows: 3,
-      description:
-        "Shown alongside any AI-generated output on the public site. Required.",
+      description: "Shown alongside any AI-generated output on the public site. Required.",
       validation: (rule) => rule.required().min(40).max(480),
     }),
   ],

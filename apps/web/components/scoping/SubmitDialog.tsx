@@ -30,20 +30,16 @@ interface Props {
     email: string;
     company: string;
     name?: string;
+    role?: string;
     message?: string;
   }) => void;
 }
 
-export function SubmitDialog({
-  open,
-  submitting,
-  errorMessage,
-  onClose,
-  onSubmit,
-}: Props) {
+export function SubmitDialog({ open, submitting, errorMessage, onClose, onSubmit }: Props) {
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
   const [name, setName] = useState("");
+  const [role, setRole] = useState("");
   const [message, setMessage] = useState("");
   const firstFieldRef = useRef<HTMLInputElement>(null);
 
@@ -66,8 +62,7 @@ export function SubmitDialog({
 
   if (!open) return null;
 
-  const canSubmit =
-    email.trim().length > 0 && company.trim().length > 0 && !submitting;
+  const canSubmit = email.trim().length > 0 && company.trim().length > 0 && !submitting;
 
   return (
     <div
@@ -89,8 +84,7 @@ export function SubmitDialog({
               Send this scope to Propharmex
             </h2>
             <p className="mt-1 text-sm leading-relaxed text-[var(--color-slate-800)]">
-              Our business-development team replies within one Canadian
-              business day.
+              Our business-development team replies within one Canadian business day.
             </p>
           </div>
           <button
@@ -112,6 +106,7 @@ export function SubmitDialog({
               email: email.trim(),
               company: company.trim(),
               name: name.trim() || undefined,
+              role: role.trim() || undefined,
               message: message.trim() || undefined,
             });
           }}
@@ -139,6 +134,18 @@ export function SubmitDialog({
               value={company}
               onChange={(e) => setCompany(e.target.value)}
               disabled={submitting}
+              className="w-full rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2 text-sm text-[var(--color-fg)] focus-visible:border-[var(--color-primary-700)] focus-visible:outline-none disabled:opacity-60"
+            />
+          </Field>
+          <Field label="Role (optional)">
+            <input
+              type="text"
+              autoComplete="organization-title"
+              maxLength={80}
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              disabled={submitting}
+              placeholder="Regulatory affairs, CMC, procurement, executive"
               className="w-full rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2 text-sm text-[var(--color-fg)] focus-visible:border-[var(--color-primary-700)] focus-visible:outline-none disabled:opacity-60"
             />
           </Field>
@@ -174,8 +181,8 @@ export function SubmitDialog({
           ) : null}
 
           <p className="text-[11px] leading-snug text-[var(--color-muted)]">
-            We use your email only to reply to this inquiry. We don&apos;t
-            subscribe you to anything.
+            We use your email only to reply to this inquiry. We don&apos;t subscribe you to
+            anything.
           </p>
 
           <div className="mt-1 flex items-center justify-end gap-2">
@@ -214,9 +221,7 @@ function Field({
     <label className="flex flex-col gap-1">
       <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--color-muted)]">
         {label}
-        {required ? (
-          <span className="ml-1 text-[var(--color-primary-700)]">*</span>
-        ) : null}
+        {required ? <span className="ml-1 text-[var(--color-primary-700)]">*</span> : null}
       </span>
       {children}
     </label>

@@ -4,7 +4,7 @@
  * Emits:
  *  - Organization (Propharmex)
  *  - WebSite
- *  - LocalBusiness × 2 (Mississauga + Hyderabad)
+ *  - LocalBusiness (Mississauga headquarters)
  *
  * Page-specific nodes (Service, Article, FAQ, Breadcrumb, Person) are emitted
  * by the page itself using the `pharma-schema-markup` skill templates.
@@ -27,7 +27,7 @@ export function buildSiteJsonLd(siteUrl: string) {
     url: cleanUrl,
     logoUrl: `${cleanUrl}/brand/propharmex-logo.svg`,
     description:
-      "Specialty CDMO for complex and niche pharmaceutical products. Pharmaceutical development, analytical services, regulatory strategy, and clinical and BE insight for drug developers worldwide. Headquartered in Canada with a development centre in India.",
+      "Canada-headquartered pharmaceutical services partner for global sponsors. Analytical services, regulatory strategy, pharmaceutical development, and clinical and BE insight.",
   });
 
   const website = webSiteJsonLd({
@@ -35,7 +35,7 @@ export function buildSiteJsonLd(siteUrl: string) {
     name: "Propharmex",
   });
 
-  const locations = FACILITIES.map((f) =>
+  const locations = FACILITIES.filter((f) => f.countryCode === "CA").map((f) =>
     localBusinessJsonLd({
       id: f.code.toLowerCase(),
       name: f.name,
@@ -50,7 +50,7 @@ export function buildSiteJsonLd(siteUrl: string) {
         postalCode: f.postalCode || undefined,
         addressCountry: f.countryCode,
       },
-    }),
+    })
   );
 
   return jsonLdGraph([org, website, ...locations]);

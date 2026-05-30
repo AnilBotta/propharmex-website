@@ -114,7 +114,6 @@ export function ScopingSurface() {
       }
     },
     onError: (e) => {
-      // eslint-disable-next-line no-console
       console.error("[scoping] stream error:", e);
     },
   });
@@ -159,9 +158,7 @@ export function ScopingSurface() {
   }, [messages, isLoading]);
 
   const isToolCallMessage = useMemo(() => {
-    return new Set(
-      messages.filter((m) => messageHasProposeScope(m)).map((m) => m.id),
-    );
+    return new Set(messages.filter((m) => messageHasProposeScope(m)).map((m) => m.id));
   }, [messages]);
 
   function reset() {
@@ -208,11 +205,7 @@ export function ScopingSurface() {
   }[] {
     const out: { role: "user" | "assistant" | "system"; content: string }[] = [];
     for (const m of messages) {
-      if (
-        m.role === "user" ||
-        m.role === "assistant" ||
-        m.role === "system"
-      ) {
+      if (m.role === "user" || m.role === "assistant" || m.role === "system") {
         out.push({ role: m.role, content: m.content });
       }
     }
@@ -229,14 +222,10 @@ export function ScopingSurface() {
         body: JSON.stringify({
           scope: previewScope,
           transcript: snapshotTranscript(),
-          referrer:
-            typeof document !== "undefined"
-              ? document.referrer || undefined
-              : undefined,
+          referrer: typeof document !== "undefined" ? document.referrer || undefined : undefined,
         }),
       });
       if (!res.ok) {
-        // eslint-disable-next-line no-console
         console.error("[scoping] pdf download failed:", res.status);
         return;
       }
@@ -257,7 +246,6 @@ export function ScopingSurface() {
         phaseCount: previewScope.phases.length,
       });
     } catch (err) {
-      // eslint-disable-next-line no-console
       console.error("[scoping] pdf download error:", err);
     } finally {
       setDownloading(false);
@@ -268,6 +256,7 @@ export function ScopingSurface() {
     email: string;
     company: string;
     name?: string;
+    role?: string;
     message?: string;
   }) {
     if (!previewScope || submitting) return;
@@ -281,16 +270,11 @@ export function ScopingSurface() {
           scope: previewScope,
           contact,
           transcript: snapshotTranscript(),
-          referrer:
-            typeof document !== "undefined"
-              ? document.referrer || undefined
-              : undefined,
+          referrer: typeof document !== "undefined" ? document.referrer || undefined : undefined,
         }),
       });
       if (!res.ok) {
-        const body = (await res.json().catch(() => null)) as
-          | { error?: string }
-          | null;
+        const body = (await res.json().catch(() => null)) as { error?: string } | null;
         setSubmitError(body?.error ?? SCOPING.errors.generic);
         return;
       }
@@ -303,7 +287,6 @@ export function ScopingSurface() {
         phaseCount: previewScope.phases.length,
       });
     } catch (err) {
-      // eslint-disable-next-line no-console
       console.error("[scoping] submit error:", err);
       setSubmitError(SCOPING.errors.generic);
     } finally {
@@ -363,10 +346,7 @@ export function ScopingSurface() {
           <ul className="flex flex-col gap-3">
             {messages.map((m) => (
               <li key={m.id} className="list-none">
-                <ScopingMessage
-                  message={m}
-                  hasToolCall={isToolCallMessage.has(m.id)}
-                />
+                <ScopingMessage message={m} hasToolCall={isToolCallMessage.has(m.id)} />
               </li>
             ))}
           </ul>
@@ -394,11 +374,7 @@ export function ScopingSurface() {
                 if (e.key === "Enter" && !e.shiftKey) {
                   e.preventDefault();
                   if (input.trim() && !isLoading) {
-                    submitWith(
-                      new Event(
-                        "submit",
-                      ) as unknown as React.FormEvent<HTMLFormElement>,
-                    );
+                    submitWith(new Event("submit") as unknown as React.FormEvent<HTMLFormElement>);
                   }
                 }
               }}
@@ -409,23 +385,15 @@ export function ScopingSurface() {
             />
             <button
               type="submit"
-              disabled={
-                isLoading ||
-                Boolean(unconfigured) ||
-                input.trim().length === 0
-              }
-              aria-label={
-                isLoading ? SCOPING.input.sendingLabel : SCOPING.input.sendLabel
-              }
-              className="inline-flex size-11 shrink-0 items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-primary-700)] text-white transition hover:bg-[var(--color-primary-800)] disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] focus-visible:ring-offset-1"
+              disabled={isLoading || Boolean(unconfigured) || input.trim().length === 0}
+              aria-label={isLoading ? SCOPING.input.sendingLabel : SCOPING.input.sendLabel}
+              className="inline-flex size-11 shrink-0 items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-primary-700)] text-white transition hover:bg-[var(--color-primary-800)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
             >
               <ArrowRight aria-hidden="true" size={16} />
             </button>
           </div>
           <div className="flex items-center justify-between gap-3 text-[11px] leading-snug">
-            <p className="text-[var(--color-muted)]">
-              {SCOPING.input.disclaimer}
-            </p>
+            <p className="text-[var(--color-muted)]">{SCOPING.input.disclaimer}</p>
             <a
               href={SCOPING.escapeHatch.href}
               onClick={() => trackScopingEscapeClicked()}

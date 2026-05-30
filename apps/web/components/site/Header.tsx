@@ -94,9 +94,8 @@ export function Header() {
   const isTransparent = heroDark && !scrolled;
 
   const toggleMenu = useCallback(
-    (label: string) =>
-      setOpenMenu((curr) => (curr === label ? null : label)),
-    [],
+    (label: string) => setOpenMenu((curr) => (curr === label ? null : label)),
+    []
   );
 
   return (
@@ -106,7 +105,7 @@ export function Header() {
         "sticky top-0 z-50 w-full transition-colors duration-200 ease-out",
         isTransparent
           ? "border-transparent bg-transparent"
-          : "border-b border-[var(--color-border)] bg-[color-mix(in_oklab,var(--color-bg)_92%,transparent)] backdrop-blur",
+          : "border-b border-[var(--color-border)] bg-[color-mix(in_oklab,var(--color-bg)_92%,transparent)] backdrop-blur"
       )}
     >
       <div
@@ -122,15 +121,11 @@ export function Header() {
         </Link>
 
         {/* Desktop nav */}
-        <nav
-          aria-label="Primary"
-          className="ml-4 hidden flex-1 items-center gap-1 lg:flex"
-        >
+        <nav aria-label="Primary" className="ml-4 hidden flex-1 items-center gap-1 lg:flex">
           {PRIMARY_NAV.map((section) => {
             const hasMenu = !!section.columns?.length;
             const expanded = openMenu === section.label;
-            const active =
-              section.href && pathname.startsWith(section.href) ? true : false;
+            const active = section.href && pathname.startsWith(section.href) ? true : false;
 
             if (!hasMenu && section.href) {
               return (
@@ -142,13 +137,14 @@ export function Header() {
                     isTransparent
                       ? "text-white/90 hover:text-white"
                       : "text-[var(--color-fg)] hover:text-[var(--color-primary-700)]",
-                    active && "text-[var(--color-primary-700)]",
+                    active && "text-[var(--color-primary-700)]"
                   )}
                 >
                   {section.label}
                 </Link>
               );
             }
+            const columns = section.columns ?? [];
 
             return (
               <div key={section.label} className="relative">
@@ -163,16 +159,13 @@ export function Header() {
                     isTransparent
                       ? "text-white/90 hover:text-white"
                       : "text-[var(--color-fg)] hover:text-[var(--color-primary-700)]",
-                    (expanded || active) && "text-[var(--color-primary-700)]",
+                    (expanded || active) && "text-[var(--color-primary-700)]"
                   )}
                 >
                   {section.label}
                   <ChevronDown
                     aria-hidden="true"
-                    className={cn(
-                      "size-4 transition-transform",
-                      expanded && "rotate-180",
-                    )}
+                    className={cn("size-4 transition-transform", expanded && "rotate-180")}
                   />
                 </button>
 
@@ -194,16 +187,16 @@ export function Header() {
                       <div
                         className={cn(
                           "grid gap-6",
-                          section.columns!.length === 1
+                          columns.length === 1
                             ? "grid-cols-1"
-                            : section.columns!.length === 2
+                            : columns.length === 2
                               ? "grid-cols-2"
-                              : section.columns!.length === 3
+                              : columns.length === 3
                                 ? "grid-cols-3"
-                                : "grid-cols-4",
+                                : "grid-cols-4"
                         )}
                       >
-                        {section.columns!.map((col) => (
+                        {columns.map((col) => (
                           <div key={col.heading}>
                             <h3 className="mb-3 font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-[0.08em] text-[var(--color-muted)]">
                               {col.heading}
@@ -240,7 +233,7 @@ export function Header() {
 
         <div className="ml-auto flex items-center gap-2 lg:gap-3">
           <Button asChild variant="primary" size="sm" className="hidden md:inline-flex">
-            <Link href="/contact?intent=quote">{CTAS.quote}</Link>
+            <Link href="/ai/project-scoping-assistant">{CTAS.quote}</Link>
           </Button>
 
           {/* Mobile trigger */}
@@ -253,7 +246,7 @@ export function Header() {
                   "inline-flex size-11 items-center justify-center rounded-[var(--radius-sm)] border transition-colors lg:hidden",
                   isTransparent
                     ? "border-white/30 text-white hover:bg-white/10"
-                    : "border-[var(--color-border)] text-[var(--color-fg)] hover:bg-[var(--color-slate-100)]",
+                    : "border-[var(--color-border)] text-[var(--color-fg)] hover:bg-[var(--color-slate-100)]"
                 )}
               >
                 <Menu aria-hidden="true" className="size-5" />
@@ -291,34 +284,33 @@ function MobileNav() {
                     "flex min-h-11 items-center rounded-[var(--radius-sm)] px-3 py-3 text-base font-medium",
                     active
                       ? "bg-[var(--color-primary-50)] text-[var(--color-primary-800)]"
-                      : "text-[var(--color-fg)] hover:bg-[var(--color-slate-100)]",
+                      : "text-[var(--color-fg)] hover:bg-[var(--color-slate-100)]"
                   )}
                 >
                   {section.label}
                 </Link>
               );
             }
+            const columns = section.columns ?? [];
             return (
-              <AccordionItem
-                key={section.label}
-                value={section.label}
-                className="border-none"
-              >
+              <AccordionItem key={section.label} value={section.label} className="border-none">
                 <AccordionTrigger className="min-h-11 px-3 text-base font-medium">
                   {section.label}
                 </AccordionTrigger>
                 <AccordionContent className="px-3 pb-2">
                   <ul className="flex flex-col gap-1 pl-2">
-                    {section.columns!.flatMap((c) => c.links).map((l) => (
-                      <li key={`${l.href}-${l.label}`}>
-                        <Link
-                          href={l.href}
-                          className="flex min-h-11 items-center rounded-[var(--radius-sm)] px-3 py-2 text-sm text-[var(--color-fg)] hover:bg-[var(--color-slate-100)]"
-                        >
-                          {l.label}
-                        </Link>
-                      </li>
-                    ))}
+                    {columns
+                      .flatMap((c) => c.links)
+                      .map((l) => (
+                        <li key={`${l.href}-${l.label}`}>
+                          <Link
+                            href={l.href}
+                            className="flex min-h-11 items-center rounded-[var(--radius-sm)] px-3 py-2 text-sm text-[var(--color-fg)] hover:bg-[var(--color-slate-100)]"
+                          >
+                            {l.label}
+                          </Link>
+                        </li>
+                      ))}
                   </ul>
                 </AccordionContent>
               </AccordionItem>
@@ -328,7 +320,7 @@ function MobileNav() {
       </nav>
       <div className="flex flex-col gap-3 border-t border-[var(--color-border)] p-5">
         <Button asChild variant="primary" size="md" className="w-full">
-          <Link href="/contact?intent=quote">{CTAS.quote}</Link>
+          <Link href="/ai/project-scoping-assistant">{CTAS.quote}</Link>
         </Button>
       </div>
     </div>
