@@ -5,7 +5,7 @@ export const SOURCE_LABEL: Record<LeadSource, string> = {
   whitepaper: "Briefings",
   newsletter: "Footer form",
   scoping: "Quote form",
-  del_readiness: "DEL readiness",
+  del_readiness: "Regulatory readiness",
   dosage_matcher: "Capabilities",
   concierge: "Industries",
 };

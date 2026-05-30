@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * DEL Readiness Assessment — multi-step form orchestrator.
+ * Regulatory Readiness Assessment — multi-step form orchestrator.
  *
  * State machine, three modes:
  *
@@ -104,10 +104,7 @@ export function DelReadinessAssessment({ calLink }: AssessmentProps = {}) {
     trackDelReadinessOpened();
   }, []);
 
-  const visible = useMemo(() => visibleQuestions(rubric, answers), [
-    rubric,
-    answers,
-  ]);
+  const visible = useMemo(() => visibleQuestions(rubric, answers), [rubric, answers]);
   const currentQuestion = visible[stepIndex];
   const isLast = stepIndex === visible.length - 1;
   const totalSteps = visible.length;
@@ -200,7 +197,7 @@ export function DelReadinessAssessment({ calLink }: AssessmentProps = {}) {
         remediationCount: built.remediation.length,
       });
     } catch (err) {
-      // eslint-disable-next-line no-console
+       
       console.error("[del-readiness] submit error:", err);
       setServerError(DEL_READINESS.errors.generic);
       setPhase("intake");
@@ -242,15 +239,12 @@ export function DelReadinessAssessment({ calLink }: AssessmentProps = {}) {
         body: JSON.stringify({
           assessment,
           answers: cleaned,
-          referrer:
-            typeof document !== "undefined"
-              ? document.referrer || undefined
-              : undefined,
+          referrer: typeof document !== "undefined" ? document.referrer || undefined : undefined,
         }),
       });
 
       if (!res.ok) {
-        // eslint-disable-next-line no-console
+         
         console.error("[del-readiness] pdf download failed:", res.status);
         return;
       }
@@ -273,7 +267,7 @@ export function DelReadinessAssessment({ calLink }: AssessmentProps = {}) {
         trafficLight: assessment.trafficLight,
       });
     } catch (err) {
-      // eslint-disable-next-line no-console
+       
       console.error("[del-readiness] pdf download error:", err);
     } finally {
       setDownloading(false);
@@ -336,7 +330,7 @@ export function DelReadinessAssessment({ calLink }: AssessmentProps = {}) {
             type="button"
             onClick={goBack}
             disabled={stepIndex === 0 || phase === "submitting"}
-            className="inline-flex items-center gap-1.5 rounded-[var(--radius-md)] px-3 py-2 text-sm font-medium text-[var(--color-muted)] hover:text-[var(--color-fg)] disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)]"
+            className="inline-flex items-center gap-1.5 rounded-[var(--radius-md)] px-3 py-2 text-sm font-medium text-[var(--color-muted)] hover:text-[var(--color-fg)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] disabled:cursor-not-allowed disabled:opacity-50"
           >
             <ArrowLeft aria-hidden="true" size={14} />
             {DEL_READINESS.form.backLabel}
@@ -355,7 +349,7 @@ export function DelReadinessAssessment({ calLink }: AssessmentProps = {}) {
               type="button"
               onClick={submit}
               disabled={phase === "submitting"}
-              className="inline-flex items-center gap-1.5 rounded-[var(--radius-md)] bg-[var(--color-primary-700)] px-4 py-2 text-sm font-medium text-white hover:bg-[var(--color-primary-800)] disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] focus-visible:ring-offset-1"
+              className="inline-flex items-center gap-1.5 rounded-[var(--radius-md)] bg-[var(--color-primary-700)] px-4 py-2 text-sm font-medium text-white hover:bg-[var(--color-primary-800)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {phase === "submitting"
                 ? DEL_READINESS.form.submittingLabel
@@ -392,9 +386,7 @@ export function DelReadinessAssessment({ calLink }: AssessmentProps = {}) {
  * Other frames (text deltas, finish, etc.) are ignored. We don't show
  * any streamed text on this surface — the "submitting" label suffices.
  */
-async function parseAssessmentStream(
-  body: ReadableStream<Uint8Array>,
-): Promise<Assessment | null> {
+async function parseAssessmentStream(body: ReadableStream<Uint8Array>): Promise<Assessment | null> {
   // Object-state pattern. TS strict can't narrow `let X: T | null = null`
   // when X is reassigned inside a closure (control-flow analysis stops at
   // the closure boundary, so X stays `never` after the post-loop null

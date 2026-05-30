@@ -3,7 +3,7 @@
 /**
  * LeadershipPreview — client island used on /about.
  *
- * Renders a preview grid of three leader cards with a "Profile in preparation"
+ * Renders a preview grid of three leader cards with a credential-review
  * badge while every record carries the `stub: true` sentinel. Each card links
  * into /about/leadership#<slug> for the modal-detail experience.
  */
@@ -12,23 +12,15 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-import {
-  Button,
-  fadeRise,
-  staggerContainer,
-  useReducedMotion,
-} from "@propharmex/ui";
+import { Button, fadeRise, staggerContainer, useReducedMotion } from "@propharmex/ui";
 
-import type {
-  AboutLeader,
-  AboutLeadershipPreview,
-} from "../../content/about";
+import type { AboutLeader, AboutLeadershipPreview } from "../../content/about";
 
-type Props = {
+interface Props {
   content: AboutLeadershipPreview;
   leaders: AboutLeader[];
   stubBadgeLabel: string;
-};
+}
 
 export function LeadershipPreview({ content, leaders, stubBadgeLabel }: Props) {
   const reduce = useReducedMotion();
@@ -72,11 +64,7 @@ export function LeadershipPreview({ content, leaders, stubBadgeLabel }: Props) {
           aria-label="Leadership preview"
         >
           {leaders.map((leader) => (
-            <motion.li
-              key={leader.id}
-              variants={fadeRise}
-              className="list-none"
-            >
+            <motion.li key={leader.id} variants={fadeRise} className="list-none">
               <Link
                 href={`${content.ctaHref}#${leader.slug}`}
                 className="flex h-full flex-col gap-4 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-colors hover:border-[var(--color-primary-600)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)]"
@@ -94,12 +82,8 @@ export function LeadershipPreview({ content, leaders, stubBadgeLabel }: Props) {
                   <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-[var(--color-fg)]">
                     {leader.name}
                   </h3>
-                  <p className="mt-1 text-sm text-[var(--color-primary-700)]">
-                    {leader.role}
-                  </p>
-                  <p className="mt-1 text-xs text-[var(--color-muted)]">
-                    {leader.location}
-                  </p>
+                  <p className="mt-1 text-sm text-[var(--color-primary-700)]">{leader.role}</p>
+                  <p className="mt-1 text-xs text-[var(--color-muted)]">{leader.location}</p>
                 </div>
                 <p className="text-sm leading-relaxed text-[var(--color-slate-800)]">
                   {leader.credential}

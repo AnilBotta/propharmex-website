@@ -1,5 +1,5 @@
 /**
- * /api/ai/del-readiness — Synthesize a DEL Readiness Assessment.
+ * /api/ai/del-readiness — Synthesize a Regulatory Readiness Assessment.
  *
  * Prompt 20 PR-A. Edge runtime. Cousin of /api/ai/scoping with one big
  * architectural difference: the score is **deterministic** (computed in
@@ -212,7 +212,7 @@ function buildUserMessage(input: {
   const { rubric, answers, scoreOnly } = input;
   const lines: string[] = [];
 
-  lines.push("# DEL Readiness Assessment — synthesize");
+  lines.push("# Regulatory Readiness Assessment — synthesize");
   lines.push("");
   lines.push(
     `Rubric version ${rubric.version}. Determine the most material gaps and a prioritized remediation plan, then call \`recommend\`. Do NOT emit a score — that has already been computed.`

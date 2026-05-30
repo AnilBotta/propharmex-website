@@ -1,8 +1,7 @@
 /**
  * LeafClosing — industry leaf final CTA block, RSC.
  *
- * Closing card plus a primary-source regulatory reference (the Mississauga
- * DEL register for the generic-manufacturers leaf).
+ * Closing card plus a scope note or primary-source regulatory reference.
  */
 import type { FC } from "react";
 import Link from "next/link";
@@ -14,7 +13,7 @@ import type { IndustryLeafClosing } from "../../content/industries";
 
 import { SectionReveal } from "../site/hub/SectionReveal";
 
-type Props = { content: IndustryLeafClosing };
+interface Props { content: IndustryLeafClosing }
 
 export const LeafClosing: FC<Props> = ({ content }) => {
   const note = content.regulatoryNote;
@@ -48,9 +47,7 @@ export const LeafClosing: FC<Props> = ({ content }) => {
                 </Link>
               </Button>
               <Button asChild variant={content.secondaryCta.variant} size="lg">
-                <Link href={content.secondaryCta.href}>
-                  {content.secondaryCta.label}
-                </Link>
+                <Link href={content.secondaryCta.href}>{content.secondaryCta.label}</Link>
               </Button>
             </div>
 

@@ -3,7 +3,7 @@
  *
  * Live cards wrap in a Link; shipping-next cards render as a muted disabled
  * affordance so no stale internal links exist. The flagship card carries a
- * "Flagship" pill — DEL licensing is the commercial anchor of the hub.
+ * Service matrix cards for the regulatory-services hub.
  */
 import type { FC } from "react";
 import Link from "next/link";
@@ -18,7 +18,7 @@ import { SectionReveal } from "../site/hub/SectionReveal";
 
 const HUB_PATH = "/services/regulatory-services";
 
-type Props = { content: ServiceMatrixContent };
+interface Props { content: ServiceMatrixContent }
 
 export const ServiceMatrix: FC<Props> = ({ content }) => {
   return (
@@ -100,16 +100,10 @@ function ServiceCard({
             className="mt-1 text-[var(--color-muted)] transition group-hover:text-[var(--color-primary-700)]"
           />
         ) : (
-          <Clock
-            aria-hidden="true"
-            size={16}
-            className="mt-1 text-[var(--color-muted)]"
-          />
+          <Clock aria-hidden="true" size={16} className="mt-1 text-[var(--color-muted)]" />
         )}
       </div>
-      <p className="mt-2 text-sm leading-relaxed text-[var(--color-slate-800)]">
-        {service.blurb}
-      </p>
+      <p className="mt-2 text-sm leading-relaxed text-[var(--color-slate-800)]">{service.blurb}</p>
       <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="Highlights">
         {service.highlights.map((highlight) => (
           <li
@@ -134,7 +128,7 @@ function ServiceCard({
     return (
       <Link
         href={`${HUB_PATH}/${service.slug}`}
-        className={`group flex h-full flex-col rounded-[var(--radius-lg)] border ${flagshipBorder} bg-[var(--color-surface)] p-5 transition hover:-translate-y-0.5 hover:border-[var(--color-primary-600)] hover:shadow-[var(--shadow-sm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] motion-reduce:hover:translate-y-0 motion-reduce:transition-none`}
+        className={`group flex h-full flex-col rounded-[var(--radius-lg)] border ${flagshipBorder} bg-[var(--color-surface)] p-5 transition hover:-translate-y-0.5 hover:border-[var(--color-primary-600)] hover:shadow-[var(--shadow-sm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] motion-reduce:transition-none motion-reduce:hover:translate-y-0`}
       >
         {body}
       </Link>

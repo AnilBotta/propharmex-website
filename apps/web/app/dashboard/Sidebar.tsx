@@ -20,13 +20,12 @@ export function Sidebar({ sessionEmail, active, counts }: SidebarProps) {
       .map((p) => p[0]?.toUpperCase() ?? "")
       .slice(0, 2)
       .join("") as string) || "??";
-  const name =
-    sessionEmail.split("@")[0]?.replace(/[._-]/g, " ") || sessionEmail;
+  const name = sessionEmail.split("@")[0]?.replace(/[._-]/g, " ") || sessionEmail;
 
   return (
     <aside className="flex w-64 shrink-0 flex-col border-r border-[color:var(--color-border)] bg-white">
       {/* Brand block */}
-      <div className="flex items-center justify-center px-4 pt-4 pb-3">
+      <div className="flex items-center justify-center px-4 pb-3 pt-4">
         <Image
           src="/Propharmexlogo.png"
           alt="Propharmex"
@@ -66,7 +65,7 @@ export function Sidebar({ sessionEmail, active, counts }: SidebarProps) {
           <NavItem href="/dashboard/funnel" label="AI Funnel" active={active === "funnel"} />
           <NavItem href="/dashboard" label="Submissions" disabled />
           <NavItem href="/dashboard" label="Studies" disabled />
-          <NavItem href="/dashboard" label="3PL & shipping" disabled />
+          <NavItem href="/dashboard" label="Logistics" disabled />
           <NavItem href="/dashboard" label="Quality / CAPA" disabled />
         </NavGroup>
 
@@ -92,9 +91,7 @@ export function Sidebar({ sessionEmail, active, counts }: SidebarProps) {
               <div className="truncate text-[12px] font-semibold capitalize text-slate-800">
                 {name}
               </div>
-              <div className="truncate text-[10px] text-slate-500">
-                Allowlisted user
-              </div>
+              <div className="truncate text-[10px] text-slate-500">Allowlisted user</div>
             </div>
             <LogoutButton />
           </div>
@@ -104,13 +101,7 @@ export function Sidebar({ sessionEmail, active, counts }: SidebarProps) {
   );
 }
 
-function NavGroup({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) {
+function NavGroup({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="mb-4">
       <div className="px-3 pb-1 text-[10px] font-semibold tracking-[0.1em] text-slate-400">
@@ -140,10 +131,7 @@ function NavItem({
     "relative flex items-center justify-between gap-2 rounded-md px-3 py-1.5 text-[13px] transition-colors";
   if (disabled) {
     return (
-      <span
-        className={`${baseClass} cursor-not-allowed text-slate-400`}
-        aria-disabled
-      >
+      <span className={`${baseClass} cursor-not-allowed text-slate-400`} aria-disabled>
         <span>{label}</span>
         {typeof badge === "number" && badge > 0 ? (
           <span className="rounded-full bg-slate-100 px-1.5 py-0.5 text-[10px] font-medium text-slate-500">
@@ -162,9 +150,7 @@ function NavItem({
       {typeof badge === "number" && badge > 0 ? (
         <span
           className={`rounded-full px-1.5 py-0.5 text-[10px] font-medium ${
-            badgeAccent
-              ? "bg-accent-500 text-white"
-              : "bg-slate-100 text-slate-600"
+            badgeAccent ? "bg-accent-500 text-white" : "bg-slate-100 text-slate-600"
           }`}
         >
           {badge}

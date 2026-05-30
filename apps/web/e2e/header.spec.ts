@@ -7,7 +7,7 @@
  *   - Capabilities + Dosage Forms are buttons with `aria-haspopup="true"`
  *     (mega-menus per Header.tsx desktop branch)
  *   - About / Insights / Contact are anchors (flat-link branch)
- *   - "Request a quote" CTA renders + links to /contact?intent=quote
+ *   - "Start scoping" CTA renders + links to the Project Scoping Assistant
  *   - Mobile sheet drawer opens and contains all 5 items + the CTA
  *
  * Source: apps/web/components/site/Header.tsx + apps/web/content/site-nav.ts.
@@ -15,9 +15,7 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("Header — top nav structure", () => {
-  test("desktop nav renders 5 items + CTA with correct semantics", async ({
-    page,
-  }) => {
+  test("desktop nav renders 5 items + CTA with correct semantics", async ({ page }) => {
     const response = await page.goto("/");
     expect(response?.status()).toBe(200);
 
@@ -52,11 +50,9 @@ test.describe("Header — top nav structure", () => {
 
     // CTA sits OUTSIDE the primary nav (sibling within the header). Match
     // page-wide and assert the href.
-    const ctaLink = page
-      .getByRole("link", { name: /Request a quote/i })
-      .first();
+    const ctaLink = page.getByRole("link", { name: /Start scoping/i }).first();
     await expect(ctaLink).toBeVisible();
-    await expect(ctaLink).toHaveAttribute("href", "/contact?intent=quote");
+    await expect(ctaLink).toHaveAttribute("href", "/ai/project-scoping-assistant");
   });
 
   test("mobile sheet drawer contains all 5 items + CTA", async ({ page }) => {
@@ -73,26 +69,16 @@ test.describe("Header — top nav structure", () => {
     await expect(mobileNav).toBeVisible();
 
     // Flat-link items render as <a> in the drawer.
-    await expect(
-      mobileNav.getByRole("link", { name: "About" }),
-    ).toBeVisible();
-    await expect(
-      mobileNav.getByRole("link", { name: "Insights" }),
-    ).toBeVisible();
-    await expect(
-      mobileNav.getByRole("link", { name: "Contact" }),
-    ).toBeVisible();
+    await expect(mobileNav.getByRole("link", { name: "About" })).toBeVisible();
+    await expect(mobileNav.getByRole("link", { name: "Insights" })).toBeVisible();
+    await expect(mobileNav.getByRole("link", { name: "Contact" })).toBeVisible();
 
     // Mega-menu items render as accordion triggers (<button>).
-    await expect(
-      mobileNav.getByRole("button", { name: "Capabilities" }),
-    ).toBeVisible();
-    await expect(
-      mobileNav.getByRole("button", { name: "Dosage Forms" }),
-    ).toBeVisible();
+    await expect(mobileNav.getByRole("button", { name: "Capabilities" })).toBeVisible();
+    await expect(mobileNav.getByRole("button", { name: "Dosage Forms" })).toBeVisible();
 
     // CTA pinned to the bottom of the drawer.
-    const drawerCta = page.getByRole("link", { name: /Request a quote/i });
+    const drawerCta = page.getByRole("link", { name: /Start scoping/i });
     await expect(drawerCta.first()).toBeVisible();
   });
 });

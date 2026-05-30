@@ -8,7 +8,7 @@
  *
  * Per the PR-D2c1' specialty-CDMO repositioning (and the broader claim
  * sweep that started in PR-D1'), the brand description and the previously
- * rendered Health Canada DEL badge have both been retired from the footer.
+ * rendered licence badge have both been retired from the footer.
  * The brand description now leads with the specialty-CDMO framing; no
  * specific certification, licence, or 3PL distribution claim appears on
  * the marketing site.

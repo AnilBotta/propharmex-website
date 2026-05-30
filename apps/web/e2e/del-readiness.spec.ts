@@ -1,5 +1,5 @@
 /**
- * DEL Readiness Assessment happy-path e2e (Prompt 20 PR-B).
+ * Regulatory Readiness Assessment happy-path e2e (Prompt 20 PR-B).
  *
  * Asserts the user-visible flow end-to-end:
  *
@@ -20,10 +20,10 @@
  */
 import { expect, test } from "@playwright/test";
 
-test.describe("DEL Readiness Assessment", () => {
+test.describe("Regulatory Readiness Assessment", () => {
   test.skip(
     !process.env.ANTHROPIC_API_KEY,
-    "DEL Readiness happy-path needs ANTHROPIC_API_KEY set; skipping.",
+    "Regulatory Readiness happy-path needs ANTHROPIC_API_KEY set; skipping."
   );
 
   test("walk → submit → results → PDF → retake", async ({ page }) => {
@@ -33,7 +33,10 @@ test.describe("DEL Readiness Assessment", () => {
 
     // Hero renders.
     await expect(
-      page.getByRole("heading", { name: /DEL Readiness Assessment/i, level: 1 }),
+      page.getByRole("heading", {
+        name: /Regulatory Readiness Assessment/i,
+        level: 1,
+      })
     ).toBeVisible();
 
     // Walk every question. Branching might extend the list mid-walk, so
@@ -81,9 +84,7 @@ test.describe("DEL Readiness Assessment", () => {
     const downloadPromise = page.waitForEvent("download", { timeout: 30_000 });
     await downloadBtn.click();
     const download = await downloadPromise;
-    expect(download.suggestedFilename()).toMatch(
-      /^propharmex-del-readiness-.*\.pdf$/,
-    );
+    expect(download.suggestedFilename()).toMatch(/^propharmex-del-readiness-.*\.pdf$/);
     const path = await download.path();
     expect(path).toBeTruthy();
 

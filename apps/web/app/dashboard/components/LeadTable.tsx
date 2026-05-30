@@ -2,11 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import {
-  LEAD_SOURCES,
-  type LeadRow,
-  type LeadSource,
-} from "@propharmex/lib/leads/types";
+import { LEAD_SOURCES, type LeadRow, type LeadSource } from "@propharmex/lib/leads/types";
 
 import { AddLeadModal } from "./AddLeadModal";
 import { LeadAvatar } from "./LeadAvatar";
@@ -19,7 +15,7 @@ const TABS: { id: Tab; label: string }[] = [
   { id: "new", label: "New" },
   { id: "qualified", label: "Qualified" },
   { id: "contact", label: "From hero" },
-  { id: "del_readiness", label: "DEL tool" },
+  { id: "del_readiness", label: "Readiness tool" },
   { id: "newsletter", label: "Newsletter" },
 ];
 
@@ -30,12 +26,7 @@ interface LeadTableProps {
   onLeadDeleted: (id: string) => void;
 }
 
-export function LeadTable({
-  leads,
-  onOpenLead,
-  onLeadCreated,
-  onLeadDeleted,
-}: LeadTableProps) {
+export function LeadTable({ leads, onOpenLead, onLeadCreated, onLeadDeleted }: LeadTableProps) {
   const [tab, setTab] = useState<Tab>("all");
   const [search, setSearch] = useState("");
   const [exporting, setExporting] = useState(false);
@@ -55,11 +46,8 @@ export function LeadTable({
       else if (tab === "qualified") params.set("status", "contacted");
       else if (tab !== "all") params.set("source", tab);
       const qs = params.toString();
-      const res = await fetch(
-        `/api/dashboard/leads/export${qs ? `?${qs}` : ""}`,
-      );
+      const res = await fetch(`/api/dashboard/leads/export${qs ? `?${qs}` : ""}`);
       if (!res.ok) {
-        // eslint-disable-next-line no-alert
         alert("Export failed. Please retry.");
         return;
       }
@@ -68,9 +56,7 @@ export function LeadTable({
       const a = document.createElement("a");
       a.href = url;
       a.download =
-        res.headers
-          .get("content-disposition")
-          ?.match(/filename="?([^"]+)"?/)?.[1] ??
+        res.headers.get("content-disposition")?.match(/filename="?([^"]+)"?/)?.[1] ??
         `propharmex-leads-${new Date().toISOString().slice(0, 10)}.csv`;
       document.body.appendChild(a);
       a.click();
@@ -85,23 +71,12 @@ export function LeadTable({
     return leads.filter((lead) => {
       if (tab === "new" && lead.status !== "new") return false;
       if (tab === "qualified" && lead.status !== "contacted") return false;
-      if (
-        tab !== "all" &&
-        tab !== "new" &&
-        tab !== "qualified" &&
-        lead.source !== tab
-      ) {
+      if (tab !== "all" && tab !== "new" && tab !== "qualified" && lead.source !== tab) {
         return false;
       }
       if (search.trim().length > 0) {
         const q = search.trim().toLowerCase();
-        const haystack = [
-          lead.email,
-          lead.contact_name,
-          lead.company,
-          lead.role,
-          lead.message,
-        ]
+        const haystack = [lead.email, lead.contact_name, lead.company, lead.role, lead.message]
           .filter(Boolean)
           .join(" ")
           .toLowerCase();
@@ -115,9 +90,7 @@ export function LeadTable({
     <section className="overflow-hidden rounded-lg border border-[color:var(--color-border)] bg-white">
       {/* Header */}
       <div className="flex flex-wrap items-center gap-2 border-b border-[color:var(--color-border)] px-4 py-3">
-        <h2 className="text-[15px] font-semibold text-slate-800">
-          Lead intake
-        </h2>
+        <h2 className="text-[15px] font-semibold text-slate-800">Lead intake</h2>
         <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-600">
           {visible.length}
         </span>
@@ -141,7 +114,7 @@ export function LeadTable({
           <button
             type="button"
             onClick={() => setShowAddModal(true)}
-            className="rounded-md bg-primary-600 px-2.5 py-1 text-[12px] font-medium text-white hover:bg-primary-700"
+            className="bg-primary-600 hover:bg-primary-700 rounded-md px-2.5 py-1 text-[12px] font-medium text-white"
           >
             + Add lead
           </button>
@@ -152,7 +125,7 @@ export function LeadTable({
       <div
         role="tablist"
         aria-label="Lead filters"
-        className="flex gap-1 border-b border-[color:var(--color-border)] px-3 py-2 overflow-x-auto"
+        className="flex gap-1 overflow-x-auto border-b border-[color:var(--color-border)] px-3 py-2"
       >
         {TABS.map((t) => (
           <button
@@ -162,16 +135,12 @@ export function LeadTable({
             aria-selected={tab === t.id}
             onClick={() => setTab(t.id)}
             className={`shrink-0 rounded-md px-2.5 py-1 text-[12px] font-medium transition-colors ${
-              tab === t.id
-                ? "bg-slate-100 text-slate-900"
-                : "text-slate-500 hover:text-slate-700"
+              tab === t.id ? "bg-slate-100 text-slate-900" : "text-slate-500 hover:text-slate-700"
             }`}
           >
             {t.label}
             {t.id === "all" ? (
-              <span className="ml-1 text-[11px] text-slate-400">
-                {leads.length}
-              </span>
+              <span className="ml-1 text-[11px] text-slate-400">{leads.length}</span>
             ) : null}
           </button>
         ))}
@@ -194,12 +163,8 @@ export function LeadTable({
           <tbody>
             {visible.length === 0 ? (
               <tr>
-                <td
-                  colSpan={7}
-                  className="px-4 py-12 text-center text-slate-400"
-                >
-                  No leads match this filter yet. New form submissions appear
-                  here in real time.
+                <td colSpan={7} className="px-4 py-12 text-center text-slate-400">
+                  No leads match this filter yet. New form submissions appear here in real time.
                 </td>
               </tr>
             ) : (
@@ -214,25 +179,18 @@ export function LeadTable({
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2.5">
-                      <LeadAvatar
-                        name={lead.contact_name}
-                        email={lead.email}
-                      />
+                      <LeadAvatar name={lead.contact_name} email={lead.email} />
                       <div className="min-w-0">
                         <div className="truncate font-medium text-slate-800">
                           {lead.contact_name || "—"}
                         </div>
-                        <div className="truncate text-[11px] text-slate-500">
-                          {lead.email}
-                        </div>
+                        <div className="truncate text-[11px] text-slate-500">{lead.email}</div>
                       </div>
                     </div>
                   </td>
                   <td className="px-4 py-3">
                     <div className="leading-tight">
-                      <div className="truncate text-slate-800">
-                        {lead.company || "—"}
-                      </div>
+                      <div className="truncate text-slate-800">{lead.company || "—"}</div>
                       {lead.ip_country ? (
                         <div className="text-[10px] uppercase tracking-wide text-slate-400">
                           {lead.ip_country}
@@ -244,10 +202,7 @@ export function LeadTable({
                     <SourcePill source={lead.source} />
                   </td>
                   <td className="max-w-[180px] truncate px-4 py-3 text-slate-700">
-                    {lead.dosage_form ||
-                      lead.service ||
-                      lead.message?.slice(0, 60) ||
-                      "—"}
+                    {lead.dosage_form || lead.service || lead.message?.slice(0, 60) || "—"}
                   </td>
                   <td className="px-4 py-3">
                     <StatusPill status={lead.status} />
@@ -258,9 +213,7 @@ export function LeadTable({
                       isOpen={openMenuLeadId === lead.id}
                       onToggle={(e) => {
                         e.stopPropagation();
-                        setOpenMenuLeadId((prev) =>
-                          prev === lead.id ? null : lead.id,
-                        );
+                        setOpenMenuLeadId((prev) => (prev === lead.id ? null : lead.id));
                       }}
                       onClose={() => setOpenMenuLeadId(null)}
                       onDeleteClick={(e) => {
@@ -347,7 +300,9 @@ function RowActions({
         aria-expanded={isOpen}
         className="grid h-7 w-7 place-items-center rounded-md text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-700"
       >
-        <span aria-hidden className="text-[16px] leading-none">⋯</span>
+        <span aria-hidden className="text-[16px] leading-none">
+          ⋯
+        </span>
       </button>
       {isOpen ? (
         <div
@@ -414,10 +369,7 @@ function DeleteLeadDialog({
         className="w-full max-w-sm rounded-lg border border-[color:var(--color-border)] bg-white p-5 shadow-xl"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2
-          id="delete-lead-title"
-          className="text-[15px] font-semibold text-slate-900"
-        >
+        <h2 id="delete-lead-title" className="text-[15px] font-semibold text-slate-900">
           Delete this lead?
         </h2>
         <p className="mt-2 text-[13px] leading-snug text-slate-600">
@@ -425,9 +377,8 @@ function DeleteLeadDialog({
           {lead.company ? <> · {lead.company}</> : null}
         </p>
         <p className="mt-2 text-[12px] leading-snug text-slate-500">
-          This permanently removes the lead and any AI brief or notes attached
-          to it. Linked projects stay but lose the lead reference. This cannot
-          be undone.
+          This permanently removes the lead and any AI brief or notes attached to it. Linked
+          projects stay but lose the lead reference. This cannot be undone.
         </p>
         {error ? (
           <p

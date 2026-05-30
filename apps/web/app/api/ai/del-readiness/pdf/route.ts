@@ -1,5 +1,5 @@
 /**
- * /api/ai/del-readiness/pdf — Render a finalized DEL Readiness Assessment
+ * /api/ai/del-readiness/pdf — Render a finalized Regulatory Readiness Assessment
  * as a branded PDF.
  *
  * Prompt 20 PR-B. Node runtime (pdf-lib's `save()` returns a Uint8Array;
@@ -23,12 +23,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
-import {
-  delReadiness,
-  getRateLimiter,
-  log,
-  supabase,
-} from "@propharmex/lib";
+import { delReadiness, getRateLimiter, log, supabase } from "@propharmex/lib";
 import { renderDelReadinessPdf } from "@propharmex/lib/del-readiness/pdf";
 
 export const runtime = "nodejs";
@@ -63,21 +58,17 @@ const pdfRateLimiter = getRateLimiter("del-readiness:pdf:ip", {
 
 export async function POST(req: Request) {
   // 1) Rate limit per IP.
-  const ip =
-    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "anon";
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "anon";
   const rl = await pdfRateLimiter.limit(ip);
   if (!rl.success) {
-    const retryAfterSeconds = Math.max(
-      1,
-      Math.ceil((rl.reset - Date.now()) / 1000),
-    );
+    const retryAfterSeconds = Math.max(1, Math.ceil((rl.reset - Date.now()) / 1000));
     log.warn("del-readiness.pdf.rate_limited", { ip, retryAfterSeconds });
     return NextResponse.json(
       { error: "Too many downloads. Please wait a minute and try again." },
       {
         status: 429,
         headers: { "Retry-After": String(retryAfterSeconds) },
-      },
+      }
     );
   }
 
@@ -90,10 +81,7 @@ export async function POST(req: Request) {
   }
   const parsed = BodySchema.safeParse(raw);
   if (!parsed.success) {
-    return NextResponse.json(
-      { error: "Invalid assessment payload." },
-      { status: 400 },
-    );
+    return NextResponse.json({ error: "Invalid assessment payload." }, { status: 400 });
   }
   const { assessment, answers, region, referrer } = parsed.data;
 
@@ -109,7 +97,7 @@ export async function POST(req: Request) {
     });
     return NextResponse.json(
       { error: "We couldn't render the PDF. Please try again." },
-      { status: 500 },
+      { status: 500 }
     );
   }
 

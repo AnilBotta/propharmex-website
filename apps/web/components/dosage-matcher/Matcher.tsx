@@ -4,7 +4,7 @@
  * DosageFormMatcher — top-level orchestrator for the matcher page.
  *
  * Tri-mode state machine: "input" → "submitting" → "results". Same
- * shape as the DEL Readiness Assessment, with three differences:
+ * shape as the regulatory readiness assessment, with three differences:
  *
  *   1. The intake is a single-step form (description + optional
  *      filters), not multi-step. No branching.
@@ -61,9 +61,7 @@ function isRecommendationAnnotation(v: unknown): v is RecommendationAnnotation {
 export function DosageFormMatcher() {
   const [phase, setPhase] = useState<Phase>("input");
   const [input, setInput] = useState<MatcherInput>({});
-  const [recommendation, setRecommendation] = useState<Recommendation | null>(
-    null,
-  );
+  const [recommendation, setRecommendation] = useState<Recommendation | null>(null);
   const [validationError, setValidationError] = useState<string | null>(null);
   const [serverError, setServerError] = useState<string | null>(null);
   const [downloading, setDownloading] = useState(false);
@@ -105,14 +103,11 @@ export function DosageFormMatcher() {
         body: JSON.stringify({
           recommendation,
           input,
-          referrer:
-            typeof document !== "undefined"
-              ? document.referrer || undefined
-              : undefined,
+          referrer: typeof document !== "undefined" ? document.referrer || undefined : undefined,
         }),
       });
       if (!res.ok) {
-        // eslint-disable-next-line no-console
+         
         console.error("[dosage-matcher] pdf download failed:", res.status);
         return;
       }
@@ -133,7 +128,7 @@ export function DosageFormMatcher() {
         matchCount: recommendation.matches.length,
       });
     } catch (err) {
-      // eslint-disable-next-line no-console
+       
       console.error("[dosage-matcher] pdf download error:", err);
     } finally {
       setDownloading(false);
@@ -145,9 +140,7 @@ export function DosageFormMatcher() {
       typeof input.description === "string" && input.description.trim().length > 0;
     const hasFilters =
       input.filters !== undefined &&
-      Object.values(input.filters).some(
-        (v) => v != null && v !== "" && v !== undefined,
-      );
+      Object.values(input.filters).some((v) => v != null && v !== "" && v !== undefined);
     if (!hasDescription && !hasFilters) {
       setValidationError(DOSAGE_MATCHER.form.emptyError);
       return;
@@ -157,14 +150,10 @@ export function DosageFormMatcher() {
     setPhase("submitting");
     setServerError(null);
     const filterCount = input.filters
-      ? Object.values(input.filters).filter(
-          (v) => v != null && v !== "" && v !== undefined,
-        ).length
+      ? Object.values(input.filters).filter((v) => v != null && v !== "" && v !== undefined).length
       : 0;
     trackDosageMatcherSubmitted({
-      hasDescription:
-        typeof input.description === "string" &&
-        input.description.trim().length > 0,
+      hasDescription: typeof input.description === "string" && input.description.trim().length > 0,
       filterCount,
     });
     try {
@@ -206,7 +195,7 @@ export function DosageFormMatcher() {
         topCoveragePct: topMatch?.capabilityCoveragePct ?? 0,
       });
     } catch (err) {
-      // eslint-disable-next-line no-console
+       
       console.error("[dosage-matcher] submit error:", err);
       setServerError(DOSAGE_MATCHER.errors.generic);
       setPhase("input");
@@ -241,7 +230,7 @@ export function DosageFormMatcher() {
           type="button"
           onClick={loadSample}
           disabled={phase === "submitting"}
-          className="inline-flex items-center gap-1.5 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1.5 text-sm font-medium text-[var(--color-primary-700)] hover:border-[var(--color-primary-700)] hover:bg-[var(--color-primary-50)] disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)]"
+          className="inline-flex items-center gap-1.5 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1.5 text-sm font-medium text-[var(--color-primary-700)] hover:border-[var(--color-primary-700)] hover:bg-[var(--color-primary-50)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] disabled:cursor-not-allowed disabled:opacity-50"
         >
           <Sparkles aria-hidden="true" size={14} />
           {DOSAGE_MATCHER.intro.sampleCtaLabel}
@@ -281,10 +270,10 @@ export function DosageFormMatcher() {
  *
  * Object-state pattern around the closure mutation so TS strict
  * narrows correctly after the read loop (same gotcha encountered in
- * DEL Readiness's stream parser).
+ * the readiness tool's stream parser).
  */
 async function parseRecommendationStream(
-  body: ReadableStream<Uint8Array>,
+  body: ReadableStream<Uint8Array>
 ): Promise<RecommendationAnnotation | null> {
   const state: { anno: RecommendationAnnotation | null } = { anno: null };
 

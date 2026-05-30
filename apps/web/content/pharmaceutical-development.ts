@@ -55,7 +55,7 @@ export type DosageFormSlug = (typeof DOSAGE_FORM_SLUGS)[number];
  * `DosageFormContent.slug` and `DOSAGE_FORM_SLUGS`; only the summary-card
  * shape was relaxed in PR-J' (CapabilityMatrix prop generalization).
  */
-export type DosageFormSummary = {
+export interface DosageFormSummary {
   slug: string;
   label: string;
   /** One-sentence elevator line shown on the hub capability matrix. */
@@ -64,22 +64,22 @@ export type DosageFormSummary = {
   highlights: string[];
   /** Whether the leaf detail page is live in this PR. */
   leafStatus: "live" | "shipping-next";
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Hub page                                                                  */
 /* -------------------------------------------------------------------------- */
 
-export type PharmDevHubHero = {
+export interface PharmDevHubHero {
   eyebrow: string;
   headline: string;
   lede: string;
   stats: { label: string; value: string }[];
   primaryCta: PharmDevCta;
   secondaryCta: PharmDevCta;
-};
+}
 
-export type PharmDevCapabilityMatrix = {
+export interface PharmDevCapabilityMatrix {
   eyebrow: string;
   heading: string;
   lede: string;
@@ -87,23 +87,23 @@ export type PharmDevCapabilityMatrix = {
   forms: DosageFormSummary[];
   liveCopy: string;
   shippingNextCopy: string;
-};
+}
 
-export type LifecycleStage = {
+export interface LifecycleStage {
   id: string;
   label: string;
   description: string;
-};
+}
 
-export type PharmDevLifecycle = {
+export interface PharmDevLifecycle {
   eyebrow: string;
   heading: string;
   lede: string;
   stages: LifecycleStage[];
   handoffNote: string;
-};
+}
 
-export type CaseStudyTeaser = {
+export interface CaseStudyTeaser {
   id: string;
   dosageForm: string;
   title: string;
@@ -111,25 +111,25 @@ export type CaseStudyTeaser = {
   /** Rendered as an `under-confirmation` pill until a named, permitted case */
   /** study replaces it in Prompt 14. */
   status: "under-confirmation";
-};
+}
 
-export type PharmDevCaseRail = {
+export interface PharmDevCaseRail {
   eyebrow: string;
   heading: string;
   lede: string;
   teasers: CaseStudyTeaser[];
   cta: PharmDevCta;
-};
+}
 
-export type PharmDevHubClosing = {
+export interface PharmDevHubClosing {
   eyebrow: string;
   heading: string;
   body: string;
   primaryCta: PharmDevCta;
   secondaryCta: PharmDevCta;
-};
+}
 
-export type PharmDevHubContent = {
+export interface PharmDevHubContent {
   metaTitle: string;
   metaDescription: string;
   ogTitle: string;
@@ -139,13 +139,13 @@ export type PharmDevHubContent = {
   lifecycle: PharmDevLifecycle;
   caseRail: PharmDevCaseRail;
   closing: PharmDevHubClosing;
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Leaf template                                                             */
 /* -------------------------------------------------------------------------- */
 
-export type DosageFormHero = {
+export interface DosageFormHero {
   eyebrow: string;
   headline: string;
   /** One-sentence value prop per Prompt 10 spec section 1. */
@@ -154,59 +154,59 @@ export type DosageFormHero = {
   stats: { label: string; value: string }[];
   primaryCta: PharmDevCta;
   secondaryCta: PharmDevCta;
-};
+}
 
-export type ChallengeItem = {
+export interface ChallengeItem {
   id: string;
   label: string;
   description: string;
-};
+}
 
-export type DosageFormChallenges = {
+export interface DosageFormChallenges {
   eyebrow: string;
   heading: string;
   lede: string;
   items: ChallengeItem[];
-};
+}
 
-export type ProcessStep = {
+export interface ProcessStep {
   id: string;
   label: string;
   description: string;
   /** Short technical notes surfaced under the step description. */
   notes: string[];
-};
+}
 
-export type DosageFormProcess = {
+export interface DosageFormProcess {
   eyebrow: string;
   heading: string;
   lede: string;
   steps: ProcessStep[];
-};
+}
 
-export type EquipmentChipGroup = {
+export interface EquipmentChipGroup {
   id: string;
   category: string;
   chips: string[];
-};
+}
 
-export type DosageFormEquipment = {
+export interface DosageFormEquipment {
   eyebrow: string;
   heading: string;
   lede: string;
   groups: EquipmentChipGroup[];
   representativeNote: string;
   cta: PharmDevCta;
-};
+}
 
-export type OutcomeMetricCard = {
+export interface OutcomeMetricCard {
   id: string;
   label: string;
   value: string;
   context: string;
-};
+}
 
-export type DosageFormOutcome = {
+export interface DosageFormOutcome {
   eyebrow: string;
   heading: string;
   lede: string;
@@ -214,16 +214,16 @@ export type DosageFormOutcome = {
   /** Same `under-confirmation` affordance as the hub case rail. */
   status: "under-confirmation";
   statusCopy: string;
-};
+}
 
-export type SelfCheckQuestion = {
+export interface SelfCheckQuestion {
   id: string;
   prompt: string;
   /** Short one-line helper text rendered under the prompt. */
   helper: string;
-};
+}
 
-export type DosageFormSelfCheck = {
+export interface DosageFormSelfCheck {
   eyebrow: string;
   heading: string;
   lede: string;
@@ -231,45 +231,45 @@ export type DosageFormSelfCheck = {
   /** CTA routes into the Dosage Form Matcher with a prefilled `source` param. */
   cta: PharmDevCta;
   disclaimer: string;
-};
+}
 
-export type FaqItem = {
+export interface FaqItem {
   id: string;
   question: string;
   answer: string;
-};
+}
 
-export type DosageFormFaq = {
+export interface DosageFormFaq {
   eyebrow: string;
   heading: string;
   lede: string;
   items: FaqItem[];
-};
+}
 
-export type RelatedServiceLink = {
+export interface RelatedServiceLink {
   id: string;
   label: string;
   description: string;
   href: string;
-};
+}
 
-export type DosageFormRelated = {
+export interface DosageFormRelated {
   eyebrow: string;
   heading: string;
   lede: string;
   links: RelatedServiceLink[];
-};
+}
 
-export type DosageFormClosingCta = {
+export interface DosageFormClosingCta {
   eyebrow: string;
   heading: string;
   body: string;
   primaryCta: PharmDevCta;
   secondaryCta: PharmDevCta;
   regulatoryNote: PharmDevSource;
-};
+}
 
-export type DosageFormContent = {
+export interface DosageFormContent {
   slug: DosageFormSlug;
   label: string;
   /** Crumb label used in BreadcrumbList — generally shorter than `label`. */
@@ -287,7 +287,7 @@ export type DosageFormContent = {
   faq: DosageFormFaq;
   related: DosageFormRelated;
   closing: DosageFormClosingCta;
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Hub content                                                               */
@@ -296,7 +296,7 @@ export type DosageFormContent = {
 export const PHARM_DEV_HUB: PharmDevHubContent = {
   metaTitle: "Pharmaceutical Development — Propharmex",
   metaDescription:
-    "End-to-end pharmaceutical development across seven dosage forms — formulation, scale-up and tech-transfer executed by Propharmex and filed under our Health Canada Drug Establishment Licence.",
+    "Pharmaceutical development across seven dosage forms — formulation, scale-up, tech-transfer planning, and dossier-ready evidence for global sponsors.",
   ogTitle: "Pharmaceutical Development — Propharmex",
   ogDescription:
     "Seven dosage forms, one quality system. Development work authored to travel — from bench to dossier to batch record.",
@@ -306,12 +306,12 @@ export const PHARM_DEV_HUB: PharmDevHubContent = {
     lede: "Formulation and process work are executed by Propharmex under a single quality system and arrive at the regulator as a readable dossier. Seven dosage forms are supported — from solid oral tablets to sterile injectables — each with a process tailored to what the molecule actually requires.",
     stats: [
       { label: "Dosage forms supported", value: "7" },
-      { label: "Regulatory anchor", value: "Health Canada DEL" },
+      { label: "Regulatory anchor", value: "Dossier-ready evidence" },
       { label: "Development quality system", value: "ICH Q10 alignment" },
     ],
     primaryCta: {
       label: "Scope a development programme",
-      href: "/contact?source=pd-hub-hero-scope",
+      href: "/ai/project-scoping-assistant?source=pd-hub-hero-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -412,7 +412,7 @@ export const PHARM_DEV_HUB: PharmDevHubContent = {
         id: "tech-transfer",
         label: "Tech-transfer",
         description:
-          "Methods, specifications, and batch records move into release testing and, where applicable, DEL-scope operations.",
+          "Methods, specifications, and batch records move into release-testing readiness and documented transfer planning.",
       },
     ],
     handoffNote:
@@ -427,7 +427,7 @@ export const PHARM_DEV_HUB: PharmDevHubContent = {
         id: "solid-oral-stability",
         dosageForm: "Solid oral dosage",
         title: "Stability-indicating method redevelopment for a BCS-II generic",
-        body: "Assay and related-substances methods rebuilt to be stability-indicating under ICH Q1A(R2) zone IVb conditions, with transfer into release use under our Health Canada DEL.",
+        body: "Assay and related-substances methods rebuilt to be stability-indicating under ICH Q1A(R2) zone IVb conditions, with transfer documentation prepared for validation and dossier use.",
         status: "under-confirmation",
       },
       {
@@ -457,7 +457,7 @@ export const PHARM_DEV_HUB: PharmDevHubContent = {
     body: "We scope development programmes around what the molecule needs, what the regulator will ask, and which hub closes out which stage. Send the target product profile and a one-page brief — the first call is a working conversation, not a pitch.",
     primaryCta: {
       label: "Scope a development programme",
-      href: "/contact?source=pd-hub-closing-scope",
+      href: "/ai/project-scoping-assistant?source=pd-hub-closing-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -481,10 +481,11 @@ export const DOSAGE_FORM_SOLID_ORAL: DosageFormContent = {
     "Tablet, capsule and ODT development at Propharmex — granulation, direct compression, dissolution method development under USP ⟨711⟩, and ICH Q1A(R2) stability authored to travel.",
   ogTitle: "Solid oral dosage development — Propharmex",
   ogDescription:
-    "From BCS classification to dossier. Solid oral development executed by Propharmex, filed under our Health Canada Drug Establishment Licence.",
+    "From BCS classification to dossier. Solid oral development documented for formulation, analytical, stability, and regulatory review.",
   hero: {
     eyebrow: "Pharmaceutical Development · Solid oral dosage",
-    headline: "Tablets, capsules, and orally disintegrating forms — developed to dissolve on cue, not by accident.",
+    headline:
+      "Tablets, capsules, and orally disintegrating forms — developed to dissolve on cue, not by accident.",
     valueProp:
       "Solid oral programmes, authored from the BCS class outward, with dissolution and stability evidence a reviewer can follow.",
     lede: "Most programmes we see arrive with a BCS classification, a target dose, and a release profile in mind. We build the formulation and the analytical evidence in parallel — so by the time the batch record is written, dissolution behaviour, content uniformity, and stability under ICH Q1A(R2) are already documented in a shape the regulator will recognize.",
@@ -495,7 +496,7 @@ export const DOSAGE_FORM_SOLID_ORAL: DosageFormContent = {
     ],
     primaryCta: {
       label: "Scope a solid oral programme",
-      href: "/contact?source=pd-solid-oral-hero-scope",
+      href: "/ai/project-scoping-assistant?source=pd-solid-oral-hero-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -605,10 +606,10 @@ export const DOSAGE_FORM_SOLID_ORAL: DosageFormContent = {
         id: "tech-transfer",
         label: "Tech-transfer and release",
         description:
-          "Methods, specifications, and batch records transfer into release testing and, where applicable, DEL-scope operations.",
+          "Methods, specifications, and batch records transfer into release-testing readiness and documented handoff planning.",
         notes: [
           "Method transfer protocol and report",
-          "Release testing under the Canadian DEL",
+          "Release-testing readiness package",
           "Change-control path established",
         ],
       },
@@ -676,19 +677,22 @@ export const DOSAGE_FORM_SOLID_ORAL: DosageFormContent = {
         id: "dissolution",
         label: "Dissolution method",
         value: "Stability-indicating",
-        context: "Developed under USP ⟨711⟩, with media selection that discriminates formulation change.",
+        context:
+          "Developed under USP ⟨711⟩, with media selection that discriminates formulation change.",
       },
       {
         id: "stability",
         label: "Stability evidence",
         value: "ICH Q1A(R2)",
-        context: "Zone II and IVb study conduct with pull cadence aligned to submission milestones.",
+        context:
+          "Zone II and IVb study conduct with pull cadence aligned to submission milestones.",
       },
       {
         id: "transfer",
         label: "Tech-transfer",
         value: "Document-first",
-        context: "Methods, specifications and batch records transferred without re-opening formulation work.",
+        context:
+          "Methods, specifications and batch records transferred without re-opening formulation work.",
       },
     ],
     status: "under-confirmation",
@@ -736,7 +740,7 @@ export const DOSAGE_FORM_SOLID_ORAL: DosageFormContent = {
         id: "which-hub",
         question: "Which site actually does the formulation work?",
         answer:
-          "Formulation, analytical method development and the initial stability work are authored by Propharmex. Tech-transfer, release testing and — where applicable — DEL-scope operations are executed under the Health Canada Drug Establishment Licence. The record is continuous under a single quality system rather than stitched together at the handoff.",
+          "Formulation, analytical method development and the initial stability work are authored by Propharmex. Tech-transfer and release-testing readiness are documented under a single quality record rather than stitched together at the handoff.",
       },
       {
         id: "stability-zones",
@@ -748,7 +752,7 @@ export const DOSAGE_FORM_SOLID_ORAL: DosageFormContent = {
         id: "dissolution",
         question: "How do you approach dissolution method development?",
         answer:
-          "We develop dissolution methods to be both stability-indicating and discriminatory. Media selection is driven by the dosage form and the question the method needs to answer — not by a single default. The method travels with the formulation into validation under ICH Q2(R2) and into release use under our DEL.",
+          "We develop dissolution methods to be both stability-indicating and discriminatory. Media selection is driven by the dosage form and the question the method needs to answer — not by a single default. The method travels with the formulation into validation under ICH Q2(R2).",
       },
       {
         id: "regulatory",
@@ -787,18 +791,19 @@ export const DOSAGE_FORM_SOLID_ORAL: DosageFormContent = {
         id: "quality",
         label: "Quality and compliance",
         description:
-          "The DEL and the unified QMS that make tech-transfer a document exercise rather than a re-authoring one.",
+          "The quality records that make tech-transfer a document exercise rather than a re-authoring one.",
         href: "/quality-compliance",
       },
     ],
   },
   closing: {
     eyebrow: "Next step",
-    heading: "Send the target product profile. We'll send back a development plan you can review with QA.",
+    heading:
+      "Send the target product profile. We'll send back a development plan you can review with QA.",
     body: "Most first calls are a working conversation: we walk through the drug substance, the target product profile, and the submission plan, and draft a development outline against that. If we are not the right partner for the molecule, we will tell you on that call.",
     primaryCta: {
       label: "Scope a solid oral programme",
-      href: "/contact?source=pd-solid-oral-closing-scope",
+      href: "/ai/project-scoping-assistant?source=pd-solid-oral-closing-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -827,10 +832,11 @@ export const DOSAGE_FORM_LIQUID_ORAL: DosageFormContent = {
     "Syrup, suspension and oral solution development at Propharmex — preservative efficacy, rheology, taste-masking, and stability authored under ICH Q1A(R2) to travel into submission.",
   ogTitle: "Liquid oral dosage development — Propharmex",
   ogDescription:
-    "From preservative strategy to dossier. Liquid oral development executed by Propharmex, filed under our Health Canada Drug Establishment Licence.",
+    "From preservative strategy to dossier. Liquid oral development executed by Propharmex, documented for regulatory review.",
   hero: {
     eyebrow: "Pharmaceutical Development · Liquid oral dosage",
-    headline: "Syrups, suspensions and oral solutions — formulated to hold shape from first shake to last dose.",
+    headline:
+      "Syrups, suspensions and oral solutions — formulated to hold shape from first shake to last dose.",
     valueProp:
       "Liquid oral programmes built around a defensible preservative system, documented rheology, and a taste-masking strategy the patient will actually accept.",
     lede: "Most liquid oral briefs turn on three questions: will the preservative system hold across the shelf life, will the product redisperse the way the label claims, and will the child take it. We work those three questions in parallel with the analytical and stability package, so by the time the batch record is written the answers are in the record rather than beside it.",
@@ -841,7 +847,7 @@ export const DOSAGE_FORM_LIQUID_ORAL: DosageFormContent = {
     ],
     primaryCta: {
       label: "Scope a liquid oral programme",
-      href: "/contact?source=pd-liquid-oral-hero-scope",
+      href: "/ai/project-scoping-assistant?source=pd-liquid-oral-hero-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -951,10 +957,10 @@ export const DOSAGE_FORM_LIQUID_ORAL: DosageFormContent = {
         id: "tech-transfer",
         label: "Tech-transfer and release",
         description:
-          "Methods, specifications and batch records transfer into release testing and, where applicable, DEL-scope operations.",
+          "Methods, specifications and batch records transfer into release testing and, where applicable, documented release-readiness activities.",
         notes: [
           "Method transfer protocol and report",
-          "Release testing under the Canadian DEL",
+          "Release-testing readiness package",
           "Change-control path established",
         ],
       },
@@ -1020,7 +1026,8 @@ export const DOSAGE_FORM_LIQUID_ORAL: DosageFormContent = {
         id: "preservative",
         label: "Preservative system",
         value: "USP ⟨51⟩-defensible",
-        context: "Preservative efficacy characterized across shelf life with adsorption and partitioning evaluated.",
+        context:
+          "Preservative efficacy characterized across shelf life with adsorption and partitioning evaluated.",
       },
       {
         id: "stability",
@@ -1032,7 +1039,8 @@ export const DOSAGE_FORM_LIQUID_ORAL: DosageFormContent = {
         id: "transfer",
         label: "Tech-transfer",
         value: "Document-first",
-        context: "Methods, specifications and batch records transferred without re-opening formulation work.",
+        context:
+          "Methods, specifications and batch records transferred without re-opening formulation work.",
       },
     ],
     status: "under-confirmation",
@@ -1059,8 +1067,7 @@ export const DOSAGE_FORM_LIQUID_ORAL: DosageFormContent = {
       {
         id: "container",
         prompt: "Do you have a preferred primary container-closure system?",
-        helper:
-          "Pack choice shapes extractable / leachable scoping and in-use stability design.",
+        helper: "Pack choice shapes extractable / leachable scoping and in-use stability design.",
       },
     ],
     cta: {
@@ -1125,18 +1132,19 @@ export const DOSAGE_FORM_LIQUID_ORAL: DosageFormContent = {
         id: "quality",
         label: "Quality and compliance",
         description:
-          "The DEL and the unified QMS that make tech-transfer a document exercise rather than a re-authoring one.",
+          "The quality records that make tech-transfer a document exercise rather than a re-authoring one.",
         href: "/quality-compliance",
       },
     ],
   },
   closing: {
     eyebrow: "Next step",
-    heading: "Send the target product profile. We'll send back a development plan you can review with QA.",
+    heading:
+      "Send the target product profile. We'll send back a development plan you can review with QA.",
     body: "Most first calls are a working conversation: we walk through the API, the preservative constraints, the intended pack, and the submission plan, and draft a development outline against that. If we are not the right partner for the molecule, we will tell you on that call.",
     primaryCta: {
       label: "Scope a liquid oral programme",
-      href: "/contact?source=pd-liquid-oral-closing-scope",
+      href: "/ai/project-scoping-assistant?source=pd-liquid-oral-closing-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -1165,10 +1173,11 @@ export const DOSAGE_FORM_TOPICAL_SEMISOLID: DosageFormContent = {
     "Cream, gel, ointment and lotion development at Propharmex — phase behaviour, IVRT under USP ⟨1724⟩, preservative efficacy, and microstructure characterization authored to travel.",
   ogTitle: "Topical and semisolid development — Propharmex",
   ogDescription:
-    "From phase diagram to dossier. Topical development executed by Propharmex, filed under our Health Canada Drug Establishment Licence.",
+    "From phase diagram to dossier. Topical development executed by Propharmex, documented for regulatory review.",
   hero: {
     eyebrow: "Pharmaceutical Development · Topical & semisolid",
-    headline: "Creams, gels, ointments and lotions — developed around the microstructure, not the label claim.",
+    headline:
+      "Creams, gels, ointments and lotions — developed around the microstructure, not the label claim.",
     valueProp:
       "Semisolid programmes authored against phase behaviour and in-vitro release performance, with the microstructure documented rather than inferred.",
     lede: "Most semisolid briefs ultimately come back to microstructure: phase composition, droplet or particle size, and how they shift across the shelf life. We characterize the microstructure early, tie it to in-vitro release under USP ⟨1724⟩, and carry the evidence forward into stability and scale-up. The rheology, the preservative efficacy and the IVRT profile travel together into the dossier.",
@@ -1179,7 +1188,7 @@ export const DOSAGE_FORM_TOPICAL_SEMISOLID: DosageFormContent = {
     ],
     primaryCta: {
       label: "Scope a topical programme",
-      href: "/contact?source=pd-topical-hero-scope",
+      href: "/ai/project-scoping-assistant?source=pd-topical-hero-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -1289,10 +1298,10 @@ export const DOSAGE_FORM_TOPICAL_SEMISOLID: DosageFormContent = {
         id: "tech-transfer",
         label: "Tech-transfer and release",
         description:
-          "Methods, specifications and batch records transfer into release testing and, where applicable, DEL-scope operations.",
+          "Methods, specifications and batch records transfer into release testing and, where applicable, documented release-readiness activities.",
         notes: [
           "Method transfer protocol and report",
-          "Release testing under the Canadian DEL",
+          "Release-testing readiness package",
           "Change-control path established",
         ],
       },
@@ -1358,19 +1367,22 @@ export const DOSAGE_FORM_TOPICAL_SEMISOLID: DosageFormContent = {
         id: "ivrt",
         label: "IVRT package",
         value: "USP ⟨1724⟩-aligned",
-        context: "Membrane, media and receptor-fluid selection documented against discriminatory power.",
+        context:
+          "Membrane, media and receptor-fluid selection documented against discriminatory power.",
       },
       {
         id: "microstructure",
         label: "Microstructure evidence",
         value: "Characterized",
-        context: "Droplet-size distribution, rheology and phase behaviour tracked across stability pulls.",
+        context:
+          "Droplet-size distribution, rheology and phase behaviour tracked across stability pulls.",
       },
       {
         id: "transfer",
         label: "Tech-transfer",
         value: "Document-first",
-        context: "Methods, specifications and batch records transferred without re-opening formulation work.",
+        context:
+          "Methods, specifications and batch records transferred without re-opening formulation work.",
       },
     ],
     status: "under-confirmation",
@@ -1418,7 +1430,7 @@ export const DOSAGE_FORM_TOPICAL_SEMISOLID: DosageFormContent = {
         id: "ivrt",
         question: "How do you approach IVRT method development?",
         answer:
-          "We develop IVRT to be discriminatory, not just reportable. Membrane, media and receptor-fluid selection are chosen against the discriminatory-power objective under USP ⟨1724⟩, and the method is validated under ICH Q2(R2) once the formulation is locked. The method travels with the formulation into release use under our DEL.",
+          "We develop IVRT to be discriminatory, not just reportable. Membrane, media and receptor-fluid selection are chosen against the discriminatory-power objective under USP ⟨1724⟩, and the method is validated under ICH Q2(R2) once the formulation is locked. The method travels with the formulation into release use through the documented method lifecycle.",
       },
       {
         id: "q1q2",
@@ -1463,18 +1475,19 @@ export const DOSAGE_FORM_TOPICAL_SEMISOLID: DosageFormContent = {
         id: "quality",
         label: "Quality and compliance",
         description:
-          "The DEL and the unified QMS that make tech-transfer a document exercise rather than a re-authoring one.",
+          "The quality records that make tech-transfer a document exercise rather than a re-authoring one.",
         href: "/quality-compliance",
       },
     ],
   },
   closing: {
     eyebrow: "Next step",
-    heading: "Send the target product profile. We'll send back a development plan you can review with QA.",
+    heading:
+      "Send the target product profile. We'll send back a development plan you can review with QA.",
     body: "Most first calls are a working conversation: we walk through the API, the reference product if any, the intended pack, and the submission plan, and draft a development outline against that. If we are not the right partner for the molecule, we will tell you on that call.",
     primaryCta: {
       label: "Scope a topical programme",
-      href: "/contact?source=pd-topical-closing-scope",
+      href: "/ai/project-scoping-assistant?source=pd-topical-closing-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -1503,10 +1516,11 @@ export const DOSAGE_FORM_STERILE_INJECTABLES: DosageFormContent = {
     "Parenteral, lyophilized, SVP and LVP development at Propharmex — lyo cycle design, container-closure integrity, sterility assurance and USP ⟨788⟩ particulate work authored to travel.",
   ogTitle: "Sterile injectables development — Propharmex",
   ogDescription:
-    "From formulation to dossier. Sterile injectable development executed by Propharmex, filed under our Health Canada Drug Establishment Licence.",
+    "From formulation to dossier. Sterile injectable development executed by Propharmex, documented for regulatory review.",
   hero: {
     eyebrow: "Pharmaceutical Development · Sterile injectables",
-    headline: "Parenterals, lyophilized products and SVP / LVP forms — developed around sterility assurance and container-closure integrity.",
+    headline:
+      "Parenterals, lyophilized products and SVP / LVP forms — developed around sterility assurance and container-closure integrity.",
     valueProp:
       "Injectable programmes authored against a documented contamination-control strategy, with lyo cycle design, CCI and particulate work carried together into the dossier.",
     lede: "Injectable briefs turn on two connected questions: can the sterility assurance level be defended across the process, and does the container-closure system hold across shelf life and shipping. We scope the formulation, the lyo cycle (where applicable), and the CCI package as one workstream so the contamination-control strategy reads as a single argument rather than three separate ones.",
@@ -1517,7 +1531,7 @@ export const DOSAGE_FORM_STERILE_INJECTABLES: DosageFormContent = {
     ],
     primaryCta: {
       label: "Scope a sterile injectable programme",
-      href: "/contact?source=pd-sterile-hero-scope",
+      href: "/ai/project-scoping-assistant?source=pd-sterile-hero-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -1627,10 +1641,10 @@ export const DOSAGE_FORM_STERILE_INJECTABLES: DosageFormContent = {
         id: "tech-transfer",
         label: "Tech-transfer and release",
         description:
-          "Methods, specifications and batch records transfer into release testing and, where applicable, DEL-scope operations.",
+          "Methods, specifications and batch records transfer into release testing and, where applicable, documented release-readiness activities.",
         notes: [
           "Method transfer protocol and report",
-          "Release testing under the Canadian DEL",
+          "Release-testing readiness package",
           "Change-control path established",
         ],
       },
@@ -1696,19 +1710,22 @@ export const DOSAGE_FORM_STERILE_INJECTABLES: DosageFormContent = {
         id: "cycle",
         label: "Lyo cycle",
         value: "Design-space defined",
-        context: "Primary and secondary drying parameters scoped under a documented design space per Q8(R2).",
+        context:
+          "Primary and secondary drying parameters scoped under a documented design space per Q8(R2).",
       },
       {
         id: "cci",
         label: "CCI package",
         value: "Shelf-life defensible",
-        context: "Integrity method selected and validated against pack, shipping lane and shelf-life claim.",
+        context:
+          "Integrity method selected and validated against pack, shipping lane and shelf-life claim.",
       },
       {
         id: "transfer",
         label: "Tech-transfer",
         value: "Document-first",
-        context: "Methods, specifications and batch records transferred without re-opening formulation work.",
+        context:
+          "Methods, specifications and batch records transferred without re-opening formulation work.",
       },
     ],
     status: "under-confirmation",
@@ -1800,19 +1817,19 @@ export const DOSAGE_FORM_STERILE_INJECTABLES: DosageFormContent = {
       {
         id: "quality",
         label: "Quality and compliance",
-        description:
-          "The DEL and the unified QMS, including the contamination-control strategy authored end-to-end.",
+        description: "The quality records and contamination-control strategy authored end to end.",
         href: "/quality-compliance",
       },
     ],
   },
   closing: {
     eyebrow: "Next step",
-    heading: "Send the target product profile. We'll send back a development plan you can review with QA.",
+    heading:
+      "Send the target product profile. We'll send back a development plan you can review with QA.",
     body: "Most first calls are a working conversation: we walk through the API, the presentation, the sterilization strategy, and the submission plan, and draft a development outline against that. If we are not the right partner for the molecule or the presentation, we will tell you on that call.",
     primaryCta: {
       label: "Scope a sterile injectable programme",
-      href: "/contact?source=pd-sterile-closing-scope",
+      href: "/ai/project-scoping-assistant?source=pd-sterile-closing-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -1841,10 +1858,11 @@ export const DOSAGE_FORM_INHALATION: DosageFormContent = {
     "MDI, DPI, nebulizer solution and nasal spray development at Propharmex — aerosol characterization, device pairing, and cascade-impaction work authored to travel into the dossier.",
   ogTitle: "Inhalation product development — Propharmex",
   ogDescription:
-    "From formulation to device pairing. Inhalation development executed by Propharmex, filed under our Health Canada Drug Establishment Licence.",
+    "From formulation to device pairing. Inhalation development executed by Propharmex, documented for regulatory review.",
   hero: {
     eyebrow: "Pharmaceutical Development · Inhalation",
-    headline: "MDIs, DPIs, nebulizer solutions and nasal sprays — developed around the device and the dose that leaves it.",
+    headline:
+      "MDIs, DPIs, nebulizer solutions and nasal sprays — developed around the device and the dose that leaves it.",
     valueProp:
       "Inhalation programmes authored against aerodynamic particle-size distribution and device-pairing evidence a regulator can follow.",
     lede: "Inhalation briefs turn on the delivered dose and the aerodynamic particle-size distribution — the rest of the package exists to defend them. We characterize aerosol performance on the intended device early, carry the evidence through formulation and stability work, and document the device-pairing argument alongside the formulation so the dossier reads as one record rather than two.",
@@ -1855,7 +1873,7 @@ export const DOSAGE_FORM_INHALATION: DosageFormContent = {
     ],
     primaryCta: {
       label: "Scope an inhalation programme",
-      href: "/contact?source=pd-inhalation-hero-scope",
+      href: "/ai/project-scoping-assistant?source=pd-inhalation-hero-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -1965,10 +1983,10 @@ export const DOSAGE_FORM_INHALATION: DosageFormContent = {
         id: "tech-transfer",
         label: "Tech-transfer and release",
         description:
-          "Methods, specifications and batch records transfer into release testing and, where applicable, DEL-scope operations.",
+          "Methods, specifications and batch records transfer into release testing and, where applicable, documented release-readiness activities.",
         notes: [
           "Method transfer protocol and report",
-          "Release testing under the Canadian DEL",
+          "Release-testing readiness package",
           "Change-control path established",
         ],
       },
@@ -2039,13 +2057,15 @@ export const DOSAGE_FORM_INHALATION: DosageFormContent = {
         id: "dose",
         label: "Delivered dose uniformity",
         value: "Through-life",
-        context: "Characterized from initial to end-of-use across hold orientations that reflect real use.",
+        context:
+          "Characterized from initial to end-of-use across hold orientations that reflect real use.",
       },
       {
         id: "transfer",
         label: "Tech-transfer",
         value: "Document-first",
-        context: "Methods, specifications and batch records transferred without re-opening formulation work.",
+        context:
+          "Methods, specifications and batch records transferred without re-opening formulation work.",
       },
     ],
     status: "under-confirmation",
@@ -2066,8 +2086,7 @@ export const DOSAGE_FORM_INHALATION: DosageFormContent = {
       {
         id: "device-paired",
         prompt: "Do you already have a device partner, or is device selection part of the brief?",
-        helper:
-          "Device selection changes the scope, timelines and E&L package materially.",
+        helper: "Device selection changes the scope, timelines and E&L package materially.",
       },
       {
         id: "filing",
@@ -2138,18 +2157,19 @@ export const DOSAGE_FORM_INHALATION: DosageFormContent = {
         id: "quality",
         label: "Quality and compliance",
         description:
-          "The DEL and the unified QMS that make tech-transfer a document exercise rather than a re-authoring one.",
+          "The quality records that make tech-transfer a document exercise rather than a re-authoring one.",
         href: "/quality-compliance",
       },
     ],
   },
   closing: {
     eyebrow: "Next step",
-    heading: "Send the target product profile. We'll send back a development plan you can review with QA.",
+    heading:
+      "Send the target product profile. We'll send back a development plan you can review with QA.",
     body: "Most first calls are a working conversation: we walk through the API, the device class, the target APSD, and the submission plan, and draft a development outline against that. If we are not the right partner for the molecule or the device, we will tell you on that call.",
     primaryCta: {
       label: "Scope an inhalation programme",
-      href: "/contact?source=pd-inhalation-closing-scope",
+      href: "/ai/project-scoping-assistant?source=pd-inhalation-closing-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -2159,7 +2179,8 @@ export const DOSAGE_FORM_INHALATION: DosageFormContent = {
     },
     regulatoryNote: {
       kind: "primary",
-      label: "USP General Chapter ⟨601⟩ — Inhalation and Nasal Drug Products: Aerosols, Sprays, and Powders",
+      label:
+        "USP General Chapter ⟨601⟩ — Inhalation and Nasal Drug Products: Aerosols, Sprays, and Powders",
       href: "https://www.uspnf.com/",
     },
   },
@@ -2178,10 +2199,11 @@ export const DOSAGE_FORM_OPHTHALMIC: DosageFormContent = {
     "Eye-drop, ophthalmic suspension and ointment development at Propharmex — tonicity, sterility assurance, USP ⟨789⟩ particulate, and preservative efficacy authored to travel into the dossier.",
   ogTitle: "Ophthalmic product development — Propharmex",
   ogDescription:
-    "From tonicity to dossier. Ophthalmic development executed by Propharmex, filed under our Health Canada Drug Establishment Licence.",
+    "From tonicity to dossier. Ophthalmic development executed by Propharmex, documented for regulatory review.",
   hero: {
     eyebrow: "Pharmaceutical Development · Ophthalmic",
-    headline: "Eye drops, ophthalmic suspensions and ointments — developed for the eye, not a general-purpose sterile.",
+    headline:
+      "Eye drops, ophthalmic suspensions and ointments — developed for the eye, not a general-purpose sterile.",
     valueProp:
       "Ophthalmic programmes authored around tonicity, sterility assurance and ocular-specific particulate limits — with preservative efficacy documented for the in-use period the patient actually lives with.",
     lede: "Ophthalmic briefs turn on a tight set of constraints: isotonicity with the tear film, sterility assurance with a defensible preservative argument, and particulate matter controlled at ophthalmic limits rather than general-parenteral limits. We scope the formulation, the preservative system and the CCI package as one workstream so the ocular context is in the record from the first compatibility study.",
@@ -2192,7 +2214,7 @@ export const DOSAGE_FORM_OPHTHALMIC: DosageFormContent = {
     ],
     primaryCta: {
       label: "Scope an ophthalmic programme",
-      href: "/contact?source=pd-ophthalmic-hero-scope",
+      href: "/ai/project-scoping-assistant?source=pd-ophthalmic-hero-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -2302,10 +2324,10 @@ export const DOSAGE_FORM_OPHTHALMIC: DosageFormContent = {
         id: "tech-transfer",
         label: "Tech-transfer and release",
         description:
-          "Methods, specifications and batch records transfer into release testing and, where applicable, DEL-scope operations.",
+          "Methods, specifications and batch records transfer into release testing and, where applicable, documented release-readiness activities.",
         notes: [
           "Method transfer protocol and report",
-          "Release testing under the Canadian DEL",
+          "Release-testing readiness package",
           "Change-control path established",
         ],
       },
@@ -2371,19 +2393,22 @@ export const DOSAGE_FORM_OPHTHALMIC: DosageFormContent = {
         id: "tonicity",
         label: "Tonicity and pH",
         value: "Ocular-compatible",
-        context: "Osmolality and pH held across shelf life with buffer capacity selected against the study.",
+        context:
+          "Osmolality and pH held across shelf life with buffer capacity selected against the study.",
       },
       {
         id: "particulate",
         label: "Particulate matter",
         value: "USP ⟨789⟩-aligned",
-        context: "Sub-visible particulate evaluated against ophthalmic-specific limits rather than general parenteral.",
+        context:
+          "Sub-visible particulate evaluated against ophthalmic-specific limits rather than general parenteral.",
       },
       {
         id: "transfer",
         label: "Tech-transfer",
         value: "Document-first",
-        context: "Methods, specifications and batch records transferred without re-opening formulation work.",
+        context:
+          "Methods, specifications and batch records transferred without re-opening formulation work.",
       },
     ],
     status: "under-confirmation",
@@ -2403,7 +2428,8 @@ export const DOSAGE_FORM_OPHTHALMIC: DosageFormContent = {
       },
       {
         id: "presentation",
-        prompt: "Is the intended presentation multi-dose preserved, multi-dose preservative-free, or unit-dose?",
+        prompt:
+          "Is the intended presentation multi-dose preserved, multi-dose preservative-free, or unit-dose?",
         helper:
           "Presentation choice shapes the sterility argument and the pack selection materially.",
       },
@@ -2475,19 +2501,19 @@ export const DOSAGE_FORM_OPHTHALMIC: DosageFormContent = {
       {
         id: "quality",
         label: "Quality and compliance",
-        description:
-          "The DEL and the unified QMS, including the contamination-control strategy authored end-to-end.",
+        description: "The quality records and contamination-control strategy authored end to end.",
         href: "/quality-compliance",
       },
     ],
   },
   closing: {
     eyebrow: "Next step",
-    heading: "Send the target product profile. We'll send back a development plan you can review with QA.",
+    heading:
+      "Send the target product profile. We'll send back a development plan you can review with QA.",
     body: "Most first calls are a working conversation: we walk through the API, the presentation, the preservative strategy, and the submission plan, and draft a development outline against that. If we are not the right partner for the molecule or the presentation, we will tell you on that call.",
     primaryCta: {
       label: "Scope an ophthalmic programme",
-      href: "/contact?source=pd-ophthalmic-closing-scope",
+      href: "/ai/project-scoping-assistant?source=pd-ophthalmic-closing-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -2516,10 +2542,11 @@ export const DOSAGE_FORM_TRANSDERMAL_MR: DosageFormContent = {
     "Patch, extended-release and controlled-release development at Propharmex — diffusion, IVRT, food-effect strategy and release-mechanism characterization authored to travel.",
   ogTitle: "Transdermal and modified-release development — Propharmex",
   ogDescription:
-    "From release mechanism to dossier. Transdermal and MR development executed by Propharmex, filed under our Health Canada Drug Establishment Licence.",
+    "From release mechanism to dossier. Transdermal and MR development executed by Propharmex, documented for regulatory review.",
   hero: {
     eyebrow: "Pharmaceutical Development · Transdermal & modified release",
-    headline: "Patches and extended- or controlled-release oral products — developed around the release mechanism, not just the release curve.",
+    headline:
+      "Patches and extended- or controlled-release oral products — developed around the release mechanism, not just the release curve.",
     valueProp:
       "Transdermal and MR programmes authored with the release mechanism characterized, the in-vitro package discriminating, and the food-effect argument made before the pivotal trial.",
     lede: "MR briefs are usually judged on a release curve, but the defensible argument lives one layer beneath — the mechanism that produces the curve and will reproduce it at scale. We characterize the mechanism early, design the in-vitro package to discriminate formulation change rather than pass a single batch, and scope the food-effect strategy alongside the formulation so it is not the last question answered.",
@@ -2530,7 +2557,7 @@ export const DOSAGE_FORM_TRANSDERMAL_MR: DosageFormContent = {
     ],
     primaryCta: {
       label: "Scope a transdermal / MR programme",
-      href: "/contact?source=pd-transdermal-hero-scope",
+      href: "/ai/project-scoping-assistant?source=pd-transdermal-hero-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -2640,10 +2667,10 @@ export const DOSAGE_FORM_TRANSDERMAL_MR: DosageFormContent = {
         id: "tech-transfer",
         label: "Tech-transfer and release",
         description:
-          "Methods, specifications and batch records transfer into release testing and, where applicable, DEL-scope operations.",
+          "Methods, specifications and batch records transfer into release testing and, where applicable, documented release-readiness activities.",
         notes: [
           "Method transfer protocol and report",
-          "Release testing under the Canadian DEL",
+          "Release-testing readiness package",
           "Change-control path established",
         ],
       },
@@ -2710,7 +2737,8 @@ export const DOSAGE_FORM_TRANSDERMAL_MR: DosageFormContent = {
         id: "mechanism",
         label: "Release mechanism",
         value: "Characterized",
-        context: "Distinguished by evidence, not curve-fit alone — documented into change-control decisions.",
+        context:
+          "Distinguished by evidence, not curve-fit alone — documented into change-control decisions.",
       },
       {
         id: "ivrt",
@@ -2722,7 +2750,8 @@ export const DOSAGE_FORM_TRANSDERMAL_MR: DosageFormContent = {
         id: "transfer",
         label: "Tech-transfer",
         value: "Document-first",
-        context: "Methods, specifications and batch records transferred without re-opening formulation work.",
+        context:
+          "Methods, specifications and batch records transferred without re-opening formulation work.",
       },
     ],
     status: "under-confirmation",
@@ -2742,7 +2771,8 @@ export const DOSAGE_FORM_TRANSDERMAL_MR: DosageFormContent = {
       },
       {
         id: "mechanism",
-        prompt: "Do you have a target release mechanism in mind — matrix, osmotic, reservoir or other?",
+        prompt:
+          "Do you have a target release mechanism in mind — matrix, osmotic, reservoir or other?",
         helper:
           "Mechanism selection shapes polymer sourcing, release-testing apparatus and scale-up path.",
       },
@@ -2815,18 +2845,19 @@ export const DOSAGE_FORM_TRANSDERMAL_MR: DosageFormContent = {
         id: "quality",
         label: "Quality and compliance",
         description:
-          "The DEL and the unified QMS that make tech-transfer a document exercise rather than a re-authoring one.",
+          "The quality records that make tech-transfer a document exercise rather than a re-authoring one.",
         href: "/quality-compliance",
       },
     ],
   },
   closing: {
     eyebrow: "Next step",
-    heading: "Send the target product profile. We'll send back a development plan you can review with QA.",
+    heading:
+      "Send the target product profile. We'll send back a development plan you can review with QA.",
     body: "Most first calls are a working conversation: we walk through the API, the intended release mechanism, the submission plan and the food-effect strategy, and draft a development outline against that. If we are not the right partner for the molecule or the mechanism, we will tell you on that call.",
     primaryCta: {
       label: "Scope a transdermal / MR programme",
-      href: "/contact?source=pd-transdermal-closing-scope",
+      href: "/ai/project-scoping-assistant?source=pd-transdermal-closing-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -2847,7 +2878,7 @@ export const DOSAGE_FORM_CONTENT: Record<DosageFormSlug, DosageFormContent> = {
   "liquid-oral-dosage": DOSAGE_FORM_LIQUID_ORAL,
   "topical-semisolid": DOSAGE_FORM_TOPICAL_SEMISOLID,
   "sterile-injectables": DOSAGE_FORM_STERILE_INJECTABLES,
-  "inhalation": DOSAGE_FORM_INHALATION,
-  "ophthalmic": DOSAGE_FORM_OPHTHALMIC,
+  inhalation: DOSAGE_FORM_INHALATION,
+  ophthalmic: DOSAGE_FORM_OPHTHALMIC,
   "transdermal-modified-release": DOSAGE_FORM_TRANSDERMAL_MR,
 };

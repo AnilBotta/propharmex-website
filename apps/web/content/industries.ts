@@ -2,10 +2,8 @@
  * Content dictionary for /industries (hub) and all five industry leaves
  * (Prompt 13, complete).
  *
- * Positioning (from CLAUDE.md §1): Propharmex is a Canadian pharmaceutical
- * services company anchored at our Mississauga DEL site, with an Indian
- * development centre in Hyderabad providing operational depth, serving drug
- * developers globally.
+ * Positioning: Propharmex is a Canada-headquartered pharmaceutical services
+ * company serving drug developers globally.
  * Industries are the commercial lens on who we build programmes for — the
  * service trees under /services describe what we do; the industry pages under
  * /industries describe who we do it with and what that engagement looks like
@@ -16,16 +14,16 @@
  * four leaves and flips the registry from `Partial<Record<...>>` to a full
  * `Record<IndustrySlug, IndustryLeafContent>`:
  *
- *  - pharmaceutical-innovators   — branded CMC under a Canadian DEL
+ *  - pharmaceutical-innovators   — branded CMC and regulatory-readiness support
  *  - generic-manufacturers       — flagship (ANDA + DMF workflow)
- *  - cdmo-partners               — Canadian scope surface without standing up a DEL
+ *  - cdmo-partners               — Canadian-market readiness without building every function in-house
  *  - governments-and-ngos        — narrowed capability-alignment framing
  *  - clinical-trial-sponsors     — investigational supply + CTA handling
  *
  * The flagship remains `generic-manufacturers`. The Canadian-anchored
- * operating model — CMC and analytical work executed by Propharmex, filed
- * and inspection-hosted under the Health Canada DEL — maps most cleanly to
- * a generic manufacturer's ANDA + DMF workflow. The other four leaves inherit the same
+ * operating model — CMC and analytical work executed by Propharmex with a
+ * documented quality-evidence trail — maps most cleanly to a generic
+ * manufacturer's ANDA + DMF workflow. The other four leaves inherit the same
  * template, with one deliberate exception: governments-and-ngos ships without
  * a case-study rail and with `alignment` status across every regulatory topic.
  * Propharmex is developing the institutional-procurement practice area and the
@@ -34,11 +32,10 @@
  * optional for that reason.
  *
  * Claim-status convention (see docs/regulatory-lexicon.md §26–39): this page
- * uses `confirmed` only when referencing the Health Canada Drug Establishment
- * Licence on the Drug and Health Product Register. Named client
- * work is `under-confirmation` (documentation on request). Everything else is
- * framed as operational alignment or descriptive capability — no certification
- * claim is made that cannot be pointed at a public register.
+ * uses `confirmed` only for evidence the team can verify. Named client work is
+ * `under-confirmation` (documentation on request). Everything else is framed as
+ * operational alignment or descriptive capability — no certification claim is
+ * made that cannot be pointed at a public register.
  *
  * All primary-source URLs stamped with "as of 2026-04-23" in the body prose
  * are declared once at the top of the content block below and mirror the
@@ -56,10 +53,7 @@ export type IndustryCta = FacilityCta;
 export type IndustrySource = FacilitySource;
 
 /** Three-tier claim status mirrored from docs/regulatory-lexicon.md §26–39. */
-export type IndustryClaimStatus =
-  | "confirmed"
-  | "under-confirmation"
-  | "alignment";
+export type IndustryClaimStatus = "confirmed" | "under-confirmation" | "alignment";
 
 export const INDUSTRY_SLUGS = [
   "pharmaceutical-innovators",
@@ -70,7 +64,7 @@ export const INDUSTRY_SLUGS = [
 ] as const;
 export type IndustrySlug = (typeof INDUSTRY_SLUGS)[number];
 
-export type IndustrySummary = {
+export interface IndustrySummary {
   slug: IndustrySlug;
   label: string;
   /** One-sentence elevator line shown on the hub industry matrix. */
@@ -81,22 +75,22 @@ export type IndustrySummary = {
   leafStatus: "live" | "shipping-next";
   /** Whether this card gets the flagship emphasis on the hub matrix. */
   flagship: boolean;
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Hub page                                                                  */
 /* -------------------------------------------------------------------------- */
 
-export type IndustryHubHero = {
+export interface IndustryHubHero {
   eyebrow: string;
   headline: string;
   lede: string;
   stats: { label: string; value: string }[];
   primaryCta: IndustryCta;
   secondaryCta: IndustryCta;
-};
+}
 
-export type IndustryMatrix = {
+export interface IndustryMatrix {
   eyebrow: string;
   heading: string;
   lede: string;
@@ -104,31 +98,31 @@ export type IndustryMatrix = {
   liveCopy: string;
   shippingNextCopy: string;
   flagshipCopy: string;
-};
+}
 
-export type IndustryPostureCard = {
+export interface IndustryPostureCard {
   id: string;
   label: string;
   description: string;
-};
+}
 
-export type IndustryPosture = {
+export interface IndustryPosture {
   eyebrow: string;
   heading: string;
   lede: string;
   /** Three cards describing how industry engagements are shaped. */
   cards: IndustryPostureCard[];
-};
+}
 
-export type IndustryHubClosing = {
+export interface IndustryHubClosing {
   eyebrow: string;
   heading: string;
   body: string;
   primaryCta: IndustryCta;
   secondaryCta: IndustryCta;
-};
+}
 
-export type IndustryHubContent = {
+export interface IndustryHubContent {
   metaTitle: string;
   metaDescription: string;
   ogTitle: string;
@@ -137,13 +131,13 @@ export type IndustryHubContent = {
   matrix: IndustryMatrix;
   posture: IndustryPosture;
   closing: IndustryHubClosing;
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Leaf template                                                             */
 /* -------------------------------------------------------------------------- */
 
-export type IndustryLeafHero = {
+export interface IndustryLeafHero {
   eyebrow: string;
   headline: string;
   /** One-sentence value prop — mirrors the regulatory leaf pattern. */
@@ -152,108 +146,108 @@ export type IndustryLeafHero = {
   stats: { label: string; value: string }[];
   primaryCta: IndustryCta;
   secondaryCta: IndustryCta;
-};
+}
 
-export type IndustryPainPoint = {
+export interface IndustryPainPoint {
   id: string;
   label: string;
   description: string;
-};
+}
 
-export type IndustryPainPoints = {
+export interface IndustryPainPoints {
   eyebrow: string;
   heading: string;
   lede: string;
   /** Three cards (Prompt 13: "consistent ... 3-column layout"). */
   items: IndustryPainPoint[];
-};
+}
 
-export type IndustryOfferingColumn = {
+export interface IndustryOfferingColumn {
   id: string;
   label: string;
   description: string;
   /** Links the column to a service-tree leaf we already ship. */
   serviceHref: string;
   serviceLabel: string;
-};
+}
 
-export type IndustryTailoredOffering = {
+export interface IndustryTailoredOffering {
   eyebrow: string;
   heading: string;
   lede: string;
   /** Three columns, each pointing at a service leaf. */
   columns: IndustryOfferingColumn[];
   closingNote: string;
-};
+}
 
-export type IndustryRegulatoryTopic = {
+export interface IndustryRegulatoryTopic {
   id: string;
   heading: string;
   body: string;
   status: IndustryClaimStatus;
   source?: IndustrySource;
-};
+}
 
-export type IndustryRegulatoryContext = {
+export interface IndustryRegulatoryContext {
   eyebrow: string;
   heading: string;
   lede: string;
   topics: IndustryRegulatoryTopic[];
-};
+}
 
-export type IndustryCaseTeaser = {
+export interface IndustryCaseTeaser {
   id: string;
   service: string;
   title: string;
   body: string;
   status: "under-confirmation";
-};
+}
 
-export type IndustryCaseRail = {
+export interface IndustryCaseRail {
   eyebrow: string;
   heading: string;
   lede: string;
   teasers: IndustryCaseTeaser[];
   cta: IndustryCta;
-};
+}
 
-export type IndustryFaqItem = {
+export interface IndustryFaqItem {
   id: string;
   question: string;
   answer: string;
-};
+}
 
-export type IndustryFaq = {
+export interface IndustryFaq {
   eyebrow: string;
   heading: string;
   lede: string;
   items: IndustryFaqItem[];
-};
+}
 
-export type IndustryRelatedLink = {
+export interface IndustryRelatedLink {
   id: string;
   label: string;
   description: string;
   href: string;
-};
+}
 
-export type IndustryRelated = {
+export interface IndustryRelated {
   eyebrow: string;
   heading: string;
   lede: string;
   links: IndustryRelatedLink[];
-};
+}
 
-export type IndustryLeafClosing = {
+export interface IndustryLeafClosing {
   eyebrow: string;
   heading: string;
   body: string;
   primaryCta: IndustryCta;
   secondaryCta: IndustryCta;
   regulatoryNote: IndustrySource;
-};
+}
 
-export type IndustryLeafContent = {
+export interface IndustryLeafContent {
   slug: IndustrySlug;
   label: string;
   crumbLabel: string;
@@ -275,23 +269,22 @@ export type IndustryLeafContent = {
   faq: IndustryFaq;
   related: IndustryRelated;
   closing: IndustryLeafClosing;
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Shared primary-source constants                                           */
 /*  Mirrored from analytical-services.ts / regulatory-services.ts.            */
 /* -------------------------------------------------------------------------- */
 
-const HEALTH_CANADA_DEL_REGISTER: IndustrySource = {
-  kind: "primary",
-  label: "Health Canada — Drug and Health Product Register",
-  href: "https://health-products.canada.ca/dpd-bdpp/",
+const INTERNAL_SCOPE_NOTE: IndustrySource = {
+  kind: "internal",
+  label:
+    "Engagement scope, quality responsibilities, and Canadian-market assumptions are confirmed case by case before work begins.",
 };
 
 const CFR_PART_314: IndustrySource = {
   kind: "primary",
-  label:
-    "21 CFR Part 314 — Applications for FDA approval to market a new drug",
+  label: "21 CFR Part 314 — Applications for FDA approval to market a new drug",
   href: "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-314",
 };
 
@@ -310,15 +303,13 @@ const FDA_BE_GUIDANCE: IndustrySource = {
 
 const CFR_PART_211: IndustrySource = {
   kind: "primary",
-  label:
-    "21 CFR Part 211 — Current Good Manufacturing Practice for Finished Pharmaceuticals",
+  label: "21 CFR Part 211 — Current Good Manufacturing Practice for Finished Pharmaceuticals",
   href: "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211",
 };
 
 const ICH_M4_ECTD: IndustrySource = {
   kind: "primary",
-  label:
-    "ICH M4 — Common Technical Document (CTD) and eCTD specification",
+  label: "ICH M4 — Common Technical Document (CTD) and eCTD specification",
   href: "https://www.ich.org/page/ctd",
 };
 
@@ -342,8 +333,7 @@ const UNICEF_SUPPLY_DIVISION: IndustrySource = {
 
 const GLOBAL_FUND_QA_POLICY: IndustrySource = {
   kind: "primary",
-  label:
-    "The Global Fund — Quality Assurance Policy for Pharmaceutical Products",
+  label: "The Global Fund — Quality Assurance Policy for Pharmaceutical Products",
   href: "https://www.theglobalfund.org/en/sourcing-management/quality-assurance/",
 };
 
@@ -357,19 +347,19 @@ export const INDUSTRIES_HUB: IndustryHubContent = {
     "Pharmaceutical innovators, generic manufacturers, CDMO partners, governments and NGOs, and clinical trial sponsors — five industry lenses on Propharmex's Canadian-anchored operating model.",
   ogTitle: "Industries We Serve — Propharmex",
   ogDescription:
-    "Five industry lenses on one operating model: CMC and analytical work executed by Propharmex, filed and inspection-hosted under the Health Canada Drug Establishment Licence.",
+    "Five industry lenses on one operating model: CMC and analytical work executed by Propharmex, prepared with a documented quality-evidence trail.",
   hero: {
     eyebrow: "Industries",
     headline: "One operating model, five industry lenses.",
-    lede: "Propharmex runs a single quality system anchored at our Mississauga site under the Health Canada Drug Establishment Licence, with an Indian development centre providing analytical and CMC depth. The shape of each engagement changes depending on who we are building with: an innovator with a branded programme, a generic manufacturer chasing an ANDA window, a CDMO partner extending bandwidth, an institutional buyer under a tender, or a trial sponsor needing investigational material. Industry pages describe the engagement from the sponsor's side; service pages describe the work.",
+    lede: "Propharmex runs a single quality system from its Canadian headquarters, with analytical, regulatory, and CMC work governed through one documented operating model. The shape of each engagement changes depending on who we are building with: an innovator with a branded programme, a generic manufacturer chasing an ANDA window, a CDMO partner extending bandwidth, an institutional buyer under a tender, or a trial sponsor needing investigational material. Industry pages describe the engagement from the sponsor's side; service pages describe the work.",
     stats: [
       { label: "Industries", value: "5" },
-      { label: "Regulatory anchor", value: "Health Canada DEL (confirmed)" },
+      { label: "Regulatory anchor", value: "Canada-headquartered review" },
       { label: "Operating model", value: "Canadian-anchored, single QMS" },
     ],
     primaryCta: {
       label: "Start a scoping conversation",
-      href: "/contact?source=industries-hub-hero-scope",
+      href: "/ai/project-scoping-assistant?source=industries-hub-hero-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -381,14 +371,14 @@ export const INDUSTRIES_HUB: IndustryHubContent = {
   matrix: {
     eyebrow: "Industry matrix",
     heading: "Five industries, one operating model",
-    lede: "Generic manufacturers is the flagship because the Canadian-anchored operating economics — Propharmex-authored CMC, filed and inspection-hosted under the DEL — map most cleanly to an ANDA plus DMF workflow under a single QMS. The other four lenses apply the same operating model to different programme shapes. Detail pages walk through the engagement; the hub is the index.",
+    lede: "Generic manufacturers is the flagship because the Canadian-anchored operating economics — Propharmex-authored CMC, filed and inspection-hosted under the documented quality record — map most cleanly to an ANDA plus DMF workflow under a single QMS. The other four lenses apply the same operating model to different programme shapes. Detail pages walk through the engagement; the hub is the index.",
     industries: [
       {
         slug: "pharmaceutical-innovators",
         label: "Pharmaceutical innovators",
         blurb:
-          "Branded programmes needing CMC, analytical and regulatory bandwidth with a Canadian establishment licence behind the filings.",
-        highlights: ["Branded CMC", "Canadian DEL", "ICH alignment"],
+          "Branded programmes needing CMC, analytical and regulatory bandwidth with a Canadian establishment regulatory footprint behind the filings.",
+        highlights: ["Branded CMC", "Canadian readiness", "ICH alignment"],
         leafStatus: "live",
         flagship: false,
       },
@@ -405,7 +395,7 @@ export const INDUSTRIES_HUB: IndustryHubContent = {
         slug: "cdmo-partners",
         label: "CDMO partners",
         blurb:
-          "Bandwidth and regulatory surface for contract manufacturers taking on Canadian-market scope without standing up their own DEL.",
+          "Bandwidth and regulatory support for contract manufacturers taking on Canadian-market scope without building every function in-house.",
         highlights: ["Canadian scope", "Regulatory surface", "Tech transfer"],
         leafStatus: "live",
         flagship: false,
@@ -414,7 +404,7 @@ export const INDUSTRIES_HUB: IndustryHubContent = {
         slug: "governments-and-ngos",
         label: "Governments and NGOs",
         blurb:
-          "Capability alignment for institutional procurement and prequalification processes — tender-grade documentation under a DEL-anchored QMS.",
+          "Capability alignment for institutional procurement and prequalification processes — tender-grade documentation under a Canada-headquartered QMS.",
         highlights: ["Tender documentation", "QMS alignment", "Traceability"],
         leafStatus: "live",
         flagship: false,
@@ -424,19 +414,14 @@ export const INDUSTRIES_HUB: IndustryHubContent = {
         label: "Clinical trial sponsors",
         blurb:
           "Investigational material, analytical release and regulatory handling for sponsors running Canadian and multi-jurisdictional trials.",
-        highlights: [
-          "Investigational material",
-          "Analytical release",
-          "CTA support",
-        ],
+        highlights: ["Investigational material", "Analytical release", "CTA support"],
         leafStatus: "live",
         flagship: false,
       },
     ],
     liveCopy: "Detail page available",
     shippingNextCopy: "Detail page shipping next",
-    flagshipCopy:
-      "Flagship industry — the cleanest fit for the Canadian-anchored operating model",
+    flagshipCopy: "Flagship industry — the cleanest fit for the Canadian-anchored operating model",
   },
   posture: {
     eyebrow: "How we shape engagements",
@@ -451,25 +436,25 @@ export const INDUSTRIES_HUB: IndustryHubContent = {
       },
       {
         id: "del-anchored",
-        label: "Anchored on a verifiable Canadian licence",
+        label: "Anchored on documented scope",
         description:
-          "Our Health Canada Drug Establishment Licence is held in Mississauga and listed on the Drug and Health Product Register. Every industry engagement that touches a Canadian filing, import, or distribution scope is filed from that licence or under a declared amendment path toward it.",
+          "Every industry engagement that touches Canadian-market assumptions is scoped explicitly: responsible party, document owner, quality boundary, regulatory deliverable, and handoff path are confirmed before work begins.",
       },
       {
         id: "no-overclaim",
         label: "Claims that match what a regulator can check",
         description:
-          "Named client work is described as \"under confirmation · documentation on request\" until public proof exists. Our posture is to say less than we could prove rather than more than we can defend — the cost of a wrong claim on a pharma site is very high.",
+          'Named client work is described as "under confirmation · documentation on request" until public proof exists. Our posture is to say less than we could prove rather than more than we can defend — the cost of a wrong claim on a pharma site is very high.',
       },
     ],
   },
   closing: {
     eyebrow: "Start a conversation",
     heading: "Scope a programme from your side of the table",
-    body: "Tell us which lens fits your programme and what you need next — an ANDA CMC pass, a DEL-anchored filing surface, a trial-sponsor release pathway, a tender-grade documentation set, or an innovator-scale CMC package. The conversation is structured enough to produce a scope outline; short enough to not waste your day.",
+    body: "Tell us which lens fits your programme and what you need next — an ANDA CMC pass, a Canada-headquartered filing surface, a trial-sponsor release pathway, a tender-grade documentation set, or an innovator-scale CMC package. The conversation is structured enough to produce a scope outline; short enough to not waste your day.",
     primaryCta: {
       label: "Start a scoping conversation",
-      href: "/contact?source=industries-hub-closing-scope",
+      href: "/ai/project-scoping-assistant?source=industries-hub-closing-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -490,25 +475,25 @@ const GENERIC_MANUFACTURERS: IndustryLeafContent = {
   crumbLabel: "Generic manufacturers",
   metaTitle: "Generic Manufacturers — Propharmex Industries",
   metaDescription:
-    "ANDA programmes with DMF reference, bioequivalence planning, eCTD Module 2/3 authoring and DEL-anchored Canadian filing surface — one quality system, executed by Propharmex.",
+    "ANDA programmes with DMF reference, bioequivalence planning, eCTD Module 2/3 authoring and Canada-headquartered Canadian filing surface — one quality system, executed by Propharmex.",
   ogTitle: "Generic Manufacturers — Propharmex",
   ogDescription:
-    "The Canadian-anchored operating model applied to generics: Propharmex-authored ANDA CMC and DMF work, filed and inspection-hosted under the Health Canada Drug Establishment Licence.",
+    "The Canadian-anchored operating model applied to generics: Propharmex-authored ANDA CMC and DMF work, prepared with a documented quality-evidence trail.",
   hero: {
     eyebrow: "Industries · Generic manufacturers",
     headline:
-      "ANDA programmes — executed by Propharmex, filed under our Health Canada DEL.",
+      "ANDA programmes — executed by Propharmex, prepared for Canadian-market review when applicable.",
     valueProp:
-      "One Canadian-anchored quality system — CMC and analytical depth executed by Propharmex, with a Health Canada–licensed filing surface on the other side.",
-    lede: "Generic manufacturers run against compressed windows: the reference product's exclusivity clock, the agency's review queue, and a DMF-holder's supply schedule rarely agree. Propharmex's operating model is built for that pattern — Module 2 and Module 3 content authored against current USFDA, ICH, and Health Canada specifications, and filed under the Health Canada DEL as the establishment-licensed site for any Canadian filing, import, or distribution scope. Everything works from a single quality record, which keeps audit trails short and handoffs boring.",
+      "One Canada-headquartered quality model — CMC and analytical depth executed with a documented regulatory-readiness path on the other side.",
+    lede: "Generic manufacturers run against compressed windows: the reference product's exclusivity clock, the agency's review queue, and a DMF-holder's supply schedule rarely agree. Propharmex's operating model is built for that pattern — Module 2 and Module 3 content authored against current USFDA, ICH, and Health Canada specifications, and prepared for Canadian-market review when applicable as the Canada-headquartered review team for any Canadian filing, import, or distribution scope. Everything works from a single quality record, which keeps audit trails short and handoffs boring.",
     stats: [
       { label: "ANDA framework", value: "21 CFR Part 314" },
       { label: "DMF framework", value: "21 CFR 314.420" },
-      { label: "Canadian anchor", value: "Mississauga DEL (confirmed)" },
+      { label: "Canadian anchor", value: "Canada-headquartered review" },
     ],
     primaryCta: {
       label: "Scope an ANDA programme",
-      href: "/contact?source=industries-generics-hero-scope",
+      href: "/ai/project-scoping-assistant?source=industries-generics-hero-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -536,9 +521,9 @@ const GENERIC_MANUFACTURERS: IndustryLeafContent = {
       },
       {
         id: "canadian-scope-gap",
-        label: "Canadian scope without a Canadian licence",
+        label: "Canadian scope without a Canadian regulatory footprint",
         description:
-          "A US-focused programme suddenly needs Canadian market scope — a partner request, an unexpected tender, a manufacturing-site change. Standing up a Drug Establishment Licence from scratch runs against a 250 calendar-day Health Canada service standard. Using an existing DEL-holder's surface is usually faster, and usually preferable.",
+          "A US-focused programme suddenly needs Canadian market scope — a partner request, an unexpected tender, a manufacturing-site change. Building a Canadian regulatory footprint from scratch can distract from the immediate CMC and evidence questions. A scoped Canadian-market readiness conversation is usually the better first step.",
       },
     ],
   },
@@ -551,7 +536,7 @@ const GENERIC_MANUFACTURERS: IndustryLeafContent = {
         id: "analytical",
         label: "Analytical method development and release",
         description:
-          "Method development, validation to ICH Q2(R2), and routine release testing of the finished dosage form. The analytical record that lands in Module 3 is the same record we release product against under the DEL — no reconciliation step between development and release.",
+          "Method development, validation to ICH Q2(R2), and routine release testing of the finished dosage form. The analytical record that lands in Module 3 is the same record we release product against under the documented quality record — no reconciliation step between development and release.",
         serviceHref: "/services/analytical-services",
         serviceLabel: "See analytical services",
       },
@@ -559,7 +544,7 @@ const GENERIC_MANUFACTURERS: IndustryLeafContent = {
         id: "regulatory",
         label: "ANDA, DMF and eCTD support",
         description:
-          "Module 2 summaries and Module 3 CMC authoring to the target agency's current eCTD technical specifications. DMF Type II support under 21 CFR 314.420. Canadian NDS / ANDS support filed under our Health Canada DEL when the sponsor elects a Canadian pathway.",
+          "Module 2 summaries and Module 3 CMC authoring to the target agency's current eCTD technical specifications. DMF Type II support under 21 CFR 314.420. Canadian NDS / ANDS support prepared for Canadian-market review when applicable when the sponsor elects a Canadian pathway.",
         serviceHref: "/services/regulatory-services/us-fda-submissions",
         serviceLabel: "See US FDA submission support",
       },
@@ -578,7 +563,7 @@ const GENERIC_MANUFACTURERS: IndustryLeafContent = {
   regulatory: {
     eyebrow: "Regulatory context",
     heading: "The frameworks a generics programme actually runs against",
-    lede: "Every generics programme we support is run against a specific public framework. The four items below are the ones referenced on almost every engagement — each is cited from its primary source with \"as of 2026-04-23\" for claims that reference current agency expectations.",
+    lede: 'Every generics programme we support is run against a specific public framework. The four items below are the ones referenced on almost every engagement — each is cited from its primary source with "as of 2026-04-23" for claims that reference current agency expectations.',
     topics: [
       {
         id: "anda-314",
@@ -603,10 +588,10 @@ const GENERIC_MANUFACTURERS: IndustryLeafContent = {
       },
       {
         id: "del-anchor",
-        heading: "Canadian establishment licence anchor",
-        body: "Canadian scope on a generics programme — import, release, distribution, Canadian market authorization holding — is exercised under our Health Canada Drug Establishment Licence. The licence is listed on the Drug and Health Product Register and can be verified today. Sponsors using our DEL as a surface avoid standing one up themselves inside a compressed filing window.",
+        heading: "Canadian establishment regulatory footprint anchor",
+        body: "Canadian scope on a generics programme is defined case by case: filing objective, quality boundary, document owner, commercial assumption, and handoff path. The responsible party, evidence package, and review model are confirmed during scoping.",
         status: "confirmed",
-        source: HEALTH_CANADA_DEL_REGISTER,
+        source: INTERNAL_SCOPE_NOTE,
       },
     ],
   },
@@ -633,7 +618,7 @@ const GENERIC_MANUFACTURERS: IndustryLeafContent = {
         id: "canadian-scope-addition",
         service: "Canadian scope addition",
         title: "Adding Canadian market scope to a US-filed generics programme",
-        body: "Existing US ANDA-filed product extended into Canadian scope under our Health Canada DEL — import, release and distribution handled by Propharmex while the sponsor's US operations continued unchanged.",
+        body: "Existing US ANDA-filed product assessed for Canadian scope without disturbing the sponsor's US operating model; the work focused on evidence gaps, document ownership, and market-entry assumptions.",
         status: "under-confirmation",
       },
     ],
@@ -649,11 +634,11 @@ const GENERIC_MANUFACTURERS: IndustryLeafContent = {
     lede: "The answers here are the ones that tend to determine whether a programme is a fit before anyone draws up a scope. None of them are surprising on reflection; sponsors ask them because the answers vary a lot across vendors.",
     items: [
       {
-        id: "q-canadian-licence",
+        id: "q-canadian-regulatory footprint",
         question:
-          "Do we need our own Canadian Drug Establishment Licence to use your Canadian filing surface?",
+          "Do we need our own Canadian regulatory footprint before we can scope work with you?",
         answer:
-          "No. For most engagement shapes, work is filed from the Health Canada Drug Establishment Licence that Propharmex already holds in Mississauga. If a sponsor eventually wants its own DEL, we can run that separately under the regulatory-services tree — the 250 calendar-day Health Canada service standard for a new DEL is a documented agency expectation, not a promise (as of 2026-04-23).",
+          "No. The first step is to define the product, evidence package, target markets, and responsible parties. If a sponsor later needs its own Canadian regulatory footprint, that becomes a separate readiness workstream rather than a promise built into the first conversation.",
       },
       {
         id: "q-dmf-type",
@@ -670,8 +655,7 @@ const GENERIC_MANUFACTURERS: IndustryLeafContent = {
       },
       {
         id: "q-timeline",
-        question:
-          "How compressed can an ANDA CMC authoring timeline realistically be?",
+        question: "How compressed can an ANDA CMC authoring timeline realistically be?",
         answer:
           "The honest answer is that it depends on stability, method validation state, and DMF readiness at kickoff — not authoring speed. When those three are clean, the authoring pass itself is usually measured in weeks rather than months. When one of them is not clean, the number we would quote for authoring would mislead the sponsor about the actual critical path.",
       },
@@ -680,7 +664,7 @@ const GENERIC_MANUFACTURERS: IndustryLeafContent = {
         question:
           "We need to add a Canadian market authorisation holder partway through a US programme — is that realistic?",
         answer:
-          "Often, yes. Adding Canadian scope onto a US-filed generics programme under our DEL is a pattern we see repeatedly. The work is real — it is a regulatory strategy, a scope amendment, and sometimes a product-monograph pass — but it does not require rebuilding the US programme. The decision tree is a scoping conversation.",
+          "Often, yes. Adding Canadian scope onto a US-filed generics programme is a structured scoping exercise: regulatory strategy, evidence gap review, and sometimes a product-monograph pass. It does not automatically require rebuilding the US programme.",
       },
     ],
   },
@@ -718,7 +702,7 @@ const GENERIC_MANUFACTURERS: IndustryLeafContent = {
     body: "Tell us where the programme is — reference product identified, DMF path chosen, stability running, filing target set — and we will shape a scope around what is real rather than what is hypothetical. The Canadian-anchored operating model is not a tagline; it is how the paperwork ends up on the regulator's desk.",
     primaryCta: {
       label: "Scope an ANDA programme",
-      href: "/contact?source=industries-generics-closing-scope",
+      href: "/ai/project-scoping-assistant?source=industries-generics-closing-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -726,7 +710,7 @@ const GENERIC_MANUFACTURERS: IndustryLeafContent = {
       href: "/contact?source=industries-generics-closing-dmf",
       variant: "outline",
     },
-    regulatoryNote: HEALTH_CANADA_DEL_REGISTER,
+    regulatoryNote: INTERNAL_SCOPE_NOTE,
   },
 };
 
@@ -740,25 +724,25 @@ const PHARMACEUTICAL_INNOVATORS: IndustryLeafContent = {
   crumbLabel: "Pharmaceutical innovators",
   metaTitle: "Pharmaceutical Innovators — Propharmex Industries",
   metaDescription:
-    "Branded CMC, analytical and regulatory bandwidth for innovators — Module 3 executed by Propharmex, Canadian filings anchored on our Health Canada Drug Establishment Licence.",
+    "Branded CMC, analytical and regulatory bandwidth for innovators — Module 3 evidence shaped for global filings and Canadian-market questions.",
   ogTitle: "Pharmaceutical Innovators — Propharmex",
   ogDescription:
-    "The Canadian-anchored operating model applied to branded innovator programmes: Propharmex CMC authoring with a DEL-anchored filing surface.",
+    "The Canadian-anchored operating model applied to branded innovator programmes: Propharmex CMC authoring with a Canada-headquartered filing surface.",
   hero: {
     eyebrow: "Industries · Pharmaceutical innovators",
     headline:
-      "Branded CMC — executed by Propharmex, filed under our Health Canada DEL.",
+      "Branded CMC — executed by Propharmex, prepared for Canadian-market review when applicable.",
     valueProp:
-      "Innovator-scale CMC depth — ICH Q8–Q11 framing, Module 3 authoring, analytical bridging — under the same quality system that carries our Health Canada Drug Establishment Licence.",
-    lede: "Innovator programmes run against a different clock than generics. The CMC package has to satisfy an agency that will see the molecule for the first time, the quality narrative has to hold up to ICH Q8–Q11 scrutiny, and the Canadian market is usually an eventual destination rather than the primary target. Propharmex's operating model fits that shape by authoring Module 2 and Module 3 content against current USFDA and ICH expectations, and holding the Canadian regulatory function — and the Drug Establishment Licence — under our DEL for when Canadian scope lands on the roadmap.",
+      "Innovator-scale CMC depth — ICH Q8–Q11 framing, Module 3 authoring, analytical bridging, and Canadian-market readiness questions handled through one evidence model.",
+    lede: "Innovator programmes run against a different clock than generics. The CMC package has to satisfy an agency that will see the molecule for the first time, the quality narrative has to hold up to ICH Q8–Q11 scrutiny, and the Canadian market is often an eventual destination rather than the primary target. Propharmex fits that shape by authoring Module 2 and Module 3 content against current USFDA and ICH expectations while keeping Canadian-market questions visible on the roadmap.",
     stats: [
       { label: "Submission framework", value: "21 CFR Part 314" },
       { label: "CTD structure", value: "ICH M4 eCTD" },
-      { label: "Canadian anchor", value: "Mississauga DEL (confirmed)" },
+      { label: "Canadian anchor", value: "Canada-headquartered review" },
     ],
     primaryCta: {
       label: "Scope an innovator CMC programme",
-      href: "/contact?source=industries-innovators-hero-scope",
+      href: "/ai/project-scoping-assistant?source=industries-innovators-hero-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -788,7 +772,7 @@ const PHARMACEUTICAL_INNOVATORS: IndustryLeafContent = {
         id: "canadian-planning",
         label: "Canadian market planning that arrives late",
         description:
-          "Canadian market authorization is often scoped as a Phase 3 or post-approval consideration. When the decision lands, the innovator team discovers that Canadian NDS filing runs through Health Canada, has its own Module 1 structure, and benefits from a Drug Establishment Licence on file. Standing one up inside an active regulatory cycle is difficult; using an existing DEL-holder's surface is usually faster.",
+          "Canadian market authorization is often scoped as a Phase 3 or post-approval consideration. When the decision lands, the innovator team needs a Canadian Module 1 plan, a clear quality boundary, and a realistic evidence map. That is best treated as a scoped workstream rather than a late administrative add-on.",
       },
     ],
   },
@@ -817,7 +801,7 @@ const PHARMACEUTICAL_INNOVATORS: IndustryLeafContent = {
         id: "regulatory",
         label: "Regulatory services",
         description:
-          "Module 2 summaries and Module 3 CMC authoring to the target agency's current eCTD technical specification. Canadian NDS support filed under our Health Canada DEL when Canadian scope is added. Pre-submission interactions handled in coordination with the sponsor's regulatory lead.",
+          "Module 2 summaries and Module 3 CMC authoring to the target agency's current eCTD technical specification. Canadian NDS support prepared for Canadian-market review when applicable when Canadian scope is added. Pre-submission interactions handled in coordination with the sponsor's regulatory lead.",
         serviceHref: "/services/regulatory-services",
         serviceLabel: "See regulatory services",
       },
@@ -828,7 +812,7 @@ const PHARMACEUTICAL_INNOVATORS: IndustryLeafContent = {
   regulatory: {
     eyebrow: "Regulatory context",
     heading: "The frameworks an innovator programme runs against",
-    lede: "Four public frameworks anchor most innovator engagements. Each is cited from its primary source, with \"as of 2026-04-23\" where the claim references current agency expectations rather than a stable statutory text.",
+    lede: 'Four public frameworks anchor most innovator engagements. Each is cited from its primary source, with "as of 2026-04-23" where the claim references current agency expectations rather than a stable statutory text.',
     topics: [
       {
         id: "nda-314",
@@ -853,10 +837,10 @@ const PHARMACEUTICAL_INNOVATORS: IndustryLeafContent = {
       },
       {
         id: "del-anchor",
-        heading: "Canadian establishment licence anchor",
-        body: "Canadian scope on an innovator programme — import, release, distribution, Canadian market authorization holding — is exercised under our Health Canada Drug Establishment Licence. The licence is listed on the Drug and Health Product Register and can be verified today. Sponsors using our DEL as a surface avoid standing one up themselves inside an active submission cycle.",
+        heading: "Canadian establishment regulatory footprint anchor",
+        body: "Canadian scope on an innovator programme is defined case by case: filing objective, quality boundary, document owner, commercial assumption, and handoff path. The readiness work prevents Canadian requirements from becoming a late administrative surprise.",
         status: "confirmed",
-        source: HEALTH_CANADA_DEL_REGISTER,
+        source: INTERNAL_SCOPE_NOTE,
       },
     ],
   },
@@ -883,7 +867,7 @@ const PHARMACEUTICAL_INNOVATORS: IndustryLeafContent = {
         id: "canadian-scope-add",
         service: "Canadian scope addition",
         title: "Adding Canadian NDS scope to a US-filed innovator programme",
-        body: "An existing US-filed innovator product extended into Canadian scope under our Health Canada DEL — import, release and market authorization holding handled by Propharmex without disturbing the sponsor's US operations.",
+        body: "An existing US-filed innovator product assessed for Canadian scope without disturbing the sponsor's US operations; the work focused on Module 1 differences, evidence reuse, and handoff responsibilities.",
         status: "under-confirmation",
       },
     ],
@@ -900,15 +884,13 @@ const PHARMACEUTICAL_INNOVATORS: IndustryLeafContent = {
     items: [
       {
         id: "q-novel-excipients",
-        question:
-          "Can you handle novel excipients, or do you require precedent of use?",
+        question: "Can you handle novel excipients, or do you require precedent of use?",
         answer:
           "Both. Where a formulation uses only listed or precedent-of-use excipients the path is straightforward. Where a novel excipient is required, we structure the CMC and toxicology-facing narrative to the ICH Q8 and agency-specific expectations for novel-excipient justification. The additional authoring effort is real and we scope it as a separate line item rather than burying it.",
       },
       {
         id: "q-integration",
-        question:
-          "How do you integrate CMC authoring with our in-house clinical programme?",
+        question: "How do you integrate CMC authoring with our in-house clinical programme?",
         answer:
           "The sponsor's regulatory lead owns the submission. We author into their document-management system, attend CMC sub-team meetings, and work to their change-control conventions. The integration model is deliberately low-surface — our authoring is a component in the sponsor's regulatory package, not a parallel programme.",
       },
@@ -917,14 +899,13 @@ const PHARMACEUTICAL_INNOVATORS: IndustryLeafContent = {
         question:
           "Do you support pre-submission interactions — pre-IND, EOP2, Type C meetings — or only submission authoring?",
         answer:
-          "Both, with a clear handoff. We prepare the CMC portions of briefing documents and support the sponsor's regulatory lead through the meeting preparation. The agency-facing role stays with the sponsor. When Canadian pre-submission interaction is required, that runs through the regulatory team under our DEL.",
+          "Both, with a clear handoff. We prepare the CMC portions of briefing documents and support the sponsor's regulatory lead through the meeting preparation. The agency-facing role stays with the sponsor. When Canadian pre-submission interaction is required, the role split is confirmed during scope review.",
       },
       {
         id: "q-canadian-market",
-        question:
-          "How do we plan Canadian market authorization alongside a US-primary NDA?",
+        question: "How do we plan Canadian market authorization alongside a US-primary NDA?",
         answer:
-          "Usually as a staged plan. The NDS can be filed after US approval with the US CMC package as a basis, with the Canadian-specific Module 1 assembled fresh. Filing from our DEL means the sponsor does not need to stand up a Canadian establishment licence for the NDS or for post-approval distribution. The service standard for a new DEL is 250 calendar days as of 2026-04-23.",
+          "Usually as a staged plan. The NDS can be considered after US approval with the US CMC package as a basis, with the Canadian-specific Module 1 assembled separately. We scope that pathway around evidence readiness, responsible parties, and commercial assumptions rather than promising a fixed regulatory route.",
       },
     ],
   },
@@ -951,7 +932,7 @@ const PHARMACEUTICAL_INNOVATORS: IndustryLeafContent = {
         id: "regulatory",
         label: "Regulatory services",
         description:
-          "Module 2/3 authoring, eCTD assembly, and DEL-anchored Canadian regulatory handling.",
+          "Module 2/3 authoring, eCTD assembly, and Canada-headquartered Canadian regulatory handling.",
         href: "/services/regulatory-services",
       },
     ],
@@ -962,7 +943,7 @@ const PHARMACEUTICAL_INNOVATORS: IndustryLeafContent = {
     body: "Tell us where the molecule is — early clinical, pivotal-ready, approaching submission, or already filed in one market and heading for another — and we will shape a CMC and analytical scope around what is real rather than what is hypothetical. The Canadian-anchored operating model is how the submission ends up on the regulator's desk with a single coherent quality narrative behind it.",
     primaryCta: {
       label: "Scope an innovator CMC programme",
-      href: "/contact?source=industries-innovators-closing-scope",
+      href: "/ai/project-scoping-assistant?source=industries-innovators-closing-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -970,7 +951,7 @@ const PHARMACEUTICAL_INNOVATORS: IndustryLeafContent = {
       href: "/contact?source=industries-innovators-closing-canadian",
       variant: "outline",
     },
-    regulatoryNote: HEALTH_CANADA_DEL_REGISTER,
+    regulatoryNote: INTERNAL_SCOPE_NOTE,
   },
 };
 
@@ -984,25 +965,25 @@ const CDMO_PARTNERS: IndustryLeafContent = {
   crumbLabel: "CDMO partners",
   metaTitle: "CDMO Partners — Propharmex Industries",
   metaDescription:
-    "Canadian establishment-licence surface, regulatory bandwidth and analytical extension for contract manufacturers serving innovator and generic sponsors — a complement to your core manufacturing, not a competitor.",
+    "Canadian establishment-regulatory footprint surface, regulatory bandwidth and analytical extension for contract manufacturers serving innovator and generic sponsors — a complement to your core manufacturing, not a competitor.",
   ogTitle: "CDMO Partners — Propharmex",
   ogDescription:
-    "The Canadian-anchored operating model applied to contract manufacturing: DEL-anchored Canadian scope and regulatory bandwidth without standing up your own establishment licence.",
+    "The Canadian-anchored operating model applied to contract manufacturing: Canada-headquartered Canadian scope and regulatory bandwidth without standing up your own establishment regulatory footprint.",
   hero: {
     eyebrow: "Industries · CDMO partners",
     headline:
-      "Canadian scope and regulatory bandwidth, without standing up your own DEL.",
+      "Canadian-market readiness and regulatory bandwidth without building every function in-house.",
     valueProp:
-      "A complement, not a competitor — Canadian establishment-licence surface, regulatory authoring bandwidth, and analytical extension for CDMOs whose core business is manufacturing.",
-    lede: "Most CDMOs are built around a set of dosage-form platforms and a core regulatory surface that fits their primary markets. Canadian market scope, or sudden analytical or regulatory bandwidth needs from a sponsor, can fall outside that core without being worth building in-house. Propharmex's operating model is to plug into that gap — our Health Canada Drug Establishment Licence as an establishment-licensed surface for Canadian scope, our analytical and CMC bench for authoring bandwidth, and one quality system end to end so the CDMO's sponsor sees one coherent record rather than a subcontracted patchwork.",
+      "A complement, not a competitor — Canadian establishment-regulatory footprint surface, regulatory authoring bandwidth, and analytical extension for CDMOs whose core business is manufacturing.",
+    lede: "Most CDMOs are built around a set of dosage-form platforms and a core regulatory surface that fits their primary markets. Canadian market scope, or sudden analytical or regulatory bandwidth needs from a sponsor, can fall outside that core without being worth building in-house. Propharmex's operating model is to plug into that gap — a Canada-headquartered regulatory-readiness model for Canadian scope, our analytical and CMC bench for authoring bandwidth, and one quality system end to end so the CDMO's sponsor sees one coherent record rather than a subcontracted patchwork.",
     stats: [
-      { label: "Licensed surface", value: "Mississauga DEL (confirmed)" },
+      { label: "Scoped readiness surface", value: "Canada-headquartered review" },
       { label: "cGMP framework", value: "21 CFR Part 211" },
       { label: "CTD structure", value: "ICH M4 eCTD" },
     ],
     primaryCta: {
       label: "Scope a CDMO partnership",
-      href: "/contact?source=industries-cdmo-hero-scope",
+      href: "/ai/project-scoping-assistant?source=industries-cdmo-hero-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -1014,13 +995,13 @@ const CDMO_PARTNERS: IndustryLeafContent = {
   painPoints: {
     eyebrow: "The pain",
     heading: "Three patterns we see across CDMO partnerships",
-    lede: "CDMOs rarely lose a bid on capability. They lose it on scope gaps — a missing licence, an analytical window their bench cannot take on fast enough, or a regulatory authoring lift their team is not structured for.",
+    lede: "CDMOs rarely lose a bid on capability. They lose it on scope gaps — a missing regulatory footprint, an analytical window their bench cannot take on fast enough, or a regulatory authoring lift their team is not structured for.",
     items: [
       {
         id: "del-gap",
-        label: "Canadian DEL gap",
+        label: "Canadian readiness gap",
         description:
-          "A sponsor request or tender requires a Canadian establishment licence holder somewhere in the chain. Building a Canadian regulatory and quality footprint from scratch is a multi-year investment; losing the bid for want of one is a short-term revenue hit. Using a DEL-anchored partner is usually the right compromise.",
+          "A sponsor request or tender requires a Canadian establishment regulatory footprint holder somewhere in the chain. Building a Canadian regulatory and quality footprint from scratch is a multi-year investment; losing the bid for want of one is a short-term revenue hit. Using a Canada-headquartered partner is usually the right compromise.",
       },
       {
         id: "regulatory-bandwidth",
@@ -1072,7 +1053,7 @@ const CDMO_PARTNERS: IndustryLeafContent = {
   regulatory: {
     eyebrow: "Regulatory context",
     heading: "The frameworks a CDMO partnership runs against",
-    lede: "Four public frameworks anchor most CDMO engagements — the cGMP baseline both sides operate under, the CTD structure any filing lands in, the DMF pathway where API supply is involved, and the Canadian establishment-licence surface we bring to the partnership.",
+    lede: "Four public frameworks anchor most CDMO engagements — the cGMP baseline both sides operate under, the CTD structure any filing lands in, the DMF pathway where API supply is involved, and the Canadian establishment-regulatory footprint surface we bring to the partnership.",
     topics: [
       {
         id: "cgmp-211",
@@ -1097,10 +1078,10 @@ const CDMO_PARTNERS: IndustryLeafContent = {
       },
       {
         id: "del-anchor",
-        heading: "Canadian establishment licence anchor",
-        body: "Our Health Canada Drug Establishment Licence is listed on the Drug and Health Product Register and is the licensed surface from which Canadian-scope activity — import, release, distribution, market authorization holding — is exercised in a partnership. CDMOs using this surface avoid a 250 calendar-day licence buildout on their own Canadian footprint (Health Canada service standard, as of 2026-04-23).",
+        heading: "Canadian establishment regulatory footprint anchor",
+        body: "Canadian-scope activity is scoped through quality agreements, document ownership, regulatory deliverables, and market assumptions. CDMOs use the conversation to decide what belongs with Propharmex and what remains inside their existing quality system.",
         status: "confirmed",
-        source: HEALTH_CANADA_DEL_REGISTER,
+        source: INTERNAL_SCOPE_NOTE,
       },
     ],
   },
@@ -1112,8 +1093,8 @@ const CDMO_PARTNERS: IndustryLeafContent = {
       {
         id: "canadian-scope-bid",
         service: "Canadian scope surface",
-        title: "Adding Canadian DEL surface to a US CDMO's bid",
-        body: "A US-primary contract manufacturer winning a tender that required a Canadian establishment-licence holder somewhere in the chain. Propharmex supplied our Health Canada DEL as the import, release and distribution surface; the CDMO retained all manufacturing and analytical work in the US.",
+        title: "Adding Canadian readiness surface to a US CDMO's bid",
+        body: "A US-primary contract manufacturer responding to a tender with Canadian-market expectations in the chain. Propharmex helped frame the Canadian readiness questions while the CDMO retained its manufacturing and analytical scope.",
         status: "under-confirmation",
       },
       {
@@ -1144,24 +1125,21 @@ const CDMO_PARTNERS: IndustryLeafContent = {
     items: [
       {
         id: "q-competition",
-        question:
-          "Are you going to compete with us on manufacturing scope inside the partnership?",
+        question: "Are you going to compete with us on manufacturing scope inside the partnership?",
         answer:
-          "No. Propharmex is not a commercial manufacturer. Our operating surface is regulatory, analytical and CMC authoring, plus the Canadian establishment licence for import, release and distribution scope. Manufacturing stays on the CDMO's side of the engagement; we are structured to complement that rather than to compete with it.",
+          "No. Propharmex is not a commercial manufacturer. Our operating surface is regulatory, analytical and CMC authoring, plus the Canadian establishment regulatory footprint for import, release and distribution scope. Manufacturing stays on the CDMO's side of the engagement; we are structured to complement that rather than to compete with it.",
       },
       {
         id: "q-del-scope",
-        question:
-          "What scope on our product can be exercised under your Canadian DEL?",
+        question: "What scope on our product can be exercised under your Canadian readiness?",
         answer:
-          "Our Health Canada Drug Establishment Licence covers import, release, distribution and market authorization holding for scope that is added to it via a standard amendment process. The specific scope a partner product can exercise is dictated by the licence schedule and the product's own market authorization. We scope this case-by-case rather than by a generic answer.",
+          "The specific scope a partner product needs depends on its product status, target market, quality boundary, and commercial route. We scope this case by case rather than by a generic answer.",
       },
       {
         id: "q-quality-systems",
-        question:
-          "How do our respective quality systems interoperate?",
+        question: "How do our respective quality systems interoperate?",
         answer:
-          "The CDMO's QMS owns manufacturing; Propharmex's QMS owns the regulatory-authoring and DEL-anchored activities. Engagement agreements spell out the quality-agreement boundaries. The sponsor sees one submission package and one release record, not two.",
+          "The CDMO's QMS owns manufacturing; Propharmex's QMS owns the regulatory-authoring and Canada-headquartered activities. Engagement agreements spell out the quality-agreement boundaries. The sponsor sees one submission package and one release record, not two.",
       },
       {
         id: "q-confidentiality",
@@ -1203,10 +1181,10 @@ const CDMO_PARTNERS: IndustryLeafContent = {
   closing: {
     eyebrow: "Start a conversation",
     heading: "Scope a CDMO partnership with clear competitive boundaries",
-    body: "Tell us where the gap is — a bid that requires a Canadian establishment licence holder, an analytical window the bench cannot cover, a tech transfer that needs a bridging authoring record — and we will shape a scope around the complement, not the overlap. Partnership terms are written so each side owns its part of the record cleanly.",
+    body: "Tell us where the gap is — a bid that requires a Canadian establishment regulatory footprint holder, an analytical window the bench cannot cover, a tech transfer that needs a bridging authoring record — and we will shape a scope around the complement, not the overlap. Partnership terms are written so each side owns its part of the record cleanly.",
     primaryCta: {
       label: "Scope a CDMO partnership",
-      href: "/contact?source=industries-cdmo-closing-scope",
+      href: "/ai/project-scoping-assistant?source=industries-cdmo-closing-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -1214,7 +1192,7 @@ const CDMO_PARTNERS: IndustryLeafContent = {
       href: "/contact?source=industries-cdmo-closing-canadian",
       variant: "outline",
     },
-    regulatoryNote: HEALTH_CANADA_DEL_REGISTER,
+    regulatoryNote: INTERNAL_SCOPE_NOTE,
   },
 };
 
@@ -1232,7 +1210,7 @@ const GOVERNMENTS_AND_NGOS: IndustryLeafContent = {
   crumbLabel: "Governments and NGOs",
   metaTitle: "Governments and NGOs — Propharmex Industries",
   metaDescription:
-    "A practice area in development: capability alignment for institutional procurement — WHO Prequalification, UNICEF Supply Division and Global Fund QA frameworks, supported by a Canadian DEL-anchored quality system.",
+    "A practice area in development: capability alignment for institutional procurement — WHO Prequalification, UNICEF Supply Division and Global Fund QA frameworks, supported by a Canadian readiness-anchored quality system.",
   ogTitle: "Governments and NGOs — Propharmex",
   ogDescription:
     "An institutional-procurement practice area we are actively developing — capability alignment toward WHO PQ, UNICEF SD and Global Fund frameworks.",
@@ -1240,16 +1218,16 @@ const GOVERNMENTS_AND_NGOS: IndustryLeafContent = {
     eyebrow: "Industries · Governments and NGOs",
     headline: "Capability alignment for institutional procurement.",
     valueProp:
-      "A practice area we are actively developing — our Canadian DEL-anchored quality system and authored analytical and CMC record are aligned to the documentation expectations of institutional buyers, without a prequalification history we do not yet hold.",
-    lede: "Institutional buyers — WHO, UNICEF Supply Division, The Global Fund, national essential-medicines procurement programmes — evaluate vendors against published quality-assurance frameworks and prequalification procedures. Propharmex is developing this practice area deliberately. Our DEL-anchored quality system and our analytical and CMC record are aligned to the documentation and auditability expectations these frameworks ask for. We do not currently hold WHO Prequalification on a product; we are not on the UNICEF Supply Division medicines roster. This page describes the alignment rather than a history of awards.",
+      "A practice area we are actively developing — our Canadian readiness-anchored quality system and authored analytical and CMC record are aligned to the documentation expectations of institutional buyers, without a prequalification history we do not yet hold.",
+    lede: "Institutional buyers — WHO, UNICEF Supply Division, The Global Fund, national essential-medicines procurement programmes — evaluate vendors against published quality-assurance frameworks and prequalification procedures. Propharmex is developing this practice area deliberately. Our Canada-headquartered quality system and our analytical and CMC record are aligned to the documentation and auditability expectations these frameworks ask for. We do not currently hold WHO Prequalification on a product; we are not on the UNICEF Supply Division medicines roster. This page describes the alignment rather than a history of awards.",
     stats: [
       { label: "Practice status", value: "In development" },
-      { label: "QMS anchor", value: "Mississauga DEL (confirmed)" },
+      { label: "QMS anchor", value: "Canada-headquartered review" },
       { label: "Alignment frameworks", value: "WHO PQ · UNICEF SD · Global Fund" },
     ],
     primaryCta: {
       label: "Start a capability alignment conversation",
-      href: "/contact?source=industries-gov-ngo-hero-scope",
+      href: "/ai/project-scoping-assistant?source=industries-gov-ngo-hero-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -1300,7 +1278,7 @@ const GOVERNMENTS_AND_NGOS: IndustryLeafContent = {
         id: "regulatory",
         label: "Regulatory services",
         description:
-          "Module 2 summaries and Module 3 CMC authoring to ICH M4, with Module 1 assembled to the target institutional stream's specification (WHO PQ Module 1 differs from Health Canada Module 1 differs from the EU). DEL-anchored Canadian regulatory authority supports the establishment side of the submission.",
+          "Module 2 summaries and Module 3 CMC authoring to ICH M4, with Module 1 assembled to the target institutional stream's specification (WHO PQ Module 1 differs from Health Canada Module 1 differs from the EU). Canada-headquartered Canadian regulatory authority supports the establishment side of the submission.",
         serviceHref: "/services/regulatory-services",
         serviceLabel: "See regulatory services",
       },
@@ -1344,10 +1322,10 @@ const GOVERNMENTS_AND_NGOS: IndustryLeafContent = {
       },
       {
         id: "del-context",
-        heading: "Health Canada establishment licence — context",
-        body: "Propharmex operates under a Health Canada Drug Establishment Licence held in Mississauga and listed on the Drug and Health Product Register. Licensed-establishment status under a stringent regulatory authority is context that some institutional frameworks weigh in their evidence chain (for example as one route within the Global Fund QA Policy). It is context for the engagement, not a claim of prequalification under any institutional programme.",
+        heading: "Health Canada establishment regulatory footprint — context",
+        body: "Institutional frameworks often weigh the strength of the evidence chain, the quality system, and the responsible parties behind a product. Propharmex scopes that evidence chain case by case; this is not a claim of prequalification under any institutional programme.",
         status: "alignment",
-        source: HEALTH_CANADA_DEL_REGISTER,
+        source: INTERNAL_SCOPE_NOTE,
       },
     ],
   },
@@ -1358,29 +1336,26 @@ const GOVERNMENTS_AND_NGOS: IndustryLeafContent = {
     items: [
       {
         id: "q-pq-history",
-        question:
-          "Do you currently hold WHO Prequalification on any product?",
+        question: "Do you currently hold WHO Prequalification on any product?",
         answer:
           "No. Propharmex does not currently hold WHO Prequalification on a product, and this page does not imply otherwise. Our operating model is aligned to the QA norms WHO PQ evaluates against, and we are actively developing the practice area. Any formal PQ process would be initiated product-by-product with the sponsor owning the programme.",
       },
       {
         id: "q-long-term-agreements",
-        question:
-          "Are you on the UNICEF Supply Division or Global Fund approved-supplier lists?",
+        question: "Are you on the UNICEF Supply Division or Global Fund approved-supplier lists?",
         answer:
           "No, not currently. Our operating model is aligned to the documentation and audit expectations these programmes publish, but we do not have a history of awarded long-term agreements or procurements under them. An institutional engagement today is a capability and documentation conversation rather than a reference-check conversation.",
       },
       {
         id: "q-canadian-stringent",
         question:
-          "Does your Canadian establishment licence count as stringent regulatory authority status under the Global Fund QA Policy?",
+          "Does your Canadian establishment regulatory footprint count as stringent regulatory authority status under the Global Fund QA Policy?",
         answer:
           "Health Canada is recognised as a stringent regulatory authority in several international QA frameworks, and product-specific market authorization under Health Canada is one of the evidence routes the Global Fund QA Policy describes. Whether a specific product qualifies under the policy is a case-by-case determination that depends on the product's authorisation and the Fund's current policy text (as of 2026-04-23). We are honest about this being a case-by-case question rather than a blanket yes.",
       },
       {
         id: "q-practice-development",
-        question:
-          "What does 'developing this practice area' actually mean for us as a buyer?",
+        question: "What does 'developing this practice area' actually mean for us as a buyer?",
         answer:
           "It means we are building toward institutional engagements with the operating model, the QMS and the manufacturing footprint already in place, but without a history of awarded tenders or prequalifications yet. A first engagement is therefore a deliberate collaboration — capability walk-throughs, documentation review against the target framework, and realistic scoping of what a first programme would look like. If that sort of first-of-kind work is not a fit for your timeline, we would rather say so early.",
       },
@@ -1402,7 +1377,7 @@ const GOVERNMENTS_AND_NGOS: IndustryLeafContent = {
         id: "regulatory",
         label: "Regulatory services",
         description:
-          "Module 2/3 authoring, regional Module 1 assembly for institutional streams, DEL-anchored Canadian regulatory authority.",
+          "Module 2/3 authoring, regional Module 1 assembly for institutional streams, Canada-headquartered Canadian regulatory authority.",
         href: "/services/regulatory-services",
       },
       {
@@ -1420,7 +1395,7 @@ const GOVERNMENTS_AND_NGOS: IndustryLeafContent = {
     body: "A capability alignment conversation is a better first step than a tender submission. Tell us which framework matters most — WHO PQ, UNICEF SD, Global Fund, or a national essential-medicines buyer — and we will walk through the documentation against that framework honestly, including the parts that still need to be built. The conversation is useful even if we conclude the timing is wrong for a first programme.",
     primaryCta: {
       label: "Start a capability alignment conversation",
-      href: "/contact?source=industries-gov-ngo-closing-scope",
+      href: "/ai/project-scoping-assistant?source=industries-gov-ngo-closing-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -1428,7 +1403,7 @@ const GOVERNMENTS_AND_NGOS: IndustryLeafContent = {
       href: "/contact?source=industries-gov-ngo-closing-claims",
       variant: "outline",
     },
-    regulatoryNote: HEALTH_CANADA_DEL_REGISTER,
+    regulatoryNote: INTERNAL_SCOPE_NOTE,
   },
 };
 
@@ -1442,25 +1417,24 @@ const CLINICAL_TRIAL_SPONSORS: IndustryLeafContent = {
   crumbLabel: "Clinical trial sponsors",
   metaTitle: "Clinical Trial Sponsors — Propharmex Industries",
   metaDescription:
-    "Investigational supply, analytical release, and CTA/IND regulatory handling for sponsors running Canadian and multi-jurisdictional trials — DEL-anchored, ICH E6(R3) aligned.",
+    "Investigational supply, analytical release, and CTA/IND regulatory handling for sponsors running Canadian and multi-jurisdictional trials — Canada-headquartered, ICH E6(R3) aligned.",
   ogTitle: "Clinical Trial Sponsors — Propharmex",
   ogDescription:
-    "The Canadian-anchored operating model applied to clinical-trial operations: investigational supply executed by Propharmex, Canadian CTA handling under our Health Canada DEL.",
+    "The Canada-headquartered operating model applied to clinical-trial operations: analytical release evidence, CTA-supporting documentation, and quality handoff planning.",
   hero: {
     eyebrow: "Industries · Clinical trial sponsors",
-    headline:
-      "Investigational supply and CTA handling, under one quality system.",
+    headline: "Investigational supply and CTA handling, under one quality system.",
     valueProp:
-      "Investigational product manufacturing coordination, analytical release, and Canadian Clinical Trial Application support — executed by Propharmex, filed and inspection-hosted under our Health Canada Drug Establishment Licence.",
-    lede: "Clinical-trial sponsors live on two clocks: the protocol's enrolment schedule and the regulator's review queue. Propharmex's operating model shortens the distance between them — investigational-product CMC content authored and analytical release run by Propharmex; the regulatory team handles the Canadian Clinical Trial Application and the establishment-licence side of investigational supply. Everything runs under one QMS, so the record that supports release is the same record that supports the CTA.",
+      "Investigational product manufacturing coordination, analytical release, and Canadian Clinical Trial Application support — scoped around evidence, responsible parties, and quality handoffs.",
+    lede: "Clinical-trial sponsors live on two clocks: the protocol's enrolment schedule and the regulator's review queue. Propharmex's operating model shortens the distance between them — investigational-product CMC content authored and analytical release run by Propharmex; the regulatory team handles the Canadian Clinical Trial Application and the establishment-regulatory footprint side of investigational supply. Everything runs under one QMS, so the record that supports release is the same record that supports the CTA.",
     stats: [
       { label: "GCP framework", value: "ICH E6(R3)" },
       { label: "CTD structure", value: "ICH M4 eCTD" },
-      { label: "Canadian anchor", value: "Mississauga DEL (confirmed)" },
+      { label: "Canadian anchor", value: "Canada-headquartered review" },
     ],
     primaryCta: {
       label: "Scope an investigational supply programme",
-      href: "/contact?source=industries-trials-hero-scope",
+      href: "/ai/project-scoping-assistant?source=industries-trials-hero-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -1490,7 +1464,7 @@ const CLINICAL_TRIAL_SPONSORS: IndustryLeafContent = {
         id: "canadian-cta",
         label: "Canadian CTA handling alongside US or global submissions",
         description:
-          "Sponsors running a global trial with Canadian sites need a Canadian Clinical Trial Application handled alongside the US IND or the ROW submissions. The filing itself is manageable; the operational establishment-licence question — who imports and releases the investigational product in Canada — is where programmes stall if it is not solved early.",
+          "Sponsors running a global trial with Canadian sites need a Canadian Clinical Trial Application handled alongside the US IND or the ROW submissions. The filing itself is manageable; the operational establishment-regulatory footprint question — who imports and releases the investigational product in Canada — is where programmes stall if it is not solved early.",
       },
     ],
   },
@@ -1530,7 +1504,7 @@ const CLINICAL_TRIAL_SPONSORS: IndustryLeafContent = {
   regulatory: {
     eyebrow: "Regulatory context",
     heading: "The frameworks a trial-sponsor engagement runs against",
-    lede: "Four public frameworks anchor most trial-sponsor engagements. Each is cited from its primary source, with \"as of 2026-04-23\" where the claim references current agency expectations rather than a stable statutory text.",
+    lede: 'Four public frameworks anchor most trial-sponsor engagements. Each is cited from its primary source, with "as of 2026-04-23" where the claim references current agency expectations rather than a stable statutory text.',
     topics: [
       {
         id: "ich-e6",
@@ -1555,10 +1529,10 @@ const CLINICAL_TRIAL_SPONSORS: IndustryLeafContent = {
       },
       {
         id: "del-anchor",
-        heading: "Canadian establishment licence anchor",
-        body: "Investigational product entering Canadian trial sites requires import and release by a Drug Establishment Licence holder. Our Health Canada DEL is that holder in a Propharmex-supported Canadian CTA. The licence is listed on the Drug and Health Product Register and can be verified today. Sponsors using our DEL avoid standing up a separate Canadian import-and-release footprint for a single trial.",
+        heading: "Canadian establishment regulatory footprint anchor",
+        body: "Investigational product entering Canadian trial sites requires a clear import, release, and accountability model. Propharmex scopes the analytical release evidence, CTA-supporting documentation, and quality handoff so sponsors understand the work before operational commitments are made.",
         status: "confirmed",
-        source: HEALTH_CANADA_DEL_REGISTER,
+        source: INTERNAL_SCOPE_NOTE,
       },
     ],
   },
@@ -1585,7 +1559,7 @@ const CLINICAL_TRIAL_SPONSORS: IndustryLeafContent = {
         id: "canadian-cta-add",
         service: "Canadian CTA addition",
         title: "Adding Canadian sites to a US-IND-only trial",
-        body: "A sponsor with an active US IND extended enrolment to Canadian sites. Propharmex authored the Canadian Clinical Trial Application, handled the establishment-licence-backed import and release, and coordinated protocol amendments with the sponsor's US regulatory lead.",
+        body: "A sponsor with an active US IND extended enrolment to Canadian sites. Propharmex authored the Canadian Clinical Trial Application, handled the establishment-regulatory footprint-backed import and release, and coordinated protocol amendments with the sponsor's US regulatory lead.",
         status: "under-confirmation",
       },
     ],
@@ -1602,15 +1576,13 @@ const CLINICAL_TRIAL_SPONSORS: IndustryLeafContent = {
     items: [
       {
         id: "q-clinical-conduct",
-        question:
-          "Do you run the clinical conduct of the trial itself?",
+        question: "Do you run the clinical conduct of the trial itself?",
         answer:
           "No. Clinical conduct — investigator selection, patient enrolment, monitoring, data management — is the sponsor's responsibility or the responsibility of a CRO the sponsor selects. Propharmex's scope is investigational product, analytical release, and Canadian CTA handling, not clinical operations.",
       },
       {
         id: "q-canadian-cta-timing",
-        question:
-          "What is a realistic timeline for a Canadian Clinical Trial Application?",
+        question: "What is a realistic timeline for a Canadian Clinical Trial Application?",
         answer:
           "Health Canada's default review target for a CTA is 30 calendar days (as of 2026-04-23), assuming no clock stops. Authoring and assembly time on our side is typically measured in weeks rather than months when the underlying CMC and protocol work is clean. When it is not, the authoring timeline is not the critical path and we will say so.",
       },
@@ -1619,12 +1591,11 @@ const CLINICAL_TRIAL_SPONSORS: IndustryLeafContent = {
         question:
           "Do you perform QP-equivalent release review for investigational product shipped to Canadian sites?",
         answer:
-          "Yes, under the authority of our Health Canada Drug Establishment Licence. The release review is documented against the protocol's release specifications, the lot's analytical record, and the CTA's authorised specifications. The sponsor retains ultimate release responsibility under the investigator's and sponsor's agreements.",
+          "Potentially, after scope review. The release review is documented against the protocol's release specifications, the lot's analytical record, and the CTA's authorised specifications. The sponsor retains ultimate release responsibility under the investigator's and sponsor's agreements.",
       },
       {
         id: "q-global-coordination",
-        question:
-          "How do you coordinate with our US IND or global regulatory lead?",
+        question: "How do you coordinate with our US IND or global regulatory lead?",
         answer:
           "The sponsor's regulatory lead owns the overall strategy. Our Canadian regulatory work is authored into the sponsor's document-management system, with the Canadian Module 1 and CTA-specific content consistent with the underlying Module 2 and Module 3 the US IND sits on. We do not operate as a second, uncoordinated regulatory team.",
       },
@@ -1660,12 +1631,11 @@ const CLINICAL_TRIAL_SPONSORS: IndustryLeafContent = {
   },
   closing: {
     eyebrow: "Start a conversation",
-    heading:
-      "Scope an investigational-supply programme that keeps your enrolment clock honest",
+    heading: "Scope an investigational-supply programme that keeps your enrolment clock honest",
     body: "Tell us where the trial sits — protocol in final draft, first-patient-in scheduled, enrolment already underway with Canadian sites added late — and we will shape a scope around the enrolment clock rather than a generic release cadence. The Canadian-anchored operating model is how investigational product arrives at Canadian and US sites under one coherent release record.",
     primaryCta: {
       label: "Scope an investigational supply programme",
-      href: "/contact?source=industries-trials-closing-scope",
+      href: "/ai/project-scoping-assistant?source=industries-trials-closing-scope",
       variant: "primary",
     },
     secondaryCta: {
@@ -1673,7 +1643,7 @@ const CLINICAL_TRIAL_SPONSORS: IndustryLeafContent = {
       href: "/contact?source=industries-trials-closing-cta",
       variant: "outline",
     },
-    regulatoryNote: HEALTH_CANADA_DEL_REGISTER,
+    regulatoryNote: INTERNAL_SCOPE_NOTE,
   },
 };
 
@@ -1690,10 +1660,7 @@ const CLINICAL_TRIAL_SPONSORS: IndustryLeafContent = {
  *
  * Same pattern used for `regulatory-services.ts` after its follow-up PR.
  */
-export const INDUSTRIES_LEAF_CONTENT: Record<
-  IndustrySlug,
-  IndustryLeafContent
-> = {
+export const INDUSTRIES_LEAF_CONTENT: Record<IndustrySlug, IndustryLeafContent> = {
   "pharmaceutical-innovators": PHARMACEUTICAL_INNOVATORS,
   "generic-manufacturers": GENERIC_MANUFACTURERS,
   "cdmo-partners": CDMO_PARTNERS,
