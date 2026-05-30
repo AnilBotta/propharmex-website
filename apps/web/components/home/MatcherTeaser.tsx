@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Sparkles, ArrowRight } from "lucide-react";
@@ -8,8 +7,9 @@ import { Sparkles, ArrowRight } from "lucide-react";
 import { Badge, Button, fadeRise, staggerContainer, useReducedMotion } from "@propharmex/ui";
 
 import type { MatcherSection } from "../../content/home";
+import { ScientificPathwayVisual } from "../visuals/ScientificPathwayVisual";
 
-type Props = { content: MatcherSection };
+interface Props { content: MatcherSection }
 
 export function MatcherTeaser({ content }: Props) {
   const reduce = useReducedMotion();
@@ -17,7 +17,7 @@ export function MatcherTeaser({ content }: Props) {
   return (
     <section
       aria-labelledby="home-matcher-heading"
-      className="bg-[var(--color-bg)] py-20 sm:py-24"
+      className="bg-gradient-to-br from-[var(--color-primary-50)] to-[var(--color-surface)] py-20 sm:py-24"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -25,7 +25,7 @@ export function MatcherTeaser({ content }: Props) {
           whileInView="animate"
           viewport={{ once: true, margin: "0px 0px -10% 0px" }}
           variants={staggerContainer}
-          className="relative overflow-hidden rounded-[var(--radius-xl)] border border-[var(--color-border)] bg-gradient-to-br from-[var(--color-primary-50)] to-[var(--color-surface)] p-8 sm:p-12"
+          className="relative"
         >
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[3fr_2fr] lg:gap-12">
             <div className="flex flex-col gap-0">
@@ -33,7 +33,11 @@ export function MatcherTeaser({ content }: Props) {
                 variants={fadeRise}
                 className="inline-flex w-fit items-center gap-2 rounded-[var(--radius-full)] border border-[var(--color-primary-200)] bg-[var(--color-surface)] px-3 py-1"
               >
-                <Sparkles size={13} aria-hidden="true" className="text-[var(--color-primary-700)]" />
+                <Sparkles
+                  size={13}
+                  aria-hidden="true"
+                  className="text-[var(--color-primary-700)]"
+                />
                 <span className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-[0.12em] text-[var(--color-primary-700)]">
                   {content.eyebrow}
                 </span>
@@ -54,20 +58,23 @@ export function MatcherTeaser({ content }: Props) {
                 {content.body}
               </motion.p>
 
-              <motion.ul
-                variants={staggerContainer}
-                className="mt-6 flex flex-wrap gap-2"
-              >
+              <motion.ul variants={staggerContainer} className="mt-6 flex flex-wrap gap-2">
                 {content.chips.map((chip) => (
                   <motion.li key={chip.id} variants={fadeRise}>
-                    <Badge variant="outline" className="border-[var(--color-primary-200)] bg-[var(--color-surface)] text-[var(--color-primary-900)]">
+                    <Badge
+                      variant="outline"
+                      className="border-[var(--color-primary-200)] bg-[var(--color-surface)] text-[var(--color-primary-900)]"
+                    >
                       {chip.label}
                     </Badge>
                   </motion.li>
                 ))}
               </motion.ul>
 
-              <motion.div variants={fadeRise} className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <motion.div
+                variants={fadeRise}
+                className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center"
+              >
                 <Button asChild variant="primary" size="lg">
                   <Link href={content.ctaHref}>
                     {content.ctaLabel}
@@ -80,17 +87,14 @@ export function MatcherTeaser({ content }: Props) {
               </motion.div>
             </div>
 
-            <motion.div
-              variants={fadeRise}
-              className="overflow-hidden rounded-[var(--radius-md)] bg-[var(--color-surface)] shadow-[var(--shadow-sm)]"
-            >
-              <Image
-                src="/digital-infrastructure.png"
-                alt="Digital infrastructure for AI-assisted dosage form matching"
-                width={1280}
-                height={720}
-                sizes="(min-width: 1024px) 36vw, 100vw"
-                className="h-auto w-full"
+            <motion.div variants={fadeRise} className="lg:translate-y-2">
+              <ScientificPathwayVisual
+                eyebrow={content.visual.eyebrow}
+                heading={content.visual.heading}
+                nodes={content.visual.nodes}
+                summaryLabel={content.visual.summaryLabel}
+                summary={content.visual.summary}
+                tone="ai"
               />
             </motion.div>
           </div>
