@@ -6,6 +6,7 @@ import { Button } from "@propharmex/ui";
 import { env, jsonLdGraph } from "@propharmex/lib";
 
 import { JsonLd } from "../../components/site/JsonLd";
+import { ScientificPathwayVisual } from "../../components/visuals/ScientificPathwayVisual";
 import { SERVICES_OVERVIEW } from "../../content/services-overview";
 
 export const revalidate = 300;
@@ -73,7 +74,16 @@ export default function ServicesPage() {
             </div>
           </div>
 
-          <ScientificScopeVisual />
+          <ScientificPathwayVisual
+            eyebrow="Molecule to scope"
+            heading="A connected path from product uncertainty to a reviewed workstream."
+            nodes={SERVICES_OVERVIEW.services.map((service) => ({
+              label: service.title,
+              detail: service.label,
+            }))}
+            summaryLabel="First useful output"
+            summary="A qualified brief that gives the sponsor and Propharmex the same starting point before any scope is confirmed."
+          />
         </div>
       </section>
 
@@ -195,41 +205,6 @@ export default function ServicesPage() {
 
       <JsonLd id="services-overview-jsonld" data={pageJsonLd} />
     </>
-  );
-}
-
-function ScientificScopeVisual() {
-  return (
-    <div
-      aria-hidden="true"
-      className="relative min-h-[360px] overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[linear-gradient(135deg,var(--color-surface),var(--color-slate-50))] p-6 shadow-[var(--shadow-lg)]"
-    >
-      <div className="absolute inset-x-8 top-1/2 h-px bg-[linear-gradient(90deg,transparent,var(--color-primary-300),transparent)]" />
-      {["Product", "Evidence", "Pathway", "Scope"].map((label, index) => (
-        <div
-          key={label}
-          className="absolute rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-white/90 p-4 shadow-[var(--shadow-sm)]"
-          style={{
-            left: `${8 + index * 22}%`,
-            top: index % 2 === 0 ? "18%" : "58%",
-            width: "9.5rem",
-          }}
-        >
-          <p className="font-[family-name:var(--font-mono)] text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--color-primary-700)]">
-            0{index + 1}
-          </p>
-          <p className="mt-2 text-sm font-semibold text-[var(--color-fg)]">{label}</p>
-        </div>
-      ))}
-      <div className="absolute bottom-6 left-6 right-6 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-primary-900)] p-5 text-white">
-        <p className="text-xs font-semibold uppercase tracking-[0.1em] text-white/60">
-          First useful output
-        </p>
-        <p className="text-white/82 mt-2 text-sm leading-relaxed">
-          A qualified brief that gives the sponsor and Propharmex the same starting point.
-        </p>
-      </div>
-    </div>
   );
 }
 
