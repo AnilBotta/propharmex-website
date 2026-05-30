@@ -1,18 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  ArrowUpRight,
-  Bot,
-  ClipboardList,
-  FileCheck2,
-  MessageSquareText,
-  Pill,
-} from "lucide-react";
+import { ArrowUpRight, ClipboardList, FileCheck2, MessageSquareText, Pill } from "lucide-react";
 
 import { Button } from "@propharmex/ui";
 import { env, jsonLdGraph } from "@propharmex/lib";
 
 import { JsonLd } from "../../components/site/JsonLd";
+import { ScientificPathwayVisual } from "../../components/visuals/ScientificPathwayVisual";
 import { AI_TOOLS } from "../../content/ai-tools";
 
 export const revalidate = 300;
@@ -79,39 +73,17 @@ export default function AiToolsPage() {
               </Button>
             </div>
           </div>
-          <div className="rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] p-6 shadow-[var(--shadow-lg)]">
-            <div className="flex items-center gap-3">
-              <span className="grid size-12 place-items-center rounded-[var(--radius-md)] bg-[var(--color-primary-50)] text-[var(--color-primary-700)]">
-                <Bot aria-hidden="true" size={24} />
-              </span>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.1em] text-[var(--color-muted)]">
-                  Tool-led intake
-                </p>
-                <p className="font-[family-name:var(--font-display)] text-xl font-semibold text-[var(--color-fg)]">
-                  Better context before the first call
-                </p>
-              </div>
-            </div>
-            <ol className="mt-8 grid gap-3">
-              {AI_TOOLS.workflow.steps.map((step, index) => (
-                <li
-                  key={step.label}
-                  className="flex gap-3 rounded-[var(--radius-md)] bg-[var(--color-slate-50)] p-4"
-                >
-                  <span className="font-[family-name:var(--font-mono)] text-sm font-semibold text-[var(--color-primary-700)]">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <div>
-                    <p className="text-sm font-semibold text-[var(--color-fg)]">{step.label}</p>
-                    <p className="mt-1 text-sm leading-relaxed text-[var(--color-slate-800)]">
-                      {step.body}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </div>
+          <ScientificPathwayVisual
+            eyebrow="Tool-led intake"
+            heading="Better context before the first call."
+            nodes={AI_TOOLS.tools.map((tool) => ({
+              label: tool.title,
+              detail: tool.eyebrow,
+            }))}
+            summaryLabel={AI_TOOLS.workflow.heading}
+            summary={AI_TOOLS.workflow.lede}
+            tone="ai"
+          />
         </div>
       </section>
 
