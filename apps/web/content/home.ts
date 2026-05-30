@@ -143,6 +143,16 @@ export interface MatcherSection {
   heading: string;
   body: string;
   chips: DosageChip[];
+  visual: {
+    eyebrow: string;
+    heading: string;
+    nodes: {
+      label: string;
+      detail: string;
+    }[];
+    summaryLabel: string;
+    summary: string;
+  };
   ctaHref: string;
   ctaLabel: string;
   disclaimer: string;
@@ -546,6 +556,31 @@ export const HOME: HomeContent = {
     heading: "Complex dosage forms we support",
     body: "Capabilities span solids, liquids, topicals and semisolids, injectables, ophthalmics, and transdermal systems. Describe a target product in a sentence and the matcher returns the dosage forms we can develop end-to-end, with explicit reasoning.",
     chips: DOSAGE_CHIPS,
+    visual: {
+      eyebrow: "scoping path",
+      heading: "From product question to review-ready brief",
+      nodes: [
+        {
+          label: "Product context",
+          detail: "Dosage form, stage, target market, and known evidence gaps.",
+        },
+        {
+          label: "Capability fit",
+          detail: "Development, analytical, regulatory, and clinical needs separated clearly.",
+        },
+        {
+          label: "Risk signals",
+          detail: "Missing data, method readiness, and pathway concerns surfaced early.",
+        },
+        {
+          label: "Human handoff",
+          detail: "AI summary becomes a structured brief for Propharmex review.",
+        },
+      ],
+      summaryLabel: "qualified next step",
+      summary:
+        "The tool helps a sponsor describe the programme before a call, so the first conversation can focus on scientific fit, evidence gaps, and scope.",
+    },
     ctaHref: "/ai/dosage-matcher",
     ctaLabel: "Open the matcher",
     disclaimer:
