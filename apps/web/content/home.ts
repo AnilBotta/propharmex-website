@@ -60,7 +60,7 @@ export interface HeroSection {
 /* -------------------------------------------------------------------------- */
 
 export interface CapabilityBadgeItem {
-  id: "complex-dosage" | "regulatory-aware" | "analytical" | "clinical" | "canada-platform";
+  id: "complex-dosage" | "regulatory-aware" | "analytical" | "canada-platform";
   label: string;
   caption: string;
   href: string;
@@ -91,13 +91,12 @@ export interface WhyPillarsSection {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  4. What We Do — four service lines (logistics removed,                   */
-/*     Clinical & BE insight added)                                           */
+/*  4. What We Do — core service lines                                       */
 /* -------------------------------------------------------------------------- */
 
 export interface CapabilityCard {
-  id: "development" | "analytical" | "regulatory" | "clinical";
-  icon: "flask" | "microscope" | "file-check" | "stethoscope";
+  id: "development" | "analytical" | "regulatory";
+  icon: "flask" | "microscope" | "file-check";
   title: string;
   description: string;
   href: string;
@@ -377,10 +376,10 @@ export const DOSAGE_CHIPS: DosageChip[] = [
 export const HOME: HomeContent = {
   metaTitle: "Propharmex - Canada-headquartered pharmaceutical services for global sponsors",
   metaDescription:
-    "Propharmex helps global pharmaceutical sponsors scope analytical, regulatory, development, and clinical evidence work from a Canada-headquartered platform.",
+    "Propharmex helps global pharmaceutical sponsors scope analytical, regulatory, and development work from a Canada-headquartered platform.",
   ogTitle: "Propharmex - Canada-headquartered pharmaceutical services",
   ogDescription:
-    "Analytical evidence, regulatory strategy, development planning, and clinical insight for global sponsors working on complex or niche pharmaceutical programmes.",
+    "Analytical evidence, regulatory strategy, and development planning for global sponsors working on complex or niche pharmaceutical programmes.",
 
   // 1. Hero
   hero: {
@@ -389,7 +388,7 @@ export const HOME: HomeContent = {
     headline: "Scope complex pharma programmes with",
     headlineAccent: "analytical and regulatory clarity.",
     subhead:
-      "Propharmex helps global sponsors turn product, evidence, and pathway questions into a practical development scope across analytical services, regulatory strategy, pharmaceutical development, and clinical or bioequivalence insight.",
+      "Propharmex helps global sponsors turn product, evidence, and pathway questions into a practical development scope across analytical services, regulatory strategy, and pharmaceutical development.",
     ctas: [
       { href: "/ai/project-scoping-assistant", label: "Start scoping", variant: "primary" },
       { href: "/ai", label: "Review AI tools", variant: "secondary" },
@@ -422,12 +421,6 @@ export const HOME: HomeContent = {
         href: "/services/analytical-services",
       },
       {
-        id: "clinical",
-        label: "Clinical and BE insight",
-        caption: "Bioequivalence and clinical strategy linked to product and pathway",
-        href: "/services/clinical-be-insight",
-      },
-      {
         id: "canada-platform",
         label: "Canada-headquartered team",
         caption: "Clear accountability, disciplined communication, and global sponsor access",
@@ -447,7 +440,7 @@ export const HOME: HomeContent = {
       {
         id: "complex-focus",
         title: "Complex Product Focus",
-        body: "Focused on niche and technically challenging products where formulation, analytics, regulatory strategy, and clinical planning must be scoped together.",
+        body: "Focused on niche and technically challenging products where formulation, analytics, and regulatory strategy must be scoped together.",
       },
       {
         id: "integrated-thinking",
@@ -471,7 +464,7 @@ export const HOME: HomeContent = {
   whatWeDo: {
     kind: "whatWeDo",
     eyebrow: "Capability map",
-    heading: "Four workstreams, one qualified scope.",
+    heading: "Three workstreams, one qualified scope.",
     cards: [
       {
         id: "development",
@@ -500,15 +493,6 @@ export const HOME: HomeContent = {
         href: "/services/regulatory-services",
         linkLabel: "Regulatory strategy",
       },
-      {
-        id: "clinical",
-        icon: "stethoscope",
-        title: "Clinical Study & Bioequivalence Insight",
-        description:
-          "Clinical and bioequivalence planning informed by molecule understanding, formulation choices, and regulatory pathway.",
-        href: "/services/clinical-be-insight",
-        linkLabel: "Clinical & bioequivalence",
-      },
     ],
   },
 
@@ -527,7 +511,7 @@ export const HOME: HomeContent = {
         role: "Strategic partnership. Programme governance. Sponsor communication.",
         capabilities: [
           "Strategic development partnership for complex and niche pharmaceutical products",
-          "Single point of accountability across formulation, analytical, regulatory, and clinical planning",
+          "Single point of accountability across formulation, analytical, and regulatory planning",
           "Transparent collaboration model with documented gate reviews and program governance",
         ],
         certificationNote:
@@ -566,7 +550,7 @@ export const HOME: HomeContent = {
         },
         {
           label: "Capability fit",
-          detail: "Development, analytical, regulatory, and clinical needs separated clearly.",
+          detail: "Development, analytical, and regulatory needs separated clearly.",
         },
         {
           label: "Risk signals",
@@ -670,12 +654,6 @@ export const HOME: HomeContent = {
       },
       {
         step: 6,
-        title: "Clinical / bioequivalence planning",
-        description:
-          "Clinical and bioequivalence study design informed by molecule understanding, formulation, and regulatory pathway.",
-      },
-      {
-        step: 7,
         title: "Scale-up & commercialization support",
         description:
           "Scale-up planning and commercialization handover with the development pathway documented end to end.",
@@ -695,7 +673,7 @@ export const HOME: HomeContent = {
         id: "innovators",
         title: "Pharmaceutical innovators",
         description:
-          "Sponsors developing complex products who need integrated formulation, analytical, regulatory, and clinical planning without building the full capability internally.",
+          "Sponsors developing complex products who need integrated formulation, analytical, and regulatory planning without building the full capability internally.",
         href: "/industries/pharmaceutical-innovators",
         size: "lg",
       },
@@ -750,10 +728,10 @@ export const HOME: HomeContent = {
       },
       {
         id: "leader-3",
-        name: "Director, Regulatory & Clinical Strategy",
-        role: "Pathway design and clinical/BE planning",
+        name: "Director, Regulatory Strategy",
+        role: "Pathway design and dossier planning",
         credential:
-          "Regulatory pathway and clinical strategy across complex generics, niche products, and public-health programs.",
+          "Regulatory pathway strategy across complex generics, niche products, and public-health programs.",
       },
     ],
     ctaHref: "/about#leadership",
@@ -773,7 +751,7 @@ export const HOME: HomeContent = {
         category: "Whitepaper",
         title: "Designing a development pathway for complex dosage forms",
         blurb:
-          "How formulation, analytical evidence, regulatory strategy, and clinical planning should be designed together — not sequentially.",
+          "How formulation, analytical evidence, and regulatory strategy should be designed together — not sequentially.",
         href: "/insights/whitepapers/canadian-cdmo-operating-model",
       },
       {
@@ -789,7 +767,7 @@ export const HOME: HomeContent = {
         category: "Article",
         title: "Niche generics and the case for integrated development",
         blurb:
-          "Why niche generic programs benefit from a single development partner that owns formulation, analytical, regulatory, and clinical thinking together.",
+          "Why niche generic programs benefit from a development partner that connects formulation, analytical, and regulatory thinking.",
         href: "/case-studies",
       },
     ],

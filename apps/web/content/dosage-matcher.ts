@@ -25,13 +25,12 @@ export const DOSAGE_MATCHER = {
   },
   /** Persistent disclaimer banner above the results. */
   disclaimer:
-    "AI-assisted matching against our published capability set. Not regulatory or clinical advice. Confirm anything material with our scientists or your own counsel.",
+    "AI-assisted matching against our published capability set. Not regulatory or medical advice. Confirm anything material with our scientists or your own counsel.",
   form: {
     descriptionLabel: "Describe the molecule or programme",
     descriptionPlaceholder:
       "e.g. Small-molecule API, BCS Class II, indicated for chronic adult dosing. Plan to file as a US ANDA. Need stability and method validation.",
-    descriptionHelp:
-      "Free-text. The more context you provide, the sharper the match.",
+    descriptionHelp: "Free-text. The more context you provide, the sharper the match.",
     filtersLabel: "Or use the structured filters (optional)",
     filterLabels: {
       apiType: "API type",
@@ -90,14 +89,11 @@ export const DOSAGE_MATCHER = {
   },
   errors: {
     /** 503 — no Anthropic key. */
-    unconfigured:
-      "Our matcher is being set up. Please use the contact form for now.",
+    unconfigured: "Our matcher is being set up. Please use the contact form for now.",
     /** Stream / fetch failure. */
-    streamFailed:
-      "We couldn't finish that match. Please try again, or use the contact form.",
+    streamFailed: "We couldn't finish that match. Please try again, or use the contact form.",
     /** 429 — rate limited. */
-    rateLimited:
-      "Too many matches in a short window. Please wait a minute and retry.",
+    rateLimited: "Too many matches in a short window. Please wait a minute and retry.",
     /** Catch-all. */
     generic: "Something went wrong. Please try again, or use the contact form.",
   },
@@ -159,7 +155,7 @@ export const DOSAGE_MATCHER = {
       discovery: "Discovery",
       preformulation: "Pre-formulation",
       formulation: "Formulation",
-      clinical: "Clinical",
+      clinical: "Human-study stage",
       scaleup: "Scale-up",
       commercial: "Commercial",
     },

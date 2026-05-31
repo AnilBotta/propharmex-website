@@ -22,7 +22,7 @@ function entry(
   path: string,
   priority: number,
   changeFrequency: ChangeFreq,
-  lastModified: Date = BUILD_DATE,
+  lastModified: Date = BUILD_DATE
 ): Entry {
   return { url: url(path), lastModified, changeFrequency, priority };
 }
@@ -40,7 +40,6 @@ const STATIC_ENTRIES: Entry[] = [
   entry("/services/pharmaceutical-development", 0.9, "monthly"),
   entry("/services/analytical-services", 0.9, "monthly"),
   entry("/services/regulatory-services", 0.9, "monthly"),
-  entry("/services/clinical-be-insight", 0.9, "monthly"),
   entry("/dosage-forms", 0.8, "monthly"),
   entry("/industries", 0.7, "monthly"),
   entry("/case-studies", 0.7, "weekly"),
@@ -67,26 +66,26 @@ const STATIC_ENTRIES: Entry[] = [
 // route's generateStaticParams. Keep this in sync when new leaves ship.
 const SERVICE_LEAF_ENTRIES: Entry[] = [
   ...Object.keys(DOSAGE_FORM_CONTENT).map((slug) =>
-    entry(`/services/pharmaceutical-development/${slug}`, 0.8, "monthly"),
+    entry(`/services/pharmaceutical-development/${slug}`, 0.8, "monthly")
   ),
   ...ANALYTICAL_SERVICE_SLUGS.map((slug) =>
-    entry(`/services/analytical-services/${slug}`, 0.8, "monthly"),
+    entry(`/services/analytical-services/${slug}`, 0.8, "monthly")
   ),
   ...REGULATORY_SERVICE_SLUGS.map((slug) =>
-    entry(`/services/regulatory-services/${slug}`, 0.8, "monthly"),
+    entry(`/services/regulatory-services/${slug}`, 0.8, "monthly")
   ),
 ];
 
 const INDUSTRY_LEAF_ENTRIES: Entry[] = INDUSTRY_SLUGS.map((slug) =>
-  entry(`/industries/${slug}`, 0.7, "monthly"),
+  entry(`/industries/${slug}`, 0.7, "monthly")
 );
 
 const CASE_STUDY_ENTRIES: Entry[] = CASE_STUDY_SLUGS.map((slug) =>
-  entry(`/case-studies/${slug}`, 0.7, "monthly"),
+  entry(`/case-studies/${slug}`, 0.7, "monthly")
 );
 
 const ARTICLE_BY_SLUG = Object.fromEntries(
-  INSIGHTS.articles.map((article) => [article.slug, article]),
+  INSIGHTS.articles.map((article) => [article.slug, article])
 );
 
 const ARTICLE_ENTRIES: Entry[] = ARTICLE_SLUGS.map((slug) => {
@@ -95,9 +94,7 @@ const ARTICLE_ENTRIES: Entry[] = ARTICLE_SLUGS.map((slug) => {
   return entry(`/insights/${slug}`, 0.7, "monthly", published);
 });
 
-const WHITEPAPER_BY_SLUG = Object.fromEntries(
-  INSIGHTS.whitepapers.map((wp) => [wp.slug, wp]),
-);
+const WHITEPAPER_BY_SLUG = Object.fromEntries(INSIGHTS.whitepapers.map((wp) => [wp.slug, wp]));
 
 const WHITEPAPER_ENTRIES: Entry[] = WHITEPAPER_SLUGS.map((slug) => {
   const wp = WHITEPAPER_BY_SLUG[slug];

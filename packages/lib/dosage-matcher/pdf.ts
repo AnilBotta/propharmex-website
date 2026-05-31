@@ -27,14 +27,7 @@
  * section layouts are content-specific and a shared abstraction would
  * obscure both renderers.
  */
-import {
-  PDFDocument,
-  StandardFonts,
-  rgb,
-  type Color,
-  type PDFFont,
-  type PDFPage,
-} from "pdf-lib";
+import { PDFDocument, StandardFonts, rgb, type Color, type PDFFont, type PDFPage } from "pdf-lib";
 
 import type { FitTier, Recommendation } from "./types";
 
@@ -144,12 +137,7 @@ interface DocCtx {
   fonts: { regular: PDFFont; bold: PDFFont; italic: PDFFont };
 }
 
-function wrapText(
-  text: string,
-  font: PDFFont,
-  size: number,
-  maxWidth: number,
-): string[] {
+function wrapText(text: string, font: PDFFont, size: number, maxWidth: number): string[] {
   const words = text.replace(/\s+/g, " ").trim().split(" ");
   const lines: string[] = [];
   let line = "";
@@ -187,21 +175,18 @@ function drawFooter(ctx: DocCtx): void {
     color: COLOR.divider,
   });
   ctx.page.drawText(
-    "Informational only. AI-assisted matching against published capabilities — not a regulatory or clinical recommendation.",
+    "Informational only. AI-assisted matching against published capabilities — not a regulatory or medical recommendation.",
     {
       x: MARGIN_X,
       y,
       size: SIZE.small,
       font: ctx.fonts.italic,
       color: COLOR.muted,
-    },
+    }
   );
   const url = "propharmex.com/contact";
   ctx.page.drawText(url, {
-    x:
-      PAGE_WIDTH -
-      MARGIN_X -
-      ctx.fonts.regular.widthOfTextAtSize(url, SIZE.small),
+    x: PAGE_WIDTH - MARGIN_X - ctx.fonts.regular.widthOfTextAtSize(url, SIZE.small),
     y,
     size: SIZE.small,
     font: ctx.fonts.regular,
@@ -224,7 +209,7 @@ function drawHeading(ctx: DocCtx, text: string): void {
 function drawParagraph(
   ctx: DocCtx,
   text: string,
-  opts: { size?: number; color?: Color; font?: PDFFont } = {},
+  opts: { size?: number; color?: Color; font?: PDFFont } = {}
 ): void {
   const size = opts.size ?? SIZE.body;
   const font = opts.font ?? ctx.fonts.regular;
@@ -245,12 +230,7 @@ function drawParagraph(
 
 function drawBullets(ctx: DocCtx, items: string[]): void {
   for (const item of items) {
-    const lines = wrapText(
-      item,
-      ctx.fonts.regular,
-      SIZE.body,
-      CONTENT_WIDTH - 14,
-    );
+    const lines = wrapText(item, ctx.fonts.regular, SIZE.body, CONTENT_WIDTH - 14);
     for (let i = 0; i < lines.length; i++) {
       if (ctx.cursor < MARGIN_BOTTOM) newPage(ctx);
       const line = lines[i];
@@ -322,10 +302,7 @@ function drawHeader(ctx: DocCtx): void {
   ctx.cursor -= 18;
 }
 
-function drawInferredRequirements(
-  ctx: DocCtx,
-  recommendation: Recommendation,
-): void {
+function drawInferredRequirements(ctx: DocCtx, recommendation: Recommendation): void {
   drawHeading(ctx, "Inferred requirements");
   const caps = recommendation.inferredRequirements.capabilities
     .map((c) => humanizeCapability(c))
@@ -334,18 +311,11 @@ function drawInferredRequirements(
     font: ctx.fonts.bold,
     color: COLOR.fg,
   });
-  drawParagraph(
-    ctx,
-    recommendation.inferredRequirements.dosageFormConsiderations,
-  );
+  drawParagraph(ctx, recommendation.inferredRequirements.dosageFormConsiderations);
   drawSectionGap(ctx);
 }
 
-function drawCoverageBar(
-  ctx: DocCtx,
-  pct: number,
-  tier: FitTier,
-): void {
+function drawCoverageBar(ctx: DocCtx, pct: number, tier: FitTier): void {
   const barY = ctx.cursor;
   const barWidth = CONTENT_WIDTH;
   ctx.page.drawRectangle({
@@ -355,10 +325,7 @@ function drawCoverageBar(
     height: 5,
     color: COLOR.scoreTrack,
   });
-  const fillWidth = Math.max(
-    0,
-    Math.min(barWidth, (pct / 100) * barWidth),
-  );
+  const fillWidth = Math.max(0, Math.min(barWidth, (pct / 100) * barWidth));
   ctx.page.drawRectangle({
     x: MARGIN_X,
     y: barY,
@@ -372,7 +339,7 @@ function drawCoverageBar(
 function drawMatchSection(
   ctx: DocCtx,
   match: Recommendation["matches"][number],
-  rank: number,
+  rank: number
 ): void {
   ensureSpace(ctx, SIZE.formName + LINE.body * 4);
 
@@ -397,8 +364,7 @@ function drawMatchSection(
   });
 
   const tierLabel = fitTierLabel(match.fitTier);
-  const tierWidth =
-    ctx.fonts.bold.widthOfTextAtSize(tierLabel, SIZE.brand) + 16;
+  const tierWidth = ctx.fonts.bold.widthOfTextAtSize(tierLabel, SIZE.brand) + 16;
   const chipX = PAGE_WIDTH - MARGIN_X - tierWidth;
   const chipY = ctx.cursor - SIZE.formName + 1;
   ctx.page.drawRectangle({
@@ -422,16 +388,13 @@ function drawMatchSection(
   ctx.cursor -= SIZE.formName + 8;
 
   // Coverage line + bar.
-  ctx.page.drawText(
-    `Capability coverage: ${match.capabilityCoveragePct}%`,
-    {
-      x: MARGIN_X,
-      y: ctx.cursor,
-      size: SIZE.small,
-      font: ctx.fonts.bold,
-      color: COLOR.muted,
-    },
-  );
+  ctx.page.drawText(`Capability coverage: ${match.capabilityCoveragePct}%`, {
+    x: MARGIN_X,
+    y: ctx.cursor,
+    size: SIZE.small,
+    font: ctx.fonts.bold,
+    color: COLOR.muted,
+  });
   ctx.cursor -= 8;
   drawCoverageBar(ctx, match.capabilityCoveragePct, match.fitTier);
 
@@ -448,22 +411,19 @@ function drawMatchSection(
   ctx.cursor -= 4;
 
   // Capabilities split.
-  if (
-    match.capabilitiesCovered.length > 0 ||
-    match.capabilitiesMissing.length > 0
-  ) {
+  if (match.capabilitiesCovered.length > 0 || match.capabilitiesMissing.length > 0) {
     if (match.capabilitiesCovered.length > 0) {
       drawParagraph(
         ctx,
         `Covered: ${match.capabilitiesCovered.map(humanizeCapability).join(", ")}`,
-        { color: COLOR.body },
+        { color: COLOR.body }
       );
     }
     if (match.capabilitiesMissing.length > 0) {
       drawParagraph(
         ctx,
         `Not in our scope for this form: ${match.capabilitiesMissing.map(humanizeCapability).join(", ")}`,
-        { color: COLOR.muted, font: ctx.fonts.italic },
+        { color: COLOR.muted, font: ctx.fonts.italic }
       );
     }
     ctx.cursor -= 4;
@@ -519,15 +479,11 @@ function drawMatchSection(
 /*  Public                                                                     */
 /* -------------------------------------------------------------------------- */
 
-export async function renderDosageMatcherPdf(
-  recommendation: Recommendation,
-): Promise<Uint8Array> {
+export async function renderDosageMatcherPdf(recommendation: Recommendation): Promise<Uint8Array> {
   const doc = await PDFDocument.create();
   doc.setTitle("Propharmex — Dosage Form Capability Match");
   doc.setAuthor("Propharmex");
-  doc.setSubject(
-    "AI-assisted dosage-form match against published Propharmex capabilities",
-  );
+  doc.setSubject("AI-assisted dosage-form match against published Propharmex capabilities");
   doc.setProducer("Propharmex Dosage Form Capability Matcher");
   doc.setCreationDate(new Date());
 

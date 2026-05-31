@@ -18,14 +18,7 @@
  * generated artifact must carry "informational only / not a quote / not a
  * regulatory commitment" plus the /contact handoff URL.
  */
-import {
-  PDFDocument,
-  StandardFonts,
-  rgb,
-  type Color,
-  type PDFFont,
-  type PDFPage,
-} from "pdf-lib";
+import { PDFDocument, StandardFonts, rgb, type Color, type PDFFont, type PDFPage } from "pdf-lib";
 
 import type { ScopeSummary } from "./types";
 
@@ -83,12 +76,7 @@ interface DocCtx {
   };
 }
 
-function wrapText(
-  text: string,
-  font: PDFFont,
-  size: number,
-  maxWidth: number,
-): string[] {
+function wrapText(text: string, font: PDFFont, size: number, maxWidth: number): string[] {
   const words = text.replace(/\s+/g, " ").trim().split(" ");
   const lines: string[] = [];
   let line = "";
@@ -133,24 +121,18 @@ function drawFooter(ctx: DocCtx): void {
     thickness: 0.5,
     color: COLOR.divider,
   });
-  ctx.page.drawText(
-    "Informational only — not a quote, not a regulatory commitment.",
-    {
-      x: MARGIN_X,
-      y,
-      size: SIZE.small,
-      font: ctx.fonts.italic,
-      color: COLOR.muted,
-    },
-  );
+  ctx.page.drawText("Informational only — not a quote, not a regulatory commitment.", {
+    x: MARGIN_X,
+    y,
+    size: SIZE.small,
+    font: ctx.fonts.italic,
+    color: COLOR.muted,
+  });
   ctx.page.drawText("propharmex.com/contact", {
     x:
       PAGE_WIDTH -
       MARGIN_X -
-      ctx.fonts.regular.widthOfTextAtSize(
-        "propharmex.com/contact",
-        SIZE.small,
-      ),
+      ctx.fonts.regular.widthOfTextAtSize("propharmex.com/contact", SIZE.small),
     y,
     size: SIZE.small,
     font: ctx.fonts.regular,
@@ -161,7 +143,7 @@ function drawFooter(ctx: DocCtx): void {
 function drawHeading(
   ctx: DocCtx,
   text: string,
-  opts: { size?: number; color?: Color; bold?: boolean } = {},
+  opts: { size?: number; color?: Color; bold?: boolean } = {}
 ): void {
   const size = opts.size ?? SIZE.h2;
   const font = opts.bold === false ? ctx.fonts.regular : ctx.fonts.bold;
@@ -180,7 +162,7 @@ function drawHeading(
 function drawParagraph(
   ctx: DocCtx,
   text: string,
-  opts: { size?: number; color?: Color; font?: PDFFont } = {},
+  opts: { size?: number; color?: Color; font?: PDFFont } = {}
 ): void {
   const size = opts.size ?? SIZE.body;
   const font = opts.font ?? ctx.fonts.regular;
@@ -203,12 +185,7 @@ function drawParagraph(
 
 function drawBullets(ctx: DocCtx, items: string[]): void {
   for (const item of items) {
-    const lines = wrapText(
-      item,
-      ctx.fonts.regular,
-      SIZE.body,
-      CONTENT_WIDTH - 14,
-    );
+    const lines = wrapText(item, ctx.fonts.regular, SIZE.body, CONTENT_WIDTH - 14);
     for (let i = 0; i < lines.length; i++) {
       if (ctx.cursor < MARGIN_BOTTOM) {
         newPage(ctx);
@@ -323,17 +300,13 @@ function drawRisks(ctx: DocCtx, risks: ScopeSummary["risks"]): void {
   for (const r of risks) {
     const tag = r.severity.toUpperCase();
     const tagColor =
-      r.severity === "high"
-        ? COLOR.danger
-        : r.severity === "medium"
-          ? COLOR.warn
-          : COLOR.muted;
+      r.severity === "high" ? COLOR.danger : r.severity === "medium" ? COLOR.warn : COLOR.muted;
     const tagWidth = ctx.fonts.bold.widthOfTextAtSize(tag, SIZE.small);
     const lines = wrapText(
       r.description,
       ctx.fonts.regular,
       SIZE.body,
-      CONTENT_WIDTH - tagWidth - 14,
+      CONTENT_WIDTH - tagWidth - 14
     );
     for (let i = 0; i < lines.length; i++) {
       if (ctx.cursor < MARGIN_BOTTOM) {
@@ -396,7 +369,7 @@ function drawPhases(ctx: DocCtx, phases: ScopeSummary["phases"]): void {
     ctx.cursor -= LINE.body;
     drawBullets(
       ctx,
-      p.milestones.map((m) => m),
+      p.milestones.map((m) => m)
     );
     ctx.cursor -= 4;
   });
@@ -413,10 +386,7 @@ function drawTimeline(ctx: DocCtx, timeline: ScopeSummary["ballparkTimelineWeeks
   drawSectionGap(ctx);
 }
 
-function drawRecommendedServices(
-  ctx: DocCtx,
-  services: ScopeSummary["recommendedServices"],
-): void {
+function drawRecommendedServices(ctx: DocCtx, services: ScopeSummary["recommendedServices"]): void {
   drawHeading(ctx, "Recommended Propharmex services");
   drawParagraph(ctx, services.map(humanizePillar).join(" · "));
   drawSectionGap(ctx);
@@ -436,8 +406,8 @@ function humanizeStage(stage: string): string {
       return "Method development";
     case "stability":
       return "Stability";
-    case "clinical-supplies":
-      return "Clinical supplies";
+    case "development-materials":
+      return "Development materials";
     case "scaleup":
       return "Scale-up";
     case "commercial":
@@ -468,9 +438,7 @@ function humanizePillar(pillar: string): string {
 /*  Public                                                                     */
 /* -------------------------------------------------------------------------- */
 
-export async function renderScopePdf(
-  summary: ScopeSummary,
-): Promise<Uint8Array> {
+export async function renderScopePdf(summary: ScopeSummary): Promise<Uint8Array> {
   const doc = await PDFDocument.create();
   doc.setTitle("Propharmex — Project scope");
   doc.setAuthor("Propharmex");

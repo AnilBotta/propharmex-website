@@ -4,7 +4,7 @@
  * Single card, paired CTAs, no additional copy. Moved from
  * components/pharmdev/ in PR-H' (hub primitives extraction). Used by all 3
  * hub pages today (pharmaceutical-development, dosage-forms,
- * clinical-be-insight) via the structural type-alias pattern in their
+ * dosage-forms) via the structural type-alias pattern in their
  * respective content files.
  */
 import type { FC } from "react";
@@ -17,7 +17,7 @@ import type { PharmDevHubClosing } from "../../../content/pharmaceutical-develop
 
 import { SectionReveal } from "./SectionReveal";
 
-type Props = { content: PharmDevHubClosing };
+interface Props { content: PharmDevHubClosing }
 
 export const HubClosing: FC<Props> = ({ content }) => {
   return (
@@ -50,9 +50,7 @@ export const HubClosing: FC<Props> = ({ content }) => {
                 </Link>
               </Button>
               <Button asChild variant={content.secondaryCta.variant} size="lg">
-                <Link href={content.secondaryCta.href}>
-                  {content.secondaryCta.label}
-                </Link>
+                <Link href={content.secondaryCta.href}>{content.secondaryCta.label}</Link>
               </Button>
             </div>
           </div>

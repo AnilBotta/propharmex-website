@@ -89,10 +89,10 @@ export const CONCIERGE: ConciergeContent = {
           "What information should a global sponsor prepare before scoping analytical, regulatory, or development work with Propharmex?",
       },
       {
-        id: "bioequivalence",
-        label: "Do you do bioequivalence studies?",
+        id: "regulatory-scope",
+        label: "Can you help with filings?",
         prompt:
-          "Does Propharmex run bioequivalence studies, and how do you support an ANDA programme that needs BE data?",
+          "How does Propharmex support regulatory strategy and dossier planning for a global sponsor?",
       },
     ],
   },

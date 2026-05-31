@@ -37,12 +37,11 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL),
   title: {
-    default:
-      "Propharmex — specialty CDMO for complex and niche pharmaceutical products",
+    default: "Propharmex — specialty CDMO for complex and niche pharmaceutical products",
     template: "%s · Propharmex",
   },
   description:
-    "Propharmex is a Canada-headquartered specialty CDMO advancing complex and niche pharmaceutical products from concept to commercialization. Pharmaceutical development, advanced analytical services, regulatory strategy, and clinical study insight under one development pathway.",
+    "Propharmex is a Canada-headquartered specialty CDMO advancing complex and niche pharmaceutical products from concept to commercialization. Pharmaceutical development, advanced analytical services, and regulatory strategy under one development pathway.",
   applicationName: "Propharmex",
   alternates: {
     canonical: "/",
@@ -68,7 +67,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Propharmex",
     description:
-      "Canada-headquartered specialty CDMO for complex and niche pharmaceutical products — pharmaceutical development, advanced analytical services, regulatory strategy, and clinical study insight.",
+      "Canada-headquartered specialty CDMO for complex and niche pharmaceutical products — pharmaceutical development, advanced analytical services, and regulatory strategy.",
   },
   icons: {
     icon: "/favicon.ico",

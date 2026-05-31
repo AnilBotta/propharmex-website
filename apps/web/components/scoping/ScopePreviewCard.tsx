@@ -24,10 +24,7 @@ import { useState } from "react";
 import { Pencil, Download, Send } from "lucide-react";
 
 import type { ScopeSummary } from "@propharmex/lib/scoping";
-import {
-  DEVELOPMENT_STAGES,
-  SERVICE_PILLARS,
-} from "@propharmex/lib/scoping";
+import { DEVELOPMENT_STAGES, SERVICE_PILLARS } from "@propharmex/lib/scoping";
 
 import { SCOPING } from "../../content/scoping";
 
@@ -42,7 +39,7 @@ interface Props {
       | "developmentStage"
       | "deliverables"
       | "assumptions"
-      | "recommendedServices",
+      | "recommendedServices"
   ) => void;
   /** Send-to-Propharmex action click. Parent opens the SubmitDialog. */
   onRequestSubmit?: () => void;
@@ -151,8 +148,7 @@ export function ScopePreviewCard({
               onChange={(e) => {
                 onChange({
                   ...scope,
-                  developmentStage:
-                    e.target.value as ScopeSummary["developmentStage"],
+                  developmentStage: e.target.value as ScopeSummary["developmentStage"],
                 });
                 onEdit?.("developmentStage");
                 setEditing(null);
@@ -228,10 +224,7 @@ export function ScopePreviewCard({
           >
             <ul className="flex flex-col gap-2">
               {scope.risks.map((r, i) => (
-                <li
-                  key={i}
-                  className="flex items-start gap-2 text-sm text-[var(--color-fg)]"
-                >
+                <li key={i} className="flex items-start gap-2 text-sm text-[var(--color-fg)]">
                   <SeverityBadge severity={r.severity} />
                   <span className="leading-relaxed">{r.description}</span>
                 </li>
@@ -260,7 +253,7 @@ export function ScopePreviewCard({
                     {p.durationWeeks} {p.durationWeeks === 1 ? "wk" : "wks"}
                   </span>
                 </div>
-                <ul className="mt-1 ml-4 flex flex-col gap-0.5 text-[var(--color-slate-800)]">
+                <ul className="ml-4 mt-1 flex flex-col gap-0.5 text-[var(--color-slate-800)]">
                   {p.milestones.map((m, j) => (
                     <li key={j} className="list-disc text-[13px] leading-snug">
                       {m}
@@ -284,7 +277,7 @@ export function ScopePreviewCard({
           <p className="text-sm text-[var(--color-fg)]">
             {SCOPING.preview.timelineRange(
               scope.ballparkTimelineWeeks.min,
-              scope.ballparkTimelineWeeks.max,
+              scope.ballparkTimelineWeeks.max
             )}
           </p>
         </Section>
@@ -318,19 +311,17 @@ export function ScopePreviewCard({
           disabled={!canAct || downloading}
           onClick={onDownloadPdf}
           aria-label={SCOPING.preview.actions.pdfLabel}
-          className="inline-flex items-center gap-1.5 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2 text-sm font-medium text-[var(--color-fg)] hover:border-[var(--color-primary-700)] hover:text-[var(--color-primary-700)] disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)]"
+          className="inline-flex items-center gap-1.5 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2 text-sm font-medium text-[var(--color-fg)] hover:border-[var(--color-primary-700)] hover:text-[var(--color-primary-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] disabled:cursor-not-allowed disabled:opacity-60"
         >
           <Download aria-hidden="true" size={14} />
-          {downloading
-            ? SCOPING.preview.actions.pdfPendingLabel
-            : SCOPING.preview.actions.pdfLabel}
+          {downloading ? SCOPING.preview.actions.pdfPendingLabel : SCOPING.preview.actions.pdfLabel}
         </button>
         <button
           type="button"
           disabled={!canAct}
           onClick={onRequestSubmit}
           aria-label={SCOPING.preview.actions.submitLabel}
-          className="inline-flex items-center gap-1.5 rounded-[var(--radius-md)] bg-[var(--color-primary-700)] px-3 py-2 text-sm font-medium text-white hover:bg-[var(--color-primary-800)] disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] focus-visible:ring-offset-1"
+          className="inline-flex items-center gap-1.5 rounded-[var(--radius-md)] bg-[var(--color-primary-700)] px-3 py-2 text-sm font-medium text-white hover:bg-[var(--color-primary-800)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60"
         >
           <Send aria-hidden="true" size={14} />
           {SCOPING.preview.actions.submitLabel}
@@ -453,9 +444,7 @@ function ListEditor({
         rows={Math.max(3, initial.length + 1)}
         className="w-full resize-none rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2 text-sm leading-snug text-[var(--color-fg)] focus-visible:border-[var(--color-primary-700)] focus-visible:outline-none"
       />
-      <p className="text-[10px] italic text-[var(--color-muted)]">
-        One item per line.
-      </p>
+      <p className="text-[10px] italic text-[var(--color-muted)]">One item per line.</p>
       <div className="flex items-center justify-end gap-2">
         <button
           type="button"
@@ -530,7 +519,7 @@ function PillarMultiSelect({
           type="button"
           onClick={() => {
             const next = SERVICE_PILLARS.filter((p) =>
-              selected.has(p),
+              selected.has(p)
             ) as ScopeSummary["recommendedServices"];
             if (next.length === 0) return;
             onSave(next);
@@ -568,10 +557,7 @@ function BulletList({ items }: { items: string[] }) {
   return (
     <ul className="ml-4 flex flex-col gap-1">
       {items.map((item, i) => (
-        <li
-          key={i}
-          className="list-disc text-sm leading-relaxed text-[var(--color-fg)]"
-        >
+        <li key={i} className="list-disc text-sm leading-relaxed text-[var(--color-fg)]">
           {item}
         </li>
       ))}
@@ -622,8 +608,8 @@ function humanizeStage(stage: ScopeSummary["developmentStage"]): string {
       return "Method development";
     case "stability":
       return "Stability";
-    case "clinical-supplies":
-      return "Clinical supplies";
+    case "development-materials":
+      return "Development materials";
     case "scaleup":
       return "Scale-up";
     case "commercial":
@@ -631,9 +617,7 @@ function humanizeStage(stage: ScopeSummary["developmentStage"]): string {
   }
 }
 
-function humanizePillar(
-  pillar: ScopeSummary["recommendedServices"][number],
-): string {
+function humanizePillar(pillar: ScopeSummary["recommendedServices"][number]): string {
   switch (pillar) {
     case "development":
       return "Development";

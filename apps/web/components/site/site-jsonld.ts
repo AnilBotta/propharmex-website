@@ -27,7 +27,7 @@ export function buildSiteJsonLd(siteUrl: string) {
     url: cleanUrl,
     logoUrl: `${cleanUrl}/brand/propharmex-logo.svg`,
     description:
-      "Canada-headquartered pharmaceutical services partner for global sponsors. Analytical services, regulatory strategy, pharmaceutical development, and clinical and BE insight.",
+      "Canada-headquartered pharmaceutical services partner for global sponsors. Analytical services, regulatory strategy, and pharmaceutical development.",
   });
 
   const website = webSiteJsonLd({

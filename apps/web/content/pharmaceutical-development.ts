@@ -50,7 +50,7 @@ export type DosageFormSlug = (typeof DOSAGE_FORM_SLUGS)[number];
  *
  * `slug` is `string` rather than `DosageFormSlug` so the shared
  * `<CapabilityMatrix>` component (apps/web/components/site/hub/) can render
- * cards for any pillar — dosage forms, clinical services, etc. Pharm-dev
+ * cards for any pillar — dosage forms, services, etc. Pharm-dev
  * leaf routes still rely on the narrow `DosageFormSlug` literal union via
  * `DosageFormContent.slug` and `DOSAGE_FORM_SLUGS`; only the summary-card
  * shape was relaxed in PR-J' (CapabilityMatrix prop generalization).
@@ -441,7 +441,7 @@ export const PHARM_DEV_HUB: PharmDevHubContent = {
         id: "topical-ivrt",
         dosageForm: "Topical & semisolid",
         title: "In-vitro release testing package for a generic cream",
-        body: "USP ⟨1724⟩-aligned IVRT development with rheology and microstructure characterization to support bioequivalence strategy.",
+        body: "USP ⟨1724⟩-aligned IVRT development with rheology and microstructure characterization to support topical product evidence strategy.",
         status: "under-confirmation",
       },
     ],
@@ -1567,7 +1567,7 @@ export const DOSAGE_FORM_STERILE_INJECTABLES: DosageFormContent = {
         id: "particulate",
         label: "Particulate matter and visible-inspection criteria",
         description:
-          "Subvisible particulate matter per USP ⟨788⟩ and visible-inspection criteria scoped against the dosage form, route and clinical context.",
+          "Subvisible particulate matter per USP ⟨788⟩ and visible-inspection criteria scoped against the dosage form, route, and use context.",
       },
       {
         id: "leachables",
@@ -1785,7 +1785,7 @@ export const DOSAGE_FORM_STERILE_INJECTABLES: DosageFormContent = {
         id: "particulate",
         question: "How are particulate matter criteria set?",
         answer:
-          "Sub-visible particulate testing under USP ⟨788⟩ applies to the dosage form and route. Acceptance criteria are anchored to the compendial limits and tightened where the clinical context — paediatric, ophthalmic-adjacent, or long-infusion — warrants. Visible inspection criteria are authored against the same clinical context.",
+          "Sub-visible particulate testing under USP ⟨788⟩ applies to the dosage form and route. Acceptance criteria are anchored to the compendial limits and tightened where the use context — paediatric, ophthalmic-adjacent, or long-infusion — warrants. Visible inspection criteria are authored against the same use context.",
       },
       {
         id: "stability",
@@ -2090,9 +2090,9 @@ export const DOSAGE_FORM_INHALATION: DosageFormContent = {
       },
       {
         id: "filing",
-        prompt: "Is the filing strategy generic (e.g. ANDA with bioequivalence) or a new product?",
+        prompt: "Is the filing strategy generic (e.g. ANDA) or a new product?",
         helper:
-          "Strategy drives APSD-matching work, in-vitro bioequivalence design and comparator-sourcing decisions.",
+          "Strategy drives APSD-matching work, comparator-sourcing decisions, and the analytical package expected for the pathway.",
       },
     ],
     cta: {
@@ -2130,7 +2130,7 @@ export const DOSAGE_FORM_INHALATION: DosageFormContent = {
         id: "generic",
         question: "Can you support a generic inhalation filing?",
         answer:
-          "Yes. Generic inhalation programmes carry additional APSD-matching and in-vitro bioequivalence work — we scope that as a named workstream against the reference listed drug, with stage-by-stage comparison and statistical treatment authored to the agency's expectations.",
+          "Yes. Generic inhalation programmes carry additional APSD-matching and comparator evidence work — we scope that as a named workstream against the reference listed drug, with stage-by-stage comparison authored to the agency's expectations.",
       },
     ],
   },
@@ -2818,7 +2818,7 @@ export const DOSAGE_FORM_TRANSDERMAL_MR: DosageFormContent = {
         id: "adhesion",
         question: "How do you approach patch adhesion and wear-time?",
         answer:
-          "Adhesive chemistry, backing and release-liner choices are scoped against the target wear-time and the anatomical site. Peel, tack and shear are characterized at release and across shelf life; wear-time simulation is used to stress the adhesive argument before clinical confirmation.",
+          "Adhesive chemistry, backing and release-liner choices are scoped against the target wear-time and the anatomical site. Peel, tack and shear are characterized at release and across shelf life; wear-time simulation is used to stress the adhesive argument before sponsor confirmation.",
       },
     ],
   },

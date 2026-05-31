@@ -50,7 +50,7 @@ export const DEVELOPMENT_STAGES = [
   "formulation",
   "method-development",
   "stability",
-  "clinical-supplies",
+  "development-materials",
   "scaleup",
   "commercial",
 ] as const;

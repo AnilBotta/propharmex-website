@@ -29,7 +29,6 @@ import { ABOUT, LEADERSHIP_PAGE } from "../content/about";
 import { AI_TOOLS } from "../content/ai-tools";
 import { ANALYTICAL_HUB, ANALYTICAL_LEAF_CONTENT } from "../content/analytical-services";
 import { CASE_STUDIES_HUB, CASE_STUDIES } from "../content/case-studies";
-import { CLINICAL_HUB } from "../content/clinical-be-insight";
 import { CONTACT } from "../content/contact";
 import { DEL_READINESS } from "../content/del-readiness";
 import { DOSAGE_FORMS_HUB } from "../content/dosage-forms-hub";
@@ -389,17 +388,6 @@ const pharmDevSource: IngestSource = {
   },
 };
 
-const clinicalSource: IngestSource = {
-  label: "clinical-be-insight",
-  extract: () =>
-    walkTopLevel({
-      module: CLINICAL_HUB as unknown as Record<string, unknown>,
-      sourceUrl: "/services/clinical-be-insight",
-      sourceTitle: "Clinical and bioequivalence insight",
-      contentType: "service",
-    }),
-};
-
 const regulatorySource: IngestSource = {
   label: "regulatory-services",
   extract: () => {
@@ -536,7 +524,6 @@ export const FILE_CONTENT_SOURCES: IngestSource[] = [
   dosageFormsSource,
   analyticalSource,
   pharmDevSource,
-  clinicalSource,
   regulatorySource,
   industriesSource,
   caseStudiesSource,

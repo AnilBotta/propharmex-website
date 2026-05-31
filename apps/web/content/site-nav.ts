@@ -10,19 +10,19 @@
  * instead of this file; the shape below is the target schema.
  */
 
-export type NavLink = {
+export interface NavLink {
   href: string;
   label: string;
   /** Short descriptor shown in the mega-menu under the label. */
   description?: string;
-};
+}
 
-export type NavSection = {
+export interface NavSection {
   label: string;
   href?: string;
   /** When present, the top-level item opens a mega-menu instead of navigating. */
   columns?: { heading: string; links: NavLink[] }[];
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Primary navigation                                                         */
@@ -115,31 +115,6 @@ export const PRIMARY_NAV: NavSection[] = [
           },
         ],
       },
-      {
-        heading: "Clinical & BE Insight",
-        links: [
-          { href: "/services/clinical-be-insight", label: "Overview" },
-          {
-            href: "/services/clinical-be-insight",
-            label: "Bioequivalence study design",
-            description: "Comparator, sample size, ICH E9(R1).",
-          },
-          {
-            href: "/services/clinical-be-insight",
-            label: "Pivotal BE strategy",
-            description: "ANDA / ANDS / 505(j) pathways.",
-          },
-          {
-            href: "/services/clinical-be-insight",
-            label: "Clinical regulatory strategy",
-            description: "Biowaivers, BCS, Module 2.7.",
-          },
-          {
-            href: "/services/clinical-be-insight",
-            label: "IND-enabling consultation",
-          },
-        ],
-      },
     ],
   },
   {
@@ -224,10 +199,6 @@ export const FOOTER_COLUMNS: { heading: string; links: NavLink[] }[] = [
       },
       { href: "/services/analytical-services", label: "Analytical services" },
       { href: "/services/regulatory-services", label: "Regulatory strategy" },
-      {
-        href: "/services/clinical-be-insight",
-        label: "Clinical & BE insight",
-      },
     ],
   },
   {
@@ -304,7 +275,7 @@ export const LEGAL_LINKS: NavLink[] = [
 /*  Contact / facility blocks                                                 */
 /* -------------------------------------------------------------------------- */
 
-export type FacilityAddress = {
+export interface FacilityAddress {
   code: "MISSISSAUGA" | "HYDERABAD";
   name: string;
   role: string;
@@ -316,7 +287,7 @@ export type FacilityAddress = {
   countryCode: "CA" | "IN";
   phone?: string;
   email?: string;
-};
+}
 
 export const FACILITIES: FacilityAddress[] = [
   {

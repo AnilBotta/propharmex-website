@@ -2,7 +2,7 @@
  * CapabilityMatrix — shared hub capability grid, RSC.
  *
  * Renders an ordered card grid for any hub pillar — dosage forms,
- * clinical services, etc. `live` cards link to the leaf detail page (built
+ * service families, etc. `live` cards link to the leaf detail page (built
  * by joining `hrefBase` + `card.slug`); cards whose leaf is `shipping-next`
  * render as a muted disabled affordance.
  *
@@ -15,8 +15,6 @@
  * - /services/pharmaceutical-development → 7 dosage forms, 3-col grid,
  *   hrefBase `/services/pharmaceutical-development`
  * - /dosage-forms → 7 dosage forms (same shape, same hrefBase, same grid)
- * - /services/clinical-be-insight → 4 clinical services, 2-col grid,
- *   hrefBase `/services/clinical-be-insight`
  */
 import type { FC } from "react";
 import Link from "next/link";
@@ -26,7 +24,7 @@ import type { PharmDevCapabilityMatrix } from "../../../content/pharmaceutical-d
 
 import { SectionReveal } from "./SectionReveal";
 
-type Props = {
+interface Props {
   content: PharmDevCapabilityMatrix;
   /** URL prefix joined with each card's slug to build the leaf link. */
   hrefBase: string;
@@ -38,7 +36,7 @@ type Props = {
   gridLabel: string;
   /** Column count on lg+ viewports. Defaults to 3 (matches pharm-dev hub). */
   gridCols?: 2 | 3;
-};
+}
 
 export const CapabilityMatrix: FC<Props> = ({
   content,
@@ -132,7 +130,7 @@ export const CapabilityMatrix: FC<Props> = ({
                   {isLive ? (
                     <Link
                       href={href}
-                      className="block rounded-[var(--radius-lg)] transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-sm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] motion-reduce:hover:translate-y-0 motion-reduce:transition-none"
+                      className="block rounded-[var(--radius-lg)] transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-sm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
                     >
                       {body}
                     </Link>

@@ -47,7 +47,6 @@ export const SERVICES = [
   { id: "pharmaceutical-development", label: "Pharmaceutical development" },
   { id: "analytical-services", label: "Analytical services" },
   { id: "regulatory-services", label: "Regulatory affairs" },
-  { id: "clinical-be-insight", label: "Clinical and bioequivalence insight" },
   { id: "general", label: "Not sure yet — general inquiry" },
 ] as const;
 export type ServiceId = (typeof SERVICES)[number]["id"];
@@ -94,13 +93,13 @@ export const ROLES = [
 /*  Top-level types                                                           */
 /* -------------------------------------------------------------------------- */
 
-export type ContactHero = {
+export interface ContactHero {
   eyebrow: string;
   headline: string;
   lede: string;
-};
+}
 
-export type ContactAddressesSection = {
+export interface ContactAddressesSection {
   eyebrow: string;
   heading: string;
   lede: string;
@@ -110,15 +109,15 @@ export type ContactAddressesSection = {
   phoneOnFileNote: string;
   /** Aria label prefix for the "Open in Google Maps" link. */
   mapsLinkLabel: string;
-};
+}
 
-export type ContactFormFieldCopy = {
+export interface ContactFormFieldCopy {
   label: string;
   helper?: string;
   placeholder?: string;
-};
+}
 
-export type ContactFormSection = {
+export interface ContactFormSection {
   eyebrow: string;
   heading: string;
   lede: string;
@@ -140,9 +139,9 @@ export type ContactFormSection = {
   successCtaLabel: string;
   errorFallback: string;
   disclaimer: string;
-};
+}
 
-export type ContactCalSection = {
+export interface ContactCalSection {
   eyebrow: string;
   heading: string;
   lede: string;
@@ -150,14 +149,14 @@ export type ContactCalSection = {
   fallbackHeading: string;
   fallbackBody: string;
   fallbackCtaLabel: string;
-};
+}
 
 export type ContactBreadcrumb = {
   label: string;
   href: string;
 }[];
 
-export type ContactContent = {
+export interface ContactContent {
   metaTitle: string;
   metaDescription: string;
   ogTitle: string;
@@ -167,7 +166,7 @@ export type ContactContent = {
   addresses: ContactAddressesSection;
   form: ContactFormSection;
   cal: ContactCalSection;
-};
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Content payload                                                           */
@@ -176,7 +175,7 @@ export type ContactContent = {
 export const CONTACT: ContactContent = {
   metaTitle: "Contact Propharmex",
   metaDescription:
-    "Reach Propharmex for pharmaceutical development, analytical services, regulatory affairs, or clinical and bioequivalence insight. Canada-headquartered support for global sponsors.",
+    "Reach Propharmex for pharmaceutical development, analytical services, or regulatory affairs. Canada-headquartered support for global sponsors.",
   ogTitle: "Contact Propharmex",
   ogDescription:
     "Send a programme brief and we'll route it to the right desk. Most replies within one Canadian business day.",

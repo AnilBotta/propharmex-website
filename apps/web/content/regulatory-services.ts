@@ -639,7 +639,7 @@ export const REGULATORY_US_FDA_SUBMISSIONS: RegulatoryLeafContent = {
       {
         id: "anda-vs-505b2",
         heading: "ANDA, 505(b)(2), and when each applies",
-        body: "An Abbreviated New Drug Application under FDCA 505(j) references a listed reference drug and relies on demonstration of bioequivalence — the CMC package is full, but the clinical package is largely referenced. A 505(b)(2) application allows reliance on published literature or the Agency's findings for one innovator while introducing a change (formulation, route, strength, indication) that demands its own data. We author CMC for both pathways against 21 CFR Part 314; the pathway decision sits with the sponsor and their US regulatory counsel, and we structure Module 3 accordingly.",
+        body: "An Abbreviated New Drug Application under FDCA 505(j) references a listed reference drug and relies on comparative evidence — the CMC package is full, while other evidence is largely referenced. A 505(b)(2) application allows reliance on published literature or the Agency's findings for one innovator while introducing a change (formulation, route, strength, indication) that demands its own data. We author CMC for both pathways against 21 CFR Part 314; the pathway decision sits with the sponsor and their US regulatory counsel, and we structure Module 3 accordingly.",
         source: CFR_PART_314,
       },
       {
@@ -664,7 +664,7 @@ export const REGULATORY_US_FDA_SUBMISSIONS: RegulatoryLeafContent = {
       id: "authoring",
       heading: "Authoring and assembly",
       bullets: [
-        "Module 2 summaries (QOS for Quality, non-clinical and clinical overviews where applicable) against ICH M4",
+        "Module 2 summaries (QOS for Quality and applicable overviews) against ICH M4",
         "Module 3 drug substance (3.2.S) and drug product (3.2.P) sections authored against 21 CFR Part 314 and current FDA CMC guidance",
         "Type II Drug Master File authoring and maintenance, including annual reports and LoA issuance",
         "eCTD compilation, validation and lifecycle sequencing against the FDA's current technical specifications",
@@ -713,7 +713,7 @@ export const REGULATORY_US_FDA_SUBMISSIONS: RegulatoryLeafContent = {
         id: "module-2-summaries",
         label: "Module 2 summaries",
         description:
-          "Quality Overall Summary authored against ICH M4 with cross-references to the Module 3 record. Non-clinical and clinical overviews compiled where the pathway requires them.",
+          "Quality Overall Summary authored against ICH M4 with cross-references to the Module 3 record. Applicable overviews compiled where the pathway requires them.",
         typicalDuration: "Typical: 30–45 days, overlapping Module 3",
         owner: "propharmex",
         source: ICH_M4_ECTD,
@@ -835,7 +835,7 @@ export const REGULATORY_US_FDA_SUBMISSIONS: RegulatoryLeafContent = {
         id: "who-files",
         question: "Do you file the ANDA for us?",
         answer:
-          "Typically no. On most engagements we author the CMC and compile the eCTD; the sponsor or their US regulatory agent files through the FDA Electronic Submissions Gateway. We will support the transmission itself when a sponsor does not have their own ESG account, under a named US agent arrangement. The pathway decision — ANDA versus 505(b)(2), reference-listed drug selection, and the clinical package — sits with the sponsor and their US regulatory counsel, not with us.",
+          "Typically no. On most engagements we author the CMC and compile the eCTD; the sponsor or their US regulatory agent files through the FDA Electronic Submissions Gateway. We will support the transmission itself when a sponsor does not have their own ESG account, under a named US agent arrangement. The pathway decision — ANDA versus 505(b)(2), reference-listed drug selection, and non-CMC evidence package — sits with the sponsor and their US regulatory counsel, not with us.",
       },
       {
         id: "gdufa-timelines",
@@ -960,7 +960,7 @@ export const REGULATORY_CTD_ECTD_DOSSIER_PREPARATION: RegulatoryLeafContent = {
       {
         id: "ich-m4-backbone",
         heading: "ICH M4 as the shared backbone",
-        body: "Module 2 (summaries) and Module 3 (quality) are authored against ICH M4 and are largely portable across FDA, Health Canada, EMA and other ICH-aligned agencies. Module 4 (non-clinical) and Module 5 (clinical) are also ICH-aligned. The authored content in these modules is the expensive part of a dossier; treating it as a shared asset rather than a per-agency one is what lets a sponsor add jurisdictions without proportionally adding cost.",
+        body: "Module 2 summaries and Module 3 quality content are authored against ICH M4 and are largely portable across FDA, Health Canada, EMA and other ICH-aligned agencies. The authored content in these modules is the expensive part of a dossier; treating it as a shared asset rather than a per-agency one is what lets a sponsor add jurisdictions without proportionally adding cost.",
         source: ICH_M4_ECTD,
       },
       {
@@ -985,7 +985,7 @@ export const REGULATORY_CTD_ECTD_DOSSIER_PREPARATION: RegulatoryLeafContent = {
       id: "authoring",
       heading: "Authoring and assembly",
       bullets: [
-        "Module 2 — Quality Overall Summary, and non-clinical and clinical overviews where the pathway includes them — authored against ICH M4",
+        "Module 2 — Quality Overall Summary and applicable overviews authored against ICH M4",
         "Module 3 — drug substance (3.2.S) and drug product (3.2.P) CMC content authored against ICH M4 and the target agency's current CMC guidance",
         "eCTD backbone compilation — granularity decisions, hyperlinking, bookmarking, cross-references inside Module 3 and between Modules 2 and 3",
         "Regional Module 1 packaging passes against the FDA, Health Canada, or EMA current technical specification, authored from the shared core",
@@ -1041,7 +1041,7 @@ export const REGULATORY_CTD_ECTD_DOSSIER_PREPARATION: RegulatoryLeafContent = {
         id: "module-2-summaries",
         label: "Module 2 summaries",
         description:
-          "Quality Overall Summary authored against ICH M4 with precise cross-references to Module 3 sections. Non-clinical and clinical overviews compiled where the pathway requires them.",
+          "Quality Overall Summary authored against ICH M4 with precise cross-references to Module 3 sections. Applicable overviews compiled where the pathway requires them.",
         typicalDuration: "Typical: 30–45 days, overlapping Module 3 close",
         owner: "propharmex",
       },
