@@ -147,7 +147,6 @@ These are tracked but intentionally out of scope for the v1.0.0 launch.
 - Lazy-split `/ai/dosage-matcher` and `/ai/del-readiness` (now the new worst-bundle routes at 431 and 429 kB respectively). Both use hand-rolled stream parsers; lazy-splitting their `pdf-lib` plus multi-step form chunks would close the gap.
 - Promote Lighthouse `categories:accessibility` warn to error 1.0 after the manual VoiceOver and NVDA assistive-tech pass per docs/accessibility-at-test-plan.md.
 - Per-route OG images for `case-studies/[slug]`, `industries/[slug]`, services dynamic leaves, and `/ai/*` tools.
-- Refactor inline `buildDetailJsonLd` functions onto the `@propharmex/lib` schema helpers.
 - Resolve `parsers.ts::zSopCapability` Zod-schema drift left from Prompt 21.
 - Add `/insights/whitepapers/[slug]` to the axe URL list after a live whitepaper slug returns to `INSIGHTS.whitepapers`.
 - Build the four PostHog dashboards in the PostHog UI per docs/analytics-taxonomy.md section 6 (Lead funnel, AI tool conversion, Content performance, Region breakdown).

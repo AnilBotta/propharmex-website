@@ -23,7 +23,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
-import { env, jsonLdGraph } from "@propharmex/lib";
+import { articleDetailJsonLd, env } from "@propharmex/lib";
 
 import { DetailClosing } from "../../../components/case-studies/DetailClosing";
 import { MetricHero } from "../../../components/case-studies/MetricHero";
@@ -46,12 +46,11 @@ export const revalidate = 300;
 
 const HUB_PATH = "/case-studies";
 
-type Params = { slug: string };
+interface Params { slug: string }
 
 export function generateStaticParams(): Params[] {
   return Object.keys(CASE_STUDIES).map((slug) => ({ slug }));
 }
-
 function isKnownSlug(slug: string): slug is CaseStudySlug {
   return (CASE_STUDY_SLUGS as readonly string[]).includes(slug);
 }
@@ -61,11 +60,7 @@ function resolveContent(slug: string): CaseStudyContent | null {
   return CASE_STUDIES[slug] ?? null;
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<Params>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { slug } = await params;
   const content = resolveContent(slug);
   if (!content) {
@@ -93,17 +88,31 @@ export async function generateMetadata({
   };
 }
 
-export default async function CaseStudyDetailPage({
-  params,
-}: {
-  params: Promise<Params>;
-}) {
+export default async function CaseStudyDetailPage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
   const content = resolveContent(slug);
   if (!content) notFound();
 
   const siteUrl = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
-  const pageJsonLd = buildDetailJsonLd(siteUrl, content);
+  const pageJsonLd = articleDetailJsonLd({
+    siteUrl,
+    path: `${HUB_PATH}/${content.slug}`,
+    headline: content.label,
+    pageName: content.metaTitle,
+    description: content.metaDescription,
+    inLanguage: "en-CA",
+    about: [content.summary.industry, content.summary.dosageForm].join(", "),
+    keywords: [
+      content.summary.industry,
+      content.summary.dosageForm,
+      content.summary.region,
+      ...content.summary.services,
+    ].join(", "),
+    breadcrumbTrail: [
+      { name: "Case studies", path: HUB_PATH },
+      { name: content.crumbLabel, path: `${HUB_PATH}/${content.slug}` },
+    ],
+  });
 
   // Per PR-D2c2', placeholder slugs short-circuit to a "verified content
   // pending review" section. The underlying registry block is not
@@ -119,7 +128,7 @@ export default async function CaseStudyDetailPage({
   }
 
   const relatedCards = CASE_STUDY_SLUGS.filter(
-    (s) => s !== content.slug && !CASE_STUDY_PLACEHOLDER_SLUGS.has(s),
+    (s) => s !== content.slug && !CASE_STUDY_PLACEHOLDER_SLUGS.has(s)
   ).map((s) => CASE_STUDIES[s].summary);
 
   return (
@@ -171,7 +180,6 @@ export default async function CaseStudyDetailPage({
     </>
   );
 }
-
 /**
  * Placeholder section for case-study slugs that are in placeholder mode.
  * Renders a single "verified content pending review" card. The slug stays
@@ -195,15 +203,14 @@ function PlaceholderSection({ content }: { content: CaseStudyContent }) {
           Verified content pending review.
         </h1>
         <p className="mt-5 text-base leading-relaxed text-[var(--color-slate-800)]">
-          Our anonymized worked-pattern case studies are being prepared with
-          the engagement clients before publication. We do not publish
-          metric-bearing outcomes on the marketing site until the engagement
-          client has signed off on the version released here.
+          Our anonymized worked-pattern case studies are being prepared with the engagement clients
+          before publication. We do not publish metric-bearing outcomes on the marketing site until
+          the engagement client has signed off on the version released here.
         </p>
         <p className="mt-3 text-base leading-relaxed text-[var(--color-slate-800)]">
-          Named references and engagement summaries are available to
-          qualified partners under NDA today. If a similar program is on your
-          roadmap, we are usually a working day from a written reply.
+          Named references and engagement summaries are available to qualified partners under NDA
+          today. If a similar program is on your roadmap, we are usually a working day from a
+          written reply.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-3 text-sm">
           <Link
@@ -222,71 +229,4 @@ function PlaceholderSection({ content }: { content: CaseStudyContent }) {
       </div>
     </section>
   );
-}
-
-/**
- * Build the per-detail JSON-LD graph:
- *
- *  - Article — the study itself. `mainEntityOfPage` + `isPartOf` both point
- *    into the root layout's `#website`; the author is the Propharmex
- *    Organization. Keywords mirror the card taxonomy so search engines can
- *    cluster studies by dosage form + region + industry.
- *  - WebPage — the containing page, `about` the Article.
- *  - BreadcrumbList — Home → Case studies → this study.
- */
-function buildDetailJsonLd(siteUrl: string, content: CaseStudyContent) {
-  const pageUrl = `${siteUrl}${HUB_PATH}/${content.slug}`;
-
-  const article = {
-    "@type": "Article",
-    "@id": `${pageUrl}#article`,
-    headline: content.label,
-    description: content.metaDescription,
-    mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
-    isPartOf: { "@id": `${siteUrl}#website` },
-    author: { "@id": `${siteUrl}#organization` },
-    publisher: { "@id": `${siteUrl}#organization` },
-    inLanguage: "en-CA",
-    about: [content.summary.industry, content.summary.dosageForm].join(", "),
-    keywords: [
-      content.summary.industry,
-      content.summary.dosageForm,
-      content.summary.region,
-      ...content.summary.services,
-    ].join(", "),
-    url: pageUrl,
-  };
-
-  const webpage = {
-    "@type": "WebPage",
-    "@id": `${pageUrl}#webpage`,
-    url: pageUrl,
-    name: content.metaTitle,
-    description: content.metaDescription,
-    isPartOf: { "@id": `${siteUrl}#website` },
-    about: { "@id": `${pageUrl}#article` },
-    inLanguage: "en-CA",
-  };
-
-  const breadcrumb = {
-    "@type": "BreadcrumbList",
-    "@id": `${pageUrl}#breadcrumb`,
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Case studies",
-        item: `${siteUrl}${HUB_PATH}`,
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: content.crumbLabel,
-        item: pageUrl,
-      },
-    ],
-  };
-
-  return jsonLdGraph([article, webpage, breadcrumb]);
 }
