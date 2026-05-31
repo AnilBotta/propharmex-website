@@ -24,17 +24,17 @@ These must clear before staging sign-off. Each row has a single owner; multi-own
 
 ### 2.1 Code quality and CI
 
-| Gate                                             | Owner         | Verification                                                      |
-| ------------------------------------------------ | ------------- | ----------------------------------------------------------------- |
-| `pnpm lint` clean across the monorepo            | Engineering   | CI workflow `ci.yml` job "Lint" green on main                     |
-| `pnpm typecheck` clean                           | Engineering   | CI workflow `ci.yml` job "Typecheck" green on main                |
-| `pnpm test` all suites pass                      | Engineering   | CI workflow `ci.yml` job "Test" green on main                     |
-| `pnpm --filter web build` succeeds               | Engineering   | CI workflow `ci.yml` job "Build" green on main                    |
-| Storybook builds clean                           | Engineering   | CI workflow `ci.yml` job "Storybook" green on main                |
-| Bundle budget at 450 kB First-Load JS            | Engineering   | CI workflow `bundle-budget.yml` green; current worst route 431 kB |
-| Lighthouse CI: CWV strict, perf warn 0.90        | Engineering   | CI workflow `lighthouse.yml` green; review LHCI run reports       |
-| axe-core CI: zero serious or critical violations | Accessibility | CI workflow `a11y-budget.yml` green                               |
-| Playwright smoke suite passes                    | Engineering   | All seven specs in `apps/web/e2e/*.spec.ts` pass against staging  |
+| Gate                                             | Owner         | Verification                                                                                               |
+| ------------------------------------------------ | ------------- | ---------------------------------------------------------------------------------------------------------- |
+| `pnpm lint` clean across the monorepo            | Engineering   | CI workflow `ci.yml` job "Lint" green on main                                                              |
+| `pnpm typecheck` clean                           | Engineering   | CI workflow `ci.yml` job "Typecheck" green on main                                                         |
+| `pnpm test` all suites pass                      | Engineering   | CI workflow `ci.yml` job "Test" green on main                                                              |
+| `pnpm --filter web build` succeeds               | Engineering   | CI workflow `ci.yml` job "Build" green on main                                                             |
+| Storybook builds clean                           | Engineering   | CI workflow `ci.yml` job "Storybook" green on main                                                         |
+| Bundle budget at 380 kB First-Load JS            | Engineering   | CI workflow `bundle-budget.yml` green; current marketing worst route is the homepage at roughly 354-356 kB |
+| Lighthouse CI: CWV strict, perf warn 0.90        | Engineering   | CI workflow `lighthouse.yml` green; review LHCI run reports                                                |
+| axe-core CI: zero serious or critical violations | Accessibility | CI workflow `a11y-budget.yml` green                                                                        |
+| Playwright smoke suite passes                    | Engineering   | All seven specs in `apps/web/e2e/*.spec.ts` pass against staging                                           |
 
 ### 2.2 Content and editorial
 
@@ -175,13 +175,12 @@ Detailed rollback procedure including command-line steps lives in [`docs/runbook
 
 ### Within one week after launch
 
-| Task                                                                                                               | Owner       |
-| ------------------------------------------------------------------------------------------------------------------ | ----------- |
-| Build the four PostHog dashboards in the PostHog UI per `docs/analytics-taxonomy.md` §6                            | Product     |
-| Promote Lighthouse `categories:accessibility` warn to error 1.0 once manual AT pass is countersigned               | Engineering |
-| Open follow-up PR for `apps/web/e2e/concierge.spec.ts` `role="dialog"` to `role="region"` drift                    | Engineering |
-| Ratchet `BUNDLE_BUDGET_KB` toward the 350 kB long-term target as Dosage Matcher and DEL Readiness lazy-splits land | Engineering |
-| Schedule the first weekly performance review per `docs/runbook.md` §12                                             | Engineering |
+| Task                                                                                                      | Owner       |
+| --------------------------------------------------------------------------------------------------------- | ----------- |
+| Build the four PostHog dashboards in the PostHog UI per `docs/analytics-taxonomy.md` §6                   | Product     |
+| Promote Lighthouse `categories:accessibility` warn to error 1.0 once manual AT pass is countersigned      | Engineering |
+| Ratchet `BUNDLE_BUDGET_KB` toward the 350 kB long-term target after the homepage shared-chunk audit lands | Engineering |
+| Schedule the first weekly performance review per `docs/runbook.md` §12                                    | Engineering |
 
 ---
 
@@ -189,8 +188,6 @@ Detailed rollback procedure including command-line steps lives in [`docs/runbook
 
 These items are tracked but intentionally not blocking launch.
 
-- Per-route Open Graph images for `case-studies/[slug]`, `industries/[slug]`, and `/ai/*` tools.
-- Lazy-split `/ai/dosage-matcher` and `/ai/del-readiness` (now the new worst-bundle routes at 431 kB and 429 kB respectively).
 - Add `/insights/whitepapers/[slug]` to automated accessibility coverage after a live whitepaper slug returns to `INSIGHTS.whitepapers`.
 
 ---

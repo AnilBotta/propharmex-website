@@ -128,15 +128,15 @@ All four AI surfaces share the same defensive posture: rate-limited via Upstash 
 
 ## 7. CI gates
 
-| Gate                         | Workflow                            | What it enforces                                                                  |
-| ---------------------------- | ----------------------------------- | --------------------------------------------------------------------------------- |
-| Lint, typecheck, test, build | .github/workflows/ci.yml            | Standard validation across the monorepo                                           |
-| Storybook build              | .github/workflows/ci.yml            | Component library compiles cleanly                                                |
-| Lighthouse CI                | .github/workflows/lighthouse.yml    | CWV budgets — perf warn 0.90, LCP warn 2500ms, CLS / TBT / FCP error              |
-| Bundle budget                | .github/workflows/bundle-budget.yml | First-Load JS at most 450 kB per route, excluding API and image-generation routes |
-| Axe-core a11y                | .github/workflows/a11y-budget.yml   | Zero serious or critical violations across 11 sampled URLs                        |
+| Gate                         | Workflow                            | What it enforces                                                                                      |
+| ---------------------------- | ----------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| Lint, typecheck, test, build | .github/workflows/ci.yml            | Standard validation across the monorepo                                                               |
+| Storybook build              | .github/workflows/ci.yml            | Component library compiles cleanly                                                                    |
+| Lighthouse CI                | .github/workflows/lighthouse.yml    | CWV budgets — perf warn 0.90, LCP warn 2500ms, CLS / TBT / FCP error                                  |
+| Bundle budget                | .github/workflows/bundle-budget.yml | First-Load JS at most 380 kB per route, excluding API, dashboard, Studio, and image-generation routes |
+| Axe-core a11y                | .github/workflows/a11y-budget.yml   | Zero serious or critical violations across 11 sampled URLs                                            |
 
-The bundle budget was ratcheted from 475 kB to 450 kB after the AI surface dynamic-import work; further ratcheting toward the 350 kB long-term target is a recorded follow-up.
+The bundle budget was ratcheted from 475 kB to 450 kB after the AI surface dynamic-import work, then to 380 kB after the PDF subpath import cleanup removed `pdf-lib` from the Dosage Matcher and DEL Readiness client route chunks. Further ratcheting toward the 350 kB long-term target is a recorded follow-up.
 
 ---
 
@@ -144,9 +144,7 @@ The bundle budget was ratcheted from 475 kB to 450 kB after the AI surface dynam
 
 These are tracked but intentionally out of scope for the v1.0.0 launch.
 
-- Lazy-split `/ai/dosage-matcher` and `/ai/del-readiness` (now the new worst-bundle routes at 431 and 429 kB respectively). Both use hand-rolled stream parsers; lazy-splitting their `pdf-lib` plus multi-step form chunks would close the gap.
 - Promote Lighthouse `categories:accessibility` warn to error 1.0 after the manual VoiceOver and NVDA assistive-tech pass per docs/accessibility-at-test-plan.md.
-- Per-route OG images for `case-studies/[slug]`, `industries/[slug]`, services dynamic leaves, and `/ai/*` tools.
 - Add `/insights/whitepapers/[slug]` to the axe URL list after a live whitepaper slug returns to `INSIGHTS.whitepapers`.
 - Build the four PostHog dashboards in the PostHog UI per docs/analytics-taxonomy.md section 6 (Lead funnel, AI tool conversion, Content performance, Region breakdown).
 
