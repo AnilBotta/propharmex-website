@@ -23,70 +23,70 @@
   /* -------------------------------------------------------------------- */
   /*  Color — Primary: Navy 50–950                                        */
   /* -------------------------------------------------------------------- */
-  --color-primary-50:  #ECEEF5;
-  --color-primary-100: #D9DCE8;
-  --color-primary-200: #B8BCD1;
-  --color-primary-300: #8E93B0;
-  --color-primary-400: #6B7090;
-  --color-primary-500: #2E3AA8;                /* Navy 600 — interactive mid */
-  --color-primary-600: #11195A;                /* exact brand hex — primary */
-  --color-primary-700: #1A1F6B;
-  --color-primary-800: #161B3D;
-  --color-primary-900: #0B1140;
-  --color-primary-950: #0A0E2C;
-  --color-primary:     var(--color-primary-600);
-  --color-primary-fg:  #FFFFFF;
+  --color-primary-50: #eceef5;
+  --color-primary-100: #d9dce8;
+  --color-primary-200: #b8bcd1;
+  --color-primary-300: #8e93b0;
+  --color-primary-400: #6b7090;
+  --color-primary-500: #2e3aa8; /* Navy 600 — interactive mid */
+  --color-primary-600: #11195a; /* exact brand hex — primary */
+  --color-primary-700: #1a1f6b;
+  --color-primary-800: #161b3d;
+  --color-primary-900: #0b1140;
+  --color-primary-950: #0a0e2c;
+  --color-primary: var(--color-primary-600);
+  --color-primary-fg: #ffffff;
 
   /* -------------------------------------------------------------------- */
   /*  Color — Accent: Orange (CTA)                                        */
   /* -------------------------------------------------------------------- */
-  --color-accent-50:  #FFF6EE;
-  --color-accent-100: #FCE6D4;
-  --color-accent-200: #F8CDA8;
-  --color-accent-300: #F89759;
-  --color-accent-400: #F89759;
-  --color-accent-500: #F47B20;                 /* exact brand hex */
-  --color-accent-600: #E36A0F;
-  --color-accent-700: #BF560C;
-  --color-accent-800: #9B4A0A;
-  --color-accent-900: #6E3306;
-  --color-accent:     var(--color-accent-500);
-  --color-accent-fg:  #FFFFFF;
+  --color-accent-50: #fff6ee;
+  --color-accent-100: #fce6d4;
+  --color-accent-200: #f8cda8;
+  --color-accent-300: #f89759;
+  --color-accent-400: #f89759;
+  --color-accent-500: #f47b20; /* exact brand hex */
+  --color-accent-600: #e36a0f;
+  --color-accent-700: #bf560c;
+  --color-accent-800: #9b4a0a;
+  --color-accent-900: #6e3306;
+  --color-accent: var(--color-accent-500);
+  --color-accent-fg: #ffffff;
 
   /* -------------------------------------------------------------------- */
   /*  Color — Blue (clinical / regulatory secondary accent)               */
   /* -------------------------------------------------------------------- */
-  --color-blue-50:  #F0F8FD;
-  --color-blue-100: #DEF1FA;
-  --color-blue-200: #BEE3F4;
-  --color-blue-300: #7CCBEE;
-  --color-blue-400: #3FB1E6;
-  --color-blue-500: #1E9BD8;                   /* design Blue 500 */
-  --color-blue-600: #0E7CB0;
-  --color-blue-700: #0E5E86;
-  --color-blue-800: #0E466A;
-  --color-blue-900: #0E3050;
+  --color-blue-50: #f0f8fd;
+  --color-blue-100: #def1fa;
+  --color-blue-200: #bee3f4;
+  --color-blue-300: #7ccbee;
+  --color-blue-400: #3fb1e6;
+  --color-blue-500: #1e9bd8; /* design Blue 500 */
+  --color-blue-600: #0e7cb0;
+  --color-blue-700: #0e5e86;
+  --color-blue-800: #0e466a;
+  --color-blue-900: #0e3050;
 
   /* -------------------------------------------------------------------- */
   /*  Color — Green (QMS / nucleus secondary accent)                      */
   /* -------------------------------------------------------------------- */
-  --color-green-50:  #F0FAF1;
-  --color-green-100: #DDF3DF;
-  --color-green-200: #BCE7C0;
-  --color-green-300: #98D9A0;
-  --color-green-400: #62C76D;
-  --color-green-500: #3DB54A;                  /* design Green 500 */
-  --color-green-600: #2A9E3A;
-  --color-green-700: #1F7A2C;
-  --color-green-800: #1B6B25;
-  --color-green-900: #114F1A;
+  --color-green-50: #f0faf1;
+  --color-green-100: #ddf3df;
+  --color-green-200: #bce7c0;
+  --color-green-300: #98d9a0;
+  --color-green-400: #62c76d;
+  --color-green-500: #3db54a; /* design Green 500 */
+  --color-green-600: #2a9e3a;
+  --color-green-700: #1f7a2c;
+  --color-green-800: #1b6b25;
+  --color-green-900: #114f1a;
 
   /* -------------------------------------------------------------------- */
   /*  Color — Neutrals (Paper + Ink ramp)                                 */
   /* -------------------------------------------------------------------- */
-  --color-bg:      #FBFBFD;                    /* Paper */
-  --color-surface: #FFFFFF;
-  --color-fg:      #161B3D;                    /* Ink-900 */
+  --color-bg: #fbfbfd; /* Paper */
+  --color-surface: #ffffff;
+  --color-fg: #161b3d; /* Ink-900 */
   /*
    * --color-muted darkened from Ink-500 #6B7090 (4.47:1 on slate-50
    * footer bg, 4.16:1 on slate-100; both fail AA normal text) to
@@ -96,23 +96,23 @@
    * axe-core CI gate flagged 13–17 muted-on-slate nodes per page on
    * PR #55 with the prior #6B7090 alias.
    */
-  --color-muted:   #5E6388;
-  --color-border:  rgba(11, 17, 64, 0.08);     /* Hairline */
-  --color-ring:    var(--color-primary-600);
+  --color-muted: #5e6388;
+  --color-border: rgba(11, 17, 64, 0.08); /* Hairline */
+  --color-ring: var(--color-primary-600);
 
   /* Slate ramp now tracks the design's warm-cool Ink scale; same names so
      existing token-consumer files (193 across the workspace) cascade
      automatically. */
-  --color-slate-50:  #F5F6FB;
-  --color-slate-100: #ECEEF5;
-  --color-slate-200: #D9DCE8;
-  --color-slate-300: #B8BCD1;
-  --color-slate-400: #8E93B0;
-  --color-slate-500: #6B7090;
-  --color-slate-600: #3A4061;
-  --color-slate-700: #2A3050;
-  --color-slate-800: #161B3D;
-  --color-slate-900: #0A0E2C;
+  --color-slate-50: #f5f6fb;
+  --color-slate-100: #eceef5;
+  --color-slate-200: #d9dce8;
+  --color-slate-300: #b8bcd1;
+  --color-slate-400: #8e93b0;
+  --color-slate-500: #6b7090;
+  --color-slate-600: #3a4061;
+  --color-slate-700: #2a3050;
+  --color-slate-800: #161b3d;
+  --color-slate-900: #0a0e2c;
 
   /* -------------------------------------------------------------------- */
   /*  Color — Semantic                                                    */
@@ -124,39 +124,40 @@
    * non-text decoration (icon fills, chip dots, gradient bg). axe-core CI
    * gate flagged 13+ nodes/page on PR #55 with the prior #2A9E3A token.
    */
-  --color-success:    #1F7A2C;
-  --color-success-fg: #FFFFFF;
+  --color-success: #1f7a2c;
+  --color-success-fg: #ffffff;
   /*
    * --color-warn preserved at #8B6508 (~5.2:1 on Paper) per the Prompt 26
    * a11y audit lock (S1-1). Do not change without re-auditing.
    */
-  --color-warn:       #8B6508;
-  --color-warn-fg:    oklch(15% 0.040 75);
-  --color-danger:     #A23B3B;
-  --color-danger-fg:  #FFFFFF;
-  --color-info:       var(--color-blue-600);
-  --color-info-fg:    #FFFFFF;
+  --color-warn: #8b6508;
+  --color-warn-fg: oklch(15% 0.04 75);
+  --color-danger: #a23b3b;
+  --color-danger-fg: #ffffff;
+  --color-info: var(--color-blue-600);
+  --color-info-fg: #ffffff;
 
   /* -------------------------------------------------------------------- */
   /*  Typography — Inter primary stack + Instrument Serif editorial        */
   /* -------------------------------------------------------------------- */
-  --font-display:        "Inter", var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-body:           "Inter", var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display-serif:  "Instrument Serif", var(--font-instrument-serif), "Times New Roman", serif;
-  --font-mono:           "JetBrains Mono", var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
-  --font-sans:           var(--font-body); /* Tailwind default binding */
+  --font-display: "Inter", var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display-serif: "Instrument Serif", var(--font-instrument-serif), "Times New Roman", serif;
+  --font-mono:
+    "JetBrains Mono", var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: var(--font-body); /* Tailwind default binding */
 
   /* -------------------------------------------------------------------- */
   /*  Spacing — 4/8/12/16/24/32/48/64/96 (unchanged)                      */
   /* -------------------------------------------------------------------- */
-  --spacing-0:  0px;
-  --spacing-1:  4px;
-  --spacing-2:  8px;
-  --spacing-3:  12px;
-  --spacing-4:  16px;
-  --spacing-5:  20px;
-  --spacing-6:  24px;
-  --spacing-8:  32px;
+  --spacing-0: 0px;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
   --spacing-10: 40px;
   --spacing-12: 48px;
   --spacing-16: 64px;
@@ -170,10 +171,10 @@
   --radius-xs: 4px;
   --radius-sm: 8px;
   --radius-md: 12px;
-  --radius-lg: 20px;                           /* card radius (was 16px) */
+  --radius-lg: 20px; /* card radius (was 16px) */
   --radius-xl: 24px;
   --radius-full: 9999px;
-  --radius:    var(--radius-md);
+  --radius: var(--radius-md);
 
   /* -------------------------------------------------------------------- */
   /*  Shadows — re-tinted to navy "pharma glass"                          */
@@ -181,18 +182,18 @@
   --shadow-xs: 0 1px 2px rgba(11, 17, 64, 0.04);
   --shadow-sm: 0 2px 4px rgba(11, 17, 64, 0.06), 0 1px 2px rgba(11, 17, 64, 0.04);
   --shadow-md: 0 8px 16px rgba(11, 17, 64, 0.08), 0 2px 4px rgba(11, 17, 64, 0.04);
-  --shadow-lg: 0 16px 40px rgba(11, 17, 64, 0.10), 0 4px 8px rgba(11, 17, 64, 0.04);
+  --shadow-lg: 0 16px 40px rgba(11, 17, 64, 0.1), 0 4px 8px rgba(11, 17, 64, 0.04);
   --shadow-xl: 0 24px 64px rgba(11, 17, 64, 0.12), 0 8px 16px rgba(11, 17, 64, 0.06);
   --shadow-inner: inset 0 1px 2px rgba(11, 17, 64, 0.06);
 
   /* -------------------------------------------------------------------- */
   /*  Motion — 240ms enter, 180ms exit, 40ms stagger (unchanged)          */
   /* -------------------------------------------------------------------- */
-  --duration-enter:   240ms;
-  --duration-exit:    180ms;
+  --duration-enter: 240ms;
+  --duration-exit: 180ms;
   --duration-stagger: 40ms;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in:  cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
@@ -239,6 +240,56 @@
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
+    }
+  }
+
+  @media (forced-colors: active) {
+    * {
+      box-shadow: none !important;
+      text-shadow: none !important;
+    }
+
+    body {
+      background: Canvas;
+      color: CanvasText;
+    }
+
+    a {
+      color: LinkText;
+    }
+
+    button,
+    [role="button"],
+    input,
+    textarea,
+    select {
+      border: 1px solid ButtonText !important;
+      background: ButtonFace !important;
+      color: ButtonText !important;
+    }
+
+    button:disabled,
+    [role="button"][aria-disabled="true"],
+    input:disabled,
+    textarea:disabled,
+    select:disabled {
+      border-color: GrayText !important;
+      color: GrayText !important;
+    }
+
+    section,
+    article,
+    aside,
+    nav,
+    header,
+    footer,
+    [class*="border-"] {
+      border-color: CanvasText !important;
+    }
+
+    *:focus-visible {
+      outline: 2px solid Highlight !important;
+      outline-offset: 3px;
     }
   }
 }

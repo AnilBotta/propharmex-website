@@ -2042,17 +2042,17 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
   crumbLabel: "Bioanalytical",
   metaTitle: "Bioanalytical Services — Propharmex",
   metaDescription:
-    "LC-MS/MS bioanalytical method development and validation under ICH M10 and the USFDA 2018 bioanalytical method validation guidance, with CRO collaboration for regulated PK sample analysis.",
+    "LC-MS/MS bioanalytical method development and validation under ICH M10 and the USFDA 2018 bioanalytical method validation guidance, with transfer-ready documentation for sponsor-owned programmes.",
   ogTitle: "Bioanalytical Services — Propharmex",
   ogDescription:
-    "Regulated PK and biomarker quantitation — ICH M10 and USFDA bioanalytical guidance, LC-MS/MS triple-quadrupole workflows, and a CRO-collaboration model for regulated-study sample analysis.",
+    "PK and biomarker method packages — ICH M10 and USFDA bioanalytical guidance, LC-MS/MS triple-quadrupole workflows, and transfer-ready validation records.",
   hero: {
     eyebrow: "Analytical Services · Bioanalytical",
     headline:
       "Bioanalytical methods authored to meet regulated-PK expectations on the first validation run.",
     valueProp:
-      "LC-MS/MS method development and validation aligned to ICH M10 and the USFDA 2018 bioanalytical method validation guidance, with CRO collaboration where regulated-study samples are analyzed.",
-    lede: "Bioanalytical work is unforgiving at the edges — matrix effect, recovery, selectivity and incurred-sample reanalysis decide whether a regulated PK study is accepted or repeated. We develop and validate LC-MS/MS methods against ICH M10 and the USFDA 2018 bioanalytical method validation guidance, scope the calibration curve and QC scheme to the study, and collaborate with accredited CROs for regulated-study sample analysis where the programme requires it.",
+      "LC-MS/MS method development and validation aligned to ICH M10 and the USFDA 2018 bioanalytical method validation guidance, with documentation prepared for downstream sponsor execution.",
+    lede: "Bioanalytical method work is unforgiving at the edges — matrix effect, recovery, selectivity and incurred-sample reanalysis decide whether the method record can support a sponsor programme. We develop and validate LC-MS/MS methods against ICH M10 and the USFDA 2018 bioanalytical method validation guidance, then package the calibration curve, QC scheme and transfer record for the sponsor's selected execution path.",
     stats: [
       { label: "Validation anchor", value: "ICH M10" },
       { label: "Guidance", value: "USFDA 2018" },
@@ -2064,8 +2064,8 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
       variant: "primary",
     },
     secondaryCta: {
-      label: "Ask about CRO collaboration",
-      href: "/contact?source=as-bioanalytical-hero-cro",
+      label: "Ask about method transfer",
+      href: "/contact?source=as-bioanalytical-hero-transfer",
       variant: "outline",
     },
   },
@@ -2109,7 +2109,7 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
   process: {
     eyebrow: "Our process",
     heading: "From method scoping to a regulated PK-ready package",
-    lede: "The stepper reflects the order of work on most bioanalytical programmes. Some steps run at either hub — the ownership column reflects typical practice; regulated-study sample analysis runs with a collaborating CRO.",
+    lede: "The stepper reflects the order of work on most bioanalytical method programmes: define the analytical target, develop the LC-MS/MS method, validate against ICH M10, then prepare a transfer-ready record for downstream sponsor use.",
     steps: [
       {
         id: "scoping",
@@ -2145,14 +2145,14 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
         ],
       },
       {
-        id: "regulated-sample-analysis",
-        label: "Clinical-study sample analysis",
+        id: "method-transfer-package",
+        label: "Method transfer package",
         description:
-          "Study samples run by a collaborating accredited CRO under the validated method, with Propharmex providing method ownership, QC review and investigator-facing documentation. ISR run at the protocol-agreed level.",
+          "Validated method package assembled for sponsor-controlled downstream execution: method SOP, extraction workflow, reference-standard handling, calibration and QC plan, ISR rationale and transfer acceptance criteria.",
         notes: [
-          "CRO collaboration under signed QA agreement",
-          "Real-time QC review per run",
-          "ISR per ICH M10 acceptance criteria",
+          "Transfer protocol and acceptance criteria",
+          "Calibration and QC plan carried forward",
+          "ISR rationale documented against ICH M10",
         ],
       },
       {
@@ -2171,7 +2171,7 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
   inventory: {
     eyebrow: "Instrument inventory",
     heading: "What the bioanalytical bench actually runs on",
-    lede: "Representative inventory used on bioanalytical programmes. All listed instruments are operated under an active IOQ/PQ programme aligned to USP ⟨1058⟩. Clinical-study sample analysis, where in scope, runs at an accredited CRO partner under their quality system and a joint QA agreement.",
+    lede: "Representative inventory used on bioanalytical method programmes. All listed instruments are operated under an active IOQ/PQ programme aligned to USP ⟨1058⟩. Transfer package records include the instrument family, data-system controls and method conditions needed for downstream execution.",
     rows: [
       {
         id: "lcmsms-xevo-tqs",
@@ -2214,7 +2214,7 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
         id: "freezer-80",
         instrument: "Thermo Scientific TSX −80°C ULT freezer (monitored)",
         technique: "Sample storage",
-        application: "Long-term storage of plasma / serum study samples with continuous monitoring",
+        application: "Long-term storage of matrix stability samples with continuous monitoring",
         qualification: "Temperature mapped; continuous logging under QMS with excursion alerting",
       },
       {
@@ -2247,7 +2247,7 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
       },
     ],
     representativeNote:
-      "Representative inventory. Clinical-study sample analysis, where in scope, runs at an accredited CRO partner under their quality system and a joint QA agreement; the partner is documented in our supplier-qualification file.",
+      "Representative inventory. Transfer packages identify the instrument family, method conditions and data-system controls used during development and validation so the sponsor can manage downstream execution without rebuilding the method record.",
     cta: {
       label: "Request current qualification status",
       href: "/contact?source=as-bioanalytical-inventory",
@@ -2274,11 +2274,11 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
           "ISR pass-rate target of two-thirds within 20% of original for small molecules, written into the sample-analysis protocol from day one.",
       },
       {
-        id: "cro-handover",
-        label: "CRO collaboration",
-        value: "Method ownership stays with us",
+        id: "transfer-ready",
+        label: "Transfer-ready record",
+        value: "Method package travels cleanly",
         context:
-          "Clinical-study sample analysis runs at the CRO; method ownership, QC review and investigator-facing documentation stay with Propharmex.",
+          "Method SOPs, extraction workflow, calibration and QC design, ISR rationale and acceptance criteria are packaged so downstream teams work from the same validation record.",
       },
     ],
     status: "under-confirmation",
@@ -2304,9 +2304,9 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
       },
       {
         id: "sample-analysis",
-        prompt: "Are we validating only, or also analyzing regulated-study samples?",
+        prompt: "Are we validating only, or preparing a downstream transfer package?",
         helper:
-          "Sample analysis at the CRO requires a signed QA agreement and ISR plan written in at protocol stage.",
+          "Transfer scope affects how much method SOP, extraction workflow, reference-standard handling and ISR rationale we package with the validation report.",
       },
     ],
     cta: {
@@ -2340,10 +2340,10 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
           "ISR is planned at protocol stage — typically 5 to 10% of study samples, selected across subjects and timepoints with emphasis on Cmax and elimination-phase samples. Acceptance per ICH M10 is that at least two-thirds of reanalyzed samples are within 20% of the original for small molecules; for biomarkers, the acceptance is fit-for-purpose and documented in the protocol.",
       },
       {
-        id: "cro-collaboration",
-        question: "How does the CRO collaboration model work?",
+        id: "transfer-support",
+        question: "How do you support downstream transfer?",
         answer:
-          "We develop and validate the method in-house, then transfer the method — SOPs, reference standards, extraction kits and QC plan — to the accredited CRO partner under a joint QA agreement. Study samples run at the CRO; Propharmex remains the method owner, reviews QC data in real time, and authors the bioanalytical report. The CRO is documented in our supplier-qualification file and audited against their quality system.",
+          "We develop and validate the method in-house, then package the transfer record — method SOP, reference-standard handling, extraction workflow, calibration and QC plan, ISR rationale and acceptance criteria — so the sponsor's selected downstream team can execute from the same validated record.",
       },
       {
         id: "biomarker",
@@ -2390,7 +2390,7 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
   closing: {
     eyebrow: "Next step",
     heading: "Send the analyte, the matrix and the study design. We'll send back a method plan.",
-    body: "Most first calls walk through the analyte, the expected PK range, the matrix and the study purpose — and produce a method-development and validation outline against ICH M10 that sponsor and CRO teams can review together. Where regulated-study sample analysis is in scope, we flag CRO partner and QA-agreement requirements early.",
+    body: "Most first calls walk through the analyte, the expected PK range, the matrix and the study purpose — and produce a method-development, validation and transfer-package outline against ICH M10 that the sponsor can review before downstream execution decisions are made.",
     primaryCta: {
       label: "Scope a bioanalytical method",
       href: "/ai/project-scoping-assistant?source=as-bioanalytical-closing-scope",

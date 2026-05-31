@@ -8,12 +8,12 @@ Companion document to [`docs/accessibility-conformance.md`](accessibility-confor
 
 ## 1. Tools
 
-| Stack | OS | Browser | Screen reader |
-|---|---|---|---|
-| **Primary** | macOS 14+ | Safari latest | VoiceOver |
-| **Secondary** | Windows 11 | Firefox latest | NVDA latest |
-| **Optional** | iOS 17+ | Safari | VoiceOver iOS |
-| **Optional** | Android 14+ | Chrome | TalkBack |
+| Stack         | OS          | Browser        | Screen reader |
+| ------------- | ----------- | -------------- | ------------- |
+| **Primary**   | macOS 14+   | Safari latest  | VoiceOver     |
+| **Secondary** | Windows 11  | Firefox latest | NVDA latest   |
+| **Optional**  | iOS 17+     | Safari         | VoiceOver iOS |
+| **Optional**  | Android 14+ | Chrome         | TalkBack      |
 
 The primary + secondary pair is the minimum to claim coverage. The two AT engines treat the same ARIA semantics differently in practice; testing on both surfaces real bugs that pass either engine alone.
 
@@ -27,18 +27,18 @@ Forced-colors test: Windows High Contrast Mode (Settings → Accessibility → C
 
 Same set as Lighthouse CI + a11y axe-core CI, mapped to the audit's six representative templates.
 
-| URL | Template |
-|---|---|
-| `/` | Home |
-| `/why-propharmex` | Long-form narrative |
-| `/quality-compliance` | Trust page |
-| `/services/pharmaceutical-development/solid-oral-dosage` | Services leaf |
-| `/insights/del-at-a-glance-foreign-sponsor-primer` | Insight article |
-| `/case-studies` | Case studies hub |
-| `/contact` | Form + Cal.com embed |
-| `/insights/whitepapers/canadian-cdmo-operating-model` | Whitepaper gate |
-| `/ai/del-readiness` | AI tool — multi-step form |
-| `/accessibility` | Conformance statement |
+| URL                                                      | Template                  |
+| -------------------------------------------------------- | ------------------------- |
+| `/`                                                      | Home                      |
+| `/why-propharmex`                                        | Long-form narrative       |
+| `/quality-compliance`                                    | Trust page                |
+| `/services/pharmaceutical-development/solid-oral-dosage` | Services leaf             |
+| `/insights/ich-q2-r2-method-validation-2024`             | Insight article           |
+| `/case-studies`                                          | Case studies hub          |
+| `/contact`                                               | Form + Cal.com embed      |
+| `/insights/whitepapers/canadian-cdmo-operating-model`    | Whitepaper gate           |
+| `/ai/del-readiness`                                      | AI tool — multi-step form |
+| `/accessibility`                                         | Conformance statement     |
 
 ---
 
@@ -119,24 +119,24 @@ Create `docs/accessibility-at-results-YYYY-MM-DD.md` with the following structur
 
 ## Confirmed findings (from PR-A audit)
 
-| ID | URL | Status | Notes |
-|---|---|---|---|
-| S2-2 | /ai/del-readiness | Confirmed / Not reproducible | … |
-| S2-3 | Concierge | Confirmed / Not reproducible | … |
-| … | … | … | … |
+| ID   | URL               | Status                       | Notes |
+| ---- | ----------------- | ---------------------------- | ----- |
+| S2-2 | /ai/del-readiness | Confirmed / Not reproducible | …     |
+| S2-3 | Concierge         | Confirmed / Not reproducible | …     |
+| …    | …                 | …                            | …     |
 
 ## New findings
 
 | URL | Severity | Description | WCAG SC | Recommended fix |
-|---|---|---|---|---|
-| … | … | … | … | … |
+| --- | -------- | ----------- | ------- | --------------- |
+| …   | …        | …           | …       | …               |
 
 ## Promote-back-to-error decisions
 
-| Lighthouse assertion | Current | Recommended | Reason |
-|---|---|---|---|
-| categories:accessibility | warn 0.95 | error 1.0 | Confirmed clean across all sampled URLs |
-| largest-contentful-paint | warn | (depends on Cal.com lazy-load follow-up) | … |
+| Lighthouse assertion     | Current   | Recommended                              | Reason                                  |
+| ------------------------ | --------- | ---------------------------------------- | --------------------------------------- |
+| categories:accessibility | warn 0.95 | error 1.0                                | Confirmed clean across all sampled URLs |
+| largest-contentful-paint | warn      | (depends on Cal.com lazy-load follow-up) | …                                       |
 ```
 
 Append the results-doc filename to §3 of the ACR's evaluation methods table and update §7 (revision history).
@@ -155,10 +155,10 @@ Append the results-doc filename to §3 of the ACR's evaluation methods table and
 
 This plan exists because Lighthouse + axe-core catch only ~30–40% of WCAG 2.1 AA failures. Automated tools can verify markup but not:
 
-- Whether form errors are announced *meaningfully*
-- Whether keyboard focus order is *logical* (vs. just present)
+- Whether form errors are announced _meaningfully_
+- Whether keyboard focus order is _logical_ (vs. just present)
 - Whether ARIA labels match user mental models
-- Whether reading order is *coherent*
-- Whether the experience is *usable* — distinct from compliant
+- Whether reading order is _coherent_
+- Whether the experience is _usable_ — distinct from compliant
 
 Manual AT is not optional for an AA conformance claim.

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* global console */
 /**
  * axe-core scan runner (Prompt 26 PR-B fixup).
  *
@@ -50,7 +51,7 @@ const URLS = [
   "/services/pharmaceutical-development",
   "/services/pharmaceutical-development/solid-oral-dosage",
   "/insights",
-  "/insights/del-at-a-glance-foreign-sponsor-primer",
+  "/insights/ich-q2-r2-method-validation-2024",
   "/case-studies",
   "/contact",
   "/ai/del-readiness",
@@ -112,23 +113,18 @@ async function main() {
 
       await fs.writeFile(reportPath, JSON.stringify(report, null, 2));
 
-      const counts = results.violations.reduce(
-        (acc, v) => {
-          acc[v.impact ?? "unknown"] = (acc[v.impact ?? "unknown"] ?? 0) + 1;
-          return acc;
-        },
-        {},
-      );
-      const summary = Object.entries(counts)
-        .map(([k, v]) => `${k}=${v}`)
-        .join(" ")
-        || "clean";
+      const counts = results.violations.reduce((acc, v) => {
+        acc[v.impact ?? "unknown"] = (acc[v.impact ?? "unknown"] ?? 0) + 1;
+        return acc;
+      }, {});
+      const summary =
+        Object.entries(counts)
+          .map(([k, v]) => `${k}=${v}`)
+          .join(" ") || "clean";
       console.log(`  ${urlPath}  →  ${summary}`);
     } catch (err) {
       failures += 1;
-      console.error(
-        `::error::axe scan failed for ${fullUrl}: ${err?.message ?? err}`,
-      );
+      console.error(`::error::axe scan failed for ${fullUrl}: ${err?.message ?? err}`);
     } finally {
       await page.close();
       console.log("::endgroup::");
