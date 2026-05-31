@@ -188,7 +188,6 @@ Detailed rollback procedure including command-line steps lives in [`docs/runbook
 
 These items are tracked but intentionally not blocking launch.
 
-- Per-route Open Graph images for `case-studies/[slug]`, `industries/[slug]`, and `/ai/*` tools.
 - Add `/insights/whitepapers/[slug]` to automated accessibility coverage after a live whitepaper slug returns to `INSIGHTS.whitepapers`.
 
 ---

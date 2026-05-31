@@ -145,7 +145,6 @@ The bundle budget was ratcheted from 475 kB to 450 kB after the AI surface dynam
 These are tracked but intentionally out of scope for the v1.0.0 launch.
 
 - Promote Lighthouse `categories:accessibility` warn to error 1.0 after the manual VoiceOver and NVDA assistive-tech pass per docs/accessibility-at-test-plan.md.
-- Per-route OG images for `case-studies/[slug]`, `industries/[slug]`, services dynamic leaves, and `/ai/*` tools.
 - Add `/insights/whitepapers/[slug]` to the axe URL list after a live whitepaper slug returns to `INSIGHTS.whitepapers`.
 - Build the four PostHog dashboards in the PostHog UI per docs/analytics-taxonomy.md section 6 (Lead funnel, AI tool conversion, Content performance, Region breakdown).
 
