@@ -21,22 +21,16 @@ const buttonVariants = cva(
           "bg-[var(--color-primary-600)] text-[var(--color-primary-fg)] shadow-[var(--shadow-sm)] hover:bg-[var(--color-primary-700)] active:translate-y-px",
         secondary:
           "bg-[var(--color-surface)] text-[var(--color-fg)] border border-[var(--color-border)] hover:border-[var(--color-primary-600)] hover:text-[var(--color-primary-600)]",
-        ghost:
-          "bg-transparent text-[var(--color-fg)] hover:bg-[var(--color-slate-100)]",
+        ghost: "bg-transparent text-[var(--color-fg)] hover:bg-[var(--color-slate-100)]",
         outline:
           "bg-transparent text-[var(--color-primary-600)] border border-[var(--color-primary-600)] hover:bg-[var(--color-primary-50)]",
         danger:
           "bg-[var(--color-danger)] text-[var(--color-danger-fg)] shadow-[var(--shadow-sm)] hover:opacity-90 active:translate-y-px",
-        link:
-          "bg-transparent text-[var(--color-primary-600)] underline-offset-4 hover:underline p-0 h-auto",
+        link: "bg-transparent text-[var(--color-primary-600)] underline-offset-4 hover:underline p-0 h-auto",
       },
       size: {
-        // Touch-target AAA on mobile (h-11 = 44px), denser on md+ where pointer
-        // is primary. Replaces an earlier malformed responsive string
-        // ("min-h-11:md:min-h-9") that Tailwind treated as an unknown utility,
-        // so size="sm" was effectively h-9 (36px) everywhere — failing WCAG
-        // 2.1 AAA SC 2.5.5 on touch devices.
-        sm: "h-11 px-3 text-sm md:h-9",
+        // Project touch-target floor is 44px across input modes.
+        sm: "h-11 px-3 text-sm",
         md: "h-11 px-5 text-base",
         lg: "h-12 px-6 text-base",
         icon: "h-11 w-11",
@@ -50,8 +44,7 @@ const buttonVariants = cva(
 );
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
   /** Render as a child element (e.g. `<a>`) while keeping button styling. */
   asChild?: boolean;
 }

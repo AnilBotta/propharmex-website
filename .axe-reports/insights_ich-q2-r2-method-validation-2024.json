@@ -1,6 +1,6 @@
 {
-  "url": "http://localhost:3000/contact",
-  "timestamp": "2026-05-31T16:01:28.426Z",
+  "url": "http://localhost:3000/insights/ich-q2-r2-method-validation-2024",
+  "timestamp": "2026-05-31T16:01:25.089Z",
   "violations": [],
   "passes": [
     {
@@ -49,12 +49,6 @@
       "id": "color-contrast"
     },
     {
-      "id": "definition-list"
-    },
-    {
-      "id": "dlitem"
-    },
-    {
       "id": "document-title"
     },
     {
@@ -62,12 +56,6 @@
     },
     {
       "id": "form-field-multiple-labels"
-    },
-    {
-      "id": "frame-title-unique"
-    },
-    {
-      "id": "frame-title"
     },
     {
       "id": "html-has-lang"
@@ -152,42 +140,30 @@
             {
               "id": "color-contrast",
               "data": {
-                "messageKey": "nonBmp"
+                "fgColor": "#e8e8ee",
+                "bgColor": "#fbfbfd",
+                "contrastRatio": 1.18,
+                "fontSize": "10.5pt (14px)",
+                "fontWeight": "normal",
+                "messageKey": "shortTextContent",
+                "expectedContrastRatio": "4.5:1"
               },
-              "relatedNodes": [],
+              "relatedNodes": [
+                {
+                  "html": "<section aria-labelledby=\"ins-article-hero-heading\" class=\"border-b border-[var(--color-border)] bg-[var(--color-bg)] py-16 sm:py-20\">",
+                  "target": [".sm\\:py-20"]
+                }
+              ],
               "impact": "serious",
-              "message": "Element content contains only non-text characters"
+              "message": "Element content is too short to determine if it is actual text content"
             }
           ],
           "all": [],
           "none": [],
           "impact": "serious",
-          "html": "<span aria-hidden=\"true\">→</span>",
-          "target": [
-            "article:nth-child(1) > .flex-1.p-6.gap-4 > .mt-auto.pt-2 > .underline-offset-2[target=\"_blank\"][rel=\"noopener noreferrer\"] > span[aria-hidden=\"true\"]"
-          ],
-          "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
-        },
-        {
-          "any": [
-            {
-              "id": "color-contrast",
-              "data": {
-                "messageKey": "nonBmp"
-              },
-              "relatedNodes": [],
-              "impact": "serious",
-              "message": "Element content contains only non-text characters"
-            }
-          ],
-          "all": [],
-          "none": [],
-          "impact": "serious",
-          "html": "<span aria-hidden=\"true\">→</span>",
-          "target": [
-            "article[aria-labelledby=\"contact-card-hyderabad-heading\"] > .flex-1.p-6.gap-4 > .mt-auto.pt-2 > .underline-offset-2[target=\"_blank\"][rel=\"noopener noreferrer\"] > span[aria-hidden=\"true\"]"
-          ],
-          "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+          "html": "<span aria-hidden=\"true\" class=\"text-[var(--color-border)]\">·</span>",
+          "target": [".text-\\[var\\(--color-border\\)\\]"],
+          "failureSummary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
         }
       ]
     }
@@ -227,7 +203,19 @@
       "id": "blink"
     },
     {
+      "id": "definition-list"
+    },
+    {
+      "id": "dlitem"
+    },
+    {
       "id": "frame-focusable-content"
+    },
+    {
+      "id": "frame-title-unique"
+    },
+    {
+      "id": "frame-title"
     },
     {
       "id": "html-xml-lang-mismatch"
