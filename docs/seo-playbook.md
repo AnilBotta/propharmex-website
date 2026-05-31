@@ -70,8 +70,9 @@ Goal: be cited by ChatGPT, Claude, Perplexity, Gemini for pharma/CDMO queries.
 Built in Prompt 23 as an `.xlsx` via the `xlsx` skill. Columns: working title, primary keyword, intent, persona, target cluster, pillar, word count, author, status, due date, publish date, primary CTA, related services.
 
 Cadence target for launch + first 3 months:
+
 - 8 insight articles (4 regulatory, 2 analytical, 1 development, 1 quality)
-- 2 whitepapers (1 Canadian CDMO operating model deep-dive, 1 DEL readiness deep-dive)
+- Whitepapers only after a client-approved topic and source posture are available; `INSIGHTS.whitepapers` is currently empty
 - 3 case studies
 - Weekly "regulatory update" micro-posts (300–500 words) — low-lift, high citation-value
 

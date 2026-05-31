@@ -10,7 +10,7 @@
  * Visual posture (designer's call from the plan):
  *   - Closed: filled circle with chat-glyph, primary-color, drop shadow
  *   - Panel: surface card, primary-color border accent on header bar
- *   - Open animation: slide-up + fade-in (200ms, respects prefers-reduced-motion)
+ *   - Open state: CSS-only reveal so the launcher stays light site-wide
  *
  * No data fetching here — the panel renders the actual chat surface, which
  * uses `useChat` from the Vercel AI SDK and posts to /api/ai/concierge. The
@@ -19,24 +19,19 @@
  */
 import { useCallback, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { MessageSquare, X } from "lucide-react";
 
 import { CONCIERGE } from "../../content/concierge";
 
-import {
-  trackConciergeClosed,
-  trackConciergeOpened,
-} from "./telemetry";
+import { trackConciergeClosed, trackConciergeOpened } from "./telemetry";
 
 const ConciergePanel = dynamic(
   () => import("./ConciergePanel").then((m) => ({ default: m.ConciergePanel })),
-  { ssr: false, loading: () => null },
+  { ssr: false, loading: () => null }
 );
 
 export function ConciergeBubble() {
   const [open, setOpen] = useState(false);
-  const reduce = useReducedMotion();
 
   const handleToggle = useCallback(() => {
     setOpen((prev) => {
@@ -47,13 +42,10 @@ export function ConciergeBubble() {
     });
   }, []);
 
-  const handleClose = useCallback(
-    (reason: "x-button" | "escape" = "x-button") => {
-      setOpen(false);
-      trackConciergeClosed({ reason });
-    },
-    [],
-  );
+  const handleClose = useCallback((reason: "x-button" | "escape" = "x-button") => {
+    setOpen(false);
+    trackConciergeClosed({ reason });
+  }, []);
 
   // Close on ESC.
   useEffect(() => {
@@ -70,23 +62,12 @@ export function ConciergeBubble() {
     // the message list inside ConciergePanel where new content actually
     // appears. Wrapping the launcher in a live region caused the X / chat
     // icon swap to be announced on every open/close (Prompt 26 a11y S2-4).
-    <div
-      className="pointer-events-none fixed bottom-4 right-4 z-[60] flex flex-col items-end gap-3 sm:bottom-6 sm:right-6"
-    >
-      <AnimatePresence>
-        {open ? (
-          <motion.div
-            key="panel"
-            initial={reduce ? { opacity: 1 } : { opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={reduce ? { opacity: 0 } : { opacity: 0, y: 12 }}
-            transition={{ duration: reduce ? 0 : 0.2, ease: "easeOut" }}
-            className="pointer-events-auto"
-          >
-            <ConciergePanel onClose={() => handleClose("x-button")} />
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+    <div className="pointer-events-none fixed bottom-4 right-4 z-[60] flex flex-col items-end gap-3 sm:bottom-6 sm:right-6">
+      {open ? (
+        <div className="pointer-events-auto transition motion-reduce:transition-none">
+          <ConciergePanel onClose={() => handleClose("x-button")} />
+        </div>
+      ) : null}
 
       <button
         type="button"
@@ -94,13 +75,9 @@ export function ConciergeBubble() {
         aria-label={open ? CONCIERGE.bubble.closeLabel : CONCIERGE.bubble.openLabel}
         aria-expanded={open}
         aria-controls="concierge-panel"
-        className="pointer-events-auto inline-flex size-14 items-center justify-center rounded-[var(--radius-full)] border border-[var(--color-primary-700)] bg-[var(--color-primary-700)] text-white shadow-[0_8px_20px_-4px_rgba(15,32,80,0.35)] transition hover:scale-105 hover:bg-[var(--color-primary-800)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] focus-visible:ring-offset-2 motion-reduce:hover:scale-100 motion-reduce:transition-none"
+        className="pointer-events-auto inline-flex size-14 items-center justify-center rounded-[var(--radius-full)] border border-[var(--color-primary-700)] bg-[var(--color-primary-700)] text-white shadow-[0_8px_20px_-4px_rgba(15,32,80,0.35)] transition hover:scale-105 hover:bg-[var(--color-primary-800)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:hover:scale-100"
       >
-        {open ? (
-          <X aria-hidden="true" size={22} />
-        ) : (
-          <MessageSquare aria-hidden="true" size={22} />
-        )}
+        {open ? <X aria-hidden="true" size={22} /> : <MessageSquare aria-hidden="true" size={22} />}
       </button>
     </div>
   );

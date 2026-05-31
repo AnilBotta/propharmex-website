@@ -38,14 +38,14 @@ These must clear before staging sign-off. Each row has a single owner; multi-own
 
 ### 2.2 Content and editorial
 
-| Gate                                                         | Owner      | Verification                                                                 |
-| ------------------------------------------------------------ | ---------- | ---------------------------------------------------------------------------- |
-| All Sanity documents published in production dataset         | Editorial  | Spot-check via Sanity Studio that every linked doc has `_state: "published"` |
-| No placeholder copy or TBD strings remain on public routes   | Editorial  | Grep production HTML for "Lorem", "TBD", "TODO" — should return zero         |
-| Brand-voice review run on every page in `docs/handoff.md` §4 | Brand      | `brand-voice-guardian` skill returns Pass on each route                      |
-| Regulatory claims anchored to primary sources                | Regulatory | `pharma-regulatory-writer` posture — every claim has an "as of" date         |
-| Whitepaper PDF downloads cleanly via gate form               | Editorial  | Manual: complete gate form with a real email; receive PDF                    |
-| Insights articles render with correct `publishedAt` dates    | Editorial  | Visit each article, confirm date matches Sanity                              |
+| Gate                                                         | Owner      | Verification                                                                             |
+| ------------------------------------------------------------ | ---------- | ---------------------------------------------------------------------------------------- |
+| All Sanity documents published in production dataset         | Editorial  | Spot-check via Sanity Studio that every linked doc has `_state: "published"`             |
+| No placeholder copy or TBD strings remain on public routes   | Editorial  | Grep production HTML for "Lorem", "TBD", "TODO" — should return zero                     |
+| Brand-voice review run on every page in `docs/handoff.md` §4 | Brand      | `brand-voice-guardian` skill returns Pass on each route                                  |
+| Regulatory claims anchored to primary sources                | Regulatory | `pharma-regulatory-writer` posture — every claim has an "as of" date                     |
+| Whitepaper registry state confirmed                          | Editorial  | `INSIGHTS.whitepapers` is empty; gate coverage is deferred until a live slug is approved |
+| Insights articles render with correct `publishedAt` dates    | Editorial  | Visit each article, confirm date matches Sanity                                          |
 
 ### 2.3 Identity, DNS, and TLS
 
@@ -60,13 +60,13 @@ These must clear before staging sign-off. Each row has a single owner; multi-own
 
 ### 2.4 Email and forms
 
-| Gate                                                    | Owner       | Verification                                                                             |
-| ------------------------------------------------------- | ----------- | ---------------------------------------------------------------------------------------- |
-| Resend production sender domain verified                | Operations  | DKIM and SPF DNS records visible; Resend dashboard shows green                           |
-| Inquiry form submissions hit business development inbox | BD lead     | Submit a test inquiry; confirm receipt within 5 minutes                                  |
-| Whitepaper gate triggers download email                 | BD lead     | Complete gate form; confirm email delivery                                               |
-| Newsletter double-opt-in flow completes                 | Operations  | Submit on `/insights`; receive confirmation email; confirm subscribe                     |
-| Cloudflare Turnstile production keys deployed           | Engineering | `TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY` in Vercel env match Cloudflare dashboard |
+| Gate                                                      | Owner       | Verification                                                                             |
+| --------------------------------------------------------- | ----------- | ---------------------------------------------------------------------------------------- |
+| Resend production sender domain verified                  | Operations  | DKIM and SPF DNS records visible; Resend dashboard shows green                           |
+| Inquiry form submissions hit business development inbox   | BD lead     | Submit a test inquiry; confirm receipt within 5 minutes                                  |
+| Whitepaper download email deferred until live slug exists | BD lead     | Confirm no public whitepaper slug is listed; test this when editorial republishes a slug |
+| Newsletter double-opt-in flow completes                   | Operations  | Submit on `/insights`; receive confirmation email; confirm subscribe                     |
+| Cloudflare Turnstile production keys deployed             | Engineering | `TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY` in Vercel env match Cloudflare dashboard |
 
 ### 2.5 AI endpoints
 
@@ -175,12 +175,12 @@ Detailed rollback procedure including command-line steps lives in [`docs/runbook
 
 ### Within one week after launch
 
-| Task                                                                                                      | Owner       |
-| --------------------------------------------------------------------------------------------------------- | ----------- |
-| Build the four PostHog dashboards in the PostHog UI per `docs/analytics-taxonomy.md` §6                   | Product     |
-| Promote Lighthouse `categories:accessibility` warn to error 1.0 once manual AT pass is countersigned      | Engineering |
-| Ratchet `BUNDLE_BUDGET_KB` toward the 350 kB long-term target after the homepage shared-chunk audit lands | Engineering |
-| Schedule the first weekly performance review per `docs/runbook.md` §12                                    | Engineering |
+| Task                                                                                                                                            | Owner       |
+| ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Build the four PostHog dashboards in the PostHog UI per `docs/analytics-taxonomy.md` §6                                                         | Product     |
+| Promote Lighthouse `categories:accessibility` warn to error 1.0 once manual AT pass is countersigned                                            | Engineering |
+| Continue the homepage bundle ratchet toward the 350 kB long-term target after page-owned motion/components are reduced below target with margin | Engineering |
+| Schedule the first weekly performance review per `docs/runbook.md` §12                                                                          | Engineering |
 
 ---
 
