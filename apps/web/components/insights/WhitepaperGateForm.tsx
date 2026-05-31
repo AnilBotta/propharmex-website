@@ -37,14 +37,15 @@ type State =
   | { status: "success" }
   | { status: "error"; message: string };
 
-type FormValues = {
+interface FormValues {
   fullName: string;
   email: string;
   company: string;
   role: string;
   country: string;
   useCase: string;
-};
+}
+type InvalidField = keyof Pick<FormValues, "fullName" | "email" | "company" | "role" | "country">;
 
 const COUNTRIES = [
   "Canada",
@@ -66,10 +67,10 @@ const ROLES = [
   "Other",
 ];
 
-type Props = {
+interface Props {
   content: WhitepaperContent;
   className?: string;
-};
+}
 
 export function WhitepaperGateForm({ content, className }: Props) {
   const [state, setState] = useState<State>({ status: "idle" });
@@ -81,6 +82,7 @@ export function WhitepaperGateForm({ content, className }: Props) {
     country: "",
     useCase: "",
   });
+  const [invalidFields, setInvalidFields] = useState<Set<InvalidField>>(() => new Set());
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   // Deferred Turnstile mount: stays false until the user first focuses the
   // form, then flips to true so the Cloudflare script load and iframe creation
@@ -92,6 +94,9 @@ export function WhitepaperGateForm({ content, className }: Props) {
 
   function update<K extends keyof FormValues>(key: K, value: FormValues[K]) {
     setValues((prev) => ({ ...prev, [key]: value }));
+    if (isInvalidField(key)) {
+      clearInvalidField(key, setInvalidFields);
+    }
   }
 
   const handleTurnstileVerify = useCallback((token: string) => {
@@ -103,6 +108,10 @@ export function WhitepaperGateForm({ content, className }: Props) {
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const nextInvalidFields = getInvalidFields(values);
+    setInvalidFields(nextInvalidFields);
+    if (nextInvalidFields.size > 0) return;
+
     setState({ status: "submitting" });
     try {
       const res = await fetch("/api/whitepaper-download", {
@@ -121,7 +130,7 @@ export function WhitepaperGateForm({ content, className }: Props) {
         throw new Error(
           typeof body?.error === "string"
             ? body.error
-            : "We could not process that request. Please try again.",
+            : "We could not process that request. Please try again."
         );
       }
 
@@ -149,14 +158,9 @@ export function WhitepaperGateForm({ content, className }: Props) {
 
   if (state.status === "success") {
     return (
-      <div
-        role="status"
-        aria-live="polite"
-        className={cn("space-y-4", className)}
-      >
+      <div role="status" aria-live="polite" className={cn("space-y-4", className)}>
         <Callout tone="success" title="Download is ready">
-          We have emailed you a copy. The direct link below is also valid for
-          this session.
+          We have emailed you a copy. The direct link below is also valid for this session.
         </Callout>
         <a
           href={content.pdfPath}
@@ -165,9 +169,7 @@ export function WhitepaperGateForm({ content, className }: Props) {
         >
           Download {content.title} (PDF)
         </a>
-        <p className="text-xs text-[var(--color-muted)]">
-          {content.formDisclaimer}
-        </p>
+        <p className="text-xs text-[var(--color-muted)]">{content.formDisclaimer}</p>
       </div>
     );
   }
@@ -181,7 +183,7 @@ export function WhitepaperGateForm({ content, className }: Props) {
       }}
       className={cn(
         "rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] p-5 sm:p-6",
-        className,
+        className
       )}
       aria-labelledby="ins-wp-form-heading"
     >
@@ -193,8 +195,7 @@ export function WhitepaperGateForm({ content, className }: Props) {
           Get the whitepaper
         </h2>
         <p className="mt-1 text-xs text-[var(--color-muted)]">
-          Verified business contacts only. We will email the download and one
-          short follow-up.
+          Verified business contacts only. We will email the download and one short follow-up.
         </p>
       </div>
 
@@ -204,6 +205,7 @@ export function WhitepaperGateForm({ content, className }: Props) {
             id="wp-fullname"
             required
             autoComplete="name"
+            aria-invalid={invalidFields.has("fullName") ? true : undefined}
             value={values.fullName}
             onChange={(e) => update("fullName", e.target.value)}
           />
@@ -215,6 +217,7 @@ export function WhitepaperGateForm({ content, className }: Props) {
             required
             autoComplete="email"
             inputMode="email"
+            aria-invalid={invalidFields.has("email") ? true : undefined}
             value={values.email}
             onChange={(e) => update("email", e.target.value)}
           />
@@ -224,6 +227,7 @@ export function WhitepaperGateForm({ content, className }: Props) {
             id="wp-company"
             required
             autoComplete="organization"
+            aria-invalid={invalidFields.has("company") ? true : undefined}
             value={values.company}
             onChange={(e) => update("company", e.target.value)}
           />
@@ -232,6 +236,7 @@ export function WhitepaperGateForm({ content, className }: Props) {
           <NativeSelect
             id="wp-role"
             required
+            aria-invalid={invalidFields.has("role") ? true : undefined}
             value={values.role}
             onChange={(e) => update("role", e.target.value)}
           >
@@ -249,6 +254,7 @@ export function WhitepaperGateForm({ content, className }: Props) {
           <NativeSelect
             id="wp-country"
             required
+            aria-invalid={invalidFields.has("country") ? true : undefined}
             value={values.country}
             onChange={(e) => update("country", e.target.value)}
           >
@@ -308,6 +314,38 @@ export function WhitepaperGateForm({ content, className }: Props) {
   );
 }
 
+function getInvalidFields(values: FormValues) {
+  const invalid = new Set<InvalidField>();
+  if (!values.fullName.trim()) invalid.add("fullName");
+  if (!values.email.trim() || !values.email.includes("@")) invalid.add("email");
+  if (!values.company.trim()) invalid.add("company");
+  if (!values.role) invalid.add("role");
+  if (!values.country) invalid.add("country");
+  return invalid;
+}
+
+function isInvalidField(key: keyof FormValues): key is InvalidField {
+  return (
+    key === "fullName" ||
+    key === "email" ||
+    key === "company" ||
+    key === "role" ||
+    key === "country"
+  );
+}
+
+function clearInvalidField(
+  field: InvalidField,
+  setInvalidFields: React.Dispatch<React.SetStateAction<Set<InvalidField>>>
+) {
+  setInvalidFields((prev) => {
+    if (!prev.has(field)) return prev;
+    const next = new Set(prev);
+    next.delete(field);
+    return next;
+  });
+}
+
 /* -------------------------------------------------------------------------- */
 /*  Field shell                                                               */
 /* -------------------------------------------------------------------------- */
@@ -324,9 +362,9 @@ export function WhitepaperGateForm({ content, className }: Props) {
  * `required` adds an sr-only "(required)" suffix beside the visible
  * `*` so AT users hear which fields are mandatory.
  */
-type WhitepaperFieldRenderProps = {
+interface WhitepaperFieldRenderProps {
   describedBy: string | undefined;
-};
+}
 
 function Field({
   label,
@@ -341,21 +379,15 @@ function Field({
   required?: boolean;
   helper?: string;
   className?: string;
-  children:
-    | React.ReactNode
-    | ((rp: WhitepaperFieldRenderProps) => React.ReactNode);
+  children: React.ReactNode | ((rp: WhitepaperFieldRenderProps) => React.ReactNode);
 }) {
   const hintId = helper ? `${htmlFor}-hint` : undefined;
   const describedBy = hintId;
-  const rendered =
-    typeof children === "function" ? children({ describedBy }) : children;
+  const rendered = typeof children === "function" ? children({ describedBy }) : children;
 
   return (
     <div className={cn("flex flex-col gap-1.5", className)}>
-      <label
-        htmlFor={htmlFor}
-        className="text-sm font-medium text-[var(--color-fg)]"
-      >
+      <label htmlFor={htmlFor} className="text-sm font-medium text-[var(--color-fg)]">
         {label}
         {required ? (
           <>
@@ -368,10 +400,7 @@ function Field({
       </label>
       {rendered}
       {helper ? (
-        <span
-          id={hintId}
-          className="text-[11px] leading-relaxed text-[var(--color-muted)]"
-        >
+        <span id={hintId} className="text-[11px] leading-relaxed text-[var(--color-muted)]">
           {helper}
         </span>
       ) : null}
@@ -393,7 +422,7 @@ function NativeSelect({
       {...props}
       className={cn(
         "h-11 w-full rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2 text-base text-[var(--color-fg)] transition hover:border-[var(--color-slate-400)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg)]",
-        className,
+        className
       )}
     >
       {children}

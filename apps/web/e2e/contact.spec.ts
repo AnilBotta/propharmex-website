@@ -15,9 +15,7 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("Contact page", () => {
-  test("renders hero, inquiry form, booking section, and addresses", async ({
-    page,
-  }) => {
+  test("renders hero, inquiry form, booking section, and addresses", async ({ page }) => {
     const response = await page.goto("/contact");
     expect(response?.status()).toBe(200);
 
@@ -61,5 +59,28 @@ test.describe("Contact page", () => {
     // is region-prioritized and varies by request.
     const addressesHeading = page.locator("#contact-addresses-heading");
     await expect(addressesHeading).toBeVisible();
+  });
+
+  test("marks required inquiry fields invalid on an empty submit", async ({ page }) => {
+    const response = await page.goto("/contact");
+    expect(response?.status()).toBe(200);
+
+    const inquirySection = page.locator("#inquiry");
+    const nameInput = inquirySection.locator('input[id$="-name"]');
+    const companyInput = inquirySection.locator('input[id$="-company"]');
+    const emailInput = inquirySection.locator('input[id$="-email"]');
+
+    await expect(nameInput).not.toHaveAttribute("aria-invalid", "true");
+    await expect(companyInput).not.toHaveAttribute("aria-invalid", "true");
+    await expect(emailInput).not.toHaveAttribute("aria-invalid", "true");
+
+    await inquirySection
+      .getByRole("button", { name: /send|submit|inquiry|request/i })
+      .first()
+      .click();
+
+    await expect(nameInput).toHaveAttribute("aria-invalid", "true");
+    await expect(companyInput).toHaveAttribute("aria-invalid", "true");
+    await expect(emailInput).toHaveAttribute("aria-invalid", "true");
   });
 });

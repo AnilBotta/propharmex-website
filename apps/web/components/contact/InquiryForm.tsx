@@ -52,9 +52,10 @@ import { SectionReveal } from "../site/hub/SectionReveal";
 
 const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
-type Props = { content: ContactContent["form"] };
+interface Props { content: ContactContent["form"] }
 
 type Status = "idle" | "submitting" | "success" | "error";
+type InvalidField = "name" | "company" | "email";
 
 const SCROLL_TO_BOOKING_HASH = "#booking";
 
@@ -63,6 +64,7 @@ export function InquiryForm({ content }: Props) {
 
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [invalidFields, setInvalidFields] = useState<Set<InvalidField>>(() => new Set());
 
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
@@ -101,11 +103,16 @@ export function InquiryForm({ content }: Props) {
     setDosageForm("");
     setStage("");
     setMessage("");
+    setInvalidFields(new Set());
   }
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (status === "submitting") return;
+
+    const nextInvalidFields = getInvalidFields({ name, company, email });
+    setInvalidFields(nextInvalidFields);
+    if (nextInvalidFields.size > 0) return;
 
     setStatus("submitting");
     setErrorMessage(null);
@@ -227,9 +234,13 @@ export function InquiryForm({ content }: Props) {
                         required
                         autoComplete="name"
                         aria-describedby={describedBy}
+                        aria-invalid={invalidFields.has("name") ? true : undefined}
                         placeholder={content.fields.name.placeholder}
                         value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        onChange={(e) => {
+                          setName(e.target.value);
+                          clearInvalidField("name", setInvalidFields);
+                        }}
                       />
                     )}
                   </Field>
@@ -247,9 +258,13 @@ export function InquiryForm({ content }: Props) {
                         required
                         autoComplete="organization"
                         aria-describedby={describedBy}
+                        aria-invalid={invalidFields.has("company") ? true : undefined}
                         placeholder={content.fields.company.placeholder}
                         value={company}
-                        onChange={(e) => setCompany(e.target.value)}
+                        onChange={(e) => {
+                          setCompany(e.target.value);
+                          clearInvalidField("company", setInvalidFields);
+                        }}
                       />
                     )}
                   </Field>
@@ -266,9 +281,7 @@ export function InquiryForm({ content }: Props) {
                           aria-label={content.fields.role.label}
                           aria-describedby={describedBy}
                         >
-                          <SelectValue
-                            placeholder={content.fields.role.selectPlaceholder}
-                          />
+                          <SelectValue placeholder={content.fields.role.selectPlaceholder} />
                         </SelectTrigger>
                         <SelectContent>
                           {ROLES.map((r) => (
@@ -294,9 +307,13 @@ export function InquiryForm({ content }: Props) {
                         required
                         autoComplete="email"
                         aria-describedby={describedBy}
+                        aria-invalid={invalidFields.has("email") ? true : undefined}
                         placeholder={content.fields.email.placeholder}
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                          clearInvalidField("email", setInvalidFields);
+                        }}
                       />
                     )}
                   </Field>
@@ -313,9 +330,7 @@ export function InquiryForm({ content }: Props) {
                           aria-label={content.fields.region.label}
                           aria-describedby={describedBy}
                         >
-                          <SelectValue
-                            placeholder={content.fields.region.selectPlaceholder}
-                          />
+                          <SelectValue placeholder={content.fields.region.selectPlaceholder} />
                         </SelectTrigger>
                         <SelectContent>
                           {REGIONS.map((r) => (
@@ -348,9 +363,7 @@ export function InquiryForm({ content }: Props) {
                           aria-label={content.fields.service.label}
                           aria-describedby={describedBy}
                         >
-                          <SelectValue
-                            placeholder={content.fields.service.selectPlaceholder}
-                          />
+                          <SelectValue placeholder={content.fields.service.selectPlaceholder} />
                         </SelectTrigger>
                         <SelectContent>
                           {SERVICES.map((s) => (
@@ -404,9 +417,7 @@ export function InquiryForm({ content }: Props) {
                           aria-label={content.fields.stage.label}
                           aria-describedby={describedBy}
                         >
-                          <SelectValue
-                            placeholder={content.fields.stage.selectPlaceholder}
-                          />
+                          <SelectValue placeholder={content.fields.stage.selectPlaceholder} />
                         </SelectTrigger>
                         <SelectContent>
                           {STAGES.map((s) => (
@@ -461,9 +472,7 @@ export function InquiryForm({ content }: Props) {
                   disabled={status === "submitting"}
                   className="self-start"
                 >
-                  {status === "submitting"
-                    ? content.submittingLabel
-                    : content.submitLabel}
+                  {status === "submitting" ? content.submittingLabel : content.submitLabel}
                 </Button>
               </form>
             </SectionReveal>
@@ -472,6 +481,34 @@ export function InquiryForm({ content }: Props) {
       </div>
     </section>
   );
+}
+
+function getInvalidFields({
+  name,
+  company,
+  email,
+}: {
+  name: string;
+  company: string;
+  email: string;
+}) {
+  const invalid = new Set<InvalidField>();
+  if (!name.trim()) invalid.add("name");
+  if (!company.trim()) invalid.add("company");
+  if (!email.trim() || !email.includes("@")) invalid.add("email");
+  return invalid;
+}
+
+function clearInvalidField(
+  field: InvalidField,
+  setInvalidFields: React.Dispatch<React.SetStateAction<Set<InvalidField>>>
+) {
+  setInvalidFields((prev) => {
+    if (!prev.has(field)) return prev;
+    const next = new Set(prev);
+    next.delete(field);
+    return next;
+  });
 }
 
 /**
@@ -488,9 +525,9 @@ export function InquiryForm({ content }: Props) {
  * label. Visible `*` markers should be wrapped in `aria-hidden="true"`
  * by the caller — they are decoration, not data.
  */
-type FieldRenderProps = {
+interface FieldRenderProps {
   describedBy: string | undefined;
-};
+}
 
 function Field({
   id,
@@ -508,8 +545,7 @@ function Field({
   const hintId = helper ? `${id}-hint` : undefined;
   const describedBy = hintId;
 
-  const rendered =
-    typeof children === "function" ? children({ describedBy }) : children;
+  const rendered = typeof children === "function" ? children({ describedBy }) : children;
 
   return (
     <div className="flex flex-col gap-1.5">

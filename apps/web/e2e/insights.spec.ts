@@ -14,9 +14,7 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("Insights", () => {
-  test("hub loads + article click-through renders detail page", async ({
-    page,
-  }) => {
+  test("hub loads + article click-through renders detail page", async ({ page }) => {
     const response = await page.goto("/insights");
     expect(response?.status()).toBe(200);
 
@@ -30,7 +28,7 @@ test.describe("Insights", () => {
     // keeps us off the whitepaper cards.
     const resultsList = page.getByRole("list", { name: /Insights results/i });
     const articleLinks = resultsList.locator(
-      'a[href^="/insights/"]:not([href^="/insights/whitepapers/"])',
+      'a[href^="/insights/"]:not([href^="/insights/whitepapers/"])'
     );
     const firstArticle = articleLinks.first();
     await expect(firstArticle).toBeVisible();
@@ -57,9 +55,7 @@ test.describe("Insights", () => {
     // Find the first whitepaper card link. Scope to the FilterableGrid
     // results list so we never pick up a chrome-level link.
     const resultsList = page.getByRole("list", { name: /Insights results/i });
-    const whitepaperLinks = resultsList.locator(
-      'a[href^="/insights/whitepapers/"]',
-    );
+    const whitepaperLinks = resultsList.locator('a[href^="/insights/whitepapers/"]');
     const firstWhitepaper = whitepaperLinks.first();
 
     // Whitepapers in the seed: the canonical CDMO operating model PDF.
@@ -67,7 +63,7 @@ test.describe("Insights", () => {
     const count = await whitepaperLinks.count();
     test.skip(
       count === 0,
-      "No whitepapers in current Insights seed — gate-page click-through skipped.",
+      "No whitepapers in current Insights seed — gate-page click-through skipped."
     );
 
     await expect(firstWhitepaper).toBeVisible();
@@ -92,5 +88,48 @@ test.describe("Insights", () => {
     await expect(gateForm).toBeVisible();
     const emailInput = page.locator('input[type="email"]').first();
     await expect(emailInput).toBeVisible();
+  });
+
+  test("whitepaper gate marks required fields invalid on an empty submit", async ({ page }) => {
+    const response = await page.goto("/insights");
+    expect(response?.status()).toBe(200);
+
+    const resultsList = page.getByRole("list", { name: /Insights results/i });
+    const whitepaperLinks = resultsList.locator('a[href^="/insights/whitepapers/"]');
+    const count = await whitepaperLinks.count();
+    test.skip(
+      count === 0,
+      "No whitepapers in current Insights seed - gate-page validation skipped."
+    );
+
+    const firstWhitepaper = whitepaperLinks.first();
+    const whitepaperHref = await firstWhitepaper.getAttribute("href");
+    expect(whitepaperHref).toMatch(/^\/insights\/whitepapers\/[a-z0-9-]+$/);
+
+    await Promise.all([
+      page.waitForURL((url) => url.pathname === whitepaperHref),
+      firstWhitepaper.click(),
+    ]);
+
+    const gateForm = page.locator("form").first();
+    const fullNameInput = gateForm.locator("#wp-fullname");
+    const emailInput = gateForm.locator("#wp-email");
+    const companyInput = gateForm.locator("#wp-company");
+    const roleSelect = gateForm.locator("#wp-role");
+    const countrySelect = gateForm.locator("#wp-country");
+
+    await expect(fullNameInput).not.toHaveAttribute("aria-invalid", "true");
+    await expect(emailInput).not.toHaveAttribute("aria-invalid", "true");
+    await expect(companyInput).not.toHaveAttribute("aria-invalid", "true");
+    await expect(roleSelect).not.toHaveAttribute("aria-invalid", "true");
+    await expect(countrySelect).not.toHaveAttribute("aria-invalid", "true");
+
+    await gateForm.getByRole("button", { name: /email me/i }).click();
+
+    await expect(fullNameInput).toHaveAttribute("aria-invalid", "true");
+    await expect(emailInput).toHaveAttribute("aria-invalid", "true");
+    await expect(companyInput).toHaveAttribute("aria-invalid", "true");
+    await expect(roleSelect).toHaveAttribute("aria-invalid", "true");
+    await expect(countrySelect).toHaveAttribute("aria-invalid", "true");
   });
 });
