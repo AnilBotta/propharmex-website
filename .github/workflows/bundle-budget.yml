@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   budget:
-    name: First-Load JS budget gate (150 kB)
+    name: First-Load JS budget gate (380 kB)
     runs-on: ubuntu-latest
     timeout-minutes: 15
 

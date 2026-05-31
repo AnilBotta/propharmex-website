@@ -234,7 +234,7 @@ def build_signoff_sheet(wb: Workbook) -> None:
         ("Status grid complete (no Sev 1 reds)", "", "", "", ""),
         ("Test plan items all completed or waived", "", "", "", ""),
         ("Lighthouse CI green at 0.90 perf / strict CWV", "", "", "", ""),
-        ("Bundle budget (450 kB) green per .github/workflows/bundle-budget.yml", "", "", "", ""),
+        ("Bundle budget (380 kB) green per .github/workflows/bundle-budget.yml", "", "", "", ""),
         ("axe-core CI zero serious or critical", "", "", "", ""),
         ("Manual VoiceOver pass (per docs/accessibility-at-test-plan.md)", "", "", "", ""),
         ("Manual NVDA pass (per docs/accessibility-at-test-plan.md)", "", "", "", ""),
