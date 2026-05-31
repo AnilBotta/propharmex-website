@@ -173,14 +173,13 @@ export interface BreadcrumbListInput {
  */
 export function breadcrumbListJsonLd(input: BreadcrumbListInput): JsonLd {
   const base = input.siteUrl.replace(/\/$/, "");
-  const items = [{ name: "Home", path: "/" }, ...input.trail].map(
-    (item, index) =>
-      clean({
-        "@type": "ListItem",
-        position: index + 1,
-        name: item.name,
-        item: `${base}${item.path === "/" ? "" : item.path}` || base,
-      }),
+  const items = [{ name: "Home", path: "/" }, ...input.trail].map((item, index) =>
+    clean({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: `${base}${item.path === "/" ? "" : item.path}` || base,
+    })
   );
   return clean({
     "@context": SCHEMA_CONTEXT,
@@ -252,7 +251,7 @@ export function faqPageJsonLd(input: FaqPageInput): JsonLd {
           "@type": "Answer",
           text: item.answer,
         },
-      }),
+      })
     ),
   });
 }
@@ -279,11 +278,8 @@ export interface PersonInput {
 
 export function personJsonLd(input: PersonInput): JsonLd {
   const base = input.siteUrl?.replace(/\/$/, "");
-  const id =
-    base && input.path ? `${base}${input.path}#person` : undefined;
-  const affiliation =
-    input.affiliation ??
-    (base ? { "@id": `${base}#organization` } : undefined);
+  const id = base && input.path ? `${base}${input.path}#person` : undefined;
+  const affiliation = input.affiliation ?? (base ? { "@id": `${base}#organization` } : undefined);
   return clean({
     "@context": SCHEMA_CONTEXT,
     "@type": "Person",
@@ -303,11 +299,7 @@ export function personJsonLd(input: PersonInput): JsonLd {
 /*  Article                                                                   */
 /* -------------------------------------------------------------------------- */
 
-export type ArticleSchemaType =
-  | "Article"
-  | "NewsArticle"
-  | "TechArticle"
-  | "ScholarlyArticle";
+export type ArticleSchemaType = "Article" | "NewsArticle" | "TechArticle" | "ScholarlyArticle";
 
 export interface ArticleAuthor {
   name: string;
@@ -357,12 +349,104 @@ export function articleJsonLd(input: ArticleInput): JsonLd {
         name: a.name,
         jobTitle: a.jobTitle,
         url: a.url,
-      }),
+      })
     ),
     publisher: { "@id": `${base}#organization` },
     isPartOf: { "@id": `${base}#website` },
     mainEntityOfPage: { "@id": `${url}#webpage` },
   });
+}
+
+export interface ArticleDetailInput {
+  type?: ArticleSchemaType;
+  siteUrl: string;
+  /** Path with leading slash. */
+  path: string;
+  headline: string;
+  /** WebPage name, usually the SEO title. */
+  pageName: string;
+  description?: string;
+  datePublished?: string;
+  dateModified?: string;
+  inLanguage?: string;
+  author?: ArticleAuthor | ArticleAuthor[] | JsonLd;
+  publisher?: JsonLd;
+  keywords?: string[] | string;
+  articleSection?: string;
+  about?: string | string[] | JsonLd | JsonLd[];
+  breadcrumbTrail: BreadcrumbTrailItem[];
+}
+
+function isExplicitJsonLdNode(value: ArticleAuthor | JsonLd): value is JsonLd {
+  return "@type" in value || "@id" in value;
+}
+
+function articleAuthorJsonLd(author: ArticleAuthor | JsonLd): JsonLd {
+  if (isExplicitJsonLdNode(author)) return author;
+  return clean({
+    "@type": "Person",
+    name: author.name,
+    jobTitle: author.jobTitle,
+    url: author.url,
+  });
+}
+
+export function articleDetailJsonLd(input: ArticleDetailInput): JsonLd {
+  const base = input.siteUrl.replace(/\/$/, "");
+  const url = `${base}${input.path}`;
+  const articleId = `${url}#article`;
+  const webpageId = `${url}#webpage`;
+  const defaultPublisher = { "@id": `${base}#organization` };
+  const author = input.author ?? defaultPublisher;
+
+  const article = clean({
+    "@context": SCHEMA_CONTEXT,
+    "@type": input.type ?? "Article",
+    "@id": articleId,
+    headline: input.headline,
+    description: input.description,
+    articleSection: input.articleSection,
+    mainEntityOfPage: { "@id": webpageId },
+    isPartOf: { "@id": `${base}#website` },
+    author: Array.isArray(author)
+      ? author.map((a) => articleAuthorJsonLd(a))
+      : articleAuthorJsonLd(author),
+    publisher: input.publisher ?? defaultPublisher,
+    datePublished: input.datePublished,
+    dateModified: input.dateModified ?? input.datePublished,
+    inLanguage: input.inLanguage ?? "en",
+    keywords: input.keywords,
+    about: input.about,
+    url,
+  });
+
+  const webpage = clean({
+    "@context": SCHEMA_CONTEXT,
+    "@type": "WebPage",
+    "@id": webpageId,
+    url,
+    name: input.pageName,
+    description: input.description,
+    isPartOf: { "@id": `${base}#website` },
+    about: { "@id": articleId },
+    inLanguage: input.inLanguage ?? "en",
+  });
+
+  const breadcrumb = clean({
+    "@context": SCHEMA_CONTEXT,
+    "@type": "BreadcrumbList",
+    "@id": `${url}#breadcrumb`,
+    itemListElement: [{ name: "Home", path: "/" }, ...input.breadcrumbTrail].map((item, index) =>
+      clean({
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.name,
+        item: item.path === "/" ? `${base}/` : `${base}${item.path}`,
+      })
+    ),
+  });
+
+  return jsonLdGraph([article, webpage, breadcrumb]);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -405,7 +489,7 @@ export function serviceJsonLd(input: ServiceInput): JsonLd {
               "@type": "Offer",
               position: index + 1,
               itemOffered: { "@type": "Service", name: offering },
-            }),
+            })
           ),
         })
       : undefined,

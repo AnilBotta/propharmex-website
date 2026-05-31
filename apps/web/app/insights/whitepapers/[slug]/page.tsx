@@ -17,7 +17,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { env, jsonLdGraph } from "@propharmex/lib";
+import { articleDetailJsonLd, env } from "@propharmex/lib";
 
 import { WhitepaperContents } from "../../../../components/insights/WhitepaperContents";
 import { WhitepaperGateForm } from "../../../../components/insights/WhitepaperGateForm";
@@ -34,12 +34,11 @@ export const revalidate = 300;
 
 const HUB_PATH = "/insights/whitepapers";
 
-const WHITEPAPER_BY_SLUG: Record<WhitepaperSlug, WhitepaperContent> =
-  Object.fromEntries(
-    INSIGHTS.whitepapers.map((wp) => [wp.slug, wp]),
-  ) as Record<WhitepaperSlug, WhitepaperContent>;
+const WHITEPAPER_BY_SLUG: Record<WhitepaperSlug, WhitepaperContent> = Object.fromEntries(
+  INSIGHTS.whitepapers.map((wp) => [wp.slug, wp])
+) as Record<WhitepaperSlug, WhitepaperContent>;
 
-type Params = { slug: string };
+interface Params { slug: string }
 
 export function generateStaticParams(): Params[] {
   return WHITEPAPER_SLUGS.map((slug) => ({ slug }));
@@ -54,11 +53,7 @@ function resolveContent(slug: string): WhitepaperContent | null {
   return WHITEPAPER_BY_SLUG[slug] ?? null;
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<Params>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { slug } = await params;
   const content = resolveContent(slug);
   if (!content) {
@@ -88,17 +83,32 @@ export async function generateMetadata({
   };
 }
 
-export default async function WhitepaperDetailPage({
-  params,
-}: {
-  params: Promise<Params>;
-}) {
+export default async function WhitepaperDetailPage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
   const content = resolveContent(slug);
   if (!content) notFound();
 
   const siteUrl = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
-  const pageJsonLd = buildDetailJsonLd(siteUrl, content);
+  const pageJsonLd = articleDetailJsonLd({
+    siteUrl,
+    path: `${HUB_PATH}/${content.slug}`,
+    headline: content.title,
+    pageName: content.metaTitle,
+    description: content.metaDescription,
+    articleSection: "Whitepaper",
+    datePublished: `${content.publishedAt}T00:00:00Z`,
+    inLanguage: "en-CA",
+    author: {
+      "@type": "Organization",
+      name: content.author.name,
+      description: content.author.role,
+    },
+    breadcrumbTrail: [
+      { name: "Insights", path: "/insights" },
+      { name: "Whitepapers", path: HUB_PATH },
+      { name: content.title, path: `${HUB_PATH}/${content.slug}` },
+    ],
+  });
 
   return (
     <>
@@ -121,76 +131,4 @@ export default async function WhitepaperDetailPage({
       <JsonLd id={`ins-wp-${content.slug}-jsonld`} data={pageJsonLd} />
     </>
   );
-}
-
-/**
- * Per-whitepaper JSON-LD graph:
- *
- *  - Article — schema.org has no "Whitepaper" type. Article with
- *    `articleSection: "Whitepaper"` is the closest semantic match. Author
- *    is rendered as a nested Organization (editorial group); publisher
- *    references the Propharmex Organization @id from the root layout.
- *  - WebPage — `about` the Article.
- *  - BreadcrumbList — Home → Insights → Whitepapers → this whitepaper.
- */
-function buildDetailJsonLd(siteUrl: string, content: WhitepaperContent) {
-  const pageUrl = `${siteUrl}${HUB_PATH}/${content.slug}`;
-
-  const article = {
-    "@type": "Article",
-    "@id": `${pageUrl}#article`,
-    headline: content.title,
-    description: content.metaDescription,
-    articleSection: "Whitepaper",
-    mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
-    isPartOf: { "@id": `${siteUrl}#website` },
-    author: {
-      "@type": "Organization",
-      name: content.author.name,
-      description: content.author.role,
-    },
-    publisher: { "@id": `${siteUrl}#organization` },
-    datePublished: `${content.publishedAt}T00:00:00Z`,
-    inLanguage: "en-CA",
-    url: pageUrl,
-  };
-
-  const webpage = {
-    "@type": "WebPage",
-    "@id": `${pageUrl}#webpage`,
-    url: pageUrl,
-    name: content.metaTitle,
-    description: content.metaDescription,
-    isPartOf: { "@id": `${siteUrl}#website` },
-    about: { "@id": `${pageUrl}#article` },
-    inLanguage: "en-CA",
-  };
-
-  const breadcrumb = {
-    "@type": "BreadcrumbList",
-    "@id": `${pageUrl}#breadcrumb`,
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Insights",
-        item: `${siteUrl}/insights`,
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: "Whitepapers",
-        item: `${siteUrl}${HUB_PATH}`,
-      },
-      {
-        "@type": "ListItem",
-        position: 4,
-        name: content.title,
-        item: pageUrl,
-      },
-    ],
-  };
-
-  return jsonLdGraph([article, webpage, breadcrumb]);
 }

@@ -16,7 +16,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { env, jsonLdGraph } from "@propharmex/lib";
+import { articleDetailJsonLd, env } from "@propharmex/lib";
 
 import { ArticleBody } from "../../../components/insights/ArticleBody";
 import { ArticleHero } from "../../../components/insights/ArticleHero";
@@ -36,10 +36,10 @@ export const revalidate = 300;
 const HUB_PATH = "/insights";
 
 const ARTICLE_BY_SLUG: Record<ArticleSlug, ArticleContent> = Object.fromEntries(
-  INSIGHTS.articles.map((article) => [article.slug, article]),
+  INSIGHTS.articles.map((article) => [article.slug, article])
 ) as Record<ArticleSlug, ArticleContent>;
 
-type Params = { slug: string };
+interface Params { slug: string }
 
 export function generateStaticParams(): Params[] {
   return ARTICLE_SLUGS.map((slug) => ({ slug }));
@@ -54,11 +54,7 @@ function resolveContent(slug: string): ArticleContent | null {
   return ARTICLE_BY_SLUG[slug] ?? null;
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<Params>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { slug } = await params;
   const content = resolveContent(slug);
   if (!content) {
@@ -89,17 +85,31 @@ export async function generateMetadata({
   };
 }
 
-export default async function ArticleDetailPage({
-  params,
-}: {
-  params: Promise<Params>;
-}) {
+export default async function ArticleDetailPage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
   const content = resolveContent(slug);
   if (!content) notFound();
 
   const siteUrl = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
-  const pageJsonLd = buildDetailJsonLd(siteUrl, content);
+  const pageJsonLd = articleDetailJsonLd({
+    siteUrl,
+    path: `${HUB_PATH}/${content.slug}`,
+    headline: content.title,
+    pageName: content.metaTitle,
+    description: content.metaDescription,
+    datePublished: `${content.publishedAt}T00:00:00Z`,
+    inLanguage: "en-CA",
+    keywords: content.tags.join(", "),
+    author: {
+      "@type": "Organization",
+      name: content.author.name,
+      description: content.author.role,
+    },
+    breadcrumbTrail: [
+      { name: "Insights", path: HUB_PATH },
+      { name: content.title, path: `${HUB_PATH}/${content.slug}` },
+    ],
+  });
 
   const relatedArticles = content.related
     .map((s) => ARTICLE_BY_SLUG[s])
@@ -131,70 +141,4 @@ export default async function ArticleDetailPage({
       <JsonLd id={`ins-article-${content.slug}-jsonld`} data={pageJsonLd} />
     </>
   );
-}
-
-/**
- * Build the per-article JSON-LD graph:
- *
- *  - Article — the article itself. Author is the editorial group as a
- *    nested Organization-like node (since editorial-group bylines aren't
- *    Persons). Publisher is the Propharmex Organization. Keywords mirror
- *    the article tags.
- *  - WebPage — the containing page, `about` the Article.
- *  - BreadcrumbList — Home → Insights → this article.
- */
-function buildDetailJsonLd(siteUrl: string, content: ArticleContent) {
-  const pageUrl = `${siteUrl}${HUB_PATH}/${content.slug}`;
-
-  const article = {
-    "@type": "Article",
-    "@id": `${pageUrl}#article`,
-    headline: content.title,
-    description: content.metaDescription,
-    mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
-    isPartOf: { "@id": `${siteUrl}#website` },
-    author: {
-      "@type": "Organization",
-      name: content.author.name,
-      description: content.author.role,
-    },
-    publisher: { "@id": `${siteUrl}#organization` },
-    datePublished: `${content.publishedAt}T00:00:00Z`,
-    inLanguage: "en-CA",
-    keywords: content.tags.join(", "),
-    url: pageUrl,
-  };
-
-  const webpage = {
-    "@type": "WebPage",
-    "@id": `${pageUrl}#webpage`,
-    url: pageUrl,
-    name: content.metaTitle,
-    description: content.metaDescription,
-    isPartOf: { "@id": `${siteUrl}#website` },
-    about: { "@id": `${pageUrl}#article` },
-    inLanguage: "en-CA",
-  };
-
-  const breadcrumb = {
-    "@type": "BreadcrumbList",
-    "@id": `${pageUrl}#breadcrumb`,
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Insights",
-        item: `${siteUrl}${HUB_PATH}`,
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: content.title,
-        item: pageUrl,
-      },
-    ],
-  };
-
-  return jsonLdGraph([article, webpage, breadcrumb]);
 }

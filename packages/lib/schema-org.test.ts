@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   SCHEMA_CONTEXT,
+  articleDetailJsonLd,
   articleJsonLd,
   breadcrumbListJsonLd,
   combineJsonLd,
@@ -117,9 +118,7 @@ describe("schema-org builders", () => {
 
   it("FAQPage emits Question/Answer pairs", () => {
     const faq = faqPageJsonLd({
-      items: [
-        { question: "What is DEL?", answer: "Drug Establishment Licence." },
-      ],
+      items: [{ question: "What is DEL?", answer: "Drug Establishment Licence." }],
     });
     expect(faq["@type"]).toBe("FAQPage");
     const main = faq.mainEntity as Record<string, unknown>[];
@@ -129,7 +128,7 @@ describe("schema-org builders", () => {
       name: "What is DEL?",
     });
     expect((main[0]?.acceptedAnswer as Record<string, unknown>).text).toBe(
-      "Drug Establishment Licence.",
+      "Drug Establishment Licence."
     );
   });
 
@@ -141,9 +140,7 @@ describe("schema-org builders", () => {
       path: "/about/leadership/jane-doe",
       sameAs: ["https://www.linkedin.com/in/janedoe"],
     });
-    expect(person["@id"]).toBe(
-      "https://example.com/about/leadership/jane-doe#person",
-    );
+    expect(person["@id"]).toBe("https://example.com/about/leadership/jane-doe#person");
     expect(person.worksFor).toEqual({
       "@id": "https://example.com#organization",
     });
@@ -160,9 +157,7 @@ describe("schema-org builders", () => {
       articleSection: "Health Canada DEL",
     });
     expect(article["@type"]).toBe("Article");
-    expect(article["@id"]).toBe(
-      "https://example.com/insights/del-primer#article",
-    );
+    expect(article["@id"]).toBe("https://example.com/insights/del-primer#article");
     expect(article.publisher).toEqual({
       "@id": "https://example.com#organization",
     });
@@ -171,6 +166,63 @@ describe("schema-org builders", () => {
     });
     expect(article.dateModified).toBe("2026-04-26");
     expect(article.author).toHaveLength(1);
+  });
+
+  it("Article detail graph composes Article, WebPage, and BreadcrumbList", () => {
+    const graph = articleDetailJsonLd({
+      siteUrl: "https://example.com/",
+      path: "/insights/ich-q2-r2-method-validation-2024",
+      headline: "ICH Q2(R2) method validation",
+      pageName: "ICH Q2(R2) method validation — Propharmex",
+      description: "A practical validation primer.",
+      datePublished: "2026-05-01T00:00:00Z",
+      inLanguage: "en-CA",
+      keywords: ["ICH Q2(R2)", "method validation"],
+      author: {
+        "@type": "Organization",
+        name: "Propharmex Editorial",
+        description: "Regulatory and analytical practice",
+      },
+      breadcrumbTrail: [
+        { name: "Insights", path: "/insights" },
+        {
+          name: "ICH Q2(R2) method validation",
+          path: "/insights/ich-q2-r2-method-validation-2024",
+        },
+      ],
+    });
+
+    expect(graph["@context"]).toBe(SCHEMA_CONTEXT);
+    const nodes = graph["@graph"] as Record<string, unknown>[];
+    expect(nodes).toHaveLength(3);
+    expect(nodes[0]).toMatchObject({
+      "@type": "Article",
+      "@id": "https://example.com/insights/ich-q2-r2-method-validation-2024#article",
+      headline: "ICH Q2(R2) method validation",
+      mainEntityOfPage: {
+        "@id": "https://example.com/insights/ich-q2-r2-method-validation-2024#webpage",
+      },
+      publisher: { "@id": "https://example.com#organization" },
+      inLanguage: "en-CA",
+      author: {
+        "@type": "Organization",
+        name: "Propharmex Editorial",
+      },
+    });
+    expect(nodes[1]).toMatchObject({
+      "@type": "WebPage",
+      about: {
+        "@id": "https://example.com/insights/ich-q2-r2-method-validation-2024#article",
+      },
+    });
+    expect(nodes[2]).toMatchObject({
+      "@type": "BreadcrumbList",
+      "@id": "https://example.com/insights/ich-q2-r2-method-validation-2024#breadcrumb",
+    });
+    const breadcrumbNode = nodes[2];
+    if (!breadcrumbNode) throw new Error("Expected breadcrumb node");
+    const breadcrumbItems = breadcrumbNode.itemListElement as Record<string, unknown>[];
+    expect(breadcrumbItems[0]?.item).toBe("https://example.com/");
   });
 
   it("Service emits hasOfferCatalog only when offerings provided", () => {
@@ -196,9 +248,7 @@ describe("schema-org builders", () => {
     });
     const offerCatalog = withOffers.hasOfferCatalog as Record<string, unknown>;
     expect(offerCatalog["@type"]).toBe("OfferCatalog");
-    expect(
-      offerCatalog.itemListElement as Record<string, unknown>[],
-    ).toHaveLength(2);
+    expect(offerCatalog.itemListElement as Record<string, unknown>[]).toHaveLength(2);
   });
 
   it("combineJsonLd is an alias for jsonLdGraph", () => {
