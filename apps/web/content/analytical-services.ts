@@ -2045,14 +2045,14 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
     "LC-MS/MS bioanalytical method development and validation under ICH M10 and the USFDA 2018 bioanalytical method validation guidance, with CRO collaboration for regulated PK sample analysis.",
   ogTitle: "Bioanalytical Services — Propharmex",
   ogDescription:
-    "Regulated PK and biomarker quantitation — ICH M10 and USFDA bioanalytical guidance, LC-MS/MS triple-quadrupole workflows, and a CRO-collaboration model for clinical-study sample analysis.",
+    "Regulated PK and biomarker quantitation — ICH M10 and USFDA bioanalytical guidance, LC-MS/MS triple-quadrupole workflows, and a CRO-collaboration model for regulated-study sample analysis.",
   hero: {
     eyebrow: "Analytical Services · Bioanalytical",
     headline:
       "Bioanalytical methods authored to meet regulated-PK expectations on the first validation run.",
     valueProp:
-      "LC-MS/MS method development and validation aligned to ICH M10 and the USFDA 2018 bioanalytical method validation guidance, with CRO collaboration where clinical-study samples are analyzed.",
-    lede: "Bioanalytical work is unforgiving at the edges — matrix effect, recovery, selectivity and incurred-sample reanalysis decide whether a regulated PK study is accepted or repeated. We develop and validate LC-MS/MS methods against ICH M10 and the USFDA 2018 bioanalytical method validation guidance, scope the calibration curve and QC scheme to the study, and collaborate with accredited CROs for clinical-study sample analysis where the programme requires it.",
+      "LC-MS/MS method development and validation aligned to ICH M10 and the USFDA 2018 bioanalytical method validation guidance, with CRO collaboration where regulated-study samples are analyzed.",
+    lede: "Bioanalytical work is unforgiving at the edges — matrix effect, recovery, selectivity and incurred-sample reanalysis decide whether a regulated PK study is accepted or repeated. We develop and validate LC-MS/MS methods against ICH M10 and the USFDA 2018 bioanalytical method validation guidance, scope the calibration curve and QC scheme to the study, and collaborate with accredited CROs for regulated-study sample analysis where the programme requires it.",
     stats: [
       { label: "Validation anchor", value: "ICH M10" },
       { label: "Guidance", value: "USFDA 2018" },
@@ -2109,7 +2109,7 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
   process: {
     eyebrow: "Our process",
     heading: "From method scoping to a regulated PK-ready package",
-    lede: "The stepper reflects the order of work on most bioanalytical programmes. Some steps run at either hub — the ownership column reflects typical practice; clinical-study sample analysis runs with a collaborating CRO.",
+    lede: "The stepper reflects the order of work on most bioanalytical programmes. Some steps run at either hub — the ownership column reflects typical practice; regulated-study sample analysis runs with a collaborating CRO.",
     steps: [
       {
         id: "scoping",
@@ -2145,7 +2145,7 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
         ],
       },
       {
-        id: "clinical-sample-analysis",
+        id: "regulated-sample-analysis",
         label: "Clinical-study sample analysis",
         description:
           "Study samples run by a collaborating accredited CRO under the validated method, with Propharmex providing method ownership, QC review and investigator-facing documentation. ISR run at the protocol-agreed level.",
@@ -2304,7 +2304,7 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
       },
       {
         id: "sample-analysis",
-        prompt: "Are we validating only, or also analyzing clinical-study samples?",
+        prompt: "Are we validating only, or also analyzing regulated-study samples?",
         helper:
           "Sample analysis at the CRO requires a signed QA agreement and ISR plan written in at protocol stage.",
       },
@@ -2390,7 +2390,7 @@ export const ANALYTICAL_BIOANALYTICAL: AnalyticalLeafContent = {
   closing: {
     eyebrow: "Next step",
     heading: "Send the analyte, the matrix and the study design. We'll send back a method plan.",
-    body: "Most first calls walk through the analyte, the expected PK range, the matrix and the study purpose — and produce a method-development and validation outline against ICH M10 that CRO and clinical teams can review together. Where clinical-study sample analysis is in scope, we flag CRO partner and QA-agreement requirements early.",
+    body: "Most first calls walk through the analyte, the expected PK range, the matrix and the study purpose — and produce a method-development and validation outline against ICH M10 that sponsor and CRO teams can review together. Where regulated-study sample analysis is in scope, we flag CRO partner and QA-agreement requirements early.",
     primaryCta: {
       label: "Scope a bioanalytical method",
       href: "/ai/project-scoping-assistant?source=as-bioanalytical-closing-scope",

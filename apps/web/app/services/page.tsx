@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowUpRight, ClipboardCheck, FileSearch, Microscope, Network } from "lucide-react";
+import { ArrowUpRight, FileSearch, Microscope, Network } from "lucide-react";
 
 import { Button } from "@propharmex/ui";
 import { env, jsonLdGraph } from "@propharmex/lib";
@@ -34,7 +34,6 @@ const SERVICE_ICON = {
   analytical: Microscope,
   regulatory: FileSearch,
   development: Network,
-  clinical: ClipboardCheck,
 } as const;
 
 export default function ServicesPage() {

@@ -264,9 +264,9 @@ export const LEADERS: AboutLeader[] = [
     role: "Programme management and tech transfer",
     location: "Mississauga",
     credential:
-      "Programme management and tech-transfer oversight across the four capability pillars — development, analytical, regulatory, and clinical insight.",
+      "Programme management and tech-transfer oversight across development, analytical, and regulatory workstreams.",
     bio: [
-      "Owns programme coordination across regulatory, analytical, development, and clinical-insight workstreams. Tech transfers, stage-gate reviews, and the operating cadence keep each engagement in one shared CTMS rather than five.",
+      "Owns programme coordination across regulatory, analytical, and development workstreams. Tech transfers, stage-gate reviews, and the operating cadence keep each engagement in one shared project record rather than five.",
       "Runs the sponsor-facing cadence that links scientific work, regulatory review, and commercial priorities into one decision record.",
       "Full public biography will be published after credential review and principal approval.",
     ],
@@ -288,7 +288,7 @@ export const LEADERS: AboutLeader[] = [
 export const ABOUT: AboutContent = {
   metaTitle: "About Propharmex — specialty CDMO for complex and niche pharmaceutical products",
   metaDescription:
-    "Who we are, how we operate, and why we run pharmaceutical development, analytical services, regulatory strategy, and clinical and BE insight under one quality system. Headquartered in Canada and serving drug developers worldwide.",
+    "Who we are, how we operate, and why we run pharmaceutical development, analytical services, and regulatory strategy under one quality system. Headquartered in Canada and serving drug developers worldwide.",
   ogTitle: "About Propharmex",
   ogDescription:
     "Mission, values, timeline, and the named principals accountable on every Propharmex engagement.",
@@ -297,7 +297,7 @@ export const ABOUT: AboutContent = {
   founding: {
     eyebrow: "Founding story",
     headline: "One quality system. No handoffs between us.",
-    lede: "Propharmex was founded as a specialty pharmaceutical services company built around four capability pillars — pharmaceutical development, analytical services, regulatory strategy, and clinical and BE insight — for drug developers working on complex and niche products.",
+    lede: "Propharmex was founded as a specialty pharmaceutical services company built around pharmaceutical development, analytical services, and regulatory strategy for drug developers working on complex and niche products.",
     body: [
       "The trigger was a pattern we saw repeatedly across complex-generic and specialty-dosage programs — six or more independent vendors stitched together by overnight emails, and timelines that doubled every time a deviation crossed a contract boundary.",
       "Propharmex is headquartered in Canada and works with global sponsors through a single documented operating model. The Canadian team owns the client relationship, regulatory strategy, scope governance, and final accountability for the engagement.",
@@ -305,8 +305,7 @@ export const ABOUT: AboutContent = {
     ],
     anchor: {
       value: "4",
-      label:
-        "Capability pillars under one quality system — development, analytical, regulatory, clinical and BE insight",
+      label: "Capability pillars under one quality system — development, analytical, regulatory",
       source: {
         kind: "internal",
         label: "Propharmex operating model, 2025-Q4",
@@ -322,11 +321,11 @@ export const ABOUT: AboutContent = {
       "The three statements below are not a marketing frame. They are the criteria we use to scope engagements, hire principals, and decline work that does not fit.",
     mission: {
       label: "Mission",
-      body: "Make complex-generic and specialty-dosage development faster and more predictable by running pharmaceutical development, analytical services, regulatory strategy, and clinical and BE insight as one team under one quality system.",
+      body: "Make complex-generic and specialty-dosage development more predictable by running pharmaceutical development, analytical services, and regulatory strategy as one team under one quality system.",
     },
     vision: {
       label: "Vision",
-      body: "Be the correct specialty CDMO for the product profiles where depth across development, analytical, regulatory, and clinical insight matters more than a generic capability menu — complex generics, modified-release orals, lyophilized sterile injectables, and dissolution-sensitive semi-solids.",
+      body: "Be the correct specialty CDMO for product profiles where depth across development, analytical, and regulatory work matters more than a generic capability menu — complex generics, modified-release orals, lyophilized sterile injectables, and dissolution-sensitive semi-solids.",
     },
     values: [
       {
@@ -398,8 +397,8 @@ export const ABOUT: AboutContent = {
       {
         year: "2021",
         kind: "expansion",
-        title: "Clinical and BE insight capability added.",
-        body: "Clinical insight and bioequivalence study design added as the fourth capability pillar alongside development, analytical services, and regulatory strategy.",
+        title: "Integrated regulatory capability added.",
+        body: "Regulatory strategy became a formal workstream alongside development and analytical services, so complex programmes could be scoped from product design through dossier planning.",
         source: {
           kind: "internal",
           label: "Propharmex capability register",

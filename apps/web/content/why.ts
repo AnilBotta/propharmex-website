@@ -106,10 +106,10 @@ export interface WhyContent {
 export const WHY: WhyContent = {
   metaTitle: "Why Propharmex — specialty CDMO for complex and niche pharmaceutical products",
   metaDescription:
-    "Drug development is fragmented across too many vendors and jurisdictions. Propharmex closes that gap with four capability pillars — pharmaceutical development, analytical services, regulatory strategy, and clinical and BE insight — running under one quality system.",
+    "Drug development is fragmented across too many vendors and jurisdictions. Propharmex closes that gap with pharmaceutical development, analytical services, and regulatory strategy running under one quality system.",
   ogTitle: "Why Propharmex",
   ogDescription:
-    "The specific gap we exist to close — specialty CDMO depth across development, analytical, regulatory, and clinical insight, run under one quality system.",
+    "The specific gap we exist to close — specialty CDMO depth across development, analytical, and regulatory work, run under one quality system.",
 
   railLabel: "Chapter progress",
 
@@ -161,16 +161,16 @@ export const WHY: WhyContent = {
       railLabel: "Gap",
       eyebrow: "Chapter two",
       headline: "The gap we exist to close.",
-      lede: "There are large CDMOs with broad capability menus. There are boutique labs deep in one discipline. There are not many specialty CDMOs covering pharmaceutical development, analytical services, regulatory strategy, and clinical and BE insight — under one quality system, for complex and niche products.",
+      lede: "There are large CDMOs with broad capability menus. There are boutique labs deep in one discipline. There are not many specialty CDMOs covering pharmaceutical development, analytical services, and regulatory strategy under one quality system for complex and niche products.",
       body: [
         "Generic-CDMO breadth means everyone gets the same playbook, even when the molecule needs something specific. That works for commodity products. It rarely works for complex generics, modified-release orals, lyophilized injectables, or dissolution-sensitive semi-solids.",
-        "Boutique-lab depth solves the discipline question — but it leaves the integration question open. Programmes still hand off between five vendors; the analytical bench still does not see the regulatory deficiency letter; the formulation team still does not know which study the clinical lead is reading.",
+        "Boutique-lab depth solves the discipline question — but it leaves the integration question open. Programmes still hand off between five vendors; the analytical bench still does not see the regulatory deficiency letter; the formulation team still does not know which evidence question the sponsor is trying to resolve.",
         "We are organized around the intersection — four capability pillars run as one team, under one CTMS, one change-control process, and one named principal per engagement. The quality system spans the Canadian office and the development centre.",
       ],
       stats: [
         {
-          value: "4",
-          label: "Capability pillars: development, analytical, regulatory, clinical and BE insight",
+          value: "3",
+          label: "Capability pillars: development, analytical, regulatory",
           source: {
             kind: "internal",
             label: "Propharmex operating model, 2025-Q4",
@@ -202,8 +202,8 @@ export const WHY: WhyContent = {
       id: "model",
       railLabel: "Our model",
       eyebrow: "Chapter three",
-      headline: "Four pillars. One engagement. One quality system.",
-      lede: "Pharmaceutical development, analytical services, regulatory strategy, and clinical and BE insight run inside one operating model. One CTMS. One change-control process. One principal accountable on the client side of the engagement, end to end.",
+      headline: "Three pillars. One engagement. One quality system.",
+      lede: "Pharmaceutical development, analytical services, and regulatory strategy run inside one operating model. One change-control process. One principal accountable on the client side of the engagement, end to end.",
       body: [
         "The four pillars are not bolted together for a landing page — they are run from the same quality manual. When a stability deviation fires on the development bench, the regulatory lead sees it on the same dashboard and closes the CAPA under the same SOP the auditors read on every review.",
         "Handoffs that were interface risks between vendors become sign-offs inside one team. A tech transfer from analytical method work into a regulatory dossier is a stage-gate with a named owner on both sides — not a new contract negotiation.",
@@ -211,8 +211,8 @@ export const WHY: WhyContent = {
       ],
       stats: [
         {
-          value: "4",
-          label: "Capability pillars: development, analytical, regulatory, clinical and BE insight",
+          value: "3",
+          label: "Capability pillars: development, analytical, regulatory",
           source: {
             kind: "internal",
             label: "Propharmex operating model, 2025-Q4",
@@ -306,7 +306,7 @@ export const WHY: WhyContent = {
       lede: "The model is operational, not aspirational. One quality manual across the four capability pillars, with a daily handover cadence built on a few hours of daylight overlap between the Canadian office and the development centre.",
       body: [
         "The Canadian office holds the client-of-record relationship and runs regulatory strategy — submissions to Health Canada, USFDA, TGA, and WHO-PQ. It is the regulatory face of every engagement and the named principal point of contact.",
-        "The development centre carries the method work — HPLC, LC-MS/MS, dissolution, Karl Fischer, DSC — plus formulation and process depth for orals, sterile injectables, and semi-solids. Stability and bioequivalence study design sit alongside, under the same quality system.",
+        "The development centre carries the method work — HPLC, LC-MS/MS, dissolution, Karl Fischer, DSC — plus formulation and process depth for orals, sterile injectables, and semi-solids. Stability strategy sits alongside formulation and analytical work under the same quality system.",
         "The handover cadence is boring on purpose. Data-room uploads close at end-of-day on the development centre; the Canadian office picks them up first thing the next morning, ET. Weekly steering runs at 09:00 ET. Deviations are logged in the same system and reviewed by the same quality lead.",
       ],
       stats: [
@@ -382,7 +382,7 @@ export const WHY: WhyContent = {
         icon: "book-open",
         label: "Read how we operate",
         supporting:
-          "Walks through the four-pillar operating model — pharmaceutical development, analytical, regulatory, and clinical and BE insight — under one quality system.",
+          "Walks through the operating model for pharmaceutical development, analytical services, and regulatory strategy under one quality system.",
         href: "/our-process",
         variant: "ghost",
       },

@@ -7,7 +7,7 @@ import { fadeRise, staggerContainer, useReducedMotion } from "@propharmex/ui";
 
 import type { TrustStripSection } from "../../content/home";
 
-type Props = { content: TrustStripSection };
+interface Props { content: TrustStripSection }
 
 export function TrustStrip({ content }: Props) {
   const reduce = useReducedMotion();
@@ -24,7 +24,7 @@ export function TrustStrip({ content }: Props) {
           whileInView="animate"
           viewport={{ once: true, margin: "0px 0px -10% 0px" }}
           variants={staggerContainer}
-          className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5"
+          className="grid grid-cols-2 gap-3 lg:grid-cols-4"
         >
           {content.items.map((item) => (
             <motion.li key={item.id} variants={fadeRise}>
@@ -35,10 +35,8 @@ export function TrustStrip({ content }: Props) {
               >
                 <CertGlyph id={item.id} />
                 <span className="flex flex-col leading-tight">
-                  <span className="text-sm font-semibold text-[var(--color-fg)]">
-                    {item.label}
-                  </span>
-                  <span className="text-xs text-[var(--color-muted)] line-clamp-2">
+                  <span className="text-sm font-semibold text-[var(--color-fg)]">{item.label}</span>
+                  <span className="line-clamp-2 text-xs text-[var(--color-muted)]">
                     {item.caption}
                   </span>
                 </span>
@@ -55,7 +53,6 @@ const GLYPH_LABEL: Record<string, string> = {
   "complex-dosage": "RX",
   "regulatory-aware": "REG",
   analytical: "ANA",
-  clinical: "CLI",
   "canada-platform": "CAN",
 };
 

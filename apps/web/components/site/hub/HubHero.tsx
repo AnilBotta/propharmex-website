@@ -4,7 +4,7 @@
  * Headline, lede, three-stat strip and paired CTAs. LCP-safe — no client
  * components above the fold. Moved from components/pharmdev/ in PR-H'
  * (hub primitives extraction). Used by all 3 hub pages today
- * (pharmaceutical-development, dosage-forms, clinical-be-insight) via the
+ * (pharmaceutical-development, dosage-forms) via the
  * structural type-alias pattern in their respective content files.
  */
 import type { FC } from "react";
@@ -15,7 +15,7 @@ import { Button } from "@propharmex/ui";
 
 import type { PharmDevHubHero } from "../../../content/pharmaceutical-development";
 
-type Props = { content: PharmDevHubHero };
+interface Props { content: PharmDevHubHero }
 
 export const HubHero: FC<Props> = ({ content }) => {
   return (
@@ -39,7 +39,7 @@ export const HubHero: FC<Props> = ({ content }) => {
           </p>
         </div>
 
-        <dl className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:max-w-3xl">
+        <dl className="mt-10 grid grid-cols-1 gap-4 sm:max-w-3xl sm:grid-cols-3">
           {content.stats.map((stat) => (
             <div
               key={stat.label}
@@ -63,9 +63,7 @@ export const HubHero: FC<Props> = ({ content }) => {
             </Link>
           </Button>
           <Button asChild variant={content.secondaryCta.variant} size="lg">
-            <Link href={content.secondaryCta.href}>
-              {content.secondaryCta.label}
-            </Link>
+            <Link href={content.secondaryCta.href}>{content.secondaryCta.label}</Link>
           </Button>
         </div>
       </div>

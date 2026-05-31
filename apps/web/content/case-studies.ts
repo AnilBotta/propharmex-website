@@ -9,8 +9,8 @@
  *
  *  - modified-release-requalification — a Top-5 US generic manufacturer whose
  *    first ANDA filing came back with a dissolution deficiency letter. We
- *    rebuilt the method under ICH Q2(R2) and requalified three
- *    bioequivalence cohorts.
+ *    rebuilt the method under ICH Q2(R2) and reconciled retained analytical
+ *    samples against the revised method.
  *  - sterile-injectable-second-sourcing — a mid-size innovator sponsor with
  *    a commercial-stage sterile injectable running over target COGS. We
  *    tech-transferred analytical + process to a second supplier, qualified
@@ -68,7 +68,6 @@ export const CASE_INDUSTRY_FILTERS = [
   { id: "generics", label: "Generics" },
   { id: "cdmo-partners", label: "CDMO partners" },
   { id: "ngos", label: "NGOs and governments" },
-  { id: "clinical-trial-sponsors", label: "Clinical trial sponsors" },
 ] as const;
 export type CaseIndustry = (typeof CASE_INDUSTRY_FILTERS)[number]["id"];
 
@@ -356,13 +355,6 @@ const ICH_Q10: CaseStudySource = {
   href: "https://www.ich.org/page/quality-guidelines",
 };
 
-const FDA_BE_GUIDANCE: CaseStudySource = {
-  kind: "primary",
-  label:
-    "USFDA — Bioequivalence studies with pharmacokinetic endpoints for drugs submitted under an ANDA (guidance)",
-  href: "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/bioequivalence-studies-pharmacokinetic-endpoints-drugs-submitted-anda",
-};
-
 const CFR_PART_314: CaseStudySource = {
   kind: "primary",
   label: "21 CFR Part 314 — Applications for FDA approval to market a new drug",
@@ -458,15 +450,15 @@ const MODIFIED_RELEASE_REQUALIFICATION: CaseStudyContent = {
   metaTitle:
     "Modified-release requalification after a dissolution deficiency — Propharmex case study",
   metaDescription:
-    "Top-5 US generic manufacturer. ANDA returned with a dissolution deficiency letter. Method rebuilt under ICH Q2(R2), three bioequivalence cohorts requalified, resubmission filed roughly eleven months after engagement start.",
+    "Top-5 US generic manufacturer. ANDA returned with a dissolution deficiency letter. Method rebuilt under ICH Q2(R2), retained analytical samples reconciled, resubmission filed roughly eleven months after engagement start.",
   ogTitle: "Modified-release requalification after a dissolution deficiency",
   ogDescription:
-    "Anonymized worked pattern. ICH Q2(R2) dissolution method rebuild and BE cohort requalification for a Top-5 US generic manufacturer.",
+    "Anonymized worked pattern. ICH Q2(R2) dissolution method rebuild and retained-sample requalification for a Top-5 US generic manufacturer.",
   summary: {
     slug: "modified-release-requalification",
     title: "Modified-release requalification after a dissolution deficiency",
     teaser:
-      "Dissolution deficiency on a first ANDA filing. Method rebuild under ICH Q2(R2), three BE cohorts requalified, resubmission filed roughly eleven months after engagement start.",
+      "Dissolution deficiency on a first ANDA filing. Method rebuild under ICH Q2(R2), retained samples requalified, resubmission filed roughly eleven months after engagement start.",
     client: "Top-5 US generic manufacturer",
     metricValue: "~11 months",
     metricLabel: "From deficiency letter to resubmission filing",
@@ -485,7 +477,7 @@ const MODIFIED_RELEASE_REQUALIFICATION: CaseStudyContent = {
     label: "From deficiency letter to resubmission filing",
   },
   heroLede:
-    "First ANDA filing came back with a dissolution deficiency letter. The sponsor needed a rebuilt method, three requalified bioequivalence cohorts, and a credible resubmission package. We rebuilt the dissolution method, revalidated per ICH Q2(R2), and authored the amendment as part of a documented regulatory amendment package.",
+    "First ANDA filing came back with a dissolution deficiency letter. The sponsor needed a rebuilt method, retained-sample reconciliation, and a credible resubmission package. We rebuilt the dissolution method, revalidated per ICH Q2(R2), and authored the amendment as part of a documented regulatory amendment package.",
   snapshot: [
     {
       id: "client-pattern",
@@ -515,11 +507,11 @@ const MODIFIED_RELEASE_REQUALIFICATION: CaseStudyContent = {
   ],
   problem: {
     eyebrow: "Problem",
-    heading: "The method was not discriminating, and the BE story did not land.",
-    lede: "The original ANDA filing had been assembled in-house. The agency's deficiency letter flagged the dissolution method as insufficiently discriminating across the strengths, and asked for bioequivalence data that could be reconciled with the revised method. The sponsor was looking at a resubmission window measured in quarters.",
+    heading: "The method was not discriminating, and the evidence story did not land.",
+    lede: "The original ANDA filing had been assembled in-house. The agency's deficiency letter flagged the dissolution method as insufficiently discriminating across the strengths, and asked for prior product evidence to be reconciled with the revised method. The sponsor was looking at a resubmission window measured in quarters.",
     bullets: [
       "Dissolution method lacked discrimination across the three strengths — the agency asked for a method that could detect formulation-level differences, not just pass/fail.",
-      "Bioequivalence data had been generated against the original method; the PK endpoints no longer tied cleanly to what the agency was now asking for.",
+      "Prior product evidence had been generated against the original method; the analytical endpoints no longer tied cleanly to what the agency was now asking for.",
       "Sponsor's internal analytical bench was fully loaded on other programmes; the deficiency response risked slipping by two full review cycles.",
       "Deficiency letter arrival had already triggered a commercial replanning exercise — every additional month compounded the opportunity cost.",
     ],
@@ -527,13 +519,13 @@ const MODIFIED_RELEASE_REQUALIFICATION: CaseStudyContent = {
   approach: {
     eyebrow: "Approach",
     heading:
-      "Rebuild the method first. Requalify the BE cohorts against it. Then re-author the module.",
+      "Rebuild the method first. Requalify the retained samples against it. Then re-author the module.",
     lede: "We split the problem into an analytical rebuild and a regulatory-authoring workstream, running them in parallel with a weekly joint steering call. Both reported to a single programme manager on the sponsor's side, and both ran under one Propharmex quality system.",
     bullets: [
       "Method gap analysis against ICH Q2(R2) validation characteristics — specificity, linearity, accuracy, precision, range, robustness — with agency deficiency points mapped back to each characteristic.",
       "Two-tier dissolution with pH-shift step, designed to discriminate between the strengths under a physiologically plausible GI transit model.",
-      "Requalification runs on three bioequivalence cohorts using retained samples; cross-comparison against the original method to quantify the discrimination delta.",
-      "ANDA amendment authored against 21 CFR Part 314 and the USFDA bioequivalence-with-PK-endpoints guidance, with the revised method as the new analytical anchor.",
+      "Requalification runs on retained samples; cross-comparison against the original method to quantify the discrimination delta.",
+      "ANDA amendment authored against 21 CFR Part 314, with the revised method as the new analytical anchor.",
     ],
     callout: {
       value: "ICH Q2(R2)",
@@ -543,24 +535,24 @@ const MODIFIED_RELEASE_REQUALIFICATION: CaseStudyContent = {
   },
   solution: {
     eyebrow: "Solution",
-    heading: "One method, three cohorts, one amendment — shipped as a single coherent package.",
-    lede: "The rebuilt method went through full ICH Q2(R2) validation. Requalification runs on the retained BE samples closed in parallel. The amendment package was authored as a single coherent story — method rationale, validation evidence, BE reconciliation — rather than three separate responses stapled together.",
+    heading: "One method, retained samples, one amendment — shipped as a single coherent package.",
+    lede: "The rebuilt method went through full ICH Q2(R2) validation. Requalification runs on retained samples closed in parallel. The amendment package was authored as a single coherent story — method rationale, validation evidence, and evidence reconciliation — rather than three separate responses stapled together.",
     bullets: [
       "Full ICH Q2(R2) validation package — specificity, linearity across 50–150% of target, accuracy within ±2%, intermediate precision with analyst-day-instrument variance, robustness across pH and column-lot variation.",
-      "BE cohort requalification runs executed under the revised method; PK endpoints re-derived and cross-walked to the original data in a single reconciliation table.",
-      "Module 2.7.1 (BE summary) and Module 3.2.P.5 (analytical procedures) rebuilt in parallel — the same narrative thread ran through both.",
+      "Retained-sample requalification runs executed under the revised method; endpoints re-derived and cross-walked to the original data in a single reconciliation table.",
+      "Module 2 summary content and Module 3.2.P.5 analytical procedures rebuilt in parallel — the same narrative thread ran through both.",
       "Pre-submission QA review by the Propharmex team before the amendment went in.",
     ],
   },
   result: {
     eyebrow: "Result",
     heading:
-      "Resubmission filed with a coherent method-BE narrative, roughly eleven months from engagement start.",
+      "Resubmission filed with a coherent method-evidence narrative, roughly eleven months from engagement start.",
     lede: "The amendment went in inside the sponsor's target window. The revised method was the one used for the commercial release specification going forward.",
     bullets: [
       "Resubmission filed roughly eleven months after engagement start — within the sponsor's target window for the commercial-launch plan.",
       "The rebuilt dissolution method became the release specification for the product, replacing the original method across the three strengths.",
-      "Retained-sample approach meant no new bioequivalence study was required — the cohort requalification was sufficient for the amendment.",
+      "Retained-sample approach meant no new comparative study was required — the analytical requalification was sufficient for the amendment.",
       "Sponsor's internal analytical bench stayed focused on its other programmes throughout.",
     ],
     callout: {
@@ -577,7 +569,7 @@ const MODIFIED_RELEASE_REQUALIFICATION: CaseStudyContent = {
         id: "ph-1",
         period: "Month 0–1",
         title: "Deficiency intake and gap analysis",
-        body: "Full read of the agency letter, the original analytical package, and the BE module. Gap matrix against ICH Q2(R2) validation characteristics written and shared.",
+        body: "Full read of the agency letter and the original analytical package. Gap matrix against ICH Q2(R2) validation characteristics written and shared.",
       },
       {
         id: "ph-2",
@@ -588,14 +580,14 @@ const MODIFIED_RELEASE_REQUALIFICATION: CaseStudyContent = {
       {
         id: "ph-3",
         period: "Month 4–7",
-        title: "BE cohort requalification",
-        body: "Retained samples from the three bioequivalence cohorts re-analysed under the new method. PK endpoints re-derived; cross-walk to the original data documented.",
+        title: "Retained-sample requalification",
+        body: "Retained samples re-analysed under the new method. Analytical endpoints re-derived; cross-walk to the original data documented.",
       },
       {
         id: "ph-4",
         period: "Month 7–10",
         title: "Amendment authoring and QA",
-        body: "Module 2.7.1 and Module 3.2.P.5 rebuilt as a single coherent narrative. QA review closed before submission under the documented quality record.",
+        body: "Module 2 summary content and Module 3.2.P.5 rebuilt as a single coherent narrative. QA review closed before submission under the documented quality record.",
       },
       {
         id: "ph-5",
@@ -608,22 +600,22 @@ const MODIFIED_RELEASE_REQUALIFICATION: CaseStudyContent = {
   },
   regulatory: {
     eyebrow: "Regulatory outcome",
-    heading: "Filings authored against ANDA and bioequivalence-with-PK-endpoints pathways.",
-    lede: "The amendment was authored against 21 CFR Part 314 and the USFDA bioequivalence-with-PK-endpoints guidance — as of 2026-04-23 the current anchors for an ANDA amendment of this type. We do not make approval-outcome claims; agency review timelines and outcomes are the agency's to state.",
+    heading: "Filings authored against ANDA quality and evidence requirements.",
+    lede: "The amendment was authored against 21 CFR Part 314 and the relevant FDA quality record expectations. We do not make approval-outcome claims; agency review timelines and outcomes are the agency's to state.",
     filings: [
       {
         id: "f-1",
         label: "ANDA amendment",
         detail:
-          "Amendment authored against 21 CFR Part 314; Module 3.2.P.5 and Module 2.7.1 rebuilt around the revised dissolution method.",
+          "Amendment authored against 21 CFR Part 314; Module 3.2.P.5 and Module 2 summary content rebuilt around the revised dissolution method.",
         source: CFR_PART_314,
       },
       {
         id: "f-2",
-        label: "Bioequivalence reconciliation",
+        label: "Evidence reconciliation",
         detail:
-          "Cohort requalification authored against the USFDA bioequivalence-with-PK-endpoints guidance; retained-sample analysis supported the reconciliation without a new BE study.",
-        source: FDA_BE_GUIDANCE,
+          "Retained-sample analysis supported the reconciliation without a new comparative study.",
+        source: CFR_PART_314,
       },
       {
         id: "f-3",
@@ -649,15 +641,14 @@ const MODIFIED_RELEASE_REQUALIFICATION: CaseStudyContent = {
       },
       {
         id: "rel-2",
-        label: "Dissolution and bioequivalence",
-        description: "Two-tier dissolution design and BE cohort requalification work.",
-        href: "/services/analytical-services/dissolution-bioequivalence",
+        label: "Dissolution method development",
+        description: "Two-tier dissolution design and retained-sample requalification work.",
+        href: "/services/analytical-services/method-development",
       },
       {
         id: "rel-3",
         label: "USFDA submissions",
-        description:
-          "ANDA amendment authoring against 21 CFR Part 314 and bioequivalence guidance.",
+        description: "ANDA amendment authoring against 21 CFR Part 314 and quality guidance.",
         href: "/services/regulatory-services/us-fda-submissions",
       },
     ],

@@ -18,7 +18,6 @@
  *  - generic-manufacturers       — flagship (ANDA + DMF workflow)
  *  - cdmo-partners               — Canadian-market readiness without building every function in-house
  *  - governments-and-ngos        — narrowed capability-alignment framing
- *  - clinical-trial-sponsors     — investigational supply + CTA handling
  *
  * The flagship remains `generic-manufacturers`. The Canadian-anchored
  * operating model — CMC and analytical work executed by Propharmex with a
@@ -60,7 +59,6 @@ export const INDUSTRY_SLUGS = [
   "generic-manufacturers",
   "cdmo-partners",
   "governments-and-ngos",
-  "clinical-trial-sponsors",
 ] as const;
 export type IndustrySlug = (typeof INDUSTRY_SLUGS)[number];
 
@@ -294,13 +292,6 @@ const CFR_314_420_DMF: IndustrySource = {
   href: "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-314#314.420",
 };
 
-const FDA_BE_GUIDANCE: IndustrySource = {
-  kind: "primary",
-  label:
-    "USFDA — Bioequivalence studies with pharmacokinetic endpoints for drugs submitted under an ANDA (guidance)",
-  href: "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/bioequivalence-studies-pharmacokinetic-endpoints-drugs-submitted-anda",
-};
-
 const CFR_PART_211: IndustrySource = {
   kind: "primary",
   label: "21 CFR Part 211 — Current Good Manufacturing Practice for Finished Pharmaceuticals",
@@ -311,12 +302,6 @@ const ICH_M4_ECTD: IndustrySource = {
   kind: "primary",
   label: "ICH M4 — Common Technical Document (CTD) and eCTD specification",
   href: "https://www.ich.org/page/ctd",
-};
-
-const ICH_E6_R3_GCP: IndustrySource = {
-  kind: "primary",
-  label: "ICH E6(R3) — Good Clinical Practice",
-  href: "https://www.ich.org/page/efficacy-guidelines",
 };
 
 const WHO_PREQUALIFICATION: IndustrySource = {
@@ -344,16 +329,16 @@ const GLOBAL_FUND_QA_POLICY: IndustrySource = {
 export const INDUSTRIES_HUB: IndustryHubContent = {
   metaTitle: "Industries We Serve — Propharmex",
   metaDescription:
-    "Pharmaceutical innovators, generic manufacturers, CDMO partners, governments and NGOs, and clinical trial sponsors — five industry lenses on Propharmex's Canadian-anchored operating model.",
+    "Pharmaceutical innovators, generic manufacturers, CDMO partners, and governments and NGOs — four industry lenses on Propharmex's Canadian-anchored operating model.",
   ogTitle: "Industries We Serve — Propharmex",
   ogDescription:
-    "Five industry lenses on one operating model: CMC and analytical work executed by Propharmex, prepared with a documented quality-evidence trail.",
+    "Four industry lenses on one operating model: CMC and analytical work executed by Propharmex, prepared with a documented quality-evidence trail.",
   hero: {
     eyebrow: "Industries",
-    headline: "One operating model, five industry lenses.",
-    lede: "Propharmex runs a single quality system from its Canadian headquarters, with analytical, regulatory, and CMC work governed through one documented operating model. The shape of each engagement changes depending on who we are building with: an innovator with a branded programme, a generic manufacturer chasing an ANDA window, a CDMO partner extending bandwidth, an institutional buyer under a tender, or a trial sponsor needing investigational material. Industry pages describe the engagement from the sponsor's side; service pages describe the work.",
+    headline: "One operating model, four industry lenses.",
+    lede: "Propharmex runs a single quality system from its Canadian headquarters, with analytical, regulatory, and CMC work governed through one documented operating model. The shape of each engagement changes depending on who we are building with: an innovator with a branded programme, a generic manufacturer chasing an ANDA window, a CDMO partner extending bandwidth, or an institutional buyer under a tender. Industry pages describe the engagement from the sponsor's side; service pages describe the work.",
     stats: [
-      { label: "Industries", value: "5" },
+      { label: "Industries", value: "4" },
       { label: "Regulatory anchor", value: "Canada-headquartered review" },
       { label: "Operating model", value: "Canadian-anchored, single QMS" },
     ],
@@ -370,8 +355,8 @@ export const INDUSTRIES_HUB: IndustryHubContent = {
   },
   matrix: {
     eyebrow: "Industry matrix",
-    heading: "Five industries, one operating model",
-    lede: "Generic manufacturers is the flagship because the Canadian-anchored operating economics — Propharmex-authored CMC, filed and inspection-hosted under the documented quality record — map most cleanly to an ANDA plus DMF workflow under a single QMS. The other four lenses apply the same operating model to different programme shapes. Detail pages walk through the engagement; the hub is the index.",
+    heading: "Four industries, one operating model",
+    lede: "Generic manufacturers is the flagship because the Canadian-anchored operating economics — Propharmex-authored CMC, filed and inspection-hosted under the documented quality record — map most cleanly to an ANDA plus DMF workflow under a single QMS. The other lenses apply the same operating model to different programme shapes. Detail pages walk through the engagement; the hub is the index.",
     industries: [
       {
         slug: "pharmaceutical-innovators",
@@ -386,8 +371,8 @@ export const INDUSTRIES_HUB: IndustryHubContent = {
         slug: "generic-manufacturers",
         label: "Generic manufacturers",
         blurb:
-          "ANDA programmes with DMF reference, bioequivalence planning and eCTD Module 2/3 authoring under one quality system, executed by Propharmex.",
-        highlights: ["ANDA support", "DMF support", "BE planning"],
+          "ANDA programmes with DMF reference, analytical evidence planning and eCTD Module 2/3 authoring under one quality system, executed by Propharmex.",
+        highlights: ["ANDA support", "DMF support", "Evidence planning"],
         leafStatus: "live",
         flagship: true,
       },
@@ -406,15 +391,6 @@ export const INDUSTRIES_HUB: IndustryHubContent = {
         blurb:
           "Capability alignment for institutional procurement and prequalification processes — tender-grade documentation under a Canada-headquartered QMS.",
         highlights: ["Tender documentation", "QMS alignment", "Traceability"],
-        leafStatus: "live",
-        flagship: false,
-      },
-      {
-        slug: "clinical-trial-sponsors",
-        label: "Clinical trial sponsors",
-        blurb:
-          "Investigational material, analytical release and regulatory handling for sponsors running Canadian and multi-jurisdictional trials.",
-        highlights: ["Investigational material", "Analytical release", "CTA support"],
         leafStatus: "live",
         flagship: false,
       },
@@ -451,7 +427,7 @@ export const INDUSTRIES_HUB: IndustryHubContent = {
   closing: {
     eyebrow: "Start a conversation",
     heading: "Scope a programme from your side of the table",
-    body: "Tell us which lens fits your programme and what you need next — an ANDA CMC pass, a Canada-headquartered filing surface, a trial-sponsor release pathway, a tender-grade documentation set, or an innovator-scale CMC package. The conversation is structured enough to produce a scope outline; short enough to not waste your day.",
+    body: "Tell us which lens fits your programme and what you need next — an ANDA CMC pass, a Canada-headquartered filing surface, a tender-grade documentation set, or an innovator-scale CMC package. The conversation is structured enough to produce a scope outline; short enough to not waste your day.",
     primaryCta: {
       label: "Start a scoping conversation",
       href: "/ai/project-scoping-assistant?source=industries-hub-closing-scope",
@@ -475,7 +451,7 @@ const GENERIC_MANUFACTURERS: IndustryLeafContent = {
   crumbLabel: "Generic manufacturers",
   metaTitle: "Generic Manufacturers — Propharmex Industries",
   metaDescription:
-    "ANDA programmes with DMF reference, bioequivalence planning, eCTD Module 2/3 authoring and Canada-headquartered Canadian filing surface — one quality system, executed by Propharmex.",
+    "ANDA programmes with DMF reference, analytical evidence planning, eCTD Module 2/3 authoring and Canada-headquartered Canadian filing surface — one quality system, executed by Propharmex.",
   ogTitle: "Generic Manufacturers — Propharmex",
   ogDescription:
     "The Canadian-anchored operating model applied to generics: Propharmex-authored ANDA CMC and DMF work, prepared with a documented quality-evidence trail.",
@@ -580,13 +556,6 @@ const GENERIC_MANUFACTURERS: IndustryLeafContent = {
         source: CFR_314_420_DMF,
       },
       {
-        id: "bioequivalence",
-        heading: "Bioequivalence planning",
-        body: "Pharmacokinetic bioequivalence study planning follows the USFDA guidance on bioequivalence studies submitted under an ANDA. Propharmex supports study design, protocol authoring and bioanalytical method strategy; the clinical conduct is performed at a qualified CRO the sponsor selects. As of 2026-04-23 the referenced guidance remains the operative agency position.",
-        status: "alignment",
-        source: FDA_BE_GUIDANCE,
-      },
-      {
         id: "del-anchor",
         heading: "Canadian establishment regulatory footprint anchor",
         body: "Canadian scope on a generics programme is defined case by case: filing objective, quality boundary, document owner, commercial assumption, and handoff path. The responsible party, evidence package, and review model are confirmed during scoping.",
@@ -646,12 +615,6 @@ const GENERIC_MANUFACTURERS: IndustryLeafContent = {
           "Can you support DMF Type II work for a drug substance we are sourcing from a partner we already use?",
         answer:
           "Yes. DMF Type II support per 21 CFR 314.420 is typically structured against the drug substance manufacturer's existing quality record — we do not require switching API suppliers. The scope we take on is the authoring, referencing and letter-of-authorization handling; the manufacturing is the supplier's.",
-      },
-      {
-        id: "q-bioequivalence",
-        question: "Do you run the bioequivalence study itself?",
-        answer:
-          "No. Clinical conduct of a bioequivalence study is performed at a qualified CRO, typically one the sponsor selects. Propharmex supports the protocol authoring, bioanalytical method strategy, and the CMC-side integration of the study report into Module 5 and Module 2.",
       },
       {
         id: "q-timeline",
@@ -760,7 +723,7 @@ const PHARMACEUTICAL_INNOVATORS: IndustryLeafContent = {
         id: "cmc-bandwidth",
         label: "CMC bandwidth at the pivotal-trial inflection",
         description:
-          "The team that carried the molecule through preclinical and early clinical work is often too small to also author a Module 3 package against ICH Q8–Q11 while the pivotal trial is being designed. Outsourcing the CMC authoring pass is usually the right answer; finding a vendor who will work inside the sponsor's quality system instead of a parallel one is harder.",
+          "The team that carried the molecule through early development work is often too small to also author a Module 3 package against ICH Q8–Q11 while pivotal evidence planning is underway. Outsourcing the CMC authoring pass is usually the right answer; finding a vendor who will work inside the sponsor's quality system instead of a parallel one is harder.",
       },
       {
         id: "ich-quality-depth",
@@ -853,7 +816,7 @@ const PHARMACEUTICAL_INNOVATORS: IndustryLeafContent = {
         id: "nda-module-3",
         service: "NDA Module 3 authoring",
         title: "Module 3 CMC package for a first-in-class small-molecule NDA",
-        body: "Drug substance and drug product sections authored to current FDA eCTD expectations, integrated with the sponsor's ongoing clinical programme and submitted by the sponsor. Analytical bridging kept development and release data in one record.",
+        body: "Drug substance and drug product sections authored to current FDA eCTD expectations, integrated with the sponsor's ongoing development programme and submitted by the sponsor. Analytical bridging kept development and release data in one record.",
         status: "under-confirmation",
       },
       {
@@ -890,7 +853,7 @@ const PHARMACEUTICAL_INNOVATORS: IndustryLeafContent = {
       },
       {
         id: "q-integration",
-        question: "How do you integrate CMC authoring with our in-house clinical programme?",
+        question: "How do you integrate CMC authoring with our in-house development programme?",
         answer:
           "The sponsor's regulatory lead owns the submission. We author into their document-management system, attend CMC sub-team meetings, and work to their change-control conventions. The integration model is deliberately low-surface — our authoring is a component in the sponsor's regulatory package, not a parallel programme.",
       },
@@ -940,7 +903,7 @@ const PHARMACEUTICAL_INNOVATORS: IndustryLeafContent = {
   closing: {
     eyebrow: "Start a conversation",
     heading: "Scope an innovator programme with one quality system behind it",
-    body: "Tell us where the molecule is — early clinical, pivotal-ready, approaching submission, or already filed in one market and heading for another — and we will shape a CMC and analytical scope around what is real rather than what is hypothetical. The Canadian-anchored operating model is how the submission ends up on the regulator's desk with a single coherent quality narrative behind it.",
+    body: "Tell us where the molecule is — early development, pivotal-ready, approaching submission, or already filed in one market and heading for another — and we will shape a CMC and analytical scope around what is real rather than what is hypothetical. The Canadian-anchored operating model is how the submission ends up on the regulator's desk with a single coherent quality narrative behind it.",
     primaryCta: {
       label: "Scope an innovator CMC programme",
       href: "/ai/project-scoping-assistant?source=industries-innovators-closing-scope",
@@ -1408,245 +1371,6 @@ const GOVERNMENTS_AND_NGOS: IndustryLeafContent = {
 };
 
 /* -------------------------------------------------------------------------- */
-/*  Leaf content — clinical-trial-sponsors                                    */
-/* -------------------------------------------------------------------------- */
-
-const CLINICAL_TRIAL_SPONSORS: IndustryLeafContent = {
-  slug: "clinical-trial-sponsors",
-  label: "Clinical trial sponsors",
-  crumbLabel: "Clinical trial sponsors",
-  metaTitle: "Clinical Trial Sponsors — Propharmex Industries",
-  metaDescription:
-    "Investigational supply, analytical release, and CTA/IND regulatory handling for sponsors running Canadian and multi-jurisdictional trials — Canada-headquartered, ICH E6(R3) aligned.",
-  ogTitle: "Clinical Trial Sponsors — Propharmex",
-  ogDescription:
-    "The Canada-headquartered operating model applied to clinical-trial operations: analytical release evidence, CTA-supporting documentation, and quality handoff planning.",
-  hero: {
-    eyebrow: "Industries · Clinical trial sponsors",
-    headline: "Investigational supply and CTA handling, under one quality system.",
-    valueProp:
-      "Investigational product manufacturing coordination, analytical release, and Canadian Clinical Trial Application support — scoped around evidence, responsible parties, and quality handoffs.",
-    lede: "Clinical-trial sponsors live on two clocks: the protocol's enrolment schedule and the regulator's review queue. Propharmex's operating model shortens the distance between them — investigational-product CMC content authored and analytical release run by Propharmex; the regulatory team handles the Canadian Clinical Trial Application and the establishment-regulatory footprint side of investigational supply. Everything runs under one QMS, so the record that supports release is the same record that supports the CTA.",
-    stats: [
-      { label: "GCP framework", value: "ICH E6(R3)" },
-      { label: "CTD structure", value: "ICH M4 eCTD" },
-      { label: "Canadian anchor", value: "Canada-headquartered review" },
-    ],
-    primaryCta: {
-      label: "Scope an investigational supply programme",
-      href: "/ai/project-scoping-assistant?source=industries-trials-hero-scope",
-      variant: "primary",
-    },
-    secondaryCta: {
-      label: "Ask about Canadian CTA handling",
-      href: "/contact?source=industries-trials-hero-cta",
-      variant: "outline",
-    },
-  },
-  painPoints: {
-    eyebrow: "The pain",
-    heading: "Three patterns we see across clinical-trial programmes",
-    lede: "Investigational-supply programmes fail in predictable ways. The three patterns below are the ones that most often turn an enrolment plan into an enrolment delay.",
-    items: [
-      {
-        id: "supply-timing",
-        label: "Investigational supply timing against enrolment",
-        description:
-          "Kits need to arrive at sites before first-patient-in. Drug product release, labelling, packaging, stability-window planning and QP-like release review all sit on a critical path that compresses as the protocol finalises. Late release decisions cascade into enrolment slips that are difficult to recover.",
-      },
-      {
-        id: "bioanalytical-readiness",
-        label: "Bioanalytical method readiness for PK sampling",
-        description:
-          "Protocols that include PK sampling require a bioanalytical method validated to the target regulatory expectation before samples start arriving at the lab. Method development and validation that starts after first-patient-in produces either a delay or a re-assay risk no sponsor wants in a pivotal dataset.",
-      },
-      {
-        id: "canadian-cta",
-        label: "Canadian CTA handling alongside US or global submissions",
-        description:
-          "Sponsors running a global trial with Canadian sites need a Canadian Clinical Trial Application handled alongside the US IND or the ROW submissions. The filing itself is manageable; the operational establishment-regulatory footprint question — who imports and releases the investigational product in Canada — is where programmes stall if it is not solved early.",
-      },
-    ],
-  },
-  offering: {
-    eyebrow: "Our tailored offering",
-    heading: "Three service trees, shaped for a trial sponsor's rhythm",
-    lede: "The three service trees below are the ones clinical-trial programmes draw from most often. The detail pages describe the work; the industry page describes how the work fits a trial-sponsor's operating rhythm.",
-    columns: [
-      {
-        id: "pharmdev-supplies",
-        label: "Pharmaceutical development — investigational supplies",
-        description:
-          "Investigational product planning, clinical-trial-material manufacturing coordination, labelling and packaging oversight, and release against the protocol's requirements. Scope is shaped to match the trial's enrolment schedule rather than a generic release cadence.",
-        serviceHref: "/services/pharmaceutical-development",
-        serviceLabel: "See pharmaceutical development",
-      },
-      {
-        id: "analytical",
-        label: "Analytical services",
-        description:
-          "Bioanalytical method development and validation for PK sampling, release testing of investigational product, and in-use stability testing where protocols require it. Analytical records live in the same QMS the release decisions are authored against.",
-        serviceHref: "/services/analytical-services",
-        serviceLabel: "See analytical services",
-      },
-      {
-        id: "regulatory",
-        label: "Regulatory services — Canadian CTA",
-        description:
-          "Canadian Clinical Trial Application authoring and submission on behalf of the sponsor, coordination with the sponsor's US IND or global regulatory lead, and submission-strategy support for investigational product entering Canadian sites.",
-        serviceHref: "/services/regulatory-services",
-        serviceLabel: "See regulatory services",
-      },
-    ],
-    closingNote:
-      "The three trees converge on one goal: investigational product arrives on-schedule, the release record supports the regulatory filing, and the Canadian piece of a global trial is not the reason an enrolment plan slips.",
-  },
-  regulatory: {
-    eyebrow: "Regulatory context",
-    heading: "The frameworks a trial-sponsor engagement runs against",
-    lede: 'Four public frameworks anchor most trial-sponsor engagements. Each is cited from its primary source, with "as of 2026-04-23" where the claim references current agency expectations rather than a stable statutory text.',
-    topics: [
-      {
-        id: "ich-e6",
-        heading: "Good Clinical Practice — ICH E6(R3)",
-        body: "ICH E6(R3) is the current revision of the Good Clinical Practice guideline. Our investigational-supply and analytical release work is structured to align with E6(R3)'s quality management and data-integrity expectations. Clinical conduct itself remains the sponsor's or the sponsor-selected CRO's responsibility. As of 2026-04-23 the referenced ICH page is the entry point for the current guideline text.",
-        status: "alignment",
-        source: ICH_E6_R3_GCP,
-      },
-      {
-        id: "ctd-ich-m4",
-        heading: "CTA / IND module structure — ICH M4",
-        body: "Canadian Clinical Trial Applications and US Investigational New Drug applications land in an ICH M4-aligned Module 2/3 structure, with Module 1 assembled to the target agency's regional specification. Propharmex authors Modules 2 and 3 for investigational supply and assembles the Canadian Module 1 when the Canadian CTA is in scope. As of 2026-04-23 the ICH M4 specification is the operative framework.",
-        status: "alignment",
-        source: ICH_M4_ECTD,
-      },
-      {
-        id: "cgmp-211-clinical",
-        heading: "cGMP baseline for clinical supplies — 21 CFR Part 211",
-        body: "Investigational product manufacturing and analytical release operate against a cGMP baseline. 21 CFR Part 211 is the operative US text; the equivalent Health Canada Good Manufacturing Practices guideline covers Canadian expectations. Our release review is shaped to the Part 211 framework as the common reference. As of 2026-04-23 the ecfr.gov version of Part 211 is the operative text.",
-        status: "alignment",
-        source: CFR_PART_211,
-      },
-      {
-        id: "del-anchor",
-        heading: "Canadian establishment regulatory footprint anchor",
-        body: "Investigational product entering Canadian trial sites requires a clear import, release, and accountability model. Propharmex scopes the analytical release evidence, CTA-supporting documentation, and quality handoff so sponsors understand the work before operational commitments are made.",
-        status: "confirmed",
-        source: INTERNAL_SCOPE_NOTE,
-      },
-    ],
-  },
-  caseRail: {
-    eyebrow: "Worked patterns",
-    heading: "What trial-sponsor work looks like on our desk",
-    lede: "Named, permission-cleared case studies land with Prompt 14. The teasers below describe the pattern rather than a specific sponsor, consistent with our policy of using client names only where permission is granted.",
-    teasers: [
-      {
-        id: "investigational-supply",
-        service: "Investigational supply coordination",
-        title: "Phase 2 investigational supply for a multi-site trial",
-        body: "Clinical-trial-material manufacturing coordination, labelling, packaging and release for a Phase 2 trial across Canadian and US sites. Release decisions authored into the same QMS record as the eventual commercial programme's documentation.",
-        status: "under-confirmation",
-      },
-      {
-        id: "bioanalytical-pk",
-        service: "Bioanalytical method for PK sampling",
-        title: "PK bioanalytical method validation ahead of first-patient-in",
-        body: "Bioanalytical method development and validation for a plasma-PK assay, completed ahead of first-patient-in. Stability, reproducibility and cross-site reproducibility data assembled into the sponsor's Module 2.7 summary.",
-        status: "under-confirmation",
-      },
-      {
-        id: "canadian-cta-add",
-        service: "Canadian CTA addition",
-        title: "Adding Canadian sites to a US-IND-only trial",
-        body: "A sponsor with an active US IND extended enrolment to Canadian sites. Propharmex authored the Canadian Clinical Trial Application, handled the establishment-regulatory footprint-backed import and release, and coordinated protocol amendments with the sponsor's US regulatory lead.",
-        status: "under-confirmation",
-      },
-    ],
-    cta: {
-      label: "Start a scoping conversation",
-      href: "/contact?source=industries-trials-caserail",
-      variant: "primary",
-    },
-  },
-  faq: {
-    eyebrow: "Frequently asked",
-    heading: "What trial sponsors usually ask first",
-    lede: "The answers below are the ones that tend to determine whether investigational-supply planning starts on time. They are not surprising on reflection; sponsors ask them because the answers vary a lot across vendors.",
-    items: [
-      {
-        id: "q-clinical-conduct",
-        question: "Do you run the clinical conduct of the trial itself?",
-        answer:
-          "No. Clinical conduct — investigator selection, patient enrolment, monitoring, data management — is the sponsor's responsibility or the responsibility of a CRO the sponsor selects. Propharmex's scope is investigational product, analytical release, and Canadian CTA handling, not clinical operations.",
-      },
-      {
-        id: "q-canadian-cta-timing",
-        question: "What is a realistic timeline for a Canadian Clinical Trial Application?",
-        answer:
-          "Health Canada's default review target for a CTA is 30 calendar days (as of 2026-04-23), assuming no clock stops. Authoring and assembly time on our side is typically measured in weeks rather than months when the underlying CMC and protocol work is clean. When it is not, the authoring timeline is not the critical path and we will say so.",
-      },
-      {
-        id: "q-release-scope",
-        question:
-          "Do you perform QP-equivalent release review for investigational product shipped to Canadian sites?",
-        answer:
-          "Potentially, after scope review. The release review is documented against the protocol's release specifications, the lot's analytical record, and the CTA's authorised specifications. The sponsor retains ultimate release responsibility under the investigator's and sponsor's agreements.",
-      },
-      {
-        id: "q-global-coordination",
-        question: "How do you coordinate with our US IND or global regulatory lead?",
-        answer:
-          "The sponsor's regulatory lead owns the overall strategy. Our Canadian regulatory work is authored into the sponsor's document-management system, with the Canadian Module 1 and CTA-specific content consistent with the underlying Module 2 and Module 3 the US IND sits on. We do not operate as a second, uncoordinated regulatory team.",
-      },
-    ],
-  },
-  related: {
-    eyebrow: "Adjacent reading",
-    heading: "Service trees a trial-sponsor engagement draws from",
-    lede: "The industry page describes the engagement; the service pages describe the work itself. Start where your next decision sits.",
-    links: [
-      {
-        id: "pharmdev",
-        label: "Pharmaceutical development",
-        description:
-          "Investigational product planning, labelling, packaging and release oversight aligned to protocol schedules.",
-        href: "/services/pharmaceutical-development",
-      },
-      {
-        id: "analytical",
-        label: "Analytical services",
-        description:
-          "Bioanalytical methods, investigational product release testing, in-use stability studies.",
-        href: "/services/analytical-services",
-      },
-      {
-        id: "regulatory-services",
-        label: "Regulatory services",
-        description:
-          "Canadian Clinical Trial Application authoring and submission support for investigational programs entering Canadian sites.",
-        href: "/services/regulatory-services",
-      },
-    ],
-  },
-  closing: {
-    eyebrow: "Start a conversation",
-    heading: "Scope an investigational-supply programme that keeps your enrolment clock honest",
-    body: "Tell us where the trial sits — protocol in final draft, first-patient-in scheduled, enrolment already underway with Canadian sites added late — and we will shape a scope around the enrolment clock rather than a generic release cadence. The Canadian-anchored operating model is how investigational product arrives at Canadian and US sites under one coherent release record.",
-    primaryCta: {
-      label: "Scope an investigational supply programme",
-      href: "/ai/project-scoping-assistant?source=industries-trials-closing-scope",
-      variant: "primary",
-    },
-    secondaryCta: {
-      label: "Ask about Canadian CTA handling",
-      href: "/contact?source=industries-trials-closing-cta",
-      variant: "outline",
-    },
-    regulatoryNote: INTERNAL_SCOPE_NOTE,
-  },
-};
-
 /* -------------------------------------------------------------------------- */
 /*  Leaf registry                                                             */
 /* -------------------------------------------------------------------------- */
@@ -1665,5 +1389,4 @@ export const INDUSTRIES_LEAF_CONTENT: Record<IndustrySlug, IndustryLeafContent> 
   "generic-manufacturers": GENERIC_MANUFACTURERS,
   "cdmo-partners": CDMO_PARTNERS,
   "governments-and-ngos": GOVERNMENTS_AND_NGOS,
-  "clinical-trial-sponsors": CLINICAL_TRIAL_SPONSORS,
 };

@@ -1,14 +1,14 @@
-export type ServiceOverviewItem = {
-  id: "analytical" | "regulatory" | "development" | "clinical";
+export interface ServiceOverviewItem {
+  id: "analytical" | "regulatory" | "development";
   label: string;
   title: string;
   body: string;
   href: string;
   ctaLabel: string;
   proof: string;
-};
+}
 
-export type ServicesOverviewContent = {
+export interface ServicesOverviewContent {
   metaTitle: string;
   metaDescription: string;
   hero: {
@@ -32,16 +32,16 @@ export type ServicesOverviewContent = {
     primaryCta: { label: string; href: string };
     secondaryCta: { label: string; href: string };
   };
-};
+}
 
 export const SERVICES_OVERVIEW: ServicesOverviewContent = {
   metaTitle: "Services for global pharmaceutical sponsors | Propharmex",
   metaDescription:
-    "Propharmex is a Canada-headquartered pharmaceutical services partner serving global sponsors through analytical, regulatory, development, and clinical study insight.",
+    "Propharmex is a Canada-headquartered pharmaceutical services partner serving global sponsors through analytical, regulatory, and development support.",
   hero: {
     eyebrow: "Services",
     headline: "Canada-headquartered support for global pharmaceutical programmes.",
-    lede: "Propharmex helps sponsors turn complex product questions into scoped workstreams across analytical evidence, regulatory strategy, pharmaceutical development, and clinical or bioequivalence planning.",
+    lede: "Propharmex helps sponsors turn complex product questions into scoped workstreams across analytical evidence, regulatory strategy, and pharmaceutical development.",
     primaryCta: {
       label: "Start scoping",
       href: "/ai/project-scoping-assistant",
@@ -81,16 +81,6 @@ export const SERVICES_OVERVIEW: ServicesOverviewContent = {
       ctaLabel: "Explore development services",
       proof:
         "Best first when the key question is dosage form, formulation risk, manufacturability, or development programme shape.",
-    },
-    {
-      id: "clinical",
-      label: "Clinical and BE insight",
-      title: "Clinical and bioequivalence insight",
-      body: "Study-design and evidence-planning input for programmes where clinical or bioequivalence thinking needs to sit beside CMC and regulatory strategy.",
-      href: "/services/clinical-be-insight",
-      ctaLabel: "Explore clinical insight",
-      proof:
-        "Best first when comparator, endpoint, study design, or evidence sufficiency is part of the programme risk.",
     },
   ],
   operatingModel: {

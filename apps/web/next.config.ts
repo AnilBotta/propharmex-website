@@ -103,6 +103,13 @@ const nextConfig: NextConfig = {
         destination: "/services/regulatory-services",
         permanent: true,
       },
+      // Client update: this retired public service path now lands on the
+      // services overview.
+      {
+        source: "/services/clinical-be-insight",
+        destination: "/services",
+        permanent: true,
+      },
       // Re-thread the legacy whitepaper-slug chain so each old URL terminates
       // directly at /insights/whitepapers without bouncing through the
       // retired destination. The original chain was:

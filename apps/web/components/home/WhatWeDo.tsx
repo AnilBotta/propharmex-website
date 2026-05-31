@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FlaskConical, Microscope, FileCheck2, Stethoscope, ArrowUpRight } from "lucide-react";
+import { FlaskConical, Microscope, FileCheck2, ArrowUpRight } from "lucide-react";
 import type { ComponentType } from "react";
 
 import { fadeRise, staggerContainer, useReducedMotion } from "@propharmex/ui";
@@ -11,13 +11,12 @@ import { fadeRise, staggerContainer, useReducedMotion } from "@propharmex/ui";
 import { trackServiceCardClick } from "../../lib/analytics";
 import type { CapabilityCard, WhatWeDoSection } from "../../content/home";
 
-type Props = { content: WhatWeDoSection };
+interface Props { content: WhatWeDoSection }
 
 const ICON: Record<CapabilityCard["icon"], ComponentType<{ size?: number; className?: string }>> = {
   flask: FlaskConical,
   microscope: Microscope,
   "file-check": FileCheck2,
-  stethoscope: Stethoscope,
 };
 
 export function WhatWeDo({ content }: Props) {
@@ -62,7 +61,7 @@ export function WhatWeDo({ content }: Props) {
           whileInView="animate"
           viewport={{ once: true, margin: "0px 0px -10% 0px" }}
           variants={staggerContainer}
-          className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
+          className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
         >
           {content.cards.map((card) => {
             const Icon = ICON[card.icon];
@@ -96,7 +95,7 @@ export function WhatWeDo({ content }: Props) {
                     <ArrowUpRight
                       size={16}
                       aria-hidden="true"
-                      className="transition-transform duration-150 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      className="transition-transform duration-150 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                     />
                   </span>
                 </Link>

@@ -35,8 +35,8 @@ export function Footer() {
             <BrandLogo />
             <p className="text-sm leading-relaxed text-[var(--color-slate-700)]">
               Canada-headquartered pharmaceutical services partner for global sponsors. Analytical
-              evidence, regulatory strategy, development planning, and clinical or bioequivalence
-              insight for complex and niche programmes.
+              evidence, regulatory strategy, and development planning for complex and niche
+              programmes.
             </p>
           </div>
 
