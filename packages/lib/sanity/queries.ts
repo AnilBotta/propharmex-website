@@ -15,10 +15,7 @@
  * re-export) or a runtime we don't need.
  */
 const groq = (strings: TemplateStringsArray, ...values: unknown[]): string =>
-  strings.reduce(
-    (acc, str, i) => acc + str + (i < values.length ? String(values[i]) : ""),
-    "",
-  );
+  strings.reduce((acc, str, i) => acc + str + (i < values.length ? String(values[i]) : ""), "");
 
 /* -------------------------------------------------------------------------- */
 /*  Reusable fragments                                                        */
@@ -633,16 +630,13 @@ export const sopCapabilitiesQuery = groq`
   _id,
   _type,
   title,
-  slug,
+  "slug": slug.current,
   dosageForm,
-  category,
-  description,
-  equipment,
-  scaleMin,
-  scaleMax,
-  "applicableServices": applicableServices[]->{ _id, title, slug },
-  "regulatoryAnchors": regulatoryAnchors[]${regulatoryAnchorProjection},
-  tags,
+  capabilities,
+  batchSizeMinKg,
+  batchSizeMaxKg,
+  "facilitiesRef": facilitiesRef[]->{ _id, title, "slug": slug.current, address },
+  notes,
   publishedAt,
   region,
   ragEligible
