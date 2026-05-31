@@ -14,6 +14,8 @@
  */
 import { z } from "zod";
 
+import { CapabilitySchema, DosageFormSchema } from "../dosage-matcher/types";
+
 /* -------------------------------------------------------------------------- */
 /*  Shared primitives                                                         */
 /* -------------------------------------------------------------------------- */
@@ -738,24 +740,22 @@ export const zSopCapability = z
     ...zDocBase,
     _type: z.literal("sopCapability"),
     title: z.string(),
-    slug: zSlug,
-    dosageForm: z.string(),
-    category: z.string().optional(),
-    description: z.string().optional(),
-    equipment: z.array(z.string()).default([]),
-    scaleMin: z.string().optional(),
-    scaleMax: z.string().optional(),
-    applicableServices: z
+    slug: z.string().min(1),
+    dosageForm: DosageFormSchema,
+    capabilities: z.array(CapabilitySchema).min(1),
+    batchSizeMinKg: z.number().min(0).optional(),
+    batchSizeMaxKg: z.number().min(0).optional(),
+    facilitiesRef: z
       .array(
         z.object({
           _id: z.string(),
           title: z.string(),
-          slug: zSlug,
+          slug: z.string().min(1),
+          address: zAddress.optional(),
         })
       )
       .default([]),
-    regulatoryAnchors: z.array(zRegulatoryAnchor).default([]),
-    tags: zTagList,
+    notes: zPortableText.default([]),
   })
   .passthrough();
 export type SopCapability = z.infer<typeof zSopCapability>;

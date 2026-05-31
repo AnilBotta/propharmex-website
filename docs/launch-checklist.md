@@ -191,7 +191,6 @@ These items are tracked but intentionally not blocking launch.
 
 - Per-route Open Graph images for `case-studies/[slug]`, `industries/[slug]`, and `/ai/*` tools.
 - Lazy-split `/ai/dosage-matcher` and `/ai/del-readiness` (now the new worst-bundle routes at 431 kB and 429 kB respectively).
-- `parsers.ts::zSopCapability` Zod-schema drift cleanup left from Prompt 21.
 - Add `/insights/whitepapers/[slug]` to automated accessibility coverage after a live whitepaper slug returns to `INSIGHTS.whitepapers`.
 
 ---
