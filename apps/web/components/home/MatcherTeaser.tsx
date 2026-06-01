@@ -1,38 +1,26 @@
-"use client";
-
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { Sparkles, ArrowRight } from "lucide-react";
 
-import { Badge, Button, fadeRise, staggerContainer, useReducedMotion } from "@propharmex/ui";
+import { Badge, Button } from "@propharmex/ui";
 
 import type { MatcherSection } from "../../content/home";
 import { ScientificPathwayVisual } from "../visuals/ScientificPathwayVisual";
 
-interface Props { content: MatcherSection }
+interface Props {
+  content: MatcherSection;
+}
 
 export function MatcherTeaser({ content }: Props) {
-  const reduce = useReducedMotion();
-
   return (
     <section
       aria-labelledby="home-matcher-heading"
       className="bg-gradient-to-br from-[var(--color-primary-50)] to-[var(--color-surface)] py-20 sm:py-24"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={reduce ? false : "initial"}
-          whileInView="animate"
-          viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-          variants={staggerContainer}
-          className="relative"
-        >
+        <div className="relative">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[3fr_2fr] lg:gap-12">
             <div className="flex flex-col gap-0">
-              <motion.div
-                variants={fadeRise}
-                className="inline-flex w-fit items-center gap-2 rounded-[var(--radius-full)] border border-[var(--color-primary-200)] bg-[var(--color-surface)] px-3 py-1"
-              >
+              <div className="inline-flex w-fit items-center gap-2 rounded-[var(--radius-full)] border border-[var(--color-primary-200)] bg-[var(--color-surface)] px-3 py-1">
                 <Sparkles
                   size={13}
                   aria-hidden="true"
@@ -41,40 +29,33 @@ export function MatcherTeaser({ content }: Props) {
                 <span className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-[0.12em] text-[var(--color-primary-700)]">
                   {content.eyebrow}
                 </span>
-              </motion.div>
+              </div>
 
-              <motion.h2
+              <h2
                 id="home-matcher-heading"
-                variants={fadeRise}
                 className="mt-5 max-w-2xl font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-[var(--color-fg)] sm:text-4xl"
               >
                 {content.heading}
-              </motion.h2>
+              </h2>
 
-              <motion.p
-                variants={fadeRise}
-                className="mt-4 max-w-2xl text-base leading-relaxed text-[var(--color-slate-800)]"
-              >
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-[var(--color-slate-800)]">
                 {content.body}
-              </motion.p>
+              </p>
 
-              <motion.ul variants={staggerContainer} className="mt-6 flex flex-wrap gap-2">
+              <ul className="mt-6 flex flex-wrap gap-2">
                 {content.chips.map((chip) => (
-                  <motion.li key={chip.id} variants={fadeRise}>
+                  <li key={chip.id}>
                     <Badge
                       variant="outline"
                       className="border-[var(--color-primary-200)] bg-[var(--color-surface)] text-[var(--color-primary-900)]"
                     >
                       {chip.label}
                     </Badge>
-                  </motion.li>
+                  </li>
                 ))}
-              </motion.ul>
+              </ul>
 
-              <motion.div
-                variants={fadeRise}
-                className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center"
-              >
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <Button asChild variant="primary" size="lg">
                   <Link href={content.ctaHref}>
                     {content.ctaLabel}
@@ -84,10 +65,10 @@ export function MatcherTeaser({ content }: Props) {
                 <p className="text-xs text-[var(--color-muted)] sm:ml-2 sm:max-w-md">
                   {content.disclaimer}
                 </p>
-              </motion.div>
+              </div>
             </div>
 
-            <motion.div variants={fadeRise} className="lg:translate-y-2">
+            <div className="lg:translate-y-2">
               <ScientificPathwayVisual
                 eyebrow={content.visual.eyebrow}
                 heading={content.visual.heading}
@@ -96,9 +77,9 @@ export function MatcherTeaser({ content }: Props) {
                 summary={content.visual.summary}
                 tone="ai"
               />
-            </motion.div>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

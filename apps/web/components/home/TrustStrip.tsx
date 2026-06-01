@@ -1,17 +1,12 @@
-"use client";
-
 import Link from "next/link";
-import { motion } from "framer-motion";
-
-import { fadeRise, staggerContainer, useReducedMotion } from "@propharmex/ui";
 
 import type { TrustStripSection } from "../../content/home";
 
-interface Props { content: TrustStripSection }
+interface Props {
+  content: TrustStripSection;
+}
 
 export function TrustStrip({ content }: Props) {
-  const reduce = useReducedMotion();
-
   return (
     <section
       aria-label={content.heading}
@@ -19,15 +14,9 @@ export function TrustStrip({ content }: Props) {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2 className="sr-only">{content.heading}</h2>
-        <motion.ul
-          initial={reduce ? false : "initial"}
-          whileInView="animate"
-          viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-          variants={staggerContainer}
-          className="grid grid-cols-2 gap-3 lg:grid-cols-4"
-        >
+        <ul className="grid grid-cols-2 gap-3 lg:grid-cols-4">
           {content.items.map((item) => (
-            <motion.li key={item.id} variants={fadeRise}>
+            <li key={item.id}>
               <Link
                 href={item.href}
                 aria-label={`${item.label} — ${item.caption}`}
@@ -41,9 +30,9 @@ export function TrustStrip({ content }: Props) {
                   </span>
                 </span>
               </Link>
-            </motion.li>
+            </li>
           ))}
-        </motion.ul>
+        </ul>
       </div>
     </section>
   );

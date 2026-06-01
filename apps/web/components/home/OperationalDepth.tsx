@@ -1,14 +1,9 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { Check } from "lucide-react";
-
-import { fadeRise, staggerContainer, useReducedMotion } from "@propharmex/ui";
 
 import type { OperatingColumn, OperationalDepthSection } from "../../content/home";
 
-type Props = { content: OperationalDepthSection };
+interface Props { content: OperationalDepthSection }
 
 /**
  * OperationalDepth — homepage section, two-column "anchor + depth" frame.
@@ -20,7 +15,6 @@ type Props = { content: OperationalDepthSection };
  * collaborative read of the section.
  */
 export function OperationalDepth({ content }: Props) {
-  const reduce = useReducedMotion();
   const [anchor, depth] = content.columns;
 
   return (
@@ -44,13 +38,7 @@ export function OperationalDepth({ content }: Props) {
           </p>
         </div>
 
-        <motion.div
-          initial={reduce ? false : "initial"}
-          whileInView="animate"
-          viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-          variants={fadeRise}
-          className="relative mt-12 aspect-[21/9] w-full overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] shadow-[var(--shadow-md)]"
-        >
+        <div className="relative mt-12 aspect-[21/9] w-full overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] shadow-[var(--shadow-md)]">
           <Image
             src="/team-global-collaboration.png"
             alt="Canada-headquartered global pharmaceutical collaboration illustration"
@@ -58,75 +46,46 @@ export function OperationalDepth({ content }: Props) {
             sizes="(min-width: 1024px) 1280px, 100vw"
             className="object-cover object-center"
           />
-        </motion.div>
+        </div>
 
         <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-12">
-          <OperatingCard column={anchor} reduce={reduce} />
-          <OperatingCard column={depth} reduce={reduce} />
+          <OperatingCard column={anchor} />
+          <OperatingCard column={depth} />
         </div>
       </div>
     </section>
   );
 }
 
-function OperatingCard({
-  column,
-  reduce,
-}: {
-  column: OperatingColumn;
-  reduce: boolean;
-}) {
+function OperatingCard({ column }: { column: OperatingColumn }) {
   return (
-    <motion.div
-      initial={reduce ? false : "initial"}
-      whileInView="animate"
-      viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-      variants={staggerContainer}
-    >
-      <motion.div
-        variants={fadeRise}
-        className="inline-flex items-center gap-2 rounded-[var(--radius-full)] border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1 text-xs text-[var(--color-muted)]"
-      >
+    <div>
+      <div className="inline-flex items-center gap-2 rounded-[var(--radius-full)] border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1 text-xs text-[var(--color-muted)]">
         <span>{column.sublabel}</span>
-      </motion.div>
+      </div>
 
-      <motion.h3
-        variants={fadeRise}
-        className="mt-4 font-[family-name:var(--font-display)] text-2xl font-semibold tracking-tight text-[var(--color-fg)]"
-      >
+      <h3 className="mt-4 font-[family-name:var(--font-display)] text-2xl font-semibold tracking-tight text-[var(--color-fg)]">
         {column.label}
-      </motion.h3>
+      </h3>
 
-      <motion.p
-        variants={fadeRise}
-        className="mt-1 text-sm text-[var(--color-primary-700)]"
-      >
-        {column.role}
-      </motion.p>
+      <p className="mt-1 text-sm text-[var(--color-primary-700)]">{column.role}</p>
 
-      <motion.ul variants={staggerContainer} className="mt-5 flex flex-col gap-3">
+      <ul className="mt-5 flex flex-col gap-3">
         {column.capabilities.map((c) => (
-          <motion.li
-            key={c}
-            variants={fadeRise}
-            className="flex gap-3 text-sm leading-relaxed text-[var(--color-slate-800)]"
-          >
+          <li key={c} className="flex gap-3 text-sm leading-relaxed text-[var(--color-slate-800)]">
             <Check
               size={16}
               aria-hidden="true"
               className="mt-0.5 shrink-0 text-[var(--color-primary-700)]"
             />
             <span>{c}</span>
-          </motion.li>
+          </li>
         ))}
-      </motion.ul>
+      </ul>
 
-      <motion.p
-        variants={fadeRise}
-        className="mt-5 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-slate-50)] p-3 text-xs leading-relaxed text-[var(--color-muted)]"
-      >
+      <p className="mt-5 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-slate-50)] p-3 text-xs leading-relaxed text-[var(--color-muted)]">
         {column.certificationNote}
-      </motion.p>
-    </motion.div>
+      </p>
+    </div>
   );
 }

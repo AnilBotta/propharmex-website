@@ -13,20 +13,20 @@ update the doc, not both at once.
 
 ## 1. Surface map
 
-| Component | Where | Provider |
-|---|---|---|
-| Marketing site | `apps/web` | Vercel (Next.js 15 + Edge runtime mix) |
-| CMS | `apps/web/sanity` (embedded at `/studio`, PR-L′) | Sanity Studio v3 (project `veo2rnkc`, dataset `production`) |
-| DB | `packages/lib/supabase` | Supabase Postgres (`uvrgrulamuhwzuvbljbv`) + pgvector |
-| AI inference | `app/api/ai/*` | Anthropic Claude (primary), OpenAI GPT-4o (fallback), `text-embedding-3-large` |
-| Email | Resend | `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, `RESEND_CONTACT_TO_EMAIL` |
-| Booking | Cal.com embed | `CAL_LINK`, `CAL_EVENT_TYPE_ID` |
-| Analytics | Plausible + PostHog | See `docs/analytics-taxonomy.md` |
-| Bot protection | Cloudflare Turnstile | `NEXT_PUBLIC_TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY` |
-| Rate limit | Upstash Redis | `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` |
-| Errors | Sentry | `NEXT_PUBLIC_SENTRY_DSN`, `SENTRY_AUTH_TOKEN` |
-| Logs | Axiom (structured logger) | `AXIOM_TOKEN`, `AXIOM_DATASET` |
-| Liveness | `/api/health` | Edge runtime; pinged every 5 min by external uptime monitor (UptimeRobot free tier — see §13). Vercel Pro `crons[]` retired in PR-M′ for Hobby-plan compatibility. |
+| Component      | Where                                            | Provider                                                                                                                                                           |
+| -------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Marketing site | `apps/web`                                       | Vercel (Next.js 15 + Edge runtime mix)                                                                                                                             |
+| CMS            | `apps/web/sanity` (embedded at `/studio`, PR-L′) | Sanity Studio v3 (project `veo2rnkc`, dataset `production`)                                                                                                        |
+| DB             | `packages/lib/supabase`                          | Supabase Postgres (`uvrgrulamuhwzuvbljbv`) + pgvector                                                                                                              |
+| AI inference   | `app/api/ai/*`                                   | Anthropic Claude (primary), OpenAI GPT-4o (fallback), `text-embedding-3-large`                                                                                     |
+| Email          | Resend                                           | `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, `RESEND_CONTACT_TO_EMAIL`                                                                                                   |
+| Booking        | Cal.com embed                                    | `CAL_LINK`, `CAL_EVENT_TYPE_ID`                                                                                                                                    |
+| Analytics      | Plausible + PostHog                              | See `docs/analytics-taxonomy.md`                                                                                                                                   |
+| Bot protection | Cloudflare Turnstile                             | `NEXT_PUBLIC_TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY`                                                                                                           |
+| Rate limit     | Upstash Redis                                    | `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`                                                                                                               |
+| Errors         | Sentry                                           | `NEXT_PUBLIC_SENTRY_DSN`, `SENTRY_AUTH_TOKEN`                                                                                                                      |
+| Logs           | Axiom (structured logger)                        | `AXIOM_TOKEN`, `AXIOM_DATASET`                                                                                                                                     |
+| Liveness       | `/api/health`                                    | Edge runtime; pinged every 5 min by external uptime monitor (UptimeRobot free tier — see §13). Vercel Pro `crons[]` retired in PR-M′ for Hobby-plan compatibility. |
 
 All secrets live in Vercel env (`Project Settings → Environment Variables`); never in the repo. `.env.example` is the spec.
 
@@ -89,12 +89,12 @@ revision**. No code change needed.
 
 ### 4.1 Severity ladder
 
-| Sev | Definition | Page on-call? |
-|---|---|---|
-| 1 | Site down / 500s on `/`, `/contact`, or `/insights/*` for >5 min | **Yes** |
-| 2 | AI tool broken, contact form not delivering, >25% Sentry error rate | Yes (business hours) |
-| 3 | Cosmetic regression, single-page issue, accessibility miss | No — file a follow-up |
-| 4 | Internal-only / non-customer-facing | No |
+| Sev | Definition                                                          | Page on-call?         |
+| --- | ------------------------------------------------------------------- | --------------------- |
+| 1   | Site down / 500s on `/`, `/contact`, or `/insights/*` for >5 min    | **Yes**               |
+| 2   | AI tool broken, contact form not delivering, >25% Sentry error rate | Yes (business hours)  |
+| 3   | Cosmetic regression, single-page issue, accessibility miss          | No — file a follow-up |
+| 4   | Internal-only / non-customer-facing                                 | No                    |
 
 ### 4.2 Sev-1 procedure
 
@@ -123,14 +123,14 @@ revision**. No code change needed.
 All headers ship from `vercel.json`. Layered with the `next.config.ts`
 `headers()` declaration for two redundant emit paths.
 
-| Header | Value (summary) |
-|---|---|
-| `X-Content-Type-Options` | `nosniff` |
-| `X-Frame-Options` | `DENY` |
-| `Referrer-Policy` | `strict-origin-when-cross-origin` |
-| `Permissions-Policy` | camera/mic/geo/floc all denied |
-| `Strict-Transport-Security` | 2-year `max-age`, `includeSubDomains`, `preload` |
-| `Content-Security-Policy` | strict allowlist with `report-uri /api/csp-report` |
+| Header                      | Value (summary)                                    |
+| --------------------------- | -------------------------------------------------- |
+| `X-Content-Type-Options`    | `nosniff`                                          |
+| `X-Frame-Options`           | `DENY`                                             |
+| `Referrer-Policy`           | `strict-origin-when-cross-origin`                  |
+| `Permissions-Policy`        | camera/mic/geo/floc all denied                     |
+| `Strict-Transport-Security` | 2-year `max-age`, `includeSubDomains`, `preload`   |
+| `Content-Security-Policy`   | strict allowlist with `report-uri /api/csp-report` |
 
 ### 5.2 CSP triage — "Refused to load X"
 
@@ -198,16 +198,16 @@ prod traffic spikes and Sentry quota becomes a concern, drop prod to
 Single source of truth: **never log raw PII**. The same rules apply
 across logger, Sentry, PostHog, and any future telemetry vendor.
 
-| Field | Action |
-|---|---|
-| Email address | Redact local part — `re***@example.com` |
-| Full name | Replace with `<redacted>` or count only |
-| Phone | Replace with `<redacted>` |
-| IP | Drop — Sentry `sendDefaultPii: false`, `apps/web/lib/sentry-redact.ts` strips `user.ip_address` |
-| Cookies | Drop — Sentry config strips `request.cookies` |
-| Request body / form data | Drop — Sentry config strips `request.data`; logger callers must pre-filter |
-| Auth headers / API keys | Replace with `<redacted>` — `apps/web/lib/sentry-redact.ts` `TOKEN_HEADER_KEYS` |
-| AI chat messages | Bucket into `lengthBucket: "xs" | "s" | "m" | "l" | "xl"` before capture; never raw text |
+| Field                    | Action                                                                                          |
+| ------------------------ | ----------------------------------------------------------------------------------------------- | --- | --- | --- | ------------------------------------ |
+| Email address            | Redact local part — `re***@example.com`                                                         |
+| Full name                | Replace with `<redacted>` or count only                                                         |
+| Phone                    | Replace with `<redacted>`                                                                       |
+| IP                       | Drop — Sentry `sendDefaultPii: false`, `apps/web/lib/sentry-redact.ts` strips `user.ip_address` |
+| Cookies                  | Drop — Sentry config strips `request.cookies`                                                   |
+| Request body / form data | Drop — Sentry config strips `request.data`; logger callers must pre-filter                      |
+| Auth headers / API keys  | Replace with `<redacted>` — `apps/web/lib/sentry-redact.ts` `TOKEN_HEADER_KEYS`                 |
+| AI chat messages         | Bucket into `lengthBucket: "xs"                                                                 | "s" | "m" | "l" | "xl"` before capture; never raw text |
 
 If you spot an event in Sentry / Axiom / PostHog that violates this
 policy, it is a Sev-2 incident: stop the leak first, fix the
@@ -267,9 +267,9 @@ The `Bundle budget` GitHub workflow (`.github/workflows/bundle-budget.yml`) runs
 
 ### 12.1 Current threshold
 
-**475 kB First-Load JS per route on mobile.** This is **not** the original Prompt 25 spec value (150 kB). The 150 kB target was unachievable with the stack we ship — Sentry adds ~100 kB, PostHog ~50 kB, Framer Motion ~30 kB, the AI SDK on `/ai/*` tools ~120 kB. Even a barebones React 19 + Next 15 page lands around 173 kB before any app code.
+**350 kB First-Load JS per route on mobile.** This is **not** the original Prompt 25 spec value (150 kB). The 150 kB target remains unrealistic with the stack we ship: Sentry, PostHog, the AI SDK on `/ai/*` tools, and the React 19 + Next 15 baseline all contribute meaningful first-load cost before page code.
 
-The 475 kB ceiling matches the worst current route (`/ai/project-scoping-assistant` at 452 kB) plus ~5% headroom. **The gate is here to catch regressions, not to enforce an aspirational value** — a Framer Motion duplicate-import or an incidental import of the entire `lucide-react` icon set would push routes well over 475 kB and fail CI.
+The 350 kB ceiling matches the homepage after the June 2026 motion/component audit (`/` at roughly 346 kB) with a small regression buffer. **The gate is here to catch regressions, not to enforce an aspirational value**; a duplicate Framer Motion import or an incidental client-island expansion should fail CI.
 
 Override with `BUNDLE_BUDGET_KB` env var if you need to ratchet.
 
@@ -299,8 +299,9 @@ If the budget gate fails on a PR you genuinely can't fix in-PR, ratchet `BUNDLE_
 
 Tickets to bring the ceiling down toward a healthier ~300 kB and to promote demoted Lighthouse assertions back to `error`:
 
-- [ ] **Lazy-load Cal.com on `/contact`** — pulls `/contact` from 347 kB → ~250 kB. Recorded Lighthouse follow-up from Prompt 23. **Promotes**: `categories:performance` warn → error 0.95 (currently warn — was demoted from error 0.90 → warn in Prompt 26 PR-B after `/contact` perf landed at 0.82–0.83 across three CI runs); `largest-contentful-paint` warn → error 2000 ms (currently warn at 2500 ms — was demoted from error 2000 ms in Prompt 25 PR-B then again from error 2500 ms in Prompt 26 PR-A). The `/contact` page has now flaked or consistently failed Lighthouse gates **four times** across three prompts: Cal.com + Turnstile + Sentry stack the page right against any reasonable threshold a hosted-runner can hit. Lazy-loading the embed is the only durable fix; until then both assertions stay at warn.
-- [ ] **Dynamic-import the AI SDK on `/ai/*` tool pages** — `import('ai/react')` only when the user opens the chat surface. Should pull `/ai/project-scoping-assistant` from 452 kB → ~330 kB.
+- [x] **Homepage motion/component audit** — static homepage sections now render as server components; hero CTA analytics are split into a small client island; the process timeline no longer ships scroll-linked Framer Motion. `/` now measures roughly 346 kB.
+- [ ] **Reduce remaining homepage Framer usage** — the scientific pathway visual still uses Framer Motion. Split or replace it before any next ratchet below 350 kB.
+- [ ] **Dynamic-import the AI SDK on `/ai/*` tool pages** — `import('ai/react')` only when the user opens the chat surface.
 - [ ] **Audit `lucide-react` imports** — confirm we're using per-icon imports (`import { Foo } from 'lucide-react'`) not the barrel.
 - [ ] **Audit `framer-motion`** — split feature imports (`m`, `LazyMotion`) where appropriate to enable tree-shaking.
 - [ ] After each follow-up lands, ratchet `BUNDLE_BUDGET_KB` down so the gate continues to catch regressions at the new floor.
@@ -415,13 +416,13 @@ Don't leave Dev Mode on past your debugging window. It disables the cache layer 
 
 ### 15.3 Error code triage
 
-| Code | Meaning | First action |
-|---|---|---|
-| **522** | Origin connection timed out (>100s) | Check Vercel status page; check `/api/health` direct via Vercel preview URL |
-| **523** | Origin unreachable (DNS / routing) | Verify Vercel deploy succeeded; check `vercel.json` regions; rerun a deploy |
-| **525** | SSL handshake failed origin-side | Verify SSL/TLS Mode = Full (Strict) AND Vercel cert is valid (auto-renewed; check Vercel project SSL settings) |
-| **526** | Invalid SSL certificate | Same as 525 — usually means Vercel cert expired or domain mis-mapped |
-| **520** | Origin returned an empty / unexpected response | Check Vercel runtime logs via Vercel MCP for crashes |
+| Code    | Meaning                                        | First action                                                                                                   |
+| ------- | ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| **522** | Origin connection timed out (>100s)            | Check Vercel status page; check `/api/health` direct via Vercel preview URL                                    |
+| **523** | Origin unreachable (DNS / routing)             | Verify Vercel deploy succeeded; check `vercel.json` regions; rerun a deploy                                    |
+| **525** | SSL handshake failed origin-side               | Verify SSL/TLS Mode = Full (Strict) AND Vercel cert is valid (auto-renewed; check Vercel project SSL settings) |
+| **526** | Invalid SSL certificate                        | Same as 525 — usually means Vercel cert expired or domain mis-mapped                                           |
+| **520** | Origin returned an empty / unexpected response | Check Vercel runtime logs via Vercel MCP for crashes                                                           |
 
 For all 5xx CF errors, "Always Online" should serve a stale CF copy if one exists. If users see 522 with no stale fallback → escalate to **rollback (§15.5)**.
 
@@ -456,6 +457,7 @@ curl -I https://propharmex.com | grep -iE 'cf-ray|cf-cache-status|server'
 ```
 
 Expected:
+
 - `cf-ray: <id>-<pop>` — Cloudflare request ID + serving PoP
 - `cf-cache-status: HIT|MISS|DYNAMIC|EXPIRED|BYPASS` — cache decision
 - `server: cloudflare`
@@ -466,10 +468,10 @@ If `cf-ray` is absent, the request bypassed Cloudflare (DNS misrouted, gray-clou
 
 ## 16. Changelog
 
-| Date | Change | PR |
-|---|---|---|
-| 2026-04-29 | Runbook initial — Prompt 25 PR-A | [#40](https://github.com/AnilBotta/propharmex-website/pull/40) |
-| 2026-04-29 | Bundle budget + uptime cron — Prompt 25 PR-B | [#41](https://github.com/AnilBotta/propharmex-website/pull/41) |
-| 2026-05-05 | Drop Vercel cron, switch uptime to UptimeRobot — PR-M′ | (Hobby-plan compatibility; cron retired, external 5-min ping replaces it) |
-| 2026-04-29 | A11y testing layers (§14) + ACR docx — Prompt 26 PR-B | TBD |
-| 2026-05-04 | Cloudflare-proxy ops (§15) + hosting-strategy.md — PR-K′ | TBD |
+| Date       | Change                                                   | PR                                                                        |
+| ---------- | -------------------------------------------------------- | ------------------------------------------------------------------------- |
+| 2026-04-29 | Runbook initial — Prompt 25 PR-A                         | [#40](https://github.com/AnilBotta/propharmex-website/pull/40)            |
+| 2026-04-29 | Bundle budget + uptime cron — Prompt 25 PR-B             | [#41](https://github.com/AnilBotta/propharmex-website/pull/41)            |
+| 2026-05-05 | Drop Vercel cron, switch uptime to UptimeRobot — PR-M′   | (Hobby-plan compatibility; cron retired, external 5-min ping replaces it) |
+| 2026-04-29 | A11y testing layers (§14) + ACR docx — Prompt 26 PR-B    | TBD                                                                       |
+| 2026-05-04 | Cloudflare-proxy ops (§15) + hosting-strategy.md — PR-K′ | TBD                                                                       |

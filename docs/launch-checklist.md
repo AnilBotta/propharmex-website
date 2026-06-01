@@ -24,17 +24,17 @@ These must clear before staging sign-off. Each row has a single owner; multi-own
 
 ### 2.1 Code quality and CI
 
-| Gate                                             | Owner         | Verification                                                                                               |
-| ------------------------------------------------ | ------------- | ---------------------------------------------------------------------------------------------------------- |
-| `pnpm lint` clean across the monorepo            | Engineering   | CI workflow `ci.yml` job "Lint" green on main                                                              |
-| `pnpm typecheck` clean                           | Engineering   | CI workflow `ci.yml` job "Typecheck" green on main                                                         |
-| `pnpm test` all suites pass                      | Engineering   | CI workflow `ci.yml` job "Test" green on main                                                              |
-| `pnpm --filter web build` succeeds               | Engineering   | CI workflow `ci.yml` job "Build" green on main                                                             |
-| Storybook builds clean                           | Engineering   | CI workflow `ci.yml` job "Storybook" green on main                                                         |
-| Bundle budget at 380 kB First-Load JS            | Engineering   | CI workflow `bundle-budget.yml` green; current marketing worst route is the homepage at roughly 354-356 kB |
-| Lighthouse CI: CWV strict, perf warn 0.90        | Engineering   | CI workflow `lighthouse.yml` green; review LHCI run reports                                                |
-| axe-core CI: zero serious or critical violations | Accessibility | CI workflow `a11y-budget.yml` green                                                                        |
-| Playwright smoke suite passes                    | Engineering   | All seven specs in `apps/web/e2e/*.spec.ts` pass against staging                                           |
+| Gate                                             | Owner         | Verification                                                                                           |
+| ------------------------------------------------ | ------------- | ------------------------------------------------------------------------------------------------------ |
+| `pnpm lint` clean across the monorepo            | Engineering   | CI workflow `ci.yml` job "Lint" green on main                                                          |
+| `pnpm typecheck` clean                           | Engineering   | CI workflow `ci.yml` job "Typecheck" green on main                                                     |
+| `pnpm test` all suites pass                      | Engineering   | CI workflow `ci.yml` job "Test" green on main                                                          |
+| `pnpm --filter web build` succeeds               | Engineering   | CI workflow `ci.yml` job "Build" green on main                                                         |
+| Storybook builds clean                           | Engineering   | CI workflow `ci.yml` job "Storybook" green on main                                                     |
+| Bundle budget at 350 kB First-Load JS            | Engineering   | CI workflow `bundle-budget.yml` green; current marketing worst route is the homepage at roughly 346 kB |
+| Lighthouse CI: CWV strict, perf warn 0.90        | Engineering   | CI workflow `lighthouse.yml` green; review LHCI run reports                                            |
+| axe-core CI: zero serious or critical violations | Accessibility | CI workflow `a11y-budget.yml` green                                                                    |
+| Playwright smoke suite passes                    | Engineering   | All seven specs in `apps/web/e2e/*.spec.ts` pass against staging                                       |
 
 ### 2.2 Content and editorial
 
@@ -175,12 +175,11 @@ Detailed rollback procedure including command-line steps lives in [`docs/runbook
 
 ### Within one week after launch
 
-| Task                                                                                                                                            | Owner       |
-| ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| Build the four PostHog dashboards in the PostHog UI per `docs/analytics-taxonomy.md` §6                                                         | Product     |
-| Promote Lighthouse `categories:accessibility` warn to error 1.0 once manual AT pass is countersigned                                            | Engineering |
-| Continue the homepage bundle ratchet toward the 350 kB long-term target after page-owned motion/components are reduced below target with margin | Engineering |
-| Schedule the first weekly performance review per `docs/runbook.md` §12                                                                          | Engineering |
+| Task                                                                                                 | Owner       |
+| ---------------------------------------------------------------------------------------------------- | ----------- |
+| Build the four PostHog dashboards in the PostHog UI per `docs/analytics-taxonomy.md` §6              | Product     |
+| Promote Lighthouse `categories:accessibility` warn to error 1.0 once manual AT pass is countersigned | Engineering |
+| Schedule the first weekly performance review per `docs/runbook.md` §12                               | Engineering |
 
 ---
 

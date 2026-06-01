@@ -1,18 +1,11 @@
-"use client";
-
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-
-import { fadeRise, staggerContainer, useReducedMotion } from "@propharmex/ui";
 
 import type { IndustriesSection } from "../../content/home";
 
-type Props = { content: IndustriesSection };
+interface Props { content: IndustriesSection }
 
 export function Industries({ content }: Props) {
-  const reduce = useReducedMotion();
-
   return (
     <section
       aria-labelledby="home-industries-heading"
@@ -34,22 +27,11 @@ export function Industries({ content }: Props) {
           </p>
         </div>
 
-        <motion.ul
-          initial={reduce ? false : "initial"}
-          whileInView="animate"
-          viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-          variants={staggerContainer}
-          className="mt-12 grid auto-rows-[minmax(180px,auto)] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
-        >
+        <ul className="mt-12 grid auto-rows-[minmax(180px,auto)] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {content.tiles.map((tile) => (
-            <motion.li
+            <li
               key={tile.id}
-              variants={fadeRise}
-              className={
-                tile.size === "lg"
-                  ? "sm:col-span-2 lg:col-span-2"
-                  : "sm:col-span-1"
-              }
+              className={tile.size === "lg" ? "sm:col-span-2 lg:col-span-2" : "sm:col-span-1"}
             >
               <Link
                 href={tile.href}
@@ -62,16 +44,16 @@ export function Industries({ content }: Props) {
                   <ArrowUpRight
                     size={18}
                     aria-hidden="true"
-                    className="shrink-0 text-[var(--color-muted)] transition-transform duration-150 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[var(--color-primary-700)]"
+                    className="shrink-0 text-[var(--color-muted)] transition-transform duration-150 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[var(--color-primary-700)]"
                   />
                 </div>
                 <p className="text-sm leading-relaxed text-[var(--color-slate-800)]">
                   {tile.description}
                 </p>
               </Link>
-            </motion.li>
+            </li>
           ))}
-        </motion.ul>
+        </ul>
       </div>
     </section>
   );
