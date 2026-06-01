@@ -133,10 +133,10 @@ All four AI surfaces share the same defensive posture: rate-limited via Upstash 
 | Lint, typecheck, test, build | .github/workflows/ci.yml            | Standard validation across the monorepo                                                               |
 | Storybook build              | .github/workflows/ci.yml            | Component library compiles cleanly                                                                    |
 | Lighthouse CI                | .github/workflows/lighthouse.yml    | CWV budgets — perf warn 0.90, LCP warn 2500ms, CLS / TBT / FCP error                                  |
-| Bundle budget                | .github/workflows/bundle-budget.yml | First-Load JS at most 380 kB per route, excluding API, dashboard, Studio, and image-generation routes |
+| Bundle budget                | .github/workflows/bundle-budget.yml | First-Load JS at most 350 kB per route, excluding API, dashboard, Studio, and image-generation routes |
 | Axe-core a11y                | .github/workflows/a11y-budget.yml   | Zero serious or critical violations across 11 sampled URLs                                            |
 
-The bundle budget was ratcheted from 475 kB to 450 kB after the AI surface dynamic-import work, then to 380 kB after the PDF subpath import cleanup removed `pdf-lib` from the Dosage Matcher and DEL Readiness client route chunks. A homepage shared-chunk audit in May 2026 kept draft-only visual editing behind a draft-mode import and removed Framer Motion from the site-wide Concierge launcher, but `/` still measured 354 kB First-Load JS. The 350 kB long-term target remains open and requires a deeper homepage motion/component audit before the CI budget should be lowered.
+The bundle budget was ratcheted from 475 kB to 450 kB after the AI surface dynamic-import work, then to 380 kB after the PDF subpath import cleanup removed `pdf-lib` from the Dosage Matcher and DEL Readiness client route chunks. A follow-up homepage shared-chunk pass kept draft-only visual editing behind a draft-mode import and removed Framer Motion from the site-wide Concierge launcher. The June 2026 homepage motion/component audit then moved static homepage sections out of client islands, split hero CTA analytics into a small client component, and replaced the process scroll animation with a server-rendered timeline. `/` now measures 346 kB First-Load JS, so the CI budget is ratcheted to 350 kB.
 
 ---
 
@@ -147,7 +147,6 @@ These are tracked but intentionally out of scope for the v1.0.0 launch.
 - Promote Lighthouse `categories:accessibility` warn to error 1.0 after the manual VoiceOver and NVDA assistive-tech pass per docs/accessibility-at-test-plan.md.
 - Add `/insights/whitepapers/[slug]` to the axe URL list after a live whitepaper slug returns to `INSIGHTS.whitepapers`.
 - Build the four PostHog dashboards in the PostHog UI per docs/analytics-taxonomy.md section 6 (Lead funnel, AI tool conversion, Content performance, Region breakdown).
-- Continue the homepage bundle ratchet toward 350 kB after a deeper audit of page-owned motion and interactive components brings `/` below the target with margin.
 
 ---
 

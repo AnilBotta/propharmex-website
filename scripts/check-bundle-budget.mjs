@@ -35,8 +35,7 @@
 import fs from "node:fs/promises";
 import process from "node:process";
 
-// Default ratchet: matches the homepage (356 kB) — the new worst route —
-// plus ~6.7% headroom. History:
+// Default ratchet history:
 //   475 kB  initial ceiling (Prompt 25 PR-B)
 //   450 kB  PR #44: /ai/project-scoping-assistant lazy-split (-182 kB);
 //           ai/react out of the site-wide chunk via Concierge dynamic-import
@@ -45,11 +44,13 @@ import process from "node:process";
 //           subpath imports + "sideEffects": false; pdf-lib no longer
 //           pulled into client route chunks. /ai/dosage-matcher dropped
 //           431 -> 255 kB; /ai/del-readiness dropped 429 -> 241 kB.
-// Next ratchet candidate: deeper homepage motion/component audit. The May
-// 2026 shared-chunk pass moved draft-only visual editing behind a draft-mode
-// import and removed Framer Motion from the site-wide Concierge launcher, but
-// / still measured 354 kB First-Load JS, so 350 kB is not yet a safe CI floor.
-const BUDGET_KB = Number.parseFloat(process.env.BUNDLE_BUDGET_KB ?? "380");
+//   350 kB  homepage motion/component audit: static homepage sections moved
+//           out of client islands; hero CTA analytics split into a small
+//           client island; process timeline rendered without scroll-linked
+//           Framer Motion. / measured 346 kB after the pass.
+// Next ratchet candidate: remove remaining Framer Motion from the homepage
+// scientific pathway visual or split that visual below the fold.
+const BUDGET_KB = Number.parseFloat(process.env.BUNDLE_BUDGET_KB ?? "350");
 const BUDGET_BYTES = BUDGET_KB * 1024;
 
 // Routes excluded from the budget check. These don't ship client JS:

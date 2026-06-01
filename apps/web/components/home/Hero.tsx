@@ -1,16 +1,10 @@
-"use client";
-
 import Image from "next/image";
-import Link from "next/link";
-import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 
-import { Button, fadeRise, staggerContainer, useReducedMotion } from "@propharmex/ui";
-
-import { trackHeroCtaClick } from "../../lib/analytics";
 import type { HeroSection } from "../../content/home";
 
-type Props = { content: HeroSection };
+import { HeroActions } from "./HeroActions";
+
+interface Props { content: HeroSection }
 
 /**
  * Home hero. The hero illustration sits behind the copy as a full-bleed
@@ -22,28 +16,18 @@ type Props = { content: HeroSection };
  * the image is positioned to keep its lighter side under the text.
  */
 export function Hero({ content }: Props) {
-  const reduce = useReducedMotion();
-
   return (
     <section
       aria-labelledby="home-hero-heading"
-      className="relative isolate overflow-hidden bg-[var(--color-bg)] pt-20 pb-24 sm:pt-28 sm:pb-32"
+      className="relative isolate overflow-hidden bg-[var(--color-bg)] pb-24 pt-20 sm:pb-32 sm:pt-28"
     >
       <HeroBackdrop />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={reduce ? false : "initial"}
-          animate="animate"
-          variants={staggerContainer}
-          className="relative z-10 flex max-w-2xl flex-col gap-6 lg:max-w-3xl"
-        >
-          <motion.p
-            variants={fadeRise}
-            className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-[0.12em] text-[var(--color-primary-700)]"
-          >
+        <div className="relative z-10 flex max-w-2xl flex-col gap-6 lg:max-w-3xl">
+          <p className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-[0.12em] text-[var(--color-primary-700)]">
             {content.eyebrow}
-          </motion.p>
+          </p>
 
           <h1
             id="home-hero-heading"
@@ -53,60 +37,18 @@ export function Hero({ content }: Props) {
             <span className="text-[var(--color-primary-700)]">{content.headlineAccent}</span>
           </h1>
 
-          <motion.p
-            variants={fadeRise}
-            className="max-w-xl text-base leading-relaxed text-[var(--color-slate-800)] sm:text-lg"
-          >
+          <p className="max-w-xl text-base leading-relaxed text-[var(--color-slate-800)] sm:text-lg">
             {content.subhead}
-          </motion.p>
+          </p>
 
-          <motion.div
-            variants={fadeRise}
-            className="mt-2 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"
-          >
-            {content.ctas.map((cta) => {
-              const variant =
-                cta.variant === "primary"
-                  ? "primary"
-                  : cta.variant === "secondary"
-                    ? "secondary"
-                    : "ghost";
-              return (
-                <Button
-                  key={cta.href}
-                  asChild
-                  variant={variant}
-                  size="lg"
-                  className="min-h-11"
-                >
-                  <Link
-                    href={cta.href}
-                    onClick={() =>
-                      trackHeroCtaClick({
-                        page: "home",
-                        variant,
-                        href: cta.href,
-                        label: cta.label,
-                      })
-                    }
-                  >
-                    {cta.label}
-                    {cta.variant === "primary" ? (
-                      <ArrowRight aria-hidden="true" size={18} />
-                    ) : null}
-                  </Link>
-                </Button>
-              );
-            })}
-          </motion.div>
+          <div className="mt-2 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <HeroActions ctas={content.ctas} />
+          </div>
 
-          <motion.p
-            variants={fadeRise}
-            className="mt-3 max-w-xl text-xs tracking-[0.02em] text-[var(--color-muted)]"
-          >
+          <p className="mt-3 max-w-xl text-xs tracking-[0.02em] text-[var(--color-muted)]">
             {content.microTrust}
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       </div>
     </section>
   );
@@ -122,10 +64,7 @@ export function Hero({ content }: Props) {
 
 function HeroBackdrop() {
   return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
-    >
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
       <Image
         src="/hero-section.png"
         alt=""

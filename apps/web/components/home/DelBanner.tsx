@@ -1,31 +1,17 @@
-"use client";
-
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 
-import { Button, fadeRise, useReducedMotion } from "@propharmex/ui";
+import { Button } from "@propharmex/ui";
 
 import type { DelBannerSection } from "../../content/home";
 
-type Props = { content: DelBannerSection };
+interface Props { content: DelBannerSection }
 
 export function DelBanner({ content }: Props) {
-  const reduce = useReducedMotion();
-
   return (
-    <section
-      aria-labelledby="home-del-heading"
-      className="bg-[var(--color-bg)] py-16 sm:py-20"
-    >
+    <section aria-labelledby="home-del-heading" className="bg-[var(--color-bg)] py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={reduce ? false : "initial"}
-          whileInView="animate"
-          viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-          variants={fadeRise}
-          className="flex flex-col gap-6 rounded-[var(--radius-xl)] border border-[var(--color-primary-200)] bg-[var(--color-primary-900)] p-8 text-[var(--color-primary-fg)] sm:p-12 lg:flex-row lg:items-center lg:gap-10"
-        >
+        <div className="flex flex-col gap-6 rounded-[var(--radius-xl)] border border-[var(--color-primary-200)] bg-[var(--color-primary-900)] p-8 text-[var(--color-primary-fg)] sm:p-12 lg:flex-row lg:items-center lg:gap-10">
           <span
             aria-hidden="true"
             className="grid size-12 shrink-0 place-items-center rounded-[var(--radius-md)] bg-[color-mix(in_oklab,var(--color-primary-fg)_15%,transparent)]"
@@ -60,7 +46,7 @@ export function DelBanner({ content }: Props) {
               <ArrowRight size={18} aria-hidden="true" />
             </Link>
           </Button>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

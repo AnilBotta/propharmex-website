@@ -1,7 +1,6 @@
 "use client";
 
 import { useId, useState, type FormEvent } from "react";
-import { motion } from "framer-motion";
 
 import {
   Button,
@@ -12,19 +11,15 @@ import {
   SelectTrigger,
   SelectValue,
   Textarea,
-  fadeRise,
-  staggerContainer,
-  useReducedMotion,
 } from "@propharmex/ui";
 
 import { DOSAGE_CHIPS, type ContactFormCopy } from "../../content/home";
 
-type Props = { content: ContactFormCopy };
+interface Props { content: ContactFormCopy }
 
 type Status = "idle" | "submitting" | "success" | "error";
 
 export function ContactMini({ content }: Props) {
-  const reduce = useReducedMotion();
   const formId = useId();
 
   const [status, setStatus] = useState<Status>("idle");
@@ -78,38 +73,23 @@ export function ContactMini({ content }: Props) {
       className="bg-[var(--color-slate-50)] py-20 sm:py-24"
     >
       <div className="mx-auto grid max-w-5xl grid-cols-1 gap-10 rounded-[var(--radius-xl)] border border-[var(--color-border)] bg-[var(--color-surface)] p-8 shadow-[var(--shadow-sm)] sm:p-12 lg:grid-cols-[1fr_1.2fr]">
-        <motion.div
-          initial={reduce ? false : "initial"}
-          whileInView="animate"
-          viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-          variants={staggerContainer}
-        >
-          <motion.p
-            variants={fadeRise}
-            className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-[0.12em] text-[var(--color-primary-700)]"
-          >
+        <div>
+          <p className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-[0.12em] text-[var(--color-primary-700)]">
             {content.eyebrow}
-          </motion.p>
-          <motion.h2
+          </p>
+          <h2
             id="home-contact-heading"
-            variants={fadeRise}
             className="mt-3 font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-[var(--color-fg)] sm:text-4xl"
           >
             {content.heading}
-          </motion.h2>
-          <motion.p
-            variants={fadeRise}
-            className="mt-4 text-base leading-relaxed text-[var(--color-slate-800)]"
-          >
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-[var(--color-slate-800)]">
             {content.subhead}
-          </motion.p>
-          <motion.p
-            variants={fadeRise}
-            className="mt-6 text-xs leading-relaxed text-[var(--color-muted)]"
-          >
+          </p>
+          <p className="mt-6 text-xs leading-relaxed text-[var(--color-muted)]">
             {content.privacyNote}
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
         {status === "success" ? (
           <div
@@ -196,9 +176,7 @@ export function ContactMini({ content }: Props) {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               />
-              <p className="text-xs text-[var(--color-muted)]">
-                {content.fields.message.hint}
-              </p>
+              <p className="text-xs text-[var(--color-muted)]">{content.fields.message.hint}</p>
             </div>
 
             {status === "error" && errorMessage ? (

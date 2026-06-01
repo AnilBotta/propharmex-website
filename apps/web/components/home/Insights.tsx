@@ -1,18 +1,13 @@
-"use client";
-
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-import { Badge, Button, fadeRise, staggerContainer, useReducedMotion } from "@propharmex/ui";
+import { Badge, Button } from "@propharmex/ui";
 
 import type { InsightsSection } from "../../content/home";
 
-type Props = { content: InsightsSection };
+interface Props { content: InsightsSection }
 
 export function Insights({ content }: Props) {
-  const reduce = useReducedMotion();
-
   return (
     <section
       aria-labelledby="home-insights-heading"
@@ -42,15 +37,9 @@ export function Insights({ content }: Props) {
           </Button>
         </div>
 
-        <motion.ul
-          initial={reduce ? false : "initial"}
-          whileInView="animate"
-          viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-          variants={staggerContainer}
-          className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-3"
-        >
+        <ul className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-3">
           {content.cards.map((card) => (
-            <motion.li key={card.id} variants={fadeRise} className="h-full">
+            <li key={card.id} className="h-full">
               <Link
                 href={card.href}
                 className="group flex h-full flex-col gap-3 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-[border-color,box-shadow] duration-150 ease-out hover:border-[var(--color-primary-600)] hover:shadow-[var(--shadow-sm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] focus-visible:ring-offset-2"
@@ -69,13 +58,13 @@ export function Insights({ content }: Props) {
                   <ArrowUpRight
                     size={14}
                     aria-hidden="true"
-                    className="transition-transform duration-150 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    className="transition-transform duration-150 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                   />
                 </span>
               </Link>
-            </motion.li>
+            </li>
           ))}
-        </motion.ul>
+        </ul>
       </div>
     </section>
   );

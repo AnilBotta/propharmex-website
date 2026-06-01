@@ -1,19 +1,14 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-import { Badge, Button, fadeRise, staggerContainer, useReducedMotion } from "@propharmex/ui";
+import { Badge, Button } from "@propharmex/ui";
 
 import type { ProofSection } from "../../content/home";
 
-type Props = { content: ProofSection };
+interface Props { content: ProofSection }
 
 export function Proof({ content }: Props) {
-  const reduce = useReducedMotion();
-
   return (
     <section
       aria-labelledby="home-proof-heading"
@@ -43,13 +38,7 @@ export function Proof({ content }: Props) {
           </Button>
         </div>
 
-        <motion.div
-          initial={reduce ? false : "initial"}
-          whileInView="animate"
-          viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-          variants={fadeRise}
-          className="relative mt-12 aspect-[21/9] w-full overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] shadow-[var(--shadow-md)]"
-        >
+        <div className="relative mt-12 aspect-[21/9] w-full overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] shadow-[var(--shadow-md)]">
           <Image
             src="/formulation-outcomes.png"
             alt="Selected pharmaceutical development outcomes illustration"
@@ -57,17 +46,11 @@ export function Proof({ content }: Props) {
             sizes="(min-width: 1024px) 1280px, 100vw"
             className="object-cover object-center"
           />
-        </motion.div>
+        </div>
 
-        <motion.ul
-          initial={reduce ? false : "initial"}
-          whileInView="animate"
-          viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-          variants={staggerContainer}
-          className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3"
-        >
+        <ul className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {content.cards.map((card) => (
-            <motion.li key={card.id} variants={fadeRise} className="h-full">
+            <li key={card.id} className="h-full">
               <Link
                 href={card.href}
                 className="group flex h-full flex-col gap-4 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-[border-color,box-shadow] duration-150 ease-out hover:border-[var(--color-primary-600)] hover:shadow-[var(--shadow-sm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] focus-visible:ring-offset-2"
@@ -97,14 +80,14 @@ export function Proof({ content }: Props) {
                     Read
                     <ArrowUpRight
                       size={14}
-                      className="transition-transform duration-150 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      className="transition-transform duration-150 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                     />
                   </span>
                 </div>
               </Link>
-            </motion.li>
+            </li>
           ))}
-        </motion.ul>
+        </ul>
       </div>
     </section>
   );
