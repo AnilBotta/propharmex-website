@@ -31,7 +31,7 @@
       │ email (Resend) · booking (Cal.com) · analytics (Plausible + PostHog)
       │ auth rate (Upstash) · bot (Turnstile) · errors (Sentry) · logs (Axiom)
       ▼
-   Vercel Edge · ISR · per-route caches · middleware (region, rate-limit, CSP)
+   Vercel Edge · ISR · per-route caches · middleware (rate-limit, CSP)
 ```
 
 ## Monorepo package dependencies
@@ -44,36 +44,34 @@
 
 ## Data flow — four AI features
 
-| Feature | Runtime | Retrieval | Output |
-|---|---|---|---|
-| CDMO Concierge | Edge | RAG top-k=8 from Sanity-ingested content | Streamed text chat, citation links |
-| Project Scoping Assistant | Edge | No RAG; uses tool-calling to fill a Zod schema | Structured scope + PDF export via `pdf` skill |
-| DEL Readiness Assessment | Edge | Rubric from Sanity `aiPromptConfig.delReadiness` | Score + traffic-light gaps + PDF report |
-| Dosage Form Matcher | Edge | Sanity `sopCapability` + capability matrix | Ranked dosage forms + rationale + case-study refs |
+| Feature                   | Runtime | Retrieval                                        | Output                                            |
+| ------------------------- | ------- | ------------------------------------------------ | ------------------------------------------------- |
+| CDMO Concierge            | Edge    | RAG top-k=8 from Sanity-ingested content         | Streamed text chat, citation links                |
+| Project Scoping Assistant | Edge    | No RAG; uses tool-calling to fill a Zod schema   | Structured scope + PDF export via `pdf` skill     |
+| DEL Readiness Assessment  | Edge    | Rubric from Sanity `aiPromptConfig.delReadiness` | Score + traffic-light gaps + PDF report           |
+| Dosage Form Matcher       | Edge    | Sanity `sopCapability` + capability matrix       | Ranked dosage forms + rationale + case-study refs |
 
 All four share: rate-limit middleware, PII redaction, disclaimer injection, PostHog telemetry, fallback to GPT-4o on Anthropic errors.
 
-## Region personalization
+## Personalization
 
-Vercel geo header → middleware sets `px-region` cookie → RSC reads cookie → adjusts:
-- Hero headline variant
-- Cert-emphasis order (DEL for CA, USFDA for US, WHO-GMP for global)
-- Primary CTA
-- Office displayed first
-
-Override via header switcher. Respects privacy (no gating, subtle banner on first visit).
+The earlier region-personalization layer was retired during the
+single-website pivot. The public site now presents a Canadian-headquartered
+identity consistently, with no `px-region` cookie, no region switcher, and no
+region-specific hero or certification ordering. Contact-form `region` remains a
+form field for lead routing only.
 
 ## Caching strategy
 
-| Surface | Strategy |
-|---|---|
-| Home, Why, About, Quality, Facilities | ISR 300s |
-| Service/industry hubs + leaves | ISR 300s |
-| Case study detail | ISR 600s |
-| Insights index | ISR 60s |
-| Insight article | ISR 300s |
-| Brand/legal pages | Static |
-| `/api/ai/*` | No cache; Edge |
+| Surface                                              | Strategy       |
+| ---------------------------------------------------- | -------------- |
+| Home, Why, About, Quality, Facilities                | ISR 300s       |
+| Service/industry hubs + leaves                       | ISR 300s       |
+| Case study detail                                    | ISR 600s       |
+| Insights index                                       | ISR 60s        |
+| Insight article                                      | ISR 300s       |
+| Brand/legal pages                                    | Static         |
+| `/api/ai/*`                                          | No cache; Edge |
 | Sanity webhook → on-demand revalidate affected slugs |
 
 ## Deployment topology
@@ -135,5 +133,3 @@ Expand this doc in Prompt 4 (Sanity + RAG flow), Prompt 18 (Concierge detail), a
 ## Why Propharmex page (added in Prompt 6)
 
 - Route: `/why-propharmex` (RSC, ISR 300s). Content lives in `apps/web/content/why.ts` as one typed `WHY: WhyContent` constant with six discriminated-union chapters (Problem → Gap → Our Model → Proof → Two-hub Engine → Call) plus a final `cta` block; the shape will map 1:1 onto the Sanity `page{slug:"why-propharmex"}` document when it lands alongside the homepage migration. Eyebrow, headline, and lede for each chapter render server-side (LCP is the first chapter headline); body paragraphs, stats, and the support callout fade+rise through the `ChapterReveal` client island using `fadeRise` + `staggerContainer` from `@propharmex/ui`, and honour `useReducedMotion` throughout. The sticky right-side `ChapterRail` is a single fixed-position client island that attaches one `IntersectionObserver` across all six chapter targets (`rootMargin: "-30% 0 -45% 0"`) and coalesces state updates through `requestAnimationFrame` — no scroll listeners, no layout thrash; reduced-motion users get `scrollIntoView({ behavior: "auto" })`. Page-level JSON-LD emits a `WebPage` + `BreadcrumbList` graph referencing the root layout's Organization + WebSite `@id`s. CTA targets: `/contact?source=why` (schedule), `/whitepapers/canada-india-playbook` (playbook — TODO: replace when the real whitepaper ships in Prompt 15), `/contact?source=why-primary` (start a project). The Proof chapter carries `// TODO: replace with Sanity caseStudy/testimonial refs (Prompt 14)` markers on every metric and on the embedded quote — when case studies seed in Prompt 14 the stats, metrics, and quote source swap out without touching the component tree.
-
-

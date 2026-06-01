@@ -31,7 +31,7 @@ The site is a Next.js 15 App Router monorepo. Content is authored in Sanity Stud
 | AI fallback   | OpenAI GPT-4o                                                      |
 | Email         | Resend (transactional + double-opt-in newsletter)                  |
 | Booking       | Cal.com inline iframe (`loading="lazy"`)                           |
-| Analytics     | Plausible + PostHog (region/referrer/device/utm super-properties)  |
+| Analytics     | Plausible + PostHog (referrer/device/utm super-properties)         |
 | Bot defence   | Cloudflare Turnstile + Upstash Redis rate limit                    |
 | Observability | Sentry v8 with PII redaction + Axiom structured logs               |
 | Testing       | Vitest + Playwright + Lighthouse CI + axe-core CI                  |
@@ -41,19 +41,19 @@ The site is a Next.js 15 App Router monorepo. Content is authored in Sanity Stud
 
 ## 3. What shipped (Phase 0–9)
 
-| Phase                                 | Scope                                                         | Status      |
-| ------------------------------------- | ------------------------------------------------------------- | ----------- |
-| 0 — Foundation                        | CLAUDE.md, twelve project skills, docs scaffold, env spec     | Done        |
-| 1 — Alignment                         | 12-bullet product summary, page list, AI feature mapping      | Done        |
-| 2 — Scaffold + design system          | Next.js + Tailwind + shadcn baseline, Storybook, tokens       | Done        |
-| 3 — Shell + CMS                       | Header, Footer, Sanity Studio, GROQ helpers, draft mode       | Done        |
-| 4 — Core pages                        | Home, Why Propharmex, About, Quality, Facilities              | Done        |
-| 5 — Service + industry trees          | All service leaves, industry pages                            | Done        |
-| 6 — Case studies + insights           | Hub plus three seeded studies, one whitepaper download        | Done        |
-| 7 — Process + contact + AI tools      | Concierge, Scoping, DEL Readiness, Dosage Matcher             | Done        |
-| 8 — SEO + personalization + analytics | Sitemap, robots, region middleware, PostHog taxonomy          | Done        |
-| 9 — Hardening                         | CSP, Sentry, Turnstile, bundle budget, axe-core, ACR, runbook | Done        |
-| 10 — Handoff + launch                 | Prompt 27 deliverables, smoke suite, 301 map, v1.0.0 tag      | In progress |
+| Phase                            | Scope                                                         | Status      |
+| -------------------------------- | ------------------------------------------------------------- | ----------- |
+| 0 — Foundation                   | CLAUDE.md, twelve project skills, docs scaffold, env spec     | Done        |
+| 1 — Alignment                    | 12-bullet product summary, page list, AI feature mapping      | Done        |
+| 2 — Scaffold + design system     | Next.js + Tailwind + shadcn baseline, Storybook, tokens       | Done        |
+| 3 — Shell + CMS                  | Header, Footer, Sanity Studio, GROQ helpers, draft mode       | Done        |
+| 4 — Core pages                   | Home, Why Propharmex, About, Quality, Facilities              | Done        |
+| 5 — Service + industry trees     | All service leaves, industry pages                            | Done        |
+| 6 — Case studies + insights      | Hub plus three seeded studies, one whitepaper download        | Done        |
+| 7 — Process + contact + AI tools | Concierge, Scoping, DEL Readiness, Dosage Matcher             | Done        |
+| 8 — SEO + analytics              | Sitemap, robots, PostHog taxonomy; retired region middleware  | Done        |
+| 9 — Hardening                    | CSP, Sentry, Turnstile, bundle budget, axe-core, ACR, runbook | Done        |
+| 10 — Handoff + launch            | Prompt 27 deliverables, smoke suite, 301 map, v1.0.0 tag      | In progress |
 
 ---
 
@@ -146,7 +146,7 @@ These are tracked but intentionally out of scope for the v1.0.0 launch.
 
 - Promote Lighthouse `categories:accessibility` warn to error 1.0 after the manual VoiceOver and NVDA assistive-tech pass per docs/accessibility-at-test-plan.md.
 - Add `/insights/whitepapers/[slug]` to the axe URL list after a live whitepaper slug returns to `INSIGHTS.whitepapers`.
-- Build the four PostHog dashboards in the PostHog UI per docs/analytics-taxonomy.md section 6 (Lead funnel, AI tool conversion, Content performance, Region breakdown).
+- Build the three PostHog dashboards in the PostHog UI per docs/posthog-dashboard-build-sheet.md (Lead funnel, AI tool conversion, Content performance). The earlier Region breakdown dashboard is retired with the region middleware.
 
 ---
 
@@ -173,17 +173,17 @@ For a new engineer, these are the most useful files to read first.
 
 Items that require action outside of the codebase before launch.
 
-| Action                                                              | Owner              | Notes                                    |
-| ------------------------------------------------------------------- | ------------------ | ---------------------------------------- |
-| DNS cutover from legacy host to Vercel                              | Operations         | Coordinate apex plus www records         |
-| TLS certificate active on apex and www                              | Operations         | Vercel automatic; verify before announce |
-| 301 redirect map from legacy URLs deployed                          | Engineering        | Source list pending from operations      |
-| Sitemap submitted to Google Search Console and Bing Webmaster Tools | SEO                | After production deploy                  |
-| Manual VoiceOver and NVDA assistive-tech pass                       | Accessibility lead | Per docs/accessibility-at-test-plan.md   |
-| PostHog dashboards built in UI                                      | Product            | Per docs/analytics-taxonomy.md section 6 |
-| Resend production sender domain verified                            | Operations         | DKIM and SPF records                     |
-| Sentry production source maps uploaded                              | Engineering        | Verified on first production deploy      |
-| Cal.com production link configured                                  | Operations         | Set CAL_LINK environment variable        |
+| Action                                                              | Owner              | Notes                                     |
+| ------------------------------------------------------------------- | ------------------ | ----------------------------------------- |
+| DNS cutover from legacy host to Vercel                              | Operations         | Coordinate apex plus www records          |
+| TLS certificate active on apex and www                              | Operations         | Vercel automatic; verify before announce  |
+| 301 redirect map from legacy URLs deployed                          | Engineering        | Source list pending from operations       |
+| Sitemap submitted to Google Search Console and Bing Webmaster Tools | SEO                | After production deploy                   |
+| Manual VoiceOver and NVDA assistive-tech pass                       | Accessibility lead | Per docs/accessibility-at-test-plan.md    |
+| PostHog dashboards built in UI                                      | Product            | Per docs/posthog-dashboard-build-sheet.md |
+| Resend production sender domain verified                            | Operations         | DKIM and SPF records                      |
+| Sentry production source maps uploaded                              | Engineering        | Verified on first production deploy       |
+| Cal.com production link configured                                  | Operations         | Set CAL_LINK environment variable         |
 
 ---
 

@@ -187,7 +187,7 @@ prod traffic spikes and Sentry quota becomes a concern, drop prod to
 
 `docs/analytics-taxonomy.md` is the canonical event registry. Briefly:
 
-- **PostHog** captures the bounded event taxonomy + `$pageview`. Super-properties are auto-merged on every event (region, referrer_group, device_class, first_touch_utm).
+- **PostHog** captures the bounded event taxonomy + `$pageview`. Super-properties are auto-merged on every event (`referrer_group`, `device_class`, `first_touch_utm`). `contact_submit.region` is form-scoped, not a site-wide personalization property.
 - **Plausible** captures privacy-friendly page counts. No custom goals — we standardize on PostHog for funnel work.
 - **Axiom** carries the structured logs from `@propharmex/lib/log` (info/warn/error). CSP violations land here under `csp.violation`. Whitepaper / contact captures land here under `whitepaper.*` / `contact.*`.
 

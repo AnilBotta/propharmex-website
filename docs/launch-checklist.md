@@ -80,14 +80,14 @@ These must clear before staging sign-off. Each row has a single owner; multi-own
 
 ### 2.6 Observability
 
-| Gate                                                                  | Owner       | Verification                                                                                                                                                                    |
-| --------------------------------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Sentry production source maps uploaded                                | Engineering | Trigger a synthetic error; confirm de-minified stack in Sentry                                                                                                                  |
-| Sentry PII redaction `beforeSend` shipping in production bundle       | Engineering | Trigger an error containing an email address; confirm it is redacted in Sentry payload                                                                                          |
-| CSP enforces and `report-uri /api/csp-report` receives any violations | Engineering | Force a CSP violation in dev tools; confirm report appears in Axiom                                                                                                             |
-| Axiom production logs receiving structured events                     | Engineering | Recent events visible in Axiom dataset within 5 minutes                                                                                                                         |
-| PostHog events firing with super-properties                           | Product     | Visit `/`, `/contact`, an `/ai/*` tool; confirm `region`, `referrer_group`, `device_class` populate                                                                             |
-| External uptime monitor green                                         | Engineering | UptimeRobot monitor at `https://propharmex.com/api/health` returning 200 within the 5-min interval window (Vercel Pro `crons[]` retired in PR-M′; see runbook §13 setup recipe) |
+| Gate                                                                  | Owner       | Verification                                                                                                                                                                     |
+| --------------------------------------------------------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sentry production source maps uploaded                                | Engineering | Trigger a synthetic error; confirm de-minified stack in Sentry                                                                                                                   |
+| Sentry PII redaction `beforeSend` shipping in production bundle       | Engineering | Trigger an error containing an email address; confirm it is redacted in Sentry payload                                                                                           |
+| CSP enforces and `report-uri /api/csp-report` receives any violations | Engineering | Force a CSP violation in dev tools; confirm report appears in Axiom                                                                                                              |
+| Axiom production logs receiving structured events                     | Engineering | Recent events visible in Axiom dataset within 5 minutes                                                                                                                          |
+| PostHog events firing with super-properties                           | Product     | Visit `/`, `/contact`, an `/ai/*` tool; confirm `referrer_group`, `device_class`, and `first_touch_utm` populate; `contact_submit.region` appears only after contact-form submit |
+| External uptime monitor green                                         | Engineering | UptimeRobot monitor at `https://propharmex.com/api/health` returning 200 within the 5-min interval window (Vercel Pro `crons[]` retired in PR-M′; see runbook §13 setup recipe)  |
 
 ### 2.7 SEO
 
@@ -177,7 +177,7 @@ Detailed rollback procedure including command-line steps lives in [`docs/runbook
 
 | Task                                                                                                 | Owner       |
 | ---------------------------------------------------------------------------------------------------- | ----------- |
-| Build the four PostHog dashboards in the PostHog UI per `docs/analytics-taxonomy.md` §6              | Product     |
+| Build the three PostHog dashboards in the PostHog UI per `docs/posthog-dashboard-build-sheet.md`     | Product     |
 | Promote Lighthouse `categories:accessibility` warn to error 1.0 once manual AT pass is countersigned | Engineering |
 | Schedule the first weekly performance review per `docs/runbook.md` §12                               | Engineering |
 
