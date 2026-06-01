@@ -1,0 +1,8 @@
+[shell_environment_policy]
+inherit = "core"
+
+[shell_environment_policy.set]
+NODE_OPTIONS = "--max-old-space-size=4096"
+
+[mcp_servers.supabase]
+url = "https://mcp.supabase.com/mcp?project_ref=uvrgrulamuhwzuvbljbv"

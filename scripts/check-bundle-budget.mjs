@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+/* eslint-disable no-control-regex */
+/* global Buffer, console */
 /**
  * Bundle-size budget gate (Prompt 25 PR-B).
  *
@@ -43,8 +45,10 @@ import process from "node:process";
 //           subpath imports + "sideEffects": false; pdf-lib no longer
 //           pulled into client route chunks. /ai/dosage-matcher dropped
 //           431 -> 255 kB; /ai/del-readiness dropped 429 -> 241 kB.
-// Next ratchet candidate: homepage shared chunk audit (Sanity visual-editing
-// + Concierge bubble are the suspects on /, /contact, /insights/whitepapers).
+// Next ratchet candidate: deeper homepage motion/component audit. The May
+// 2026 shared-chunk pass moved draft-only visual editing behind a draft-mode
+// import and removed Framer Motion from the site-wide Concierge launcher, but
+// / still measured 354 kB First-Load JS, so 350 kB is not yet a safe CI floor.
 const BUDGET_KB = Number.parseFloat(process.env.BUNDLE_BUDGET_KB ?? "380");
 const BUDGET_BYTES = BUDGET_KB * 1024;
 
@@ -83,12 +87,20 @@ const EXCLUDED_ROUTE_PATTERNS = [
 
 async function readInput() {
   const fileArg = process.argv[2];
-  if (fileArg) return fs.readFile(fileArg, "utf8");
+  if (fileArg) return decodeBuffer(await fs.readFile(fileArg));
 
   // No file given — read from stdin.
   const chunks = [];
   for await (const chunk of process.stdin) chunks.push(chunk);
-  return Buffer.concat(chunks).toString("utf8");
+  return decodeBuffer(Buffer.concat(chunks));
+}
+
+/** Decode build logs from POSIX `tee` (UTF-8) or PowerShell `Tee-Object` (UTF-16LE). */
+function decodeBuffer(buffer) {
+  if (buffer.length >= 2 && buffer[0] === 0xff && buffer[1] === 0xfe) {
+    return buffer.subarray(2).toString("utf16le");
+  }
+  return buffer.toString("utf8");
 }
 
 /* -------------------------------------------------------------------------- */
@@ -155,9 +167,7 @@ function parseRoutes(raw) {
     if (!line) continue;
 
     // Must look like a route table row.
-    const match = line.match(
-      /^[\s]*[┌├└][\s]+[○●ƒ◐◑][\s]+(\S.*?)\s+\d/u,
-    );
+    const match = line.match(/^[\s]*[┌├└][\s]+[○●ƒ◐◑][\s]+(\S.*?)\s+\d/u);
     if (!match) continue;
 
     const route = match[1].trim();
@@ -186,9 +196,7 @@ function parseRoutes(raw) {
 
 function report(routes) {
   if (routes.length === 0) {
-    console.error(
-      "✗ No route table found in build output. Was `next build` actually run?",
-    );
+    console.error("✗ No route table found in build output. Was `next build` actually run?");
     process.exit(2);
   }
 
@@ -196,9 +204,7 @@ function report(routes) {
 
   // Always print the worst offenders so you can see how close the next
   // route is to going over budget — even on a passing build.
-  const sorted = [...routes].sort(
-    (a, b) => b.firstLoadBytes - a.firstLoadBytes,
-  );
+  const sorted = [...routes].sort((a, b) => b.firstLoadBytes - a.firstLoadBytes);
 
   const top = sorted.slice(0, 5);
   console.log(`Bundle budget: ${BUDGET_KB} kB First-Load JS per route`);
@@ -207,9 +213,7 @@ function report(routes) {
   console.log("Top 5 by First-Load JS:");
   for (const r of top) {
     const marker = r.firstLoadBytes > BUDGET_BYTES ? "✗" : "✓";
-    console.log(
-      `  ${marker} ${r.route.padEnd(50)} ${fmtKb(r.firstLoadBytes)}`,
-    );
+    console.log(`  ${marker} ${r.route.padEnd(50)} ${fmtKb(r.firstLoadBytes)}`);
   }
   console.log("");
 
@@ -218,18 +222,16 @@ function report(routes) {
     process.exit(0);
   }
 
-  console.error(
-    `✗ ${overBudget.length} route(s) over the ${BUDGET_KB} kB budget:`,
-  );
+  console.error(`✗ ${overBudget.length} route(s) over the ${BUDGET_KB} kB budget:`);
   for (const r of overBudget) {
     const overBy = r.firstLoadBytes - BUDGET_BYTES;
     console.error(
-      `  ${r.route.padEnd(50)} ${fmtKb(r.firstLoadBytes)}   (over by ${fmtKb(overBy)})`,
+      `  ${r.route.padEnd(50)} ${fmtKb(r.firstLoadBytes)}   (over by ${fmtKb(overBy)})`
     );
   }
   console.error("");
   console.error(
-    "See docs/runbook.md §12 (Bundle-size budget) and the lighthouse-budget-guard skill",
+    "See docs/runbook.md §12 (Bundle-size budget) and the lighthouse-budget-guard skill"
   );
   console.error("for remediation guidance (lazy-load, dynamic import, code-split).");
   process.exit(1);

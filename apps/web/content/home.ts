@@ -748,11 +748,11 @@ export const HOME: HomeContent = {
     cards: [
       {
         id: "insight-1",
-        category: "Whitepaper",
-        title: "Designing a development pathway for complex dosage forms",
+        category: "Article",
+        title: "ICH Q2(R2) and method validation",
         blurb:
-          "How formulation, analytical evidence, and regulatory strategy should be designed together — not sequentially.",
-        href: "/insights/whitepapers/canadian-cdmo-operating-model",
+          "What the 2023 revision changed, what it means for validation packages already in flight, and where Q14 fits beside it.",
+        href: "/insights/ich-q2-r2-method-validation-2024",
       },
       {
         id: "insight-2",

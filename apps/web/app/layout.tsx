@@ -11,7 +11,6 @@ import { Footer } from "../components/site/Footer";
 import { Header } from "../components/site/Header";
 import { JsonLd } from "../components/site/JsonLd";
 import { SkipToContent } from "../components/site/SkipToContent";
-import { VisualEditing } from "../components/site/VisualEditing";
 import { buildSiteJsonLd } from "../components/site/site-jsonld";
 
 const inter = Inter({
@@ -91,6 +90,9 @@ export default async function RootLayout({
 }>) {
   const siteJsonLd = buildSiteJsonLd(env.NEXT_PUBLIC_SITE_URL);
   const { isEnabled: isDraftEnabled } = await draftMode();
+  const VisualEditing = isDraftEnabled
+    ? (await import("../components/site/VisualEditing")).VisualEditing
+    : null;
 
   // Suppress marketing chrome on /studio (Sanity Studio, PR-L′) and /dashboard
   // (leads dashboard, PR-N) so each owns the full viewport. Pathname comes
@@ -124,7 +126,7 @@ export default async function RootLayout({
               posthogKey={env.NEXT_PUBLIC_POSTHOG_KEY}
               posthogHost={env.NEXT_PUBLIC_POSTHOG_HOST}
             />
-            <VisualEditing enabled={isDraftEnabled} />
+            {VisualEditing ? <VisualEditing enabled /> : null}
           </>
         )}
       </body>

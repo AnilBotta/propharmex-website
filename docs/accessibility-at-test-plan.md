@@ -36,9 +36,10 @@ Same set as Lighthouse CI + a11y axe-core CI, mapped to the audit's six represen
 | `/insights/ich-q2-r2-method-validation-2024`             | Insight article           |
 | `/case-studies`                                          | Case studies hub          |
 | `/contact`                                               | Form + Cal.com embed      |
-| `/insights/whitepapers/canadian-cdmo-operating-model`    | Whitepaper gate           |
 | `/ai/del-readiness`                                      | AI tool — multi-step form |
 | `/accessibility`                                         | Conformance statement     |
+
+Whitepaper-gate coverage is blocked while `INSIGHTS.whitepapers` is empty; add the first live whitepaper slug back to this table when editorial republishes one.
 
 ---
 
@@ -112,7 +113,7 @@ Create `docs/accessibility-at-results-YYYY-MM-DD.md` with the following structur
 
 ## Summary
 
-- Total URLs covered: 10/10
+- Total URLs covered: 9/9
 - Sev 1 confirmed: N
 - Sev 2 confirmed: N
 - New findings: N

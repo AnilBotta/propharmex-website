@@ -59,36 +59,36 @@ The site is a Next.js 15 App Router monorepo. Content is authored in Sanity Stud
 
 ## 4. Page inventory
 
-| Route                                               | Type       | Sanity-backed | Notes                                      |
-| --------------------------------------------------- | ---------- | ------------- | ------------------------------------------ |
-| `/`                                                 | Home       | Yes           | Region-aware hero ordering                 |
-| `/why-propharmex`                                   | Marketing  | Yes           | Anti-hype proof points                     |
-| `/about`                                            | Marketing  | Yes           | Canadian anchor narrative                  |
-| `/about/leadership`                                 | Marketing  | Yes           | Leadership grid                            |
-| `/quality-compliance`                               | Marketing  | Yes           | Region-aware certs ordering                |
-| `/quality`                                          | Redirect   | No            | Legacy slug; 301 to /quality-compliance    |
-| `/facilities`                                       | Marketing  | Yes           | Mississauga + Hyderabad cards              |
-| `/facilities/mississauga-canada`                    | Detail     | Yes           | DEL anchor site                            |
-| `/facilities/hyderabad-india`                       | Detail     | Yes           | Development centre                         |
-| `/services`                                         | Hub        | Yes           | Service tree root                          |
-| `/services/pharmaceutical-development/[dosageForm]` | Detail     | Yes           | 7 dosage forms                             |
-| `/services/analytical-services/[service]`           | Detail     | Yes           | 7 analytical services                      |
-| `/services/regulatory-services/[service]`           | Detail     | Yes           | 5 regulatory services                      |
-| `/industries/[slug]`                                | Detail     | Yes           | 5 industry segments                        |
-| `/case-studies`                                     | Hub        | Yes           | Anonymized client work                     |
-| `/case-studies/[slug]`                              | Detail     | Yes           | Problem-Approach-Solution-Result           |
-| `/insights`                                         | Hub        | Yes           | Articles + whitepapers                     |
-| `/insights/[slug]`                                  | Article    | Yes           | Long-form thought leadership               |
-| `/insights/whitepapers/[slug]`                      | Whitepaper | Yes           | Gated PDF download                         |
-| `/our-process`                                      | Marketing  | Yes           | Engagement workflow                        |
-| `/contact`                                          | Form       | Partial       | Inquiry form + Cal.com + dual addresses    |
-| `/ai/concierge`                                     | Implicit   | No            | Always-mounted bubble; no standalone route |
-| `/ai/project-scoping-assistant`                     | AI tool    | No            | Conversational scope intake                |
-| `/ai/del-readiness`                                 | AI tool    | No            | Multi-step DEL gap assessment              |
-| `/ai/dosage-matcher`                                | AI tool    | No            | Hybrid-score formulation match             |
-| `/accessibility`                                    | Statement  | Yes           | Public accessibility statement             |
-| `/sitemap.xml`                                      | Generated  | No            | 51 URLs                                    |
-| `/robots.txt`                                       | Generated  | No            | 15 user-agents                             |
+| Route                                               | Type       | Sanity-backed | Notes                                                              |
+| --------------------------------------------------- | ---------- | ------------- | ------------------------------------------------------------------ |
+| `/`                                                 | Home       | Yes           | Region-aware hero ordering                                         |
+| `/why-propharmex`                                   | Marketing  | Yes           | Anti-hype proof points                                             |
+| `/about`                                            | Marketing  | Yes           | Canadian anchor narrative                                          |
+| `/about/leadership`                                 | Marketing  | Yes           | Leadership grid                                                    |
+| `/quality-compliance`                               | Marketing  | Yes           | Region-aware certs ordering                                        |
+| `/quality`                                          | Redirect   | No            | Legacy slug; 301 to /quality-compliance                            |
+| `/facilities`                                       | Marketing  | Yes           | Mississauga + Hyderabad cards                                      |
+| `/facilities/mississauga-canada`                    | Detail     | Yes           | DEL anchor site                                                    |
+| `/facilities/hyderabad-india`                       | Detail     | Yes           | Development centre                                                 |
+| `/services`                                         | Hub        | Yes           | Service tree root                                                  |
+| `/services/pharmaceutical-development/[dosageForm]` | Detail     | Yes           | 7 dosage forms                                                     |
+| `/services/analytical-services/[service]`           | Detail     | Yes           | 7 analytical services                                              |
+| `/services/regulatory-services/[service]`           | Detail     | Yes           | 5 regulatory services                                              |
+| `/industries/[slug]`                                | Detail     | Yes           | 5 industry segments                                                |
+| `/case-studies`                                     | Hub        | Yes           | Anonymized client work                                             |
+| `/case-studies/[slug]`                              | Detail     | Yes           | Problem-Approach-Solution-Result                                   |
+| `/insights`                                         | Hub        | Yes           | Articles + whitepapers                                             |
+| `/insights/[slug]`                                  | Article    | Yes           | Long-form thought leadership                                       |
+| `/insights/whitepapers/[slug]`                      | Whitepaper | Yes           | Route scaffold; no live slug while `INSIGHTS.whitepapers` is empty |
+| `/our-process`                                      | Marketing  | Yes           | Engagement workflow                                                |
+| `/contact`                                          | Form       | Partial       | Inquiry form + Cal.com + dual addresses                            |
+| `/ai/concierge`                                     | Implicit   | No            | Always-mounted bubble; no standalone route                         |
+| `/ai/project-scoping-assistant`                     | AI tool    | No            | Conversational scope intake                                        |
+| `/ai/del-readiness`                                 | AI tool    | No            | Multi-step DEL gap assessment                                      |
+| `/ai/dosage-matcher`                                | AI tool    | No            | Hybrid-score formulation match                                     |
+| `/accessibility`                                    | Statement  | Yes           | Public accessibility statement                                     |
+| `/sitemap.xml`                                      | Generated  | No            | 51 URLs                                                            |
+| `/robots.txt`                                       | Generated  | No            | 15 user-agents                                                     |
 
 ---
 
@@ -136,7 +136,7 @@ All four AI surfaces share the same defensive posture: rate-limited via Upstash 
 | Bundle budget                | .github/workflows/bundle-budget.yml | First-Load JS at most 380 kB per route, excluding API, dashboard, Studio, and image-generation routes |
 | Axe-core a11y                | .github/workflows/a11y-budget.yml   | Zero serious or critical violations across 11 sampled URLs                                            |
 
-The bundle budget was ratcheted from 475 kB to 450 kB after the AI surface dynamic-import work, then to 380 kB after the PDF subpath import cleanup removed `pdf-lib` from the Dosage Matcher and DEL Readiness client route chunks. Further ratcheting toward the 350 kB long-term target is a recorded follow-up.
+The bundle budget was ratcheted from 475 kB to 450 kB after the AI surface dynamic-import work, then to 380 kB after the PDF subpath import cleanup removed `pdf-lib` from the Dosage Matcher and DEL Readiness client route chunks. A homepage shared-chunk audit in May 2026 kept draft-only visual editing behind a draft-mode import and removed Framer Motion from the site-wide Concierge launcher, but `/` still measured 354 kB First-Load JS. The 350 kB long-term target remains open and requires a deeper homepage motion/component audit before the CI budget should be lowered.
 
 ---
 
@@ -147,6 +147,7 @@ These are tracked but intentionally out of scope for the v1.0.0 launch.
 - Promote Lighthouse `categories:accessibility` warn to error 1.0 after the manual VoiceOver and NVDA assistive-tech pass per docs/accessibility-at-test-plan.md.
 - Add `/insights/whitepapers/[slug]` to the axe URL list after a live whitepaper slug returns to `INSIGHTS.whitepapers`.
 - Build the four PostHog dashboards in the PostHog UI per docs/analytics-taxonomy.md section 6 (Lead funnel, AI tool conversion, Content performance, Region breakdown).
+- Continue the homepage bundle ratchet toward 350 kB after a deeper audit of page-owned motion and interactive components brings `/` below the target with margin.
 
 ---
 

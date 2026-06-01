@@ -41,7 +41,20 @@ describe("launch polish contract", () => {
     const axeRunner = readRepoFile("apps/web/scripts/run-axe-scan.mjs");
 
     expect(axeRunner).toContain("/insights/ich-q2-r2-method-validation-2024");
-    expect(axeRunner).not.toContain("/insights/" + "del-at-a-glance-foreign-sponsor-primer");
+    expect(axeRunner).not.toContain("/insights/" + "del-at-a-glance-" + "foreign-sponsor-primer");
+  });
+
+  it("does not send current launch QA or homepage content to retired whitepaper slugs", () => {
+    const checkedSurfaces = [
+      readRepoFile("apps/web/content/home.ts"),
+      readRepoFile("docs/accessibility-at-test-plan.md"),
+      readRepoFile("scripts/generate-qa-matrix.py"),
+    ].join("\n");
+
+    expect(checkedSurfaces).not.toContain(
+      "/insights/whitepapers/" + "canadian-cdmo-operating-model"
+    );
+    expect(checkedSurfaces).toContain("/insights/ich-q2-r2-method-validation-2024");
   });
 
   it("keeps forced-colors and 44px small-button targets in the design layer", () => {
