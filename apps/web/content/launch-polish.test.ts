@@ -3,6 +3,8 @@ import path from "node:path";
 
 import { describe, expect, it } from "vitest";
 
+import { INSIGHTS } from "./insights";
+
 const appRoot = process.cwd();
 const repoRoot = path.resolve(appRoot, "../..");
 
@@ -42,6 +44,14 @@ describe("launch polish contract", () => {
 
     expect(axeRunner).toContain("/insights/ich-q2-r2-method-validation-2024");
     expect(axeRunner).not.toContain("/insights/" + "del-at-a-glance-" + "foreign-sponsor-primer");
+  });
+
+  it("requires live whitepaper slugs to be covered by the axe smoke list", () => {
+    const axeRunner = readRepoFile("apps/web/scripts/run-axe-scan.mjs");
+
+    for (const whitepaper of INSIGHTS.whitepapers) {
+      expect(axeRunner).toContain(`/insights/whitepapers/${whitepaper.slug}`);
+    }
   });
 
   it("does not send current launch QA or homepage content to retired whitepaper slugs", () => {
