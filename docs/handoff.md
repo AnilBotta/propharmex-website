@@ -144,7 +144,7 @@ The bundle budget was ratcheted from 475 kB to 450 kB after the AI surface dynam
 
 These are tracked but intentionally out of scope for the v1.0.0 launch.
 
-- Promote Lighthouse `categories:accessibility` warn to error 1.0 after the manual VoiceOver and NVDA assistive-tech pass per docs/accessibility-at-test-plan.md.
+- Promote Lighthouse `categories:accessibility` warn to error 1.0 after the manual VoiceOver and NVDA assistive-tech pass is recorded with docs/accessibility-at-results-template.md.
 - Add `/insights/whitepapers/[slug]` to the axe URL list after a live whitepaper slug returns to `INSIGHTS.whitepapers`.
 - Build the three PostHog dashboards in the PostHog UI per docs/posthog-dashboard-build-sheet.md (Lead funnel, AI tool conversion, Content performance). The earlier Region breakdown dashboard is retired with the region middleware.
 
@@ -173,17 +173,17 @@ For a new engineer, these are the most useful files to read first.
 
 Items that require action outside of the codebase before launch.
 
-| Action                                                              | Owner              | Notes                                     |
-| ------------------------------------------------------------------- | ------------------ | ----------------------------------------- |
-| DNS cutover from legacy host to Vercel                              | Operations         | Coordinate apex plus www records          |
-| TLS certificate active on apex and www                              | Operations         | Vercel automatic; verify before announce  |
-| 301 redirect map from legacy URLs deployed                          | Engineering        | Source list pending from operations       |
-| Sitemap submitted to Google Search Console and Bing Webmaster Tools | SEO                | After production deploy                   |
-| Manual VoiceOver and NVDA assistive-tech pass                       | Accessibility lead | Per docs/accessibility-at-test-plan.md    |
-| PostHog dashboards built in UI                                      | Product            | Per docs/posthog-dashboard-build-sheet.md |
-| Resend production sender domain verified                            | Operations         | DKIM and SPF records                      |
-| Sentry production source maps uploaded                              | Engineering        | Verified on first production deploy       |
-| Cal.com production link configured                                  | Operations         | Set CAL_LINK environment variable         |
+| Action                                                              | Owner              | Notes                                                                                |
+| ------------------------------------------------------------------- | ------------------ | ------------------------------------------------------------------------------------ |
+| DNS cutover from legacy host to Vercel                              | Operations         | Coordinate apex plus www records                                                     |
+| TLS certificate active on apex and www                              | Operations         | Vercel automatic; verify before announce                                             |
+| 301 redirect map from legacy URLs deployed                          | Engineering        | Source list pending from operations                                                  |
+| Sitemap submitted to Google Search Console and Bing Webmaster Tools | SEO                | After production deploy                                                              |
+| Manual VoiceOver and NVDA assistive-tech pass                       | Accessibility lead | Per docs/accessibility-at-test-plan.md and docs/accessibility-at-results-template.md |
+| PostHog dashboards built in UI                                      | Product            | Per docs/posthog-dashboard-build-sheet.md                                            |
+| Resend production sender domain verified                            | Operations         | DKIM and SPF records                                                                 |
+| Sentry production source maps uploaded                              | Engineering        | Verified on first production deploy                                                  |
+| Cal.com production link configured                                  | Operations         | Set CAL_LINK environment variable                                                    |
 
 ---
 
