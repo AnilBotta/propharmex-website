@@ -132,6 +132,7 @@ These are documented openly on the public [`/accessibility`](../apps/web/app/acc
 
 - **Public accessibility statement** — [`/accessibility`](../apps/web/app/accessibility/page.tsx) on the production site.
 - **Test plan for the manual AT pass** — [`docs/accessibility-at-test-plan.md`](accessibility-at-test-plan.md).
+- **Results template for each manual AT session** — [`docs/accessibility-at-results-template.md`](accessibility-at-results-template.md).
 - **Audit findings (full text)** — Accessibility Auditor agent report archived in PR [#42](https://github.com/AnilBotta/propharmex-website/pull/42).
 - **CI workflows enforcing accessibility** — `.github/workflows/lighthouse.yml` (CWV + a11y category) and `.github/workflows/a11y-budget.yml` (axe-core).
 

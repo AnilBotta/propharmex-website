@@ -2,7 +2,10 @@
 
 Companion document to [`docs/accessibility-conformance.md`](accessibility-conformance.md). The code-level WCAG 2.1 AA audit by the Accessibility Auditor agent verified semantic correctness. This plan is the human-in-the-loop confirmation of the same surfaces under real assistive technology.
 
-> **Status:** Pending. Findings are written to `docs/accessibility-at-results-YYYY-MM-DD.md` after each session and merged back into §3 of the ACR.
+> **Status:** Pending. Copy
+> [`docs/accessibility-at-results-template.md`](accessibility-at-results-template.md)
+> to `docs/accessibility-at-results-YYYY-MM-DD.md` for each session. Findings
+> are merged back into §3 of the ACR after the accessibility owner signs off.
 
 ---
 
@@ -102,45 +105,19 @@ For Concierge (open via the bubble on any page):
 
 ## 4. Recording findings
 
-Create `docs/accessibility-at-results-YYYY-MM-DD.md` with the following structure:
+Copy [`docs/accessibility-at-results-template.md`](accessibility-at-results-template.md)
+to `docs/accessibility-at-results-YYYY-MM-DD.md`, then complete every table in
+the copied file. The required summary fields are:
 
-```markdown
-# Manual AT Test Results — YYYY-MM-DD
+- Session metadata, including exact screen reader, browser, and OS versions.
+- URL coverage across VoiceOver, NVDA, keyboard-only, zoom/reflow, and
+  forced-colors checks.
+- Open Sev 1, Sev 2, and Sev 3 findings.
+- A Lighthouse `categories:accessibility` promotion decision.
+- Accessibility-owner and engineering-owner sign-off.
 
-**Tester:** [Name]
-**Stack:** macOS 14.5 / Safari 17.4 / VoiceOver — and — Windows 11 / Firefox 122 / NVDA 2024.1
-**Time spent:** [hh:mm]
-
-## Summary
-
-- Total URLs covered: 9/9
-- Sev 1 confirmed: N
-- Sev 2 confirmed: N
-- New findings: N
-
-## Confirmed findings (from PR-A audit)
-
-| ID   | URL               | Status                       | Notes |
-| ---- | ----------------- | ---------------------------- | ----- |
-| S2-2 | /ai/del-readiness | Confirmed / Not reproducible | …     |
-| S2-3 | Concierge         | Confirmed / Not reproducible | …     |
-| …    | …                 | …                            | …     |
-
-## New findings
-
-| URL | Severity | Description | WCAG SC | Recommended fix |
-| --- | -------- | ----------- | ------- | --------------- |
-| …   | …        | …           | …       | …               |
-
-## Promote-back-to-error decisions
-
-| Lighthouse assertion     | Current   | Recommended                              | Reason                                  |
-| ------------------------ | --------- | ---------------------------------------- | --------------------------------------- |
-| categories:accessibility | warn 0.95 | error 1.0                                | Confirmed clean across all sampled URLs |
-| largest-contentful-paint | warn      | (depends on Cal.com lazy-load follow-up) | …                                       |
-```
-
-Append the results-doc filename to §3 of the ACR's evaluation methods table and update §7 (revision history).
+Append the results-doc filename to §2 of the ACR's evaluation methods table,
+update §4 if limitations change, and update §7 (revision history).
 
 ---
 

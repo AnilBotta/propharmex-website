@@ -102,11 +102,11 @@ These must clear before staging sign-off. Each row has a single owner; multi-own
 
 ### 2.8 Accessibility
 
-| Gate                                       | Owner         | Verification                                                                 |
-| ------------------------------------------ | ------------- | ---------------------------------------------------------------------------- |
-| Manual VoiceOver pass on six sampled pages | Accessibility | Per `docs/accessibility-at-test-plan.md`; Pass on every Sev 1 and Sev 2 case |
-| Manual NVDA pass on six sampled pages      | Accessibility | Per `docs/accessibility-at-test-plan.md`; Pass on every Sev 1 and Sev 2 case |
-| ACR statement public at `/accessibility`   | Accessibility | Visit page; matches `docs/accessibility-conformance.md`                      |
+| Gate                                       | Owner         | Verification                                                                                                                                  |
+| ------------------------------------------ | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Manual VoiceOver pass on six sampled pages | Accessibility | Per `docs/accessibility-at-test-plan.md`; record results with `docs/accessibility-at-results-template.md`; Pass on every Sev 1 and Sev 2 case |
+| Manual NVDA pass on six sampled pages      | Accessibility | Per `docs/accessibility-at-test-plan.md`; record results with `docs/accessibility-at-results-template.md`; Pass on every Sev 1 and Sev 2 case |
+| ACR statement public at `/accessibility`   | Accessibility | Visit page; matches `docs/accessibility-conformance.md`                                                                                       |
 
 ### 2.9 Legal and compliance
 
