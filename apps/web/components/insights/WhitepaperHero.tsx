@@ -51,12 +51,12 @@ export const WhitepaperHero: FC<Props> = ({ content }) => {
           {content.hero.lede}
         </p>
 
-        <dl className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
+        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
           <div className="flex items-center gap-2">
-            <dt className="sr-only">Author</dt>
-            <dd className="font-semibold text-[var(--color-fg)]">
+            <span className="sr-only">Author: </span>
+            <span className="font-semibold text-[var(--color-fg)]">
               {content.author.name}
-            </dd>
+            </span>
             <span aria-hidden="true" className="text-[var(--color-border)]">
               ·
             </span>
@@ -65,12 +65,12 @@ export const WhitepaperHero: FC<Props> = ({ content }) => {
             </span>
           </div>
           <div className="text-[var(--color-muted)]">
-            <dt className="sr-only">Pages</dt>
-            <dd>
+            <span className="sr-only">Pages: </span>
+            <span>
               {content.pages} {content.pages === 1 ? "page" : "pages"}
-            </dd>
+            </span>
           </div>
-        </dl>
+        </div>
       </div>
     </section>
   );

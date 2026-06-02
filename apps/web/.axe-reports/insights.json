@@ -1,0 +1,300 @@
+{
+  "url": "http://127.0.0.1:3000/insights",
+  "timestamp": "2026-06-02T02:43:39.394Z",
+  "violations": [],
+  "passes": [
+    {
+      "id": "aria-allowed-attr"
+    },
+    {
+      "id": "aria-conditional-attr"
+    },
+    {
+      "id": "aria-deprecated-role"
+    },
+    {
+      "id": "aria-hidden-body"
+    },
+    {
+      "id": "aria-hidden-focus"
+    },
+    {
+      "id": "aria-prohibited-attr"
+    },
+    {
+      "id": "aria-required-attr"
+    },
+    {
+      "id": "aria-roles"
+    },
+    {
+      "id": "aria-valid-attr-value"
+    },
+    {
+      "id": "aria-valid-attr"
+    },
+    {
+      "id": "autocomplete-valid"
+    },
+    {
+      "id": "avoid-inline-spacing"
+    },
+    {
+      "id": "button-name"
+    },
+    {
+      "id": "bypass"
+    },
+    {
+      "id": "color-contrast"
+    },
+    {
+      "id": "document-title"
+    },
+    {
+      "id": "duplicate-id-aria"
+    },
+    {
+      "id": "form-field-multiple-labels"
+    },
+    {
+      "id": "html-has-lang"
+    },
+    {
+      "id": "html-lang-valid"
+    },
+    {
+      "id": "image-alt"
+    },
+    {
+      "id": "label"
+    },
+    {
+      "id": "link-name"
+    },
+    {
+      "id": "list"
+    },
+    {
+      "id": "listitem"
+    },
+    {
+      "id": "meta-viewport"
+    },
+    {
+      "id": "nested-interactive"
+    }
+  ],
+  "incomplete": [
+    {
+      "id": "aria-valid-attr-value",
+      "impact": "critical",
+      "tags": [
+        "cat.aria",
+        "wcag2a",
+        "wcag412",
+        "EN-301-549",
+        "EN-9.4.1.2",
+        "RGAAv4",
+        "RGAA-7.1.1"
+      ],
+      "description": "Ensure all ARIA attributes have valid values",
+      "help": "ARIA attributes must conform to valid values",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/aria-valid-attr-value?application=playwright",
+      "nodes": [
+        {
+          "any": [],
+          "all": [
+            {
+              "id": "aria-valid-attr-value",
+              "data": {
+                "messageKey": "controlsWithinPopup",
+                "needsReview": "aria-controls=\"megamenu-Capabilities\""
+              },
+              "relatedNodes": [],
+              "impact": "critical",
+              "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"megamenu-Capabilities\""
+            }
+          ],
+          "none": [],
+          "impact": "critical",
+          "html": "<button type=\"button\" aria-expanded=\"false\" aria-haspopup=\"true\" aria-controls=\"megamenu-Capabilities\" class=\"inline-flex items-center gap-1 rounded-[var(--radius-sm)] px-3 py-2 text-sm font-medium transition-colors text-[var(--color-fg)] hover:text-[var(--color-primary-700)]\">",
+          "target": [
+            "button[aria-controls=\"megamenu-Capabilities\"]"
+          ],
+          "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"megamenu-Capabilities\""
+        },
+        {
+          "any": [],
+          "all": [
+            {
+              "id": "aria-valid-attr-value",
+              "data": {
+                "messageKey": "controlsWithinPopup",
+                "needsReview": "aria-controls=\"megamenu-Dosage Forms\""
+              },
+              "relatedNodes": [],
+              "impact": "critical",
+              "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"megamenu-Dosage Forms\""
+            }
+          ],
+          "none": [],
+          "impact": "critical",
+          "html": "<button type=\"button\" aria-expanded=\"false\" aria-haspopup=\"true\" aria-controls=\"megamenu-Dosage Forms\" class=\"inline-flex items-center gap-1 rounded-[var(--radius-sm)] px-3 py-2 text-sm font-medium transition-colors text-[var(--color-fg)] hover:text-[var(--color-primary-700)]\">",
+          "target": [
+            "button[aria-controls=\"megamenu-Dosage Forms\"]"
+          ],
+          "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"megamenu-Dosage Forms\""
+        },
+        {
+          "any": [],
+          "all": [
+            {
+              "id": "aria-valid-attr-value",
+              "data": {
+                "messageKey": "controlsWithinPopup",
+                "needsReview": "aria-controls=\"megamenu-AI Tools\""
+              },
+              "relatedNodes": [],
+              "impact": "critical",
+              "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"megamenu-AI Tools\""
+            }
+          ],
+          "none": [],
+          "impact": "critical",
+          "html": "<button type=\"button\" aria-expanded=\"false\" aria-haspopup=\"true\" aria-controls=\"megamenu-AI Tools\" class=\"inline-flex items-center gap-1 rounded-[var(--radius-sm)] px-3 py-2 text-sm font-medium transition-colors text-[var(--color-fg)] hover:text-[var(--color-primary-700)]\">",
+          "target": [
+            "button[aria-controls=\"megamenu-AI Tools\"]"
+          ],
+          "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"megamenu-AI Tools\""
+        },
+        {
+          "any": [],
+          "all": [
+            {
+              "id": "aria-valid-attr-value",
+              "data": {
+                "messageKey": "controlsWithinPopup",
+                "needsReview": "aria-controls=\"radix-_R_b7b_\""
+              },
+              "relatedNodes": [],
+              "impact": "critical",
+              "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"radix-_R_b7b_\""
+            }
+          ],
+          "none": [],
+          "impact": "critical",
+          "html": "<button type=\"button\" aria-label=\"Open menu\" class=\"inline-flex size-11 ...\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-controls=\"radix-_R_b7b_\" data-state=\"closed\">",
+          "target": [
+            ".size-11"
+          ],
+          "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"radix-_R_b7b_\""
+        }
+      ]
+    }
+  ],
+  "inapplicable": [
+    {
+      "id": "area-alt"
+    },
+    {
+      "id": "aria-braille-equivalent"
+    },
+    {
+      "id": "aria-command-name"
+    },
+    {
+      "id": "aria-input-field-name"
+    },
+    {
+      "id": "aria-meter-name"
+    },
+    {
+      "id": "aria-progressbar-name"
+    },
+    {
+      "id": "aria-required-children"
+    },
+    {
+      "id": "aria-required-parent"
+    },
+    {
+      "id": "aria-toggle-field-name"
+    },
+    {
+      "id": "aria-tooltip-name"
+    },
+    {
+      "id": "blink"
+    },
+    {
+      "id": "definition-list"
+    },
+    {
+      "id": "dlitem"
+    },
+    {
+      "id": "frame-focusable-content"
+    },
+    {
+      "id": "frame-title-unique"
+    },
+    {
+      "id": "frame-title"
+    },
+    {
+      "id": "html-xml-lang-mismatch"
+    },
+    {
+      "id": "input-button-name"
+    },
+    {
+      "id": "input-image-alt"
+    },
+    {
+      "id": "link-in-text-block"
+    },
+    {
+      "id": "marquee"
+    },
+    {
+      "id": "meta-refresh"
+    },
+    {
+      "id": "object-alt"
+    },
+    {
+      "id": "role-img-alt"
+    },
+    {
+      "id": "scrollable-region-focusable"
+    },
+    {
+      "id": "select-name"
+    },
+    {
+      "id": "server-side-image-map"
+    },
+    {
+      "id": "summary-name"
+    },
+    {
+      "id": "svg-img-alt"
+    },
+    {
+      "id": "td-headers-attr"
+    },
+    {
+      "id": "th-has-data-cells"
+    },
+    {
+      "id": "valid-lang"
+    },
+    {
+      "id": "video-caption"
+    },
+    {
+      "id": "no-autoplay-audio"
+    }
+  ]
+}

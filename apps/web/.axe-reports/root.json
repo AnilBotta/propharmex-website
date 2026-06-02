@@ -1,0 +1,721 @@
+{
+  "url": "http://127.0.0.1:3000/",
+  "timestamp": "2026-06-02T02:43:29.464Z",
+  "violations": [],
+  "passes": [
+    {
+      "id": "aria-allowed-attr"
+    },
+    {
+      "id": "aria-conditional-attr"
+    },
+    {
+      "id": "aria-deprecated-role"
+    },
+    {
+      "id": "aria-hidden-body"
+    },
+    {
+      "id": "aria-hidden-focus"
+    },
+    {
+      "id": "aria-prohibited-attr"
+    },
+    {
+      "id": "aria-required-attr"
+    },
+    {
+      "id": "aria-roles"
+    },
+    {
+      "id": "aria-valid-attr-value"
+    },
+    {
+      "id": "aria-valid-attr"
+    },
+    {
+      "id": "autocomplete-valid"
+    },
+    {
+      "id": "avoid-inline-spacing"
+    },
+    {
+      "id": "button-name"
+    },
+    {
+      "id": "bypass"
+    },
+    {
+      "id": "color-contrast"
+    },
+    {
+      "id": "document-title"
+    },
+    {
+      "id": "duplicate-id-aria"
+    },
+    {
+      "id": "form-field-multiple-labels"
+    },
+    {
+      "id": "html-has-lang"
+    },
+    {
+      "id": "html-lang-valid"
+    },
+    {
+      "id": "image-alt"
+    },
+    {
+      "id": "label"
+    },
+    {
+      "id": "link-name"
+    },
+    {
+      "id": "list"
+    },
+    {
+      "id": "listitem"
+    },
+    {
+      "id": "meta-viewport"
+    },
+    {
+      "id": "nested-interactive"
+    }
+  ],
+  "incomplete": [
+    {
+      "id": "aria-valid-attr-value",
+      "impact": "critical",
+      "tags": [
+        "cat.aria",
+        "wcag2a",
+        "wcag412",
+        "EN-301-549",
+        "EN-9.4.1.2",
+        "RGAAv4",
+        "RGAA-7.1.1"
+      ],
+      "description": "Ensure all ARIA attributes have valid values",
+      "help": "ARIA attributes must conform to valid values",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/aria-valid-attr-value?application=playwright",
+      "nodes": [
+        {
+          "any": [],
+          "all": [
+            {
+              "id": "aria-valid-attr-value",
+              "data": {
+                "messageKey": "controlsWithinPopup",
+                "needsReview": "aria-controls=\"megamenu-Capabilities\""
+              },
+              "relatedNodes": [],
+              "impact": "critical",
+              "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"megamenu-Capabilities\""
+            }
+          ],
+          "none": [],
+          "impact": "critical",
+          "html": "<button type=\"button\" aria-expanded=\"false\" aria-haspopup=\"true\" aria-controls=\"megamenu-Capabilities\" class=\"inline-flex items-center gap-1 rounded-[var(--radius-sm)] px-3 py-2 text-sm font-medium transition-colors text-[var(--color-fg)] hover:text-[var(--color-primary-700)]\">",
+          "target": [
+            "button[aria-controls=\"megamenu-Capabilities\"]"
+          ],
+          "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"megamenu-Capabilities\""
+        },
+        {
+          "any": [],
+          "all": [
+            {
+              "id": "aria-valid-attr-value",
+              "data": {
+                "messageKey": "controlsWithinPopup",
+                "needsReview": "aria-controls=\"megamenu-Dosage Forms\""
+              },
+              "relatedNodes": [],
+              "impact": "critical",
+              "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"megamenu-Dosage Forms\""
+            }
+          ],
+          "none": [],
+          "impact": "critical",
+          "html": "<button type=\"button\" aria-expanded=\"false\" aria-haspopup=\"true\" aria-controls=\"megamenu-Dosage Forms\" class=\"inline-flex items-center gap-1 rounded-[var(--radius-sm)] px-3 py-2 text-sm font-medium transition-colors text-[var(--color-fg)] hover:text-[var(--color-primary-700)]\">",
+          "target": [
+            "button[aria-controls=\"megamenu-Dosage Forms\"]"
+          ],
+          "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"megamenu-Dosage Forms\""
+        },
+        {
+          "any": [],
+          "all": [
+            {
+              "id": "aria-valid-attr-value",
+              "data": {
+                "messageKey": "controlsWithinPopup",
+                "needsReview": "aria-controls=\"megamenu-AI Tools\""
+              },
+              "relatedNodes": [],
+              "impact": "critical",
+              "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"megamenu-AI Tools\""
+            }
+          ],
+          "none": [],
+          "impact": "critical",
+          "html": "<button type=\"button\" aria-expanded=\"false\" aria-haspopup=\"true\" aria-controls=\"megamenu-AI Tools\" class=\"inline-flex items-center gap-1 rounded-[var(--radius-sm)] px-3 py-2 text-sm font-medium transition-colors text-[var(--color-fg)] hover:text-[var(--color-primary-700)]\">",
+          "target": [
+            "button[aria-controls=\"megamenu-AI Tools\"]"
+          ],
+          "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"megamenu-AI Tools\""
+        },
+        {
+          "any": [],
+          "all": [
+            {
+              "id": "aria-valid-attr-value",
+              "data": {
+                "messageKey": "controlsWithinPopup",
+                "needsReview": "aria-controls=\"radix-_R_b7b_\""
+              },
+              "relatedNodes": [],
+              "impact": "critical",
+              "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"radix-_R_b7b_\""
+            }
+          ],
+          "none": [],
+          "impact": "critical",
+          "html": "<button type=\"button\" aria-label=\"Open menu\" class=\"inline-flex size-11 ...\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-controls=\"radix-_R_b7b_\" data-state=\"closed\">",
+          "target": [
+            ".lg\\:hidden"
+          ],
+          "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"radix-_R_b7b_\""
+        }
+      ]
+    },
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "tags": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT",
+        "RGAAv4",
+        "RGAA-3.2.1"
+      ],
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=playwright",
+      "nodes": [
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "12.0pt (16px)",
+                "fontWeight": "normal",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<a href=\"#main-content\" class=\"sr-only focus:not-sr-only fixed left-4 top-4 z-[60] rounded-[var(--radius-sm)] bg-[var(--color-primary-600)] px-4 py-2 text-sm font-medium text-[var(--color-primary-fg)] shadow-[var(--shadow-md)]\">Skip to main content</a>",
+          "target": [
+            ".focus\\:not-sr-only"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "10.0pt (13.3333px)",
+                "fontWeight": "normal",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<button type=\"button\" aria-expanded=\"false\" aria-haspopup=\"true\" aria-controls=\"megamenu-Capabilities\" class=\"inline-flex items-center gap-1 rounded-[var(--radius-sm)] px-3 py-2 text-sm font-medium transition-colors text-[var(--color-fg)] hover:text-[var(--color-primary-700)]\">",
+          "target": [
+            "button[aria-controls=\"megamenu-Capabilities\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "10.0pt (13.3333px)",
+                "fontWeight": "normal",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<button type=\"button\" aria-expanded=\"false\" aria-haspopup=\"true\" aria-controls=\"megamenu-Dosage Forms\" class=\"inline-flex items-center gap-1 rounded-[var(--radius-sm)] px-3 py-2 text-sm font-medium transition-colors text-[var(--color-fg)] hover:text-[var(--color-primary-700)]\">",
+          "target": [
+            "button[aria-controls=\"megamenu-Dosage Forms\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "10.0pt (13.3333px)",
+                "fontWeight": "normal",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<button type=\"button\" aria-expanded=\"false\" aria-haspopup=\"true\" aria-controls=\"megamenu-AI Tools\" class=\"inline-flex items-center gap-1 rounded-[var(--radius-sm)] px-3 py-2 text-sm font-medium transition-colors text-[var(--color-fg)] hover:text-[var(--color-primary-700)]\">",
+          "target": [
+            "button[aria-controls=\"megamenu-AI Tools\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "12.0pt (16px)",
+                "fontWeight": "normal",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<a class=\"rounded-[var(--radius-sm)] px-3 py-2 text-sm font-medium transition-colors text-[var(--color-fg)] hover:text-[var(--color-primary-700)]\" href=\"/about\">About</a>",
+          "target": [
+            ".transition-colors.py-2[href$=\"about\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "12.0pt (16px)",
+                "fontWeight": "normal",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<a class=\"rounded-[var(--radius-sm)] px-3 py-2 text-sm font-medium transition-colors text-[var(--color-fg)] hover:text-[var(--color-primary-700)]\" href=\"/insights\">Insights</a>",
+          "target": [
+            ".transition-colors.py-2[href$=\"insights\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "12.0pt (16px)",
+                "fontWeight": "normal",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<a class=\"rounded-[var(--radius-sm)] px-3 py-2 text-sm font-medium transition-colors text-[var(--color-fg)] hover:text-[var(--color-primary-700)]\" href=\"/contact\">Contact</a>",
+          "target": [
+            "a[href$=\"contact\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "12.0pt (16px)",
+                "fontWeight": "normal",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<a class=\"items-center justify...\" href=\"/ai/project-scoping-...\">",
+          "target": [
+            ".md\\:inline-flex"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "12.0pt (16px)",
+                "fontWeight": "normal",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-[0.12em] text-[var(--color-primary-700)]\">Canada-headquartered. Serving global sponsors.</p>",
+          "target": [
+            ".lg\\:max-w-3xl > .tracking-\\[0\\.12em\\].uppercase.text-xs"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "24.0pt (32px)",
+                "fontWeight": "bold",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "3:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span>Scope complex pharma programmes with</span>",
+          "target": [
+            "#home-hero-heading > span:nth-child(1)"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "24.0pt (32px)",
+                "fontWeight": "bold",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "3:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"text-[var(--color-primary-700)]\">analytical and regulatory clarity.</span>",
+          "target": [
+            "#home-hero-heading > .text-\\[var\\(--color-primary-700\\)\\]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "12.0pt (16px)",
+                "fontWeight": "normal",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"max-w-xl text-base leading-relaxed text-[var(--color-slate-800)] sm:text-lg\">Propharmex helps global sponsors turn product, evidence, and pathway questions into a practical development scope across analytical services, regulatory strategy, and pharmaceutical development.</p>",
+          "target": [
+            ".sm\\:text-lg"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "12.0pt (16px)",
+                "fontWeight": "normal",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<a class=\"inline-flex items-ce...\" href=\"/ai/project-scoping-...\">",
+          "target": [
+            ".min-h-11.hover\\:bg-\\[var\\(--color-primary-700\\)\\].active\\:translate-y-px"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "12.0pt (16px)",
+                "fontWeight": "normal",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<a class=\"inline-flex items-ce...\" href=\"/ai\">",
+          "target": [
+            ".min-h-11.hover\\:text-\\[var\\(--color-primary-600\\)\\][href=\"/ai\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "12.0pt (16px)",
+                "fontWeight": "normal",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"mt-3 max-w-xl text-xs tracking-[0.02em] text-[var(--color-muted)]\">Canada-headquartered governance. Global sponsor support. Human review before scope.</p>",
+          "target": [
+            ".tracking-\\[0\\.02em\\]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "18.0pt (24px)",
+                "fontWeight": "bold",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "3:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<h2 class=\"sr-only\">What gives sponsors confidence before the first call</h2>",
+          "target": [
+            ".max-w-7xl.sm\\:px-6.lg\\:px-8 > .sr-only"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        }
+      ]
+    }
+  ],
+  "inapplicable": [
+    {
+      "id": "area-alt"
+    },
+    {
+      "id": "aria-braille-equivalent"
+    },
+    {
+      "id": "aria-command-name"
+    },
+    {
+      "id": "aria-input-field-name"
+    },
+    {
+      "id": "aria-meter-name"
+    },
+    {
+      "id": "aria-progressbar-name"
+    },
+    {
+      "id": "aria-required-children"
+    },
+    {
+      "id": "aria-required-parent"
+    },
+    {
+      "id": "aria-toggle-field-name"
+    },
+    {
+      "id": "aria-tooltip-name"
+    },
+    {
+      "id": "blink"
+    },
+    {
+      "id": "definition-list"
+    },
+    {
+      "id": "dlitem"
+    },
+    {
+      "id": "frame-focusable-content"
+    },
+    {
+      "id": "frame-title-unique"
+    },
+    {
+      "id": "frame-title"
+    },
+    {
+      "id": "html-xml-lang-mismatch"
+    },
+    {
+      "id": "input-button-name"
+    },
+    {
+      "id": "input-image-alt"
+    },
+    {
+      "id": "link-in-text-block"
+    },
+    {
+      "id": "marquee"
+    },
+    {
+      "id": "meta-refresh"
+    },
+    {
+      "id": "object-alt"
+    },
+    {
+      "id": "role-img-alt"
+    },
+    {
+      "id": "scrollable-region-focusable"
+    },
+    {
+      "id": "select-name"
+    },
+    {
+      "id": "server-side-image-map"
+    },
+    {
+      "id": "summary-name"
+    },
+    {
+      "id": "svg-img-alt"
+    },
+    {
+      "id": "td-headers-attr"
+    },
+    {
+      "id": "th-has-data-cells"
+    },
+    {
+      "id": "valid-lang"
+    },
+    {
+      "id": "video-caption"
+    },
+    {
+      "id": "no-autoplay-audio"
+    }
+  ]
+}

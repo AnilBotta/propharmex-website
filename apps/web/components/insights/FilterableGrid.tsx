@@ -67,10 +67,14 @@ export const FilterableGrid: FC<Props> = ({ articles, whitepapers, copy }) => {
     if (filter === "all") return allItems;
     if (filter === "case-study") return [];
     return allItems.filter((item) => {
-      if (filter === "article") return item.kind === "article";
+      if (filter === "article") {
+        return item.kind === "article" && item.data.articleType === "article";
+      }
       if (filter === "whitepaper") return item.kind === "whitepaper";
-      // regulatory-update — none in the seed; placeholder for future content.
-      return false;
+      return (
+        item.kind === "article" &&
+        item.data.articleType === "regulatory-update"
+      );
     });
   }, [allItems, filter]);
 

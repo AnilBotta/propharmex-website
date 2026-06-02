@@ -79,7 +79,7 @@ The site is a Next.js 15 App Router monorepo. Content is authored in Sanity Stud
 | `/case-studies/[slug]`                              | Detail     | Yes           | Problem-Approach-Solution-Result                                   |
 | `/insights`                                         | Hub        | Yes           | Articles + whitepapers                                             |
 | `/insights/[slug]`                                  | Article    | Yes           | Long-form thought leadership                                       |
-| `/insights/whitepapers/[slug]`                      | Whitepaper | Yes           | Route scaffold; no live slug while `INSIGHTS.whitepapers` is empty |
+| `/insights/whitepapers/[slug]`                      | Whitepaper | Yes           | Live gated ICH Q2(R2) analytical-method readiness briefing          |
 | `/our-process`                                      | Marketing  | Yes           | Engagement workflow                                                |
 | `/contact`                                          | Form       | Partial       | Inquiry form + Cal.com + dual addresses                            |
 | `/ai/concierge`                                     | Implicit   | No            | Always-mounted bubble; no standalone route                         |
@@ -145,7 +145,7 @@ The bundle budget was ratcheted from 475 kB to 450 kB after the AI surface dynam
 These are tracked but intentionally out of scope for the v1.0.0 launch.
 
 - Promote Lighthouse `categories:accessibility` warn to error 1.0 after the manual VoiceOver and NVDA assistive-tech pass is recorded with docs/accessibility-at-results-template.md.
-- Add `/insights/whitepapers/[slug]` to the axe URL list after a live whitepaper slug returns to `INSIGHTS.whitepapers`.
+- Complete the manual VoiceOver and NVDA assistive-tech pass for the live whitepaper gate after staging is available.
 - Build the three PostHog dashboards in the PostHog UI per docs/posthog-dashboard-build-sheet.md (Lead funnel, AI tool conversion, Content performance). The earlier Region breakdown dashboard is retired with the region middleware.
 
 ---

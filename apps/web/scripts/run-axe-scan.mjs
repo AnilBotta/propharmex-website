@@ -52,6 +52,7 @@ const URLS = [
   "/services/pharmaceutical-development/solid-oral-dosage",
   "/insights",
   "/insights/ich-q2-r2-method-validation-2024",
+  "/insights/whitepapers/analytical-method-validation-readiness-ich-q2-r2",
   "/case-studies",
   "/contact",
   "/ai/del-readiness",

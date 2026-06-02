@@ -160,8 +160,8 @@ export default function AccessibilityPage() {
             </li>
             <li>
               <strong>Whitepaper-gate assistive-technology scan</strong> — the whitepaper gate
-              remains in code, but no public whitepaper slug is currently live. We will add it back
-              to automated and manual coverage when the registry is repopulated.
+              is back in automated coverage for the live ICH Q2(R2) briefing. Manual VoiceOver
+              and NVDA confirmation will be recorded after staging validation.
             </li>
           </ul>
         </Section>

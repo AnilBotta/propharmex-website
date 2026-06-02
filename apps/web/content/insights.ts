@@ -9,13 +9,12 @@
  * and CDMO-strategy long-form. There is no "bridge" service offering and no
  * article frames the firm as one.
  *
- * Seed content (1 article + 1 whitepaper) anchors one of the four pillars
- * (the licence-specific pillar was retired alongside related seed articles
- * that were incompatible with the current
- * specialty-CDMO positioning):
+ * Seed content anchors one of the four pillars (the licence-specific pillar
+ * was retired alongside related seed articles that were incompatible with the
+ * current specialty-CDMO positioning):
  *
  *  - ich-q2-r2-method-validation-2024            — Analytical services pillar
- *  - canadian-cdmo-operating-model (whitepaper)  — CDMO strategy pillar (gated, retired URL surface)
+ *  - analytical-method-validation-readiness-ich-q2-r2 — Analytical services pillar (gated)
  *
  * The other two pillars (Formulation, Global market entry) seed in the
  * editorial calendar built at Prompt 23. Article #4 onward enters as Sanity
@@ -171,7 +170,7 @@ export type ArticleSlug = (typeof ARTICLE_SLUGS)[number];
 export interface ArticleContent {
   slug: ArticleSlug;
   pillar: InsightPillar;
-  articleType: "article";
+  articleType: "article" | "regulatory-update";
   /** ISO date string (YYYY-MM-DD). Sets `datePublished` on Article JSON-LD. */
   publishedAt: string;
   readingMinutes: number;
@@ -215,7 +214,9 @@ export interface ArticleContent {
  * the cascade re-engages: sitemap entry generates, page handler accepts the
  * slug, API route validates against the union.
  */
-export const WHITEPAPER_SLUGS = [] as const;
+export const WHITEPAPER_SLUGS = [
+  "analytical-method-validation-readiness-ich-q2-r2",
+] as const;
 export type WhitepaperSlug = (typeof WHITEPAPER_SLUGS)[number];
 
 export type WhitepaperFormField = "fullName" | "email" | "company" | "role" | "country" | "useCase";
@@ -327,7 +328,7 @@ export const INSIGHTS: InsightsContent = {
       lede: "Articles are short technical primers (5–10 minutes). Whitepapers are gated long-form (15–25 minutes). Regulatory updates flag changes to ICH, Health Canada, or USFDA guidance that affect a current or upcoming filing. Case studies live on their own surface and the pill links there.",
       emptyStateTitle: "Nothing here yet under that filter.",
       emptyStateBody:
-        "We publish about once a month. Clear the filter to see the full list, or check back — the editorial calendar is filling out through 2026.",
+        "We publish review-gated updates on a monthly cadence. Clear the filter to see the full list, or check back when the next editorial packet is approved.",
       resultCountSingular: "piece",
       resultCountPlural: "pieces",
       caseStudiesNote: "Case studies are anonymized client work and live at /case-studies.",
@@ -554,17 +555,51 @@ export const INSIGHTS: InsightsContent = {
     /* --------------------------------------------------------------------- */
   ],
 
-  // The "Canadian CDMO operating model" whitepaper was retired in
-  // PR-D2c2'. Its content used licence/logistics framing incompatible with
-  // CDMO positioning. The /insights/whitepapers/canonical-cdmo-operating-
-  // model URL surface and the /downloads/canadian-cdmo-operating-model.pdf
-  // direct asset path are both 301'd to /insights/whitepapers via
-  // apps/web/next.config.ts (added in PR-D1'). The API route at
-  // /api/whitepaper-download already returns 404 when a slug is not
-  // present in INSIGHTS.whitepapers (see route.ts).
-  //
-  // PR-D2c3' will further prune `WHITEPAPER_SLUGS`, the static-route
-  // generator, and the Zod enum in the API route. Until then, the empty
-  // array below stops the /insights hub from rendering a stale card.
-  whitepapers: [],
+  // The "Canadian CDMO operating model" whitepaper remains retired. Its URL
+  // surfaces continue to redirect to /insights/whitepapers via next.config.ts
+  // because the retired copy used licence/logistics framing incompatible with
+  // the current positioning. The live whitepaper below is analytical-method
+  // focused and uses ICH primary-source posture instead.
+  whitepapers: [
+    {
+      slug: "analytical-method-validation-readiness-ich-q2-r2",
+      pillar: "analytical-services",
+      articleType: "whitepaper",
+      publishedAt: "2026-06-02",
+      pages: 8,
+      title: "Analytical Method Validation Readiness Under ICH Q2(R2)",
+      summary:
+        "A gated readiness briefing for sponsors reviewing analytical method-validation packages against ICH Q2(R2) and the companion Q14 lifecycle framing.",
+      metaTitle:
+        "Analytical method validation readiness under ICH Q2(R2) — Propharmex",
+      metaDescription:
+        "Download Propharmex's gated briefing on ICH Q2(R2) analytical method-validation readiness, Q14 alignment, documentation checks, and source-anchored review posture.",
+      ogTitle: "ICH Q2(R2) method-validation readiness briefing",
+      ogDescription:
+        "A practical, source-anchored readiness briefing for analytical validation packages under ICH Q2(R2).",
+      hero: {
+        eyebrow: "Whitepaper · Analytical services",
+        lede: "A practical readiness briefing for sponsors reviewing analytical method-validation packages against ICH Q2(R2), with Q14 lifecycle alignment and approval gates kept explicit.",
+      },
+      insideBullets: [
+        "What ICH Q2(R2) expects from validation evidence and protocol justification.",
+        "How Q14 development records should connect to validation packages without over-claiming readiness.",
+        "A review checklist for specificity, range, accuracy, precision, robustness, and stability-indicating evidence.",
+        "Primary-source posture and disclaimer language suitable for internal review before filing decisions.",
+      ],
+      contents: [
+        { id: "executive-summary", label: "Executive summary", pages: "1" },
+        { id: "source-posture", label: "Source posture and scope", pages: "2" },
+        { id: "readiness-model", label: "Readiness model", pages: "3-5" },
+        { id: "documentation-checklist", label: "Documentation checklist", pages: "6-7" },
+        { id: "sources-and-disclaimer", label: "Sources and disclaimer", pages: "8" },
+      ],
+      formFields: ["fullName", "email", "company", "role", "country", "useCase"],
+      pdfPath:
+        "/downloads/whitepapers/analytical-method-validation-readiness-ich-q2-r2.pdf",
+      formDisclaimer:
+        "This whitepaper is informational and reflects Propharmex's understanding of ICH Q2(R2) and Q14 as of 2026-06-02. It is not regulatory advice and does not guarantee any filing outcome.",
+      author: INSIGHT_AUTHORS["analytical-bench"],
+    },
+  ],
 };
