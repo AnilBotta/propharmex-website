@@ -69,10 +69,12 @@ Goal: be cited by ChatGPT, Claude, Perplexity, Gemini for pharma/CDMO queries.
 
 Built in Prompt 23 as an `.xlsx` via the `xlsx` skill. Columns: working title, primary keyword, intent, persona, target cluster, pillar, word count, author, status, due date, publish date, primary CTA, related services.
 
+Ongoing monthly draft operations are documented in [`docs/editorial-cadence.md`](editorial-cadence.md).
+
 Cadence target for launch + first 3 months:
 
 - 8 insight articles (4 regulatory, 2 analytical, 1 development, 1 quality)
-- Whitepapers only after a client-approved topic and source posture are available; `INSIGHTS.whitepapers` is currently empty
+- 1 live whitepaper at launch after client-approved topic and source posture; monthly automation prepares the next whitepaper draft packet for review
 - 3 case studies
 - Weekly "regulatory update" micro-posts (300–500 words) — low-lift, high citation-value
 

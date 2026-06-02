@@ -37,12 +37,13 @@ Same set as Lighthouse CI + a11y axe-core CI, mapped to the audit's six represen
 | `/quality-compliance`                                    | Trust page                |
 | `/services/pharmaceutical-development/solid-oral-dosage` | Services leaf             |
 | `/insights/ich-q2-r2-method-validation-2024`             | Insight article           |
+| `/insights/whitepapers/analytical-method-validation-readiness-ich-q2-r2` | Whitepaper gate           |
 | `/case-studies`                                          | Case studies hub          |
 | `/contact`                                               | Form + Cal.com embed      |
 | `/ai/del-readiness`                                      | AI tool — multi-step form |
 | `/accessibility`                                         | Conformance statement     |
 
-Whitepaper-gate coverage is blocked while `INSIGHTS.whitepapers` is empty; add the first live whitepaper slug back to this table when editorial republishes one.
+Whitepaper-gate coverage is active for the live ICH Q2(R2) analytical-method readiness briefing. Record the manual form-validation and success-state observations in the results doc after staging is available.
 
 ---
 

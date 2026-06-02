@@ -21,6 +21,11 @@ const PILLAR_LABEL_BY_ID = Object.fromEntries(
   INSIGHT_PILLARS.map((p) => [p.id, p.label]),
 );
 
+const ARTICLE_TYPE_LABEL = {
+  article: "Article",
+  "regulatory-update": "Regulatory update",
+} satisfies Record<ArticleContent["articleType"], string>;
+
 type Props =
   | { kind: "article"; data: ArticleContent }
   | { kind: "whitepaper"; data: WhitepaperContent };
@@ -36,7 +41,7 @@ export const InsightCard: FC<Props> = (props) => {
       >
         <div className="flex items-start justify-between gap-3">
           <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--color-primary-700)]">
-            {PILLAR_LABEL_BY_ID[data.pillar]}
+            {ARTICLE_TYPE_LABEL[data.articleType]} - {PILLAR_LABEL_BY_ID[data.pillar]}
           </p>
           <ArrowUpRight
             aria-hidden="true"

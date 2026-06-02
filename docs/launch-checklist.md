@@ -44,7 +44,7 @@ These must clear before staging sign-off. Each row has a single owner; multi-own
 | No placeholder copy or TBD strings remain on public routes   | Editorial  | Grep production HTML for "Lorem", "TBD", "TODO" — should return zero                     |
 | Brand-voice review run on every page in `docs/handoff.md` §4 | Brand      | `brand-voice-guardian` skill returns Pass on each route                                  |
 | Regulatory claims anchored to primary sources                | Regulatory | `pharma-regulatory-writer` posture — every claim has an "as of" date                     |
-| Whitepaper registry state confirmed                          | Editorial  | `INSIGHTS.whitepapers` is empty; gate coverage is deferred until a live slug is approved |
+| Whitepaper registry state confirmed                          | Editorial  | `INSIGHTS.whitepapers` includes `analytical-method-validation-readiness-ich-q2-r2`; gate coverage is active |
 | Insights articles render with correct `publishedAt` dates    | Editorial  | Visit each article, confirm date matches Sanity                                          |
 
 ### 2.3 Identity, DNS, and TLS
@@ -64,7 +64,7 @@ These must clear before staging sign-off. Each row has a single owner; multi-own
 | --------------------------------------------------------- | ----------- | ---------------------------------------------------------------------------------------- |
 | Resend production sender domain verified                  | Operations  | DKIM and SPF DNS records visible; Resend dashboard shows green                           |
 | Inquiry form submissions hit business development inbox   | BD lead     | Submit a test inquiry; confirm receipt within 5 minutes                                  |
-| Whitepaper download email deferred until live slug exists | BD lead     | Confirm no public whitepaper slug is listed; test this when editorial republishes a slug |
+| Whitepaper download email verified                       | BD lead     | Submit the live ICH Q2(R2) whitepaper gate in staging; confirm email or 202 fallback in preview |
 | Newsletter double-opt-in flow completes                   | Operations  | Submit on `/insights`; receive confirmation email; confirm subscribe                     |
 | Cloudflare Turnstile production keys deployed             | Engineering | `TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY` in Vercel env match Cloudflare dashboard |
 
@@ -187,7 +187,7 @@ Detailed rollback procedure including command-line steps lives in [`docs/runbook
 
 These items are tracked but intentionally not blocking launch.
 
-- Add `/insights/whitepapers/[slug]` to automated accessibility coverage after a live whitepaper slug returns to `INSIGHTS.whitepapers`.
+- Complete the manual VoiceOver and NVDA assistive-tech pass for the live whitepaper gate after staging is available.
 
 ---
 
