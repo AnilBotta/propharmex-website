@@ -64,11 +64,11 @@ class PageEntry(TypedDict):
 
 
 PAGES: list[PageEntry] = [
-    {"route": "/", "purpose": "Home", "notes": "Region-aware hero ordering"},
+    {"route": "/", "purpose": "Home", "notes": "Canadian-anchor hero"},
     {"route": "/why-propharmex", "purpose": "Marketing — anti-hype proof points", "notes": ""},
     {"route": "/about", "purpose": "Marketing — Canadian anchor narrative", "notes": ""},
     {"route": "/about/leadership", "purpose": "Marketing — leadership grid", "notes": ""},
-    {"route": "/quality-compliance", "purpose": "Marketing — region-aware certs", "notes": ""},
+    {"route": "/quality-compliance", "purpose": "Marketing — quality and compliance", "notes": ""},
     {"route": "/facilities", "purpose": "Marketing — facility hub", "notes": "Mississauga + Hyderabad"},
     {"route": "/facilities/mississauga-canada", "purpose": "Detail — DEL anchor site", "notes": ""},
     {"route": "/facilities/hyderabad-india", "purpose": "Detail — development centre", "notes": ""},
@@ -114,7 +114,7 @@ PAGE_CHECKLIST: list[str] = [
     "Page meets the in-CI Lighthouse perf budget (warn at 0.90)",
     "JSON-LD validates in Schema.org Validator",
     "OG tags render correctly when previewed in social-link debugger",
-    "Region cookie (px-region) does not break the page",
+    "No personalization cookie is required for the page to render correctly",
 ]
 
 
@@ -233,12 +233,12 @@ def build_signoff_sheet(wb: Workbook) -> None:
         ("Status grid complete (no Sev 1 reds)", "", "", "", ""),
         ("Test plan items all completed or waived", "", "", "", ""),
         ("Lighthouse CI green at 0.90 perf / strict CWV", "", "", "", ""),
-        ("Bundle budget (380 kB) green per .github/workflows/bundle-budget.yml", "", "", "", ""),
+        ("Bundle budget (350 kB) green per .github/workflows/bundle-budget.yml", "", "", "", ""),
         ("axe-core CI zero serious or critical", "", "", "", ""),
         ("Manual VoiceOver pass (per docs/accessibility-at-test-plan.md)", "", "", "", ""),
         ("Manual NVDA pass (per docs/accessibility-at-test-plan.md)", "", "", "", ""),
         ("Sentry production source maps uploaded", "", "", "", ""),
-        ("PostHog dashboards live (per docs/analytics-taxonomy.md §6)", "", "", "", ""),
+        ("PostHog dashboards live (per docs/posthog-dashboard-build-sheet.md)", "", "", "", ""),
         ("Resend production sender domain verified", "", "", "", ""),
         ("Cal.com production link configured (CAL_LINK env var)", "", "", "", ""),
         ("Turnstile production keys deployed", "", "", "", ""),

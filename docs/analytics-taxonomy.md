@@ -13,12 +13,12 @@ PostHog — every event below is fired explicitly from the app code.
 
 ## 1. Stack and configuration
 
-| Layer | Tool | Where |
-|---|---|---|
-| Page analytics | Plausible | `<Script src="https://plausible.io/js/script.js" data-domain=…>` mounted in `apps/web/components/site/Analytics.tsx`. No code in our app — Plausible auto-records page-views via History API. |
-| Product analytics | PostHog | Lazy `posthog.init(...)` inside the same component. `capture_pageview: true`, `autocapture: false`, `session_recording: disabled`, `person_profiles: identified_only`. |
-| Super-properties | PostHog `register()` | Set on `loaded()` callback inside `posthog.init` — every subsequent `capture` carries them automatically. See §3. |
-| Helper module | `apps/web/lib/analytics/` | Generic `track()` + typed wrappers for the surfaces added in Prompt 24. |
+| Layer                 | Tool                                                                                | Where                                                                                                                                                                                                                                                 |
+| --------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Page analytics        | Plausible                                                                           | `<Script src="https://plausible.io/js/script.js" data-domain=…>` mounted in `apps/web/components/site/Analytics.tsx`. No code in our app — Plausible auto-records page-views via History API.                                                         |
+| Product analytics     | PostHog                                                                             | Lazy `posthog.init(...)` inside the same component. `capture_pageview: true`, `autocapture: false`, `session_recording: disabled`, `person_profiles: identified_only`.                                                                                |
+| Super-properties      | PostHog `register()`                                                                | Set on `loaded()` callback inside `posthog.init` — every subsequent `capture` carries them automatically. See §3.                                                                                                                                     |
+| Helper module         | `apps/web/lib/analytics/`                                                           | Generic `track()` + typed wrappers for the surfaces added in Prompt 24.                                                                                                                                                                               |
 | Per-surface telemetry | `apps/web/components/{concierge,scoping,del-readiness,dosage-matcher}/telemetry.ts` | The four AI tools retain their existing namespaced helpers from Prompts 18–21. The region middleware was retired in PR-B′ (`feat/remove-region-personalization`) when the single-website pivot dropped the Canada/India/Global personalization layer. |
 
 Both vendors are **no-ops** when their env vars are unset (`NEXT_PUBLIC_PLAUSIBLE_DOMAIN`, `NEXT_PUBLIC_POSTHOG_KEY`) so dev / preview / CI builds never fire fake telemetry.
@@ -63,11 +63,11 @@ subsequent mounts so values stay fresh after a new UTM visit).
 Implementation:
 [`super-properties.ts`](../apps/web/lib/analytics/super-properties.ts).
 
-| Property | Type | Source | Purpose |
-|---|---|---|---|
-| `referrer_group` | `"direct" \| "search" \| "ai" \| "social" \| "internal" \| "external"` | [`classifyReferrer`](../apps/web/lib/analytics/referrer.ts) on `document.referrer` | Channel attribution; AI-citation tracking |
-| `device_class` | `"mobile" \| "tablet" \| "desktop"` | [`classifyDevice`](../apps/web/lib/analytics/device.ts) on `navigator.userAgent` (+ touch points fallback for iPad) | Mobile/desktop segmentation in funnels |
-| `first_touch_utm` | `{ utm_source?, utm_medium?, utm_campaign?, utm_term?, utm_content?, captured_at? }` | [`resolveFirstTouchUtm`](../apps/web/lib/analytics/utm.ts) — pinned in `localStorage` on first visit | Marketing attribution; campaign ROI |
+| Property          | Type                                                                                 | Source                                                                                                              | Purpose                                   |
+| ----------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| `referrer_group`  | `"direct" \| "search" \| "ai" \| "social" \| "internal" \| "external"`               | [`classifyReferrer`](../apps/web/lib/analytics/referrer.ts) on `document.referrer`                                  | Channel attribution; AI-citation tracking |
+| `device_class`    | `"mobile" \| "tablet" \| "desktop"`                                                  | [`classifyDevice`](../apps/web/lib/analytics/device.ts) on `navigator.userAgent` (+ touch points fallback for iPad) | Mobile/desktop segmentation in funnels    |
+| `first_touch_utm` | `{ utm_source?, utm_medium?, utm_campaign?, utm_term?, utm_content?, captured_at? }` | [`resolveFirstTouchUtm`](../apps/web/lib/analytics/utm.ts) — pinned in `localStorage` on first visit                | Marketing attribution; campaign ROI       |
 
 ---
 
@@ -75,8 +75,8 @@ Implementation:
 
 ### 4.1 Page-level
 
-| Event | Owner | Payload | Notes |
-|---|---|---|---|
+| Event       | Owner              | Payload                                          | Notes                                                                                                                                                          |
+| ----------- | ------------------ | ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `$pageview` | PostHog SDK (auto) | `{ $current_url, $referrer, …super-properties }` | Auto-fired by `capture_pageview: true`. We do not add a manual `page_view` — Plausible covers privacy-friendly page counts; PostHog `$pageview` fuels funnels. |
 
 Plausible records its own `pageview` event server-side via the script
@@ -85,21 +85,21 @@ we standardize on PostHog for funnel work.
 
 ### 4.2 Marketing-surface clicks
 
-| Event | Where fired | Payload | Owner doc |
-|---|---|---|---|
-| `hero_cta_click` | `apps/web/components/home/Hero.tsx` (and any future hero with CTAs) | `{ page: string, variant: "primary"\|"secondary"\|"ghost", href: string, label: string }` | Lead-funnel dashboard top-of-funnel |
-| `service_card_click` | `apps/web/components/home/WhatWeDo.tsx` | `{ surface: "home-what-we-do", serviceId: string, href: string }` | Content-performance dashboard |
+| Event                | Where fired                                                         | Payload                                                                                   | Owner doc                           |
+| -------------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------- |
+| `hero_cta_click`     | `apps/web/components/home/Hero.tsx` (and any future hero with CTAs) | `{ page: string, variant: "primary"\|"secondary"\|"ghost", href: string, label: string }` | Lead-funnel dashboard top-of-funnel |
+| `service_card_click` | `apps/web/components/home/WhatWeDo.tsx`                             | `{ surface: "home-what-we-do", serviceId: string, href: string }`                         | Content-performance dashboard       |
 
 ### 4.3 Forms
 
 Every form fires both a generic `form_submit` and a surface-specific
 event so the funnel can pivot either way.
 
-| Event | Where fired | Payload |
-|---|---|---|
-| `form_submit` | All | `{ form: string, category?: string, queued?: boolean }` |
-| `contact_submit` | `apps/web/components/contact/InquiryForm.tsx` | `{ service: string, region: string, queued?: boolean }` |
-| `whitepaper_download` | `apps/web/components/insights/WhitepaperGateForm.tsx` | `{ slug: string, queued: boolean }` |
+| Event                 | Where fired                                           | Payload                                                 |
+| --------------------- | ----------------------------------------------------- | ------------------------------------------------------- |
+| `form_submit`         | All                                                   | `{ form: string, category?: string, queued?: boolean }` |
+| `contact_submit`      | `apps/web/components/contact/InquiryForm.tsx`         | `{ service: string, region: string, queued?: boolean }` |
+| `whitepaper_download` | `apps/web/components/insights/WhitepaperGateForm.tsx` | `{ slug: string, queued: boolean }`                     |
 
 `queued` reflects whether the server-side delivery (Resend, etc.)
 actually queued an email. `false` means the env wasn't configured —
@@ -109,57 +109,57 @@ expected in dev / preview, a regression in prod.
 
 Implementation: [`apps/web/components/concierge/telemetry.ts`](../apps/web/components/concierge/telemetry.ts).
 
-| Event | Payload |
-|---|---|
-| `concierge.opened` | `{ source?: "bubble" \| "keyboard" }` |
-| `concierge.closed` | `{ reason?: "x-button" \| "escape" \| "toggle" }` |
-| `concierge.message_sent` | `{ source: "composer" \| "suggestion-chip", lengthBucket }` |
-| `concierge.message_received` | `{ citationCount: number }` |
-| `concierge.feedback` | `{ vote: "up" \| "down" }` |
-| `concierge.escape_clicked` | — |
+| Event                        | Payload                                                     |
+| ---------------------------- | ----------------------------------------------------------- |
+| `concierge.opened`           | `{ source?: "bubble" \| "keyboard" }`                       |
+| `concierge.closed`           | `{ reason?: "x-button" \| "escape" \| "toggle" }`           |
+| `concierge.message_sent`     | `{ source: "composer" \| "suggestion-chip", lengthBucket }` |
+| `concierge.message_received` | `{ citationCount: number }`                                 |
+| `concierge.feedback`         | `{ vote: "up" \| "down" }`                                  |
+| `concierge.escape_clicked`   | —                                                           |
 
 ### 4.6 Project Scoping Assistant (Prompt 19 — already shipped)
 
 Implementation: [`apps/web/components/scoping/telemetry.ts`](../apps/web/components/scoping/telemetry.ts).
 
-| Event | Payload |
-|---|---|
-| `scoping.opened` | — |
-| `scoping.message_sent` | `{ source, lengthBucket }` |
-| `scoping.sample_loaded` | — |
+| Event                     | Payload                                   |
+| ------------------------- | ----------------------------------------- |
+| `scoping.opened`          | —                                         |
+| `scoping.message_sent`    | `{ source, lengthBucket }`                |
+| `scoping.sample_loaded`   | —                                         |
 | `scoping.scope_generated` | `{ serviceCount, phaseCount, riskCount }` |
-| `scoping.scope_edited` | `{ section }` |
-| `scoping.submitted` | `{ queued, serviceCount, phaseCount }` |
-| `scoping.pdf_downloaded` | `{ bytes, serviceCount, phaseCount }` |
-| `scoping.escape_clicked` | — |
+| `scoping.scope_edited`    | `{ section }`                             |
+| `scoping.submitted`       | `{ queued, serviceCount, phaseCount }`    |
+| `scoping.pdf_downloaded`  | `{ bytes, serviceCount, phaseCount }`     |
+| `scoping.escape_clicked`  | —                                         |
 
 ### 4.7 DEL Readiness Assessment (Prompt 20 — already shipped)
 
 Implementation: [`apps/web/components/del-readiness/telemetry.ts`](../apps/web/components/del-readiness/telemetry.ts).
 
-| Event | Payload |
-|---|---|
-| `del_readiness.opened` | — |
-| `del_readiness.question_answered` | `{ category, stepIndex }` |
-| `del_readiness.submitted` | `{ answeredCount }` |
-| `del_readiness.scored` | `{ score, trafficLight, gapCount, remediationCount }` |
-| `del_readiness.consultation_clicked` | `{ hasCalLink }` |
-| `del_readiness.pdf_downloaded` | `{ bytes, score, trafficLight }` |
-| `del_readiness.retake` | — |
+| Event                                | Payload                                               |
+| ------------------------------------ | ----------------------------------------------------- |
+| `del_readiness.opened`               | —                                                     |
+| `del_readiness.question_answered`    | `{ category, stepIndex }`                             |
+| `del_readiness.submitted`            | `{ answeredCount }`                                   |
+| `del_readiness.scored`               | `{ score, trafficLight, gapCount, remediationCount }` |
+| `del_readiness.consultation_clicked` | `{ hasCalLink }`                                      |
+| `del_readiness.pdf_downloaded`       | `{ bytes, score, trafficLight }`                      |
+| `del_readiness.retake`               | —                                                     |
 
 ### 4.8 Dosage Form Capability Matcher (Prompt 21 — already shipped)
 
 Implementation: [`apps/web/components/dosage-matcher/telemetry.ts`](../apps/web/components/dosage-matcher/telemetry.ts).
 
-| Event | Payload |
-|---|---|
-| `dosage_matcher.opened` | — |
-| `dosage_matcher.sample_loaded` | — |
-| `dosage_matcher.submitted` | `{ hasDescription, filterCount }` |
-| `dosage_matcher.matched` | `{ matchCount, topFitTier, topCoveragePct }` |
-| `dosage_matcher.consultation_clicked` | — |
-| `dosage_matcher.pdf_downloaded` | `{ bytes, matchCount }` |
-| `dosage_matcher.restart` | — |
+| Event                                 | Payload                                      |
+| ------------------------------------- | -------------------------------------------- |
+| `dosage_matcher.opened`               | —                                            |
+| `dosage_matcher.sample_loaded`        | —                                            |
+| `dosage_matcher.submitted`            | `{ hasDescription, filterCount }`            |
+| `dosage_matcher.matched`              | `{ matchCount, topFitTier, topCoveragePct }` |
+| `dosage_matcher.consultation_clicked` | —                                            |
+| `dosage_matcher.pdf_downloaded`       | `{ bytes, matchCount }`                      |
+| `dosage_matcher.restart`              | —                                            |
 
 ---
 
@@ -169,40 +169,48 @@ The Prompt 24 brief lists short, generic event names. We use richer
 namespaced names in the actual implementation; the table below maps
 between them so a reader of the original spec can find the real event.
 
-| Prompt 24 spec name | Actual event(s) | Notes |
-|---|---|---|
-| `page_view` | `$pageview` (PostHog auto) | Plausible records it server-side too. |
-| `hero_cta_click` (with variant) | `hero_cta_click` | New in Prompt 24. |
-| `service_card_click` | `service_card_click` | New in Prompt 24. |
-| `ai_tool_open` (tool name) | `concierge.opened`, `scoping.opened`, `del_readiness.opened`, `dosage_matcher.opened` | Tool name is the namespace. |
-| `ai_tool_step_advance` | `del_readiness.question_answered`, `scoping.message_sent`, `dosage_matcher.submitted` | Per-tool semantics. |
-| `ai_tool_complete` | `concierge.message_received`, `scoping.scope_generated`, `del_readiness.scored`, `dosage_matcher.matched` | Per-tool completion event. |
-| `whitepaper_download` | `whitepaper_download` | New in Prompt 24. |
-| `form_submit` (form name) | `form_submit` (with `form: string`) | New in Prompt 24. |
-| `chat_open` | `concierge.opened` | Already shipped Prompt 18. |
-| `chat_message` | `concierge.message_sent` | Already shipped Prompt 18. |
-| `contact_submit` | `contact_submit` + `form_submit` | New in Prompt 24. |
-| `scope_assistant_send` | `scoping.message_sent` | Already shipped Prompt 19. |
-| `del_assessment_complete` | `del_readiness.scored` | Already shipped Prompt 20. |
+| Prompt 24 spec name             | Actual event(s)                                                                                           | Notes                                 |
+| ------------------------------- | --------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| `page_view`                     | `$pageview` (PostHog auto)                                                                                | Plausible records it server-side too. |
+| `hero_cta_click` (with variant) | `hero_cta_click`                                                                                          | New in Prompt 24.                     |
+| `service_card_click`            | `service_card_click`                                                                                      | New in Prompt 24.                     |
+| `ai_tool_open` (tool name)      | `concierge.opened`, `scoping.opened`, `del_readiness.opened`, `dosage_matcher.opened`                     | Tool name is the namespace.           |
+| `ai_tool_step_advance`          | `del_readiness.question_answered`, `scoping.message_sent`, `dosage_matcher.submitted`                     | Per-tool semantics.                   |
+| `ai_tool_complete`              | `concierge.message_received`, `scoping.scope_generated`, `del_readiness.scored`, `dosage_matcher.matched` | Per-tool completion event.            |
+| `whitepaper_download`           | `whitepaper_download`                                                                                     | New in Prompt 24.                     |
+| `form_submit` (form name)       | `form_submit` (with `form: string`)                                                                       | New in Prompt 24.                     |
+| `chat_open`                     | `concierge.opened`                                                                                        | Already shipped Prompt 18.            |
+| `chat_message`                  | `concierge.message_sent`                                                                                  | Already shipped Prompt 18.            |
+| `contact_submit`                | `contact_submit` + `form_submit`                                                                          | New in Prompt 24.                     |
+| `scope_assistant_send`          | `scoping.message_sent`                                                                                    | Already shipped Prompt 19.            |
+| `del_assessment_complete`       | `del_readiness.scored`                                                                                    | Already shipped Prompt 20.            |
 
 ---
 
 ## 6. Dashboards
 
 PostHog dashboards are configured in the PostHog UI, not in code. The
-spec below is what the team builds and maintains in PostHog after this
-PR ships.
+launch set is three dashboards. Earlier planning notes that mentioned a
+separate Region breakdown dashboard are retired with the region
+middleware; region is not a super-property. The contact form still emits
+its selected `region` field on `contact_submit`, but dashboard
+breakdowns should use `referrer_group`, `device_class`, and
+`first_touch_utm.utm_source` unless a future personalization layer is
+approved.
+
+The operational build sheet is
+[`docs/posthog-dashboard-build-sheet.md`](posthog-dashboard-build-sheet.md).
 
 ### 6.1 Lead funnel
 
 Tracks the high-intent path: visit → primary CTA → form submit.
 
-| Step | Event | Filter |
-|---|---|---|
-| 1 | `$pageview` | any URL |
-| 2 | `hero_cta_click` | `variant = primary` |
-| 3 | `form_submit` | `form ∈ {contact, whitepaper}` |
-| 4 | `form_submit` | `queued = true` |
+| Step | Event            | Filter                         |
+| ---- | ---------------- | ------------------------------ |
+| 1    | `$pageview`      | any URL                        |
+| 2    | `hero_cta_click` | `variant = primary`            |
+| 3    | `form_submit`    | `form ∈ {contact, whitepaper}` |
+| 4    | `form_submit`    | `queued = true`                |
 
 Breakdowns: `referrer_group`, `device_class`, `first_touch_utm.utm_source`.
 
@@ -210,13 +218,13 @@ Breakdowns: `referrer_group`, `device_class`, `first_touch_utm.utm_source`.
 
 Tracks engagement across the four AI tools.
 
-| Step | Event | Filter |
-|---|---|---|
-| 1 | `$pageview` | URL contains `/ai/` |
-| 2 | `*.opened` | OR across `concierge / scoping / del_readiness / dosage_matcher` |
-| 3 | `*.message_sent` OR `*.submitted` OR `*.question_answered` | first user input |
-| 4 | `concierge.message_received` OR `scoping.scope_generated` OR `del_readiness.scored` OR `dosage_matcher.matched` | tool completion |
-| 5 | `*.consultation_clicked` OR `*.pdf_downloaded` OR `*.escape_clicked` | conversion to BD |
+| Step | Event                                                                                                           | Filter                                                           |
+| ---- | --------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| 1    | `$pageview`                                                                                                     | URL contains `/ai/`                                              |
+| 2    | `*.opened`                                                                                                      | OR across `concierge / scoping / del_readiness / dosage_matcher` |
+| 3    | `*.message_sent` OR `*.submitted` OR `*.question_answered`                                                      | first user input                                                 |
+| 4    | `concierge.message_received` OR `scoping.scope_generated` OR `del_readiness.scored` OR `dosage_matcher.matched` | tool completion                                                  |
+| 5    | `*.consultation_clicked` OR `*.pdf_downloaded` OR `*.escape_clicked`                                            | conversion to BD                                                 |
 
 Breakdowns: tool (event namespace), `device_class`.
 
